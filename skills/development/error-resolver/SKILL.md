@@ -110,7 +110,7 @@ When resolving an error, provide:
 **Error Signature**:
 - Code: [error code]
 - Type: [error type]
-- Location: [file:line]
+- Location: [file: line]
 
 ## Root Cause
 
@@ -324,3 +324,4 @@ git bisect reset  # when done
 
 - **replay/** - Replay system
   - `solution-template.yaml` - Template for recording solutions
+

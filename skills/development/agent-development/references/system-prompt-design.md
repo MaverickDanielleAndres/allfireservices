@@ -71,7 +71,7 @@ You are an expert [domain] analyzer specializing in [specific analysis type].
 [2-3 sentence overview]
 
 ## Critical Issues
-- [file:line] - [Issue description] - [Recommendation]
+- [file: line] - [Issue description] - [Recommendation]
 
 ## Major Issues
 [...]
@@ -409,3 +409,4 @@ Effective system prompts are:
 - **Testable**: Defines measurable standards
 
 Use the patterns above as templates, customize for your domain, and iterate based on agent performance.
+

@@ -73,7 +73,7 @@ colo*r         → matches color, colour
 
 Search for terms within a specified distance from each other. Only available in Title, Title/Abstract, and Affiliation fields.
 
-**Syntax**: `"search terms"[field:~N]`
+**Syntax**: `"search terms"[field: ~N]`
 - N = maximum number of words between terms
 
 **Examples**:

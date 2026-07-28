@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore skills directory to prevent Tailwind CSS from parsing arbitrary strings in markdown
+skills/

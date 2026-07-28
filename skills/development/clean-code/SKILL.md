@@ -179,11 +179,11 @@ File to edit: UserService.ts
 ## Script Results: [script_name.py]
 
 ### ❌ Errors Found (X items)
-- [File:Line] Error description 1
-- [File:Line] Error description 2
+- [file: line] Error description 1
+- [file: line] Error description 2
 
 ### ⚠️ Warnings (Y items)
-- [File:Line] Warning description
+- [file: line] Warning description
 
 ### ✅ Passed (Z items)
 - Check 1 passed
@@ -198,4 +198,5 @@ File to edit: UserService.ts
 > 🔴 **VIOLATION:** Running script and ignoring output = FAILED task.
 > 🔴 **VIOLATION:** Auto-fixing without asking = Not allowed.
 > 🔴 **Rule:** Always READ output → SUMMARIZE → ASK → then fix.
+
 

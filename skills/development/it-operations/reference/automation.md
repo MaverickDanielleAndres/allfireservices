@@ -870,7 +870,7 @@ db02.example.com ansible_host=10.0.30.11
 [monitoring]
 mon01.example.com ansible_host=10.0.99.10
 
-[all:vars]
+[all: vars]
 ansible_user=ansible
 ansible_become=yes
 ansible_python_interpreter=/usr/bin/python3
