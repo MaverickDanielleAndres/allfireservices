@@ -27,28 +27,13 @@ export default function ProductsPage({
           </div>
 
           <div className="flex gap-4 mb-12 overflow-x-auto pb-4 no-scrollbar">
-            <Link
-              href="/products"
-              className={`px-6 py-2 rounded-full font-medium whitespace-nowrap transition-colors ${
-                showAll ? "bg-black text-white" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
-              }`}
-            >
+            
               All Products
             </Link>
-            <Link
-              href="/products?roof=Elevated+Roof"
-              className={`px-6 py-2 rounded-full font-medium whitespace-nowrap transition-colors ${
-                isElevated ? "bg-black text-white" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
-              }`}
-            >
+            
               Elevated Roofs
             </Link>
-            <Link
-              href="/products?roof=High+Top+Roof"
-              className={`px-6 py-2 rounded-full font-medium whitespace-nowrap transition-colors ${
-                isHighTop ? "bg-black text-white" : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
-              }`}
-            >
+            
               High-Top Roofs
             </Link>
           </div>
@@ -84,3 +69,4 @@ export default function ProductsPage({
     </>
   );
 }
+

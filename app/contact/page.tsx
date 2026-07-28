@@ -1,61 +1,12 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+"use client";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function ContactPage() {
+export default function Page() {
   return (
-    <>
-      <Navbar />
-      <main className="flex-1 w-full bg-white text-black pt-32 pb-24">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-neutral-600 mb-12">
-              Have a question about our roofs or want to discuss a custom build? We're here to help.
-            </p>
-            
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-bold text-lg mb-2">Address</h3>
-                <p className="text-neutral-600">
-                  Drivelodge Motorhomes Ltd<br />
-                  Yorkshire, UK
-                </p>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg mb-2">Contact Info</h3>
-                <p className="text-neutral-600">
-                  Email: info@drivelodge.co.uk<br />
-                  Phone: +44 1234 567890
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-neutral-50 p-8 md:p-12 rounded-3xl border border-neutral-100">
-            <form className="space-y-6 flex flex-col">
-              <div>
-                <label className="block text-sm font-medium mb-2">Name</label>
-                <input type="text" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:border-black" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Email</label>
-                <input type="email" className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:border-black" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Message</label>
-                <textarea rows={5} className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:border-black"></textarea>
-              </div>
-              <button type="button" className="px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-neutral-800 transition-colors self-start">
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <main className="main-wrapper">
+      <div className="scroll-wrapper"><header className="section_contact"><div className="padding-global"><div className="container-large"><div className="padding-section-large is-contact-hero"><div className="contact_component"><div className="contact_content-left"><h4 className="heading-style-h4">If you have questions or you'd like to find out more about our services, please get in touch.</h4></div><div id="w-node-_13503068-11ce-9d7d-7f2c-5c20bb077c5d-d652ad6d" className="contact-cta_form-block w-form"><form method="get" blocks-slot-children="ST265" name="wf-form-Contact-Form" data-name="Contact Form" blocks-name="contact1_form" id="wf-form-Contact-Form" className="contact-cta_form" data-wf-page-id="677d3ce006ceb865d652ad6d" data-wf-element-id="13503068-11ce-9d7d-7f2c-5c20bb077c5e" data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e"><div id="w-node-_13503068-11ce-9d7d-7f2c-5c20bb077c5f-d652ad6d" className="form_field-wrapper _2col"><div blocks-name="form_field-wrapper" className="form_field-wrapper"><label htmlFor="First-Name-3" className="form_field-label">First Name*</label><input className="form_input w-input" maxLength="256" name="First-Name" data-name="First Name" placeholder="John" type="text" id="First-Name-3" required /></div><div blocks-name="form_field-wrapper" className="form_field-wrapper"><label htmlFor="Last-Name-3" className="form_field-label">Last Name*</label><input className="form_input w-input" maxLength="256" name="Last-Name" data-name="Last Name" placeholder="Smith" type="text" id="Last-Name-3" required /></div></div><div className="form_field-wrapper _2col"><div blocks-name="form_field-wrapper-2" className="form_field-wrapper"><label htmlFor="Email-3" className="form_field-label">Email*</label><input className="form_input w-input" maxLength="256" name="Email" data-name="Email" placeholder="name@example.com" type="email" id="Email-3" required /></div><div blocks-name="form_field-wrapper-2" className="form_field-wrapper"><label htmlFor="Phone-Number-3" className="form_field-label">Phone*</label><input className="form_input w-input" maxLength="256" name="Phone-Number" data-name="Phone Number" placeholder="+44 (0)" type="tel" id="Phone-Number-3" required /></div></div><div className="form_field-wrapper _2col"><div blocks-name="form_field-wrapper-2" className="form_field-wrapper"><label htmlFor="Vehicle" className="form_field-label">Vehicle Make</label><input className="form_input w-input" maxLength="256" name="Vehicle" data-name="Vehicle" placeholder="e.g. Volkswagen" type="text" id="Vehicle" /></div><div blocks-name="form_field-wrapper-2" className="form_field-wrapper"><label htmlFor="Vehicle-Model" className="form_field-label">Vehicle Model</label><input className="form_input w-input" maxLength="256" name="Vehicle-Model" data-name="Vehicle Model" placeholder="e.g. Transporter T6" type="text" id="Vehicle-Model" /></div></div><div blocks-name="form_field-wrapper-3" className="form_field-wrapper"><label htmlFor="Message-3" className="form_field-label">Message*</label><textarea id="Message-3" name="Message" maxLength="5000" data-name="Message" placeholder="Type something..." required className="form_input is-text-area w-input"></textarea></div><input type="submit" data-wait="Please wait..." blocks-non-deletable="true" blocks-name="button" blocks-slot-item-canonical="EL13" id="w-node-_13503068-11ce-9d7d-7f2c-5c20bb077c7b-d652ad6d" className="button max-width-full w-button" value="Send enquiry" /></form><div className="form_message-success-wrapper w-form-done"><div className="form_message-success"><div className="success-text">Thank you! Your submission has been received!</div></div></div><div className="form_message-error-wrapper w-form-fail"><div className="form_message-error"><div className="error-text">Oops! Something went wrong while submitting the form.</div></div></div></div><div id="w-node-ab61a358-68b7-daf8-b053-1ab450d53068-d652ad6d" className="contact_info-list"><div className="contact_info-item"><div className="text-size-medium text-weight-medium text-color-black">Visit us:</div><div className="body-text">Unit 5, Skelton Industrial Estate, Skelton Rd, Crosshills, Keighley, BD20 7BY.</div></div><div className="contact_info-item"><div className="text-size-medium text-weight-medium text-color-black">Call us:</div><a href="tel:01535637777" className="text-size-regular is-link">01535 637777</a></div><div className="contact_info-item"><div className="text-size-medium text-weight-medium text-color-black">Email us:</div><a href="mailto:sales@drivelodge.co.uk" className="text-size-regular is-link">sales@drivelodge.co.uk</a></div></div></div></div></div></div></header><section data-theme="light" className="section_fitter-cta"><div className="padding-global"><div className="container-large"><div className="padding-section-large"><div className="fitter-cta_component"><div id="w-node-_3a6c8f4f-e52c-f9e8-2d9c-3757c2a6e355-c2a6e350" className="fitter-cta_image-wrap"><img src="https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters.webp" loading="lazy" sizes="(max-width: 1632px) 100vw, 1632px" srcSet="https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters-p-500.webp 500w, https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters-p-800.webp 800w, https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters-p-1080.webp 1080w, https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters-p-1600.webp 1600w, https://cdn.prod.website-files.com/675171b75e69f27843937162/6756c556008e435ead447544_Fitters.webp 1632w" alt="" className="fitter-cta_image" /></div><div className="fitter-cta_content"><div data-wf--header-block--size="medium---left" className="header-wrapper"><div className="header-text-wrap"><div className="header-top"><h1 className="heading-style w-variant-87a93e56-e06c-9aaf-6ae7-13e106677c9c">Find your nearest fitter</h1></div><p className="body-text">We don’t trust just anyone to fit our custom-designed roofs. If you’re unable to deliver your vehicle to us for a factory installation, choose from our network of approved UK fitters.</p></div><div className="button-group"><a data-wf--button--size="large" href="/find-a-fitter" className="button-wrap w-inline-block"><div data-wf--button-style-- className="button-content"><div data-wf--button-layout--layout="normal" className="button-layout"><div className="button-text">Find a fitter</div><div className="button-icon"><div className="icon-slot"><div className="icon-slot"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 17" fill="none"><g clipPath="url(#clip0_6401_1558)"><path d="M10.9541 3.45557L6.00455 3.49545L5.99226 5.02155L10.5927 4.98503L3.05492 12.5549L4.12551 13.6255L11.6959 6.02298L11.6583 10.6887L13.1844 10.6764L13.2249 5.72629C13.2282 5.11964 12.9913 4.5402 12.5657 4.11468C12.1402 3.68916 11.5608 3.45218 10.9541 3.45557Z" fill="currentColor"></path></g><defs><clipPath id="clip0_6401_1558"><rect width="16" height="16" fill="currentColor" transform="translate(0 0.5)"></rect></clipPath></defs></svg></div></div></div></div></div></a></div></div></div></div></div></div></div></section></div>
+    </main>
   );
 }

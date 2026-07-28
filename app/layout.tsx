@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./drivelodge.css";
 import SmoothScrolling from "@/components/SmoothScrolling";
-
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import FooterReveal from "@/components/FooterReveal";
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -20,11 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-black`}>
         <SmoothScrolling>
-          {children}
+          <FooterReveal footerContent={<Footer />}>
+            <Navbar />
+            {children}
+          </FooterReveal>
         </SmoothScrolling>
       </body>
     </html>
   );
 }
+

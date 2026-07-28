@@ -10,3 +10,4 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
     </ReactLenis>
   );
 }
+
