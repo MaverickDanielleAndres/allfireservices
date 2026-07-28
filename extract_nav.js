@@ -1,5 +1,5 @@
 const fs = require('fs');
-const html = fs.readFileSync('drivelodge-home.html', 'utf8');
+const html = fs.readFileSync('allfireservices-home.html', 'utf8');
 
 const startIdx = html.indexOf('<div data-animation="default"');
 if (startIdx === -1) {

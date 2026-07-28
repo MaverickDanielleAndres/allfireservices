@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-let html = fs.readFileSync('drivelodge-home.html', 'utf8');
+let html = fs.readFileSync('allfireservices-home.html', 'utf8');
 
 // The main content is inside <main class="main-wrapper">
 let mainMatch = html.match(/<main class="main-wrapper">([\s\S]*?)<\/main>/i);

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 export default function FooterReveal({
   footerContent,
@@ -14,7 +14,7 @@ export default function FooterReveal({
   React.useEffect(() => {
     if (!footerRef.current) return;
     const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         setFooterHeight(entry.contentRect.height);
       }
     });
@@ -25,12 +25,15 @@ export default function FooterReveal({
   return (
     <>
       <div
-        className="relative z-10 bg-white transition-all duration-300"
+        className="footer-reveal-content relative z-10 bg-white transition-all duration-300"
         style={{ marginBottom: footerHeight }}
       >
         {children}
       </div>
-      <footer ref={footerRef} className="fixed bottom-0 left-0 w-full z-0">
+      <footer
+        ref={footerRef}
+        className="footer-reveal-panel fixed bottom-0 left-0 w-full z-0"
+      >
         {footerContent}
       </footer>
     </>

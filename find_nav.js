@@ -1,5 +1,5 @@
 const fs = require('fs');
-const html = fs.readFileSync('drivelodge-home.html', 'utf8');
+const html = fs.readFileSync('allfireservices-home.html', 'utf8');
 
 // Usually Webflow navs have <div ... class="... navbar ...">
 // and end before <main

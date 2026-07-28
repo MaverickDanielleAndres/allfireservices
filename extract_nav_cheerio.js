@@ -1,7 +1,7 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 
-const html = fs.readFileSync('drivelodge-home.html', 'utf8');
+const html = fs.readFileSync('allfireservices-home.html', 'utf8');
 const $ = cheerio.load(html);
 
 // Find the navbar. Usually it has class "navbar_component" or similar

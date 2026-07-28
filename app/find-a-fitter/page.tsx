@@ -12,7 +12,7 @@ export default function FindFitterPage() {
             Find an Approved Fitter
           </h1>
           <p className="text-xl text-neutral-600 mb-12">
-            We have a nationwide network of approved fitters trained to install Drivelodge roofs to the highest standards.
+            We have a nationwide network of approved fitters trained to install All Fire Services systems to the highest standards.
           </p>
 
           <div className="bg-neutral-50 rounded-3xl p-8 md:p-12 text-left shadow-sm border border-neutral-100">
