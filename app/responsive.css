@@ -206,8 +206,7 @@ footer a[aria-label]:hover {
   }
 
   .section_hero-home .parallax__black-line-overflow,
-  .section_hero-home .parallax__fade,
-  .section_hero-home .parallax__layer-img {
+  .section_hero-home .parallax__fade {
     display: none !important;
   }
 
@@ -303,14 +302,6 @@ footer a[aria-label]:hover {
     gap: clamp(2rem, 5vw, 4rem);
   }
 
-  .footer-reveal-content {
-    margin-bottom: 0 !important;
-  }
-
-  .footer-reveal-panel {
-    position: static !important;
-    inset: auto !important;
-  }
 }
 
 @media (max-width: 767px) {
@@ -382,7 +373,7 @@ footer a[aria-label]:hover {
   }
 
   .section_hero-home .header-text-wrap {
-    padding: clamp(1.25rem, 5vw, 1.75rem) !important;
+    padding: clamp(1rem, 4vw, 1.5rem) !important;
     border-radius: 12px !important;
   }
 
@@ -393,9 +384,9 @@ footer a[aria-label]:hover {
   }
 
   .section_hero-home .heading-style {
-    margin-bottom: 0.8rem !important;
-    font-size: clamp(2rem, 9vw, 3rem) !important;
-    line-height: 1.06 !important;
+    margin-bottom: 0.6rem !important;
+    font-size: clamp(1.6rem, 7.5vw, 2.5rem) !important;
+    line-height: 1.1 !important;
   }
 
   .section_hero-home .body-text {

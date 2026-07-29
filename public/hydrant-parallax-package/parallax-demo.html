@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hydrant Parallax Demo</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #111; color: white; font-family: Arial, sans-serif; }
+    .spacer { min-height: 70vh; display: grid; place-items: center; padding: 2rem; text-align: center; }
+
+    .parallax {
+      position: relative;
+      min-height: clamp(520px, 80vh, 900px);
+      overflow: hidden;
+      isolation: isolate;
+      display: grid;
+      place-items: center;
+    }
+
+    .parallax__image {
+      position: absolute;
+      inset: -14% 0;
+      width: 100%;
+      height: 128%;
+      object-fit: cover;
+      object-position: 50% 52%;
+      transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.03);
+      will-change: transform;
+      z-index: -2;
+    }
+
+    .parallax::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.16), rgba(0,0,0,.55));
+      z-index: -1;
+    }
+
+    .parallax__content {
+      width: min(1100px, 90%);
+      text-align: center;
+      text-shadow: 0 2px 18px rgba(0,0,0,.6);
+    }
+
+    .parallax__content h1 {
+      margin: 0 0 .75rem;
+      font-size: clamp(2.4rem, 7vw, 6.5rem);
+      line-height: .95;
+    }
+
+    .parallax__content p {
+      margin: 0 auto;
+      max-width: 680px;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+    }
+
+    @media (max-width: 700px) {
+      .parallax__image {
+        object-position: 57% 52%;
+        height: 124%;
+        inset: -12% 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .parallax__image {
+        transform: none !important;
+        will-change: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="spacer">
+    <div>
+      <h2>Scroll down</h2>
+      <p>The photo moves more slowly than the page.</p>
+    </div>
+  </section>
+
+  <section class="parallax" data-parallax>
+    <img
+      class="parallax__image"
+      src="./all-fire-services-hydrant-parallax.webp"
+      alt=""
+      width="1920"
+      height="1440"
+      decoding="async"
+    />
+    <div class="parallax__content">
+      <h1>Hydrant Testing</h1>
+      <p>Professional fire protection services delivered by experienced technicians.</p>
+    </div>
+  </section>
+
+  <section class="spacer">
+    <div>
+      <h2>End of demo</h2>
+      <p>Adjust the multiplier in the script to make the movement stronger or softer.</p>
+    </div>
+  </section>
+
+  <script>
+    const section = document.querySelector("[data-parallax]");
+    const image = section?.querySelector(".parallax__image");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let ticking = false;
+
+    function updateParallax() {
+      ticking = false;
+      if (!section || !image || reduceMotion.matches) return;
+
+      const rect = section.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      const progress = (viewport - rect.top) / (viewport + rect.height);
+      const clamped = Math.max(0, Math.min(1, progress));
+
+      // Range: -55px to +55px. Increase 110 for a stronger effect.
+      const y = (clamped - 0.5) * 110;
+      image.style.setProperty("--parallax-y", `${y}px`);
+    }
+
+    function requestUpdate() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    }
+
+    updateParallax();
+    addEventListener("scroll", requestUpdate, { passive: true });
+    addEventListener("resize", requestUpdate);
+    reduceMotion.addEventListener?.("change", requestUpdate);
+  </script>
+</body>
+</html>

@@ -26,6 +26,7 @@ export default function Page() {
         <MotionHeader
           data-theme="dark"
           className="section_hero-home"
+          style={{ position: "sticky", top: 0, zIndex: 0 }}
           initial={{ opacity: 1, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
@@ -34,27 +35,14 @@ export default function Page() {
           <div className="code-embed-js w-embed w-script"></div>
           <div className="parallax">
             <section className="parallax__header">
-              <div className="parallax__visuals">
-                <div className="parallax__black-line-overflow"></div>
-                <div data-parallax-layers="" className="parallax__layers">
-                  <Image
-                    fill
-                    data-parallax-layer="1"
-                    alt=""
-                    src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
-                    preload
-                    fetchPriority="high"
-                    sizes="100vw"
-                    className="parallax__layer-img hide-tablet"
-                  />
-                  <img
-                    width="800"
-                    data-parallax-layer="2"
-                    alt=""
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    loading="eager"
-                    className="parallax__layer-img hide-tablet"
-                  />
+              <div className="parallax__visuals" style={{ isolation: "isolate" }}>
+                <Image
+                  src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
+                  alt="All Fire Services Hero Background"
+                  fill
+                  priority
+                  style={{ objectFit: "cover", objectPosition: "center", zIndex: -1 }}
+                />
                   <div
                     data-parallax-layer="3"
                     className="parallax__layer-title"
@@ -211,21 +199,13 @@ export default function Page() {
                       </div>
                     </div>
                   </div>
-                  <img
-                    width="800"
-                    data-parallax-layer="4"
-                    alt=""
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    loading="eager"
-                    className="parallax__layer-img hide-tablet"
-                  />
-                </div>
-                <div className="parallax__fade hide-tablet"></div>
+
               </div>
             </section>
 
           </div>
         </MotionHeader>
+        <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
         <MotionSection
           {...sectionReveal}
           id="team-spirit"
@@ -262,7 +242,7 @@ export default function Page() {
                   </p>
                 </div>
                 <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem" }}>
-                  <span style={{ fontFamily: "'Brush Script MT', cursive", fontSize: "3rem", color: "#111111", lineHeight: "1" }}>Pete</span>
+                  <span style={{ fontFamily: "cursive", fontStyle: "italic", fontSize: "3rem", color: "#111111", lineHeight: "1" }}>Pete</span>
                 </div>
               </div>
               
@@ -348,7 +328,7 @@ export default function Page() {
           {/* Right Side: Content */}
           <div style={{ flex: '1 1 50%', minWidth: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 4%', backgroundColor: '#fff' }}>
             <div style={{ maxWidth: '600px', margin: '0 auto', width: '100%' }}>
-              <h2 className="heading-style-h3" style={{ marginBottom: '1.25rem', color: '#111111', fontSize: '1.6rem', fontWeight: 'bold', lineHeight: '1.3' }}>
+              <h2 className="heading-style-h3" style={{ marginBottom: '1.25rem', color: '#111', fontSize: '1.5rem', lineHeight: '1.3' }}>
                 Fire safety handled properly, from first check to final sign-off.
               </h2>
               <p className="body-text" style={{ color: '#444444', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
@@ -505,13 +485,13 @@ export default function Page() {
                   </div>
 
                     <div className="home-static-card" style={{ textAlign: 'center', maxWidth: '900px', margin: '2rem auto 0', display: 'flex', flexDirection: 'column', gap: '1rem', background: '#ffffff', padding: '2rem', borderRadius: '16px', border: '1px solid #eaeaea', boxShadow: '0 8px 30px rgba(0,0,0,0.06)' }}>
-                      <div className="header-eyebrow-text" style={{ fontFamily: 'Inter, sans-serif', color: '#ff5722', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.75rem' }}>Beyond the Basics</div>
-                      <h3 className="heading-style-h2" style={{ fontFamily: 'Inter, sans-serif', margin: 0, fontSize: '1.75rem', color: '#111', fontWeight: '700', letterSpacing: '-0.5px' }}>And So Much More</h3>
-                      <p className="body-text" style={{ fontFamily: 'Inter, sans-serif', margin: '0 auto', maxWidth: '750px', fontSize: '0.9rem', color: '#333', lineHeight: '1.6' }}>
+                      <div className="header-eyebrow-text" style={{ color: '#ff5722', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.75rem' }}>Beyond the Basics</div>
+                      <h3 className="heading-style-h3" style={{ margin: 0, fontSize: '1.5rem', color: '#111' }}>And So Much More</h3>
+                      <p className="body-text" style={{ margin: '0 auto', maxWidth: '750px', fontSize: '0.9rem', color: '#333', lineHeight: '1.6' }}>
                         In addition to our comprehensive range of fire protection services, we also offer a selection of top-quality fire protection products, including fire extinguishers, smoke alarms, and emergency lighting.
                       </p>
                       <div style={{ width: '100%', padding: '1.25rem', backgroundColor: '#fafafa', border: '1px solid #f0f0f0', borderRadius: '12px', marginTop: '1rem' }}>
-                        <div className="header-eyebrow-text" style={{ fontFamily: 'Inter, sans-serif', color: '#ff5722', marginBottom: '1rem', fontSize: '0.75rem', fontWeight: '700', letterSpacing: '0.5px' }}>Proud Member of FPAA &amp; Licensed For:</div>
+                        <div className="header-eyebrow-text" style={{ color: '#ff5722', marginBottom: '1rem', fontSize: '0.75rem', fontWeight: '700', letterSpacing: '0.5px' }}>Proud Member of FPAA &amp; Licensed For:</div>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', justifyContent: 'center' }}>
                           {[
                             "Fire Detection and Alarm Systems",
@@ -524,7 +504,7 @@ export default function Page() {
                             "Fire and Smoke Doors",
                             "Portable Fire Equipment and Fire Hose Reels"
                           ].map((license, i) => (
-                            <span key={i} style={{ fontFamily: 'Inter, sans-serif', padding: '0.35rem 0.8rem', backgroundColor: '#ffffff', borderRadius: '30px', border: '1px solid #e5e7eb', fontSize: '0.75rem', color: '#111', fontWeight: '500', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
+                            <span key={i} style={{ padding: '0.35rem 0.8rem', backgroundColor: '#ffffff', borderRadius: '30px', border: '1px solid #e5e7eb', fontSize: '0.75rem', color: '#111', fontWeight: '500', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
                               {license} (C)
                             </span>
                           ))}
@@ -619,7 +599,7 @@ export default function Page() {
               <div className="header-eyebrow-text" style={{ color: '#FEAF04', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.75rem', marginBottom: '0.75rem' }}>
                 WHY ALLFIRE SERVICES SYDNEY
               </div>
-              <h2 className="heading-style-h3" style={{ marginBottom: '1.25rem', color: '#111111', fontSize: '2rem', fontWeight: 'bold', whiteSpace: 'nowrap' }}>
+              <h2 className="heading-style-h3" style={{ marginBottom: '1.25rem', color: '#111', fontSize: '1.75rem', whiteSpace: 'nowrap' }}>
                 WHY ALLFIRE SERVICES?
               </h2>
 
@@ -755,6 +735,7 @@ export default function Page() {
         <MotionDiv {...sectionReveal}>
           <ContactCTA />
         </MotionDiv>
+        </div>
         </div>
       </main>
     </MotionConfig>
