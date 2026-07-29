@@ -387,9 +387,9 @@ export default function Page() {
                     >
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h1 className="heading-style w-variant-87a93e56-e06c-9aaf-6ae7-13e106677c9c">
+                          <h2 className="heading-style w-variant-87a93e56-e06c-9aaf-6ae7-13e106677c9c">
                             WHY ALLFIRE SERVICES?
-                          </h1>
+                          </h2>
                         </div>
                         <p className="body-text">
                           We donâ€™t trust just anyone to fit our custom-designed
@@ -1289,9 +1289,9 @@ export default function Page() {
                   <div className="header-wrapper">
                     <div className="header-text-wrap">
                       <div className="header-top">
-                        <h1 className="heading-style-h3">
+                        <h2 className="heading-style-h3">
                           Schedule your fire safety inspection
-                        </h1>
+                        </h2>
                       </div>
                       <p className="text-size-regular">
                         Filter by make and model, choose from elevating or

@@ -126,7 +126,7 @@ export default function Page() {
                                         </div>
                                       </div>
                                     </a>
-                                    <a
+                                    <Link
                                       data-wf--button--size="large"
                                       href="/contact"
                                       className="button-wrap w-inline-block"
@@ -173,7 +173,7 @@ export default function Page() {
                                           </div>
                                         </div>
                                       </div>
-                                    </a>
+                                    </Link>
                                   </div>
                                 </div>
                               </div>
@@ -504,7 +504,7 @@ export default function Page() {
                         </div>
                       </div>
                       <div className="button-group" style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
-                        <a
+                        <Link
                           data-wf--button--size="small"
                           href="/services"
                           className="button-wrap w-variant-0fa6310e-3b03-4614-cc31-5599b3d7993a w-inline-block"
@@ -546,7 +546,7 @@ export default function Page() {
                               </div>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                 </div>
@@ -666,7 +666,7 @@ export default function Page() {
                     </div>
                   </div>
                 </a>
-                <a
+                <Link
                   data-wf--button--size="small"
                   href="/contact"
                   className="button-wrap w-inline-block"
@@ -701,7 +701,7 @@ export default function Page() {
                       </div>
                     </div>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

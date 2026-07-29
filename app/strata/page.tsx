@@ -1,6 +1,6 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Image from "next/image";
@@ -28,11 +28,20 @@ export default function Page() {
   const [currentPage, setCurrentPage] = useState(1);
   const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const handlePageChange = (newPage: number) => {
     if (newPage !== currentPage) {
       setDirection(newPage > currentPage ? 1 : -1);
       setCurrentPage(newPage);
+      
+      if (sectionRef.current) {
+        const yOffset = -100; // offset for sticky header
+        const y = sectionRef.current.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -91,7 +100,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div data-theme="light" className="section_process" style={{ padding: '60px 0', background: '#fff' }}>
+        <div ref={sectionRef} data-theme="light" className="section_process" style={{ padding: '60px 0', background: '#fff' }}>
           <div className="padding-global">
             <div className="container-large">
               
@@ -129,35 +138,35 @@ export default function Page() {
                 </AnimatePresence>
               </div>
 
-              <nav className="strata-pagination" aria-label="Strata gallery pages">
-                <button 
-                  type="button"
-                  onClick={() => handlePageChange(1)} 
-                  className={`strata-page-button transition-all duration-300 ${currentPage === 1 ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-[#ddd] text-[#333] hover:bg-red-500 hover:text-white'}`}
-                  aria-label="Show strata gallery page 1"
-                  aria-current={currentPage === 1 ? "page" : undefined}
-                  style={{ 
-                    borderRadius: '50%', 
-                    fontWeight: 'bold',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}>
-                  1
-                </button>
-                <button 
-                  type="button"
-                  onClick={() => handlePageChange(2)} 
-                  className={`strata-page-button transition-all duration-300 ${currentPage === 2 ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-[#ddd] text-[#333] hover:bg-red-500 hover:text-white'}`}
-                  aria-label="Show strata gallery page 2"
-                  aria-current={currentPage === 2 ? "page" : undefined}
-                  style={{ 
-                    borderRadius: '50%', 
-                    fontWeight: 'bold',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}>
-                  2
-                </button>
+              <nav style={{ display: 'flex', width: '100%', justifyContent: 'center', marginTop: '3rem', marginBottom: '1rem' }} aria-label="Strata gallery pages">
+                <div style={{ display: 'flex', gap: '16px' }}>
+                  <button 
+                    type="button"
+                    onClick={() => handlePageChange(1)} 
+                    className={`px-4 py-2 rounded-md font-medium text-sm transition-colors duration-200 focus:outline-none cursor-pointer border m-0 ${
+                      currentPage === 1 
+                        ? 'bg-[#E3000F] border-[#E3000F] !text-white' 
+                        : 'bg-white border-gray-200 !text-gray-600 hover:!text-gray-900 hover:bg-gray-50'
+                    }`}
+                    aria-label="Show strata gallery page 1"
+                    aria-current={currentPage === 1 ? "page" : undefined}
+                  >
+                    Page 1
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => handlePageChange(2)} 
+                    className={`px-4 py-2 rounded-md font-medium text-sm transition-colors duration-200 focus:outline-none cursor-pointer border m-0 ${
+                      currentPage === 2 
+                        ? 'bg-[#E3000F] border-[#E3000F] !text-white' 
+                        : 'bg-white border-gray-200 !text-gray-600 hover:!text-gray-900 hover:bg-gray-50'
+                    }`}
+                    aria-label="Show strata gallery page 2"
+                    aria-current={currentPage === 2 ? "page" : undefined}
+                  >
+                    Page 2
+                  </button>
+                </div>
               </nav>
 
 
