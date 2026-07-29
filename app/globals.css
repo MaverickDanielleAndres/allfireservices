@@ -127,7 +127,7 @@
   body {
     @apply bg-background text-foreground;
   }
-  html { scroll-behavior: smooth;
+  html {
     @apply font-sans;
   }
 }
@@ -766,7 +766,8 @@
   .main-wrapper .home-static-card:hover,
   .main-wrapper #testimonials div[data-animation-num]:hover {
     border-color: rgba(255, 81, 23, 0.22) !important;
-    box-shadow: 0 0.9rem 2.2rem rgba(10, 22, 31, 0.1) !important;
+    box-shadow: 0 1.2rem 3rem rgba(10, 22, 31, 0.12) !important;
+    transform: translateY(-6px) scale(1.02) !important;
   }
 
   .main-wrapper .home-hover-card:hover .home-hover-card_image,

@@ -12,6 +12,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import "./staggered-menu.css";
+import { useLenis } from "lenis/react";
 
 export interface StaggeredMenuItem {
   label: string;
@@ -44,6 +45,7 @@ export default function StaggeredMenu({
     () => true,
     () => false,
   );
+  const lenis = useLenis();
 
   const accentStyle = {
     "--sm-accent": accentColor,
@@ -55,9 +57,13 @@ export default function StaggeredMenu({
   }, []);
 
   const handleLinkClick = useCallback(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     closeMenu();
-  }, [closeMenu]);
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+  }, [closeMenu, lenis]);
 
   const openMenu = useCallback(() => {
     setOpen(true);

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { assets } from "@/lib/assets";
 import StaggeredMenu from "@/components/StaggeredMenu";
+import { useLenis } from "lenis/react";
 
 const ChevronIcon = () => (
   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +35,7 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLLIElement | null>(null);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -54,8 +56,12 @@ export default function Navbar() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "?");
 
   const handleNavClick = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     setServicesOpen(false);
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
   };
 
   return (

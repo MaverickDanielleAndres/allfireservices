@@ -34,7 +34,7 @@ export default function Page() {
           <div className="code-embed-css w-embed"></div>
           <div className="code-embed-js w-embed w-script"></div>
           <div className="parallax">
-            <section className="parallax__header">
+            <section className="parallax__header" style={{ height: "100vh" }}>
               <div className="parallax__visuals" style={{ isolation: "isolate" }}>
                 <Image
                   src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
@@ -271,7 +271,6 @@ export default function Page() {
                       delay: Math.min(idx, 6) * 0.055,
                       ease: "easeOut",
                     }}
-                    whileHover={{ y: -4 }}
                     style={{
                     position: "relative", 
                     height: "220px",
@@ -449,7 +448,6 @@ export default function Page() {
                           delay: Math.min(index, 6) * 0.055,
                           ease: "easeOut",
                         }}
-                        whileHover={{ y: -4 }}
                         style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
                       >
                         <Link tabIndex={-1} aria-hidden="true" href="/services" className="products_link w-inline-block"></Link>
@@ -473,11 +471,6 @@ export default function Page() {
                           </div>
                           <div className="text-size-small text-weight-light text-style-3lines w-richtext" style={{ fontSize: '0.8rem', color: '#444', lineHeight: '1.4' }}>
                             <p>{card.desc}</p>
-                          </div>
-                          <div style={{ marginTop: 'auto', paddingTop: '0.75rem' }}>
-                            <Link className="home-view-more" href="/services" style={{ display: 'inline-block', padding: '0.4rem 1rem', background: '#111', color: '#fff', fontSize: '0.75rem', fontWeight: 'bold', textDecoration: 'none', borderRadius: '4px', textTransform: 'uppercase', textAlign: 'center' }}>
-                              View More
-                            </Link>
                           </div>
                         </div>
                       </MotionDiv>
