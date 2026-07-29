@@ -18,7 +18,7 @@ export default function ContactCTA() {
                         or just to chat about all things fire safety-related.
                       </p>
                     </div>
-                    <div className="contact-cta_info-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start', textAlign: 'left', padding: 0, margin: 0, width: '100%' }}>
+                    <div className="contact-cta_info-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start', textAlign: 'left', padding: 0, margin: 0, width: '100%' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
                         <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>HEADQUARTER</h3>
                         <p className="body-text" style={{ margin: 0, fontWeight: '600', fontSize: '0.8125rem', textAlign: 'left' }}>All Fire Services</p>

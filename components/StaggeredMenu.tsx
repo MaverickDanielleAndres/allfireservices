@@ -54,6 +54,11 @@ export default function StaggeredMenu({
     window.setTimeout(() => toggleBtnRef.current?.focus(), 280);
   }, []);
 
+  const handleLinkClick = useCallback(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    closeMenu();
+  }, [closeMenu]);
+
   const openMenu = useCallback(() => {
     setOpen(true);
     window.requestAnimationFrame(() => closeBtnRef.current?.focus());
@@ -149,7 +154,7 @@ export default function StaggeredMenu({
                         className="sm-panel-item"
                         href={item.link}
                         aria-label={item.ariaLabel}
-                        onClick={closeMenu}
+                        onClick={handleLinkClick}
                       >
                         <span className="sm-panel-itemLabel">{item.label}</span>
                       </Link>
@@ -161,7 +166,7 @@ export default function StaggeredMenu({
                   <div
                     className="sm-panel-bottom"
                     onClick={(event) => {
-                      if ((event.target as Element).closest("a")) closeMenu();
+                      if ((event.target as Element).closest("a")) handleLinkClick();
                     }}
                   >
                     {bottomContent}

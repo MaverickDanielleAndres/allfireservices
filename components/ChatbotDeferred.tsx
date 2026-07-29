@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const Chatbot = dynamic(() => import("./Chatbot"), {
   ssr: false,
@@ -16,7 +17,9 @@ export default function ChatbotDeferred() {
   }
 
   return (
-    <div
+    <motion.div
+      drag
+      dragMomentum={false}
       style={{
         fontFamily: "Inter, Arial, sans-serif",
         position: "fixed",
@@ -104,6 +107,6 @@ export default function ChatbotDeferred() {
           </p>
         </div>
       </button>
-    </div>
+    </motion.div>
   );
 }

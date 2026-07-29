@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, X, CheckCircle2, AlertTriangle, MapPin, Phone, HelpCircle, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
+import { motion } from 'framer-motion';
 
 type Message = {
   role: 'user' | 'model';
@@ -27,10 +28,25 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages.length, isLoading]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleSend = async (text: string) => {
     if (!text.trim() || isLoading) return;
@@ -83,7 +99,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
   };
 
   return (
-    <div style={{ fontFamily: 'Inter, Arial, sans-serif', position: 'fixed', bottom: 20, right: 20, zIndex: 9999 }}>
+    <motion.div ref={wrapperRef} drag dragMomentum={false} style={{ fontFamily: 'Inter, Arial, sans-serif', position: 'fixed', bottom: 20, right: 20, zIndex: 9999 }}>
 
       {/* ── CHAT WINDOW ── */}
       {isOpen && (
@@ -384,6 +400,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           50% { transform: translateY(-3px); }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }

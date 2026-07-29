@@ -133,12 +133,10 @@ export default function Page() {
                 <button 
                   type="button"
                   onClick={() => handlePageChange(1)} 
-                  className="strata-page-button"
+                  className={`strata-page-button transition-all duration-300 ${currentPage === 1 ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-[#ddd] text-[#333] hover:bg-red-500 hover:text-white'}`}
                   aria-label="Show strata gallery page 1"
                   aria-current={currentPage === 1 ? "page" : undefined}
                   style={{ 
-                    background: currentPage === 1 ? '#FB5614' : '#ddd', 
-                    color: currentPage === 1 ? '#fff' : '#333', 
                     borderRadius: '50%', 
                     fontWeight: 'bold',
                     border: 'none',
@@ -149,12 +147,10 @@ export default function Page() {
                 <button 
                   type="button"
                   onClick={() => handlePageChange(2)} 
-                  className="strata-page-button"
+                  className={`strata-page-button transition-all duration-300 ${currentPage === 2 ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-[#ddd] text-[#333] hover:bg-red-500 hover:text-white'}`}
                   aria-label="Show strata gallery page 2"
                   aria-current={currentPage === 2 ? "page" : undefined}
                   style={{ 
-                    background: currentPage === 2 ? '#FB5614' : '#ddd', 
-                    color: currentPage === 2 ? '#fff' : '#333', 
                     borderRadius: '50%', 
                     fontWeight: 'bold',
                     border: 'none',
@@ -164,35 +160,7 @@ export default function Page() {
                 </button>
               </nav>
 
-              <div style={{ textAlign: 'center', marginTop: '30px' }}>
-                 <Link 
-                   data-wf--button--size="large"
-                   href="/contact" 
-                   className="button-wrap w-inline-block"
-                 >
-                   <div data-wf--button-style-- className="button-content">
-                     <div data-wf--button-layout--layout="normal" className="button-layout">
-                       <div className="button-text">MORE</div>
-                       <div className="button-icon">
-                         <div className="icon-slot">
-                           <div className="icon-slot">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 16 17" fill="none">
-                               <g clipPath="url(#clip0_6401_1558)">
-                                 <path d="M10.9541 3.45557L6.00455 3.49545L5.99226 5.02155L10.5927 4.98503L3.05492 12.5549L4.12551 13.6255L11.6959 6.02298L11.6583 10.6887L13.1844 10.6764L13.2249 5.72629C13.2282 5.11964 12.9913 4.5402 12.5657 4.11468C12.1402 3.68916 11.5608 3.45218 10.9541 3.45557Z" fill="currentColor"></path>
-                               </g>
-                               <defs>
-                                 <clipPath id="clip0_6401_1558">
-                                   <rect width="16" height="16" fill="currentColor" transform="translate(0 0.5)"></rect>
-                                 </clipPath>
-                               </defs>
-                             </svg>
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                 </Link>
-              </div>
+
 
             </div>
           </div>

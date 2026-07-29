@@ -53,6 +53,11 @@ export default function Navbar() {
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "?");
 
+  const handleNavClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    setServicesOpen(false);
+  };
+
   return (
     <>
       <style>{`
@@ -320,7 +325,7 @@ export default function Navbar() {
 
         <nav className="dl-navbar">
           <div className="dl-navbar-inner">
-          <Link href="/" className="dl-logo" aria-label="All Fire Services Home">
+          <Link href="/" className="dl-logo" aria-label="All Fire Services Home" onClick={handleNavClick}>
             <Image 
               src={assets.global.logo} 
               alt="All Fire Services Australia" 
@@ -344,17 +349,17 @@ export default function Navbar() {
 
           <ul className="dl-nav-links">
             <li className="dl-nav-item">
-              <Link href="/" className={`dl-nav-link${isActive("/") && pathname === "/" ? " active" : ""}`}>
+              <Link href="/" className={`dl-nav-link${isActive("/") && pathname === "/" ? " active" : ""}`} onClick={handleNavClick}>
                 Home
               </Link>
             </li>
             <li className="dl-nav-item">
-              <Link href="/strata" className={`dl-nav-link${isActive("/strata") ? " active" : ""}`}>
+              <Link href="/strata" className={`dl-nav-link${isActive("/strata") ? " active" : ""}`} onClick={handleNavClick}>
                 Strata
               </Link>
             </li>
             <li className="dl-nav-item">
-              <Link href="/about" className={`dl-nav-link${isActive("/about") ? " active" : ""}`}>
+              <Link href="/about" className={`dl-nav-link${isActive("/about") ? " active" : ""}`} onClick={handleNavClick}>
                 About Us
               </Link>
             </li>
@@ -368,15 +373,15 @@ export default function Navbar() {
                 Services <ChevronIcon />
               </button>
               <div className={`dl-dropdown${servicesOpen ? " open" : ""}`}>
-                <Link href="/services" className="dl-dropdown-item" style={{ color: '#FB5614', fontWeight: 'bold' }} onClick={() => setServicesOpen(false)}>All Services</Link>
-                <Link href="/annual-fire-safety-statement" className="dl-dropdown-item" onClick={() => setServicesOpen(false)}>Annual Fire Safety Statement</Link>
-                <Link href="/fpa-australia-member" className="dl-dropdown-item" onClick={() => setServicesOpen(false)}>FPA Australia Member</Link>
-                <Link href="/13-feb-2026-nsw-fire-safety-regulations" className="dl-dropdown-item" onClick={() => setServicesOpen(false)}>13 Feb 2026 NSW Fire Safety Regulations</Link>
+                <Link href="/services" className="dl-dropdown-item" style={{ color: '#FB5614', fontWeight: 'bold' }} onClick={handleNavClick}>All Services</Link>
+                <Link href="/annual-fire-safety-statement" className="dl-dropdown-item" onClick={handleNavClick}>Annual Fire Safety Statement</Link>
+                <Link href="/fpa-australia-member" className="dl-dropdown-item" onClick={handleNavClick}>FPA Australia Member</Link>
+                <Link href="/13-feb-2026-nsw-fire-safety-regulations" className="dl-dropdown-item" onClick={handleNavClick}>13 Feb 2026 NSW Fire Safety Regulations</Link>
               </div>
             </li>
 
             <li className="dl-nav-item">
-              <Link href="/contact" className={`dl-nav-link${isActive("/contact") ? " active" : ""}`}>
+              <Link href="/contact" className={`dl-nav-link${isActive("/contact") ? " active" : ""}`} onClick={handleNavClick}>
                 Contact
               </Link>
             </li>
@@ -384,7 +389,7 @@ export default function Navbar() {
 
           <div className="desktop-actions" style={{display:"flex", alignItems:"center", gap:"12px"}}>
             <a href="tel:1300765594" className="dl-cta-btn secondary">Call 1300 765 594</a>
-            <Link href="/contact" className="dl-cta-btn">Get a Quote</Link>
+            <Link href="/contact" className="dl-cta-btn" onClick={handleNavClick}>Get a Quote</Link>
           </div>
 
           <div className="mobile-only-burger">

@@ -228,7 +228,7 @@ export default function Page() {
                             <button
                               type="button"
                               aria-label={`Open larger photo of ${member.name}`}
-                              style={{ width: '100%', height: 'auto', aspectRatio: '3/4', overflow: 'hidden', borderRadius: '0.5rem', cursor: 'pointer', position: 'relative', padding: 0, border: 0, background: 'transparent' }}
+                              style={{ width: '100%', height: 'auto', aspectRatio: '1/1', overflow: 'hidden', borderRadius: '0.5rem', cursor: 'pointer', position: 'relative', padding: 0, border: 0, background: 'transparent' }}
                               onClick={() => setLightboxImage(imgUrl)}
                               className="group"
                             >
