@@ -128,7 +128,7 @@ export default function Page() {
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h1 className="heading-style-h1">Article List</h1>
+                          <h2 className="heading-style-h1">Article List</h2>
                         </div>
                         <p className="body-text">
                           Our process, refined in our dedicated UK factory,
@@ -191,7 +191,7 @@ export default function Page() {
 
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/archive/default-article-thumbnail.webp" loading="lazy" alt="" className="process_image" />
+                        <img src="/13-feb-2026-nsw-fire-safety-regulations/strata-alert-webp.webp" loading="lazy" alt="NSW fire safety regulation update" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">01</div>
@@ -204,7 +204,7 @@ export default function Page() {
     
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/archive/default-article-thumbnail.webp" loading="lazy" alt="" className="process_image" />
+                        <img src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp" loading="lazy" alt="Fire safety inspection information" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">02</div>
@@ -217,7 +217,7 @@ export default function Page() {
     
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/archive/default-article-thumbnail.webp" loading="lazy" alt="" className="process_image" />
+                        <img src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp" loading="lazy" alt="All Fire Services technicians" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">03</div>

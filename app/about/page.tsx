@@ -1,8 +1,7 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
 
 
 const teamMembers = [
@@ -65,7 +64,7 @@ export default function Page() {
                         Fire Protection Runs in Our Blood
                       </h2>
                       <p className="body-text">
-                        AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn't just our profession, it's our legacy.
+                        AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn&apos;t just our profession, it&apos;s our legacy.
                       </p>
                     </div>
 
@@ -93,7 +92,7 @@ export default function Page() {
                     <div>
                       <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>Trusted Since 2009</h3>
                       <p className="body-text">
-                        Since our inception, AllFire Services has maintained the certifications, insurances and workplace safety standards expected of a professional fire protection provider. More importantly, we've built lasting relationships by delivering practical solutions, reliable service and genuine peace of mind.
+                        Since our inception, AllFire Services has maintained the certifications, insurances and workplace safety standards expected of a professional fire protection provider. More importantly, we&apos;ve built lasting relationships by delivering practical solutions, reliable service and genuine peace of mind.
                       </p>
                     </div>
 
@@ -115,15 +114,18 @@ export default function Page() {
                           textTransform: "uppercase",
                           letterSpacing: "0.5px"
                         }}>
-                          "Who Knows Better Than A Fireman"
+                          &ldquo;Who Knows Better Than A Fireman&rdquo;
                         </span>
                       </div>
                     </div>
                   </div>
 
                   <div className="story_image flex flex-col gap-12 lg:sticky lg:top-32">
-                    <img
+                    <Image
                       src="/aboutimage.png"
+                      width={1400}
+                      height={700}
+                      sizes="(max-width: 1023px) 100vw, 50vw"
                       alt="About All Fire Services"
                       className="w-full h-auto rounded-xl shadow-2xl object-cover"
                     />
@@ -134,6 +136,7 @@ export default function Page() {
                           className="absolute top-0 left-0 w-full h-full"
                           src="https://www.youtube.com/embed/ZY_5Dgy3EY4?playsinline=1" 
                           title="All Fire Services Video 1" 
+                          loading="lazy"
                           frameBorder="0" 
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                           allowFullScreen>
@@ -144,6 +147,7 @@ export default function Page() {
                           className="absolute top-0 left-0 w-full h-full"
                           src="https://www.youtube.com/embed/gaGkQXD0P2w?playsinline=1" 
                           title="All Fire Services Video 2" 
+                          loading="lazy"
                           frameBorder="0" 
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                           allowFullScreen>
@@ -228,9 +232,10 @@ export default function Page() {
                               onClick={() => setLightboxImage(imgUrl)}
                               className="group"
                             >
-                              <img
+                              <Image
+                                fill
                                 src={member.img}
-                                loading="lazy"
+                                sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 280px"
                                 alt={member.name}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
                                 className="group-hover:scale-105"

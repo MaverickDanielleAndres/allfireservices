@@ -468,7 +468,7 @@ export default function Page() {
                     <div className="button-group">
                       <a
                         data-wf--button--size="small"
-                        href="/products"
+                        href="/services"
                         className="button-wrap w-variant-0fa6310e-3b03-4614-cc31-5599b3d7993a w-inline-block"
                       >
                         <div data-wf--button-style-- className="button-content">
@@ -1302,7 +1302,7 @@ export default function Page() {
                     <div className="button-group">
                       <a
                         data-wf--button--size="large"
-                        href="/configurator"
+                              href="/contact"
                         className="button-wrap w-inline-block"
                       >
                         <div data-wf--button-style-- className="button-content">
@@ -1639,7 +1639,7 @@ export default function Page() {
                       <div className="button-group">
                         <a
                           data-wf--button--size="large"
-                          href="/configurator"
+                          href="/contact"
                           className="button-wrap w-inline-block"
                         >
                           <div

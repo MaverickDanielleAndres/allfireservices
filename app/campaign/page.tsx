@@ -1,4 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
+import Image from "next/image";
 
 export default function Page() {
   return (
@@ -99,10 +100,11 @@ export default function Page() {
                           </div>
                         </div>
                         <div className="video-cta_image-wrap">
-                          <img
-                            src="//logo.png"
-                            loading="lazy"
-                            alt=""
+                          <Image
+                            src="/logo.png"
+                            width={160}
+                            height={80}
+                            alt="All Fire Services Australia"
                             className="video-cta_image"
                           />
                           <div className="video-cta_image-overlay"></div>
@@ -128,7 +130,7 @@ export default function Page() {
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h1 className="heading-style-h1">Inspection Services</h1>
+                          <h2 className="heading-style-h1">Inspection Services</h2>
                         </div>
                         <p className="body-text">We also provide building defect report to identify which fire safety equipment that needs to be fixed, and also provide the best solution to get your building to the standard compliance.</p>
                       </div>
@@ -186,7 +188,7 @@ export default function Page() {
 
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/all-fire-services-campaign/inspection-collage.webp" loading="lazy" alt="" className="process_image" />
+                        <Image src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp" width={800} height={600} sizes="(max-width: 767px) 100vw, 40vw" alt="Fire hydrant inspection and testing" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">01</div>
@@ -199,7 +201,7 @@ export default function Page() {
     
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/all-fire-services-campaign/building-defect-report.webp" loading="lazy" alt="" className="process_image" />
+                        <Image src="/13-feb-2026-nsw-fire-safety-regulations/strata-alert-webp.webp" width={800} height={600} sizes="(max-width: 767px) 100vw, 40vw" alt="NSW fire safety compliance information" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">02</div>
@@ -212,13 +214,13 @@ export default function Page() {
     
                     <div className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/assets/placeholders/all-fire-services-campaign/testimonial.webp" loading="lazy" alt="" className="process_image" />
+                        <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp" width={800} height={600} sizes="(max-width: 767px) 100vw, 40vw" alt="All Fire Services technicians" className="process_image" />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">03</div>
                         <div className="process_text-wrap">
                           <h2 className="heading-style-h6">Testimonial</h2>
-                          <p className="body-text">"The service I received from All Fire Services was amazing." - Happy Client</p>
+                          <p className="body-text">&ldquo;The service I received from All Fire Services was amazing.&rdquo; - Happy Client</p>
                         </div>
                       </div>
                     </div>

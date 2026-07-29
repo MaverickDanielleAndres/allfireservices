@@ -1,4 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
+import Image from "next/image";
 
 const fpaSections = [
   {
@@ -197,9 +198,11 @@ export default function Page() {
                     {fpaSections.map((section, index) => (
                       <article className="process_item" key={section.title}>
                         <div className="process_image-wrap">
-                          <img
+                          <Image
                             src={section.image}
-                            loading="lazy"
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 767px) 100vw, 40vw"
                             alt={section.alt}
                             className="process_image"
                           />

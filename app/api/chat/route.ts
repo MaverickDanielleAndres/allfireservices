@@ -4,16 +4,28 @@ import { NextRequest, NextResponse } from 'next/server';
 const apiKey = process.env.GEMINI_API_KEY || "";
 const genAI = new GoogleGenerativeAI(apiKey);
 
+type ChatMessage = {
+  role: "user" | "model";
+  content: string;
+};
+
 export async function POST(req: NextRequest) {
   try {
-    const { messages } = await req.json();
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "Chat service is not configured" },
+        { status: 503 },
+      );
+    }
+
+    const { messages }: { messages: ChatMessage[] } = await req.json();
 
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-flash",
       systemInstruction: "You are a professional customer support chatbot for All Fire Services Australia. Your primary goal is to assist customers with inquiries related to fire safety, fire protection equipment, maintenance, compliance, and our services. Maintain a polite, professional, and helpful tone at all times. STRICT INSTRUCTION: You must ONLY answer questions related to our business and fire safety. If a user asks a question that is entirely unrelated to fire safety or our business, you must politely decline to answer and offer to help them with a fire safety related question instead."
     });
 
-    const formattedHistory = messages.slice(0, -1).map((m: any) => ({
+    const formattedHistory = messages.slice(0, -1).map((m) => ({
       role: m.role === 'user' ? 'user' : 'model',
       parts: [{ text: m.content }],
     }));

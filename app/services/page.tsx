@@ -1,4 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
+import Image from "next/image";
 
 const services = [
   {
@@ -102,7 +103,7 @@ export default function Page() {
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h1 className="heading-style-h1">Our Services</h1>
+                          <h2 className="heading-style-h1">Our Services</h2>
                         </div>
                         <p className="body-text">We offer a wide range of fire safety services to keep your building compliant and safe.</p>
                       </div>
@@ -160,9 +161,11 @@ export default function Page() {
                     {services.map((service, index) => (
                       <article className="process_item" key={service.title}>
                         <div className="process_image-wrap">
-                          <img
+                          <Image
                             src={service.image}
-                            loading="lazy"
+                            width={520}
+                            height={680}
+                            sizes="(max-width: 767px) 100vw, 40vw"
                             alt={service.title}
                             className="process_image"
                           />

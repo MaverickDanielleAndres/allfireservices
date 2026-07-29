@@ -1,4 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
+import Image from "next/image";
 
 export default function Page() {
   return (
@@ -99,10 +100,11 @@ export default function Page() {
                           </div>
                         </div>
                         <div className="video-cta_image-wrap">
-                          <img
-                            src="//logo.png"
-                            loading="lazy"
-                            alt=""
+                          <Image
+                            src="/logo.png"
+                            width={160}
+                            height={80}
+                            alt="All Fire Services Australia"
                             className="video-cta_image"
                           />
                           <div className="video-cta_image-overlay"></div>
@@ -128,7 +130,7 @@ export default function Page() {
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h1 className="heading-style-h1">Sydney Fire Protection</h1>
+                          <h2 className="heading-style-h1">Sydney Fire Protection</h2>
                         </div>
                         <p className="body-text">Extensive fire protection services designed to address every possible need.</p>
                       </div>
@@ -186,10 +188,12 @@ export default function Page() {
 
                       <div className="process_item">
                         <div className="process_image-wrap">
-                          <img
-                            src="/assets/placeholders/fire-protection-services-sydney/all-fire-services-hydrant-test-banner.webp"
-                            loading="lazy"
-                            alt=""
+                          <Image
+                            src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 767px) 100vw, 40vw"
+                            alt="Fire hydrant inspection and testing in Sydney"
                             className="process_image"
                           />
                         </div>
@@ -204,10 +208,12 @@ export default function Page() {
       
                       <div className="process_item">
                         <div className="process_image-wrap">
-                          <img
-                            src="/assets/placeholders/fire-protection-services-sydney/all-fire-services-team-6.webp"
-                            loading="lazy"
-                            alt=""
+                          <Image
+                            src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp"
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 767px) 100vw, 40vw"
+                            alt="All Fire Services Sydney technicians"
                             className="process_image"
                           />
                         </div>

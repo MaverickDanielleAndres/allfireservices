@@ -43,6 +43,7 @@ export default function Page() {
                     alt=""
                     src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
                     preload
+                    fetchPriority="high"
                     sizes="100vw"
                     className="parallax__layer-img hide-tablet"
                   />
@@ -532,7 +533,7 @@ export default function Page() {
                       <div className="button-group" style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
                         <a
                           data-wf--button--size="small"
-                          href="/products"
+                          href="/services"
                           className="button-wrap w-variant-0fa6310e-3b03-4614-cc31-5599b3d7993a w-inline-block"
                         >
                           <div data-wf--button-style-- className="button-content">

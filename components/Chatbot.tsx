@@ -21,8 +21,8 @@ const POPULAR_QUESTIONS = [
   "How do I request urgent support?",
 ];
 
-export default function Chatbot() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean }) {
+  const [isOpen, setIsOpen] = useState(initialOpen);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -51,19 +51,20 @@ export default function Chatbot() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let done = false;
-      let modelResponse = '';
       setMessages((prev) => [...prev, { role: 'model', content: '' }]);
 
       while (!done) {
         const { value, done: readerDone } = await reader.read();
         done = readerDone;
         if (value) {
-          modelResponse += decoder.decode(value, { stream: true });
-          setMessages((prev) => {
-            const updated = [...prev];
-            updated[updated.length - 1].content = modelResponse;
-            return updated;
-          });
+          const chunkText = decoder.decode(value, { stream: true });
+          setMessages((prev) =>
+            prev.map((message, index) =>
+              index === prev.length - 1
+                ? { ...message, content: message.content + chunkText }
+                : message,
+            ),
+          );
         }
       }
     } catch {

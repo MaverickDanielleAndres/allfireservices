@@ -324,17 +324,19 @@ export default function Navbar() {
             <Image 
               src={assets.global.logo} 
               alt="All Fire Services Australia" 
-              width={200} 
-              height={50} 
-              priority 
+              width={106}
+              height={52}
+              sizes="(max-width: 767px) 75px, 106px"
+              preload
             />
             {assets.global.logoSecondary && (
               <Image 
                 src={assets.global.logoSecondary} 
                 alt="All Fire Services Secondary Logo" 
-                width={120} 
-                height={50} 
-                priority 
+                width={72}
+                height={36}
+                sizes="72px"
+                loading="eager"
                 className="hidden sm:block"
               />
             )}

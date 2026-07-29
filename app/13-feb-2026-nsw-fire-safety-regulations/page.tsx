@@ -1,4 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
+import Image from "next/image";
 
 const regulationStages = [
   {
@@ -77,9 +78,12 @@ export default function Page() {
               >
                 <article className="regulation-article">
                   <figure className="regulation-alert-figure">
-                    <img
+                    <Image
                       src="/13-feb-2026-nsw-fire-safety-regulations/strata-alert-webp.webp"
-                      alt="Strata Alert"
+                      width={1200}
+                      height={675}
+                      sizes="(max-width: 767px) 100vw, 70vw"
+                      alt="NSW strata fire safety regulation alert"
                       className="regulation-alert-image"
                     />
                   </figure>

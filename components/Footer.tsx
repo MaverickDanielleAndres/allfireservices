@@ -191,8 +191,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center pt-5 border-t border-gray-200 text-[13px] text-gray-500">
           <p>© {new Date().getFullYear()} All Fire Services Australia. All Rights Reserved.</p>
           <div className="flex items-center gap-5 mt-3 md:mt-0">
-            <Link href="/privacy" className="hover:text-gray-800 transition-colors no-underline">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-gray-800 transition-colors no-underline">Terms & Conditions</Link>
+            <span>Privacy Policy</span>
+            <span>Terms & Conditions</span>
           </div>
         </div>
       </div>
