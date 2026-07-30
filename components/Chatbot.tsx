@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, X, CheckCircle2, AlertTriangle, MapPin, Phone, HelpCircle, ShieldCheck } from 'lucide-react';
+import { Send, X, CheckCircle2, MapPin, Phone, HelpCircle, ShieldCheck, RefreshCw } from 'lucide-react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
@@ -29,22 +29,32 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages.length, isLoading]);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isOpen]);
 
@@ -62,7 +72,11 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages }),
       });
-      if (!response.ok || !response.body) throw new Error('Error');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || 'Error');
+      }
+      if (!response.body) throw new Error('Error');
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -83,10 +97,10 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           );
         }
       }
-    } catch {
+    } catch (error: any) {
       setMessages((prev) => [
         ...prev,
-        { role: 'model', content: 'Sorry, there was an error. Please call us on **1300 765 594**.' },
+        { role: 'model', content: error.message ? `Sorry, there was an error: ${error.message}. Please call us on **1300 765 594**.` : 'Sorry, there was an error. Please call us on **1300 765 594**.' },
       ]);
     } finally {
       setIsLoading(false);
@@ -99,11 +113,26 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
   };
 
   return (
-    <motion.div ref={wrapperRef} drag dragMomentum={false} style={{ fontFamily: 'Inter, Arial, sans-serif', position: 'fixed', bottom: 20, right: 20, zIndex: 9999 }}>
+    <motion.div 
+      ref={wrapperRef} 
+      drag={!isMobile} 
+      dragMomentum={false} 
+      className="chatbot-container" 
+      style={{ 
+        fontFamily: 'var(--font-sans), Inter, Arial, sans-serif', 
+        position: 'fixed', 
+        bottom: 20, 
+        right: isMobile ? 0 : 20, 
+        left: isMobile ? 0 : undefined,
+        margin: isMobile ? '0 auto' : undefined,
+        width: isMobile ? 'max-content' : undefined,
+        zIndex: 9999 
+      }}
+    >
 
       {/* ── CHAT WINDOW ── */}
       {isOpen && (
-        <div style={{
+        <div className="chatbot-window" style={{
           width: 340,
           height: 580,
           maxHeight: '88vh',
@@ -123,6 +152,15 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
             flexShrink: 0,
             position: 'relative',
           }}>
+            {/* Refresh */}
+            <button onClick={() => setMessages([])} title="Reset Chat" style={{
+              position: 'absolute', top: 8, right: 32,
+              background: 'none', border: 'none',
+              color: 'rgba(255,255,255,0.45)', cursor: 'pointer', padding: 2, lineHeight: 1,
+            }}>
+              <RefreshCw size={14} strokeWidth={2} />
+            </button>
+
             {/* X */}
             <button onClick={() => setIsOpen(false)} style={{
               position: 'absolute', top: 8, right: 10,
@@ -162,7 +200,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
             <div style={{ display: 'flex', gap: 5 }}>
               {[
                 { icon: <ShieldCheck size={9} color="#ffb74d" strokeWidth={2.5} />, label: 'ALLFIRE QUESTIONS ONLY' },
-                { icon: <AlertTriangle size={9} color="rgba(255,255,255,0.45)" strokeWidth={2.5} />, label: '000 FOR EMERGENCIES' },
               ].map((b) => (
                 <div key={b.label} style={{
                   background: 'rgba(255,255,255,0.07)',
@@ -193,7 +230,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                 }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 9 }}>
                     <div style={{ background: '#fff0f0', borderRadius: '50%', padding: 5, flexShrink: 0 }}>
-                      <CheckCircle2 size={13} color="#e53e3e" strokeWidth={2} />
+                      <CheckCircle2 size={13} color="#ff5117" strokeWidth={2} />
                     </div>
                     <div>
                       <h3 style={{ margin: '0 0 3px', fontSize: 12, fontWeight: 700, color: '#111', lineHeight: 1.2 }}>
@@ -210,7 +247,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                 {/* Popular questions */}
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 6 }}>
-                    <HelpCircle size={10} color="#e53e3e" strokeWidth={2.5} />
+                    <HelpCircle size={10} color="#ff5117" strokeWidth={2.5} />
                     <span style={{ fontSize: 8.5, fontWeight: 700, color: '#888', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       Popular Questions
                     </span>
@@ -226,7 +263,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                         cursor: 'pointer', fontFamily: 'inherit',
                         transition: 'border-color 0.15s',
                       }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#f87171'; }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#ff5117'; }}
                       onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(0,0,0,0.1)'; }}
                       >{q}</button>
                     ))}
@@ -256,7 +293,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                       maxWidth: '78%', padding: '7px 10px',
                       fontSize: 11, lineHeight: 1.5,
                       borderRadius: msg.role === 'user' ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
-                      background: msg.role === 'user' ? 'linear-gradient(135deg,#ef4444,#dc2626)' : '#fff',
+                      background: msg.role === 'user' ? 'linear-gradient(135deg, #ff5117, #e9460f)' : '#fff',
                       color: msg.role === 'user' ? '#fff' : '#222',
                       border: msg.role === 'model' ? '1px solid rgba(0,0,0,0.07)' : 'none',
                       boxShadow: '0 1px 4px rgba(0,0,0,0.07)',
@@ -304,10 +341,10 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
               padding: '6px 11px', borderBottom: '1px solid rgba(0,0,0,0.06)',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                <MapPin size={10} color="#e53e3e" strokeWidth={2.5} />
+                <MapPin size={10} color="#ff5117" strokeWidth={2.5} />
                 <span style={{ fontSize: 9.5, color: '#888' }}>Greater Sydney service enquiries</span>
               </div>
-              <a href="tel:1300765594" style={{ display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none', color: '#e53e3e' }}>
+              <a href="tel:1300765594" style={{ display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none', color: '#ff5117' }}>
                 <Phone size={10} strokeWidth={2.5} />
                 <span style={{ fontSize: 10.5, fontWeight: 700 }}>1300 765 594</span>
               </a>
@@ -327,12 +364,12 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                     fontSize: 11, outline: 'none',
                     color: '#333', background: '#fff', fontFamily: 'inherit',
                   }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = '#f87171'; }}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = '#ff5117'; }}
                   onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(0,0,0,0.15)'; }}
                 />
                 <button type="submit" disabled={!input.trim() || isLoading} style={{
                   width: 32, height: 32, borderRadius: '50%',
-                  background: '#ffaaaa', border: 'none',
+                  background: '#ff7443', border: 'none',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   cursor: 'pointer', flexShrink: 0,
                   opacity: !input.trim() || isLoading ? 0.45 : 1,

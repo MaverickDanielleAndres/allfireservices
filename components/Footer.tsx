@@ -63,7 +63,7 @@ const ArrowSVG = () => (
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-gray-900 pt-8 pb-6 w-full mt-auto border-t border-gray-200">
+    <footer className="bg-white text-gray-900 pt-8 pb-28 md:pb-6 w-full mt-auto border-t border-gray-200">
       <div className="max-w-[1200px] mx-auto w-full px-4 md:px-6">
         
         {/* Top Call to Action Section - Matching Hero Button Styles */}

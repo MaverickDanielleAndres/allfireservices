@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const Chatbot = dynamic(() => import("./Chatbot"), {
@@ -11,6 +11,14 @@ const Chatbot = dynamic(() => import("./Chatbot"), {
 
 export default function ChatbotDeferred() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (isLoaded) {
     return <Chatbot initialOpen />;
@@ -18,13 +26,17 @@ export default function ChatbotDeferred() {
 
   return (
     <motion.div
-      drag
+      drag={!isMobile}
       dragMomentum={false}
+      className="chatbot-container"
       style={{
         fontFamily: "Inter, Arial, sans-serif",
         position: "fixed",
         bottom: 20,
-        right: 20,
+        right: isMobile ? 0 : 20,
+        left: isMobile ? 0 : undefined,
+        margin: isMobile ? '0 auto' : undefined,
+        width: isMobile ? 'max-content' : undefined,
         zIndex: 9999,
       }}
     >
