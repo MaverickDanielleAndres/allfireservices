@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 
-const apiKey = process.env.GEMINI_API_KEY || "";
-const genAI = new GoogleGenerativeAI(apiKey);
+// API Key will be initialized inside the request handler
 
 type ChatMessage = {
   role: "user" | "model";
@@ -11,12 +10,16 @@ type ChatMessage = {
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.GEMINI_API_KEY || "";
+    
     if (!apiKey) {
       return NextResponse.json(
         { error: "Chat service is not configured" },
         { status: 503 },
       );
     }
+    
+    const genAI = new GoogleGenerativeAI(apiKey);
 
     const { messages }: { messages: ChatMessage[] } = await req.json();
 
