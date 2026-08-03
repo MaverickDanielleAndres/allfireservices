@@ -581,7 +581,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {/* ── Right: Details ── */}
             <div className="pd-details">
               {category && (() => {
-                const IconComponent = iconMap[category.iconName] || Flame;
+                const IconComponent = category.iconName ? iconMap[category.iconName] || Flame : Flame;
                 return (
                   <a
                     href={`/services?category=${category.id}`}

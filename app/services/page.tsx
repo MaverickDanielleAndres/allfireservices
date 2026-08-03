@@ -408,7 +408,7 @@ export default function ServicesPage() {
             <aside className="svchub-sidebar" aria-label="Service categories">
               <p className="svchub-sidebar-title">Categories</p>
               {categories.map((cat) => {
-                const IconComponent = iconMap[cat.iconName] || Flame;
+                const IconComponent = cat.iconName ? iconMap[cat.iconName] || Flame : Flame;
                 return (
                   <button
                     key={cat.id}
