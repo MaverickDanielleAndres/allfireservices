@@ -26,7 +26,8 @@ export interface Category {
   id: string;
   label: string;
   description: string;
-  iconName: string;
+  iconName?: string;
+  icon?: string;
 }
 
 // ─── Categories ───────────────────────────────────────────────────────────────
