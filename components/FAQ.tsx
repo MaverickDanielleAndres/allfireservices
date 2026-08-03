@@ -37,7 +37,7 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -47,15 +47,7 @@ export default function FAQ() {
     <section className={styles.section} id="faq">
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.eyebrow}>
-            FAQ
-          </div>
-          <h2 className={`heading-style-h3 ${styles.title}`}>
-            Frequently Asked Questions
-          </h2>
-          <p className={styles.intro}>
-            Got questions about fire safety and compliance? We&apos;ve got answers. If you need more details, feel free to contact our team directly.
-          </p>
+          <h2 className={styles.title}>FAQs</h2>
         </div>
 
         <div className={styles.list}>
@@ -65,7 +57,7 @@ export default function FAQ() {
             return (
               <motion.div
                 key={index}
-                className={`${styles.card} ${isOpen ? styles.cardOpen : ''}`}
+                className={styles.item}
                 initial={false}
               >
                 <button
@@ -91,13 +83,13 @@ export default function FAQ() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      className={styles.answerWrap}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
                       <div className={styles.answer}>
-                        <div className={styles.divider}></div>
                         <p className={styles.answerText}>
                           {faq.answer}
                         </p>

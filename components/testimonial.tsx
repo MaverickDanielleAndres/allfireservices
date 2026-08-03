@@ -1,188 +1,188 @@
-/* eslint-disable react/no-unescaped-entities */
-import { TimelineContent } from "@/components/ui/timeline-animation";
+"use client";
+
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./testimonial.module.css";
 
+const testimonials = [
+  {
+    brand: "Strata",
+    quote:
+      "All Fire Services keeps our annual fire safety statements moving without the last-minute stress. Their team explains what matters, turns up prepared, and follows through.",
+    name: "Sarah Jenkins",
+    role: "Strata Manager, Inner West Sydney",
+    image:
+      "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
+  },
+  {
+    brand: "Facilities",
+    quote:
+      "The difference is practical experience. When something needs attention, All Fire Services tells us what is urgent, what is compliant, and what can be planned properly.",
+    name: "Mark Taylor",
+    role: "Facilities Manager, Commercial Portfolio",
+    image:
+      "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
+  },
+  {
+    brand: "Owners",
+    quote:
+      "They are reliable, clear, and easy to work with. We have confidence that our fire protection maintenance is being handled by people who understand real buildings.",
+    name: "David Chen",
+    role: "Building Owner, Greater Sydney",
+    image:
+      "/Fireprotectionservicesimage/monthlyfireprotection.webp",
+  },
+  {
+    brand: "Compliance",
+    quote:
+      "All Fire Services helped us get our compliance records organised and kept our committee informed in plain language. That made approvals much easier.",
+    name: "Lisa Wong",
+    role: "Owners Corporation Secretary",
+    image:
+      "/annual-fire-safety-statement/fire-truck-all-fire-services.webp",
+  },
+  {
+    brand: "Maintenance",
+    quote:
+      "Their technicians are punctual and professional. They leave useful notes after each inspection, which helps us stay ahead of defects before they become bigger issues.",
+    name: "Michael Kavanagh",
+    role: "Asset Manager, Sydney",
+    image:
+      "/Fireprotectionservicesimage/yearlyhydrantflowstate.webp",
+  },
+  {
+    brand: "Support",
+    quote:
+      "We call All Fire Services because they respond quickly and give us direct answers. The firefighter-led knowledge shows in the way they solve problems on site.",
+    name: "Paul Davis",
+    role: "Operations Director, Property Group",
+    image:
+      "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp",
+  },
+];
+
 function ClientFeedback() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const activeTestimonial = testimonials[activeIndex];
+
+  const controls = useMemo(
+    () => ({
+      previous: () =>
+        setActiveIndex((current) =>
+          current === 0 ? testimonials.length - 1 : current - 1,
+        ),
+      next: () =>
+        setActiveIndex((current) =>
+          current === testimonials.length - 1 ? 0 : current + 1,
+        ),
+    }),
+    [],
+  );
+
+  useEffect(() => {
+    if (reduceMotion) {
+      return;
+    }
+
+    const timer = window.setInterval(controls.next, 6200);
+    return () => window.clearInterval(timer);
+  }, [controls.next, reduceMotion]);
+
   return (
-    <section className={styles.section} id="testimonials">
-      <div className={styles.container}>
-        <article className={styles.header}>
-          <div className={styles.eyebrow}>
-            TESTIMONIALS
-          </div>
-          <TimelineContent as="h2" className={`heading-style-h3 ${styles.title}`} animationNum={0}>
-            Trusted by Greater Sydney's property managers and owners
-          </TimelineContent>
-        </article>
-        <div className={styles.grid}>
-          <div className={styles.column}>
-            <TimelineContent animationNum={0} className={`${styles.card} ${styles.cardLarge}`}>
-              <div className={styles.pattern}></div>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "AllFire Services has been a game-changer for our strata properties. Their service is top-notch and their team is incredibly responsive. We completely rely on them."
+    <section className={styles.section} id="testimonials" aria-labelledby="testimonial-title">
+      <div className={styles.header}>
+        <p className={styles.eyebrow}>Testimonials</p>
+        <h2 className={styles.title} id="testimonial-title">
+          Trusted by Sydney buildings that cannot afford fire safety guesswork
+        </h2>
+      </div>
+
+      <div className={styles.stage}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTestimonial.name}
+            className={styles.backdrop}
+            initial={false}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
+            transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={activeTestimonial.image}
+              alt=""
+              fill
+              priority={activeIndex === 0}
+              sizes="100vw"
+              className={styles.photo}
+            />
+            <div className={styles.scrim} />
+          </motion.div>
+        </AnimatePresence>
+
+        <button
+          className={`${styles.arrow} ${styles.arrowLeft}`}
+          type="button"
+          aria-label="Previous testimonial"
+          onClick={controls.previous}
+        >
+          <ChevronLeft aria-hidden="true" size={24} strokeWidth={2.4} />
+        </button>
+
+        <div className={styles.panelWrap}>
+          <AnimatePresence mode="wait">
+            <motion.article
+              key={activeTestimonial.quote}
+              className={styles.panel}
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -18 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className={styles.brandBlock}>
+                <Image
+                  src="/logo.png"
+                  alt="All Fire Services"
+                  width={150}
+                  height={56}
+                  className={styles.logo}
+                />
+                <span className={styles.brandLabel}>{activeTestimonial.brand}</span>
+              </div>
+
+              <div className={styles.copy}>
+                <p className={styles.quote}>&ldquo;{activeTestimonial.quote}&rdquo;</p>
+                <p className={styles.person}>
+                  {activeTestimonial.name}, {activeTestimonial.role}
                 </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>
-                      Sarah Jenkins
-                    </div>
-                    <p className={styles.role}>Strata Manager, Sydney</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=687&auto=format&fit=crop"
-                    alt="Sarah Jenkins"
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-            <TimelineContent animationNum={1} className={`${styles.card} ${styles.cardSmall} ${styles.cardRed}`}>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "We've seen incredible results. Their expertise and dedication to compliance is unmatched."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>Mark T.</div>
-                    <p className={styles.role}>Facility Manager</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1512485694743-9c9538b4e6e0?q=80&w=687&auto=format&fit=crop"
-                    alt="Mark T."
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-          </div>
-          
-          <div className={styles.column}>
-            <TimelineContent animationNum={2} className={styles.card}>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "Their team is highly professional, and their innovative solutions have truly transformed the way we handle our annual fire safety statements."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>
-                      David Chen
-                    </div>
-                    <p className={styles.role}>Commercial Landlord</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=1021&auto=format&fit=crop"
-                    alt="David Chen"
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-            
-            <TimelineContent animationNum={3} className={styles.card}>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "We're extremely satisfied with AllFire. Their firefighter-led expertise and practical approach have exceeded our expectations every time."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>John Roberts</div>
-                    <p className={styles.role}>Operations Director</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=687&auto=format&fit=crop"
-                    alt="John Roberts"
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-            
-            <TimelineContent animationNum={4} className={`${styles.card} ${styles.cardGold}`}>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "Their emergency support is absolutely exceptional. They are always available and incredibly helpful when you need them most."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>
-                      Lisa Wong
-                    </div>
-                    <p className={styles.role}>Building Manager</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1740102074295-c13fae3e4f8a?q=80&w=687&auto=format&fit=crop"
-                    alt="Lisa Wong"
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-          </div>
-          
-          <div className={styles.column}>
-            <TimelineContent animationNum={5} className={`${styles.card} ${styles.cardSmall}`}>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "AllFire Services has been a key partner in maintaining our extensive portfolio."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>Michael K.</div>
-                    <p className={styles.role}>Asset Manager</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1563237023-b1e970526dcb?q=80&w=765&auto=format&fit=crop"
-                    alt="Michael K."
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
-            
-            <TimelineContent animationNum={6} className={`${styles.card} ${styles.cardLarge}`}>
-              <div className={styles.pattern}></div>
-              <article className={styles.content}>
-                <p className={styles.quote}>
-                  "AllFire has been a true game-changer for us. Their exceptional service, combined with their deep expertise from the fire brigade, has made a significant impact on how we handle compliance."
-                </p>
-                <div className={styles.person}>
-                  <div>
-                    <div className={styles.name}>Paul Davis</div>
-                    <p className={styles.role}>Director, Sydney Properties</p>
-                  </div>
-                  <Image
-                    src="https://images.unsplash.com/photo-1590086782957-93c06ef21604?q=80&w=687&auto=format&fit=crop"
-                    alt="Paul Davis"
-                    width={200}
-                    height={200}
-                    sizes="40px"
-                    className={styles.avatar}
-                  />
-                </div>
-              </article>
-            </TimelineContent>
+              </div>
+            </motion.article>
+          </AnimatePresence>
+
+          <div className={styles.dots} aria-label="Select testimonial">
+            {testimonials.map((testimonial, index) => (
+              <button
+                key={testimonial.name}
+                type="button"
+                className={`${styles.dot} ${index === activeIndex ? styles.dotActive : ""}`}
+                aria-label={`Show testimonial from ${testimonial.name}`}
+                aria-pressed={index === activeIndex}
+                onClick={() => setActiveIndex(index)}
+              />
+            ))}
           </div>
         </div>
+
+        <button
+          className={`${styles.arrow} ${styles.arrowRight}`}
+          type="button"
+          aria-label="Next testimonial"
+          onClick={controls.next}
+        >
+          <ChevronRight aria-hidden="true" size={24} strokeWidth={2.4} />
+        </button>
       </div>
     </section>
   );

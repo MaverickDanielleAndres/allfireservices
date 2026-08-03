@@ -640,3 +640,73 @@ footer a[aria-label]:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 1023px) {
+  .section_hero-home.hero-scroll-section {
+    height: auto !important;
+    min-height: 245svh !important;
+    overflow: visible !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-parallax {
+    min-height: 100svh !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-pin {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-visuals {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-content-layer {
+    position: relative !important;
+    z-index: 3;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_content {
+    min-height: 100svh !important;
+    align-items: center !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_component {
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.48fr) !important;
+    min-height: auto !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-video-media {
+    object-position: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .section_hero-home.hero-scroll-section {
+    min-height: 255svh !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_component {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.35rem !important;
+  }
+
+  .section_hero-home.hero-scroll-section .padding-section-large.is-hero-home {
+    padding-top: clamp(7rem, 17vw, 8.5rem) !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-portrait-wrapper {
+    min-height: 14rem !important;
+    max-height: 17rem;
+  }
+}
