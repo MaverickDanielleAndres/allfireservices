@@ -4,26 +4,39 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { assets } from "@/lib/assets";
 
 const serviceLinks = [
-  { label: "All Services", href: "/services" },
+  { label: "All Services Hub", href: "/services", highlight: true },
   { label: "Annual Fire Safety Statement", href: "/annual-fire-safety-statement" },
-  { label: "Fire Protection Services Sydney", href: "/fire-protection-services-sydney" },
-  { label: "Fire Safety Compliance", href: "/fire-safety-compliance" },
-  { label: "Fire Consultancy Services", href: "/fire-consultancy-services" },
-  { label: "Fire Safety Training", href: "/fire-safety-training" },
   { label: "FPA Australia Member", href: "/fpa-australia-member" },
   { label: "NSW Fire Safety Regulations", href: "/13-feb-2026-nsw-fire-safety-regulations" },
+  { label: "Fire Protection Services Sydney", href: "/fire-protection-services-sydney", disabled: true },
+  { label: "Fire Safety Compliance", href: "/fire-safety-compliance", disabled: true },
+  { label: "Fire Consultancy Services", href: "/fire-consultancy-services", disabled: true },
+  { label: "Fire Safety Training", href: "/fire-safety-training", disabled: true },
+];
+
+const productLinks = [
+  { label: "Smoke Alarms (AS 3786)", href: "/services?category=smoke-alarms" },
+  { label: "Fire Extinguishers & Signage", href: "/services?category=fire-extinguishers" },
+  { label: "Emergency Lights & Exit Signs", href: "/services?category=emergency-lights" },
+  { label: "Diesel Pump & Hydrant", href: "/services?category=diesel-pump" },
+  { label: "Air & Mechanical Services", href: "/services?category=air-mechanical" },
+  { label: "Flow Testing", href: "/services?category=flow-testing" },
+  { label: "Service Penetration & Dampers", href: "/services?category=service-penetration" },
+  { label: "Fire Panel & Detection", href: "/services?category=fire-panel" },
+  { label: "Fire Doors", href: "/services?category=fire-doors" },
+  { label: "Plans & Evacuation", href: "/services?category=plans" },
 ];
 
 const navLinks = [
   { label: "Strata", href: "/strata" },
-  { label: "About", href: "/about" },
+  { label: "Our Story/Team", href: "/about" },
+  { label: "Our Clients", href: "/our-clients" },
   { label: "Services", href: "/services", hasDropdown: true },
-  { label: "Resources", href: "/13-feb-2026-nsw-fire-safety-regulations" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -35,7 +48,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLLIElement | null>(null);
   const lenis = useLenis();
-  const isHome = pathname === "/" || pathname === "/home" || pathname === "/homepage-2025";
+
+  useEffect(() => {
+    // Scroll to top automatically when navigating to a new page
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [pathname, lenis]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -101,7 +122,6 @@ export default function Navbar() {
     if (href === "/") {
       return pathname === "/";
     }
-
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
@@ -242,7 +262,7 @@ export default function Navbar() {
         .afs-nav {
           align-items: center;
           display: flex;
-          gap: clamp(1rem, 1.65vw, 1.45rem);
+          gap: clamp(0.6rem, 1.4vw, 1.2rem);
           justify-self: center;
           list-style: none;
           margin: 0;
@@ -250,7 +270,7 @@ export default function Navbar() {
         }
 
         .afs-nav-item {
-          position: relative;
+          position: static;
         }
 
         .afs-nav-link,
@@ -276,14 +296,14 @@ export default function Navbar() {
 
         .afs-header-shell.is-solid .afs-nav,
         .afs-header-shell.is-page .afs-nav {
-          gap: clamp(1rem, 1.65vw, 1.45rem);
+          gap: clamp(0.6rem, 1.4vw, 1.2rem);
         }
 
         .afs-header-shell.is-solid .afs-nav-link,
         .afs-header-shell.is-solid .afs-nav-trigger,
         .afs-header-shell.is-page .afs-nav-link,
         .afs-header-shell.is-page .afs-nav-trigger {
-          font-size: 0.96rem;
+          font-size: 0.93rem;
           font-weight: 750;
           min-height: 2.7rem;
         }
@@ -336,47 +356,125 @@ export default function Navbar() {
           transform: rotate(180deg);
         }
 
-        .afs-dropdown {
+        /* MEGA MENU STYLES */
+        .afs-mega-menu {
           background: #ffffff;
           border: 1px solid rgba(16, 16, 16, 0.08);
-          border-radius: 0.75rem;
-          box-shadow: 0 1.5rem 4rem rgba(16, 16, 16, 0.16);
+          border-radius: 1rem;
+          box-shadow: 0 2rem 5rem rgba(16, 16, 16, 0.15);
           color: #101010;
           left: 50%;
-          min-width: 22rem;
+          width: calc(100% - 2rem);
+          max-width: 62rem;
           opacity: 0;
-          padding: 0.7rem;
+          padding: 0.75rem;
           pointer-events: none;
           position: absolute;
           top: calc(100% + 0.55rem);
           transform: translate(-50%, -0.35rem);
-          transition: opacity 180ms ease, transform 180ms ease;
+          transition: opacity 200ms ease, transform 200ms ease;
+          display: flex;
+          gap: 1rem;
+          cursor: default;
         }
 
-        .afs-dropdown.is-open,
-        .afs-nav-item:hover .afs-dropdown {
+        .afs-mega-menu.is-open {
           opacity: 1;
           pointer-events: auto;
           transform: translate(-50%, 0);
         }
 
-        .afs-dropdown-link {
-          align-items: center;
-          border-radius: 0.5rem;
-          color: #101010;
+        .afs-mega-cta {
+          flex: 0 0 250px;
+          background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          color: #ffffff;
           display: flex;
-          font-size: 0.9rem;
-          font-weight: 750;
-          justify-content: space-between;
-          line-height: 1.2;
-          min-height: 2.75rem;
-          padding: 0.7rem 0.8rem;
-          text-decoration: none;
-          transition: background-color 160ms ease, color 160ms ease;
+          flex-direction: column;
         }
 
-        .afs-dropdown-link:hover,
-        .afs-dropdown-link.is-active {
+        .afs-mega-badge {
+          background: rgba(255, 255, 255, 0.15);
+          color: #feaf04;
+          font-size: 0.65rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          padding: 0.3rem 0.6rem;
+          border-radius: 999px;
+          align-self: flex-start;
+          margin-bottom: 1rem;
+        }
+
+        .afs-mega-title {
+          font-size: 1.35rem;
+          font-weight: 800;
+          line-height: 1.1;
+          margin: 0 0 0.5rem;
+        }
+
+        .afs-mega-desc {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.8);
+          line-height: 1.4;
+          margin: 0 0 1rem;
+        }
+
+        .afs-mega-cta-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: #ffffff;
+          font-weight: 750;
+          font-size: 0.95rem;
+          text-decoration: none;
+          margin-top: auto;
+          transition: color 150ms ease;
+        }
+        
+        .afs-mega-cta-link:hover {
+          color: #feaf04;
+        }
+
+        .afs-mega-content {
+          flex: 1;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          padding: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .afs-mega-col {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .afs-mega-heading {
+          font-size: 0.7rem;
+          font-weight: 900;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #888;
+          margin: 0 0 0.4rem;
+          padding-left: 0.5rem;
+        }
+
+        .afs-mega-link {
+          align-items: center;
+          border-radius: 0.4rem;
+          color: #333;
+          display: flex;
+          font-size: 0.85rem;
+          font-weight: 650;
+          padding: 0.35rem 0.5rem;
+          text-decoration: none;
+          transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .afs-mega-link:hover,
+        .afs-mega-link.is-active {
           background: #f4f4f0;
           color: #fc0403;
         }
@@ -394,7 +492,7 @@ export default function Navbar() {
           margin-left: 0;
         }
 
-        @media (min-width: 1081px) {
+        @media (min-width: 1201px) {
           .afs-header-shell.is-solid .afs-header,
           .afs-header-shell.is-page .afs-header {
             column-gap: 0.75rem;
@@ -592,7 +690,7 @@ export default function Navbar() {
           display: none;
         }
 
-        @media (max-width: 1080px) {
+        @media (max-width: 1200px) {
           .afs-header {
             grid-template-columns: 1fr auto;
           }
@@ -643,7 +741,7 @@ export default function Navbar() {
           .afs-header-shell::before,
           .afs-nav-label::after,
           .afs-nav-trigger svg,
-          .afs-dropdown,
+          .afs-mega-menu,
           .afs-action,
           .afs-mobile-panel {
             transition: none;
@@ -652,7 +750,7 @@ export default function Navbar() {
       `}</style>
 
       <header
-        className={`afs-header-shell${scrolled ? " is-solid" : ""}${isHome ? "" : " is-page"}${footerVisible && !mobileOpen ? " is-footer-visible" : ""}`}
+        className={`afs-header-shell${scrolled ? " is-solid" : ""}${footerVisible && !mobileOpen ? " is-footer-visible" : ""}`}
       >
         <nav className="afs-header" aria-label="Primary navigation">
           <Link href="/" className="afs-brand" aria-label="All Fire Services home" onClick={closeMenus}>
@@ -678,36 +776,78 @@ export default function Navbar() {
 
           <ul className="afs-nav">
             {navLinks.map((item) => (
-              <li className="afs-nav-item" key={item.label} ref={item.hasDropdown ? dropdownRef : undefined}>
+              <li
+                className="afs-nav-item"
+                key={item.label}
+                ref={item.hasDropdown ? dropdownRef : undefined}
+              >
                 {item.hasDropdown ? (
                   <>
                     <button
-                      className={`afs-nav-trigger${serviceLinks.some((link) => isActive(link.href)) ? " is-active" : ""}`}
+                      className={`afs-nav-trigger${[...serviceLinks, ...productLinks].some((link) => isActive(link.href))
+                        ? " is-active"
+                        : ""
+                        }`}
                       type="button"
                       aria-expanded={servicesOpen}
                       aria-controls="afs-services-menu"
-                      onClick={() => setServicesOpen((open) => !open)}
+                      onClick={() => setServicesOpen((o) => !o)}
                       onMouseEnter={() => setServicesOpen(true)}
                     >
                       <span className="afs-nav-label">{item.label}</span>
                       <ChevronDown aria-hidden="true" />
                     </button>
+
                     <div
-                      className={`afs-dropdown${servicesOpen ? " is-open" : ""}`}
+                      className={`afs-mega-menu${servicesOpen ? " is-open" : ""}`}
                       id="afs-services-menu"
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      {serviceLinks.map((service) => (
-                        <Link
-                          className={`afs-dropdown-link${isActive(service.href) ? " is-active" : ""}`}
-                          href={service.href}
-                          key={service.href}
-                          onClick={closeMenus}
-                        >
-                          {service.label}
-                          <ArrowUpRight aria-hidden="true" size={16} />
+                      {/* Left CTA Card */}
+                      <div className="afs-mega-cta">
+                        <span className="afs-mega-badge">All Services</span>
+                        <h3 className="afs-mega-title">Everything you need for fire safety</h3>
+                        <p className="afs-mega-desc">
+                          Discover how All Fire Services can transform your building&apos;s compliance and protection.
+                        </p>
+                        <Link href="/contact" className="afs-mega-cta-link" onClick={closeMenus}>
+                          Speak with our team <ArrowRight size={18} />
                         </Link>
-                      ))}
+                      </div>
+
+                      {/* Right Columns */}
+                      <div className="afs-mega-content">
+                        {/* Column 1: Services */}
+                        <div className="afs-mega-col">
+                          <p className="afs-mega-heading">Services & Compliance</p>
+                          {serviceLinks.map((service) => (
+                            <Link
+                              className={`afs-mega-link${isActive(service.href) || service.highlight ? " is-active" : ""}`}
+                              href={service.href}
+                              key={service.href}
+                              onClick={service.disabled ? (e) => e.preventDefault() : closeMenus}
+                              style={service.disabled ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+                            >
+                              {service.label}
+                            </Link>
+                          ))}
+                        </div>
+
+                        {/* Column 2: Products */}
+                        <div className="afs-mega-col">
+                          <p className="afs-mega-heading">Products & Equipment</p>
+                          {productLinks.map((product) => (
+                            <Link
+                              className={`afs-mega-link`}
+                              href={product.href}
+                              key={product.href}
+                              onClick={closeMenus}
+                            >
+                              {product.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </>
                 ) : (
@@ -761,11 +901,27 @@ export default function Navbar() {
             ))}
         </div>
 
-        <div className="afs-mobile-services" aria-label="Services">
-          <p className="afs-mobile-services-title">Services</p>
+        <div className="afs-mobile-services" aria-label="Services & Compliance">
+          <p className="afs-mobile-services-title">Services & Compliance</p>
           {serviceLinks.map((service) => (
-            <Link className="afs-mobile-service-link" href={service.href} key={service.href} onClick={closeMenus}>
+            <Link
+              className={`afs-mobile-service-link${service.highlight ? " is-active" : ""}`}
+              href={service.href}
+              key={service.href}
+              onClick={service.disabled ? (e) => e.preventDefault() : closeMenus}
+              style={service.disabled ? { opacity: 0.5, pointerEvents: 'none' } : {}}
+            >
               {service.label}
+              {!service.disabled && <ArrowUpRight aria-hidden="true" size={16} />}
+            </Link>
+          ))}
+        </div>
+
+        <div className="afs-mobile-services" aria-label="Products & Equipment">
+          <p className="afs-mobile-services-title">Products & Equipment</p>
+          {productLinks.map((product) => (
+            <Link className="afs-mobile-service-link" href={product.href} key={product.href} onClick={closeMenus}>
+              {product.label}
               <ArrowUpRight aria-hidden="true" size={16} />
             </Link>
           ))}
@@ -785,7 +941,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div id="main-content" className={`afs-header-spacer${isHome ? " is-home" : ""}`} />
+      <div id="main-content" className="afs-header-spacer is-home" />
     </>
   );
 }

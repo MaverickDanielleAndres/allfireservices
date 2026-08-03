@@ -148,7 +148,7 @@
 /* Homepage — Why All Fire Services */
 /* Homepage hero scroll video */
 .section_hero-home.hero-scroll-section {
-  min-height: 290svh;
+  min-height: 200svh;
   background: #ffffff;
   overflow: visible;
 }
@@ -159,7 +159,7 @@
 }
 
 .hero-scroll-section .hero-scroll-parallax {
-  min-height: 290svh;
+  min-height: 200svh;
   overflow: visible !important;
 }
 
@@ -218,7 +218,7 @@
   position: relative !important;
   inset: auto !important;
   height: auto !important;
-  min-height: 290svh;
+  min-height: 200svh;
   margin-top: -100svh;
   pointer-events: none;
   will-change: opacity, transform;
@@ -295,8 +295,8 @@
 }
 
 .hero-scroll-details {
-  margin-top: clamp(3rem, 8svh, 5rem);
-  min-height: 100svh;
+  margin-top: clamp(2rem, 4svh, 3rem);
+  min-height: auto;
   position: relative;
 }
 
@@ -311,7 +311,7 @@
 }
 
 .hero-scroll-section .hero-home_content {
-  min-height: 100svh;
+  min-height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -323,8 +323,8 @@
 }
 
 .hero-scroll-section .hero-home_component {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+  display: flex !important;
+  flex-wrap: wrap;
   align-items: start !important;
   justify-content: center !important;
   gap: clamp(1.5rem, 4vw, 3.25rem) !important;
@@ -345,7 +345,7 @@
   flex: 0 1 clamp(14rem, 22vw, 18rem);
   flex-direction: column;
   gap: clamp(0.85rem, 2vw, 1.25rem);
-  margin-left: auto;
+  margin-left: 0;
   max-width: clamp(14rem, 22vw, 18rem);
   width: 100%;
 }

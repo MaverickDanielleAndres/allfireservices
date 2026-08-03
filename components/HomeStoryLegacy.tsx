@@ -323,37 +323,6 @@ export default function HomeStoryLegacy() {
         </div>
         <div className="padding-global">
           <div className="container-large">
-            <div className={styles.storyGallery} aria-label="All Fire Services team highlights">
-              {galleryTiles.map((tile, index) => (
-                <motion.figure
-                  className={styles.galleryTile}
-                  key={tile.title}
-                  initial={{ opacity: 1, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{
-                    duration: 0.55,
-                    delay: (index % 4) * 0.06,
-                    ease: "easeOut",
-                  }}
-                >
-                  <Image
-                    fill
-                    src={tile.image}
-                    alt={tile.imageAlt}
-                    loading="eager"
-                    unoptimized
-                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 36vw"
-                    className={styles.galleryImage}
-                  />
-                  <figcaption className={styles.galleryCaption}>
-                    <strong>{tile.title}</strong>
-                    <span>{tile.subtitle}</span>
-                  </figcaption>
-                </motion.figure>
-              ))}
-            </div>
-
             <motion.header
               className={styles.storyHeader}
               variants={reveal}
@@ -410,6 +379,37 @@ export default function HomeStoryLegacy() {
                     )}
                   </div>
                 </motion.article>
+              ))}
+            </div>
+
+            <div className={styles.storyGallery} aria-label="All Fire Services team highlights">
+              {galleryTiles.map((tile, index) => (
+                <motion.figure
+                  className={styles.galleryTile}
+                  key={tile.title}
+                  initial={{ opacity: 1, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.55,
+                    delay: (index % 4) * 0.06,
+                    ease: "easeOut",
+                  }}
+                >
+                  <Image
+                    fill
+                    src={tile.image}
+                    alt={tile.imageAlt}
+                    loading="eager"
+                    unoptimized
+                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 36vw"
+                    className={styles.galleryImage}
+                  />
+                  <figcaption className={styles.galleryCaption}>
+                    <strong>{tile.title}</strong>
+                    <span>{tile.subtitle}</span>
+                  </figcaption>
+                </motion.figure>
               ))}
             </div>
 

@@ -168,26 +168,28 @@ function ClientsMarquee() {
         .clients-marquee-item {
           align-items: center;
           display: flex;
-          flex: 0 0 clamp(12rem, 16vw, 17.5rem);
-          height: clamp(5.4rem, 7.8vw, 7.8rem);
+          flex: 0 0 clamp(9rem, 12vw, 13rem);
+          height: clamp(4rem, 5.5vw, 5.5rem);
           justify-content: center;
         }
 
         .clients-marquee-logo {
           display: block;
           height: auto;
-          max-height: clamp(3.6rem, 5.8vw, 5.8rem);
-          max-width: min(100%, 16.5rem);
+          max-height: clamp(2.4rem, 3.8vw, 3.8rem);
+          max-width: min(100%, 12rem);
           object-fit: contain;
           width: auto;
         }
 
         .clients-marquee-logo.is-square {
-          max-height: clamp(5.6rem, 7.4vw, 7.25rem);
+          max-height: clamp(4rem, 5.2vw, 5.2rem);
         }
 
         .clients-marquee-logo.is-inverted {
-          filter: brightness(0);
+          background-color: #1a1a1a;
+          border-radius: 0.5rem;
+          padding: 0.5rem 1rem;
         }
 
         @keyframes clients-slide-left {
@@ -234,7 +236,7 @@ function ClientsMarquee() {
           return (
             <div
               key={rowIndex}
-              className={`clients-marquee-track ${rowIndex === 0 ? "is-left" : "is-right"}`}
+              className={`clients-marquee-track ${rowIndex === 0 ? "is-right" : "is-left"}`}
             >
               {repeatedLogos.map((logo, logoIndex) => (
                 <div
@@ -515,8 +517,8 @@ export default function Page() {
                   <div className="hero-home_content">
                     <div className="padding-section-large is-hero-home" style={{ paddingTop: "2.5rem", paddingBottom: "2rem", width: "100%", minHeight: "auto", height: "auto" }}>
                       <div className="hero-home_component" style={{ width: "100%", minHeight: "auto", height: "auto", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-start", gap: "clamp(1.5rem, 4vw, 3.25rem)", alignItems: "flex-start" }}>
-                        <div className="max-width-hero" style={{ flex: "1 1 44rem", minWidth: 0, zIndex: 10, margin: 0, padding: 0 }}>
-                          <div className="header-wrapper" style={{ maxWidth: "800px", margin: 0, padding: 0, display: "flex", flexDirection: "column" }}>
+                        <div className="max-width-hero" style={{ flex: "0 1 44rem", minWidth: 0, zIndex: 10, margin: 0, padding: 0 }}>
+                          <div className="header-wrapper" style={{ maxWidth: "800px", margin: "0 auto", padding: 0, display: "flex", flexDirection: "column" }}>
                             <div className="header-text-wrap" style={{
                                 background: "rgba(0, 0, 0, 0.6)",
                                 backdropFilter: "blur(10px)",
@@ -683,8 +685,8 @@ export default function Page() {
           </div>
         </MotionHeader>
         <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
-        <HomeStoryLegacy />
         <WhyAllfireSticky />
+        <HomeStoryLegacy />
         <HomeServices />
         {/* â”€â”€ Premium Fire Services â”€â”€ */}        <MotionSection
           {...sectionReveal}
@@ -1096,7 +1098,7 @@ export default function Page() {
         </MotionSection>
 
         <MotionDiv {...sectionReveal}>
-          <ClientFeedback />
+          <ClientsMarquee />
         </MotionDiv>
         <MotionDiv {...sectionReveal}>
           <PreFaqCTA />

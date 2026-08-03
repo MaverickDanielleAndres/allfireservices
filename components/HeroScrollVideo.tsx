@@ -13,15 +13,14 @@ export default function HeroScrollVideo() {
   const scale = useSpring(rawScale, { stiffness: 90, damping: 26, mass: 0.45 });
   const y = useSpring(rawY, { stiffness: 90, damping: 28, mass: 0.45 });
   const videoStyle = reduceMotion
-    ? { opacity: isLoaded ? 1 : 0 }
+    ? { opacity: 1 }
     : {
-        opacity: isLoaded ? rawOpacity : 0,
+        opacity: rawOpacity,
         scale,
-        y,
       };
 
   return (
-    <div className="hero-scroll-video" aria-hidden="true">
+    <div className="hero-scroll-video" aria-hidden="true" style={{ backgroundColor: "#111" }}>
       <motion.video
         className="hero-scroll-video-media"
         autoPlay
@@ -34,7 +33,7 @@ export default function HeroScrollVideo() {
         style={videoStyle}
       >
         <source
-          src="/Cinematic Real Estate Videography _ Sony FX3.mp4"
+          src="/hero-video.mp4"
           type="video/mp4"
         />
       </motion.video>

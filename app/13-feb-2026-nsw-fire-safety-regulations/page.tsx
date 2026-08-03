@@ -30,12 +30,24 @@ export default function Page() {
   return (
     <main className="main-wrapper">
       <div className="scroll-wrapper">
-        <header data-theme="light" className="section_about-hero is-light">
-          <div className="padding-global">
+        <header 
+          className="section_about-hero is-dark" 
+          style={{ 
+            backgroundImage: 'url("/annual-fire-safety-statement/fire-truck-all-fire-services.webp")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            marginBottom: '4rem',
+            marginTop: '-12rem',
+            paddingTop: '12rem',
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
+          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
             <div className="container-large">
               <div
                 className="padding-section-large is-about"
-                style={{ paddingBottom: "1rem" }}
+                style={{ paddingTop: '13rem', paddingBottom: '4rem' }}
               >
                 <div
                   className="about-hero_component services-hero_component"
@@ -43,16 +55,16 @@ export default function Page() {
                 >
                   <div className="hero_content-wrapper">
                     <div className="hero_content-left">
-                      <div className="header-eyebrow-text hide-desktop">
+                      <div className="header-eyebrow-text hide-desktop" style={{ color: '#feaf04' }}>
                         13 February 2026
                       </div>
-                      <h1 className="heading-style-h1">REGULATION UPDATE</h1>
+                      <h1 className="heading-style-h1" style={{ color: '#ffffff', fontWeight: 900, lineHeight: 1.1 }}>REGULATION UPDATE</h1>
                     </div>
                     <div className="hero_content-right">
-                      <div className="header-eyebrow-text hide-tablet">
+                      <div className="header-eyebrow-text hide-tablet" style={{ color: '#feaf04' }}>
                         13 February 2026
                       </div>
-                      <p className="body-text">
+                      <p className="body-text" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         Important NSW fire safety certification and maintenance
                         requirements for building owners, certifiers and fire
                         protection professionals.

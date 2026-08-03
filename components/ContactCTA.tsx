@@ -19,13 +19,13 @@ const staggerChildren = {
   },
 };
 
-export default function ContactCTA() {
+export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: boolean }) {
   return (
     <section data-theme="light" className="section_contact-cta">
       <div className="padding-global">
         <div className="container-large">
           <div className="padding-section-large">
-            <SitewideCTA />
+            {!hideSitewideCTA && <SitewideCTA />}
               <motion.div
                 className="contact-location-section"
                 variants={staggerChildren}

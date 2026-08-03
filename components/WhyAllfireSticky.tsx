@@ -5,9 +5,9 @@ import { useRef, useState } from "react";
 
 const slides = [
   {
-    title: "Every finding is explained, not buried in jargon",
+    title: "COMPLIANCE ASSURED",
     copy:
-      "All Fire Services makes fire safety clear before anything moves forward. We show what was checked, what passed, what needs attention, and why it matters for your building, occupants, and annual compliance.",
+      "We help ensure your building meets all required fire safety standards. From detailed property inspections to the timely submission of your Annual Fire Safety Statements (AFSS), we keep everything properly documented and fully compliant with local council regulations.",
     visualTitle: "Inspection summary",
     visualIntro: "Here is what needs attention right now:",
     visualItems: [
@@ -18,9 +18,9 @@ const slides = [
     ],
   },
   {
-    title: "Testing, repairs, and maintenance stay with one team",
+    title: "EXPERIENCED & QUALIFIED TEAM",
     copy:
-      "From routine inspections to emergency lighting, pumps, extinguishers, hydrants, sprinklers, and repairs, our Sydney technicians keep the work connected so nothing gets lost between contractors.",
+      "Our team is highly trained, licensed, and dedicated to safety. Led by current and former firefighting professionals, our technicians bring real-world emergency experience directly to your property, ensuring practical and reliable fire protection.",
     visualTitle: "Service path",
     visualIntro: "One accountable workflow:",
     visualItems: [
@@ -31,9 +31,9 @@ const slides = [
     ],
   },
   {
-    title: "Compliance support is built around real deadlines",
+    title: "RELIABLE & ON TIME",
     copy:
-      "Annual fire safety statements and council requirements need timely evidence, not last-minute guesswork. We help property teams understand what is compliant, what needs proof, and what must be fixed before sign-off.",
+      "We deliver our services on time, every time. We understand that compliance deadlines and tenant schedules can't wait, so we prioritize rapid response times, clear communication, and punctual maintenance visits.",
     visualTitle: "Compliance pack",
     visualIntro: "Prepared for final review:",
     visualItems: [
@@ -44,9 +44,9 @@ const slides = [
     ],
   },
   {
-    title: "Local support means people who answer and follow through",
+    title: "COMPREHENSIVE SERVICES",
     copy:
-      "Our Sydney team listens, explains the options, and stays responsive after the report is issued. You know who is handling the job, what happens next, and when the work is complete.",
+      "From inspections to AFSS, we cover all your fire safety needs. Whether you need emergency lighting checks, fire extinguisher testing, or complex sprinkler maintenance, we offer a complete suite of solutions under one roof.",
     visualTitle: "Support notes",
     visualIntro: "What you can expect:",
     visualItems: [
@@ -54,6 +54,32 @@ const slides = [
       { label: "Responsive scheduling for recurring testing", active: true },
       { label: "Clear updates when repairs are required", active: true },
       { label: "Ongoing care after final sign-off", active: false },
+    ],
+  },
+  {
+    title: "LOCAL SYDNEY EXPERTS",
+    copy:
+      "Proudly serving businesses and communities across Greater Sydney. As a locally owned and operated business, we understand the specific compliance challenges faced by strata managers and building owners across the metropolitan area.",
+    visualTitle: "Local focus",
+    visualIntro: "Sydney-wide coverage:",
+    visualItems: [
+      { label: "Rapid response times across Greater Sydney", active: true },
+      { label: "Familiarity with local council requirements", active: true },
+      { label: "Strong community and business relationships", active: true },
+      { label: "On-the-ground support when needed", active: false },
+    ],
+  },
+  {
+    title: "QUALITY YOU CAN TRUST",
+    copy:
+      "We use best practices and quality systems you can rely on. Our rigorous internal auditing and commitment to industry-leading standards mean that every inspection, repair, and certification is performed with the highest level of accuracy and care.",
+    visualTitle: "Quality assurance",
+    visualIntro: "Our commitment to quality:",
+    visualItems: [
+      { label: "Strict adherence to safety best practices", active: true },
+      { label: "Reliable and consistent service delivery", active: true },
+      { label: "Continuous training for our technicians", active: true },
+      { label: "Transparent and auditable processes", active: false },
     ],
   },
 ];

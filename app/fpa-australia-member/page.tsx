@@ -110,11 +110,44 @@ function ArrowIcon() {
   );
 }
 
-export default function Page() {
+export default function FpaAustraliaMember() {
   return (
     <main className="main-wrapper">
       <div className="scroll-wrapper">
-        <header data-theme="light" className="section_about-hero is-light">
+        <header 
+          className="section_about-hero is-dark" 
+          style={{ 
+            backgroundImage: 'url("/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            marginBottom: '4rem',
+            marginTop: '-12rem',
+            paddingTop: '12rem',
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
+          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingTop: '13rem', paddingBottom: '4rem' }}>
+                <h1 
+                  className="heading-style-h1"
+                  style={{ 
+                    color: '#ffffff', 
+                    fontWeight: 900, 
+                    textTransform: 'uppercase',
+                    lineHeight: 1.1,
+                    margin: 0
+                  }}
+                >
+                  FPA AUSTRALIA MEMBER
+                </h1>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section className="section_fpa-intro">
           <div className="padding-global">
             <div className="container-large">
               <div
@@ -146,7 +179,7 @@ export default function Page() {
               </div>
             </div>
           </div>
-        </header>
+        </section>
 
         <div
           data-animate-to="light"

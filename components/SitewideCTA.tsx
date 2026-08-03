@@ -15,17 +15,19 @@ export default function SitewideCTA() {
     <section className="pre-faq-cta" aria-labelledby="sitewide-cta-title">
       <style>{`
         .pre-faq-cta {
-          background: #ffffff;
-          padding: clamp(3rem, 7vw, 6rem) 1.25rem 2rem;
+          background: transparent;
+          padding: 5rem 1.25rem 5rem;
         }
 
         .pre-faq-cta-card {
           align-items: center;
-          background: #ffffff;
+          background:
+            radial-gradient(circle at 48% 10%, rgba(254, 175, 4, 0.38), transparent 28%),
+            radial-gradient(circle at 12% 18%, rgba(252, 4, 3, 0.28), transparent 32%),
+            linear-gradient(135deg, #fc0403 0%, #fb5614 43%, #feaf04 100%);
           border-radius: 1.5rem;
-          border: 1px solid rgba(17, 17, 17, 0.08);
-          box-shadow: 0 1.5rem 3.5rem rgba(17, 17, 17, 0.08);
-          color: #111111;
+          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.16);
+          color: #ffffff;
           display: flex;
           flex-direction: column;
           isolation: isolate;
@@ -39,6 +41,9 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-card::before {
+          background:
+            linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.72)),
+            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
           content: "";
           inset: 0;
           position: absolute;
@@ -57,6 +62,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-logo {
           display: block;
+          filter: brightness(0) invert(1) drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
           height: clamp(2.8rem, 5vw, 4.5rem);
           object-fit: contain;
           width: auto;
@@ -67,7 +73,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-title {
-          color: #111111;
+          color: #ffffff;
           font-size: clamp(2.2rem, 5.4vw, 4.25rem);
           font-weight: 500;
           letter-spacing: 0;
@@ -78,7 +84,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-copy {
-          color: rgba(17, 17, 17, 0.8);
+          color: rgba(255, 255, 255, 0.9);
           font-size: clamp(1rem, 1.7vw, 1.18rem);
           font-weight: 700;
           line-height: 1.45;
@@ -97,9 +103,9 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-button {
           align-items: center;
-          border: 1px solid rgba(17, 17, 17, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.9);
           border-radius: 0.55rem;
-          color: #111111;
+          color: #ffffff;
           display: inline-flex;
           font-size: 0.95rem;
           font-weight: 850;
@@ -128,7 +134,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-button:focus-visible {
-          outline: 2px solid #111111;
+          outline: 2px solid #ffffff;
           outline-offset: 4px;
         }
 

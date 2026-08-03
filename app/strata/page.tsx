@@ -71,25 +71,45 @@ export default function Page() {
   return (
     <main className="main-wrapper">
       <div className="scroll-wrapper">
-        <header data-theme="light" className="section_about-hero is-light">
-          <div className="padding-global">
+        <header 
+          className="section_about-hero is-dark"
+          style={{ 
+            backgroundImage: 'url("/stratapage/1welcome-to-fireman-family.png")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
+            marginBottom: '4rem',
+            marginTop: '-12rem',
+            paddingTop: '12rem',
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
+          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
             <div className="container-large">
-              <div className="padding-section-large is-about" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
                   <div className="hero_content-wrapper">
                     <div className="hero_content-left">
-                      <div className="header-eyebrow-text hide-desktop">
+                      <div className="header-eyebrow-text hide-desktop" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         Strata Fire Safety
                       </div>
-                      <h1 className="heading-style-h1">
+                      <h1 
+                        className="heading-style-h1"
+                        style={{ 
+                          color: '#ffffff', 
+                          fontWeight: 900, 
+                          textTransform: 'uppercase',
+                          lineHeight: 1.1 
+                        }}
+                      >
                         STRATA
                       </h1>
                     </div>
                     <div className="hero_content-right">
-                      <div className="header-eyebrow-text hide-tablet">
+                      <div className="header-eyebrow-text hide-tablet" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         Strata Fire Safety
                       </div>
-                      <p className="body-text">
+                      <p className="body-text" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         Ensuring all strata common areas are fully compliant and safe for residents. We provide comprehensive fire safety audits, routine inspections, and expert maintenance for all residential complexes, ensuring complete peace of mind for strata managers and residents alike.
                       </p>
                     </div>

@@ -25,6 +25,18 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const XIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+  </svg>
+);
+
+const EmailIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+  </svg>
+);
+
 const footerColumns = [
   {
     title: "Services",
@@ -60,12 +72,15 @@ const socialLinks = [
   { label: "YouTube", href: "#", icon: YoutubeIcon },
   { label: "LinkedIn", href: "#", icon: LinkedinIcon },
   { label: "Instagram", href: "#", icon: InstagramIcon },
+  { label: "X", href: "#", icon: XIcon },
+  { label: "Email", href: "mailto:admin@allfireservices.com.au", icon: EmailIcon },
 ];
 
 export default function Footer() {
   return (
-    <footer className="w-full overflow-hidden border-t border-[#eaded6] bg-[#f7f2ee] text-[#121212]">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 pb-28 pt-8 sm:px-6 md:min-h-[38rem] md:pb-24 md:pt-10 lg:px-8 lg:pb-5 lg:pt-12">
+    <footer className="w-full border-t border-[#eaded6] bg-[#f7f2ee] text-[#121212]">
+      {/* Top content section — constrained */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 pt-8 sm:px-6 md:pt-10 lg:px-8 lg:pt-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
           <div className="min-w-0 max-w-xl">
             <p className="text-[clamp(2rem,4vw,4.25rem)] font-semibold leading-[0.96] tracking-normal text-[#121212]">
@@ -164,31 +179,35 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-auto pt-12 sm:pt-14 lg:pt-16">
-          <Link
-            href="/"
-            aria-label="All Fire Services Australia home"
-            className="footer-wordmark block max-w-full whitespace-nowrap !text-[#ff4d16] text-[clamp(2.35rem,10vw,9.9rem)] font-black italic uppercase leading-[0.9] tracking-normal transition hover:!text-[#ff6a3d]"
-            style={{
-              display: "flex",
-              height: "auto",
-              overflowWrap: "normal",
-              textDecoration: "none",
-              width: "100%",
-              wordBreak: "normal",
-            }}
-          >
-            <span aria-hidden="true" className="footer-wordmark-half footer-wordmark-left">
-              ALLFIRE
-            </span>
-            <span aria-hidden="true" className="footer-wordmark-half footer-wordmark-right">
-              SERVICES
-            </span>
-          </Link>
-        </div>
+      {/* Wordmark — full bleed, no max-width constraint, no overflow clipping */}
+      <div className="w-full px-0 pt-10 sm:pt-12 lg:pt-14">
+        <Link
+          href="/"
+          aria-label="All Fire Services Australia home"
+          className="footer-wordmark block w-full whitespace-nowrap !text-[#ff4d16] font-black italic uppercase leading-[0.9] tracking-normal transition hover:!text-[#ff6a3d]"
+          style={{
+            display: "flex",
+            fontSize: "clamp(2.35rem, 10vw, 9.9rem)",
+            height: "auto",
+            textDecoration: "none",
+            width: "100%",
+            borderRadius: 0,
+          }}
+        >
+          <span aria-hidden="true" className="footer-wordmark-half footer-wordmark-left">
+            ALLFIRE
+          </span>
+          <span aria-hidden="true" className="footer-wordmark-half footer-wordmark-right">
+            SERVICES
+          </span>
+        </Link>
+      </div>
 
-        <div className="mt-6 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 text-[11px] font-medium text-[#645852] sm:flex-row sm:items-center sm:justify-between">
+      {/* Bottom bar — constrained */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[11px] font-medium text-[#645852] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
             <span className="text-[#645852]">Privacy policy</span>
@@ -205,7 +224,8 @@ export default function Footer() {
               justify-content: center;
               width: 100%;
               gap: 0;
-              overflow: hidden;
+              overflow: visible;
+              border-radius: 0;
             }
 
             .footer-wordmark-half {
