@@ -1,17 +1,96 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
+import SitewideCTA from "@/components/SitewideCTA";
 
-export default function ContactCTA() {
+const revealUp = {
+  hidden: { opacity: 0, y: 34 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerChildren = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.14,
+    },
+  },
+};
+
+export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: boolean }) {
   return (
-        <section data-theme="light" className="section_contact-cta">
-          <div className="padding-global">
-            <div className="container-large">
-              <div className="padding-section-large">
+    <section data-theme="light" className="section_contact-cta">
+      <div className="padding-global">
+        <div className="container-large">
+          <div className="padding-section-large">
+            {!hideSitewideCTA && <SitewideCTA />}
+              <motion.div
+                className="contact-location-section"
+                variants={staggerChildren}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.22 }}
+                style={{ marginBottom: '4rem' }}
+              >
+                <motion.div
+                  variants={revealUp}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ marginBottom: '1.5rem' }}
+                >
+                  <p className="body-text" style={{ margin: '0 0 0.35rem', color: '#D94833', fontSize: '0.8125rem', fontWeight: 700, letterSpacing: 0, textTransform: 'uppercase' }}>Our Location</p>
+                  <h2 className="heading-style-h3" style={{ margin: 0, color: '#1A1A1A', fontSize: '2.5rem', fontWeight: 800 }}>Visit All Fire Services</h2>
+                </motion.div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 20rem), 1fr))', gap: '1rem' }}>
+                  <motion.div
+                    initial={false}
+                    whileHover={{ y: -5, scale: 1.005 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ position: 'relative', minHeight: '300px', overflow: 'hidden', borderRadius: '8px', border: '1px solid rgba(26, 26, 26, 0.08)', background: '#EEF0F2', boxShadow: '0 18px 45px rgba(18, 24, 31, 0.08)' }}
+                  >
+                    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #eef0f2 0%, #f8fafc 48%, #e3e7eb 100%)' }} />
+                    <iframe
+                      title="All Fire Services location map"
+                      src="https://maps.google.com/maps?width=100%25&height=360&hl=en&q=330%20Wattle%20St,%20Ultimo%20NSW%202007,%20Australia&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      style={{ position: 'relative', zIndex: 2, display: 'block', width: '100%', height: '300px', border: 0 }}
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={false}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={{ y: -5, scale: 1.01 }}
+                    style={{ position: 'relative', minHeight: '300px', overflow: 'hidden', borderRadius: '8px', border: '1px solid rgba(26, 26, 26, 0.08)', background: '#1A1A1A', boxShadow: '0 18px 45px rgba(18, 24, 31, 0.08)' }}
+                  >
+                    <Image
+                      src="/stratapage/5-all-fire-services-welcome-chippendale.webp"
+                      alt="Building near the All Fire Services location"
+                      fill
+                      sizes="(max-width: 767px) 100vw, 35vw"
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(14, 23, 31, 0.72), rgba(14, 23, 31, 0.26))' }} />
+                    <div style={{ position: 'absolute', inset: 'auto 1.25rem 1.25rem 1.25rem', color: '#fff' }}>
+                      <h3 className="heading-style-h5" style={{ margin: '0 0 0.35rem', color: '#fff', fontSize: '1.55rem' }}>Our Location</h3>
+                      <p className="body-text" style={{ margin: 0, color: '#fff', fontSize: '0.8125rem', lineHeight: 1.35 }}>330 Wattle St, Ultimo NSW 2007</p>
+                      <a
+                        href="https://www.google.com/maps/search/?api=1&query=330%20Wattle%20St%2C%20Ultimo%20NSW%202007%2C%20Australia"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ display: 'inline-flex', alignItems: 'center', marginTop: '0.8rem', padding: '0.5rem 0.8rem', borderRadius: '999px', background: '#FEAF04', color: '#1A1A1A', fontSize: '0.75rem', fontWeight: 700, textDecoration: 'none' }}
+                      >
+                        Walking map
+                      </a>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
                 <div className="contact-cta_component">
                   <div className="contact-cta_content">
                     <div className="contact-cta_header" style={{ textAlign: 'left', marginBottom: '1rem', width: '100%' }}>
-                      <h2 className="heading-style-h3" style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'left', color: '#1A1A1A' }}>Get in touch</h2>
+                      <h2 className="heading-style-h3" style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'left', color: '#1A1A1A', fontWeight: 800 }}>Get in touch</h2>
                       <p className="body-text" style={{ fontSize: '0.875rem', textAlign: 'left', margin: 0, lineHeight: '1.4' }}>
                         We’re always happy to hear from property managers and
                         owners, whether it’s to enquire about a new fire safety audit,
@@ -19,21 +98,6 @@ export default function ContactCTA() {
                       </p>
                     </div>
                     <div className="contact-cta_info-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start', textAlign: 'left', padding: 0, margin: 0, width: '100%' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
-                        <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>HEADQUARTER</h3>
-                        <p className="body-text" style={{ margin: 0, fontWeight: '600', fontSize: '0.8125rem', textAlign: 'left' }}>All Fire Services</p>
-                        <p className="body-text" style={{ margin: 0, fontSize: '0.8125rem', textAlign: 'left' }}>Address: 330 Wattle St, Ultimo NSW 2007, Australia</p>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
-                        <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>CONTACT DETAILS</h3>
-                        <p className="body-text" style={{ margin: 0, fontSize: '0.8125rem', textAlign: 'left' }}>Phone: 1300 765 594</p>
-                        <p className="body-text" style={{ margin: 0, fontSize: '0.8125rem', textAlign: 'left' }}>Email: <a href="mailto:admin@allfireservices.com.au" style={{ color: '#D94833', textDecoration: 'none' }}>admin@allfireservices.com.au</a></p>
-                      </div>
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
-                        <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>OFFICE HOURS</h3>
-                        <p className="body-text" style={{ margin: 0, fontSize: '0.8125rem', textAlign: 'left' }}>Monday &ndash; Friday 07:00am &ndash; 6:30pm</p>
-                        <p className="body-text" style={{ margin: 0, fontSize: '0.8125rem', textAlign: 'left' }}>Saturday 7:00am &ndash; 12:30pm</p>
-                      </div>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', marginTop: '0.25rem' }}>
                         <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>SOCIALS</h3>
                         <div className="contact-social-links" style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-start', width: '100%' }}>
@@ -229,9 +293,9 @@ export default function ContactCTA() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
   );
 }

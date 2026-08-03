@@ -146,7 +146,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-AU" className={`${inter.variable} antialiased`}>
-      <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-black`}>
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

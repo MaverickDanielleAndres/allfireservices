@@ -640,3 +640,105 @@ footer a[aria-label]:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 1023px) {
+  .section_hero-home.hero-scroll-section {
+    height: auto !important;
+    min-height: 290svh !important;
+    overflow: visible !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-parallax,
+  .section_hero-home.hero-scroll-section .hero-scroll-content-layer {
+    min-height: 290svh !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-pin {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-visuals {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    min-height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-content-layer {
+    position: relative !important;
+    z-index: 3;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_content {
+    min-height: 100svh !important;
+    align-items: flex-start !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_component {
+    grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.72fr) !important;
+    gap: clamp(1rem, 2.5vw, 1.75rem) !important;
+    min-height: auto !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-video-media {
+    object-position: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .section_hero-home.hero-scroll-section {
+    min-height: 260svh !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-parallax,
+  .section_hero-home.hero-scroll-section .hero-scroll-content-layer {
+    min-height: 260svh !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-intro {
+    margin-top: 86svh;
+    min-height: 55svh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-intro-title {
+    font-size: clamp(3.15rem, 14vw, 5.8rem);
+    line-height: 0.86;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-intro-copy {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+    max-width: 23rem;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-intro-copy span {
+    white-space: normal;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-scroll-details {
+    margin-top: clamp(5rem, 14svh, 8rem);
+  }
+
+  .section_hero-home.hero-scroll-section .hero-home_component {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.35rem !important;
+  }
+
+  .section_hero-home.hero-scroll-section .padding-section-large.is-hero-home {
+    padding-top: 1.25rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .section_hero-home.hero-scroll-section .hero-portrait-wrapper {
+    min-height: 14rem !important;
+    max-height: 17rem;
+  }
+}

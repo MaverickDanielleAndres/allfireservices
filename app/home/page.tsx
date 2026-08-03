@@ -620,7 +620,7 @@ export default function Page() {
           <div>All Fire Services</div>
         </div>
       </div>
-      <img src="/Fireprotectionservicesimage/yearlyhydrantflowstate.webp" loading="lazy" alt="Yearly Hydrant Flow Test" className="products_image" style={{ objectFit: 'cover' }} />
+      <img src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp" loading="lazy" alt="Yearly Hydrant Flow Test" className="products_image" style={{ objectFit: 'cover' }} />
     </div>
     <div className="products_info-wrap">
       <div className="products_content-link-wrap">

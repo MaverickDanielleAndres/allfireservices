@@ -1,20 +1,51 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { MessageCircle } from "lucide-react";
 
 const Chatbot = dynamic(() => import("./Chatbot"), {
   ssr: false,
 });
 
+function BrandCorner() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 168 122"
+      preserveAspectRatio="none"
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        width: 68,
+        height: 48,
+        overflow: "hidden",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    >
+      <defs>
+        <linearGradient id="chatDeferredCornerOrange" x1="74" y1="0" x2="168" y2="122" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#ff7a1a" />
+          <stop offset="0.58" stopColor="#fb5614" />
+          <stop offset="1" stopColor="#ffa20d" />
+        </linearGradient>
+      </defs>
+      <path d="M50 0H168V122C134 69 98 28 50 0Z" fill="url(#chatDeferredCornerOrange)" />
+      <path d="M23 0C68 18 109 52 151 104" fill="none" stroke="#fc0403" strokeWidth="14" strokeLinecap="round" />
+      <path d="M45 0C86 20 123 57 168 122" fill="none" stroke="#feaf04" strokeWidth="8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function ChatbotDeferred() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobileOrTablet(window.innerWidth <= 1024);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -26,17 +57,14 @@ export default function ChatbotDeferred() {
 
   return (
     <motion.div
-      drag={!isMobile}
+      drag={!isMobileOrTablet}
       dragMomentum={false}
       className="chatbot-container"
       style={{
-        fontFamily: "Inter, Arial, sans-serif",
+        fontFamily: "var(--font-sans), Inter, Arial, sans-serif",
         position: "fixed",
-        bottom: 20,
-        right: isMobile ? 0 : 20,
-        left: isMobile ? 0 : undefined,
-        margin: isMobile ? '0 auto' : undefined,
-        width: isMobile ? 'max-content' : undefined,
+        bottom: isMobileOrTablet ? 10 : 20,
+        right: isMobileOrTablet ? 10 : 20,
         zIndex: 9999,
       }}
     >
@@ -45,79 +73,45 @@ export default function ChatbotDeferred() {
         aria-label="Open ALLFIRE assistant"
         onClick={() => setIsLoaded(true)}
         style={{
-          background:
-            "linear-gradient(to right, #FC0403, #FB5614, #FEAF04)",
-          border: "none",
-          borderRadius: 999,
-          padding: "5px 16px 5px 5px",
+          position: "relative",
+          overflow: "hidden",
+          background: "#fff",
+          border: "1px solid #ece7e2",
+          borderRadius: 8,
+          padding: "10px 14px 10px 12px",
           display: "flex",
           alignItems: "center",
           gap: 10,
           cursor: "pointer",
-          boxShadow: "0 4px 14px rgba(0,0,0,0.2)",
-          transition: "transform 0.2s, box-shadow 0.2s",
-        }}
-        onMouseEnter={(event) => {
-          event.currentTarget.style.transform = "translateY(-2px)";
-          event.currentTarget.style.boxShadow =
-            "0 6px 18px rgba(0,0,0,0.25)";
-        }}
-        onMouseLeave={(event) => {
-          event.currentTarget.style.transform = "none";
-          event.currentTarget.style.boxShadow =
-            "0 4px 14px rgba(0,0,0,0.2)";
+          boxShadow: "0 10px 28px rgba(18,18,18,0.14)",
+          minWidth: 170,
         }}
       >
-        <div
+        <BrandCorner />
+        <span
           style={{
-            background: "#fff",
-            borderRadius: 999,
-            padding: "4px 8px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: 34,
+            height: 34,
+            borderRadius: "50%",
+            background: "#fff5f0",
+            color: "#fb5614",
+            display: "grid",
+            placeItems: "center",
+            flexShrink: 0,
+            position: "relative",
+            zIndex: 1,
           }}
         >
-          <Image
-            src="/logo.png"
-            alt="ALLFIRE"
-            width={58}
-            height={26}
-            sizes="58px"
-            style={{
-              objectFit: "contain",
-              height: 26,
-              width: "auto",
-              display: "block",
-            }}
-          />
-        </div>
-        <div style={{ textAlign: "left" }}>
-          <p
-            style={{
-              margin: 0,
-              fontSize: 8.5,
-              fontWeight: 800,
-              color: "rgba(255,255,255,0.7)",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              lineHeight: 1,
-            }}
-          >
-            Business Help
-          </p>
-          <p
-            style={{
-              margin: "3px 0 0",
-              fontSize: 13.5,
-              fontWeight: 700,
-              color: "#fff",
-              lineHeight: 1,
-            }}
-          >
+          <MessageCircle size={18} strokeWidth={2.3} />
+        </span>
+        <span style={{ position: "relative", zIndex: 1, textAlign: "left" }}>
+          <span style={{ display: "block", margin: 0, fontSize: 11, fontWeight: 750, color: "#171717", lineHeight: 1.1 }}>
             Ask ALLFIRE
-          </p>
-        </div>
+          </span>
+          <span style={{ display: "block", marginTop: 3, fontSize: 10.5, color: "#747474", lineHeight: 1.1 }}>
+            Service help
+          </span>
+        </span>
       </button>
     </motion.div>
   );
