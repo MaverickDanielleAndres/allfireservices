@@ -1,0 +1,118 @@
+.galleryItem {
+  isolation: isolate;
+  outline: none;
+  cursor: default;
+  box-shadow: 0 4px 14px rgba(7, 25, 38, 0.06);
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 420ms ease;
+}
+
+.galleryImage {
+  z-index: 0;
+  object-fit: contain;
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 450ms ease;
+}
+
+.galleryOverlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(5, 17, 25, 0.18), rgba(5, 17, 25, 0.72)),
+    linear-gradient(135deg, rgba(4, 15, 23, 0.3), rgba(4, 15, 23, 0.72));
+  opacity: 0;
+  transition: opacity 380ms ease;
+}
+
+.galleryOverlay::before {
+  content: "";
+  position: absolute;
+  width: 3rem;
+  height: 2px;
+  left: 50%;
+  bottom: calc(50% - 1.8rem);
+  background: #e3000f;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+  transition:
+    opacity 320ms ease 80ms,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
+}
+
+.locationName {
+  color: #fff;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition:
+    opacity 320ms ease 70ms,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1) 70ms;
+}
+
+.galleryItem:hover,
+.galleryItem:focus-visible {
+  border-color: rgba(227, 0, 15, 0.28);
+  box-shadow: 0 18px 40px rgba(7, 25, 38, 0.2);
+  transform: translateY(-6px);
+}
+
+.galleryItem:hover .galleryImage,
+.galleryItem:focus-visible .galleryImage {
+  filter: brightness(0.68) saturate(0.9);
+  transform: scale(1.055);
+}
+
+.galleryItem:hover .galleryOverlay,
+.galleryItem:focus-visible .galleryOverlay,
+.galleryItem:hover .locationName,
+.galleryItem:focus-visible .locationName,
+.galleryItem:hover .galleryOverlay::before,
+.galleryItem:focus-visible .galleryOverlay::before {
+  opacity: 1;
+}
+
+.galleryItem:hover .locationName,
+.galleryItem:focus-visible .locationName {
+  transform: translateY(0) scale(1);
+}
+
+.galleryItem:hover .galleryOverlay::before,
+.galleryItem:focus-visible .galleryOverlay::before {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.galleryItem:focus-visible {
+  outline: 3px solid #fb5614;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galleryItem,
+  .galleryImage,
+  .galleryOverlay,
+  .galleryOverlay::before,
+  .locationName {
+    transition-duration: 0.01ms;
+  }
+
+  .galleryItem:hover,
+  .galleryItem:focus-visible,
+  .galleryItem:hover .galleryImage,
+  .galleryItem:focus-visible .galleryImage {
+    transform: none;
+  }
+}

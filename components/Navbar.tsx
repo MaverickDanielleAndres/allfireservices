@@ -29,6 +29,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
@@ -42,6 +43,41 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const revealContent = document.querySelector<HTMLElement>(".footer-reveal-content");
+    const footer = document.querySelector<HTMLElement>(".footer-reveal-panel");
+
+    if (!revealContent || !footer) return;
+
+    let animationFrame = 0;
+    const updateFooterVisibility = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const footerIsFixed = window.getComputedStyle(footer).position === "fixed";
+        const isVisible = footerIsFixed
+          ? revealContent.getBoundingClientRect().bottom <= window.innerHeight
+          : footer.getBoundingClientRect().top < window.innerHeight;
+
+        setFooterVisible(isVisible);
+      });
+    };
+
+    const resizeObserver = new ResizeObserver(updateFooterVisibility);
+    resizeObserver.observe(revealContent);
+    resizeObserver.observe(footer);
+    updateFooterVisibility();
+
+    window.addEventListener("scroll", updateFooterVisibility, { passive: true });
+    window.addEventListener("resize", updateFooterVisibility);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", updateFooterVisibility);
+      window.removeEventListener("resize", updateFooterVisibility);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -87,11 +123,22 @@ export default function Navbar() {
           color: #ffffff;
           font-family: var(--font-sans), Inter, Arial, sans-serif;
           left: 0;
+          opacity: 1;
           pointer-events: none;
           position: fixed;
           right: 0;
           top: 0;
+          transform: translateY(0);
+          transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+          visibility: visible;
           z-index: 1001;
+        }
+
+        .afs-header-shell.is-footer-visible {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-1rem);
+          visibility: hidden;
         }
 
         .afs-header {
@@ -100,7 +147,7 @@ export default function Navbar() {
           border: 0 solid transparent;
           border-radius: 0;
           display: grid;
-          grid-template-columns: minmax(8rem, 1fr) auto minmax(12rem, 1fr);
+          grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
           column-gap: clamp(1rem, 2vw, 1.55rem);
           margin: 0 auto;
           margin-top: 0;
@@ -147,7 +194,7 @@ export default function Navbar() {
         .afs-brand {
           align-items: center;
           display: inline-flex;
-          gap: 0;
+          gap: 0.55rem;
           justify-self: start;
           min-height: 2.75rem;
           text-decoration: none;
@@ -161,7 +208,19 @@ export default function Navbar() {
           width: auto;
         }
 
-        .afs-header-shell:not(.is-solid):not(.is-page) .afs-brand-logo {
+        .afs-brand-secondary {
+          display: block;
+          height: 2.35rem;
+          object-fit: contain;
+          transition: height 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 220ms ease;
+          width: auto;
+        }
+
+        .afs-header-shell:not(.is-solid):not(.is-page) .afs-brand-primary {
+          filter: brightness(0) invert(1) drop-shadow(0 0.22rem 0.6rem rgba(0, 0, 0, 0.35));
+        }
+
+        .afs-header-shell:not(.is-solid):not(.is-page) .afs-brand-secondary {
           filter: brightness(0) invert(1) drop-shadow(0 0.22rem 0.6rem rgba(0, 0, 0, 0.35));
         }
 
@@ -173,6 +232,11 @@ export default function Navbar() {
         .afs-header-shell.is-solid .afs-brand-logo,
         .afs-header-shell.is-page .afs-brand-logo {
           height: 2.75rem;
+        }
+
+        .afs-header-shell.is-solid .afs-brand-secondary,
+        .afs-header-shell.is-page .afs-brand-secondary {
+          height: 2.1rem;
         }
 
         .afs-nav {
@@ -224,26 +288,31 @@ export default function Navbar() {
           min-height: 2.7rem;
         }
 
-        .afs-nav-link::after,
-        .afs-nav-trigger::after {
+        .afs-nav-label {
+          display: inline-block;
+          line-height: 1;
+          position: relative;
+        }
+
+        .afs-nav-label::after {
           background: #feaf04;
           border-radius: 999px;
-          bottom: 0.54rem;
+          bottom: -0.48rem;
           content: "";
-          height: 0.16rem;
-          left: 0.15rem;
+          height: 0.15rem;
+          left: 0;
           opacity: 0;
           position: absolute;
-          right: 0.15rem;
+          right: 0;
           transform: scaleX(0.35);
           transform-origin: center;
           transition: opacity 180ms ease, transform 180ms ease;
         }
 
-        .afs-nav-link:hover::after,
-        .afs-nav-trigger:hover::after,
-        .afs-nav-link.is-active::after,
-        .afs-nav-trigger.is-active::after {
+        .afs-nav-link:hover .afs-nav-label::after,
+        .afs-nav-trigger:hover .afs-nav-label::after,
+        .afs-nav-link.is-active .afs-nav-label::after,
+        .afs-nav-trigger.is-active .afs-nav-label::after {
           opacity: 1;
           transform: scaleX(1);
         }
@@ -323,6 +392,26 @@ export default function Navbar() {
         .afs-header-shell.is-solid .afs-actions,
         .afs-header-shell.is-page .afs-actions {
           margin-left: 0;
+        }
+
+        @media (min-width: 1081px) {
+          .afs-header-shell.is-solid .afs-header,
+          .afs-header-shell.is-page .afs-header {
+            column-gap: 0.75rem;
+            grid-template-columns: auto auto auto;
+            max-width: calc(100vw - 2rem);
+            width: max-content;
+          }
+
+          .afs-header-shell.is-solid .afs-brand,
+          .afs-header-shell.is-page .afs-brand {
+            justify-self: end;
+          }
+
+          .afs-header-shell.is-solid .afs-actions,
+          .afs-header-shell.is-page .afs-actions {
+            justify-self: start;
+          }
         }
 
         .afs-action {
@@ -531,11 +620,17 @@ export default function Navbar() {
 
           .afs-brand-logo {
             height: 2rem;
-            max-width: 9.2rem;
+            max-width: 8rem;
           }
 
           .afs-brand-secondary {
-            display: none;
+            height: 1.6rem;
+            max-width: 4rem;
+          }
+
+          .afs-header-shell.is-solid .afs-brand-secondary,
+          .afs-header-shell.is-page .afs-brand-secondary {
+            height: 1.6rem;
           }
 
           .afs-header-spacer {
@@ -544,9 +639,9 @@ export default function Navbar() {
         }
 
         @media (prefers-reduced-motion: reduce) {
+          .afs-header-shell,
           .afs-header-shell::before,
-          .afs-nav-link::after,
-          .afs-nav-trigger::after,
+          .afs-nav-label::after,
           .afs-nav-trigger svg,
           .afs-dropdown,
           .afs-action,
@@ -557,17 +652,26 @@ export default function Navbar() {
       `}</style>
 
       <header
-        className={`afs-header-shell${scrolled ? " is-solid" : ""}${isHome ? "" : " is-page"}`}
+        className={`afs-header-shell${scrolled ? " is-solid" : ""}${isHome ? "" : " is-page"}${footerVisible && !mobileOpen ? " is-footer-visible" : ""}`}
       >
         <nav className="afs-header" aria-label="Primary navigation">
           <Link href="/" className="afs-brand" aria-label="All Fire Services home" onClick={closeMenus}>
             <Image
-              className="afs-brand-logo"
+              className="afs-brand-logo afs-brand-primary"
               src={assets.global.logo}
               alt="All Fire Services"
               width={527}
               height={257}
               sizes="(max-width: 640px) 148px, 168px"
+              priority
+            />
+            <Image
+              className="afs-brand-secondary"
+              src={assets.global.logoSecondary}
+              alt="FPA Australia Bronze Member"
+              width={309}
+              height={133}
+              sizes="(max-width: 640px) 64px, 88px"
               priority
             />
           </Link>
@@ -585,7 +689,7 @@ export default function Navbar() {
                       onClick={() => setServicesOpen((open) => !open)}
                       onMouseEnter={() => setServicesOpen(true)}
                     >
-                      {item.label}
+                      <span className="afs-nav-label">{item.label}</span>
                       <ChevronDown aria-hidden="true" />
                     </button>
                     <div
@@ -612,7 +716,7 @@ export default function Navbar() {
                     href={item.href}
                     onClick={closeMenus}
                   >
-                    {item.label}
+                    <span className="afs-nav-label">{item.label}</span>
                   </Link>
                 )}
               </li>

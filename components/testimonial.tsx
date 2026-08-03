@@ -50,7 +50,7 @@ const testimonials = [
     name: "Michael Kavanagh",
     role: "Asset Manager, Sydney",
     image:
-      "/Fireprotectionservicesimage/yearlyhydrantflowstate.webp",
+      "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
   },
   {
     brand: "Support",
@@ -101,26 +101,29 @@ function ClientFeedback() {
       </div>
 
       <div className={styles.stage}>
-        <AnimatePresence mode="wait">
+        {testimonials.map((testimonial, index) => (
           <motion.div
-            key={activeTestimonial.name}
+            key={testimonial.name}
             className={styles.backdrop}
             initial={false}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
-            transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ opacity: index === activeIndex ? 1 : 0 }}
+            transition={{
+              duration: reduceMotion ? 0 : 1.1,
+              ease: [0.42, 0, 0.58, 1],
+            }}
+            aria-hidden="true"
           >
             <Image
-              src={activeTestimonial.image}
+              src={testimonial.image}
               alt=""
               fill
-              priority={activeIndex === 0}
+              priority={index === 0}
               sizes="100vw"
               className={styles.photo}
             />
             <div className={styles.scrim} />
           </motion.div>
-        </AnimatePresence>
+        ))}
 
         <button
           className={`${styles.arrow} ${styles.arrowLeft}`}
@@ -132,34 +135,39 @@ function ClientFeedback() {
         </button>
 
         <div className={styles.panelWrap}>
-          <AnimatePresence mode="wait">
-            <motion.article
-              key={activeTestimonial.quote}
-              className={styles.panel}
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -18 }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className={styles.brandBlock}>
-                <Image
-                  src="/logo.png"
-                  alt="All Fire Services"
-                  width={150}
-                  height={56}
-                  className={styles.logo}
-                />
-                <span className={styles.brandLabel}>{activeTestimonial.brand}</span>
-              </div>
+          <div className={styles.panelStack}>
+            <AnimatePresence initial={false} mode="sync">
+              <motion.article
+                key={activeTestimonial.quote}
+                className={styles.panel}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.72,
+                  ease: [0.42, 0, 0.58, 1],
+                }}
+              >
+                <div className={styles.brandBlock}>
+                  <Image
+                    src="/logo.png"
+                    alt="All Fire Services"
+                    width={150}
+                    height={56}
+                    className={styles.logo}
+                  />
+                  <span className={styles.brandLabel}>{activeTestimonial.brand}</span>
+                </div>
 
-              <div className={styles.copy}>
-                <p className={styles.quote}>&ldquo;{activeTestimonial.quote}&rdquo;</p>
-                <p className={styles.person}>
-                  {activeTestimonial.name}, {activeTestimonial.role}
-                </p>
-              </div>
-            </motion.article>
-          </AnimatePresence>
+                <div className={styles.copy}>
+                  <p className={styles.quote}>&ldquo;{activeTestimonial.quote}&rdquo;</p>
+                  <p className={styles.person}>
+                    {activeTestimonial.name}, {activeTestimonial.role}
+                  </p>
+                </div>
+              </motion.article>
+            </AnimatePresence>
+          </div>
 
           <div className={styles.dots} aria-label="Select testimonial">
             {testimonials.map((testimonial, index) => (

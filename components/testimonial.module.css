@@ -49,6 +49,7 @@
   z-index: 0;
   overflow: hidden;
   background: #111111;
+  pointer-events: none;
 }
 
 .photo {
@@ -72,7 +73,12 @@
   padding: 5rem 0 4.15rem;
 }
 
+.panelStack {
+  display: grid;
+}
+
 .panel {
+  grid-area: 1 / 1;
   display: grid;
   grid-template-columns: minmax(10rem, 0.78fr) minmax(0, 2fr);
   align-items: center;

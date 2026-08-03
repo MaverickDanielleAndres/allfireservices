@@ -16,7 +16,7 @@ const services = [
   },
   {
     title: "Yearly Hydrant Flow Test",
-    image: "/Fireprotectionservicesimage/yearlyhydrantflowstate.webp",
+    image: "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
     description:
       "Yearly fire hydrant flow testing and inspection as part of your building’s ongoing fire safety compliance.",
   },
