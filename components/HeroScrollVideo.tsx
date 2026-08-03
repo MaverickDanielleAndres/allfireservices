@@ -27,7 +27,7 @@ export default function HeroScrollVideo() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         onLoadedData={() => setIsLoaded(true)}
         onCanPlay={() => setIsLoaded(true)}
         style={videoStyle}

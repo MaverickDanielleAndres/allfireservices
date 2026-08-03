@@ -5,16 +5,18 @@ import {
   MotionHeader,
   MotionSection,
 } from "@/components/MotionPrimitives";
-import PortraitVideoGallery from "@/components/PortraitVideoGallery";
-import ClientFeedback from "@/components/testimonial";
-import WhyAllfireSticky from "@/components/WhyAllfireSticky";
-import FAQ from "@/components/FAQ";
 import HeroScrollContent from "@/components/HeroScrollContent";
 import HeroScrollVideo from "@/components/HeroScrollVideo";
-import HomeStoryLegacy from "@/components/HomeStoryLegacy";
-import HomepageStats from "@/components/HomepageStats";
-import HomeServices from "@/components/HomeServices";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const PortraitVideoGallery = dynamic(() => import("@/components/PortraitVideoGallery"));
+const ClientFeedback = dynamic(() => import("@/components/testimonial"));
+const WhyAllfireSticky = dynamic(() => import("@/components/WhyAllfireSticky"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
+const HomepageStats = dynamic(() => import("@/components/HomepageStats"));
+const HomeServices = dynamic(() => import("@/components/HomeServices"));
 import Link from "next/link";
 
 const sectionReveal = {
@@ -665,7 +667,7 @@ export default function Page() {
                               src="/herosectionimage.webp"
                               alt="All Fire Services Technicians"
                               sizes="300px"
-                              loading="eager"
+                              priority
                               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
                             />
                             <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "60%", background: "linear-gradient(to top, rgba(0,0,0,0.95), transparent)", zIndex: 1 }}></div>
