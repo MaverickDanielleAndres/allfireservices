@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import "./allfireservices.css";
 import "./responsive.css";
@@ -18,6 +19,10 @@ import {
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "Helvetica", "Arial", "sans-serif"],
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -146,6 +151,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-AU" className={`${inter.variable} antialiased`}>
+      <head>
+        {/*
+         * Preconnect / DNS-prefetch — cut TLS handshake time for the origin
+         * and for any future third-party hosts. Useful even though the
+         * assets themselves are first-party.
+         */}
+        <link rel="preconnect" href="https://www.allfireservices.com.au" />
+        <link rel="dns-prefetch" href="https://www.allfireservices.com.au" />
+        {/*
+         * The home page hero portrait is the LCP candidate. Next/Image with
+         * `priority` already auto-injects the right <link rel="preload">
+         * pointing at the optimized _next/image URL, so no need to add
+         * another hint here (duplicating the request would just double-fetch).
+         */}
+      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}>
         <script
           type="application/ld+json"
@@ -160,6 +180,7 @@ export default function RootLayout({
           </FooterReveal>
         </SmoothScrolling>
         <ChatbotDeferred />
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
 export default function HeroParallaxBackground() {
@@ -25,7 +26,7 @@ export default function HeroParallaxBackground() {
 
       const rect = section.getBoundingClientRect();
       const viewport = window.innerHeight;
-      
+
       const progress = (viewport - rect.top) / (viewport + rect.height);
       const clamped = Math.max(0, Math.min(1, progress));
 
@@ -63,10 +64,15 @@ export default function HeroParallaxBackground() {
         zIndex: 0,
       }}
     >
-      <img
+      <Image
         ref={imageRef}
         src="/hydrant-parallax-package/all-fire-services-hydrant-parallax.webp"
         alt="Hydrant Testing"
+        fill
+        priority
+        fetchPriority="high"
+        quality={70}
+        sizes="100vw"
         style={{
           position: "absolute",
           top: "-14%",
@@ -86,7 +92,8 @@ export default function HeroParallaxBackground() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to bottom, rgba(0,0,0,.16), rgba(0,0,0,.55))",
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,.16), rgba(0,0,0,.55))",
           zIndex: -1,
         }}
       />

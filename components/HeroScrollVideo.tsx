@@ -20,22 +20,33 @@ export default function HeroScrollVideo() {
       };
 
   return (
-    <div className="hero-scroll-video" aria-hidden="true" style={{ backgroundColor: "#111" }}>
+    <div
+      className="hero-scroll-video"
+      aria-hidden="true"
+      style={{
+        backgroundColor: "#111",
+        // Poster image fallback so the LCP isn't "blank #111" — instant background.
+        backgroundImage:
+          "url('/herosectionimage.webp'), linear-gradient(#181818, #181818)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <motion.video
         className="hero-scroll-video-media"
         autoPlay
         muted
         loop
         playsInline
+        // poster paints first frame while the video data streams in —
+        // essentially free LCP.
+        poster="/herosectionimage.webp"
         preload="none"
         onLoadedData={() => setIsLoaded(true)}
         onCanPlay={() => setIsLoaded(true)}
         style={videoStyle}
       >
-        <source
-          src="/hero-video.mp4"
-          type="video/mp4"
-        />
+        <source src="/hero-video.mp4" type="video/mp4" />
       </motion.video>
     </div>
   );
