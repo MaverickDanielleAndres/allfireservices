@@ -1,3 +1,4 @@
+import "./home.css";
 import ContactCTA from "@/components/ContactCTA";
 import {
   MotionConfig,
@@ -9,15 +10,39 @@ import HeroScrollContent from "@/components/HeroScrollContent";
 import HeroScrollVideo from "@/components/HeroScrollVideo";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-
-const PortraitVideoGallery = dynamic(() => import("@/components/PortraitVideoGallery"));
-const ClientFeedback = dynamic(() => import("@/components/testimonial"));
-const WhyAllfireSticky = dynamic(() => import("@/components/WhyAllfireSticky"));
-const FAQ = dynamic(() => import("@/components/FAQ"));
-const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
-const HomepageStats = dynamic(() => import("@/components/HomepageStats"));
-const HomeServices = dynamic(() => import("@/components/HomeServices"));
 import Link from "next/link";
+
+// ─── Dynamic imports with loading placeholders to prevent CLS ────────────────
+// Loading skeletons reserve the correct height so content doesn't jump in
+
+const PortraitVideoGallery = dynamic(
+  () => import("@/components/PortraitVideoGallery"),
+  { loading: () => <div style={{ minHeight: 480 }} aria-hidden="true" /> }
+);
+const ClientFeedback = dynamic(
+  () => import("@/components/testimonial"),
+  { loading: () => <div style={{ minHeight: 400 }} aria-hidden="true" /> }
+);
+const WhyAllfireSticky = dynamic(
+  () => import("@/components/WhyAllfireSticky"),
+  { loading: () => <div style={{ minHeight: 600 }} aria-hidden="true" /> }
+);
+const FAQ = dynamic(
+  () => import("@/components/FAQ"),
+  { loading: () => <div style={{ minHeight: 360 }} aria-hidden="true" /> }
+);
+const HomeStoryLegacy = dynamic(
+  () => import("@/components/HomeStoryLegacy"),
+  { loading: () => <div style={{ minHeight: 600 }} aria-hidden="true" /> }
+);
+const HomepageStats = dynamic(
+  () => import("@/components/HomepageStats"),
+  { loading: () => <div style={{ minHeight: 80 }} aria-hidden="true" /> }
+);
+const HomeServices = dynamic(
+  () => import("@/components/HomeServices"),
+  { loading: () => <div style={{ minHeight: 400 }} aria-hidden="true" /> }
+);
 
 const sectionReveal = {
   initial: { opacity: 1, y: 24 },
@@ -92,140 +117,6 @@ const clientLogoRows = [
 function ClientsMarquee() {
   return (
     <section className="clients-marquee" aria-labelledby="clients-marquee-title">
-      <style>{`
-        .clients-marquee {
-          background: #ffffff;
-          margin: 0;
-          overflow: hidden;
-          padding: clamp(3.25rem, 7vw, 5.75rem) 0 clamp(2.5rem, 5vw, 4.75rem);
-          position: relative;
-        }
-
-        .clients-marquee::before,
-        .clients-marquee::after {
-          content: "";
-          inset-block: 0;
-          pointer-events: none;
-          position: absolute;
-          width: min(13vw, 9rem);
-          z-index: 2;
-        }
-
-        .clients-marquee::before {
-          background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-          left: 0;
-        }
-
-        .clients-marquee::after {
-          background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-          right: 0;
-        }
-
-        .clients-marquee-header {
-          margin: 0 auto clamp(1.8rem, 4vw, 2.8rem);
-          max-width: 46rem;
-          padding: 0 1.25rem;
-          text-align: center;
-        }
-
-        .clients-marquee-kicker {
-          color: #ff5722;
-          font-size: 0.76rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          margin-bottom: 0.7rem;
-          text-transform: uppercase;
-        }
-
-        .clients-marquee-title {
-          color: #111111;
-          font-size: clamp(1.65rem, 3.6vw, 2.7rem);
-          font-weight: 900;
-          letter-spacing: 0;
-          line-height: 1;
-          margin: 0;
-          text-transform: uppercase;
-        }
-
-        .clients-marquee-track-wrap {
-          display: grid;
-          gap: clamp(1.6rem, 3.2vw, 2.7rem);
-        }
-
-        .clients-marquee-track {
-          display: flex;
-          gap: clamp(2.4rem, 5.2vw, 4.5rem);
-          width: max-content;
-          will-change: transform;
-        }
-
-        .clients-marquee-track.is-left {
-          animation: clients-slide-left 38s linear infinite;
-        }
-
-        .clients-marquee-track.is-right {
-          animation: clients-slide-right 34s linear infinite;
-        }
-
-        .clients-marquee-item {
-          align-items: center;
-          display: flex;
-          flex: 0 0 clamp(9rem, 12vw, 13rem);
-          height: clamp(4rem, 5.5vw, 5.5rem);
-          justify-content: center;
-        }
-
-        .clients-marquee-logo {
-          display: block;
-          height: auto;
-          max-height: clamp(2.4rem, 3.8vw, 3.8rem);
-          max-width: min(100%, 12rem);
-          object-fit: contain;
-          width: auto;
-        }
-
-        .clients-marquee-logo.is-square {
-          max-height: clamp(4rem, 5.2vw, 5.2rem);
-        }
-
-        .clients-marquee-logo.is-inverted {
-          background-color: #1a1a1a;
-          border-radius: 0.5rem;
-          padding: 0.5rem 1rem;
-        }
-
-        @keyframes clients-slide-left {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-
-        @keyframes clients-slide-right {
-          from { transform: translateX(-50%); }
-          to { transform: translateX(0); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .clients-marquee-track.is-left,
-          .clients-marquee-track.is-right {
-            animation-duration: 90s;
-          }
-        }
-
-        @media (max-width: 767px) {
-          .clients-marquee {
-            padding-block: 2.75rem;
-          }
-
-          .clients-marquee-track {
-            gap: 2rem;
-          }
-
-          .clients-marquee-item {
-            flex-basis: 11rem;
-            height: 5.5rem;
-          }
-        }
-      `}</style>
       <div className="clients-marquee-header">
         <div className="clients-marquee-kicker">Our clients</div>
         <h3 className="clients-marquee-title" id="clients-marquee-title">
@@ -251,7 +142,8 @@ function ClientsMarquee() {
                     width={logo.width}
                     height={logo.height}
                     className={`clients-marquee-logo ${logo.className ?? ""}`}
-                    sizes="(max-width: 767px) 12rem, 18rem"
+                    sizes="(max-width: 767px) 11rem, 13rem"
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -266,178 +158,6 @@ function ClientsMarquee() {
 function PreFaqCTA() {
   return (
     <section className="pre-faq-cta" aria-labelledby="pre-faq-cta-title">
-      <style>{`
-        .pre-faq-cta {
-          background: #f8f7f3;
-          padding: clamp(3rem, 7vw, 6rem) 1.25rem 2rem;
-        }
-
-        .pre-faq-cta-card {
-          align-items: center;
-          background:
-            radial-gradient(circle at 48% 10%, rgba(254, 175, 4, 0.38), transparent 28%),
-            radial-gradient(circle at 12% 18%, rgba(252, 4, 3, 0.28), transparent 32%),
-            linear-gradient(135deg, #fc0403 0%, #fb5614 43%, #feaf04 100%);
-          border-radius: 1.5rem;
-          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.16);
-          color: #ffffff;
-          display: flex;
-          flex-direction: column;
-          isolation: isolate;
-          margin-inline: auto;
-          max-width: 71rem;
-          min-height: 24rem;
-          overflow: hidden;
-          padding: clamp(2rem, 5vw, 4.5rem);
-          position: relative;
-          text-align: center;
-        }
-
-        .pre-faq-cta-card::before {
-          background:
-            linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.72)),
-            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
-          content: "";
-          inset: 0;
-          position: absolute;
-          z-index: -1;
-        }
-
-        .pre-faq-cta-logos {
-          align-items: center;
-          display: flex;
-          flex-wrap: wrap;
-          gap: clamp(0.8rem, 2vw, 1.4rem);
-          justify-content: center;
-          margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
-          width: 100%;
-        }
-
-        .pre-faq-cta-logo {
-          display: block;
-          filter: brightness(0) invert(1) drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
-          height: clamp(2.8rem, 5vw, 4.5rem);
-          object-fit: contain;
-          width: auto;
-        }
-
-        .pre-faq-cta-logo.is-primary {
-          height: clamp(3.4rem, 6vw, 5.4rem);
-        }
-
-        .pre-faq-cta-title {
-          color: #ffffff;
-          font-size: clamp(2.2rem, 5.4vw, 4.25rem);
-          font-weight: 500;
-          letter-spacing: 0;
-          line-height: 0.98;
-          margin: 0;
-          max-width: 15ch;
-          text-wrap: balance;
-        }
-
-        .pre-faq-cta-copy {
-          color: rgba(255, 255, 255, 0.9);
-          font-size: clamp(1rem, 1.7vw, 1.18rem);
-          font-weight: 700;
-          line-height: 1.45;
-          margin: 1.75rem 0 0;
-          max-width: 52rem;
-          text-wrap: balance;
-        }
-
-        .pre-faq-cta-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.9rem;
-          justify-content: center;
-          margin-top: 2.4rem;
-        }
-
-        .pre-faq-cta-button {
-          align-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.9);
-          border-radius: 0.55rem;
-          color: #ffffff;
-          display: inline-flex;
-          font-size: 0.95rem;
-          font-weight: 850;
-          justify-content: center;
-          line-height: 1;
-          min-height: 2.75rem;
-          padding: 0 1.2rem;
-          text-decoration: none;
-          transition:
-            background-color 180ms ease,
-            border-color 180ms ease,
-            color 180ms ease,
-            transform 180ms ease;
-        }
-
-        .pre-faq-cta-button.is-primary {
-          background: #111111;
-          border-color: #111111;
-          color: #ffffff;
-        }
-
-        .pre-faq-cta-button.is-secondary {
-          background: #feaf04;
-          border-color: #feaf04;
-          color: #111111;
-        }
-
-        .pre-faq-cta-button:focus-visible {
-          outline: 2px solid #ffffff;
-          outline-offset: 4px;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-          .pre-faq-cta-button:hover {
-            transform: translateY(-2px);
-          }
-
-          .pre-faq-cta-button.is-primary:hover {
-            background: #fc0403;
-            border-color: #fc0403;
-          }
-
-          .pre-faq-cta-button.is-secondary:hover {
-            background: #ffffff;
-            border-color: #ffffff;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .pre-faq-cta {
-            padding-inline: 1rem;
-          }
-
-          .pre-faq-cta-card {
-            border-radius: 1rem;
-            min-height: 26rem;
-          }
-
-          .pre-faq-cta-logos {
-            gap: 0.85rem;
-          }
-
-          .pre-faq-cta-logo,
-          .pre-faq-cta-logo.is-primary {
-            max-width: min(100%, 14rem);
-          }
-
-          .pre-faq-cta-actions,
-          .pre-faq-cta-button {
-            width: 100%;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .pre-faq-cta-button {
-            transition: none;
-          }
-        }
-      `}</style>
       <div className="pre-faq-cta-card">
         <div className="pre-faq-cta-logos" aria-label="All Fire Services memberships">
           <Image
@@ -446,6 +166,7 @@ function PreFaqCTA() {
             alt="All Fire Services"
             width={527}
             height={257}
+            loading="lazy"
           />
           <Image
             className="pre-faq-cta-logo"
@@ -453,6 +174,7 @@ function PreFaqCTA() {
             alt="FPA Australia Bronze Member"
             width={302}
             height={144}
+            loading="lazy"
           />
         </div>
         <h2 className="pre-faq-cta-title" id="pre-faq-cta-title">
@@ -666,8 +388,9 @@ export default function Page() {
                               fill
                               src="/herosectionimage.webp"
                               alt="All Fire Services Technicians"
-                              sizes="300px"
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 320px"
                               priority
+                              fetchPriority="high"
                               style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
                             />
                             <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "60%", background: "linear-gradient(to top, rgba(0,0,0,0.95), transparent)", zIndex: 1 }}></div>
@@ -690,19 +413,13 @@ export default function Page() {
         <WhyAllfireSticky />
         <HomeStoryLegacy />
         <HomeServices />
-        {/* â”€â”€ Premium Fire Services â”€â”€ */}        <MotionSection
+        {/* ── Premium Fire Services ── */}
+        <MotionSection
           {...sectionReveal}
           aria-labelledby="premium-fire-services-title"
           data-theme="light"
           style={{ background: "#fff", padding: "clamp(72px, 9vw, 116px) 0" }}
         >
-          <style>{`
-          .prc-wrap { max-width:1200px; margin:0 auto; padding:0 clamp(1rem, 4vw, 2rem); }
-          .prc-header { text-align:center; margin:0 auto clamp(2.25rem, 5vw, 3.75rem); max-width:46rem; }
-          .prc-eyebrow { color:#FEAF04; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; font-size:0.78rem; margin-bottom:0.85rem; }
-          .prc-header h2 { color:#111; margin:0 0 1.2rem; font-weight:800; letter-spacing:0; }
-          .prc-header p { color:#444; max-width:38rem; margin:0 auto; line-height:1.6; }
-        `}</style>
           <div className="prc-wrap">
             <div className="prc-header">
               <div className="header-eyebrow-text prc-eyebrow">
@@ -724,266 +441,6 @@ export default function Page() {
           id="why-allfire-services"
           className="why-allfire-handshake"
         >
-          <style>{`
-            .why-allfire-handshake {
-              background: #ffffff;
-              color: #111111;
-              overflow: hidden;
-              padding: clamp(72px, 9vw, 128px) 24px;
-            }
-
-            .why-afs-inner {
-              max-width: 1180px;
-              margin: 0 auto;
-            }
-
-            .why-afs-kicker {
-              color: #ff5722;
-              font-size: 0.78rem;
-              font-weight: 800;
-              letter-spacing: 0.08em;
-              margin-bottom: 18px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-heading {
-              color: #111111;
-              font-size: clamp(2.45rem, 6.4vw, 5.8rem);
-              font-weight: 900;
-              line-height: 0.96;
-              letter-spacing: 0;
-              margin: 0;
-              max-width: 980px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-intro {
-              color: #3f3f3f;
-              font-size: clamp(1.08rem, 1.9vw, 1.45rem);
-              line-height: 1.35;
-              margin: 24px 0 56px;
-              max-width: 650px;
-            }
-
-            .why-afs-tabs-shell > input {
-              height: 1px;
-              opacity: 0;
-              pointer-events: none;
-              position: absolute;
-              width: 1px;
-            }
-
-            .why-afs-workflow {
-              align-items: stretch;
-              background:
-                linear-gradient(90deg, rgba(17, 17, 17, 0.72) 0%, rgba(17, 17, 17, 0.46) 42%, rgba(17, 17, 17, 0.06) 100%),
-                linear-gradient(180deg, rgba(254, 175, 4, 0.14), rgba(255, 87, 34, 0.08)),
-                url("/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp") center / cover no-repeat;
-              border: 1px solid rgba(0, 0, 0, 0.08);
-              border-radius: 26px;
-              box-shadow: 0 24px 70px rgba(17, 17, 17, 0.14);
-              display: grid;
-              grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.4fr);
-              min-height: 520px;
-              overflow: hidden;
-            }
-
-            .why-afs-tabs {
-              background:
-                linear-gradient(180deg, rgba(254, 175, 4, 0.1), transparent 38%),
-                linear-gradient(90deg, rgba(17, 17, 17, 0.76), rgba(17, 17, 17, 0.54));
-              backdrop-filter: blur(0.5px);
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-              justify-content: center;
-              padding: clamp(24px, 4vw, 48px);
-            }
-
-            .why-afs-tab {
-              align-items: center;
-              border: 1px solid rgba(255, 255, 255, 0.18);
-              border-radius: 999px;
-              color: #ffffff;
-              cursor: pointer;
-              display: flex;
-              font-size: clamp(1.2rem, 2.1vw, 2rem);
-              font-weight: 850;
-              justify-content: space-between;
-              line-height: 1;
-              padding: 18px 22px;
-              transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-            }
-
-            .why-afs-tab:hover {
-              border-color: rgba(254, 175, 4, 0.75);
-              transform: translateX(3px);
-            }
-
-            #why-afs-inspect:checked ~ .why-afs-workflow .why-afs-tab-inspect,
-            #why-afs-maintain:checked ~ .why-afs-workflow .why-afs-tab-maintain,
-            #why-afs-certify:checked ~ .why-afs-workflow .why-afs-tab-certify,
-            #why-afs-support:checked ~ .why-afs-workflow .why-afs-tab-support {
-              background: #feaf04;
-              border-color: #feaf04;
-              color: #111111;
-            }
-
-            .why-afs-tab span:last-child {
-              font-size: 0.82rem;
-              font-weight: 800;
-            }
-
-            .why-afs-panel {
-              background:
-                radial-gradient(circle at 82% 18%, rgba(254, 175, 4, 0.32), transparent 28%),
-                linear-gradient(135deg, #ffffff 0%, #fff7e5 54%, #ffe1d7 100%);
-              display: grid;
-              grid-template-rows: 1fr auto;
-              padding: clamp(24px, 4.4vw, 56px);
-              position: relative;
-            }
-
-            .why-afs-visual {
-              align-self: center;
-              background: #ffffff;
-              border: 1px solid rgba(255, 87, 34, 0.16);
-              border-radius: 18px;
-              box-shadow: 0 22px 60px rgba(17, 17, 17, 0.1);
-              color: #111111;
-              display: none;
-              max-width: 580px;
-              padding: clamp(22px, 3vw, 36px);
-              position: relative;
-              z-index: 1;
-            }
-
-            #why-afs-inspect:checked ~ .why-afs-workflow .why-afs-panel-inspect,
-            #why-afs-maintain:checked ~ .why-afs-workflow .why-afs-panel-maintain,
-            #why-afs-certify:checked ~ .why-afs-workflow .why-afs-panel-certify,
-            #why-afs-support:checked ~ .why-afs-workflow .why-afs-panel-support {
-              display: block;
-            }
-
-            .why-afs-visual h3 {
-              color: #111111;
-              font-size: clamp(2rem, 4vw, 3.75rem);
-              font-weight: 900;
-              letter-spacing: 0;
-              line-height: 0.95;
-              margin: 0 0 20px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-visual p {
-              color: #333333;
-              font-size: 1rem;
-              line-height: 1.55;
-              margin: 0;
-            }
-
-            .why-afs-pill-row {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 10px;
-              margin-top: 26px;
-            }
-
-            .why-afs-pill {
-              background: #111111;
-              border-radius: 999px;
-              color: #ffffff;
-              font-size: 0.78rem;
-              font-weight: 800;
-              padding: 10px 13px;
-            }
-
-            .why-afs-pill.is-brand {
-              background: #ff5722;
-            }
-
-            .why-afs-proof {
-              align-items: center;
-              color: #111111;
-              display: flex;
-              flex-wrap: wrap;
-              gap: 14px;
-              justify-content: space-between;
-              margin-top: 34px;
-              position: relative;
-              z-index: 1;
-            }
-
-            .why-afs-proof strong {
-              font-size: clamp(1rem, 1.7vw, 1.25rem);
-              line-height: 1.2;
-              max-width: 390px;
-            }
-
-            .why-afs-actions {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 12px;
-            }
-
-            .why-afs-cta {
-              align-items: center;
-              background: #ff5722;
-              border-radius: 999px;
-              color: #ffffff;
-              display: inline-flex;
-              font-size: 0.9rem;
-              font-weight: 850;
-              gap: 10px;
-              min-height: 44px;
-              padding: 0 18px;
-              text-decoration: none;
-            }
-
-            .why-afs-cta.secondary {
-              background: #feaf04;
-              color: #111111;
-            }
-
-            @media (max-width: 860px) {
-              .why-afs-workflow {
-                border-radius: 22px;
-                grid-template-columns: 1fr;
-              }
-
-              .why-afs-tabs {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                padding: 20px;
-              }
-
-              .why-afs-tab {
-                font-size: 1.1rem;
-                padding: 15px 16px;
-              }
-            }
-
-            @media (max-width: 540px) {
-              .why-allfire-handshake {
-                padding-left: 16px;
-                padding-right: 16px;
-              }
-
-              .why-afs-tabs {
-                grid-template-columns: 1fr;
-              }
-
-              .why-afs-proof,
-              .why-afs-actions,
-              .why-afs-cta {
-                width: 100%;
-              }
-
-              .why-afs-cta {
-                justify-content: center;
-              }
-            }
-          `}</style>
           <div className="why-afs-inner">
             <div className="why-afs-kicker">Why All Fire Services Sydney</div>
             <h2 className="why-afs-heading">

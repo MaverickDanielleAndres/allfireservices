@@ -63,10 +63,22 @@ export default function HeroParallaxBackground() {
         zIndex: 0,
       }}
     >
+      {/*
+        fetchpriority="high": tells the browser to download this image early
+        width/height: prevents CLS by reserving space before the image loads
+        loading="eager": disables lazy-load since this is always above the fold
+      */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         ref={imageRef}
         src="/hydrant-parallax-package/all-fire-services-hydrant-parallax.webp"
         alt="Hydrant Testing"
+        width={2048}
+        height={1365}
+        // @ts-expect-error -- fetchpriority is valid HTML not yet fully typed
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
         style={{
           position: "absolute",
           top: "-14%",

@@ -18,6 +18,9 @@ import {
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  // Explicit display swap ensures text is visible before font loads (avoids invisible text = CLS)
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -146,6 +149,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-AU" className={`${inter.variable} antialiased`}>
+      <head>
+        {/*
+          Preload the hero video poster so the LCP element is visible immediately.
+          The video poster doubles as the LCP candidate.
+        */}
+        <link
+          rel="preload"
+          as="image"
+          href="/herosectionimage.webp"
+          // fetchPriority="high" on the link hint tells browser to prioritise this above other resources
+          // @ts-expect-error -- fetchpriority is a valid attribute not yet in all TS defs
+          fetchpriority="high"
+        />
+        {/* Preload hero video metadata so dimensions are known before paint */}
+        <link rel="preload" as="fetch" href="/hero-video.mp4" crossOrigin="anonymous" />
+        {/* DNS prefetch for any external origins used */}
+        <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}>
         <script
           type="application/ld+json"
@@ -159,9 +181,13 @@ export default function RootLayout({
             {children}
           </FooterReveal>
         </SmoothScrolling>
+        {/*
+          ChatbotDeferred is intentionally OUTSIDE <SmoothScrolling>
+          so it doesn't get wrapped in Lenis' scroll listener,
+          which would cause unnecessary repaints on scroll.
+        */}
         <ChatbotDeferred />
       </body>
     </html>
   );
 }
-

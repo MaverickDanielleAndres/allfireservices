@@ -1,8 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { MessageCircle } from "lucide-react";
 
 const Chatbot = dynamic(() => import("./Chatbot"), {
@@ -44,11 +43,54 @@ export default function ChatbotDeferred() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
+  // Drag state — using native pointer events instead of Framer Motion
+  // This removes framer-motion from the critical path for this component
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragOffset = useRef({ x: 0, y: 0 });
+  const position = useRef({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+
   useEffect(() => {
     const handleResize = () => setIsMobileOrTablet(window.innerWidth <= 1024);
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      if (isMobileOrTablet) return;
+      const el = containerRef.current;
+      if (!el) return;
+      isDragging.current = true;
+      dragOffset.current = {
+        x: e.clientX - position.current.x,
+        y: e.clientY - position.current.y,
+      };
+      el.setPointerCapture(e.pointerId);
+      el.style.cursor = "grabbing";
+      el.style.transition = "none";
+    },
+    [isMobileOrTablet]
+  );
+
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return;
+    const el = containerRef.current;
+    if (!el) return;
+    position.current = {
+      x: e.clientX - dragOffset.current.x,
+      y: e.clientY - dragOffset.current.y,
+    };
+    el.style.transform = `translate(${position.current.x}px, ${position.current.y}px)`;
+  }, []);
+
+  const onPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const el = containerRef.current;
+    if (!el) return;
+    isDragging.current = false;
+    el.releasePointerCapture(e.pointerId);
+    el.style.cursor = "grab";
   }, []);
 
   if (isLoaded) {
@@ -56,16 +98,21 @@ export default function ChatbotDeferred() {
   }
 
   return (
-    <motion.div
-      drag={!isMobileOrTablet}
-      dragMomentum={false}
+    <div
+      ref={containerRef}
       className="chatbot-container"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
       style={{
         fontFamily: "var(--font-sans), Inter, Arial, sans-serif",
         position: "fixed",
         bottom: isMobileOrTablet ? 10 : 20,
         right: isMobileOrTablet ? 10 : 20,
         zIndex: 9999,
+        cursor: isMobileOrTablet ? "pointer" : "grab",
+        touchAction: "none",
+        userSelect: "none",
       }}
     >
       <button
@@ -113,6 +160,6 @@ export default function ChatbotDeferred() {
           </span>
         </span>
       </button>
-    </motion.div>
+    </div>
   );
 }
