@@ -23,14 +23,7 @@ export default function HeroScrollVideo() {
     <div
       className="hero-scroll-video"
       aria-hidden="true"
-      style={{
-        backgroundColor: "#111",
-        // Poster image fallback so the LCP isn't "blank #111" — instant background.
-        backgroundImage:
-          "url('/herosectionimage.webp'), linear-gradient(#181818, #181818)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      style={{ backgroundColor: "#0d0d0d" }}
     >
       <motion.video
         className="hero-scroll-video-media"
@@ -38,9 +31,6 @@ export default function HeroScrollVideo() {
         muted
         loop
         playsInline
-        // poster paints first frame while the video data streams in —
-        // essentially free LCP.
-        poster="/herosectionimage.webp"
         preload="none"
         onLoadedData={() => setIsLoaded(true)}
         onCanPlay={() => setIsLoaded(true)}
