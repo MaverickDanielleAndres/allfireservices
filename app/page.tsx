@@ -718,6 +718,10 @@ export default function Page() {
           </div>
         </MotionSection>
 
+        <MotionDiv {...sectionReveal}>
+          <ClientsMarquee />
+        </MotionDiv>
+
         {/* ── WHY ALLFIRE SERVICES ── */}
         <MotionSection
           {...sectionReveal}
@@ -1099,9 +1103,6 @@ export default function Page() {
           </div>
         </MotionSection>
 
-        <MotionDiv {...sectionReveal}>
-          <ClientsMarquee />
-        </MotionDiv>
         <MotionDiv {...sectionReveal}>
           <PreFaqCTA />
         </MotionDiv>
