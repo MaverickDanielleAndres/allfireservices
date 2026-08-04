@@ -1,4 +1,3 @@
-import ContactCTA from "@/components/ContactCTA";
 import {
   MotionConfig,
   MotionDiv,
@@ -8,16 +7,16 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";
+import Link from "next/link";
 
+const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
+const StrataSection = dynamic(() => import("@/components/StrataSection"));
 const FireSafetyShorts = dynamic(() => import("@/components/FireSafetyShorts"));
 const ClientFeedback = dynamic(() => import("@/components/testimonial"));
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
-
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
-import StrataSection from "@/components/StrataSection";
-import Link from "next/link";
 
 const sectionReveal = {
   initial: { opacity: 1, y: 24 },
@@ -527,7 +526,7 @@ export default function Page() {
               gap: 1.25rem;
               text-align: right;
               margin-bottom: 6rem;
-              animation: fade-in 300ms ease-in-out 150ms both;
+              animation: slide-in-right 600ms ease-out both;
             }
             .analytics-item {
               display: flex;
@@ -549,6 +548,10 @@ export default function Page() {
             @keyframes fade-in {
               from { opacity: 0; transform: translateY(10px); }
               to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes slide-in-right {
+              from { opacity: 0; transform: translateX(50px); }
+              to { opacity: 1; transform: translateX(0); }
             }
             .hero-kicker {
               font-size: 1rem;
@@ -750,6 +753,8 @@ export default function Page() {
               fill 
               style={{ objectFit: 'cover' }}
               priority
+              fetchPriority="high"
+              sizes="100vw"
             />
             {/* Dark tint overlay */}
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
@@ -785,11 +790,11 @@ export default function Page() {
             
               <div className="hero-analytics">
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={5} to={17} /></div>
+                  <div className="analytics-number"><Counter from={0} to={17} /></div>
                   <div className="analytics-label">Years of experience</div>
                 </div>
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={1980} to={2009} /></div>
+                  <div className="analytics-number"><Counter from={2026} to={2009} /></div>
                   <div className="analytics-label">Australian owned since</div>
                 </div>
                 <div className="analytics-item">
