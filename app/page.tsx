@@ -762,7 +762,7 @@ export default function Page() {
           <div className="hero-container">
             {/* Using hydrant test banner as the background image */}
             <Image 
-              src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.jpg" 
+              src="/annual-fire-safety-statement/all-fire-services-hydrant-flow-test-1.webp" 
               alt="All Fire Services Hydrant Test" 
               fill 
               className="hero-bg-image"
