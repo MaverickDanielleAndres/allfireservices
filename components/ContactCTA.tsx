@@ -39,8 +39,8 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   style={{ marginBottom: '1.5rem' }}
                 >
-                  <p className="body-text" style={{ margin: '0 0 0.35rem', color: '#D94833', fontSize: '0.8125rem', fontWeight: 700, letterSpacing: 0, textTransform: 'uppercase' }}>Our Location</p>
-                  <h2 className="heading-style-h3" style={{ margin: 0, color: '#1A1A1A', fontSize: '2.5rem', fontWeight: 800 }}>Visit All Fire Services</h2>
+                  <p className="body-text" style={{ margin: '0 0 1rem', color: '#e94716', fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1.3 }}>Our Location</p>
+                  <h2 className="heading-style-h3" style={{ margin: 0, color: '#111111', fontSize: 'clamp(2rem, 4.2vw, 4rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Visit All Fire Services</h2>
                 </motion.div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 20rem), 1fr))', gap: '1rem' }}>
                   <motion.div
@@ -90,8 +90,8 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                 <div className="contact-cta_component">
                   <div className="contact-cta_content">
                     <div className="contact-cta_header" style={{ textAlign: 'left', marginBottom: '1rem', width: '100%' }}>
-                      <h2 className="heading-style-h3" style={{ fontSize: '2.5rem', marginBottom: '0.5rem', textAlign: 'left', color: '#1A1A1A', fontWeight: 800 }}>Get in touch</h2>
-                      <p className="body-text" style={{ fontSize: '0.875rem', textAlign: 'left', margin: 0, lineHeight: '1.4' }}>
+                      <h2 className="heading-style-h3" style={{ fontSize: 'clamp(2rem, 4.2vw, 4rem)', marginBottom: '1.5rem', textAlign: 'left', color: '#111111', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Get in touch</h2>
+                      <p className="body-text" style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.15rem)', textAlign: 'left', margin: 0, lineHeight: 1.5, color: '#4b5563', fontWeight: 500, textWrap: 'balance' }}>
                         We’re always happy to hear from property managers and
                         owners, whether it’s to enquire about a new fire safety audit,
                         or just to chat about all things fire safety-related.
@@ -99,7 +99,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                     </div>
                     <div className="contact-cta_info-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start', textAlign: 'left', padding: 0, margin: 0, width: '100%' }}>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%', marginTop: '0.25rem' }}>
-                        <h3 className="heading-style-h5" style={{ fontSize: '0.875rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#1A1A1A', textTransform: 'uppercase', textAlign: 'left' }}>SOCIALS</h3>
+                        <h3 className="heading-style-h5" style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.75rem', color: '#111111', textTransform: 'uppercase', textAlign: 'left' }}>SOCIALS</h3>
                         <div className="contact-social-links" style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-start', width: '100%' }}>
                           <a className="contact-social-link" href="#" aria-label="Facebook" style={{ color: '#1A1A1A', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = '#FEAF04'} onMouseOut={(e) => e.currentTarget.style.color = '#1A1A1A'}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
                           <a className="contact-social-link" href="#" aria-label="YouTube" style={{ color: '#1A1A1A', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = '#FEAF04'} onMouseOut={(e) => e.currentTarget.style.color = '#1A1A1A'}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
@@ -131,7 +131,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Name"
                               className="form_field-label"
-                              style={{ fontSize: '0.8125rem', marginBottom: '4px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
                             >
                               Name*
                             </label>
@@ -144,7 +144,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                               type="text"
                               id="Name"
                               required
-                              style={{ padding: '8px 12px', minHeight: '38px', fontSize: '0.875rem', marginBottom: '0.5rem' }}
+                              style={{ padding: '10px 14px', minHeight: '44px', fontSize: '1rem', marginBottom: '0.5rem', color: '#111111', borderRadius: '6px', border: '1px solid #d1d5db' }}
                             />
                           </div>
                           <div
@@ -154,7 +154,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Phone"
                               className="form_field-label"
-                              style={{ fontSize: '0.8125rem', marginBottom: '4px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
                             >
                               Phone*
                             </label>
@@ -167,7 +167,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                               type="tel"
                               id="Phone"
                               required
-                              style={{ padding: '8px 12px', minHeight: '38px', fontSize: '0.875rem', marginBottom: '0.5rem' }}
+                              style={{ padding: '10px 14px', minHeight: '44px', fontSize: '1rem', marginBottom: '0.5rem', color: '#111111', borderRadius: '6px', border: '1px solid #d1d5db' }}
                             />
                           </div>
                         </div>
@@ -179,7 +179,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Email"
                               className="form_field-label"
-                              style={{ fontSize: '0.8125rem', marginBottom: '4px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
                             >
                               Email address*
                             </label>
@@ -192,7 +192,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                               type="email"
                               id="Email"
                               required
-                              style={{ padding: '8px 12px', minHeight: '38px', fontSize: '0.875rem', marginBottom: '0.5rem' }}
+                              style={{ padding: '10px 14px', minHeight: '44px', fontSize: '1rem', marginBottom: '0.5rem', color: '#111111', borderRadius: '6px', border: '1px solid #d1d5db' }}
                             />
                           </div>
                           <div
@@ -202,7 +202,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Suburb"
                               className="form_field-label"
-                              style={{ fontSize: '0.8125rem', marginBottom: '4px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
                             >
                               Suburb*
                             </label>
@@ -215,7 +215,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                               type="text"
                               id="Suburb"
                               required
-                              style={{ padding: '8px 12px', minHeight: '38px', fontSize: '0.875rem', marginBottom: '0.5rem' }}
+                              style={{ padding: '10px 14px', minHeight: '44px', fontSize: '1rem', marginBottom: '0.5rem', color: '#111111', borderRadius: '6px', border: '1px solid #d1d5db' }}
                             />
                           </div>
                         </div>
@@ -226,7 +226,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           <label
                             htmlFor="Message-2"
                             className="form_field-label"
-                            style={{ fontSize: '0.8125rem', marginBottom: '4px' }}
+                            style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
                           >
                             Message
                           </label>
@@ -238,7 +238,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             placeholder="Type something..."
                             required
                             className="form_input is-text-area w-input"
-                            style={{ padding: '8px 12px', minHeight: '80px', fontSize: '0.875rem' }}
+                            style={{ padding: '10px 14px', minHeight: '100px', fontSize: '1rem', color: '#111111', borderRadius: '6px', border: '1px solid #d1d5db' }}
                           ></textarea>
                         </div>
                         <label
@@ -257,9 +257,10 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           />
                           <span
                             className="form_checkbox-label text-size-small w-form-label"
+                            style={{ fontSize: '1rem', color: '#4b5563' }}
                           >
                             I accept the{" "}
-                            <a href="#" className="text-style-link">
+                            <a href="#" className="text-style-link" style={{ color: '#111111', fontWeight: 500 }}>
                               Terms
                             </a>
                           </span>

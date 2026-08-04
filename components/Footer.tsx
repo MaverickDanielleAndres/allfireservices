@@ -82,54 +82,73 @@ export default function Footer() {
       {/* Top content section — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-8 sm:px-6 md:pt-10 lg:px-8 lg:pt-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
-          <div className="min-w-0 max-w-xl">
-            <p className="text-[clamp(2rem,4vw,4.25rem)] font-semibold leading-[0.96] tracking-normal text-[#121212]">
-              Protecting people,
-              <br />
-              protecting property.
-            </p>
-            <div className="mt-5 grid max-w-xl grid-cols-2 gap-2 text-sm font-semibold text-[#121212] sm:mt-7 sm:gap-3">
-              <Link
-                href="/contact"
-                className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#ff4d16] px-3 !text-white no-underline transition hover:bg-[#e63d0b] sm:px-5"
-                style={{
-                  backgroundColor: "#ff4d16",
-                  borderRadius: 0,
-                  color: "#ffffff",
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  textDecoration: "none",
-                }}
-              >
-                <span className="whitespace-nowrap">Get in touch</span>
-                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
-              </Link>
-              <a
-                href="tel:1300765594"
-                className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#ff4d16] hover:bg-white sm:px-5"
-                style={{
-                  borderRadius: 0,
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  textDecoration: "none",
-                }}
-              >
-                <span className="whitespace-nowrap">Call 1300 765 594</span>
-                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
-              </a>
+          <div className="min-w-0 max-w-xl flex flex-col h-full">
+            <div>
+              <p className="text-[clamp(2rem,4.2vw,4rem)] font-[780] leading-[0.92] tracking-[-0.06em] text-[#111111]">
+                Protecting people,
+                <br />
+                protecting property.
+              </p>
+              <div className="mt-5 grid max-w-xl grid-cols-2 gap-2 text-sm font-[500] text-[#111111] sm:mt-7 sm:gap-3">
+                <Link
+                  href="/contact"
+                  className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#ff4d16] px-3 !text-white no-underline transition hover:bg-[#e63d0b] sm:px-5"
+                  style={{
+                    backgroundColor: "#ff4d16",
+                    borderRadius: 0,
+                    color: "#ffffff",
+                    display: "flex",
+                    flexWrap: "nowrap",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span className="whitespace-nowrap">Get in touch</span>
+                  <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+                </Link>
+                <a
+                  href="tel:1300765594"
+                  className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#ff4d16] hover:bg-white sm:px-5"
+                  style={{
+                    borderRadius: 0,
+                    display: "flex",
+                    flexWrap: "nowrap",
+                    textDecoration: "none",
+                  }}
+                >
+                  <span className="whitespace-nowrap">Call 1300 765 594</span>
+                  <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-auto pt-16 md:pt-24 lg:pt-32 pb-6">
+              <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Socials</p>
+              <div className="flex flex-wrap items-center gap-2 text-[#645852]" aria-label="Social links">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="inline-grid h-9 w-9 flex-none place-items-center !text-[#645852] transition hover:bg-white hover:!text-[#ff4d16]"
+                    style={{ borderRadius: 0 }}
+                  >
+                    <Icon />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="grid min-w-0 grid-cols-2 gap-x-7 gap-y-7 md:grid-cols-3 md:gap-y-9 lg:gap-x-10">
             {footerColumns.map((column) => (
               <nav key={column.title} aria-label={column.title}>
-                <p className="mb-3 text-xs font-medium text-[#776b65]">{column.title}</p>
-                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-sm font-semibold leading-tight text-[#121212] md:gap-3">
+                <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">{column.title}</p>
+                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#4b5563] md:gap-3">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="!text-[#121212] transition hover:!text-[#ff4d16]"
+                        className="!text-[#4b5563] transition hover:!text-[#ff4d16]"
                         style={{
                           minHeight: "auto",
                           paddingBlock: 0,
@@ -144,36 +163,22 @@ export default function Footer() {
               </nav>
             ))}
 
-            <div className="col-span-2 grid min-w-0 gap-5 border-t border-[#2b201b]/12 pt-6 md:col-span-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-8">
+            <div className="col-span-2 min-w-0 border-t border-[#2b201b]/12 pt-6 md:col-span-3">
               <div className="min-w-0">
-                <p className="mb-3 text-xs font-medium text-[#776b65]">Contact</p>
-                <div className="grid min-w-0 gap-x-8 gap-y-3 text-sm font-semibold leading-tight text-[#121212] sm:grid-cols-2">
+                <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Contact</p>
+                <div className="flex flex-col gap-3 text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#4b5563]">
                   <a
-                    className="min-w-0 !text-[#121212] transition hover:!text-[#ff4d16]"
+                    className="min-w-0 !text-[#4b5563] transition hover:!text-[#ff4d16]"
                     href="mailto:admin@allfireservices.com.au"
                     style={{ overflowWrap: "anywhere", textDecoration: "none" }}
                   >
                     admin@allfireservices.com.au
                   </a>
                   <p>330 Wattle Street Ultimo NSW 2007</p>
-                  <p>Mon-Fri: 7:00am to 6:30pm</p>
-                  <p>After hours: 0484 648 400</p>
-                </div>
-              </div>
-              <div className="min-w-0">
-                <p className="mb-3 text-xs font-medium text-[#776b65]">Socials</p>
-                <div className="flex flex-wrap items-center gap-2 text-[#645852]" aria-label="Social links">
-                  {socialLinks.map(({ label, href, icon: Icon }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      aria-label={label}
-                      className="inline-grid h-9 w-9 flex-none place-items-center !text-[#645852] transition hover:bg-white hover:!text-[#ff4d16]"
-                      style={{ borderRadius: 0 }}
-                    >
-                      <Icon />
-                    </a>
-                  ))}
+                  <div className="flex flex-col gap-1 sm:flex-row sm:gap-6 mt-1">
+                    <p>Mon-Fri: 7:00am to 6:30pm</p>
+                    <p>After hours: 0484 648 400</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -182,7 +187,7 @@ export default function Footer() {
       </div>
 
       {/* Wordmark — full bleed, no max-width constraint, no overflow clipping */}
-      <div className="w-full px-0 pt-10 sm:pt-12 lg:pt-14">
+      <div className="hidden w-full px-0 pt-10 sm:pt-12 lg:pt-14">
         <Link
           href="/"
           aria-label="All Fire Services Australia home"
@@ -207,11 +212,11 @@ export default function Footer() {
 
       {/* Bottom bar — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[11px] font-medium text-[#645852] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[12px] font-[500] text-[#4b5563] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
-            <span className="text-[#645852]">Privacy policy</span>
-            <span className="text-[#645852]">Terms and conditions</span>
+            <span className="text-[#4b5563]">Privacy policy</span>
+            <span className="text-[#4b5563]">Terms and conditions</span>
           </div>
         </div>
       </div>

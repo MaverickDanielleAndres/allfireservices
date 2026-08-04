@@ -9,12 +9,14 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";
 
-const PortraitVideoGallery = dynamic(() => import("@/components/PortraitVideoGallery"));
+const FireSafetyShorts = dynamic(() => import("@/components/FireSafetyShorts"));
 const ClientFeedback = dynamic(() => import("@/components/testimonial"));
+const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
 
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
+import StrataSection from "@/components/StrataSection";
 import Link from "next/link";
 
 const sectionReveal = {
@@ -93,9 +95,8 @@ function ClientsMarquee() {
       <style>{`
         .clients-marquee {
           background: #ffffff;
-          margin: 0;
           overflow: hidden;
-          padding: clamp(3.25rem, 7vw, 5.75rem) 0 clamp(2.5rem, 5vw, 4.75rem);
+          padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(2.5rem, 5vw, 4.75rem);
           position: relative;
         }
 
@@ -137,8 +138,8 @@ function ClientsMarquee() {
 
         .clients-marquee-title {
           color: #111111;
-          font-size: clamp(1.65rem, 3.6vw, 2.7rem);
-          font-weight: 900;
+          font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+          font-weight: normal;
           letter-spacing: 0;
           line-height: 1;
           margin: 0;
@@ -224,12 +225,7 @@ function ClientsMarquee() {
           }
         }
       `}</style>
-      <div className="clients-marquee-header">
-        <div className="clients-marquee-kicker">Our clients</div>
-        <h3 className="clients-marquee-title" id="clients-marquee-title">
-          Trusted by property teams across Sydney
-        </h3>
-      </div>
+
       <div className="clients-marquee-track-wrap" aria-label="Client logos">
         {clientLogoRows.map((row, rowIndex) => {
           const repeatedLogos = [...row, ...row, ...row, ...row];
@@ -266,7 +262,7 @@ function PreFaqCTA() {
     <section className="pre-faq-cta" aria-labelledby="pre-faq-cta-title">
       <style>{`
         .pre-faq-cta {
-          background: #f8f7f3;
+          background: #ffffff;
           padding: clamp(3rem, 7vw, 6rem) 1.25rem 2rem;
         }
 
@@ -325,10 +321,10 @@ function PreFaqCTA() {
 
         .pre-faq-cta-title {
           color: #ffffff;
-          font-size: clamp(2.2rem, 5.4vw, 4.25rem);
-          font-weight: 500;
-          letter-spacing: 0;
-          line-height: 0.98;
+          font-size: clamp(2rem, 4.2vw, 4rem);
+          font-weight: 780;
+          letter-spacing: -0.06em;
+          line-height: 0.92;
           margin: 0;
           max-width: 15ch;
           text-wrap: balance;
@@ -478,11 +474,25 @@ export default function Page() {
     <MotionConfig reducedMotion="user">
       <main className="main-wrapper">
         <div className="scroll-wrapper">
-        <section className="home-hero-section">
+        <div className="hero-and-cards-wrapper">
           <style>{`
+            .hero-and-cards-wrapper {
+              position: relative;
+              width: 100%;
+              z-index: 10;
+            }
+            .shared-bg-image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              z-index: 0;
+            }
             .home-hero-section {
               position: relative;
-              z-index: 10;
+              z-index: 1;
               width: 100%;
             }
             .hero-container {
@@ -494,27 +504,10 @@ export default function Page() {
               align-items: center;
               justify-content: space-between;
               padding: 4rem;
-              background-color: #f7f7f5;
+              background-color: transparent;
               gap: 4rem;
             }
-            .hero-bg-image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              z-index: 0;
-            }
-            .hero-overlay {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%);
-              z-index: 1;
-            }
+
             .hero-content {
               position: relative;
               z-index: 2;
@@ -531,8 +524,9 @@ export default function Page() {
               flex-direction: column;
               justify-content: center;
               align-items: flex-end;
-              gap: 2rem;
+              gap: 1.25rem;
               text-align: right;
+              margin-bottom: 6rem;
               animation: fade-in 300ms ease-in-out 150ms both;
             }
             .analytics-item {
@@ -541,14 +535,14 @@ export default function Page() {
               align-items: flex-end;
             }
             .analytics-number {
-              font-size: 3rem;
+              font-size: 2.25rem;
               font-weight: 800;
               color: #ffffff;
               line-height: 1;
               margin-bottom: 0.25rem;
             }
             .analytics-label {
-              font-size: 1rem;
+              font-size: 0.9rem;
               font-weight: 600;
               color: #ffffff;
             }
@@ -603,7 +597,7 @@ export default function Page() {
               transition: background-color 200ms ease;
             }
             .btn-primary:hover {
-              background: #111111;
+              background: #fc0403;
             }
             .btn-secondary {
               background: #ffffff;
@@ -621,19 +615,8 @@ export default function Page() {
             .info-cards-wrapper {
               position: relative;
               padding: 5rem 0 6rem 0;
-              background-color: #f7f7f5;
-              background-image: url('/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.jpg');
-              background-size: cover;
-              background-position: center;
-              background-attachment: fixed;
-              z-index: 10;
-            }
-            .info-cards-wrapper::before {
-              content: "";
-              position: absolute;
-              inset: 0;
-              background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 247, 245, 0.98) 100%);
-              z-index: 0;
+              background-color: transparent;
+              z-index: 2;
             }
             .info-cards-section {
               display: grid;
@@ -747,7 +730,8 @@ export default function Page() {
               }
               .hero-analytics {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1.25rem;
+                margin-bottom: 6rem;
               }
               .analytics-item {
                 width: 100%;
@@ -759,16 +743,22 @@ export default function Page() {
             }
           `}</style>
           
-          <div className="hero-container">
-            {/* Using hydrant test banner as the background image */}
+          <div className="bg-wrapper" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image 
               src="/annual-fire-safety-statement/all-fire-services-hydrant-flow-test-1.webp" 
               alt="All Fire Services Hydrant Test" 
               fill 
-              className="hero-bg-image"
+              style={{ objectFit: 'cover' }}
               priority
             />
-            <div className="hero-overlay"></div>
+            {/* Dark tint overlay */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
+            
+            {/* Seamless fade to white at the bottom */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff)', zIndex: 2 }}></div>
+          </div>
+          <section className="home-hero-section">
+          <div className="hero-container">
             <div className="hero-content">
               <div className="hero-kicker">
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', backgroundColor: '#fb5614', marginRight: '10px', verticalAlign: 'middle', marginBottom: '2px' }}></span>
@@ -812,64 +802,57 @@ export default function Page() {
         <section className="info-cards-wrapper">
           <div className="info-cards-section">
             <div className="info-card">
-              <div className="card-title">Since 2009</div>
-              <div className="card-text">Australian owned and operated</div>
+              <div className="card-title">Proven Since 2009</div>
+              <div className="card-text">100% Australian owned. Delivering over a decade of uncompromising protection.</div>
               <div className="card-watermark">2009</div>
             </div>
             <div className="info-card">
-              <div className="card-title">Founded by firefighters</div>
-              <div className="card-text">Real industry knowledge, not just a checklist</div>
+              <div className="card-title">Founded by Firefighters</div>
+              <div className="card-text">Forged on the frontlines. Real-world tactical expertise, not just a compliance checklist.</div>
               <div className="card-watermark">EXPERT</div>
             </div>
             <div className="info-card dark">
-              <div className="card-title">Fire safety with responsibility</div>
-              <div className="card-text">Practical advice. Professional service. Reliable protection.</div>
+              <div className="card-title">Uncompromising Safety</div>
+              <div className="card-text">Actionable insights. Elite professional service. Relentless protection you can depend on.</div>
               <div className="card-watermark">ALL FIRE</div>
             </div>
           </div>
         </section>
+        </div>
         <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
 
         <HomeStoryLegacy />
         <HomeServices />
-        {/* â”€â”€ Premium Fire Services â”€â”€ */}        <MotionSection
-          {...sectionReveal}
-          aria-labelledby="premium-fire-services-title"
-          data-theme="light"
-          style={{ background: "#fff", padding: "clamp(72px, 9vw, 116px) 0" }}
-        >
-          <style>{`
-          .prc-wrap { max-width:1200px; margin:0 auto; padding:0 clamp(1rem, 4vw, 2rem); }
-          .prc-header { text-align:center; margin:0 auto clamp(2.25rem, 5vw, 3.75rem); max-width:46rem; }
-          .prc-eyebrow { color:#FEAF04; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; font-size:0.78rem; margin-bottom:0.85rem; }
-          .prc-header h2 { color:#111; margin:0 0 1.2rem; font-weight:800; letter-spacing:0; }
-          .prc-header p { color:#444; max-width:38rem; margin:0 auto; line-height:1.6; }
-        `}</style>
-          <div className="prc-wrap">
-            <div className="prc-header">
-              <div className="header-eyebrow-text prc-eyebrow">
-                OUR SERVICES
-              </div>
-              <h2 className="heading-style-h3" id="premium-fire-services-title">Premium Fire Services</h2>
-              <p className="body-text">
-                Engineered for durability and designed for comfort. Explore our
-                range of essential fire safety measures.
-              </p>
-            </div>
-            <PortraitVideoGallery />
-          </div>
-        </MotionSection>
-
+        <MotionDiv {...sectionReveal}>
+          <GoogleReviews />
+        </MotionDiv>
         <MotionDiv {...sectionReveal}>
           <ClientsMarquee />
         </MotionDiv>
 
+        {/* Full-width Autoplaying Hero Video */}
+        <MotionDiv {...sectionReveal} style={{ width: '100%' }}>
+          <video 
+            src="/hero-video.mp4" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            style={{ width: '100%', aspectRatio: '21/9', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
+          />
+        </MotionDiv>
+
+        <StrataSection />
+        {/* ── Fire Safety Shorts ── */}
+        <MotionDiv {...sectionReveal}>
+          <FireSafetyShorts />
+        </MotionDiv>
 
         <MotionDiv {...sectionReveal}>
-          <PreFaqCTA />
+          <FAQ />
         </MotionDiv>
         <MotionDiv {...sectionReveal}>
-          <FAQ />
+          <PreFaqCTA />
         </MotionDiv>
 
         <MotionDiv {...sectionReveal}>

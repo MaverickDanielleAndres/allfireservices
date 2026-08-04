@@ -48,6 +48,9 @@ export default function FAQ() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>FAQs</h2>
+          <p className={styles.subtitle}>
+            Expert answers to your most critical fire safety and compliance questions.
+          </p>
         </div>
 
         <div className={styles.list}>

@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import SplitText from "./SplitText";
 
 import { useRef, type CSSProperties } from "react";
 import styles from "./HomeStoryLegacy.module.css";
@@ -46,31 +47,12 @@ const generationReveal: Variants = {
 
 
 const generations = [
-  { year: "1911", relation: "Great Grand", name: "William Tricklebank", x: "1.5%" },
-  { year: "1931", relation: "Grand", name: "Trevor Tricklebank", x: "12.1%" },
-  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank", x: "22.9%" },
+  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", x: "1.5%" },
+  { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", x: "12.1%" },
+  { year: "1955", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", x: "33.5%" },
-  { year: "1959", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
-  { year: "1975", relation: "Cousin", name: "Paul Tricklebank", x: "55%" },
-  {
-    year: "2009",
-    relation: "NSW Fire Brigades Senior Officer",
-    name: "Grant Fuller",
-    x: "65.9%",
-  },
-  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", x: "76.6%" },
-  {
-    year: "2020 — current",
-    relation: "Managing Director",
-    name: "Peter Tricklebank",
-    x: "87.3%",
-  },
-  {
-    year: "2025",
-    relation: "Next generation",
-    name: "Kyriakos & Orlando Tricklebank",
-    x: "98.2%",
-  },
+  { year: "1966", relation: "Pete", name: "Born in a fire station", x: "87.3%" },
+  { year: "2025", relation: "Pete's two sons", name: "Ages 16 and 14", x: "98.2%" },
 ];
 
 type Generation = (typeof generations)[number];
@@ -143,11 +125,11 @@ function TimelineGeneration({
 }
 
 export default function HomeStoryLegacy() {
-  const timelineRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
   const { scrollYProgress: timelineScrollProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 82%", "end 42%"],
+    target: sectionRef,
+    offset: ["start 100px", "0.8 end"],
   });
   const timelineProgress = useSpring(timelineScrollProgress, {
     stiffness: 105,
@@ -255,9 +237,11 @@ export default function HomeStoryLegacy() {
         className={styles.legacySection}
         aria-labelledby="legacy-title"
         data-theme="light"
+        ref={sectionRef}
       >
-        <div className="padding-global">
-          <div className="container-large">
+        <div className={styles.stickyContainer}>
+          <div className="padding-global">
+            <div className="container-large">
             <motion.header
               className={styles.legacyHeader}
               variants={reveal}
@@ -273,7 +257,7 @@ export default function HomeStoryLegacy() {
               </p>
             </motion.header>
 
-            <div className={styles.timelineViewport} ref={timelineRef}>
+            <div className={styles.timelineViewport}>
               <motion.div
                 className={styles.timelineTrack}
                 variants={timelineSequence}
@@ -307,8 +291,19 @@ export default function HomeStoryLegacy() {
               A legacy of service. A future of leadership.
             </motion.p>
 
-
+            <motion.div
+              className={styles.legacyParagraph}
+              variants={reveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.8 }}
+            >
+              <p>
+                For over a century, our family has stood on the front lines of fire protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} /></strong> with modern safety compliance. When you choose All Fire Services, you're not just hiring a contractor—you're partnering with an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} /></strong>
+              </p>
+            </motion.div>
           </div>
+        </div>
         </div>
       </section>
     </>

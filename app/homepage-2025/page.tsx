@@ -1,5 +1,5 @@
 import ContactCTA from "@/components/ContactCTA";
-import PortraitVideoGallery from "@/components/PortraitVideoGallery";
+import FireSafetyShorts from "@/components/FireSafetyShorts";
 
 export default function Page() {
   return (
@@ -114,6 +114,10 @@ export default function Page() {
                                       data-wf--button--size="large"
                                       href="/contact"
                                       className="button-wrap w-inline-block"
+                                      style={{
+                                        "--primary-button--button-bg-hover": "var(--base-color-brand--blue-dark)",
+                                        "--primary-button--button-border-hover": "var(--base-color-brand--blue-dark)"
+                                      } as React.CSSProperties}
                                     >
                                       <div
                                         data-wf--button-style--
@@ -1190,27 +1194,9 @@ export default function Page() {
             </div>
           </div>
         </section>
-        {/* â”€â”€ Premium Fire Services â”€â”€ */}
-        <section
-          data-theme="light"
-          style={{ background: "#fff", padding: "80px 0" }}
-        >
-          <style>{`
-          .prc-wrap { max-width:1200px; margin:0 auto; padding:0 2rem; }
-          .prc-header { text-align:center; margin-bottom:48px; }
-          .prc-header h2 { color:#111; margin:0 0 1.5rem; }
-          .prc-header p { color:#444; max-width:480px; margin:0 auto; line-height:1.6; }
-        `}</style>
-          <div className="prc-wrap">
-            <div className="prc-header">
-              <h2 className="heading-style-h3">Premium Fire Services</h2>
-              <p className="body-text">
-                Engineered for durability and designed for comfort. Explore our
-                range of essential fire safety measures.
-              </p>
-            </div>
-            <PortraitVideoGallery />
-          </div>
+        {/* ── Fire Safety Shorts ── */}
+        <section>
+          <FireSafetyShorts />
         </section>
 
         {/* â”€â”€ Built in Yorkshire, Trusted Nationwide â”€â”€ */}

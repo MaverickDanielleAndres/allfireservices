@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 
 const FacebookIcon = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -48,12 +48,24 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Our Story", href: "/about" },
   { label: "Our Clients", href: "/our-clients" },
-  { label: "Services", href: "/services" },
+  { 
+    label: "Services", 
+    href: "/services",
+    items: [
+      { label: "Fire Safety Compliance", href: "/fire-safety-compliance" },
+      { label: "Fire Protection Services", href: "/fire-protection-services-sydney" },
+      { label: "Fire Safety Training", href: "/fire-safety-training" },
+      { label: "Fire Consultancy", href: "/fire-consultancy-services" },
+      { label: "Annual Fire Safety Statement", href: "/annual-fire-safety-statement" },
+    ]
+  },
+  { label: "Strata", href: "/strata" },
   { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const lenis = useLenis();
@@ -209,6 +221,73 @@ export default function Navbar() {
           color: #fb5614;
         }
 
+        .navbar-dropdown {
+          position: absolute;
+          top: 100%;
+          left: -1rem;
+          background: #ffffff;
+          min-width: 260px;
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+          padding: 0.5rem 0;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: all 200ms ease;
+          border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .navbar-dropdown.is-open,
+        .has-dropdown:hover .navbar-dropdown {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .navbar-dropdown-link {
+          display: block;
+          padding: 0.75rem 1.5rem;
+          color: #111111;
+          text-decoration: none;
+          font-weight: 500;
+          font-size: 0.95rem;
+          transition: all 150ms ease;
+        }
+
+        .navbar-dropdown-link:hover,
+        .navbar-dropdown-link.is-active {
+          color: #fb5614;
+          background: rgba(251, 86, 20, 0.05);
+        }
+
+        .navbar-link-btn {
+          background: transparent;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          font-family: inherit;
+        }
+
+        .mobile-dropdown {
+          padding-left: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          margin-top: 0.5rem;
+        }
+        
+        .mobile-dropdown-link {
+          display: block;
+          font-size: 1.1rem;
+          color: #555555;
+          text-decoration: none;
+          padding: 0.5rem 0;
+        }
+
+        .mobile-dropdown-link:hover {
+          color: #fb5614;
+        }
+
         .navbar-actions {
           display: flex;
           align-items: center;
@@ -335,14 +414,44 @@ export default function Navbar() {
 
           <ul className="navbar-nav">
             {navLinks.map((item) => (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
-                  className={`navbar-link ${isActive(item.href) ? 'is-active' : ''}`}
-                  onClick={closeMenus}
-                >
-                  {item.label}
-                </Link>
+              <li key={item.label} className={item.items ? "has-dropdown" : ""} style={{ position: "relative" }}>
+                {item.items ? (
+                  <>
+                    <button
+                      className={`navbar-link navbar-link-btn ${isActive(item.href) ? 'is-active' : ''}`}
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      onMouseEnter={() => setServicesOpen(true)}
+                      onMouseLeave={() => setServicesOpen(false)}
+                    >
+                      {item.label}
+                      <ChevronDown size={16} />
+                    </button>
+                    <div 
+                      className={`navbar-dropdown ${servicesOpen ? 'is-open' : ''}`}
+                      onMouseEnter={() => setServicesOpen(true)}
+                      onMouseLeave={() => setServicesOpen(false)}
+                    >
+                      {item.items.map((subItem) => (
+                        <Link
+                          key={subItem.label}
+                          href={subItem.href}
+                          className={`navbar-dropdown-link ${isActive(subItem.href) ? 'is-active' : ''}`}
+                          onClick={closeMenus}
+                        >
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className={`navbar-link ${isActive(item.href) ? 'is-active' : ''}`}
+                    onClick={closeMenus}
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -364,14 +473,39 @@ export default function Navbar() {
 
       <div className={`navbar-mobile-panel ${mobileOpen ? 'is-open' : ''}`}>
         {navLinks.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className="navbar-mobile-link"
-            onClick={closeMenus}
-          >
-            {item.label}
-          </Link>
+          <div key={item.label}>
+            {item.items ? (
+              <>
+                <Link
+                  href={item.href}
+                  className="navbar-mobile-link"
+                  onClick={closeMenus}
+                >
+                  {item.label}
+                </Link>
+                <div className="mobile-dropdown">
+                  {item.items.map((subItem) => (
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href}
+                      className="mobile-dropdown-link"
+                      onClick={closeMenus}
+                    >
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <Link
+                href={item.href}
+                className="navbar-mobile-link"
+                onClick={closeMenus}
+              >
+                {item.label}
+              </Link>
+            )}
+          </div>
         ))}
         <div style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <a href="tel:1300765594" className="navbar-mobile-link" style={{ border: 'none', padding: '0' }}>

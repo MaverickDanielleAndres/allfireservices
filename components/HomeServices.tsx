@@ -98,17 +98,29 @@ export default function HomeServices() {
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Our services</p>
-          <h2 id="home-services-title" className={styles.title}>
-            <span className={styles.titleLine}>Keep every fire safety measure</span>
-            <span className={styles.titleLine}>tested, compliant, and ready.</span>
+          <p className={styles.kicker}>Our services</p>
+          <h2 id="home-services-title">
+            Uncompromising fire safety.<br />
+            <span className={styles.gradientText}>Certified</span>, compliant, and<br />
+            always ready.
           </h2>
-          <p className={styles.intro}>
-            All Fire Services supports strata managers, building owners, and
-            businesses with dependable inspections, testing, maintenance, and
-            annual certification across Greater Sydney.
+          <p>
+            Empowering strata managers, building owners, and businesses across Greater Sydney 
+            with industry-leading inspections, rigorous testing, expert maintenance, and 
+            seamless annual certifications.
           </p>
         </header>
+
+        <div className={styles.capabilityStrip}>
+          <Image
+            src="/fpa-capability-strip.webp"
+            alt="FPA Capability Strip"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={styles.capabilityImage}
+          />
+        </div>
 
         <div className={styles.grid}>
           {services.map((service) => (
@@ -117,22 +129,33 @@ export default function HomeServices() {
                 <Image
                   fill
                   src={service.image}
-                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 25vw"
                   alt={service.imageAlt}
                   className={styles.image}
                 />
+                <div className={styles.hoverOverlay}>
+                  <div className={styles.arrowIcon}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </div>
               </div>
               <div className={styles.cardContent}>
-                <div className={styles.tags}>
-                  {service.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <span className={styles.tag}>
+                  {service.tags[0] || "Fire Safety"}
+                </span>
                 <h3 className={styles.cardTitle}>{service.title}</h3>
-                <p className={styles.cardDescription}>{service.description}</p>
-                <p className={styles.serviceMeta}>{service.frequency}</p>
               </div>
             </Link>
           ))}
