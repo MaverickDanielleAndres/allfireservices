@@ -1,23 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroScrollVideo() {
   const reduceMotion = useReducedMotion();
-  const [isLoaded, setIsLoaded] = useState(false);
   const { scrollY } = useScroll();
-  const rawScale = useTransform(scrollY, [0, 1050, 2050], [1.12, 1, 1.065]);
-  const rawY = useTransform(scrollY, [0, 1900], [0, -72]);
-  const rawOpacity = useTransform(scrollY, [0, 220], [0.96, 1]);
-  const scale = useSpring(rawScale, { stiffness: 90, damping: 26, mass: 0.45 });
-  const y = useSpring(rawY, { stiffness: 90, damping: 28, mass: 0.45 });
-  const videoStyle = reduceMotion
-    ? { opacity: 1 }
-    : {
-        opacity: rawOpacity,
-        scale,
-      };
+  // Use raw useTransform values — no spring. Springs on a <video> element
+  // re-upload the frame to the GPU every tick and overshoot at low damping,
+  // which produced visible shake when Lenis was also interpolating scrollY.
+  const scale = useTransform(scrollY, [0, 1050, 2050], [1.12, 1, 1.065]);
+  const y = useTransform(scrollY, [0, 1900], [0, -72]);
+  const opacity = useTransform(scrollY, [0, 220], [0.96, 1]);
 
   return (
     <div
@@ -25,19 +18,21 @@ export default function HeroScrollVideo() {
       aria-hidden="true"
       style={{ backgroundColor: "#0d0d0d" }}
     >
-      <motion.video
-        className="hero-scroll-video-media"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        onLoadedData={() => setIsLoaded(true)}
-        onCanPlay={() => setIsLoaded(true)}
-        style={videoStyle}
+      <motion.div
+        className="hero-scroll-video-wrap"
+        style={reduceMotion ? undefined : { scale, y, opacity, willChange: "transform" }}
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </motion.video>
+        <video
+          className="hero-scroll-video-media"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+      </motion.div>
     </div>
   );
 }

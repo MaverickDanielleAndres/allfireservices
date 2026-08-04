@@ -189,6 +189,12 @@
   background: #ffffff;
 }
 
+.hero-scroll-video-wrap {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+}
+
 .hero-scroll-section .parallax__black-line-overflow {
   display: none !important;
 }
@@ -204,13 +210,12 @@
 
 .hero-scroll-video-media {
   position: absolute;
-  inset: -3%;
-  width: 106%;
-  height: 106%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   object-position: center;
-  will-change: transform;
 }
 
 .hero-scroll-section .hero-scroll-content-layer {
