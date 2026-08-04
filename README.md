@@ -2,6 +2,8 @@
 
 Next.js website for All Fire Services Australia.
 
+hello
+
 ## Getting Started
 
 First, run the development server:
