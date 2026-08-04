@@ -16,7 +16,7 @@ export default function HeroScrollVideo() {
     <div
       className="hero-scroll-video"
       aria-hidden="true"
-      style={{ backgroundColor: "#0d0d0d" }}
+      style={{ backgroundColor: "#ffffff" }}
     >
       <motion.div
         className="hero-scroll-video-wrap"
@@ -28,7 +28,8 @@ export default function HeroScrollVideo() {
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
+          poster="/herosectionimage.webp"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
