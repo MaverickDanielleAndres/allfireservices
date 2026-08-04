@@ -2,20 +2,18 @@ import ContactCTA from "@/components/ContactCTA";
 import {
   MotionConfig,
   MotionDiv,
-  MotionHeader,
   MotionSection,
 } from "@/components/MotionPrimitives";
-import HeroScrollContent from "@/components/HeroScrollContent";
-import HeroScrollVideo from "@/components/HeroScrollVideo";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Counter from "@/components/Counter";
 
 const PortraitVideoGallery = dynamic(() => import("@/components/PortraitVideoGallery"));
 const ClientFeedback = dynamic(() => import("@/components/testimonial"));
-const WhyAllfireSticky = dynamic(() => import("@/components/WhyAllfireSticky"));
+
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
-const HomepageStats = dynamic(() => import("@/components/HomepageStats"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
 import Link from "next/link";
 
@@ -480,214 +478,358 @@ export default function Page() {
     <MotionConfig reducedMotion="user">
       <main className="main-wrapper">
         <div className="scroll-wrapper">
-        <MotionHeader
-          data-theme="dark"
-          className="section_hero-home hero-scroll-section"
-          style={{ position: "relative", zIndex: 0 }}
-          initial={{ opacity: 1, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
-          <div className="code-embed-css w-embed"></div>
-          <div className="code-embed-js w-embed w-script"></div>
-          <div className="parallax hero-scroll-parallax">
-            <section className="parallax__header hero-scroll-pin" style={{ height: "100vh" }}>
-              <div className="parallax__visuals hero-scroll-visuals" style={{ isolation: "isolate" }}>
-                <HeroScrollVideo />
-              </div>
-            </section>
-            <HeroScrollContent>
-              <MotionDiv
-                className="hero-scroll-intro"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.85, ease: "easeOut" }}
-              >
-                <div className="hero-scroll-intro-inner">
-                  <p className="hero-scroll-intro-title">
-                    <span>Let&apos;s protect</span>
-                    <span>your property</span>
-                  </p>
-                  <p className="hero-scroll-intro-copy">
-                    Fire safety, testing and compliance services <span>across Greater Sydney.</span>
-                  </p>
-                </div>
-              </MotionDiv>
-              <div className="padding-global hero-scroll-details">
-                <div className="container-large">
-                  <div className="hero-home_content">
-                    <div className="padding-section-large is-hero-home" style={{ paddingTop: "2.5rem", paddingBottom: "2rem", width: "100%", minHeight: "auto", height: "auto" }}>
-                      <div className="hero-home_component" style={{ width: "100%", minHeight: "auto", height: "auto", display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-start", gap: "clamp(1.5rem, 4vw, 3.25rem)", alignItems: "flex-start" }}>
-                        <div className="max-width-hero" style={{ flex: "0 1 44rem", minWidth: 0, zIndex: 10, margin: 0, padding: 0 }}>
-                          <div className="header-wrapper" style={{ maxWidth: "800px", margin: "0 auto", padding: 0, display: "flex", flexDirection: "column" }}>
-                            <div className="header-text-wrap" style={{
-                                background: "rgba(0, 0, 0, 0.6)",
-                                backdropFilter: "blur(10px)",
-                                WebkitBackdropFilter: "blur(10px)",
-                                padding: "2rem",
-                                borderRadius: "16px",
-                                color: "#ffffff",
-                                border: "1px solid rgba(255,255,255,0.1)"
-                            }}>
-                              <div className="header-top">
-                                <div className="header-eyebrow-text" style={{ color: "#FEAF04", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "0.75rem", fontSize: "0.875rem" }}>
-                                  All Fire Services - Raising the standard
-                                </div>
-                                <h1 className="heading-style hero-details-title" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.15", marginBottom: "1rem", color: "#ffffff" }}>
-                                  Fire Safety &amp; Compliance Solutions
-                                </h1>
-                              </div>
-                              <div className="hero_text-wrap">
-                                <p className="body-text" style={{ fontSize: "1rem", lineHeight: "1.5", color: "rgba(255,255,255,0.9)", maxWidth: "600px" }}>
-                                  We provide comprehensive fire safety and compliance solutions across the Greater Sydney Area. From annual fire safety statements to routine testing, we ensure your property is protected.
-                                </p>
-                              </div>
-                            </div>
-                            <div className="button-group" style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "0.75rem" }}>
-                                    <a
-                                      data-wf--button--size="large"
-                                      href="tel:1300765594"
-                                      className="button-wrap w-inline-block"
-                                    >
-                                      <div
-                                        data-wf--button-style--
-                                        className="button-content"
-                                      >
-                                        <div
-                                          data-wf--button-layout--layout="normal"
-                                          className="button-layout"
-                                        >
-                                          <div className="button-text">
-                                            Call 1300 765 594
-                                          </div>
-                                          <div className="button-icon">
-                                            <div className="icon-slot">
-                                              <div className="icon-slot">
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  width="100%"
-                                                  viewBox="0 0 16 17"
-                                                  fill="none"
-                                                >
-                                                  <g clipPath="url(#clip0_6401_1558)">
-                                                    <path
-                                                      d="M10.9541 3.45557L6.00455 3.49545L5.99226 5.02155L10.5927 4.98503L3.05492 12.5549L4.12551 13.6255L11.6959 6.02298L11.6583 10.6887L13.1844 10.6764L13.2249 5.72629C13.2282 5.11964 12.9913 4.5402 12.5657 4.11468C12.1402 3.68916 11.5608 3.45218 10.9541 3.45557Z"
-                                                      fill="currentColor"
-                                                    ></path>
-                                                  </g>
-                                                  <defs>
-                                                    <clipPath id="clip0_6401_1558">
-                                                      <rect
-                                                        width="16"
-                                                        height="16"
-                                                        fill="currentColor"
-                                                        transform="translate(0 0.5)"
-                                                      ></rect>
-                                                    </clipPath>
-                                                  </defs>
-                                                </svg>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </a>
-                                    <Link
-                                      data-wf--button--size="large"
-                                      href="/contact"
-                                      className="button-wrap w-inline-block"
-                                    >
-                                      <div
-                                        data-wf--button-style--
-                                        className="button-content w-variant-2322bba7-d743-d5ae-17b2-3a616235fc2a"
-                                      >
-                                        <div
-                                          data-wf--button-layout--layout="normal"
-                                          className="button-layout"
-                                        >
-                                          <div className="button-text">
-                                            Get a Quote
-                                          </div>
-                                          <div className="button-icon">
-                                            <div className="icon-slot">
-                                              <div className="icon-slot">
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  width="100%"
-                                                  viewBox="0 0 16 17"
-                                                  fill="none"
-                                                >
-                                                  <g clipPath="url(#clip0_6401_1558)">
-                                                    <path
-                                                      d="M10.9541 3.45557L6.00455 3.49545L5.99226 5.02155L10.5927 4.98503L3.05492 12.5549L4.12551 13.6255L11.6959 6.02298L11.6583 10.6887L13.1844 10.6764L13.2249 5.72629C13.2282 5.11964 12.9913 4.5402 12.5657 4.11468C12.1402 3.68916 11.5608 3.45218 10.9541 3.45557Z"
-                                                      fill="currentColor"
-                                                    ></path>
-                                                  </g>
-                                                  <defs>
-                                                    <clipPath id="clip0_6401_1558">
-                                                      <rect
-                                                        width="16"
-                                                        height="16"
-                                                        fill="currentColor"
-                                                        transform="translate(0 0.5)"
-                                                      ></rect>
-                                                    </clipPath>
-                                                  </defs>
-                                                </svg>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </Link>
-                            </div>
-                            <HomepageStats />
-                          </div>
-                        </div>
-                        <div className="hero-portrait-stack">
-                          <div className="hero-expertise-card">
-                            <div className="hero-expertise-kicker">
-                              <span aria-hidden="true"></span>
-                              Firefighter-led
-                            </div>
-                            <h2>Real-world fire safety expertise</h2>
-                            <p>
-                              Practical protection delivered by experienced
-                              serving and retired firefighters.
-                            </p>
-                            <div className="hero-expertise-tags" aria-label="Service strengths">
-                              <span>Greater Sydney</span>
-                              <span>Rapid response</span>
-                            </div>
-                          </div>
-                          <div className="hero-portrait-wrapper" style={{ flex: "1 1 auto", width: "100%", maxWidth: "100%", minWidth: 0, marginLeft: 0, position: "relative", borderRadius: "16px", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", border: "1px solid rgba(255,255,255,0.1)" }}>
-                            <Image
-                              fill
-                              src="/herosectionimage.webp"
-                              alt="All Fire Services Technicians"
-                              sizes="300px"
-                              priority
-                              style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0 }}
-                            />
-                            <div style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "60%", background: "linear-gradient(to top, rgba(0,0,0,0.95), transparent)", zIndex: 1 }}></div>
-                            <div style={{ position: "relative", zIndex: 2, padding: "1.5rem", color: "#ffffff" }}>
-                              <h3 style={{ fontSize: "1.25rem", fontWeight: "bold", marginBottom: "0.25rem" }}>Expert Technicians</h3>
-                              <p style={{ fontSize: "0.875rem", opacity: "0.9" }}>Ready to secure your property today.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </HeroScrollContent>
+        <section className="home-hero-section">
+          <style>{`
+            .home-hero-section {
+              position: relative;
+              z-index: 10;
+              width: 100%;
+            }
+            .hero-container {
+              position: relative;
+              overflow: hidden;
+              min-height: 65vh;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              padding: 4rem;
+              background-color: #f7f7f5;
+              gap: 4rem;
+            }
+            .hero-bg-image {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              z-index: 0;
+            }
+            .hero-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%);
+              z-index: 1;
+            }
+            .hero-content {
+              position: relative;
+              z-index: 2;
+              flex: 1;
+              max-width: 1000px;
+              color: #ffffff;
+              animation: fade-in 300ms ease-in-out;
+            }
+            .hero-analytics {
+              position: relative;
+              z-index: 2;
+              width: auto;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-end;
+              gap: 2rem;
+              text-align: right;
+              animation: fade-in 300ms ease-in-out 150ms both;
+            }
+            .analytics-item {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+            }
+            .analytics-number {
+              font-size: 3rem;
+              font-weight: 800;
+              color: #ffffff;
+              line-height: 1;
+              margin-bottom: 0.25rem;
+            }
+            .analytics-label {
+              font-size: 1rem;
+              font-weight: 600;
+              color: #ffffff;
+            }
+            @keyframes fade-in {
+              from { opacity: 0; transform: translateY(10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .hero-kicker {
+              font-size: 1rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin-bottom: 1rem;
+              color: #ffffff;
+            }
+            .hero-title {
+              font-size: clamp(1rem, 5vw, 5.5rem);
+              font-weight: 900;
+              line-height: 1.1;
+              margin-bottom: 1.5rem;
+              text-transform: uppercase;
+              color: #ffffff;
+            }
+            .hero-title-line {
+              display: block;
+              white-space: nowrap;
+            }
+            .hero-subtitle {
+              font-size: 1.25rem;
+              font-weight: 600;
+              margin-bottom: 1rem;
+              color: #f7f7f5;
+            }
+            .hero-body {
+              font-size: 1.125rem;
+              line-height: 1.6;
+              margin-bottom: 2.5rem;
+              color: rgba(255, 255, 255, 0.9);
+              max-width: 500px;
+            }
+            .hero-actions {
+              display: flex;
+              gap: 1rem;
+            }
+            .btn-primary {
+              background: #fb5614;
+              color: #ffffff;
+              padding: 1rem 2rem;
+              border-radius: 99px;
+              font-weight: 700;
+              text-decoration: none;
+              transition: background-color 200ms ease;
+            }
+            .btn-primary:hover {
+              background: #111111;
+            }
+            .btn-secondary {
+              background: #ffffff;
+              color: #111111;
+              padding: 1rem 2rem;
+              border-radius: 99px;
+              font-weight: 700;
+              text-decoration: none;
+              transition: background-color 200ms ease;
+            }
+            .btn-secondary:hover {
+              background: #f7f7f5;
+            }
+            
+            .info-cards-wrapper {
+              position: relative;
+              padding: 5rem 0 6rem 0;
+              background-color: #f7f7f5;
+              background-image: url('/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.jpg');
+              background-size: cover;
+              background-position: center;
+              background-attachment: fixed;
+              z-index: 10;
+            }
+            .info-cards-wrapper::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 247, 245, 0.98) 100%);
+              z-index: 0;
+            }
+            .info-cards-section {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 1.5rem;
+              max-width: 1440px;
+              margin: 0 auto;
+              padding: 0 2rem;
+              position: relative;
+              z-index: 1;
+            }
+            .info-card {
+              background: #ffffff;
+              border-radius: 1.5rem;
+              padding: 2.5rem;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              position: relative;
+              overflow: hidden;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Increased shadow to pop on light bg */
+            }
+            .info-card.dark {
+              background: #111111;
+              color: #ffffff;
+            }
+            .info-card.card-1 {
+              background: linear-gradient(135deg, #d81b1b, #a31010);
+            }
+            .info-card.card-2 {
+              background: linear-gradient(135deg, #660c0c, #3d0505);
+            }
+            .info-card.card-3 {
+              background: #111111;
+            }
+            .card-title {
+              font-size: 1.5rem;
+              font-weight: 800;
+              margin-bottom: 0.5rem;
+              color: #111111;
+              z-index: 2;
+              position: relative;
+            }
+            .info-card.dark .card-title {
+              color: #ffffff;
+            }
+            .card-text {
+              font-size: 1rem;
+              color: #666666;
+              font-weight: 500;
+              z-index: 2;
+              position: relative;
+            }
+            .info-card.dark .card-text {
+              color: rgba(255, 255, 255, 0.7);
+            }
+            .card-watermark {
+              position: absolute;
+              right: 1.5rem;
+              bottom: 0.5rem;
+              font-size: 4.5rem;
+              line-height: 1;
+              font-weight: 900;
+              color: rgba(0, 0, 0, 0.03); /* Changed to black for white bg */
+              z-index: 1;
+              pointer-events: none;
+              white-space: nowrap;
+            }
+            .info-card.dark .card-watermark {
+              color: rgba(255, 255, 255, 0.03);
+            }
 
+            @media (max-width: 1024px) {
+              .hero-container {
+                padding: 4rem 2rem;
+              }
+              .hero-content {
+                max-width: 100%;
+              }
+              .hero-analytics {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 2rem;
+              }
+              .analytics-item {
+                flex: 1 1 calc(33.333% - 1rem);
+                min-width: 150px;
+              }
+              .info-cards-section {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+
+            @media (max-width: 768px) {
+              .home-hero-section {
+                padding: 0;
+              }
+              .hero-container {
+                padding: 3rem 1.5rem;
+              }
+              .hero-title {
+                font-size: clamp(1rem, 6vw, 2.5rem);
+              }
+              .hero-actions {
+                flex-direction: column;
+              }
+              .hero-actions .btn-primary, .hero-actions .btn-secondary {
+                text-align: center;
+                width: 100%;
+              }
+              .hero-analytics {
+                flex-direction: column;
+                gap: 1.5rem;
+              }
+              .analytics-item {
+                width: 100%;
+              }
+              .info-cards-section {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+              }
+            }
+          `}</style>
+          
+          <div className="hero-container">
+            {/* Using hydrant test banner as the background image */}
+            <Image 
+              src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.jpg" 
+              alt="All Fire Services Hydrant Test" 
+              fill 
+              className="hero-bg-image"
+              priority
+            />
+            <div className="hero-overlay"></div>
+            <div className="hero-content">
+              <div className="hero-kicker">
+                <span style={{ display: 'inline-block', width: '8px', height: '8px', backgroundColor: '#fb5614', marginRight: '10px', verticalAlign: 'middle', marginBottom: '2px' }}></span>
+                Reliable fire safety starts here
+              </div>
+              <h1 className="hero-title">
+                <span className="hero-title-line">FIRE SAFETY IS NOT A BOX</span>
+                <span className="hero-title-line">TO TICK, <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                <span className="hero-title-line">
+                  <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>RESPONSIBILITY</span>
+                </span>
+              </h1>
+              <div className="hero-subtitle">
+                Fire protection runs in our blood.
+              </div>
+              <p className="hero-body">
+                High-level professional fire safety services, delivered by people who are approachable, practical and reasonable. Australian owned and operated since 2009.
+              </p>
+              <div className="hero-actions">
+                <Link href="/contact" className="btn-primary">Get a Quote</Link>
+                <Link href="/services" className="btn-secondary">Explore Our Services</Link>
+              </div>
+            </div>
+            
+              <div className="hero-analytics">
+                <div className="analytics-item">
+                  <div className="analytics-number"><Counter from={5} to={17} /></div>
+                  <div className="analytics-label">Years of experience</div>
+                </div>
+                <div className="analytics-item">
+                  <div className="analytics-number"><Counter from={1980} to={2009} /></div>
+                  <div className="analytics-label">Australian owned since</div>
+                </div>
+                <div className="analytics-item">
+                  <div className="analytics-number"><Counter from={10} to={24} suffix="/7" /></div>
+                  <div className="analytics-label">Emergency response</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <section className="info-cards-wrapper">
+          <div className="info-cards-section">
+            <div className="info-card">
+              <div className="card-title">Since 2009</div>
+              <div className="card-text">Australian owned and operated</div>
+              <div className="card-watermark">2009</div>
+            </div>
+            <div className="info-card">
+              <div className="card-title">Founded by firefighters</div>
+              <div className="card-text">Real industry knowledge, not just a checklist</div>
+              <div className="card-watermark">EXPERT</div>
+            </div>
+            <div className="info-card dark">
+              <div className="card-title">Fire safety with responsibility</div>
+              <div className="card-text">Practical advice. Professional service. Reliable protection.</div>
+              <div className="card-watermark">ALL FIRE</div>
+            </div>
           </div>
-        </MotionHeader>
+        </section>
         <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
-        <WhyAllfireSticky />
+
         <HomeStoryLegacy />
         <HomeServices />
         {/* â”€â”€ Premium Fire Services â”€â”€ */}        <MotionSection
@@ -722,386 +864,6 @@ export default function Page() {
           <ClientsMarquee />
         </MotionDiv>
 
-        {/* ── WHY ALLFIRE SERVICES ── */}
-        <MotionSection
-          {...sectionReveal}
-          id="why-allfire-services"
-          className="why-allfire-handshake"
-        >
-          <style>{`
-            .why-allfire-handshake {
-              background: #ffffff;
-              color: #111111;
-              overflow: hidden;
-              padding: clamp(72px, 9vw, 128px) 24px;
-            }
-
-            .why-afs-inner {
-              max-width: 1180px;
-              margin: 0 auto;
-            }
-
-            .why-afs-kicker {
-              color: #ff5722;
-              font-size: 0.78rem;
-              font-weight: 800;
-              letter-spacing: 0.08em;
-              margin-bottom: 18px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-heading {
-              color: #111111;
-              font-size: clamp(2.45rem, 6.4vw, 5.8rem);
-              font-weight: 900;
-              line-height: 0.96;
-              letter-spacing: 0;
-              margin: 0;
-              max-width: 980px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-intro {
-              color: #3f3f3f;
-              font-size: clamp(1.08rem, 1.9vw, 1.45rem);
-              line-height: 1.35;
-              margin: 24px 0 56px;
-              max-width: 650px;
-            }
-
-            .why-afs-tabs-shell > input {
-              height: 1px;
-              opacity: 0;
-              pointer-events: none;
-              position: absolute;
-              width: 1px;
-            }
-
-            .why-afs-workflow {
-              align-items: stretch;
-              background:
-                linear-gradient(90deg, rgba(17, 17, 17, 0.72) 0%, rgba(17, 17, 17, 0.46) 42%, rgba(17, 17, 17, 0.06) 100%),
-                linear-gradient(180deg, rgba(254, 175, 4, 0.14), rgba(255, 87, 34, 0.08)),
-                url("/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp") center / cover no-repeat;
-              border: 1px solid rgba(0, 0, 0, 0.08);
-              border-radius: 26px;
-              box-shadow: 0 24px 70px rgba(17, 17, 17, 0.14);
-              display: grid;
-              grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.4fr);
-              min-height: 520px;
-              overflow: hidden;
-            }
-
-            .why-afs-tabs {
-              background:
-                linear-gradient(180deg, rgba(254, 175, 4, 0.1), transparent 38%),
-                linear-gradient(90deg, rgba(17, 17, 17, 0.76), rgba(17, 17, 17, 0.54));
-              backdrop-filter: blur(0.5px);
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-              justify-content: center;
-              padding: clamp(24px, 4vw, 48px);
-            }
-
-            .why-afs-tab {
-              align-items: center;
-              border: 1px solid rgba(255, 255, 255, 0.18);
-              border-radius: 999px;
-              color: #ffffff;
-              cursor: pointer;
-              display: flex;
-              font-size: clamp(1.2rem, 2.1vw, 2rem);
-              font-weight: 850;
-              justify-content: space-between;
-              line-height: 1;
-              padding: 18px 22px;
-              transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
-            }
-
-            .why-afs-tab:hover {
-              border-color: rgba(254, 175, 4, 0.75);
-              transform: translateX(3px);
-            }
-
-            #why-afs-inspect:checked ~ .why-afs-workflow .why-afs-tab-inspect,
-            #why-afs-maintain:checked ~ .why-afs-workflow .why-afs-tab-maintain,
-            #why-afs-certify:checked ~ .why-afs-workflow .why-afs-tab-certify,
-            #why-afs-support:checked ~ .why-afs-workflow .why-afs-tab-support {
-              background: #feaf04;
-              border-color: #feaf04;
-              color: #111111;
-            }
-
-            .why-afs-tab span:last-child {
-              font-size: 0.82rem;
-              font-weight: 800;
-            }
-
-            .why-afs-panel {
-              background:
-                radial-gradient(circle at 82% 18%, rgba(254, 175, 4, 0.32), transparent 28%),
-                linear-gradient(135deg, #ffffff 0%, #fff7e5 54%, #ffe1d7 100%);
-              display: grid;
-              grid-template-rows: 1fr auto;
-              padding: clamp(24px, 4.4vw, 56px);
-              position: relative;
-            }
-
-            .why-afs-visual {
-              align-self: center;
-              background: #ffffff;
-              border: 1px solid rgba(255, 87, 34, 0.16);
-              border-radius: 18px;
-              box-shadow: 0 22px 60px rgba(17, 17, 17, 0.1);
-              color: #111111;
-              display: none;
-              max-width: 580px;
-              padding: clamp(22px, 3vw, 36px);
-              position: relative;
-              z-index: 1;
-            }
-
-            #why-afs-inspect:checked ~ .why-afs-workflow .why-afs-panel-inspect,
-            #why-afs-maintain:checked ~ .why-afs-workflow .why-afs-panel-maintain,
-            #why-afs-certify:checked ~ .why-afs-workflow .why-afs-panel-certify,
-            #why-afs-support:checked ~ .why-afs-workflow .why-afs-panel-support {
-              display: block;
-            }
-
-            .why-afs-visual h3 {
-              color: #111111;
-              font-size: clamp(2rem, 4vw, 3.75rem);
-              font-weight: 900;
-              letter-spacing: 0;
-              line-height: 0.95;
-              margin: 0 0 20px;
-              text-transform: uppercase;
-            }
-
-            .why-afs-visual p {
-              color: #333333;
-              font-size: 1rem;
-              line-height: 1.55;
-              margin: 0;
-            }
-
-            .why-afs-pill-row {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 10px;
-              margin-top: 26px;
-            }
-
-            .why-afs-pill {
-              background: #111111;
-              border-radius: 999px;
-              color: #ffffff;
-              font-size: 0.78rem;
-              font-weight: 800;
-              padding: 10px 13px;
-            }
-
-            .why-afs-pill.is-brand {
-              background: #ff5722;
-            }
-
-            .why-afs-proof {
-              align-items: center;
-              color: #111111;
-              display: flex;
-              flex-wrap: wrap;
-              gap: 14px;
-              justify-content: space-between;
-              margin-top: 34px;
-              position: relative;
-              z-index: 1;
-            }
-
-            .why-afs-proof strong {
-              font-size: clamp(1rem, 1.7vw, 1.25rem);
-              line-height: 1.2;
-              max-width: 390px;
-            }
-
-            .why-afs-actions {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 12px;
-            }
-
-            .why-afs-cta {
-              align-items: center;
-              background: #ff5722;
-              border-radius: 999px;
-              color: #ffffff;
-              display: inline-flex;
-              font-size: 0.9rem;
-              font-weight: 850;
-              gap: 10px;
-              min-height: 44px;
-              padding: 0 18px;
-              text-decoration: none;
-            }
-
-            .why-afs-cta.secondary {
-              background: #feaf04;
-              color: #111111;
-            }
-
-            @media (max-width: 860px) {
-              .why-afs-workflow {
-                border-radius: 22px;
-                grid-template-columns: 1fr;
-              }
-
-              .why-afs-tabs {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                padding: 20px;
-              }
-
-              .why-afs-tab {
-                font-size: 1.1rem;
-                padding: 15px 16px;
-              }
-            }
-
-            @media (max-width: 540px) {
-              .why-allfire-handshake {
-                padding-left: 16px;
-                padding-right: 16px;
-              }
-
-              .why-afs-tabs {
-                grid-template-columns: 1fr;
-              }
-
-              .why-afs-proof,
-              .why-afs-actions,
-              .why-afs-cta {
-                width: 100%;
-              }
-
-              .why-afs-cta {
-                justify-content: center;
-              }
-            }
-          `}</style>
-          <div className="why-afs-inner">
-            <div className="why-afs-kicker">Why All Fire Services Sydney</div>
-            <h2 className="why-afs-heading">
-              Keep your building safe, compliant, and ready.
-            </h2>
-            <p className="why-afs-intro">
-              All Fire Services helps strata managers, building owners, and
-              businesses stay on top of fire safety obligations with practical
-              inspections, testing, certification, and clear next steps.
-            </p>
-
-            <div className="why-afs-tabs-shell">
-              <input type="radio" id="why-afs-inspect" name="why-afs-workflow" defaultChecked />
-              <input type="radio" id="why-afs-maintain" name="why-afs-workflow" />
-              <input type="radio" id="why-afs-certify" name="why-afs-workflow" />
-              <input type="radio" id="why-afs-support" name="why-afs-workflow" />
-
-              <div className="why-afs-workflow">
-              <div className="why-afs-tabs" aria-label="All Fire Services workflow">
-                <label className="why-afs-tab why-afs-tab-inspect" htmlFor="why-afs-inspect">
-                  <span>Inspect</span>
-                  <span>01</span>
-                </label>
-                <label className="why-afs-tab why-afs-tab-maintain" htmlFor="why-afs-maintain">
-                  <span>Maintain</span>
-                  <span>02</span>
-                </label>
-                <label className="why-afs-tab why-afs-tab-certify" htmlFor="why-afs-certify">
-                  <span>Certify</span>
-                  <span>03</span>
-                </label>
-                <label className="why-afs-tab why-afs-tab-support" htmlFor="why-afs-support">
-                  <span>Support</span>
-                  <span>04</span>
-                </label>
-              </div>
-
-              <div className="why-afs-panel">
-                <div className="why-afs-visual why-afs-panel-inspect">
-                  <h3>Inspect</h3>
-                  <p>
-                    Find the fire safety gaps before they become building,
-                    insurance, or council problems. Our technicians assess your
-                    essential fire safety measures against the requirements that
-                    apply to your site.
-                  </p>
-                  <div className="why-afs-pill-row" aria-label="Service strengths">
-                    <span className="why-afs-pill is-brand">Site inspections</span>
-                    <span className="why-afs-pill">Australian Standards</span>
-                    <span className="why-afs-pill">Compliance gaps</span>
-                  </div>
-                </div>
-
-                <div className="why-afs-visual why-afs-panel-maintain">
-                  <h3>Maintain</h3>
-                  <p>
-                    Keep systems ready with scheduled testing and maintenance
-                    across alarms, extinguishers, hydrants, pumps, sprinklers,
-                    hose reels, doors, and emergency lighting.
-                  </p>
-                  <div className="why-afs-pill-row" aria-label="Maintenance services">
-                    <span className="why-afs-pill is-brand">Routine testing</span>
-                    <span className="why-afs-pill">Defect tracking</span>
-                    <span className="why-afs-pill">Service records</span>
-                  </div>
-                </div>
-
-                <div className="why-afs-visual why-afs-panel-certify">
-                  <h3>Certify</h3>
-                  <p>
-                    Prepare your Annual Fire Safety Statement with clear evidence,
-                    practical rectification advice, and licensed fire protection
-                    support for the measures on your building schedule.
-                  </p>
-                  <div className="why-afs-pill-row" aria-label="Certification support">
-                    <span className="why-afs-pill is-brand">AFSS support</span>
-                    <span className="why-afs-pill">Council letters</span>
-                    <span className="why-afs-pill">Licensed categories</span>
-                  </div>
-                </div>
-
-                <div className="why-afs-visual why-afs-panel-support">
-                  <h3>Support</h3>
-                  <p>
-                    Talk to a team that understands real fireground risk as well
-                    as paperwork. We explain what needs attention, what can wait,
-                    and how to get your building back to standard.
-                  </p>
-                  <div className="why-afs-pill-row" aria-label="Support strengths">
-                    <span className="why-afs-pill is-brand">Firefighter-led team</span>
-                    <span className="why-afs-pill">Plain advice</span>
-                    <span className="why-afs-pill">Greater Sydney</span>
-                  </div>
-                </div>
-
-                <div className="why-afs-proof">
-                  <strong>
-                    Not sure if your building is safe or compliant? Send us your
-                    AFSS, defect notice, or council letter.
-                  </strong>
-                  <div className="why-afs-actions">
-                    <a className="why-afs-cta" href="tel:1300765594">
-                      Call 1300 765 594
-                    </a>
-                    <Link className="why-afs-cta secondary" href="/contact">
-                      Get a quote
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </MotionSection>
 
         <MotionDiv {...sectionReveal}>
           <PreFaqCTA />
