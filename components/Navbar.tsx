@@ -122,7 +122,7 @@ export default function Navbar() {
           background: #191919;
           color: #ffffff;
           font-size: 0.875rem;
-          padding: 0.5rem 2rem;
+          padding: 0.5rem 4rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -181,7 +181,7 @@ export default function Navbar() {
           justify-content: space-between;
           max-width: 1440px;
           margin: 0 auto;
-          padding: 0 2rem;
+          padding: 0 4rem;
           height: 5.5rem;
         }
 

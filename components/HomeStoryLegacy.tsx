@@ -304,7 +304,7 @@ export default function HomeStoryLegacy() {
       </div>
       </section>
 
-      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingBottom: '5rem' }}>
+      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingBottom: '2rem' }}>
         <div className="padding-global">
           <div className="container-large">
             <motion.p

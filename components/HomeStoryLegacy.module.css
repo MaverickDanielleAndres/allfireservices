@@ -547,8 +547,8 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin: clamp(5rem, 8vw, 7rem) 0 0;
-  /* INCREASED margin as requested */
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  /* REDUCED margin as requested */
   color: #1d2633;
   font-size: 0.72rem;
   font-weight: 800;

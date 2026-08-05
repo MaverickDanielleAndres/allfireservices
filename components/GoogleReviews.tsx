@@ -14,27 +14,27 @@ const testimonials = [
   {
     quote: "Fantastic team at All Fire Services. Punctual, professional and friendly team. George was really patient in explaining what needed to be completed on site and how all the systems work.",
     author: "James Alcock",
-    image: "https://firestopsydney.com.au/wp-content/uploads/2026/07/1.png",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     quote: "Great team providing impeccable professional fire protection system installation followed by on call service for a couple of small faults. Highly recommend these guys.",
     author: "Mark Siversen",
-    image: "https://firestopsydney.com.au/wp-content/uploads/2026/07/2.png",
+    image: "https://randomuser.me/api/portraits/men/46.jpg",
   },
   {
     quote: "I am very satisfied with both the quality of work and fair pricing. Peter is honest, quick to respond, and very knowledgeable of all things Fire Safety.",
     author: "Joseph Abate",
-    image: "https://firestopsydney.com.au/wp-content/uploads/2026/07/3.png",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
   },
   {
     quote: "We’ve used a number of fire safety companies over the years. Our experience with All Fire has been spectacular. Couldn’t be happier. Thanks team.",
     author: "Jason Leadbitter",
-    image: "https://firestopsydney.com.au/wp-content/uploads/2026/07/4.png",
+    image: "https://randomuser.me/api/portraits/men/67.jpg",
   },
   {
     quote: "It was wonderful to have the team at AllFire set our Cafe up efficiently to meet safety standards. These guys were knowledgeable and quick to get the work done. Thoroughly recommend.",
     author: "Gavin Tooley",
-    image: "https://firestopsydney.com.au/wp-content/uploads/2026/07/5.png",
+    image: "https://randomuser.me/api/portraits/men/85.jpg",
   },
 ];
 

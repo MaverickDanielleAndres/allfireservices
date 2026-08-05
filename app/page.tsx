@@ -503,6 +503,8 @@ export default function Page() {
               align-items: center;
               justify-content: space-between;
               padding: 2rem 4rem 14rem 4rem;
+              max-width: 1440px;
+              margin: 0 auto;
               background-color: transparent;
               gap: 4rem;
             }
