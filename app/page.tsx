@@ -502,7 +502,7 @@ export default function Page() {
               flex-direction: row;
               align-items: center;
               justify-content: space-between;
-              padding: 4rem 4rem 5rem 4rem;
+              padding: 4rem 4rem 14rem 4rem;
               background-color: transparent;
               gap: 4rem;
             }
@@ -694,7 +694,7 @@ export default function Page() {
 
             @media (max-width: 1024px) {
               .hero-container {
-                padding: 4rem 2rem 5rem 2rem;
+                padding: 4rem 2rem 12rem 2rem;
               }
               .hero-content {
                 max-width: 100%;
@@ -719,7 +719,7 @@ export default function Page() {
                 padding: 0;
               }
               .hero-container {
-                padding: 3rem 1.5rem 5rem 1.5rem;
+                padding: 3rem 1.5rem 10rem 1.5rem;
               }
               .hero-title {
                 font-size: clamp(1rem, 6vw, 2.5rem);
@@ -760,7 +760,7 @@ export default function Page() {
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
             
             {/* Seamless fade to white at the bottom */}
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '160px', background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.9) 85%, #ffffff 100%)', zIndex: 2 }}></div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '280px', background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.9) 85%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className="home-hero-section">
           <div className="hero-container">
