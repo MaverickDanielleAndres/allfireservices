@@ -48,10 +48,11 @@ const generationReveal: Variants = {
 const generations = [
   { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/waltergreatgrandad.png" },
   { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
-  { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
-  { year: "1960", relation: "Uncle", name: "Grant Fuller", image: "/family/grantfuller.png" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
-  { year: "1966", relation: "Pete", name: "Born in a fire station", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" }
+  { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
+  { year: "2009", relation: "NSW Fire Brigades Senior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
+  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/grantfuller.png" },
+  { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -98,7 +99,7 @@ function TimelineGeneration({
     >
       <div
         className={styles.portrait}
-        style={{ 
+        style={{
           ...(generation.image ? {
             backgroundImage: "none",
             position: "relative",
@@ -193,33 +194,33 @@ export default function HomeStoryLegacy() {
                 </Link>
               </div>
               <div className={styles.newStoryVideoWrapper}>
-                 <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className={styles.newStoryVideoBg}
-                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
-                 ></iframe>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className={styles.newStoryVideoBg}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
+                ></iframe>
               </div>
             </div>
 
             <div className={styles.newStoryGrid} style={{ marginTop: '6rem' }}>
               <div className={styles.newStoryVideoWrapper} style={{ margin: '0 auto 0 0' }}>
-                 <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className={styles.newStoryVideoBg}
-                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
-                 ></iframe>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className={styles.newStoryVideoBg}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
+                ></iframe>
               </div>
               <div className={styles.newStoryContent}>
                 <motion.header
@@ -261,47 +262,47 @@ export default function HomeStoryLegacy() {
         <div className={styles.stickyContainer}>
           <div className="padding-global">
             <div className="container-large">
-            <motion.header
-              className={styles.legacyHeader}
-              variants={reveal}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-            >
-              <p className={styles.kicker}>The generations behind All Fire Services</p>
-              <h2 id="legacy-title">A family history of service</h2>
-              <p>
-                From 1911 to the next generation, a legacy built around
-                protecting people and property.
-              </p>
-            </motion.header>
-
-            <div className={styles.timelineViewport}>
-              <motion.div
-                className={styles.timelineTrack}
-                variants={timelineSequence}
+              <motion.header
+                className={styles.legacyHeader}
+                variants={reveal}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.12 }}
+                viewport={{ once: true, amount: 0.4 }}
               >
+                <p className={styles.kicker}>The generations behind All Fire Services</p>
+                <h2 id="legacy-title">A family history of service</h2>
+                <p>
+                  From 1911 to the next generation, a legacy built around
+                  protecting people and property.
+                </p>
+              </motion.header>
+
+              <div className={styles.timelineViewport}>
                 <motion.div
-                  className={styles.timelineLine}
-                  style={{ scaleX: reduceMotion ? 1 : timelineProgress }}
-                />
-                {generations.map((generation, index) => (
-                  <TimelineGeneration
-                    key={`${generation.year}-${generation.name}`}
-                    generation={generation}
-                    index={index}
-                    progress={timelineProgress}
-                    reduceMotion={reduceMotion}
+                  className={styles.timelineTrack}
+                  variants={timelineSequence}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.12 }}
+                >
+                  <motion.div
+                    className={styles.timelineLine}
+                    style={{ scaleX: reduceMotion ? 1 : timelineProgress }}
                   />
-                ))}
-              </motion.div>
+                  {generations.map((generation, index) => (
+                    <TimelineGeneration
+                      key={`${generation.year}-${generation.name}`}
+                      generation={generation}
+                      index={index}
+                      progress={timelineProgress}
+                      reduceMotion={reduceMotion}
+                    />
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </section>
 
       <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingBottom: '2rem' }}>
@@ -346,7 +347,7 @@ export default function HomeStoryLegacy() {
                 For over a century, our family has stood on the front lines of fire<br className={styles.brDesktop} />
                 protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} className={styles.orangeText} /></strong><br className={styles.brDesktop} />
                 with <strong className={styles.altColor}><SplitText text="modern safety" delay={15} /></strong> compliance. When you choose All Fire<br className={styles.brDesktop} />
-                Services, you're not just hiring a contractor—you're partnering with<br className={styles.brDesktop} />
+                Services, you&apos;re not just hiring a contractor—you&apos;re partnering with<br className={styles.brDesktop} />
                 an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} className={styles.orangeText} /></strong>
               </p>
             </motion.div>

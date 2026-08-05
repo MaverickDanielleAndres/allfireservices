@@ -91,7 +91,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                   <div className="contact-cta_content">
                     <div className="contact-cta_header" style={{ textAlign: 'left', marginBottom: '1rem', width: '100%' }}>
                       <h2 className="heading-style-h3" style={{ fontSize: 'clamp(2rem, 4.2vw, 4rem)', marginBottom: '1.5rem', textAlign: 'left', color: '#111111', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Get in touch</h2>
-                      <p className="body-text" style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.15rem)', textAlign: 'left', margin: 0, lineHeight: 1.5, color: '#4b5563', fontWeight: 500, textWrap: 'balance' }}>
+                      <p className="body-text" style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.15rem)', textAlign: 'left', margin: 0, lineHeight: 1.5, color: '#111111', fontWeight: 500, textWrap: 'balance' }}>
                         We’re always happy to hear from property managers and
                         owners, whether it’s to enquire about a new fire safety audit,
                         or just to chat about all things fire safety-related.
@@ -131,7 +131,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Name"
                               className="form_field-label"
-                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}
                             >
                               Name*
                             </label>
@@ -154,7 +154,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Phone"
                               className="form_field-label"
-                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}
                             >
                               Phone*
                             </label>
@@ -179,7 +179,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Email"
                               className="form_field-label"
-                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}
                             >
                               Email address*
                             </label>
@@ -202,7 +202,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                             <label
                               htmlFor="Suburb"
                               className="form_field-label"
-                              style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
+                              style={{ fontSize: '1rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}
                             >
                               Suburb*
                             </label>
@@ -226,7 +226,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           <label
                             htmlFor="Message-2"
                             className="form_field-label"
-                            style={{ fontSize: '1rem', fontWeight: 500, color: '#4b5563', marginBottom: '8px' }}
+                            style={{ fontSize: '1rem', fontWeight: 500, color: '#111111', marginBottom: '8px' }}
                           >
                             Message
                           </label>
@@ -257,7 +257,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           />
                           <span
                             className="form_checkbox-label text-size-small w-form-label"
-                            style={{ fontSize: '1rem', color: '#4b5563' }}
+                            style={{ fontSize: '1rem', color: '#111111' }}
                           >
                             I accept the{" "}
                             <a href="#" className="text-style-link" style={{ color: '#111111', fontWeight: 500 }}>

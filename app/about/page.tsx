@@ -2,6 +2,10 @@
 import ContactCTA from "@/components/ContactCTA";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import styles from "@/components/HomeStoryLegacy.module.css";
+import TimelineSection from "@/components/TimelineSection";
+import { Gallery, GalleryGrid, GalleryImage } from "@/components/ui/shared-element-gallery";
 
 
 const teamMembers = [
@@ -31,12 +35,14 @@ export default function Page() {
             paddingTop: '12rem',
           }}
         >
-          {/* Dark Overlay */}
-          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
+          {/* Dark Overlay (updated to match home page) */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
+          {/* Seamless fade to white at the bottom */}
+          <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.92) 90%, #ffffff 100%)', zIndex: 2 }}></div>
 
-          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
+          <div className="padding-global" style={{ position: 'relative', zIndex: 3 }}>
             <div className="container-large">
-              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '14rem' }}>
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
                   <div className="hero_content-wrapper">
                     <div className="hero_content-left">
@@ -44,15 +50,19 @@ export default function Page() {
                         About All Fire Services
                       </div>
                       <h1 
-                        className="heading-style-h1"
                         style={{ 
+                          fontSize: 'clamp(2rem, 5vw, 5.5rem)',
                           color: '#ffffff', 
                           fontWeight: 900, 
                           textTransform: 'uppercase',
-                          lineHeight: 1.1 
+                          lineHeight: 1.1,
+                          margin: 0
                         }}
                       >
-                        About ALLFIRE Services Sydney
+                        <span style={{ display: 'block', whiteSpace: 'nowrap' }}>ABOUT ALLFIRE</span>
+                        <span style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingRight: '20px', background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                          SERVICES SYDNEY&nbsp;
+                        </span>
                       </h1>
                     </div>
                     <div className="hero_content-right">
@@ -77,107 +87,222 @@ export default function Page() {
         >
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '4rem' }}>
-                <div className="story_component grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-                  <div className="story_content flex flex-col" style={{ gap: '3rem' }}>
-                    <div>
-                      <div className="header-eyebrow-text" style={{ color: '#ff5722', marginBottom: '1rem', fontWeight: 'bold' }}>Our Story</div>
-                      <h2 className="heading-style-h2" style={{ marginBottom: '1.5rem' }}>
-                        Fire Protection Runs in Our Blood
+              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '0' }}>
+                
+                {/* Block 1 */}
+                <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={styles.storyHeaderLeft}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Legacy</p>
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                        &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
                       </h2>
-                      <p className="body-text">
-                        AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn&apos;t just our profession, it&apos;s our legacy.
-                      </p>
-                    </div>
+                    </header>
+                    <p className={styles.newStoryParagraph}>
+                      AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn&apos;t just our profession, it&apos;s our legacy.
+                    </p>
+                    <p className={styles.newStoryParagraph} style={{ fontWeight: 'bold', color: '#111' }}>
+                      When you choose AllFire, you are choosing a century of unbroken dedication to saving lives and safeguarding futures.
+                    </p>
+                  </div>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/History/1 (1).jpg" alt="Fire Protection Runs in Our Blood" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                    <div>
-                      <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>Our Mission</h3>
-                      <p className="body-text">
-                        To deliver high-quality fire protection and compliance services through practical expertise, trusted advice and dependable service, while remaining approachable, responsive and easy to work with.
-                      </p>
-                    </div>
+          {/* Timeline Section */}
+          <TimelineSection />
 
-                    <div>
-                      <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>Built on Real Experience</h3>
-                      <p className="body-text">
-                        With more than 38 years of frontline firefighting and fire safety experience, Peter established AllFire with a simple vision: to create a fire protection company that clients could genuinely rely on. By combining the knowledge of serving and retired firefighters with exceptional customer service, AllFire was built on experience, integrity and a commitment to doing the job right.
-                      </p>
-                    </div>
-                    
-                    <div>
-                      <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>Always Learning</h3>
-                      <p className="body-text">
-                        Fire safety standards continue to evolve, and so do we. Through ongoing professional development, industry training and practical education, we ensure our team remains up to date with current legislation, Australian Standards and industry best practice.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>Trusted Since 2009</h3>
-                      <p className="body-text">
-                        Since our inception, AllFire Services has maintained the certifications, insurances and workplace safety standards expected of a professional fire protection provider. More importantly, we&apos;ve built lasting relationships by delivering practical solutions, reliable service and genuine peace of mind.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="heading-style-h4" style={{ marginBottom: '1rem' }}>A Legacy of Protection</h3>
-                      <p className="body-text" style={{ marginBottom: '2rem' }}>
-                        More than a century of family history has shaped who we are today, and it continues to inspire how we serve our clients.
-                      </p>
-                      <div>
-                        <span style={{ 
-                          backgroundColor: "#FEAF04", 
-                          color: "#111111", 
-                          padding: "0.75rem 1.5rem", 
-                          borderRadius: "8px", 
-                          fontWeight: "800",
-                          display: "inline-block",
-                          fontSize: "1.25rem",
-                          boxShadow: "0 4px 14px rgba(254, 175, 4, 0.4)",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.5px"
-                        }}>
-                          &ldquo;Who Knows Better Than A Fireman&rdquo;
-                        </span>
-                      </div>
-                    </div>
+          {/* In-Depth History & Gallery */}
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingTop: '6rem' }}>
+                <div style={{ maxWidth: '1000px', margin: '0 auto 6rem auto' }}>
+                  <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+                    <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                      A Century of Service
+                    </h2>
+                    <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#111111' }}>
+                      &ldquo;Who&apos;s Better <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>than a Fireman?</span>&rdquo;
+                    </p>
                   </div>
 
-                  <div className="story_image flex flex-col gap-12 lg:sticky lg:top-32">
-                    <Image
-                      src="/aboutimage.png"
-                      width={1400}
-                      height={700}
-                      sizes="(max-width: 1023px) 100vw, 50vw"
-                      alt="About All Fire Services"
-                      className="w-full h-auto rounded-xl shadow-2xl object-cover"
-                    />
-                    
-                    <div className="grid grid-cols-2 gap-4 w-full">
-                      <div className="relative w-full rounded-xl overflow-hidden shadow-2xl" style={{ paddingTop: '177.77%' }}>
-                        <iframe 
-                          className="absolute top-0 left-0 w-full h-full"
-                          src="https://www.youtube.com/embed/ZY_5Dgy3EY4?playsinline=1" 
-                          title="All Fire Services Video 1" 
-                          loading="lazy"
-                          frameBorder="0" 
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen>
-                        </iframe>
-                      </div>
-                      <div className="relative w-full rounded-xl overflow-hidden shadow-2xl" style={{ paddingTop: '177.77%' }}>
-                        <iframe 
-                          className="absolute top-0 left-0 w-full h-full"
-                          src="https://www.youtube.com/embed/gaGkQXD0P2w?playsinline=1" 
-                          title="All Fire Services Video 2" 
-                          loading="lazy"
-                          frameBorder="0" 
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen>
-                        </iframe>
-                      </div>
+                  <div className="flex flex-col gap-16 md:gap-20 w-full">
+                    {/* Row 1 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Proudly Serving Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
+                      </h2>
+                      <p style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                        It all began with William Tricklebank. His unwavering commitment to protecting the community set a profound benchmark for courage and resilience that continues to define our approach over a century later.
+                      </p>
+                    </div>
+
+                    {/* Row 2 (Alternating) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                      <p className="order-2 md:order-1" style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                        A proud, unbroken lineage of frontline firefighters—Trevor, Stanley, Ian, and Peter. For decades, our family has stood at the forefront of emergency response, passing down invaluable hands-on expertise from father to son.
+                      </p>
+                      <h2 className="order-1 md:order-2 text-left md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        A Legacy of Four <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Generations</span>
+                      </h2>
+                    </div>
+
+                    {/* Row 3 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Leading from 2009 to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Present</span>
+                      </h2>
+                      <p style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                        Drawing upon generations of hard-won knowledge, Peter established AllFire Services. What started as a family calling has transformed into an industry-leading enterprise, delivering uncompromising fire protection and compliance.
+                      </p>
+                    </div>
+
+                    {/* Row 4 (Alternating) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                      <p className="order-2 md:order-1" style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                        We don't just tick boxes. Every inspection, installation, and certification we perform is backed by over 100 years of real-world, lived experience. When you choose AllFire, you are choosing a partner whose dedication to saving lives runs in the blood.
+                      </p>
+                      <h2 className="order-1 md:order-2 text-left md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Our Unwavering <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Promise</span> to You
+                      </h2>
                     </div>
                   </div>
                 </div>
+
+                {/* Interactive Shared-Element Gallery */}
+                <Gallery>
+                  <GalleryGrid className="max-w-7xl mx-auto">
+                    {[
+                      "1 (1).jpg",
+                      "1 (2).jpg",
+                      "1 (3).jpg",
+                      "about (1).jpg",
+                      "about (2).jpg",
+                      "about (3).jpg",
+                      "about (4).jpg",
+                      "about (5).jpg",
+                      "about (6).jpg",
+                      "about (7).jpg",
+                      "about (8).jpg",
+                      "about (9).jpg"
+                    ].map((filename, idx) => (
+                      <GalleryImage 
+                        key={idx} 
+                        id={idx.toString()} 
+                        src={`/History/${filename}?v=2`} 
+                        alt={`History Gallery Image ${idx + 1}`}
+                      />
+                    ))}
+                  </GalleryGrid>
+                </Gallery>
+              </div>
+            </div>
+          </div>
+
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingBottom: '6rem' }}>
+
+                {/* Block 2 */}
+                <div className={styles.newStoryGrid} style={{ marginBottom: '6rem', alignItems: 'stretch' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Founded by a firefighter" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                  </div>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={styles.storyHeaderLeft}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Story</p>
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                        &ldquo;Founded by<br /><span className={styles.orangeText}>a firefighter</span>&rdquo;
+                      </h2>
+                    </header>
+                    <p className={styles.newStoryParagraph}>
+                      All Fire Services is an Australian owned and operated business, created by a former NSW Fire Brigades Senior Officer in December 2009.
+                    </p>
+                    <p className={styles.newStoryParagraph}>
+                      The company was founded on a simple idea: that our customer service technicians should be professional firefighters, both serving and retired. It means every client gets extensive, real-life knowledge of the fire safety industry rather than a checklist.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Block 3 */}
+                <div className={styles.newStoryGrid} style={{ marginBottom: '6rem', alignItems: 'stretch' }}>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={styles.storyHeaderLeft}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Experience</p>
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                        &ldquo;Built on<br /><span className={styles.orangeText}>Real Experience</span>&rdquo;
+                      </h2>
+                    </header>
+                    <p className={styles.newStoryParagraph}>
+                      With more than 38 years of frontline firefighting and fire safety experience, Peter established AllFire with a simple vision: to create a fire protection company that clients could genuinely rely on. By combining the knowledge of serving and retired firefighters with exceptional customer service, AllFire was built on experience, integrity and a commitment to doing the job right.
+                    </p>
+                  </div>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/History/about (3).jpg" alt="Built on Real Experience" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                  </div>
+                </div>
+
+                {/* Block 4 */}
+                <div className={styles.newStoryGrid} style={{ marginBottom: '6rem', alignItems: 'stretch' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                  </div>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={styles.storyHeaderLeft}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Standards</p>
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                        &ldquo;Always<br /><span className={styles.orangeText}>Learning</span>&rdquo;
+                      </h2>
+                    </header>
+                    <p className={styles.newStoryParagraph}>
+                      Fire safety standards continue to evolve, and so do we. Through ongoing professional development, industry training and practical education, we ensure our team remains up to date with current legislation, Australian Standards and industry best practice.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Our Mission */}
+                <div style={{ marginTop: '5rem', backgroundColor: '#ffffff', padding: 'clamp(2.5rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 2.5rem)', borderRadius: '24px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.03)', border: '1px solid rgba(0, 0, 0, 0.05)' }}>
+                  <div className={styles.newStoryGrid} style={{ margin: 0, maxWidth: 'none', alignItems: 'stretch' }}>
+                    <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                      <header
+                        className={styles.storyHeaderLeft}
+                        style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                      >
+                        <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Mission</p>
+                        <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                          &ldquo;Excellence in<br /><span className={styles.orangeText}>Fire Protection</span>&rdquo;
+                        </h2>
+                      </header>
+                      <p className={styles.newStoryParagraph}>
+                        To deliver high-quality fire protection and compliance services through practical expertise, trusted advice and dependable service, while remaining approachable, responsive and easy to work with.
+                      </p>
+                      <p className={styles.newStoryParagraph} style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
+                        We don&apos;t just meet standards; we set them. Because when it comes to fire safety, average is never enough.
+                      </p>
+                    </div>
+                    <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                      <Image src="/History/1 (1).jpg" alt="Our Mission" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
             </div>
           </div>
@@ -188,10 +313,16 @@ export default function Page() {
             <div className="container-large">
               <div className="padding-section-large is-team" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
                 <div className="team_component">
-                  <div className="team_header">
-                    <h2 className="heading-style-h2">
-                      Meet the All Fire Services Team
-                    </h2>
+                  <div className="team_header max-w-5xl mx-auto" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
+                    <header
+                      className={styles.storyHeaderLeft}
+                      style={{ marginTop: 0, marginBottom: '2rem', maxWidth: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}
+                    >
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', margin: '0 0 1rem 0' }}>The professionals behind All Fire Services</p>
+                      <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, maxWidth: '15ch' }}>
+                        Meet the All Fire<br />Services Team
+                      </h2>
+                    </header>
                     <div className="button-group">
                       <a
                         data-wf--button--size="large"
@@ -241,7 +372,7 @@ export default function Page() {
                    <div className="team_list-wrapper w-dyn-list">
                     <div 
                       role="list" 
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto"
                     >
                       {teamMembers.map((member) => {
                         const imgUrl = member.img;
@@ -266,9 +397,9 @@ export default function Page() {
                                 <span style={{ color: 'white', fontSize: '1.5rem', opacity: 0, transition: 'opacity 300ms', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} className="group-hover:opacity-100">⤢</span>
                               </div>
                             </button>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                              <h3 className="heading-style-h4" style={{ margin: 0 }}>{member.name}</h3>
-                              <div className="body-text w-richtext" style={{ margin: 0, fontSize: '0.9rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.5rem' }}>
+                              <h3 style={{ margin: 0, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111111' }}>{member.name}</h3>
+                              <div style={{ margin: 0, fontSize: '1rem', color: '#111111', lineHeight: 1.5 }}>
                                 <p>{member.bio}</p>
                               </div>
                             </div>
@@ -296,52 +427,62 @@ export default function Page() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'rgba(0,0,0,0.15)',
-              backdropFilter: 'blur(2px)',
-              WebkitBackdropFilter: 'blur(2px)',
+              background: 'rgba(0,0,0,0.8)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
               padding: '90px 24px 24px',
             }}
             onClick={() => setLightboxImage(null)}
           >
+            {/* Close Button matching shared-element-gallery */}
+            <button 
+              onClick={() => setLightboxImage(null)}
+              style={{
+                position: 'absolute',
+                top: '110px',
+                right: '24px',
+                zIndex: 50,
+                padding: '0.625rem',
+                background: 'rgba(0,0,0,0.5)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: 'none',
+                borderRadius: '50%',
+                width: '2.5rem',
+                height: '2.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: 'white',
+                transition: 'background-color 0.2s',
+                lineHeight: 1,
+              }}
+              aria-label="Close gallery"
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
             <div 
-              style={{ position: 'relative', display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-end', maxWidth: '100%', maxHeight: '100%' }}
+              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
-                onClick={() => setLightboxImage(null)}
-                style={{
-                  marginBottom: '0.5rem',
-                  background: 'white',
-                  border: '1px solid #ddd',
-                  borderRadius: '50%',
-                  width: '2.75rem',
-                  height: '2.75rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#333',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                  lineHeight: 1,
-                  flexShrink: 0,
-                }}
-                aria-label="Close"
-              >
-                &times;
-              </button>
               <img 
                 src={lightboxImage} 
                 alt="Enlarged view" 
                 style={{ 
                   maxWidth: '100%', 
-                  maxHeight: 'calc(100vh - 160px)', 
+                  maxHeight: 'calc(100vh - 140px)', 
                   width: 'auto',
                   height: 'auto',
                   objectFit: 'contain', 
                   borderRadius: '12px', 
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.25)', 
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)', 
                   display: 'block' 
                 }}
               />

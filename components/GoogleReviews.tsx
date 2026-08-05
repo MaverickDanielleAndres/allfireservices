@@ -1,6 +1,13 @@
 "use client";
 
-import { Star } from "lucide-react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  useEffect,
+  useLayoutEffect,
+} from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const testimonials = [
@@ -47,8 +54,117 @@ const testimonials = [
 ];
 
 export default function GoogleReviews() {
-  // Duplicate for seamless infinite scroll
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  
+  const currentIndexRef = useRef(testimonials.length); // Start in the middle array
+  const isTransitioningRef = useRef(false);
+  const cardOffsetRef = useRef(400);
+
+  const dragRef = useRef({
+    active: false,
+    pointerId: -1,
+    startX: 0,
+    offset: 0,
+  });
+
+  // Triple array for seamless infinite looping
+  const tripleTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
+  const setTrackPosition = useCallback((index: number, animate: boolean, extraOffset = 0) => {
+    if (!trackRef.current) return;
+    if (animate) {
+      trackRef.current.style.transition = "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)";
+    } else {
+      trackRef.current.style.transition = "none";
+    }
+    trackRef.current.style.transform = `translate3d(${-index * cardOffsetRef.current + extraOffset}px, 0, 0)`;
+  }, []);
+
+  useLayoutEffect(() => {
+    const updateOffset = () => {
+      if (containerRef.current) {
+        const gap = 20; // gap-5 is 20px
+        
+        let width;
+        if (window.innerWidth >= 1024) width = 400;
+        else if (window.innerWidth >= 768) width = 360;
+        else width = 300;
+        
+        cardOffsetRef.current = width + gap;
+        setTrackPosition(currentIndexRef.current, false);
+      }
+    };
+
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, [setTrackPosition]);
+
+  const nextSlide = useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+    currentIndexRef.current += 1;
+    setTrackPosition(currentIndexRef.current, true);
+  }, [setTrackPosition]);
+
+  const prevSlide = useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+    currentIndexRef.current -= 1;
+    setTrackPosition(currentIndexRef.current, true);
+  }, [setTrackPosition]);
+
+  const handleTransitionEnd = () => {
+    isTransitioningRef.current = false;
+    const N = testimonials.length;
+    let curr = currentIndexRef.current;
+    
+    // Seamlessly jump to the equivalent slide in the middle array
+    if (curr <= N - 1) {
+      curr += N;
+    } else if (curr >= 2 * N) {
+      curr -= N;
+    }
+    
+    if (curr !== currentIndexRef.current) {
+      currentIndexRef.current = curr;
+      setTrackPosition(curr, false);
+      trackRef.current?.offsetHeight; // Force reflow
+    }
+  };
+
+  const finishDrag = (pointerId: number) => {
+    const drag = dragRef.current;
+    if (!drag.active || drag.pointerId !== pointerId) return;
+
+    drag.active = false;
+    setIsDragging(false);
+    
+    const threshold = Math.min(80, cardOffsetRef.current * 0.18);
+
+    if (drag.offset < -threshold) {
+      nextSlide();
+    } else if (drag.offset > threshold) {
+      prevSlide();
+    } else {
+      isTransitioningRef.current = true;
+      setTrackPosition(currentIndexRef.current, true);
+    }
+    drag.offset = 0;
+  };
+
+  // Auto-play from right-to-left
+  useEffect(() => {
+    if (isHovered || isDragging) return;
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isHovered, isDragging, nextSlide]);
 
   return (
     <section
@@ -81,20 +197,6 @@ export default function GoogleReviews() {
           letter-spacing: -0.06em;
           line-height: 0.92;
         }
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-50% - 10px));
-          }
-        }
-        .animate-marquee {
-          animation: marquee 50s linear infinite;
-        }
-        .marquee-container:hover .animate-marquee {
-          animation-play-state: paused;
-        }
         @media (max-width: 991px) {
           .reviews-header {
             grid-template-columns: 1fr;
@@ -121,7 +223,7 @@ export default function GoogleReviews() {
           <h2 className="reviews-title">
             What Sydney building<br className="hidden lg:block" />managers actually say
           </h2>
-          <div className="flex flex-col lg:flex-row lg:justify-end items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
              {/* Rating Overview */}
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 justify-center">
                <div className="flex -space-x-3 justify-center">
@@ -142,28 +244,85 @@ export default function GoogleReviews() {
                   <span className="text-xs text-gray-500 font-medium">Trusted by hundreds of clients</span>
                </div>
              </div>
+
+             {/* Navigation Arrows */}
+             <div className="flex gap-4 shrink-0 justify-center">
+               <button 
+                 onClick={prevSlide} 
+                 className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                 aria-label="Previous testimonial"
+               >
+                 <ChevronLeft className="w-5 h-5 text-gray-900" />
+               </button>
+               
+               <button 
+                 onClick={nextSlide} 
+                 className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+                 aria-label="Next testimonial"
+               >
+                 <ChevronRight className="w-5 h-5 text-gray-900" />
+               </button>
+             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-6 lg:gap-8 mt-6">
 
-          {/* Marquee Track Container */}
-          <div className="relative min-w-0 overflow-hidden py-4 rounded-2xl marquee-container">
+          {/* Swipable / Draggable Track Container */}
+          <div 
+            ref={containerRef}
+            className="relative min-w-0 overflow-hidden py-4 rounded-2xl"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             {/* 
               Seamless Soft Edge Fade with Blur Effect 
             */}
             <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-l from-white to-transparent" />
             <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-r from-white to-transparent" />
 
-            {/* Scrolling Track */}
-            <div className="flex gap-5 w-max animate-marquee">
-              {duplicatedTestimonials.map((testimonial, i) => (
+            {/* Draggable Track */}
+            <div
+              ref={trackRef}
+              className={cn(
+                "flex gap-5 touch-pan-y select-none",
+                isDragging ? "cursor-grabbing" : "cursor-grab",
+              )}
+              onTransitionEnd={handleTransitionEnd}
+              onPointerDown={(event) => {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
+                
+                // Initialize drag properties when user starts touching/clicking
+                dragRef.current = {
+                  active: true,
+                  pointerId: event.pointerId,
+                  startX: event.clientX,
+                  offset: 0,
+                };
+                event.currentTarget.setPointerCapture(event.pointerId);
+                setIsDragging(true);
+                // Stop any transition while dragging
+                setTrackPosition(currentIndexRef.current, false, 0);
+                isTransitioningRef.current = false;
+              }}
+              onPointerMove={(event) => {
+                const drag = dragRef.current;
+                if (!drag.active || drag.pointerId !== event.pointerId) return;
+                
+                // Calculate drag distance and position the track immediately without animation
+                drag.offset = event.clientX - drag.startX;
+                setTrackPosition(currentIndexRef.current, false, drag.offset);
+              }}
+              onPointerUp={(event) => finishDrag(event.pointerId)}
+              onPointerCancel={(event) => finishDrag(event.pointerId)}
+            >
+              {tripleTestimonials.map((testimonial, i) => (
                 <div 
                   key={i}
                   className={cn(
                     "shrink-0 w-[300px] md:w-[360px] lg:w-[400px] min-h-[320px] md:min-h-[340px] rounded-2xl md:rounded-3xl select-none",
                     "relative overflow-hidden group flex flex-col p-8 md:p-10",
-                    "border border-gray-200/60 bg-white shadow-[20px_0_40px_-10px_rgba(0,0,0,0.05)] transition-transform duration-300 hover:-translate-y-1"
+                    "border border-gray-200/60 bg-white shadow-[20px_0_40px_-10px_rgba(0,0,0,0.05)] transition-transform duration-300 hover:-translate-y-1 data-[touch=true]:-translate-y-1"
                   )}
                 >
                   <div className="relative z-10 h-full flex flex-col justify-between pointer-events-none">

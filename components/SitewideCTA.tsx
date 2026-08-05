@@ -21,10 +21,13 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-card {
           align-items: center;
-          background: #ffffff;
+          background:
+            radial-gradient(circle at 48% 10%, rgba(254, 175, 4, 0.38), transparent 28%),
+            radial-gradient(circle at 12% 18%, rgba(252, 4, 3, 0.28), transparent 32%),
+            linear-gradient(135deg, #fc0403 0%, #fb5614 43%, #feaf04 100%);
           border-radius: 1.5rem;
-          box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-          color: #111111;
+          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.16);
+          color: #ffffff;
           display: flex;
           flex-direction: column;
           isolation: isolate;
@@ -38,6 +41,9 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-card::before {
+          background:
+            linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.72)),
+            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
           content: "";
           inset: 0;
           position: absolute;
@@ -56,7 +62,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-logo {
           display: block;
-          filter: drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.08));
+          filter: brightness(0) invert(1) drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
           height: clamp(2.8rem, 5vw, 4.5rem);
           object-fit: contain;
           width: auto;
@@ -67,7 +73,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-title {
-          color: #111111;
+          color: #ffffff;
           font-size: clamp(2rem, 4.2vw, 4rem);
           font-weight: 780;
           letter-spacing: -0.06em;
@@ -78,9 +84,9 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-copy {
-          color: #4b5563;
+          color: rgba(255, 255, 255, 0.9);
           font-size: clamp(1rem, 1.7vw, 1.18rem);
-          font-weight: 500;
+          font-weight: 700;
           line-height: 1.45;
           margin: 1.75rem 0 0;
           max-width: 52rem;
@@ -97,7 +103,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-button {
           align-items: center;
-          border: 1px solid #e5e7eb;
+          border: 1px solid rgba(255, 255, 255, 0.9);
           border-radius: 0.55rem;
           color: #ffffff;
           display: inline-flex;

@@ -123,13 +123,13 @@ export default function Footer() {
 
             <div className="mt-auto pt-16 md:pt-24 lg:pt-32 pb-6">
               <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Socials</p>
-              <div className="flex flex-wrap items-center gap-2 text-[#645852]" aria-label="Social links">
+              <div className="flex flex-wrap items-center gap-2 text-[#111111]" aria-label="Social links">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <a
                     key={label}
                     href={href}
                     aria-label={label}
-                    className="inline-grid h-9 w-9 flex-none place-items-center !text-[#645852] transition hover:bg-white hover:!text-[#ff4d16]"
+                    className="inline-grid h-9 w-9 flex-none place-items-center !text-[#111111] transition hover:bg-white hover:!text-[#ff4d16]"
                     style={{ borderRadius: 0 }}
                   >
                     <Icon />
@@ -143,12 +143,12 @@ export default function Footer() {
             {footerColumns.map((column) => (
               <nav key={column.title} aria-label={column.title}>
                 <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">{column.title}</p>
-                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#4b5563] md:gap-3">
+                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111] md:gap-3">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="!text-[#4b5563] transition hover:!text-[#ff4d16]"
+                        className="!text-[#111111] transition hover:!text-[#ff4d16]"
                         style={{
                           minHeight: "auto",
                           paddingBlock: 0,
@@ -166,9 +166,9 @@ export default function Footer() {
             <div className="col-span-2 min-w-0 border-t border-[#2b201b]/12 pt-6 md:col-span-3">
               <div className="min-w-0">
                 <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Contact</p>
-                <div className="flex flex-col gap-3 text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#4b5563]">
+                <div className="flex flex-col gap-3 text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111]">
                   <a
-                    className="min-w-0 !text-[#4b5563] transition hover:!text-[#ff4d16]"
+                    className="min-w-0 !text-[#111111] transition hover:!text-[#ff4d16]"
                     href="mailto:admin@allfireservices.com.au"
                     style={{ overflowWrap: "anywhere", textDecoration: "none" }}
                   >
@@ -212,11 +212,11 @@ export default function Footer() {
 
       {/* Bottom bar — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[12px] font-[500] text-[#4b5563] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[12px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
-            <span className="text-[#4b5563]">Privacy policy</span>
-            <span className="text-[#4b5563]">Terms and conditions</span>
+            <span className="text-[#111111]">Privacy policy</span>
+            <span className="text-[#111111]">Terms and conditions</span>
           </div>
         </div>
       </div>
