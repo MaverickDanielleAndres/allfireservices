@@ -1,7 +1,7 @@
 .storySection {
   position: relative;
   overflow: hidden;
-  padding: clamp(5.5rem, 9vw, 8.5rem) 0 clamp(2rem, 5vw, 4rem);
+  padding: 0 0 clamp(2rem, 5vw, 4rem);
   border-bottom: 1px solid rgba(17, 17, 17, 0.1);
   background: #ffffff;
   color: #111111;
