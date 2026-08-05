@@ -804,25 +804,7 @@ export default function Page() {
               </div>
             </div>
           </section>
-        <section className="info-cards-wrapper">
-          <div className="info-cards-section">
-            <div className="info-card">
-              <div className="card-title">Proven Since 2009</div>
-              <div className="card-text">100% Australian owned. Delivering over a decade of uncompromising protection.</div>
-              <div className="card-watermark">2009</div>
-            </div>
-            <div className="info-card">
-              <div className="card-title">Founded by Firefighters</div>
-              <div className="card-text">Forged on the frontlines. Real-world tactical expertise, not just a compliance checklist.</div>
-              <div className="card-watermark">EXPERT</div>
-            </div>
-            <div className="info-card dark">
-              <div className="card-title">Uncompromising Safety</div>
-              <div className="card-text">Actionable insights. Elite professional service. Relentless protection you can depend on.</div>
-              <div className="card-watermark">ALL FIRE</div>
-            </div>
-          </div>
-        </section>
+        <section className="info-cards-wrapper"></section>
         </div>
         <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
 
