@@ -272,16 +272,16 @@ export default function Navbar() {
           padding-left: 1.5rem;
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
-          margin-top: 0.5rem;
+          gap: 0.25rem;
+          margin-top: 0.25rem;
         }
         
         .mobile-dropdown-link {
           display: block;
-          font-size: 1rem;
+          font-size: 0.95rem;
           color: #555555;
           text-decoration: none;
-          padding: 0.4rem 0;
+          padding: 0.35rem 0;
         }
 
         .mobile-dropdown-link:hover {
@@ -355,16 +355,16 @@ export default function Navbar() {
 
         .navbar-mobile-link {
           display: block;
-          font-size: 1.25rem;
+          font-size: 1.15rem;
           font-weight: 700;
           color: #111111;
           text-decoration: none;
-          padding: 0.75rem 0;
+          padding: 0.6rem 0;
           border-bottom: 1px solid #f0f0f0;
         }
 
         .navbar-spacer {
-          height: 5.5rem;
+          height: 8rem; /* 50px topbar + 5.5rem inner roughly = 128px */
         }
 
         @media (max-width: 1024px) {
@@ -378,10 +378,26 @@ export default function Navbar() {
             padding: 0 1rem;
           }
           .navbar-topbar {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.5rem;
             flex-direction: column;
-            gap: 0.5rem;
-            max-height: 100px;
+            gap: 0.35rem;
+            max-height: 80px;
+          }
+          .navbar-topbar-left {
+            gap: 1rem;
+            font-size: 0.8rem;
+          }
+          .navbar-spacer {
+            height: 10rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .navbar-topbar {
+            display: none;
+          }
+          .navbar-spacer {
+            height: 5.5rem;
           }
         }
       `}</style>
@@ -507,11 +523,11 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <div style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <a href="tel:1300765594" className="navbar-mobile-link" style={{ border: 'none', padding: '0' }}>
             Call 1300 765 594
           </a>
-          <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center', marginTop: '1rem' }} onClick={closeMenus}>
+          <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center', marginTop: '0.5rem' }} onClick={closeMenus}>
             Get a Quote
           </Link>
         </div>

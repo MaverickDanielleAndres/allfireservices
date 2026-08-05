@@ -85,12 +85,19 @@ export default function FireSafetyShorts() {
       <div className="padding-global">
         <div className="container-large">
           {/* Header */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "clamp(5rem, 8vw, 7rem)", flexWrap: "wrap", gap: "1.5rem" }}>
-            <header className={styles.legacyHeader} style={{ marginBottom: 0, display: "block" }}>
-              <p className={styles.kicker}>Fire safety shorts</p>
-              <h2 id="fire-safety-shorts-title">Quick lessons from real jobs</h2>
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-6 mb-[clamp(5rem,8vw,7rem)] w-full text-center md:text-left">
+            <header className="mb-0 block w-full md:w-auto">
+              <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
+              <h2 id="fire-safety-shorts-title" className="mx-auto md:mx-0" style={{
+                color: "#111111",
+                fontSize: "clamp(2.8rem, 5.8vw, 6rem)",
+                fontWeight: 780,
+                letterSpacing: "-0.06em",
+                lineHeight: 0.92,
+                textWrap: "balance"
+              }}>Quick lessons from real jobs</h2>
             </header>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
+          <div className="flex gap-2 justify-center w-full md:w-auto shrink-0 mt-2 md:mt-0">
             <button 
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
@@ -184,10 +191,10 @@ export default function FireSafetyShorts() {
               }}
             >
               <div 
+                className="video-container"
                 style={{ 
                   position: "relative", 
                   width: "100%", 
-                  aspectRatio: "9/16", 
                   borderRadius: "16px", 
                   overflow: "hidden",
                   backgroundColor: "#111",
@@ -307,6 +314,14 @@ export default function FireSafetyShorts() {
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
+        }
+        .video-container {
+           aspect-ratio: 9/16;
+        }
+        @media (max-width: 991px) {
+           .video-container {
+              aspect-ratio: 9/19;
+           }
         }
       `}</style>
     </section>

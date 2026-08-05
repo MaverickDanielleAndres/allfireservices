@@ -726,17 +726,30 @@ export default function Page() {
                 padding: 0;
               }
               .hero-container {
-                padding: 3rem 1.5rem 12rem 1.5rem;
-                gap: 3rem;
+                padding: 2rem 1.5rem 12rem 1.5rem;
+                gap: 2.5rem;
+              }
+              .hero-kicker {
+                font-size: 0.8rem;
+                white-space: nowrap;
               }
               .hero-title {
-                font-size: clamp(2.25rem, 8vw, 3rem);
+                font-size: clamp(1.6rem, 9vw, 2.75rem);
                 line-height: 1.15;
+                word-break: normal;
+                overflow-wrap: break-word;
               }
               .hero-title-line {
-                display: inline;
+                display: block;
                 white-space: normal;
-                margin-right: 0.25em;
+              }
+              .hero-subtitle {
+                font-size: 1.05rem;
+                margin-bottom: 0.75rem;
+              }
+              .hero-body {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
               }
               .hero-actions {
                 flex-direction: column;
@@ -744,14 +757,29 @@ export default function Page() {
               .hero-actions .btn-primary, .hero-actions .btn-secondary {
                 text-align: center;
                 width: 100%;
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
               }
               .hero-analytics {
-                flex-direction: column;
-                gap: 1.5rem;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0.5rem;
                 margin-bottom: 2rem;
+                align-items: flex-start;
+                text-align: center;
+                width: 100%;
               }
               .analytics-item {
-                width: 100%;
+                width: 33.33%;
+                align-items: center;
+              }
+              .analytics-number {
+                font-size: 1.5rem;
+                margin-bottom: 0.2rem;
+              }
+              .analytics-label {
+                font-size: 0.7rem;
+                line-height: 1.2;
               }
               .info-cards-section {
                 grid-template-columns: 1fr;

@@ -165,6 +165,11 @@ export default function GoogleReviews() {
           .reviews-header {
             grid-template-columns: 1fr;
             gap: 1.5rem;
+            justify-items: center;
+            text-align: center;
+          }
+          .reviews-kicker {
+            margin: 0 0 0.5rem;
           }
         }
         @media (max-width: 767px) {
@@ -180,12 +185,12 @@ export default function GoogleReviews() {
         <div className="reviews-header">
           <div className="reviews-kicker">Our clients</div>
           <h2 className="reviews-title">
-            What Sydney building<br />managers actually say
+            What Sydney building<br className="hidden lg:block" />managers actually say
           </h2>
-          <div className="flex justify-between items-end flex-wrap gap-4">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
              {/* Rating Overview */}
-             <div className="flex items-center gap-5">
-               <div className="flex -space-x-3">
+             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 justify-center">
+               <div className="flex -space-x-3 justify-center">
                   {testimonials.slice(0, 4).map((t, i) => (
                     <div key={i} className="w-12 h-12 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center shadow-sm overflow-hidden">
                        <img src={t.image} alt={t.author} className="w-full h-full object-cover" />
@@ -194,7 +199,7 @@ export default function GoogleReviews() {
                </div>
                <div className="flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-1">
-                     <span className="font-bold text-[1.1rem] text-gray-900">5.0 / 5</span>
+                     <span className="font-bold text-[1.1rem] text-gray-900 whitespace-nowrap">5.0 / 5</span>
                      <div className="flex gap-[2px] text-[#ff5722]">
                         {/* Render 5 solid stars for the overall rating */}
                         {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4" fill="currentColor" />)}
@@ -205,7 +210,7 @@ export default function GoogleReviews() {
              </div>
 
              {/* Navigation Arrows */}
-             <div className="flex gap-4 shrink-0">
+             <div className="flex gap-4 shrink-0 justify-center">
                {/* Left Arrow Button - shrink-0 ensures it stays perfectly circular */}
                <button 
                  onClick={prevSlide} 

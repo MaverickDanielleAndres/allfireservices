@@ -1151,6 +1151,17 @@
     padding-bottom: 4.25rem;
   }
 
+  .legacySection {
+    height: auto !important;
+  }
+
+  .stickyContainer {
+    position: relative !important;
+    top: auto !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
   .storyHeader {
     margin-bottom: 4.25rem;
   }
@@ -1205,17 +1216,31 @@
     border-radius: 0.8rem;
   }
 
+  .legacyHeader {
+    text-align: center;
+    align-items: center;
+  }
   .legacyHeader h2 {
     font-size: clamp(2.65rem, 13vw, 4rem);
   }
 
   .timelineViewport {
-    margin-right: -1rem;
-    padding-right: 1rem;
+    overflow-x: visible !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
   }
 
   .timelineTrack {
-    min-width: 73rem;
+    grid-template-columns: 1fr 1fr !important;
+    min-width: 0 !important;
+    gap: 3rem 1.5rem !important;
+  }
+
+  .timelineTrack::before,
+  .timelineLine,
+  .dropLine,
+  .timelineDot {
+    display: none !important;
   }
 
   .legacyTagline {
@@ -1441,6 +1466,12 @@
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 991px) {
+  .newStoryVideoWrapper {
+    margin: 0 auto !important;
+  }
 }
 
 .newStoryVideoBg {
