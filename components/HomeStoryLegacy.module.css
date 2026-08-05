@@ -483,6 +483,15 @@
       0 0 0 0.45rem rgba(226, 35, 26, 0.09);
     transform: scale(1.06);
   }
+
+  .generation:hover .portrait img {
+    filter: grayscale(0%);
+  }
+}
+
+.portrait img {
+  filter: grayscale(100%);
+  transition: filter 260ms ease;
 }
 
 .dropLine {
@@ -504,32 +513,33 @@
 }
 
 .year {
-  min-height: 2.3em;
   margin: 1.25rem 0 0;
   color: #d92820;
-  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
   /* Increased size */
-  font-weight: 850;
-  letter-spacing: -0.04em;
-  line-height: 1.03;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
 .relation {
-  min-height: 2.8em;
   margin: 0.85rem 0 0;
   color: #161d28;
-  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   /* Increased size */
-  font-weight: 800;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
   line-height: 1.35;
 }
 
 .name {
   margin: 0.4rem 0 0;
   color: #3f4650;
-  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   /* Increased size */
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -591,6 +601,44 @@
   }
 }
 
+.brDesktop {
+  display: none;
+}
+@media (min-width: 769px) {
+  .brDesktop {
+    display: initial;
+  }
+}
+
+@media (max-width: 991px) {
+  .timelineViewport {
+    overflow-x: visible;
+    overflow-y: visible;
+    scroll-snap-type: none;
+    padding: 0;
+  }
+  
+  .timelineTrack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 1rem;
+    min-width: 0;
+    padding: 0 1rem;
+  }
+  
+  .timelineTrack::before,
+  .timelineLine,
+  .dropLine,
+  .timelineDot {
+    display: none !important;
+  }
+  
+  .generation {
+    width: 100%;
+    scroll-snap-align: none;
+  }
+}
+
 .legacyParagraph {
   max-width: 60rem;
   margin: clamp(3rem, 5vw, 4rem) auto 0;
@@ -603,10 +651,11 @@
 
 .legacyParagraph strong {
   font-weight: 850;
-  background: linear-gradient(135deg, #e2231a 0%, #ff5e55 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fb5614;
+}
+
+.legacyParagraph strong.altColor {
+  color: #fb5614;
 }
 
 .capabilitySystem {
@@ -1567,12 +1616,8 @@
   text-wrap: balance;
 }
 
-.gradientText {
-  background: linear-gradient(to right, #fc0403, #fb5614, #feaf04);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+.orangeText {
+  color: #fb5614;
 }
 
 @media (max-width: 767px) {

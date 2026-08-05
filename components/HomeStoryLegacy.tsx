@@ -46,12 +46,12 @@ const generationReveal: Variants = {
 
 
 const generations = [
-  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", x: "1.5%" },
-  { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", x: "12.1%" },
-  { year: "1955", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
-  { year: "1957", relation: "Father", name: "Stanley Tricklebank", x: "33.5%" },
-  { year: "1966", relation: "Pete", name: "Born in a fire station", x: "87.3%", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" },
-  { year: "2025", relation: "Pete's two sons", name: "Ages 16 and 14", x: "98.2%" },
+  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/waltergreatgrandad.png" },
+  { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
+  { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
+  { year: "1960", relation: "Uncle", name: "Grant Fuller", image: "/family/grantfuller.png" },
+  { year: "1957", relation: "Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
+  { year: "1966", relation: "Pete", name: "Born in a fire station", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -99,7 +99,6 @@ function TimelineGeneration({
       <div
         className={styles.portrait}
         style={{ 
-          "--portrait-x": generation.x,
           ...(generation.image ? {
             backgroundImage: "none",
             position: "relative",
@@ -180,7 +179,7 @@ export default function HomeStoryLegacy() {
                 >
                   <p className={styles.kickerLeft}>Our story</p>
                   <h2>
-                    &ldquo;Founded by <span className={styles.gradientText}>a firefighter</span>&rdquo;
+                    &ldquo;Founded by <span className={styles.orangeText}>a firefighter</span>&rdquo;
                   </h2>
                 </motion.header>
                 <p className={styles.newStoryParagraph}>
@@ -233,7 +232,7 @@ export default function HomeStoryLegacy() {
                 >
                   <p className={styles.kickerLeft}>Our story</p>
                   <h2 style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '20ch' }}>
-                    &ldquo;Who knows better<br />than a <span className={styles.gradientText}>fireman</span>?&rdquo;
+                    &ldquo;Who knows better<br />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
                   </h2>
                 </motion.header>
                 <p className={styles.newStoryParagraph}>
@@ -300,7 +299,14 @@ export default function HomeStoryLegacy() {
                 ))}
               </motion.div>
             </div>
+          </div>
+        </div>
+      </div>
+      </section>
 
+      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingBottom: '5rem' }}>
+        <div className="padding-global">
+          <div className="container-large">
             <motion.p
               className={styles.legacyTagline}
               initial={{ opacity: 0, scaleX: 0.92 }}
@@ -319,13 +325,13 @@ export default function HomeStoryLegacy() {
               viewport={{ once: true, amount: 0.4 }}
             >
               <div className={styles.historyImageWrap}>
-                <Image src="/History/1 (3).jpg" alt="All Fire Services history" fill className={styles.historyImage} style={{ scale: 1.22 }} sizes="(max-width: 768px) 100vw, 33vw" />
+                <Image src="/History/1 (3).jpg" alt="All Fire Services history" fill className={styles.historyImage} style={{ scale: 1.22, objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <div className={styles.historyImageWrap}>
-                <Image src="/History/1 (1).jpg" alt="All Fire Services history" fill className={styles.historyImage} sizes="(max-width: 768px) 100vw, 33vw" />
+                <Image src="/History/1 (1).jpg" alt="All Fire Services history" fill className={styles.historyImage} style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
               <div className={styles.historyImageWrap}>
-                <Image src="/History/1 (2).jpg" alt="All Fire Services history" fill className={styles.historyImage} sizes="(max-width: 768px) 100vw, 33vw" />
+                <Image src="/History/1 (2).jpg" alt="All Fire Services history" fill className={styles.historyImage} style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
             </motion.div>
 
@@ -337,11 +343,14 @@ export default function HomeStoryLegacy() {
               viewport={{ once: true, amount: 0.8 }}
             >
               <p>
-                For over a century, our family has stood on the front lines of fire protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} className={styles.gradientText} /></strong> with modern safety compliance. When you choose All Fire Services, you're not just hiring a contractor—you're partnering with an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} className={styles.gradientText} /></strong>
+                For over a century, our family has stood on the front lines of fire<br className={styles.brDesktop} />
+                protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} className={styles.orangeText} /></strong><br className={styles.brDesktop} />
+                with <strong className={styles.altColor}><SplitText text="modern safety" delay={15} /></strong> compliance. When you choose All Fire<br className={styles.brDesktop} />
+                Services, you're not just hiring a contractor—you're partnering with<br className={styles.brDesktop} />
+                an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} className={styles.orangeText} /></strong>
               </p>
             </motion.div>
           </div>
-        </div>
         </div>
       </section>
     </>

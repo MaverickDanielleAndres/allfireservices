@@ -526,7 +526,6 @@ export default function Page() {
               gap: 1.25rem;
               text-align: right;
               margin-bottom: 2rem;
-              animation: slide-in-right 600ms ease-out both;
             }
             .analytics-item {
               display: flex;
@@ -548,10 +547,6 @@ export default function Page() {
             @keyframes fade-in {
               from { opacity: 0; transform: translateY(10px); }
               to { opacity: 1; transform: translateY(0); }
-            }
-            @keyframes slide-in-right {
-              from { opacity: 0; transform: translateX(50px); }
-              to { opacity: 1; transform: translateX(0); }
             }
             .hero-kicker {
               font-size: 0.8rem;
@@ -839,20 +834,25 @@ export default function Page() {
               </div>
             </div>
             
-              <div className="hero-analytics">
+              <MotionDiv 
+                className="hero-analytics"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={0} to={17} /></div>
+                  <div className="analytics-number"><Counter from={0} to={17} duration={0.4} /></div>
                   <div className="analytics-label">Years of experience</div>
                 </div>
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={2026} to={2009} /></div>
+                  <div className="analytics-number"><Counter from={2026} to={2009} duration={0.4} /></div>
                   <div className="analytics-label">Australian owned since</div>
                 </div>
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={10} to={24} suffix="/7" /></div>
+                  <div className="analytics-number"><Counter from={10} to={24} suffix="/7" duration={0.4} /></div>
                   <div className="analytics-label">Emergency response</div>
                 </div>
-              </div>
+              </MotionDiv>
             </div>
           </section>
         </div>
