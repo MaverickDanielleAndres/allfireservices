@@ -85,7 +85,7 @@ export default function FireSafetyShorts() {
       <div className="padding-global">
         <div className="container-large">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-6 mb-[clamp(5rem,8vw,7rem)] w-full text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-4 md:gap-6 mb-8 md:mb-[clamp(5rem,8vw,7rem)] w-full text-center md:text-left">
             <header className="mb-0 block w-full md:w-auto">
               <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
               <h2 id="fire-safety-shorts-title" className="mx-auto md:mx-0" style={{
@@ -165,7 +165,6 @@ export default function FireSafetyShorts() {
           }}
           style={{ 
             display: "flex", 
-            gap: "1.5rem", 
             overflowX: "auto", 
             scrollSnapType: "x mandatory", 
             scrollbarWidth: "none",
@@ -176,7 +175,7 @@ export default function FireSafetyShorts() {
             cursor: isDragging ? "grabbing" : "grab",
             touchAction: "pan-y"
           }}
-          className="hide-scrollbar"
+          className="hide-scrollbar shorts-carousel"
         >
           {videos.map((video, idx) => (
             <div 
@@ -272,7 +271,7 @@ export default function FireSafetyShorts() {
         )}
 
         {/* View all button */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3.5rem' }}>
+        <div className="shorts-view-more">
           <a
             href="https://www.youtube.com/@allfireservices"
             target="_blank"
@@ -317,6 +316,22 @@ export default function FireSafetyShorts() {
         }
         .video-container {
            aspect-ratio: 9/16;
+        }
+        .shorts-carousel {
+          gap: 1.5rem;
+        }
+        .shorts-view-more {
+          display: flex;
+          justify-content: center;
+          margin-top: 3.5rem;
+        }
+        @media (max-width: 767px) {
+          .shorts-carousel {
+            gap: 0.75rem;
+          }
+          .shorts-view-more {
+            margin-top: 2rem;
+          }
         }
         @media (max-width: 991px) {
            .video-container {

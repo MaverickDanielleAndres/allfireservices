@@ -502,7 +502,7 @@ export default function Page() {
               flex-direction: row;
               align-items: center;
               justify-content: space-between;
-              padding: 4rem 4rem 14rem 4rem;
+              padding: 2rem 4rem 14rem 4rem;
               background-color: transparent;
               gap: 4rem;
             }
@@ -554,7 +554,7 @@ export default function Page() {
               to { opacity: 1; transform: translateX(0); }
             }
             .hero-kicker {
-              font-size: 1rem;
+              font-size: 0.8rem;
               font-weight: 700;
               text-transform: uppercase;
               letter-spacing: 1px;
@@ -734,14 +734,20 @@ export default function Page() {
                 white-space: nowrap;
               }
               .hero-title {
-                font-size: clamp(1.6rem, 9vw, 2.75rem);
                 line-height: 1.15;
                 word-break: normal;
                 overflow-wrap: break-word;
               }
               .hero-title-line {
                 display: block;
-                white-space: normal;
+                white-space: nowrap;
+              }
+              .hero-title-line:nth-child(1) {
+                font-size: clamp(1.2rem, 6.5vw, 2.75rem);
+              }
+              .hero-title-line:nth-child(2),
+              .hero-title-line:nth-child(3) {
+                font-size: clamp(1.6rem, 9.5vw, 2.75rem);
               }
               .hero-subtitle {
                 font-size: 1.05rem;
@@ -781,6 +787,9 @@ export default function Page() {
                 font-size: 0.7rem;
                 line-height: 1.2;
               }
+              .mobile-video-tall {
+                aspect-ratio: 4/3 !important;
+              }
               .info-cards-section {
                 grid-template-columns: 1fr;
                 padding: 0 1rem;
@@ -812,8 +821,8 @@ export default function Page() {
                 Reliable fire safety starts here
               </div>
               <h1 className="hero-title">
-                <span className="hero-title-line">FIRE SAFETY IS NOT A BOX</span>
-                <span className="hero-title-line">TO TICK, <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                <span className="hero-title-line">FIRE SAFETY IS NOT A</span>
+                <span className="hero-title-line">BOX TO TICK, <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
                 <span className="hero-title-line">
                   <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>RESPONSIBILITY</span>
                 </span>
@@ -866,6 +875,7 @@ export default function Page() {
             loop 
             muted 
             playsInline
+            className="mobile-video-tall"
             style={{ width: '100%', aspectRatio: '21/9', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
           />
         </MotionDiv>

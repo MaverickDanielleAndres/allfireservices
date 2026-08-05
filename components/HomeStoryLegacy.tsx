@@ -12,7 +12,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import SplitText from "./SplitText";
-
 import { useRef, type CSSProperties } from "react";
 import styles from "./HomeStoryLegacy.module.css";
 
@@ -338,7 +337,7 @@ export default function HomeStoryLegacy() {
               viewport={{ once: true, amount: 0.8 }}
             >
               <p>
-                For over a century, our family has stood on the front lines of fire protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} /></strong> with modern safety compliance. When you choose All Fire Services, you're not just hiring a contractor—you're partnering with an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} /></strong>
+                For over a century, our family has stood on the front lines of fire protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} className={styles.gradientText} /></strong> with modern safety compliance. When you choose All Fire Services, you're not just hiring a contractor—you're partnering with an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} className={styles.gradientText} /></strong>
               </p>
             </motion.div>
           </div>
