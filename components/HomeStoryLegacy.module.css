@@ -352,14 +352,14 @@
 
 .stickyContainer {
   position: sticky;
-  top: 100px;
-  /* Safe space from navbar when sticky */
+  top: 0;
   display: flex;
   flex-direction: column;
-  padding-top: clamp(8rem, 12vw, 12rem);
-  /* Space on top */
-  padding-bottom: clamp(1rem, 2vw, 2rem);
-  /* Drastically reduced space on bottom to close the gap */
+  justify-content: center;
+  height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 2rem;
+  overflow: hidden;
 }
 
 
@@ -369,8 +369,7 @@
   grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr);
   column-gap: 4rem;
   align-items: end;
-  margin-bottom: clamp(5rem, 8vw, 7rem);
-  /* INCREASED margin as requested */
+  margin-bottom: clamp(2rem, 5vw, 4rem);
 }
 
 .legacyHeader .kicker {
@@ -547,8 +546,7 @@
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin: clamp(2rem, 4vw, 3rem) 0 0;
-  /* REDUCED margin as requested */
+  margin: clamp(5rem, 8vw, 7rem) 0 clamp(4rem, 6vw, 5rem);
   color: #1d2633;
   font-size: 0.72rem;
   font-weight: 800;

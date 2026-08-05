@@ -78,7 +78,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-[#eaded6] bg-[#f7f2ee] text-[#121212]">
+    <footer className="w-full border-t border-[#eaded6] bg-white text-[#121212]">
       {/* Top content section — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-8 sm:px-6 md:pt-10 lg:px-8 lg:pt-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
