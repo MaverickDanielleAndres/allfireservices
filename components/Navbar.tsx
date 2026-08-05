@@ -278,10 +278,10 @@ export default function Navbar() {
         
         .mobile-dropdown-link {
           display: block;
-          font-size: 1.1rem;
+          font-size: 1rem;
           color: #555555;
           text-decoration: none;
-          padding: 0.5rem 0;
+          padding: 0.4rem 0;
         }
 
         .mobile-dropdown-link:hover {
@@ -339,7 +339,7 @@ export default function Navbar() {
           bottom: 0;
           background: #ffffff;
           z-index: 1000;
-          padding: 2rem;
+          padding: 1.5rem 1.5rem 6rem 1.5rem;
           transform: translateY(-100%);
           transition: transform 300ms ease;
           opacity: 0;
@@ -355,11 +355,11 @@ export default function Navbar() {
 
         .navbar-mobile-link {
           display: block;
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 700;
           color: #111111;
           text-decoration: none;
-          padding: 1rem 0;
+          padding: 0.75rem 0;
           border-bottom: 1px solid #f0f0f0;
         }
 

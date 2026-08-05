@@ -695,6 +695,9 @@ export default function Page() {
             @media (max-width: 1024px) {
               .hero-container {
                 padding: 4rem 2rem 12rem 2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
               }
               .hero-content {
                 max-width: 100%;
@@ -703,11 +706,15 @@ export default function Page() {
                 width: 100%;
                 flex-direction: row;
                 flex-wrap: wrap;
+                justify-content: flex-start;
+                text-align: left;
+                align-items: flex-start;
                 gap: 2rem;
               }
               .analytics-item {
                 flex: 1 1 calc(33.333% - 1rem);
                 min-width: 150px;
+                align-items: flex-start;
               }
               .info-cards-section {
                 grid-template-columns: repeat(2, 1fr);
@@ -719,10 +726,17 @@ export default function Page() {
                 padding: 0;
               }
               .hero-container {
-                padding: 3rem 1.5rem 10rem 1.5rem;
+                padding: 3rem 1.5rem 12rem 1.5rem;
+                gap: 3rem;
               }
               .hero-title {
-                font-size: clamp(1rem, 6vw, 2.5rem);
+                font-size: clamp(2.25rem, 8vw, 3rem);
+                line-height: 1.15;
+              }
+              .hero-title-line {
+                display: inline;
+                white-space: normal;
+                margin-right: 0.25em;
               }
               .hero-actions {
                 flex-direction: column;
@@ -733,8 +747,8 @@ export default function Page() {
               }
               .hero-analytics {
                 flex-direction: column;
-                gap: 1.25rem;
-                margin-bottom: 6rem;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
               }
               .analytics-item {
                 width: 100%;
@@ -760,7 +774,7 @@ export default function Page() {
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
             
             {/* Seamless fade to white at the bottom */}
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '280px', background: 'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.9) 85%, #ffffff 100%)', zIndex: 2 }}></div>
+            <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.92) 90%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className="home-hero-section">
           <div className="hero-container">

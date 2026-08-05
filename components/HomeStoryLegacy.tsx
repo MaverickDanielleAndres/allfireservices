@@ -115,10 +115,12 @@ function TimelineGeneration({
             src={generation.image}
             alt={`Portrait of ${generation.name}`}
             fill
+            unoptimized={true}
             sizes="160px"
-            style={{ objectFit: "cover", objectPosition: "center 20%" }}
-            quality={100}
-            priority
+            style={{
+              objectFit: "cover",
+              objectPosition: generation.name === "Peter Tricklebank" ? "center 15%" : "center"
+            }}
           />
         )}
       </div>
