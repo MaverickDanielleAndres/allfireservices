@@ -51,7 +51,7 @@ const generations = [
   { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", x: "12.1%" },
   { year: "1955", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", x: "33.5%" },
-  { year: "1966", relation: "Pete", name: "Born in a fire station", x: "87.3%" },
+  { year: "1966", relation: "Pete", name: "Born in a fire station", x: "87.3%", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" },
   { year: "2025", relation: "Pete's two sons", name: "Ages 16 and 14", x: "98.2%" },
 ];
 
@@ -99,10 +99,29 @@ function TimelineGeneration({
     >
       <div
         className={styles.portrait}
-        style={{ "--portrait-x": generation.x } as CSSProperties}
+        style={{ 
+          "--portrait-x": generation.x,
+          ...(generation.image ? {
+            backgroundImage: "none",
+            position: "relative",
+            overflow: "hidden"
+          } : {})
+        } as CSSProperties}
         role="img"
         aria-label={`Portrait of ${generation.name}`}
-      />
+      >
+        {generation.image && (
+          <Image
+            src={generation.image}
+            alt={`Portrait of ${generation.name}`}
+            fill
+            sizes="160px"
+            style={{ objectFit: "cover", objectPosition: "center 20%" }}
+            quality={100}
+            priority
+          />
+        )}
+      </div>
       <motion.span
         className={styles.dropLine}
         style={{ scaleY: reduceMotion ? 1 : stemProgress }}
@@ -290,6 +309,24 @@ export default function HomeStoryLegacy() {
             >
               A legacy of service. A future of leadership.
             </motion.p>
+
+            <motion.div
+              className={styles.historyGallery}
+              variants={reveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.4 }}
+            >
+              <div className={styles.historyImageWrap}>
+                <Image src="/History/1 (3).jpg" alt="All Fire Services history" fill className={styles.historyImage} style={{ scale: 1.22 }} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+              <div className={styles.historyImageWrap}>
+                <Image src="/History/1 (1).jpg" alt="All Fire Services history" fill className={styles.historyImage} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+              <div className={styles.historyImageWrap}>
+                <Image src="/History/1 (2).jpg" alt="All Fire Services history" fill className={styles.historyImage} sizes="(max-width: 768px) 100vw, 33vw" />
+              </div>
+            </motion.div>
 
             <motion.div
               className={styles.legacyParagraph}

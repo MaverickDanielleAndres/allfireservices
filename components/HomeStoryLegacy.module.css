@@ -543,6 +543,41 @@
   content: "";
 }
 
+.historyGallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 70rem;
+  margin: clamp(3rem, 5vw, 4rem) auto 2.5rem;
+}
+
+.historyImageWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #eeeee9;
+  box-shadow: 0 1.2rem 3rem rgba(17, 17, 17, 0.08);
+}
+
+.historyImage {
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .historyImageWrap:hover .historyImage {
+    transform: scale(1.04);
+  }
+}
+
+@media (max-width: 768px) {
+  .historyGallery {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
 .legacyParagraph {
   max-width: 60rem;
   margin: clamp(3rem, 5vw, 4rem) auto 0;
