@@ -38,11 +38,8 @@ export default function FounderLegacy() {
                     The Firefighter Behind<br /><span className={styles.orangeText}>All Fire Services</span>
                   </h2>
                 </header>
-                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
-                  Most fire safety companies learn from manuals.<br />We learned on the front line.
-                </p>
                 <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                  All Fire Services was founded by <strong>Peter Tricklebank</strong>, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a family history of firefighters dating back to <strong>1911</strong>, every inspection, certification, and recommendation is shaped by experience earned where it matters most.
+                  All Fire Services was founded by <strong>Peter Tricklebank</strong>, former <strong>NSW Fire Brigades Senior Officer</strong>, after decades of protecting lives in real emergencies. Backed by a family history of firefighters dating back to <strong>1911</strong>, every inspection, certification, and recommendation is shaped by experience earned where it matters most.
                 </p>
                 <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
                   When your building&apos;s safety is on the line, trust the people who have spent generations protecting lives and property.

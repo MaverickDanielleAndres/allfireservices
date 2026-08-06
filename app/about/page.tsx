@@ -174,14 +174,17 @@ export default function Page() {
                         &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
                       </h2>
                     </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
-                      Most fire safety companies learn from manuals.<br />We learned on the front line.
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
+                      Fire safety is more than inspections and paperwork. It is a responsibility we take seriously.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services was <strong>founded in 2009</strong> by Peter Tricklebank, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a <strong>family history dating back to 1911</strong>, every inspection and recommendation is guided by experience gained where it matters most.
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      Since 2009, All Fire Services has delivered practical, professional, and reliable fire protection for properties across Sydney. Every service is shaped around the needs of the building, combining technical knowledge, responsive support, and a commitment to doing the job properly.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
-                      When your building&apos;s safety is on the line, trust a team shaped by generations of protecting people and property.
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      From maintenance and testing to compliance and certification, we help clients protect their people, property, and operations.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ fontWeight: 'bold' }}>
+                      When safety matters, trust a company built on experience, accountability, and genuine care.
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '1.5rem', overflow: 'hidden' }}>
