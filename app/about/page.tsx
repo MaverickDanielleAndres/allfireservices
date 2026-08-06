@@ -30,7 +30,6 @@ export default function Page() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             position: 'relative',
-            marginBottom: '4rem',
             marginTop: '-12rem',
             paddingTop: '12rem',
           }}
@@ -38,18 +37,19 @@ export default function Page() {
           {/* Dark Overlay (updated to match home page) */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
           {/* Seamless fade to white at the bottom */}
-          <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.92) 90%, #ffffff 100%)', zIndex: 2 }}></div>
+          <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '150px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.9) 80%, #ffffff 100%)', zIndex: 2 }}></div>
 
           <div className="padding-global" style={{ position: 'relative', zIndex: 3 }}>
             <div className="container-large">
-              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '14rem' }}>
+              <div className="padding-section-large is-about pb-[24rem] md:pb-[12rem]" style={{ paddingTop: '8rem' }}>
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
-                  <div className="hero_content-wrapper">
-                    <div className="hero_content-left">
-                      <div className="header-eyebrow-text hide-desktop" style={{ color: '#FEAF04', fontWeight: 600 }}>
+                  <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
+                    <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
+                      <div className="header-eyebrow-text hide-desktop mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         About All Fire Services
                       </div>
                       <h1 
+                        className="mx-auto md:mx-0 text-center md:text-left w-full"
                         style={{ 
                           fontSize: 'clamp(2rem, 5vw, 5.5rem)',
                           color: '#ffffff', 
@@ -60,16 +60,16 @@ export default function Page() {
                         }}
                       >
                         <span style={{ display: 'block', whiteSpace: 'nowrap' }}>ABOUT ALLFIRE</span>
-                        <span style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingRight: '20px', background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                          SERVICES SYDNEY&nbsp;
+                        <span style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingRight: '0px', background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                          SERVICES SYDNEY
                         </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right">
-                      <div className="header-eyebrow-text hide-tablet" style={{ color: '#FEAF04', fontWeight: 600 }}>
+                    <div className="hero_content-right flex flex-col items-center md:items-start">
+                      <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         About All Fire Services
                       </div>
-                      <p className="body-text" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                      <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         All Fire Services is an Australian owned and operated business created by a former NSW Fire Brigades Senior Officer in December 2009. We provide high-level professional fire safety services whilst being approachable, practical and reasonable.
                       </p>
                     </div>
@@ -93,18 +93,18 @@ export default function Page() {
                 <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
-                      className={styles.storyHeaderLeft}
+                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Legacy</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>Our Legacy</p>
+                      <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
                       </h2>
                     </header>
-                    <p className={styles.newStoryParagraph}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
                       AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn&apos;t just our profession, it&apos;s our legacy.
                     </p>
-                    <p className={styles.newStoryParagraph} style={{ fontWeight: 'bold', color: '#111' }}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
                       When you choose AllFire, you are choosing a century of unbroken dedication to saving lives and safeguarding futures.
                     </p>
                   </div>
@@ -136,41 +136,41 @@ export default function Page() {
                   <div className="flex flex-col gap-16 md:gap-20 w-full">
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Proudly Serving Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
+                      <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Proudly Serving <br className="md:hidden" />Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
                       </h2>
-                      <p style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                      <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         It all began with William Tricklebank. His unwavering commitment to protecting the community set a profound benchmark for courage and resilience that continues to define our approach over a century later.
                       </p>
                     </div>
 
                     {/* Row 2 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
-                      <p className="order-2 md:order-1" style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                      <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         A proud, unbroken lineage of frontline firefighters—Trevor, Stanley, Ian, and Peter. For decades, our family has stood at the forefront of emergency response, passing down invaluable hands-on expertise from father to son.
                       </p>
-                      <h2 className="order-1 md:order-2 text-left md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                      <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         A Legacy of Four <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Generations</span>
                       </h2>
                     </div>
 
                     {/* Row 3 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Leading from 2009 to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Present</span>
+                      <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Leading from 2009 <br className="md:hidden" />to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Present</span>
                       </h2>
-                      <p style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                      <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         Drawing upon generations of hard-won knowledge, Peter established AllFire Services. What started as a family calling has transformed into an industry-leading enterprise, delivering uncompromising fire protection and compliance.
                       </p>
                     </div>
 
                     {/* Row 4 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
-                      <p className="order-2 md:order-1" style={{ color: '#111111', fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.55, margin: 0, textAlign: 'justify' }}>
+                      <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         We don't just tick boxes. Every inspection, installation, and certification we perform is backed by over 100 years of real-world, lived experience. When you choose AllFire, you are choosing a partner whose dedication to saving lives runs in the blood.
                       </p>
-                      <h2 className="order-1 md:order-2 text-left md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Our Unwavering <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Promise</span> to You
+                      <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                        Our Unwavering <br className="md:hidden" /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Promise</span> to You
                       </h2>
                     </div>
                   </div>
@@ -225,10 +225,10 @@ export default function Page() {
                         &ldquo;Founded by<br /><span className={styles.orangeText}>a firefighter</span>&rdquo;
                       </h2>
                     </header>
-                    <p className={styles.newStoryParagraph}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
                       All Fire Services is an Australian owned and operated business, created by a former NSW Fire Brigades Senior Officer in December 2009.
                     </p>
-                    <p className={styles.newStoryParagraph}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
                       The company was founded on a simple idea: that our customer service technicians should be professional firefighters, both serving and retired. It means every client gets extensive, real-life knowledge of the fire safety industry rather than a checklist.
                     </p>
                   </div>
@@ -246,7 +246,7 @@ export default function Page() {
                         &ldquo;Built on<br /><span className={styles.orangeText}>Real Experience</span>&rdquo;
                       </h2>
                     </header>
-                    <p className={styles.newStoryParagraph}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
                       With more than 38 years of frontline firefighting and fire safety experience, Peter established AllFire with a simple vision: to create a fire protection company that clients could genuinely rely on. By combining the knowledge of serving and retired firefighters with exceptional customer service, AllFire was built on experience, integrity and a commitment to doing the job right.
                     </p>
                   </div>
@@ -270,7 +270,7 @@ export default function Page() {
                         &ldquo;Always<br /><span className={styles.orangeText}>Learning</span>&rdquo;
                       </h2>
                     </header>
-                    <p className={styles.newStoryParagraph}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
                       Fire safety standards continue to evolve, and so do we. Through ongoing professional development, industry training and practical education, we ensure our team remains up to date with current legislation, Australian Standards and industry best practice.
                     </p>
                   </div>
@@ -289,10 +289,10 @@ export default function Page() {
                           &ldquo;Excellence in<br /><span className={styles.orangeText}>Fire Protection</span>&rdquo;
                         </h2>
                       </header>
-                      <p className={styles.newStoryParagraph}>
+                      <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
                         To deliver high-quality fire protection and compliance services through practical expertise, trusted advice and dependable service, while remaining approachable, responsive and easy to work with.
                       </p>
-                      <p className={styles.newStoryParagraph} style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
+                      <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
                         We don&apos;t just meet standards; we set them. Because when it comes to fire safety, average is never enough.
                       </p>
                     </div>

@@ -523,7 +523,7 @@
 .relation {
   margin: 0.85rem 0 0;
   color: #161d28;
-  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
   font-family: var(--font-sans), sans-serif;
   font-weight: 700;
   line-height: 1.35;
@@ -536,10 +536,10 @@
 .name {
   margin: 0.4rem 0 0;
   color: #3f4650;
-  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
   font-family: var(--font-sans), sans-serif;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .legacyTagline {
@@ -634,6 +634,10 @@
   .generation {
     width: 100%;
     scroll-snap-align: none;
+  }
+
+  .timelineTrack .generation:last-child:nth-child(odd) {
+    grid-column: 1 / -1 !important;
   }
 }
 
@@ -1211,17 +1215,23 @@
   .legacySection {
     padding-top: 4.25rem;
     padding-bottom: 4.25rem;
+    background: #ffffff !important;
+    position: relative !important;
+    display: block;
   }
 
   .legacySection {
     height: auto !important;
+    overflow: hidden;
+    z-index: 20;
   }
 
   .stickyContainer {
     position: relative !important;
     top: auto !important;
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+    height: auto !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
 
   .storyHeader {

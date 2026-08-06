@@ -168,32 +168,32 @@ export default function HomeStoryLegacy() {
         </div>
         <div className="padding-global">
           <div className="container-large">
-            <div className={styles.newStoryGrid}>
-              <div className={styles.newStoryContent}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+              <div className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start px-6 md:px-12 lg:px-0">
                 <motion.header
-                  className={styles.storyHeaderLeft}
+                  className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start`}
                   variants={reveal}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4 }}
                   style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                 >
-                  <p className={styles.kickerLeft}>Our story</p>
-                  <h2>
+                  <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Our story</p>
+                  <h2 className="mx-auto lg:mx-0">
                     &ldquo;Founded by <span className={styles.orangeText}>a firefighter</span>&rdquo;
                   </h2>
                 </motion.header>
-                <p className={styles.newStoryParagraph}>
+                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-4 text-center lg:text-left" style={{ marginBottom: '1.5rem' }}>
                   All Fire Services is an Australian owned and operated business, created by a former NSW Fire Brigades Senior Officer in December 2009.
                 </p>
-                <p className={styles.newStoryParagraph}>
+                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-8 text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
                   The company was founded on a simple idea: that our customer service technicians should be professional firefighters, both serving and retired. It means every client gets extensive, real-life knowledge of the fire safety industry rather than a checklist.
                 </p>
                 <Link href="/about" className={styles.newStoryLink}>
                   READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
                 </Link>
               </div>
-              <div className={styles.newStoryVideoWrapper}>
+              <div className="relative w-full max-w-[320px] mx-auto lg:mx-auto aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
                 <iframe
                   width="100%"
                   height="100%"
@@ -202,14 +202,13 @@ export default function HomeStoryLegacy() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className={styles.newStoryVideoBg}
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
+                  className="absolute inset-0 w-full h-full rounded-[1.5rem]"
                 ></iframe>
               </div>
             </div>
 
-            <div className={styles.newStoryGrid} style={{ marginTop: '6rem' }}>
-              <div className={styles.newStoryVideoWrapper} style={{ margin: '0 auto 0 0' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center mt-16 lg:mt-20">
+              <div className="relative w-full max-w-[320px] mx-auto lg:mx-auto aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl order-2 lg:order-1">
                 <iframe
                   width="100%"
                   height="100%"
@@ -218,28 +217,27 @@ export default function HomeStoryLegacy() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  className={styles.newStoryVideoBg}
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "1.5rem" }}
+                  className="absolute inset-0 w-full h-full rounded-[1.5rem]"
                 ></iframe>
               </div>
-              <div className={styles.newStoryContent}>
+              <div className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start order-1 lg:order-2 px-6 md:px-12 lg:px-0">
                 <motion.header
-                  className={styles.storyHeaderLeft}
+                  className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start`}
                   variants={reveal}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4 }}
                   style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                 >
-                  <p className={styles.kickerLeft}>Our story</p>
-                  <h2 style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '20ch' }}>
-                    &ldquo;Who knows better<br />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
+                  <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Our story</p>
+                  <h2 className="mx-auto lg:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '28ch' }}>
+                    &ldquo;Who knows better<br className="hidden lg:block" />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
                   </h2>
                 </motion.header>
-                <p className={styles.newStoryParagraph}>
+                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-4 text-center lg:text-left" style={{ marginBottom: '1.5rem' }}>
                   Fire protection is more than a checklist. It is lived experience, shared by a team and passed down through generations.
                 </p>
-                <p className={styles.newStoryParagraph}>
+                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-8 text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
                   We bring the discipline, rapid response, and deep operational knowledge forged in the line of duty directly to your fire safety systems. When seconds matter and lives are on the line, our firsthand experience ensures nothing is left to chance.
                 </p>
                 <Link href="/about" className={styles.newStoryLink}>
