@@ -41,7 +41,7 @@ export default function Page() {
 
           <div className="padding-global" style={{ position: 'relative', zIndex: 3 }}>
             <div className="container-large">
-              <div className="padding-section-large is-about pb-[24rem] md:pb-[12rem]" style={{ paddingTop: '8rem' }}>
+              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
                   <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                     <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
