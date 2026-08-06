@@ -566,6 +566,12 @@ export default function Page() {
               text-transform: uppercase;
               color: #ffffff;
             }
+            .hero-title-desktop {
+              display: block;
+            }
+            .hero-title-mobile {
+              display: none;
+            }
             .hero-title-line {
               display: block;
               white-space: nowrap;
@@ -738,17 +744,23 @@ export default function Page() {
                 word-break: normal;
                 overflow-wrap: break-word;
               }
+              .hero-title-desktop {
+                display: none;
+              }
+              .hero-title-mobile {
+                display: block;
+              }
               .hero-title-line {
                 display: block;
-                white-space: normal;
+                white-space: nowrap;
               }
-              .hero-title-line:nth-child(1) {
-                font-size: clamp(1.2rem, 6.5vw, 2.75rem);
+              .hero-title-mobile .line-1 {
+                font-size: clamp(1.2rem, 9vw, 2.75rem);
               }
-              .hero-title-line:nth-child(2),
-              .hero-title-line:nth-child(3),
-              .hero-title-line:nth-child(4) {
-                font-size: clamp(1.6rem, 9.5vw, 2.75rem);
+              .hero-title-mobile .line-2,
+              .hero-title-mobile .line-3,
+              .hero-title-mobile .line-4 {
+                font-size: clamp(1.6rem, 11vw, 2.75rem);
               }
               .hero-subtitle {
                 font-size: 1.05rem;
@@ -825,9 +837,17 @@ export default function Page() {
                 Reliable fire safety starts here
               </div>
               <h1 className="hero-title">
-                <span className="hero-title-line">FIRE PROTECTION IS</span>
-                <span className="hero-title-line">MORE THAN A SERVICE,</span>
-                <span className="hero-title-line"><span style={{ color: "#ff0000" }}>IT&apos;S IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
+                <div className="hero-title-desktop">
+                  <span className="hero-title-line">FIRE PROTECTION IS</span>
+                  <span className="hero-title-line">MORE THAN A SERVICE,</span>
+                  <span className="hero-title-line"><span style={{ color: "#ff0000" }}>IT&apos;S IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
+                </div>
+                <div className="hero-title-mobile">
+                  <span className="hero-title-line line-1">FIRE PROTECTION</span>
+                  <span className="hero-title-line line-2">IS MORE THAN</span>
+                  <span className="hero-title-line line-3">A SERVICE, IT&apos;S</span>
+                  <span className="hero-title-line line-4"><span style={{ color: "#ff0000" }}>IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
+                </div>
               </h1>
               <p className="hero-body">
                 We help businesses protect lives, property, and stay compliant with practical, reliable fire safety solutions. Proudly Australian owned and trusted since 2009.

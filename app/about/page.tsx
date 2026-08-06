@@ -67,21 +67,21 @@ export default function Page() {
           }
           @media (max-width: 767px) {
             .about-hero-inner {
-              padding-top: 6rem;
-              padding-bottom: 22rem;
+              padding-top: 6rem !important;
+              padding-bottom: 32rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
                 rgba(10,10,10,0.88) 0%,
-                rgba(20,5,5,0.82) 40%,
-                rgba(30,5,5,0.72) 60%,
-                rgba(40,8,8,0.45) 75%,
-                rgba(50,8,8,0.18) 88%,
-                rgba(255,255,255,0) 98%
-              );
+                rgba(20,5,5,0.82) 50%,
+                rgba(30,5,5,0.72) 75%,
+                rgba(40,8,8,0.55) 90%,
+                rgba(50,8,8,0.25) 96%,
+                rgba(255,255,255,0) 100%
+              ) !important;
             }
             .about-fade-overlay {
-              height: 25%;
+              height: 220px !important;
             }
           }
         `}} />
@@ -130,7 +130,7 @@ export default function Page() {
                         </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right flex flex-col items-center md:items-start">
+                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
                       <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         About All Fire Services
                       </div>
@@ -153,7 +153,7 @@ export default function Page() {
         >
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '0' }}>
+              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
                 
                 {/* Block 1 */}
                 <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
@@ -243,8 +243,8 @@ export default function Page() {
                 </div>
 
                 {/* Interactive Shared-Element Gallery */}
-                <Gallery>
-                  <GalleryGrid className="max-w-7xl mx-auto">
+                <div className="max-w-7xl mx-auto">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {[
                       "1 (1).jpg",
                       "1 (2).jpg",
@@ -259,15 +259,29 @@ export default function Page() {
                       "about (8).jpg",
                       "about (9).jpg"
                     ].map((filename, idx) => (
-                      <GalleryImage 
-                        key={idx} 
-                        id={idx.toString()} 
-                        src={`/History/${filename}?v=2`} 
-                        alt={`History Gallery Image ${idx + 1}`}
-                      />
+                      <button
+                        key={idx}
+                        type="button"
+                        aria-label={`Open larger gallery photo ${idx + 1}`}
+                        style={{ width: '100%', height: 'auto', aspectRatio: '1/1', overflow: 'hidden', borderRadius: '0.5rem', cursor: 'pointer', position: 'relative', padding: 0, border: 0, background: 'transparent' }}
+                        onClick={() => setLightboxImage(`/History/${filename}?v=2`)}
+                        className="group"
+                      >
+                        <Image
+                          fill
+                          src={`/History/${filename}`}
+                          sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                          alt={`History Gallery Image ${idx + 1}`}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
+                          className="group-hover:scale-105"
+                        />
+                        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)', transition: 'background 300ms', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem' }} className="group-hover:bg-black/10">
+                          <span style={{ color: 'white', fontSize: '1.5rem', opacity: 0, transition: 'opacity 300ms', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} className="group-hover:opacity-100">⤢</span>
+                        </div>
+                      </button>
                     ))}
-                  </GalleryGrid>
-                </Gallery>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
