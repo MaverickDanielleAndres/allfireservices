@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SplitText from "./SplitText";
 import { useRef, type CSSProperties } from "react";
+import { usePathname } from "next/navigation";
 import styles from "./HomeStoryLegacy.module.css";
 
 
@@ -147,6 +148,8 @@ function TimelineGeneration({
 export default function HomeStoryLegacy() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
+  const pathname = usePathname();
+
   const { scrollYProgress: timelineScrollProgress } = useScroll({
     target: sectionRef,
     offset: ["start 100px", "0.8 end"],
@@ -170,11 +173,12 @@ export default function HomeStoryLegacy() {
           <div className="container-large">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative items-start lg:items-stretch pt-4">
               
-              {/* Sticky Video Column (Left) */}
-              {/* NOTE: overflow-hidden must NOT be on the sticky element itself — it breaks position:sticky.
-                  Keep sticky on the outer wrapper and overflow/radius/shadow on an inner div. */}
+              {/* Sticky Video Column (Left) — Native CSS Sticky */}
               <div className="order-1 w-full relative h-full">
-                <div className="w-full max-w-[320px] mx-auto lg:mx-auto lg:sticky lg:top-32">
+                <div
+                  key={pathname}
+                  className="w-full max-w-[320px] mx-auto lg:mx-auto lg:sticky lg:top-32"
+                >
                   <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
                     <iframe
                       width="100%"

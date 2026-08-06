@@ -699,6 +699,9 @@ export default function Page() {
               .hero-content {
                 max-width: 100%;
               }
+              .hero-title-line {
+                white-space: normal;
+              }
               .hero-analytics {
                 width: 100%;
                 flex-direction: row;
@@ -737,7 +740,7 @@ export default function Page() {
               }
               .hero-title-line {
                 display: block;
-                white-space: nowrap;
+                white-space: normal;
               }
               .hero-title-line:nth-child(1) {
                 font-size: clamp(1.2rem, 6.5vw, 2.75rem);

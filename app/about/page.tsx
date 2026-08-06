@@ -23,6 +23,68 @@ export default function Page() {
   return (
     <main className="main-wrapper">
       <main className="scroll-wrapper">
+        <style dangerouslySetInnerHTML={{ __html: `
+          .about-hero-inner {
+            padding-top: 8rem;
+            padding-bottom: 20rem;
+          }
+          .about-dark-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom,
+              rgba(10,10,10,0.88) 0%,
+              rgba(20,5,5,0.82) 30%,
+              rgba(30,5,5,0.72) 50%,
+              rgba(40,8,8,0.45) 68%,
+              rgba(50,8,8,0.18) 80%,
+              rgba(255,255,255,0) 92%
+            );
+          }
+          .about-fade-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(to bottom,
+              rgba(255,255,255,0) 0%,
+              rgba(255,255,255,0.01) 8%,
+              rgba(255,255,255,0.03) 16%,
+              rgba(255,255,255,0.07) 24%,
+              rgba(255,255,255,0.13) 32%,
+              rgba(255,255,255,0.22) 40%,
+              rgba(255,255,255,0.34) 49%,
+              rgba(255,255,255,0.49) 57%,
+              rgba(255,255,255,0.64) 65%,
+              rgba(255,255,255,0.78) 73%,
+              rgba(255,255,255,0.89) 81%,
+              rgba(255,255,255,0.96) 89%,
+              #ffffff 95%,
+              #ffffff 100%
+            );
+            z-index: 2;
+          }
+          @media (max-width: 767px) {
+            .about-hero-inner {
+              padding-top: 6rem;
+              padding-bottom: 22rem;
+            }
+            .about-dark-overlay {
+              background: linear-gradient(to bottom,
+                rgba(10,10,10,0.88) 0%,
+                rgba(20,5,5,0.82) 40%,
+                rgba(30,5,5,0.72) 60%,
+                rgba(40,8,8,0.45) 75%,
+                rgba(50,8,8,0.18) 88%,
+                rgba(255,255,255,0) 98%
+              );
+            }
+            .about-fade-overlay {
+              height: 25%;
+            }
+          }
+        `}} />
         <header 
           className="section_about-hero is-dark"
           style={{ 
@@ -32,16 +94,19 @@ export default function Page() {
             position: 'relative',
             marginTop: '-12rem',
             paddingTop: '12rem',
+            marginBottom: '-2px',
           }}
         >
-          {/* Dark Overlay (updated to match home page) */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
-          {/* Seamless fade to white at the bottom */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '150px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.95) 80%, #ffffff 90%, #ffffff 100%)', zIndex: 2 }}></div>
+          {/* Dark tint overlay – breakpoint-aware via .about-dark-overlay */}
+          <div className="about-dark-overlay"></div>
+          {/* Right-side colour tint (horizontal) – kept separate so it doesn't interfere with vertical fade */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.55) 0%, rgba(30,5,5,0.35) 40%, rgba(70,10,10,0.15) 70%, transparent 100%)', mixBlendMode: 'multiply' }}></div>
+          {/* Seamless fade to white – height controlled per breakpoint via .about-fade-overlay */}
+          <div className="about-fade-overlay"></div>
 
           <div className="padding-global" style={{ position: 'relative', zIndex: 3, marginTop: '-2px' }}>
             <div className="container-large">
-              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
+              <div className="padding-section-large is-about about-hero-inner">
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
                   <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                     <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
@@ -70,7 +135,7 @@ export default function Page() {
                         About All Fire Services
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        All Fire Services is an Australian owned and operated business created by a former NSW Fire Brigades Senior Officer in December 2009. We provide high-level professional fire safety services whilst being approachable, practical and reasonable.
+                        Founded by a former NSW Fire Brigades Senior Officer, fire protection is in our blood. We deliver elite, professional safety services driven by practical, real-world expertise.
                       </p>
                     </div>
                   </div>
@@ -84,6 +149,7 @@ export default function Page() {
           data-animate-to="light"
           data-theme="light"
           className="section_story"
+          style={{ position: 'relative', zIndex: 10, background: '#ffffff' }}
         >
           <div className="padding-global">
             <div className="container-large">
