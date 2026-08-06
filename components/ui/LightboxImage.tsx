@@ -19,8 +19,8 @@ export function LightboxImage({ src, alt, sizes, fill, style, className }: any) 
           src={src}
           sizes={sizes}
           alt={alt}
-          style={style}
-          className="group-hover:scale-105"
+          style={{ objectFit: 'cover', ...style }}
+          className="object-cover group-hover:scale-105"
         />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)', transition: 'background 300ms', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem' }} className="group-hover:bg-black/10">
           <span style={{ color: 'white', fontSize: '1.5rem', opacity: 0, transition: 'opacity 300ms', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} className="group-hover:opacity-100">⤢</span>

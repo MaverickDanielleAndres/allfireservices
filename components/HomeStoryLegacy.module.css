@@ -506,7 +506,7 @@
 .year {
   margin: 1.25rem 0 0;
   color: #d92820;
-  font-size: clamp(0.9rem, 1.25vw, 1.6rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 700;
   line-height: 1.1;
@@ -516,13 +516,13 @@
 .relation {
   margin: 0.85rem 0 0;
   color: #161d28;
-  font-size: clamp(0.75rem, 1vw, 0.95rem);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 700;
   line-height: 1.35;
-  min-height: 3rem;
+  min-height: 4.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   white-space: pre-line;
   text-align: center;
@@ -530,14 +530,17 @@
 
 @media (min-width: 768px) {
   .smallRelationOnDesktop {
-    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+    font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+  }
+  .smallNameOnDesktop {
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
   }
 }
 
 .name {
   margin: 0.4rem 0 0;
   color: #3f4650;
-  font-size: clamp(0.8rem, 1.05vw, 1rem);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 500;
   line-height: 1.4;

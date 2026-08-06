@@ -52,7 +52,7 @@ const generations = [
   { year: "1959", relation: "Uncle", name: "Ian Tricklebank", image: "/family/uncleian.png" },
   { year: "2009", relation: "NSW Fire Brigades\nSenior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
   { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/paul.jpg" },
-  { year: "2020 - Current", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
+  { year: "Current", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -138,10 +138,10 @@ function TimelineGeneration({
         aria-hidden="true"
       />
       <p className={styles.year}>{generation.year}</p>
-      <p className={`${styles.relation} ${generation.year === "2009" ? styles.smallRelationOnDesktop : ""}`}>
+      <p className={`${styles.relation} ${["2009", "2014", "Current"].includes(generation.year) ? styles.smallRelationOnDesktop : ""}`}>
         {generation.relation}
       </p>
-      <p className={styles.name}>{generation.name.replace(' ', '\n')}</p>
+      <p className={`${styles.name} ${generation.name.length > 20 ? styles.smallNameOnDesktop : ""}`}>{generation.name.replace(' ', '\n')}</p>
     </motion.article>
   );
 }

@@ -217,7 +217,7 @@ const generations = [
   },
   { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", x: "76.6%" },
   {
-    year: "2020 — current",
+    year: "Current",
     relation: "Managing Director",
     name: "Peter Tricklebank",
     x: "87.3%",

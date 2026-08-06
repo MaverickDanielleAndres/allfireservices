@@ -184,7 +184,7 @@ export default function Page() {
                       When your building&apos;s safety is on the line, trust a team shaped by generations of protecting people and property.
                     </p>
                   </div>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '420px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '1.5rem', overflow: 'hidden' }}>
                     <Image src="/History/1 (1).jpg" alt="Fire Protection Runs in Our Blood" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                 </div>

@@ -34,15 +34,15 @@ export default function FounderLegacy() {
                   style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                 >
                   <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
-                  <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', lineHeight: 0.94 }}>
-                    &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
+                  <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(1.8rem, 3.8vw, 4rem)', maxWidth: '100%', lineHeight: 0.94 }}>
+                    The Firefighter Behind<br /><span className={styles.orangeText}>All Fire Services</span>
                   </h2>
                 </header>
                 <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
                   Most fire safety companies learn from manuals.<br />We learned on the front line.
                 </p>
                 <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                  All Fire Services was founded by Peter Tricklebank, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a family history of firefighters dating back to 1911, every inspection, certification, and recommendation is shaped by experience earned where it matters most.
+                  All Fire Services was founded by <strong>Peter Tricklebank</strong>, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a family history of firefighters dating back to <strong>1911</strong>, every inspection, certification, and recommendation is shaped by experience earned where it matters most.
                 </p>
                 <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
                   When your building&apos;s safety is on the line, trust the people who have spent generations protecting lives and property.
