@@ -806,11 +806,13 @@ export default function Page() {
               quality={60}
               sizes="100vw"
             />
-            {/* Dark tint overlay */}
-            <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
-            
-            {/* Seamless fade to white at the bottom */}
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.95) 90%, #ffffff 95%, #ffffff 100%)', zIndex: 2 }}></div>
+            {/* Dark tint overlay – fades away toward bottom so white fade is unobstructed */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to bottom, rgba(10,10,10,0.88) 0%, rgba(20,5,5,0.82) 30%, rgba(30,5,5,0.72) 50%, rgba(40,8,8,0.45) 68%, rgba(50,8,8,0.18) 80%, rgba(255,255,255,0) 92%)' }}></div>
+            {/* Right-side colour tint (horizontal) – kept separate so it doesn't interfere with vertical fade */}
+            <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.55) 0%, rgba(30,5,5,0.35) 40%, rgba(70,10,10,0.15) 70%, transparent 100%)', mixBlendMode: 'multiply' }}></div>
+
+            {/* Seamless fade to white – tall & cubic-eased to prevent any visible line */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '55%', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 8%, rgba(255,255,255,0.03) 16%, rgba(255,255,255,0.07) 24%, rgba(255,255,255,0.13) 32%, rgba(255,255,255,0.22) 40%, rgba(255,255,255,0.34) 49%, rgba(255,255,255,0.49) 57%, rgba(255,255,255,0.64) 65%, rgba(255,255,255,0.78) 73%, rgba(255,255,255,0.89) 81%, rgba(255,255,255,0.96) 89%, #ffffff 95%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className="home-hero-section">
           <div className="hero-container">
