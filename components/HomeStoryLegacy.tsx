@@ -332,7 +332,7 @@ export default function HomeStoryLegacy() {
             </motion.div>
 
             <motion.div
-              className={styles.legacyParagraph}
+              className={`${styles.legacyParagraph} pb-16 md:pb-24 lg:pb-32`}
               variants={reveal}
               initial="hidden"
               whileInView="show"
