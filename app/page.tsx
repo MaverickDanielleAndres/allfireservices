@@ -821,11 +821,8 @@ export default function Page() {
               </div>
               <h1 className="hero-title">
                 <span className="hero-title-line">FIRE PROTECTION IS</span>
-                <span className="hero-title-line">MORE THAN A</span>
-                <span className="hero-title-line">SERVICE, <span style={{ color: "#ff0000" }}>IT&apos;S IN</span></span>
-                <span className="hero-title-line">
-                  <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span>
-                </span>
+                <span className="hero-title-line">MORE THAN A SERVICE,</span>
+                <span className="hero-title-line"><span style={{ color: "#ff0000" }}>IT&apos;S IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
               </h1>
               <p className="hero-body">
                 We help businesses protect lives, property, and stay compliant with practical, reliable fire safety solutions. Proudly Australian owned and trusted since 2009.

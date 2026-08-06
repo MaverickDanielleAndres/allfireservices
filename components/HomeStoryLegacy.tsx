@@ -300,18 +300,10 @@ export default function HomeStoryLegacy() {
         </div>
       </section>
 
-      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingTop: 'clamp(6rem, 10vh, 10rem)', paddingBottom: '2rem' }}>
+      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingTop: 'clamp(2rem, 4vh, 4rem)', paddingBottom: '2rem' }}>
         <div className="padding-global">
           <div className="container-large">
-            <motion.p
-              className={styles.legacyTagline}
-              initial={{ opacity: 0, scaleX: 0.92 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true, amount: 0.65 }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            >
-              A legacy of service. A future of leadership.
-            </motion.p>
+
 
             <motion.div
               className={styles.historyGallery}
