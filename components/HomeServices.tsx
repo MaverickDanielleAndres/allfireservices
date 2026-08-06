@@ -1,5 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  FireExtinguisher,
+  Disc,
+  Flame,
+  Activity,
+  Server,
+  ClipboardCheck,
+} from "lucide-react";
 
 import { MotionSection } from "@/components/MotionPrimitives";
 
@@ -112,14 +120,68 @@ export default function HomeServices() {
         </header>
 
         <div className={styles.capabilityStrip}>
-          <Image
-            src="/fpa-capability-strip.webp"
-            alt="FPA Capability Strip"
-            width={0}
-            height={0}
-            sizes="100vw"
-            className={styles.capabilityImage}
-          />
+          <div className={styles.capabilityLogo}>
+            <Image
+              src="/secondlogo.png"
+              alt="FPA Australia Bronze Member"
+              width={160}
+              height={80}
+            />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <FireExtinguisher strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>FIRE<br />EXTINGUISHERS</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <Disc strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>FIRE HOSES<br />&amp; REELS</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <Flame strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>FIRE HYDRANTS<br />&amp; BOOSTERS</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <Activity strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>EMERGENCY<br />EQUIPMENT</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <Server strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>FIRE<br />PANELS</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
+          <div className={styles.capabilityDivider} />
+          
+          <div className={styles.capabilityItem}>
+            <div className={styles.capabilityIconCircle}>
+              <ClipboardCheck strokeWidth={1.75} />
+            </div>
+            <span className={styles.capabilityLabel}>TESTING<br />&amp; COMPLIANCE</span>
+            <span className={styles.capabilityUnderline} />
+          </div>
         </div>
 
         <div className={styles.grid}>
