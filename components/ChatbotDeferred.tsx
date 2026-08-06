@@ -45,9 +45,18 @@ export default function ChatbotDeferred() {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobileOrTablet(window.innerWidth <= 1024);
+    let ticking = false;
+    const handleResize = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsMobileOrTablet(window.innerWidth <= 1024);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

@@ -802,6 +802,7 @@ export default function Page() {
               style={{ objectFit: 'cover' }}
               priority
               fetchPriority="high"
+              quality={60}
               sizes="100vw"
             />
             {/* Dark tint overlay */}
@@ -877,6 +878,7 @@ export default function Page() {
             loop 
             muted 
             playsInline
+            preload="none"
             className="mobile-video-tall"
             style={{ width: '100%', aspectRatio: '21/9', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
           />
