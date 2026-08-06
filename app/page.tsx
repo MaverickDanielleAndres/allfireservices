@@ -583,11 +583,11 @@ export default function Page() {
               color: #f7f7f5;
             }
             .hero-body {
-              font-size: 1.125rem;
-              line-height: 1.6;
+              font-size: 1.35rem;
+              line-height: 1.5;
               margin-bottom: 2.5rem;
               color: rgba(255, 255, 255, 0.9);
-              max-width: 500px;
+              max-width: 600px;
             }
             .hero-actions {
               display: flex;
@@ -767,7 +767,7 @@ export default function Page() {
                 margin-bottom: 0.75rem;
               }
               .hero-body {
-                font-size: 0.95rem;
+                font-size: 1.15rem;
                 margin-bottom: 1.5rem;
               }
               .hero-actions {
@@ -838,19 +838,19 @@ export default function Page() {
               </div>
               <h1 className="hero-title">
                 <div className="hero-title-desktop">
-                  <span className="hero-title-line">FIRE PROTECTION IS</span>
-                  <span className="hero-title-line">MORE THAN A SERVICE,</span>
-                  <span className="hero-title-line"><span style={{ color: "#ff0000" }}>IT&apos;S IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
+                  <span className="hero-title-line">FIRE SAFETY IS NOT A</span>
+                  <span className="hero-title-line">BOX TO TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                  <span className="hero-title-line"><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
                 </div>
                 <div className="hero-title-mobile">
-                  <span className="hero-title-line line-1">FIRE PROTECTION</span>
-                  <span className="hero-title-line line-2">IS MORE THAN</span>
-                  <span className="hero-title-line line-3">A SERVICE, IT&apos;S</span>
-                  <span className="hero-title-line line-4"><span style={{ color: "#ff0000" }}>IN </span><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span></span>
+                  <span className="hero-title-line line-1">FIRE SAFETY IS</span>
+                  <span className="hero-title-line line-2">NOT A BOX TO</span>
+                  <span className="hero-title-line line-3">TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                  <span className="hero-title-line line-4"><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
                 </div>
               </h1>
               <p className="hero-body">
-                We help businesses protect lives, property, and stay compliant with practical, reliable fire safety solutions. Proudly Australian owned and trusted since 2009.
+                <strong style={{ color: "#ffffff", fontWeight: 800 }}>Fire protection is more than a service, it&apos;s in our blood.</strong> Backed by generations of firefighting experience, we deliver practical and reliable fire safety solutions.
               </p>
               <div className="hero-actions">
                 <Link href="/contact" className="btn-primary">Get a Quote</Link>
