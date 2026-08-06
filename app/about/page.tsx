@@ -162,16 +162,19 @@ export default function Page() {
                       className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>Our Legacy</p>
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
                       <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
                       </h2>
                     </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
+                      Most fire safety companies learn from manuals. We learned on the front line.
+                    </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                      AllFire Services is an Australian-owned business founded in 2009 by former NSW Fire Brigades Senior Officer, Peter Wood. With a family history in the fire service dating back to 1911, protecting people and property isn&apos;t just our profession, it&apos;s our legacy.
+                      All Fire Services was <strong>founded in 2009</strong> by Peter Tricklebank, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a <strong>family history dating back to 1911</strong>, every inspection and recommendation is guided by experience gained where it matters most.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
-                      When you choose AllFire, you are choosing a century of unbroken dedication to saving lives and safeguarding futures.
+                      When your building&apos;s safety is on the line, trust a team shaped by generations of protecting people and property.
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '420px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
@@ -192,10 +195,10 @@ export default function Page() {
                 <div style={{ maxWidth: '1000px', margin: '0 auto 6rem auto' }}>
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                     <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                      A Century of Service
+                      A CENTURY OF SERVICE
                     </h2>
                     <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#111111' }}>
-                      &ldquo;Who&apos;s Better <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>than a Fireman?</span>&rdquo;
+                      &ldquo;Who Knows Fire Better <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Than a Firefighter?</span>&rdquo;
                     </p>
                   </div>
 
@@ -206,14 +209,14 @@ export default function Page() {
                         Proudly Serving <br className="md:hidden" />Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        It all began with William Tricklebank. His unwavering commitment to protecting the community set a profound benchmark for courage and resilience that continues to define our approach over a century later.
+                        It began with William Tricklebank, whose commitment to protecting the community established a standard of courage, service, and responsibility that continues to guide us today.
                       </p>
                     </div>
 
                     {/* Row 2 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        A proud, unbroken lineage of frontline firefighters—Trevor, Stanley, Ian, and Peter. For decades, our family has stood at the forefront of emergency response, passing down invaluable hands-on expertise from father to son.
+                        From William to Trevor, Stanley, Ian, and Peter, our family has spent generations on the front line of emergency response. That history gives our clients <strong>real-world knowledge</strong> that cannot be learned from a checklist.
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         A Legacy of Four <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Generations</span>
@@ -223,17 +226,17 @@ export default function Page() {
                     {/* Row 3 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Leading from 2009 <br className="md:hidden" />to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Present</span>
+                        Leading from 2009 <br className="md:hidden" />to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Today</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        Drawing upon generations of hard-won knowledge, Peter established AllFire Services. What started as a family calling has transformed into an industry-leading enterprise, delivering uncompromising fire protection and compliance.
+                        Drawing on decades of operational knowledge, Peter established All Fire Services in 2009. What began as a family calling has grown into a trusted fire protection company delivering professional compliance and <strong>practical, reliable fire protection.</strong>
                       </p>
                     </div>
 
                     {/* Row 4 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        We don't just tick boxes. Every inspection, installation, and certification we perform is backed by over 100 years of real-world, lived experience. When you choose AllFire, you are choosing a partner whose dedication to saving lives runs in the blood.
+                        Every inspection, installation, and certification is supported by more than a century of lived firefighting experience. We do not simply help clients meet requirements. We help them <strong>protect people and property.</strong>
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         Our Unwavering <br className="md:hidden" /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Promise</span> to You
@@ -300,16 +303,16 @@ export default function Page() {
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Story</p>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Founded by<br /><span className={styles.orangeText}>a firefighter</span>&rdquo;
+                        &ldquo;Founded by<br /><span className={styles.orangeText}>a Firefighter</span>&rdquo;
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services is an Australian owned and operated business, created by a former NSW Fire Brigades Senior Officer in December 2009.
+                      All Fire Services was established in December 2009 by a former NSW Fire Brigades Senior Officer with a clear belief that fire protection should be delivered by people who <strong>understand it beyond paperwork.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      The company was founded on a simple idea: that our customer service technicians should be professional firefighters, both serving and retired. It means every client gets extensive, real-life knowledge of the fire safety industry rather than a checklist.
+                      By bringing together <strong>serving and retired professional firefighters</strong>, the company gives clients access to practical judgment, frontline knowledge, and dependable advice.
                     </p>
                   </div>
                 </div>
@@ -321,16 +324,16 @@ export default function Page() {
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Experience</p>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>EXPERIENCE</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Built on<br /><span className={styles.orangeText}>Real Experience</span>&rdquo;
                       </h2>
                     </header>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                        With more than 38 years of frontline firefighting and fire safety experience, Peter established AllFire with a simple vision: to create a fire protection company that clients could genuinely rely on.
+                        With <strong>more than 38 years of experience</strong> in firefighting and fire safety, Peter created All Fire Services to provide a level of service clients could genuinely trust.
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                        By combining the knowledge of serving and retired firefighters with exceptional customer service, AllFire was built on experience, integrity and a commitment to doing the job right.
+                        The company combines operational knowledge with professional customer service, ensuring every job is handled with integrity, care, and attention to detail.
                       </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
@@ -348,13 +351,16 @@ export default function Page() {
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Standards</p>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>STANDARDS</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Always<br /><span className={styles.orangeText}>Learning</span>&rdquo;
                       </h2>
                     </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      Fire safety requirements continue to change, and so does our knowledge. Through ongoing professional development and technical training, our team stays current with <strong>Australian Standards and current legislation.</strong>
+                    </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      Fire safety standards continue to evolve, and so do we. Through ongoing professional development, industry training and practical education, we ensure our team remains up to date with current legislation, Australian Standards and industry best practice.
+                      This allows us to give clients advice that is practical, accurate, and relevant to their property.
                     </p>
                   </div>
                 </div>
@@ -367,16 +373,19 @@ export default function Page() {
                         className={styles.storyHeaderLeft}
                         style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                       >
-                        <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>Our Mission</p>
+                        <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR MISSION</p>
                         <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                           &ldquo;Excellence in<br /><span className={styles.orangeText}>Fire Protection</span>&rdquo;
                         </h2>
                       </header>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                        To deliver high-quality fire protection and compliance services through practical expertise, trusted advice and dependable service, while remaining approachable, responsive and easy to work with.
+                        Our mission is to deliver <strong>practical, reliable fire protection</strong> through trusted advice, technical expertise, and responsive service.
+                      </p>
+                      <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                        We aim to make fire safety easier for every client while maintaining an uncompromising commitment to <strong>protecting people, property, and businesses.</strong>
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
-                        We don&apos;t just meet standards; we set them. Because when it comes to fire safety, average is never enough.
+                        We do not simply meet standards. We bring the experience needed to apply them properly.
                       </p>
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>

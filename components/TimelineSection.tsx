@@ -169,11 +169,12 @@ export default function TimelineSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.4 }}
             >
-              <p className={styles.kicker}>The generations behind All Fire Services</p>
-              <h2 id="legacy-title">A family history of service</h2>
+              <p className={styles.kicker}>THE GENERATIONS BEHIND ALL FIRE SERVICES</p>
+              <h2 id="legacy-title">A Family History of Service</h2>
               <p>
-                From 1911 to the next generation, a legacy built around
-                protecting people and property.
+                From 1911 to today, our family has carried forward a commitment to <strong>protecting lives, property, and communities.</strong>
+                <br /><br />
+                Across four generations, frontline knowledge has been passed down and transformed into the <strong>practical fire protection expertise</strong> behind All Fire Services.
               </p>
             </motion.header>
 
