@@ -336,6 +336,25 @@ export default function Navbar() {
           transform: translateY(-2px);
         }
 
+        .navbar-cta-outline {
+          background: transparent;
+          color: #111111;
+          border: 1px solid #111111;
+          padding: 0.875rem 1.75rem;
+          border-radius: 99px;
+          font-weight: 700;
+          text-decoration: none;
+          transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+          display: inline-block;
+          text-align: center;
+        }
+
+        .navbar-cta-outline:hover {
+          background: #111111;
+          color: #ffffff;
+          transform: translateY(-2px);
+        }
+
         .navbar-mobile-toggle {
           display: none;
           background: transparent;
@@ -538,7 +557,7 @@ export default function Navbar() {
           </div>
         ))}
         <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <a href="tel:1300765594" className="navbar-mobile-link" style={{ border: 'none', padding: '0' }}>
+          <a href="tel:1300765594" className="navbar-cta-outline">
             Call 1300 765 594
           </a>
           <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center', marginTop: '0.5rem' }} onClick={closeMenus}>
