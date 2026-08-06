@@ -1309,9 +1309,9 @@
   }
 
   .timelineTrack {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
     min-width: 0 !important;
-    gap: 3rem 1.5rem !important;
+    gap: 3rem 0 !important;
   }
 
   .timelineTrack::before,
