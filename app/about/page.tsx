@@ -23,7 +23,8 @@ export default function Page() {
   return (
     <main className="main-wrapper">
       <main className="scroll-wrapper">
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           .about-hero-inner {
             padding-top: 8rem;
             padding-bottom: 20rem;
@@ -85,9 +86,9 @@ export default function Page() {
             }
           }
         `}} />
-        <header 
+        <header
           className="section_about-hero is-dark"
-          style={{ 
+          style={{
             backgroundImage: 'url("/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -113,12 +114,12 @@ export default function Page() {
                       <div className="header-eyebrow-text hide-desktop mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         About All Fire Services
                       </div>
-                      <h1 
+                      <h1
                         className="mx-auto md:mx-0 text-center md:text-left w-full"
-                        style={{ 
+                        style={{
                           fontSize: 'clamp(2rem, 5vw, 5.5rem)',
-                          color: '#ffffff', 
-                          fontWeight: 900, 
+                          color: '#ffffff',
+                          fontWeight: 900,
                           textTransform: 'uppercase',
                           lineHeight: 1.1,
                           margin: 0
@@ -154,7 +155,7 @@ export default function Page() {
           <div className="padding-global">
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
-                
+
                 {/* Block 1 */}
                 <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -162,13 +163,13 @@ export default function Page() {
                       className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
                       <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
-                      Most fire safety companies learn from manuals. We learned on the front line.
+                      Most fire safety companies learn from manuals.<br />We learned on the front line.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
                       All Fire Services was <strong>founded in 2009</strong> by Peter Tricklebank, former NSW Fire Brigades Senior Officer, after decades of protecting lives in real emergencies. Backed by a <strong>family history dating back to 1911</strong>, every inspection and recommendation is guided by experience gained where it matters most.
@@ -194,10 +195,10 @@ export default function Page() {
               <div className="padding-section-large" style={{ paddingTop: '6rem' }}>
                 <div style={{ maxWidth: '1000px', margin: '0 auto 6rem auto' }}>
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-                    <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                    <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                       A CENTURY OF SERVICE
                     </h2>
-                    <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 700, color: '#111111' }}>
+                    <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 800, letterSpacing: '-0.06em', color: '#111111' }}>
                       &ldquo;Who Knows Fire Better <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Than a Firefighter?</span>&rdquo;
                     </p>
                   </div>
@@ -303,7 +304,7 @@ export default function Page() {
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
                         &ldquo;Founded by<br /><span className={styles.orangeText}>a Firefighter</span>&rdquo;
                       </h2>
@@ -329,12 +330,12 @@ export default function Page() {
                         &ldquo;Built on<br /><span className={styles.orangeText}>Real Experience</span>&rdquo;
                       </h2>
                     </header>
-                      <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                        With <strong>more than 38 years of experience</strong> in firefighting and fire safety, Peter created All Fire Services to provide a level of service clients could genuinely trust.
-                      </p>
-                      <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                        The company combines operational knowledge with professional customer service, ensuring every job is handled with integrity, care, and attention to detail.
-                      </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      With <strong>more than 38 years of experience</strong> in firefighting and fire safety, Peter created All Fire Services to provide a level of service clients could genuinely trust.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
+                      The company combines operational knowledge with professional customer service, ensuring every job is handled with integrity, care, and attention to detail.
+                    </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/History/about (3).jpg" alt="Built on Real Experience" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
@@ -461,9 +462,9 @@ export default function Page() {
                       </a>
                     </div>
                   </div>
-                   <div className="team_list-wrapper w-dyn-list">
-                    <div 
-                      role="list" 
+                  <div className="team_list-wrapper w-dyn-list">
+                    <div
+                      role="list"
                       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto"
                     >
                       {teamMembers.map((member) => {
@@ -508,7 +509,7 @@ export default function Page() {
         <ContactCTA />
 
         {lightboxImage && (
-          <div 
+          <div
             style={{
               position: 'fixed',
               top: 0,
@@ -527,7 +528,7 @@ export default function Page() {
             onClick={() => setLightboxImage(null)}
           >
             {/* Close Button matching shared-element-gallery */}
-            <button 
+            <button
               onClick={() => setLightboxImage(null)}
               style={{
                 position: 'absolute',
@@ -560,22 +561,22 @@ export default function Page() {
               </svg>
             </button>
 
-            <div 
+            <div
               style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
-                src={lightboxImage} 
-                alt="Enlarged view" 
-                style={{ 
-                  maxWidth: '100%', 
-                  maxHeight: 'calc(100vh - 140px)', 
+              <img
+                src={lightboxImage}
+                alt="Enlarged view"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: 'calc(100vh - 140px)',
                   width: 'auto',
                   height: 'auto',
-                  objectFit: 'contain', 
-                  borderRadius: '12px', 
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)', 
-                  display: 'block' 
+                  objectFit: 'contain',
+                  borderRadius: '12px',
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                  display: 'block'
                 }}
               />
             </div>

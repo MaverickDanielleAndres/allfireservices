@@ -164,6 +164,7 @@ export default function TimelineSection() {
           <div className="container-large">
             <motion.header
               className={styles.legacyHeader}
+              style={{ marginBottom: '6rem' }}
               variants={reveal}
               initial="hidden"
               whileInView="show"
