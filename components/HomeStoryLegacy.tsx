@@ -171,18 +171,22 @@ export default function HomeStoryLegacy() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative items-start lg:items-stretch pt-4">
               
               {/* Sticky Video Column (Left) */}
+              {/* NOTE: overflow-hidden must NOT be on the sticky element itself — it breaks position:sticky.
+                  Keep sticky on the outer wrapper and overflow/radius/shadow on an inner div. */}
               <div className="order-1 w-full relative h-full">
-                <div className="relative w-full max-w-[320px] mx-auto lg:mx-auto aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl lg:sticky lg:top-32">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full rounded-[1.5rem]"
-                  ></iframe>
+                <div className="w-full max-w-[320px] mx-auto lg:mx-auto lg:sticky lg:top-32">
+                  <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full rounded-[1.5rem]"
+                    ></iframe>
+                  </div>
                 </div>
               </div>
 
