@@ -743,7 +743,8 @@ export default function Page() {
                 font-size: clamp(1.2rem, 6.5vw, 2.75rem);
               }
               .hero-title-line:nth-child(2),
-              .hero-title-line:nth-child(3) {
+              .hero-title-line:nth-child(3),
+              .hero-title-line:nth-child(4) {
                 font-size: clamp(1.6rem, 9.5vw, 2.75rem);
               }
               .hero-subtitle {
@@ -819,17 +820,15 @@ export default function Page() {
                 Reliable fire safety starts here
               </div>
               <h1 className="hero-title">
-                <span className="hero-title-line">FIRE SAFETY IS NOT A</span>
-                <span className="hero-title-line">BOX TO TICK, <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                <span className="hero-title-line">FIRE PROTECTION IS</span>
+                <span className="hero-title-line">MORE THAN A</span>
+                <span className="hero-title-line">SERVICE, <span style={{ color: "#ff0000" }}>IT&apos;S IN</span></span>
                 <span className="hero-title-line">
-                  <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>RESPONSIBILITY</span>
+                  <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>OUR BLOOD</span>
                 </span>
               </h1>
-              <div className="hero-subtitle">
-                Fire protection runs in our blood.
-              </div>
               <p className="hero-body">
-                High-level professional fire safety services, delivered by people who are approachable, practical and reasonable. Australian owned and operated since 2009.
+                We help businesses protect lives, property, and stay compliant with practical, reliable fire safety solutions. Proudly Australian owned and trusted since 2009.
               </p>
               <div className="hero-actions">
                 <Link href="/contact" className="btn-primary">Get a Quote</Link>

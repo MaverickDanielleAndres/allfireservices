@@ -344,7 +344,7 @@ export default function HomeStoryLegacy() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full">
                   <h2 className="text-center md:text-left"
                       style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                    A Century of Proven <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Experience & Trust</span>
+                    Century of <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Experience</span>
                   </h2>
                   <p className="text-center md:text-justify"
                      style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
