@@ -32,7 +32,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.22 }}
-                style={{ marginBottom: '4rem' }}
+                style={{ marginBottom: 'clamp(6rem, 10vw, 8rem)' }}
               >
                 <motion.div
                   variants={revealUp}

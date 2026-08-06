@@ -300,7 +300,7 @@ export default function HomeStoryLegacy() {
         </div>
       </section>
 
-      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingBottom: '2rem' }}>
+      <section className={styles.legacyContentSection} data-theme="light" style={{ background: '#ffffff', color: '#111111', paddingTop: 'clamp(6rem, 10vh, 10rem)', paddingBottom: '2rem' }}>
         <div className="padding-global">
           <div className="container-large">
             <motion.p
@@ -332,19 +332,38 @@ export default function HomeStoryLegacy() {
             </motion.div>
 
             <motion.div
-              className={`${styles.legacyParagraph} pb-16 md:pb-24 lg:pb-32`}
+              className="pb-16 md:pb-24 lg:pb-32 w-full max-w-[1000px] mx-auto px-5"
               variants={reveal}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.8 }}
+              viewport={{ once: true, amount: 0.4 }}
+              style={{ marginTop: 'clamp(3rem, 5vw, 4rem)' }}
             >
-              <p>
-                For over a century, our family has stood on the front lines of fire<br className={styles.brDesktop} />
-                protection. We blend <strong><SplitText text="generations of firsthand firefighting experience" delay={15} className={styles.orangeText} /></strong><br className={styles.brDesktop} />
-                with <strong className={styles.altColor}><SplitText text="modern safety" delay={15} /></strong> compliance. When you choose All Fire<br className={styles.brDesktop} />
-                Services, you&apos;re not just hiring a contractor—you&apos;re partnering with<br className={styles.brDesktop} />
-                an <strong><SplitText text="uncompromising commitment to keeping your people safe." delay={15} className={styles.orangeText} /></strong>
-              </p>
+              <div className="flex flex-col gap-12 md:gap-16 w-full">
+                {/* Row 1 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full">
+                  <h2 className="text-center md:text-left"
+                      style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                    A Century of Proven <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Experience & Trust</span>
+                  </h2>
+                  <p className="text-center md:text-justify"
+                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
+                    For over a century, our family has stood on the front lines of fire protection. We blend generations of firsthand firefighting experience with modern safety compliance.
+                  </p>
+                </div>
+
+                {/* Row 2 (Alternating) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full">
+                  <p className="order-2 md:order-1 text-center md:text-justify"
+                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
+                    When you choose All Fire Services, you&apos;re not just hiring a contractor—you&apos;re partnering with an uncompromising commitment to keeping your people safe.
+                  </p>
+                  <h2 className="order-1 md:order-2 text-center md:text-right"
+                      style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                    Uncompromising <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Commitment</span>
+                  </h2>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

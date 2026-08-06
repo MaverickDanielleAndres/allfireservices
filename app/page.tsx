@@ -95,7 +95,7 @@ function ClientsMarquee() {
         .clients-marquee {
           background: #ffffff;
           overflow: hidden;
-          padding: clamp(1rem, 2vw, 1.5rem) 0 clamp(2.5rem, 5vw, 4.75rem);
+          padding: clamp(3rem, 5vw, 5rem) 0 clamp(6rem, 10vw, 8rem);
           position: relative;
         }
 

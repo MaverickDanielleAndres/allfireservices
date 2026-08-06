@@ -108,8 +108,8 @@ export default function Page() {
                       When you choose AllFire, you are choosing a century of unbroken dedication to saving lives and safeguarding futures.
                     </p>
                   </div>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/History/1 (1).jpg" alt="Fire Protection Runs in Our Blood" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '420px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/History/1 (1).jpg" alt="Fire Protection Runs in Our Blood" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                 </div>
               </div>
@@ -211,9 +211,9 @@ export default function Page() {
               <div className="padding-section-large" style={{ paddingBottom: '6rem' }}>
 
                 {/* Block 2 */}
-                <div className={styles.newStoryGrid} style={{ marginBottom: '6rem', alignItems: 'stretch' }}>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Founded by a firefighter" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '6rem', alignItems: 'stretch' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '440px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Founded by a firefighter" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header

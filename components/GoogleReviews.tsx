@@ -169,7 +169,7 @@ export default function GoogleReviews() {
   return (
     <section
       id="testimonials"
-      className="bg-white text-gray-900 pt-16 lg:pt-24 pb-4 lg:pb-8 overflow-hidden"
+      className="bg-white text-gray-900 pt-16 lg:pt-24 pb-16 lg:pb-32 overflow-hidden"
     >
       <style>{`
         .reviews-header {
