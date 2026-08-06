@@ -38,12 +38,12 @@ const generationReveal: Variants = {
 };
 
 const generations = [
-  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/waltergreatgrandad.png" },
+  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/greatgrandad.jpg" },
   { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
   { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
   { year: "2009", relation: "NSW Fire Brigades\nSenior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
-  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/grantfuller.png" },
+  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/paul.jpg" },
   { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 

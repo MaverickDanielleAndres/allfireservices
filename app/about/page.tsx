@@ -205,7 +205,7 @@ export default function Page() {
                       A CENTURY OF SERVICE
                     </h2>
                     <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 800, letterSpacing: '-0.06em', color: '#111111' }}>
-                      &ldquo;Who Knows Fire Better <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Than a Firefighter?</span>&rdquo;
+                      &ldquo;Who Knows Fire Better <span style={{ color: '#fb5614' }}>Than a Firefighter?</span>&rdquo;
                     </p>
                   </div>
 
@@ -213,7 +213,7 @@ export default function Page() {
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Proudly Serving <br className="md:hidden" />Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
+                        Proudly Serving <br className="md:hidden" />Since <span style={{ color: '#fb5614' }}>1911</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         It began with William Tricklebank, whose commitment to protecting the community established a standard of courage, service, and responsibility that continues to guide us today.
@@ -226,14 +226,14 @@ export default function Page() {
                         From William to Trevor, Stanley, Ian, and Peter, our family has spent generations on the front line of emergency response. That history gives our clients <strong>real-world knowledge</strong> that cannot be learned from a checklist.
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        A Legacy of Four <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Generations</span>
+                        A Legacy of Four <span style={{ color: '#fb5614' }}>Generations</span>
                       </h2>
                     </div>
 
                     {/* Row 3 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Leading from 2009 <br className="md:hidden" />to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Today</span>
+                        Leading from 2009 <br className="md:hidden" />to <span style={{ color: '#fb5614' }}>Today</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         Drawing on decades of operational knowledge, Peter established All Fire Services in 2009. What began as a family calling has grown into a trusted fire protection company delivering professional compliance and <strong>practical, reliable fire protection.</strong>
@@ -246,7 +246,7 @@ export default function Page() {
                         Every inspection, installation, and certification is supported by more than a century of lived firefighting experience. We do not simply help clients meet requirements. We help them <strong>protect people and property.</strong>
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Our Unwavering <br className="md:hidden" /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Promise</span> to You
+                        Our Unwavering <br className="md:hidden" /><span style={{ color: '#fb5614' }}>Promise</span> to You
                       </h2>
                     </div>
                   </div>
@@ -332,7 +332,7 @@ export default function Page() {
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/History/about (3).jpg" alt="Built on Real Experience" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src="/History/about (8).jpg" alt="Built on Real Experience" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                 </div>
 

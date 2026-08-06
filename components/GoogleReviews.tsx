@@ -221,7 +221,7 @@ export default function GoogleReviews() {
         <div className="reviews-header">
           <div className="reviews-kicker">Our clients</div>
           <h2 className="reviews-title">
-            What Sydney building<br className="hidden lg:block" />managers actually say
+            What Sydney <span style={{ color: '#fb5614' }}>building</span><br className="hidden lg:block" /><span style={{ color: '#fb5614' }}>managers</span> actually say
           </h2>
           <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
              {/* Rating Overview */}

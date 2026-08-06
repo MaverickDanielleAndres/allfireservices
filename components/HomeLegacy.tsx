@@ -164,47 +164,47 @@ const protectionCapabilities: Array<{
   detail: string;
   icon: LucideIcon;
 }> = [
-  {
-    code: "FE-01",
-    title: "Fire Extinguishers",
-    detail: "Portable first response, selected and maintained for the risk.",
-    icon: FireExtinguisher,
-  },
-  {
-    code: "HR-02",
-    title: "Fire Hoses & Reels",
-    detail: "Accessible water supply kept ready for immediate use.",
-    icon: CircleGauge,
-  },
-  {
-    code: "HB-03",
-    title: "Fire Hydrants & Boosters",
-    detail: "Reliable firefighting connections, flow and pressure.",
-    icon: Siren,
-  },
-  {
-    code: "EE-04",
-    title: "Emergency Equipment",
-    detail: "Essential systems that support safe, orderly evacuation.",
-    icon: Accessibility,
-  },
-  {
-    code: "FP-05",
-    title: "Fire Panels",
-    detail: "Detection, indication and control kept clear and responsive.",
-    icon: PanelsTopLeft,
-  },
-  {
-    code: "TC-06",
-    title: "Testing & Compliance",
-    detail: "Documented assurance aligned with applicable standards.",
-    icon: ClipboardCheck,
-  },
-];
+    {
+      code: "FE-01",
+      title: "Fire Extinguishers",
+      detail: "Portable first response, selected and maintained for the risk.",
+      icon: FireExtinguisher,
+    },
+    {
+      code: "HR-02",
+      title: "Fire Hoses & Reels",
+      detail: "Accessible water supply kept ready for immediate use.",
+      icon: CircleGauge,
+    },
+    {
+      code: "HB-03",
+      title: "Fire Hydrants & Boosters",
+      detail: "Reliable firefighting connections, flow and pressure.",
+      icon: Siren,
+    },
+    {
+      code: "EE-04",
+      title: "Emergency Equipment",
+      detail: "Essential systems that support safe, orderly evacuation.",
+      icon: Accessibility,
+    },
+    {
+      code: "FP-05",
+      title: "Fire Panels",
+      detail: "Detection, indication and control kept clear and responsive.",
+      icon: PanelsTopLeft,
+    },
+    {
+      code: "TC-06",
+      title: "Testing & Compliance",
+      detail: "Documented assurance aligned with applicable standards.",
+      icon: ClipboardCheck,
+    },
+  ];
 
 const generations = [
   { year: "1911", relation: "Great Grand", name: "William Tricklebank", x: "1.5%" },
-  { year: "1931", relation: "Grand", name: "Trevor Tricklebank", x: "12.1%" },
+  { year: "1931", relation: "Grand", name: "Trevor Tricklebank Snr", x: "12.1%" },
   { year: "1955", relation: "Uncle", name: "Trevor Tricklebank", x: "22.9%" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", x: "33.5%" },
   { year: "1959", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },

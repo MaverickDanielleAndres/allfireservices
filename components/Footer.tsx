@@ -81,7 +81,7 @@ export default function Footer() {
     <footer className="w-full border-t border-[#eaded6] bg-white text-[#121212]">
       {/* Top content section — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-8 sm:px-6 md:pt-10 lg:px-8 lg:pt-12">
-        <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
           <div className="min-w-0 max-w-xl flex flex-col h-full">
             <div>
               <p className="text-[clamp(2rem,4.2vw,4rem)] font-[780] leading-[0.92] tracking-[-0.06em] text-[#111111]">
@@ -139,11 +139,11 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid min-w-0 grid-cols-2 gap-x-7 gap-y-7 md:grid-cols-3 md:gap-y-9 lg:gap-x-10">
+          <div className="grid min-w-0 grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 md:gap-x-8 lg:gap-x-10">
             {footerColumns.map((column) => (
               <nav key={column.title} aria-label={column.title}>
-                <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">{column.title}</p>
-                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111] md:gap-3">
+                <p className="mb-3 text-[0.95rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">{column.title}</p>
+                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[0.9rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111] md:gap-3">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link
@@ -163,10 +163,10 @@ export default function Footer() {
               </nav>
             ))}
 
-            <div className="col-span-2 min-w-0 border-t border-[#2b201b]/12 pt-6 md:col-span-3">
+            <div className="col-span-2 md:col-span-1 min-w-0 mt-2 md:mt-0">
               <div className="min-w-0">
-                <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Contact</p>
-                <div className="flex flex-col gap-3 text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111]">
+                <p className="mb-3 text-[0.95rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Contact</p>
+                <div className="flex flex-col gap-2 text-[0.9rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111]">
                   <a
                     className="min-w-0 !text-[#111111] transition hover:!text-[#ff4d16]"
                     href="mailto:admin@allfireservices.com.au"
@@ -175,7 +175,7 @@ export default function Footer() {
                     admin@allfireservices.com.au
                   </a>
                   <p>330 Wattle Street Ultimo NSW 2007</p>
-                  <div className="flex flex-col gap-1 sm:flex-row sm:gap-6 mt-1">
+                  <div className="flex flex-col gap-1 mt-1">
                     <p>Mon-Fri: 7:00am to 6:30pm</p>
                     <p>After hours: 0484 648 400</p>
                   </div>

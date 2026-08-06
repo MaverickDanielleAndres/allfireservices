@@ -45,12 +45,12 @@ const generationReveal: Variants = {
 
 
 const generations = [
-  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/waltergreatgrandad.png" },
+  { year: "1911", relation: "Great Granddad", name: "William Tricklebank", image: "/family/greatgrandad.jpg" },
   { year: "1911–1931", relation: "Grandfather", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
   { year: "1957", relation: "Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
   { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
   { year: "2009", relation: "NSW Fire Brigades\nSenior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
-  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/grantfuller.png" },
+  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/paul.jpg" },
   { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 
@@ -345,7 +345,7 @@ export default function HomeStoryLegacy() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-32 items-center w-full overflow-hidden">
                   <h2 className="text-center md:text-left"
                     style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, whiteSpace: 'nowrap' }}>
-                    Century of Fire <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Safety Experience</span>
+                    Century of Fire <br /><span style={{ color: '#fb5614', paddingRight: '0.1em' }}>Safety Experience</span>
                   </h2>
                   <p className="text-center md:text-justify"
                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
@@ -361,7 +361,7 @@ export default function HomeStoryLegacy() {
                   </p>
                   <h2 className="order-1 md:order-2 text-center md:text-right"
                     style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, whiteSpace: 'nowrap' }}>
-                    Uncompromising <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Commitment</span>
+                    Uncompromising <br /><span style={{ color: '#fb5614', paddingRight: '0.1em' }}>Commitment</span>
                   </h2>
                 </div>
               </div>

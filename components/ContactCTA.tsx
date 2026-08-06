@@ -24,8 +24,8 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
     <section data-theme="light" className="section_contact-cta">
       <div className="padding-global">
         <div className="container-large">
-          <div className="padding-section-large">
-            {!hideSitewideCTA && <SitewideCTA />}
+          {!hideSitewideCTA && <SitewideCTA />}
+          <div className="padding-section-large pt-8">
               <motion.div
                 className="contact-location-section"
                 variants={staggerChildren}

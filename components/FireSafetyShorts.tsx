@@ -94,7 +94,7 @@ export default function FireSafetyShorts() {
                 fontWeight: 780,
                 letterSpacing: "-0.06em",
                 lineHeight: 0.92,
-              }}>Quick lessons<br />from real jobs</h2>
+              }}>Quick lessons<br />from <span style={{ color: '#fb5614' }}>real</span> jobs</h2>
             </header>
           <div className="flex gap-2 justify-center w-full md:w-auto shrink-0 mt-2 md:mt-0">
             <button 

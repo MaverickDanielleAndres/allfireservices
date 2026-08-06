@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import styles from "@/components/HomeStoryLegacy.module.css";
 
 const testimonials = [
   {
@@ -53,39 +54,53 @@ export default function HandshakeTestimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-24 bg-[#F8F9FA] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="heading-style text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Hear from our clients
-          </h2>
+    <section className="bg-white overflow-hidden padding-section-large pt-0" data-theme="light">
+      <div className="padding-global">
+        <div className="container-large">
+          <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
+            <p className={styles.kicker}>TESTIMONIALS</p>
+            <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Hear from our <span className={styles.orangeText}>clients</span></h2>
+            <p>
+              Discover why property managers across Greater Sydney rely on our proactive approach and firefighter-led expertise to protect their assets.
+            </p>
+          </header>
         </div>
       </div>
 
-      <div className="relative flex overflow-hidden">
+      <div className="relative flex overflow-hidden pb-16">
         <motion.div
-          className="flex gap-6 w-max px-3"
+          className="flex gap-6 w-max px-3 cursor-grab active:cursor-grabbing"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
             ease: "linear",
             duration: 40,
           }}
+          drag="x"
+          dragConstraints={{ left: -5000, right: 0 }}
+          dragElastic={0.1}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+          whileDrag={{ cursor: "grabbing" }}
         >
           {duplicatedTestimonials.map((testimonial, idx) => (
             <div 
               key={idx}
-              className="flex-none w-[320px] md:w-[420px]"
+              className="flex-none w-[85vw] md:w-[420px]"
             >
-              <div className="bg-white rounded-[2rem] p-8 md:p-10 h-full flex flex-col shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-gray-100 hover:shadow-[0_8px_32px_rgba(0,0,0,0.06)] transition-shadow duration-300">
+              <div className="bg-white flex flex-col h-full transition-all duration-300 font-sans" style={{ 
+                borderRadius: '24px', 
+                padding: 'clamp(2rem, 4vw, 3rem)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)', 
+                border: '1px solid rgba(0, 0, 0, 0.05)' 
+              }}>
                 <div className="flex-grow mb-8">
-                  <p className="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+                  <p className="text-[#111111]" style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55 }}>
                     "{testimonial.quote}"
                   </p>
                 </div>
                 
-                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-50">
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-gray-100 border border-gray-200">
+                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-100">
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 bg-gray-100" style={{ boxShadow: '0 0.65rem 1.4rem rgba(17, 17, 17, 0.12)' }}>
                     {testimonial.image ? (
                       <Image
                         src={testimonial.image}
@@ -99,10 +114,10 @@ export default function HandshakeTestimonials() {
                     )}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 text-base">
+                    <h4 className="text-[#111111] font-bold" style={{ fontSize: 'clamp(1rem, 1.45vw, 1.18rem)', lineHeight: 1.4 }}>
                       {testimonial.name}
                     </h4>
-                    <p className="text-sm text-gray-500 mt-0.5">
+                    <p className="font-semibold" style={{ color: 'rgba(17, 17, 17, 0.6)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: '0.25rem' }}>
                       {testimonial.role}
                     </p>
                   </div>
