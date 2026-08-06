@@ -528,6 +528,12 @@
   text-align: center;
 }
 
+@media (min-width: 768px) {
+  .smallRelationOnDesktop {
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+  }
+}
+
 .name {
   margin: 0.4rem 0 0;
   color: #3f4650;

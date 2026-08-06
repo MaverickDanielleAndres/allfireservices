@@ -130,7 +130,9 @@ function TimelineGeneration({
         aria-hidden="true"
       />
       <p className={styles.year}>{generation.year}</p>
-      <p className={styles.relation}>{generation.relation}</p>
+      <p className={`${styles.relation} ${generation.year === "2009" ? styles.smallRelationOnDesktop : ""}`}>
+        {generation.relation}
+      </p>
       <p className={styles.name}>{generation.name.replace(' ', '\n')}</p>
     </motion.article>
   );
