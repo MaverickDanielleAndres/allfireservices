@@ -199,9 +199,9 @@ export default function Page() {
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-16 md:gap-20 w-full">
+                  <div className="flex flex-col gap-16 md:gap-32 w-full">
                     {/* Row 1 */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         Proudly Serving <br className="md:hidden" />Since <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>1911</span>
                       </h2>
@@ -211,7 +211,7 @@ export default function Page() {
                     </div>
 
                     {/* Row 2 (Alternating) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         A proud, unbroken lineage of frontline firefighters—Trevor, Stanley, Ian, and Peter. For decades, our family has stood at the forefront of emergency response, passing down invaluable hands-on expertise from father to son.
                       </p>
@@ -221,7 +221,7 @@ export default function Page() {
                     </div>
 
                     {/* Row 3 */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         Leading from 2009 <br className="md:hidden" />to <span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Present</span>
                       </h2>
@@ -231,7 +231,7 @@ export default function Page() {
                     </div>
 
                     {/* Row 4 (Alternating) */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                         We don't just tick boxes. Every inspection, installation, and certification we perform is backed by over 100 years of real-world, lived experience. When you choose AllFire, you are choosing a partner whose dedication to saving lives runs in the blood.
                       </p>
@@ -291,7 +291,7 @@ export default function Page() {
               <div className="padding-section-large" style={{ paddingBottom: '6rem' }}>
 
                 {/* Block 2 */}
-                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '8rem', alignItems: 'stretch' }}>
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '440px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Founded by a firefighter" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
@@ -315,7 +315,7 @@ export default function Page() {
                 </div>
 
                 {/* Block 3 */}
-                <div className={styles.newStoryGrid} style={{ marginBottom: '8rem', alignItems: 'stretch' }}>
+                <div className={styles.newStoryGrid} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={styles.storyHeaderLeft}
@@ -339,7 +339,7 @@ export default function Page() {
                 </div>
 
                 {/* Block 4 */}
-                <div className={styles.newStoryGrid} style={{ marginBottom: '8rem', alignItems: 'stretch' }}>
+                <div className={styles.newStoryGrid} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
@@ -360,7 +360,7 @@ export default function Page() {
                 </div>
 
                 {/* Our Mission */}
-                <div style={{ marginTop: '5rem', backgroundColor: '#ffffff', padding: 'clamp(2.5rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 2.5rem)', borderRadius: '24px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.03)', border: '1px solid rgba(0, 0, 0, 0.05)' }}>
+                <div style={{ marginTop: '10rem', backgroundColor: '#ffffff', padding: 'clamp(2.5rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 2.5rem)', borderRadius: '24px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.03)', border: '1px solid rgba(0, 0, 0, 0.05)' }}>
                   <div className={styles.newStoryGrid} style={{ margin: 0, maxWidth: 'none', alignItems: 'stretch' }}>
                     <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <header

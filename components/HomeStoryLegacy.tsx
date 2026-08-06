@@ -172,7 +172,7 @@ export default function HomeStoryLegacy() {
         <div className="padding-global">
           <div className="container-large">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative items-start lg:items-stretch pt-4">
-              
+
               {/* Sticky Video Column (Left) — Native CSS Sticky */}
               <div className="order-1 w-full relative h-full">
                 <div
@@ -196,7 +196,7 @@ export default function HomeStoryLegacy() {
 
               {/* Scrolling Text Column (Right) */}
               <div className="flex flex-col gap-16 lg:gap-40 order-2 px-6 md:px-12 lg:px-0 pb-12 lg:pb-32">
-                
+
                 {/* First Story Block */}
                 <div className="flex flex-col justify-start text-center lg:text-left items-center lg:items-start">
                   <motion.header
@@ -257,12 +257,13 @@ export default function HomeStoryLegacy() {
 
       <section
         id="family-history"
-        className={styles.legacySection}
         aria-labelledby="legacy-title"
         data-theme="light"
+        className="padding-section-large"
+        style={{ paddingBottom: '4rem' }}
         ref={sectionRef}
       >
-        <div className={styles.stickyContainer}>
+        <div>
           <div className="padding-global">
             <div className="container-large">
               <motion.header
@@ -339,27 +340,27 @@ export default function HomeStoryLegacy() {
               viewport={{ once: true, amount: 0.4 }}
               style={{ marginTop: 'clamp(3rem, 5vw, 4rem)' }}
             >
-              <div className="flex flex-col gap-12 md:gap-16 w-full">
+              <div className="flex flex-col gap-12 md:gap-32 w-full">
                 {/* Row 1 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-32 items-center w-full overflow-hidden">
                   <h2 className="text-center md:text-left"
-                      style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                    Century of <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Experience</span>
+                    style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, whiteSpace: 'nowrap' }}>
+                    Century of Fire <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Safety Experience</span>
                   </h2>
                   <p className="text-center md:text-justify"
-                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
+                    style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                     For over a century, our family has stood on the front lines of fire protection. We blend generations of firsthand firefighting experience with modern safety compliance.
                   </p>
                 </div>
 
                 {/* Row 2 (Alternating) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-32 items-center w-full overflow-hidden">
                   <p className="order-2 md:order-1 text-center md:text-justify"
-                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
+                    style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
                     When you choose All Fire Services, you&apos;re not just hiring a contractor—you&apos;re partnering with an uncompromising commitment to keeping your people safe.
                   </p>
                   <h2 className="order-1 md:order-2 text-center md:text-right"
-                      style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
+                    style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, whiteSpace: 'nowrap' }}>
                     Uncompromising <br /><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.1em' }}>Commitment</span>
                   </h2>
                 </div>
