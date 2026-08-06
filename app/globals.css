@@ -132,6 +132,10 @@
   }
 }
 
+body.mobile-menu-open .chatbot-container {
+  display: none !important;
+}
+
 .about-hero_component.services-hero_component {
   height: auto;
 }

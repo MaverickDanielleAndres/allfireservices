@@ -79,9 +79,16 @@ export default function Navbar() {
   }, [pathname, lenis]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.style.overflow = "";
+      document.body.classList.remove("mobile-menu-open");
+    }
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("mobile-menu-open");
     };
   }, [mobileOpen]);
 

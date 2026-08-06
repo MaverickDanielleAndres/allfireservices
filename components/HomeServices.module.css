@@ -247,8 +247,9 @@
   }
 
   .capabilityImage {
-    height: 100px;
-    object-fit: fill;
+    height: auto;
+    object-fit: contain;
+    width: 100%;
   }
 }
 
