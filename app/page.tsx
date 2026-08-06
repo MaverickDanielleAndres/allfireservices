@@ -16,6 +16,7 @@ const ClientFeedback = dynamic(() => import("@/components/testimonial"));
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
+const FounderLegacy = dynamic(() => import("@/components/FounderLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
 
 const sectionReveal = {
@@ -882,6 +883,7 @@ export default function Page() {
         </div>
         <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff", marginTop: "-2px" }}>
 
+        <FounderLegacy />
         <HomeStoryLegacy />
         <HomeServices />
         <MotionDiv {...sectionReveal}>

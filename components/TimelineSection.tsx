@@ -44,7 +44,7 @@ const generations = [
   { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
   { year: "2009", relation: "NSW Fire Brigades Senior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
   { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/grantfuller.png" },
-  { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" }
+  { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -110,7 +110,7 @@ function TimelineGeneration({
             sizes="160px"
             style={{
               objectFit: "cover",
-              objectPosition: generation.name === "Peter Tricklebank" ? "center 15%" : "center"
+              objectPosition: "center"
             }}
           />
         )}

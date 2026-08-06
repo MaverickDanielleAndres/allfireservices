@@ -51,7 +51,7 @@ const generations = [
   { year: "1955", relation: "Uncle", name: "Ian Tricklebank", image: "/family/Uncle.png" },
   { year: "2009", relation: "NSW Fire Brigades Senior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
   { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/grantfuller.png" },
-  { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" }
+  { year: "2020", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -117,7 +117,7 @@ function TimelineGeneration({
             sizes="160px"
             style={{
               objectFit: "cover",
-              objectPosition: generation.name === "Peter Tricklebank" ? "center 15%" : "center"
+              objectPosition: "center"
             }}
           />
         )}
@@ -211,10 +211,10 @@ export default function HomeStoryLegacy() {
                     </h2>
                   </motion.header>
                   <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-4 text-center lg:text-left" style={{ marginBottom: '1.5rem' }}>
-                    All Fire Services is an Australian owned and operated business, created by a former NSW Fire Brigades Senior Officer in December 2009.
+                    All Fire Services was founded in 2009 by former NSW Fire Brigades Senior Officer Peter Tricklebank, with one clear belief: <strong>fire protection should be delivered by people who understand it beyond the checklist.</strong>
                   </p>
                   <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-8 text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
-                    The company was founded on a simple idea: that our customer service technicians should be professional firefighters, both serving and retired. It means every client gets extensive, real-life knowledge of the fire safety industry rather than a checklist.
+                    By building a team of <strong>serving and retired professional firefighters</strong>, every client benefits from <strong>practical knowledge, sound judgment, and experience gained on the front line.</strong>
                   </p>
                   <Link href="/about" className={styles.newStoryLink}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
@@ -231,16 +231,16 @@ export default function HomeStoryLegacy() {
                     viewport={{ once: true, amount: 0.4 }}
                     style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                   >
-                    <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Our story</p>
+                    <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Why All Fire ?</p>
                     <h2 className="mx-auto lg:mx-0 text-center lg:text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '28ch' }}>
                       &ldquo;Who knows better<br className="hidden lg:block" />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
                     </h2>
                   </motion.header>
                   <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-4 text-center lg:text-left" style={{ marginBottom: '1.5rem' }}>
-                    Fire protection is more than a checklist. It is lived experience, shared by a team and passed down through generations.
+                    Fire safety is <strong>more than inspections, paperwork, and compliance.</strong> It requires the <strong>discipline to notice what others miss</strong> and the <strong>experience to understand what could happen when a system fails.</strong>
                   </p>
                   <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] mb-8 text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
-                    We bring the discipline, rapid response, and deep operational knowledge forged in the line of duty directly to your fire safety systems. When seconds matter and lives are on the line, our firsthand experience ensures nothing is left to chance.
+                    We bring <strong>generations of firefighting knowledge</strong> directly to your property, helping protect your people, assets, and business with <strong>nothing left to chance.</strong>
                   </p>
                   <Link href="/about" className={styles.newStoryLink}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
@@ -347,7 +347,7 @@ export default function HomeStoryLegacy() {
                   </h2>
                   <p className="text-center md:text-justify"
                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                    For over a century, our family has stood on the front lines of fire protection. We blend generations of firsthand firefighting experience with modern safety compliance.
+                    For more than a century, our family has served on the <strong>front line of fire protection.</strong> Today, that <strong>generations-deep experience</strong> is combined with modern compliance standards to deliver <strong>practical, reliable protection</strong> for every property we service.
                   </p>
                 </div>
 
@@ -355,7 +355,7 @@ export default function HomeStoryLegacy() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-32 items-center w-full overflow-hidden">
                   <p className="order-2 md:order-1 text-center md:text-justify"
                     style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                    When you choose All Fire Services, you&apos;re not just hiring a contractor—you&apos;re partnering with an uncompromising commitment to keeping your people safe.
+                    When you choose All Fire Services, you&apos;re <strong>not simply hiring a contractor</strong>. You&apos;re choosing a team shaped by <strong>real firefighting experience</strong> and an <strong>uncompromising commitment</strong> to protecting people, property, and businesses.
                   </p>
                   <h2 className="order-1 md:order-2 text-center md:text-right"
                     style={{ fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, whiteSpace: 'nowrap' }}>
