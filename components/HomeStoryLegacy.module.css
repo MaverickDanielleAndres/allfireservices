@@ -640,10 +640,6 @@
     width: 100%;
     scroll-snap-align: none;
   }
-
-  .timelineTrack .generation:last-child {
-    grid-column: 1 / -1 !important;
-  }
 }
 
 .legacyParagraph {
@@ -1309,9 +1305,9 @@
   }
 
   .timelineTrack {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
     min-width: 0 !important;
-    gap: 3rem 0 !important;
+    gap: 3rem 0.5rem !important;
   }
 
   .timelineTrack::before,
