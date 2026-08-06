@@ -37,9 +37,9 @@ export default function Page() {
           {/* Dark Overlay (updated to match home page) */}
           <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
           {/* Seamless fade to white at the bottom */}
-          <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '150px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.9) 80%, #ffffff 100%)', zIndex: 2 }}></div>
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '150px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.95) 80%, #ffffff 90%, #ffffff 100%)', zIndex: 2 }}></div>
 
-          <div className="padding-global" style={{ position: 'relative', zIndex: 3 }}>
+          <div className="padding-global" style={{ position: 'relative', zIndex: 3, marginTop: '-2px' }}>
             <div className="container-large">
               <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '12rem' }}>
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>

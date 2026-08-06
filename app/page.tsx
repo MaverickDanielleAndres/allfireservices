@@ -808,7 +808,7 @@ export default function Page() {
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(30, 5, 5, 0.85) 40%, rgba(70, 10, 10, 0.7) 100%)' }}></div>
             
             {/* Seamless fade to white at the bottom */}
-            <div style={{ position: 'absolute', bottom: '-2px', left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.92) 90%, #ffffff 100%)', zIndex: 2 }}></div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '400px', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 15%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.18) 45%, rgba(255,255,255,0.38) 60%, rgba(255,255,255,0.65) 75%, rgba(255,255,255,0.95) 90%, #ffffff 95%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className="home-hero-section">
           <div className="hero-container">
@@ -858,7 +858,7 @@ export default function Page() {
             </div>
           </section>
         </div>
-        <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff" }}>
+        <div style={{ position: "relative", zIndex: 10, backgroundColor: "#ffffff", marginTop: "-2px" }}>
 
         <HomeStoryLegacy />
         <HomeServices />
