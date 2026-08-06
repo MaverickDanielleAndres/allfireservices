@@ -1439,20 +1439,20 @@
 .newStoryGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 4rem;
 }
 
 @media (min-width: 992px) {
   .newStoryGrid {
     grid-template-columns: 1fr 0.62fr;
-    gap: 4rem;
+    gap: clamp(6rem, 10vw, 10rem);
     align-items: center;
     padding: 0 clamp(2rem, 5vw, 6rem);
   }
 
   .newStoryGridImageFirst {
     grid-template-columns: 0.62fr 1fr;
-    gap: 4rem;
+    gap: clamp(6rem, 10vw, 10rem);
     align-items: center;
     padding: 0 clamp(2rem, 5vw, 6rem);
   }

@@ -901,7 +901,7 @@ export default function Page() {
             playsInline
             preload="none"
             className="mobile-video-tall"
-            style={{ width: '100%', aspectRatio: '21/9', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
+            style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover' }}
           />
         </MotionDiv>
 

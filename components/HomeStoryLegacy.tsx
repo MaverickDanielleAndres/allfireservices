@@ -152,7 +152,7 @@ export default function HomeStoryLegacy() {
 
   const { scrollYProgress: timelineScrollProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 100px", "0.8 end"],
+    offset: ["start 80%", "start 20%"],
   });
   const timelineProgress = useSpring(timelineScrollProgress, {
     stiffness: 105,
