@@ -1,10 +1,9 @@
-"use client";
 import ContactCTA from "@/components/ContactCTA";
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import TimelineSection from "@/components/TimelineSection";
+import { LightboxImage } from "@/components/ui/LightboxImage";
 import { Gallery, GalleryGrid, GalleryImage } from "@/components/ui/shared-element-gallery";
 
 
@@ -18,8 +17,6 @@ const teamMembers = [
 ];
 
 export default function Page() {
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-
   return (
     <main className="main-wrapper">
       <main className="scroll-wrapper">
@@ -89,15 +86,24 @@ export default function Page() {
         <header
           className="section_about-hero is-dark"
           style={{
-            backgroundImage: 'url("/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
             position: 'relative',
             marginTop: '-12rem',
             paddingTop: '12rem',
             marginBottom: '-2px',
           }}
         >
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <Image
+              src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp"
+              alt="About All Fire Services Hero"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              priority
+              fetchPriority="high"
+              quality={60}
+              sizes="100vw"
+            />
+          </div>
           {/* Dark tint overlay – breakpoint-aware via .about-dark-overlay */}
           <div className="about-dark-overlay"></div>
           {/* Right-side colour tint (horizontal) – kept separate so it doesn't interfere with vertical fade */}
@@ -263,26 +269,14 @@ export default function Page() {
                       "about (8).jpg",
                       "about (9).jpg"
                     ].map((filename, idx) => (
-                      <button
+                      <LightboxImage
                         key={idx}
-                        type="button"
-                        aria-label={`Open larger gallery photo ${idx + 1}`}
-                        style={{ width: '100%', height: 'auto', aspectRatio: '1/1', overflow: 'hidden', borderRadius: '0.5rem', cursor: 'pointer', position: 'relative', padding: 0, border: 0, background: 'transparent' }}
-                        onClick={() => setLightboxImage(`/History/${filename}?v=2`)}
-                        className="group"
-                      >
-                        <Image
-                          fill
-                          src={`/History/${filename}`}
-                          sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                          alt={`History Gallery Image ${idx + 1}`}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
-                          className="group-hover:scale-105"
-                        />
-                        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)', transition: 'background 300ms', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem' }} className="group-hover:bg-black/10">
-                          <span style={{ color: 'white', fontSize: '1.5rem', opacity: 0, transition: 'opacity 300ms', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} className="group-hover:opacity-100">⤢</span>
-                        </div>
-                      </button>
+                        fill
+                        src={`/History/${filename}`}
+                        sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                        alt={`History Gallery Image ${idx + 1}`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
+                      />
                     ))}
                   </div>
                 </div>
@@ -343,7 +337,7 @@ export default function Page() {
                 </div>
 
                 {/* Block 4 */}
-                <div className={styles.newStoryGrid} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
@@ -471,25 +465,13 @@ export default function Page() {
                         const imgUrl = member.img;
                         return (
                           <div key={member.name} role="listitem" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                            <button
-                              type="button"
-                              aria-label={`Open larger photo of ${member.name}`}
-                              style={{ width: '100%', height: 'auto', aspectRatio: '1/1', overflow: 'hidden', borderRadius: '0.5rem', cursor: 'pointer', position: 'relative', padding: 0, border: 0, background: 'transparent' }}
-                              onClick={() => setLightboxImage(imgUrl)}
-                              className="group"
-                            >
-                              <Image
-                                fill
-                                src={member.img}
-                                sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 280px"
-                                alt={member.name}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
-                                className="group-hover:scale-105"
-                              />
-                              <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)', transition: 'background 300ms', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '0.5rem' }} className="group-hover:bg-black/10">
-                                <span style={{ color: 'white', fontSize: '1.5rem', opacity: 0, transition: 'opacity 300ms', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))' }} className="group-hover:opacity-100">⤢</span>
-                              </div>
-                            </button>
+                            <LightboxImage
+                              fill
+                              src={member.img}
+                              sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 280px"
+                              alt={member.name}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
+                            />
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.5rem' }}>
                               <h3 style={{ margin: 0, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111111' }}>{member.name}</h3>
                               <div style={{ margin: 0, fontSize: '1rem', color: '#111111', lineHeight: 1.5 }}>
@@ -507,81 +489,6 @@ export default function Page() {
           </div>
         </section>
         <ContactCTA />
-
-        {lightboxImage && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 9999,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(0,0,0,0.8)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              padding: '90px 24px 24px',
-            }}
-            onClick={() => setLightboxImage(null)}
-          >
-            {/* Close Button matching shared-element-gallery */}
-            <button
-              onClick={() => setLightboxImage(null)}
-              style={{
-                position: 'absolute',
-                top: '110px',
-                right: '24px',
-                zIndex: 50,
-                padding: '0.625rem',
-                background: 'rgba(0,0,0,0.5)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: 'none',
-                borderRadius: '50%',
-                width: '2.5rem',
-                height: '2.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                color: 'white',
-                transition: 'background-color 0.2s',
-                lineHeight: 1,
-              }}
-              aria-label="Close gallery"
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-
-            <div
-              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={lightboxImage}
-                alt="Enlarged view"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: 'calc(100vh - 140px)',
-                  width: 'auto',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  borderRadius: '12px',
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                  display: 'block'
-                }}
-              />
-            </div>
-          </div>
-        )}
       </main>
     </main>
   );

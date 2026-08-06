@@ -516,7 +516,7 @@
 .relation {
   margin: 0.85rem 0 0;
   color: #161d28;
-  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 700;
   line-height: 1.35;
@@ -524,6 +524,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: pre-line;
+  text-align: center;
 }
 
 .name {
@@ -533,6 +535,7 @@
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 500;
   line-height: 1.4;
+  white-space: pre-line;
 }
 
 .legacyTagline {
