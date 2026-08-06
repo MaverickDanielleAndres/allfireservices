@@ -19,28 +19,26 @@ import styles from "./HomeStoryLegacy.module.css";
 
 
 const reveal: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 1, y: 0 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0 },
   },
 };
 
 const timelineSequence: Variants = {
   hidden: {},
-  show: {
-    transition: { delayChildren: 0.28, staggerChildren: 0.1 },
-  },
+  show: {},
 };
 
 const generationReveal: Variants = {
-  hidden: { opacity: 0, y: 34, scale: 0.82 },
+  hidden: { opacity: 1, y: 0, scale: 1 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.58, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0 },
   },
 };
 
