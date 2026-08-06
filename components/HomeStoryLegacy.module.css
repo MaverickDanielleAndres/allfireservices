@@ -636,7 +636,7 @@
     scroll-snap-align: none;
   }
 
-  .timelineTrack .generation:last-child:nth-child(odd) {
+  .timelineTrack .generation:last-child {
     grid-column: 1 / -1 !important;
   }
 }
