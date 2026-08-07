@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import styles from './FAQ.module.css';
 
 const faqs = [
@@ -47,16 +47,22 @@ export default function FAQ() {
     <section className={styles.section} id="faq">
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>FAQs</h2>
+          <p className={styles.eyebrow}>FAQ&apos;s</p>
+          <h2 className={styles.title}>
+            Got questions?
+            <br />
+            <span className={styles.gradientText}>We&apos;ve got answers.</span>
+          </h2>
           <p className={styles.subtitle}>
-            Expert answers to your most critical fire safety and compliance questions.
+            Expert answers to your most critical fire safety and compliance
+            questions. If you have further questions, ask our chatbot.
           </p>
         </div>
 
         <div className={styles.list}>
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-            
+
             return (
               <motion.div
                 key={index}
@@ -68,19 +74,11 @@ export default function FAQ() {
                   className={styles.question}
                   aria-expanded={isOpen}
                 >
-                  <span className={`${styles.questionText} ${isOpen ? styles.questionTextOpen : ''}`}>
-                    {faq.question}
-                  </span>
-                  
-                  <div
-                    className={`${styles.icon} ${isOpen ? styles.iconOpen : ''}`}
-                  >
-                    {isOpen ? (
-                      <Minus className="w-5 h-5" />
-                    ) : (
-                      <Plus className="w-5 h-5" />
-                    )}
-                  </div>
+                  <span className={styles.questionText}>{faq.question}</span>
+                  <ChevronDown
+                    className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
+                    strokeWidth={1.5}
+                  />
                 </button>
 
                 <AnimatePresence initial={false}>
@@ -90,12 +88,10 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      transition={{ duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
                       <div className={styles.answer}>
-                        <p className={styles.answerText}>
-                          {faq.answer}
-                        </p>
+                        <p className={styles.answerText}>{faq.answer}</p>
                       </div>
                     </motion.div>
                   )}

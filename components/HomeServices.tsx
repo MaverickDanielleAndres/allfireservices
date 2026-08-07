@@ -1,13 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FireExtinguisher,
-  Disc,
-  Flame,
-  Activity,
-  Server,
-  ClipboardCheck,
-} from "lucide-react";
 
 import { MotionSection } from "@/components/MotionPrimitives";
 
@@ -15,77 +7,89 @@ import styles from "./HomeServices.module.css";
 
 const services = [
   {
-    title: "Yearly Hydrant Flow Test",
-    description:
-      "We measure hydrant pressure and flow so your building has a dependable water supply when it matters most.",
-    image:
-      "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
-    imageAlt: "All Fire Services technician carrying out a hydrant flow test",
-    tags: ["Annual test", "Hydrant systems"],
-    frequency: "Tested to Australian Standards",
-  },
-  {
-    title: "Annual Fire Safety Statement",
-    description:
-      "End-to-end inspection coordination and compliance support for a clear, properly prepared AFSS submission.",
-    image: "/Fireprotectionservicesimage/annualfiresafety.webp",
+    title: "AFSS",
+    href: "/annual-fire-safety-statement",
+    image: "/services-wix/afss.jpg",
     imageAlt: "NSW annual fire safety statement documentation",
-    tags: ["Compliance", "Annual"],
-    frequency: "Assessment and certification support",
+    tags: ["Compliance"],
   },
   {
-    title: "Monthly Fire Inspection",
-    description:
-      "Regular checks of fire panels and essential systems help identify faults before they become bigger risks.",
-    image: "/Fireprotectionservicesimage/monthlyfireprotection.webp",
+    title: "FIRE PANEL/ALARMS 1670.1",
+    href: "/services?category=fire-panel",
+    image: "/services-wix/fire-panel.jpg",
     imageAlt: "All Fire Services fire indicator panel under inspection",
-    tags: ["Inspection", "Monthly"],
-    frequency: "Routine system checks",
+    tags: ["Detection"],
   },
   {
-    title: "Monthly Diesel Pump Inspection",
-    description:
-      "Practical pump checks help keep critical water-based fire systems ready to perform under emergency demand.",
-    image: "/Fireprotectionservicesimage/monthlydieselpumpprotection.webp",
-    imageAlt: "Diesel fire pump and pipework in a building plant room",
-    tags: ["Fire pumps", "Monthly"],
-    frequency: "Operational readiness testing",
-  },
-  {
-    title: "Monthly Sprinkler System Inspection",
-    description:
-      "Valves, gauges and sprinkler controls are checked to support reliable activation and ongoing compliance.",
-    image: "/Fireprotectionservicesimage/monthlysprinkler.webp",
-    imageAlt: "Fire sprinkler valves, controls and pressure gauges",
-    tags: ["Sprinklers", "Monthly"],
-    frequency: "Valves, gauges and controls",
-  },
-  {
-    title: "Fire Extinguisher Tagging",
-    description:
-      "Portable fire equipment is inspected, tested and tagged so it remains accessible, serviceable and compliant.",
-    image: "/Fireprotectionservicesimage/fireestinguishertagging.webp",
-    imageAlt: "Fire extinguisher maintenance tag being inspected",
-    tags: ["Equipment", "Compliance"],
-    frequency: "Inspection and maintenance tagging",
-  },
-  {
-    title: "Emergency Lighting 90-Minute Test",
-    description:
-      "A full discharge test confirms exit and emergency lighting can guide occupants safely through a power failure.",
-    image: "/Fireprotectionservicesimage/emergencylighting90.webp",
-    imageAlt: "Emergency lighting fitting undergoing a 90-minute test",
-    tags: ["Emergency lighting", "90 min"],
-    frequency: "Discharge and function test",
-  },
-  {
-    title: "Smoke Alarm Test",
-    description:
-      "Alarm operation and detection are tested to help provide the earliest possible warning throughout the property.",
-    image: "/Fireprotectionservicesimage/smokealarmtest.webp",
+    title: "Smoke detects AS 3876",
+    href: "/services?category=smoke-alarms",
+    image: "/services-wix/smoke-detectors.jpg",
     imageAlt: "Technician testing a ceiling-mounted smoke detector",
-    tags: ["Detection", "Testing"],
-    frequency: "Alarm and detector checks",
+    tags: ["Detection"],
+  },
+  {
+    title: "Fire Doors",
+    href: "/services?category=fire-doors",
+    image: "/services-wix/fire-doors.jpg",
+    imageAlt: "All Fire Services technicians on site",
+    tags: ["Passive fire"],
+  },
+  {
+    title: "Fire extinguishers",
+    href: "/services?category=fire-extinguishers",
+    image: "/services-wix/fire-extinguishers.jpg",
+    imageAlt: "Fire extinguisher maintenance tag being inspected",
+    tags: ["Equipment"],
+  },
+  {
+    title: "EMERGENCY LIGHTS",
+    href: "/services?category=emergency-lights",
+    image: "/services-wix/emergency-lighting.jpg",
+    imageAlt: "Emergency lighting fitting undergoing a 90-minute test",
+    tags: ["Emergency lighting"],
+  },
+  {
+    title: "FIRE HOSE REELS",
+    href: "/services",
+    image: "/services-wix/fire-hose-reels.jpg",
+    imageAlt: "All Fire Services hydrant and hose system",
+    tags: ["Equipment"],
+  },
+  {
+    title: "DIESEL / HYDRANT / SPRINKLER",
+    href: "/services?category=diesel-pump",
+    image: "/services-wix/diesel-hydrant.jpg",
+    imageAlt: "Diesel fire pump and pipework in a building plant room",
+    tags: ["Fire pumps"],
+  },
+  {
+    title: "AIR MECHANICAL SERVICES",
+    href: "/services?category=air-mechanical",
+    image: "/services-wix/mechanical.jpg",
+    imageAlt: "Fire services pipework, valves and pressure gauges",
+    tags: ["Mechanical"],
+  },
+  {
+    title: "Flow test",
+    href: "/services?category=flow-testing",
+    image: "/services-wix/flow-test.jpg",
+    imageAlt: "All Fire Services technician carrying out a hydrant flow test",
+    tags: ["Testing"],
+  },
+  {
+    title: "Fire Penetration",
+    href: "/services?category=service-penetration",
+    image: "/services-wix/passive-fire.jpg",
+    imageAlt: "Fire safety inspection being carried out on site",
+    tags: ["Passive fire"],
+  },
+  {
+    title: "ZONE BLOCK PLAN / EVACUATION PLAN / HYDRANT & SPRINKLER PLAN",
+    href: "/services?category=plans",
+    image: "/services-wix/block-plans.jpg",
+    imageAlt: "Emergency evacuation signage being installed",
+    tags: ["Plans"],
+    smallTitle: true,
   },
 ];
 
@@ -95,6 +99,18 @@ const reveal = {
   viewport: { once: true, amount: 0.08 },
   transition: { duration: 0.65, ease: "easeOut" as const },
 };
+
+import React from "react";
+
+const capabilityLogos = [
+  { src: "/services-logo/fpa-bronze-member.webp", alt: "FPA Australia Bronze Member", width: 320, height: 140, isMain: true },
+  { src: "/services-logo/fire-extinguishers.webp", alt: "Fire Extinguishers", width: 150, height: 150 },
+  { src: "/services-logo/fire-hoses-reels.webp", alt: "Fire Hoses & Reels", width: 150, height: 150 },
+  { src: "/services-logo/fire-hydrants-boosters.webp", alt: "Fire Hydrants & Boosters", width: 150, height: 150 },
+  { src: "/services-logo/emergency-equipment.webp", alt: "Emergency Equipment", width: 150, height: 150 },
+  { src: "/services-logo/fire-panels.webp", alt: "Fire Panels", width: 150, height: 150 },
+  { src: "/services-logo/testing-compliance.webp", alt: "Testing & Compliance", width: 150, height: 150, isLarger: true },
+];
 
 export default function HomeServices() {
   return (
@@ -106,87 +122,46 @@ export default function HomeServices() {
     >
       <div className={styles.container}>
         <header className={styles.header}>
-          <p className={styles.kicker}>Our services</p>
+          <p className={styles.kicker}>What we do</p>
           <h2 id="home-services-title">
-            Uncompromising fire safety.<br />
-            <span className={styles.gradientText}>Certified</span>, compliant, and<br />
-            always ready.
+            Our Fire<br />
+            <span style={{ color: '#ff2a00' }}>Protection</span> <span style={{
+              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              Services
+            </span>
           </h2>
           <p>
-            Empowering strata managers, building owners, and businesses across Greater Sydney 
-            with industry-leading inspections, rigorous testing, expert maintenance, and 
-            seamless annual certifications.
+            Everything you need to keep your property protected, compliant, and ready.
           </p>
         </header>
 
         <div className={styles.capabilityStrip}>
-          <div className={styles.capabilityLogo}>
-            <Image
-              src="/secondlogo.png"
-              alt="FPA Australia Bronze Member"
-              width={160}
-              height={80}
-            />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <FireExtinguisher strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>FIRE<br />EXTINGUISHERS</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <Disc strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>FIRE HOSES<br />&amp; REELS</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <Flame strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>FIRE HYDRANTS<br />&amp; BOOSTERS</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <Activity strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>EMERGENCY<br />EQUIPMENT</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <Server strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>FIRE<br />PANELS</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
-          <div className={styles.capabilityDivider} />
-          
-          <div className={styles.capabilityItem}>
-            <div className={styles.capabilityIconCircle}>
-              <ClipboardCheck strokeWidth={1.75} />
-            </div>
-            <span className={styles.capabilityLabel}>TESTING<br />&amp; COMPLIANCE</span>
-            <span className={styles.capabilityUnderline} />
-          </div>
+          {capabilityLogos.map((logo, index) => (
+            <React.Fragment key={logo.src}>
+              <div className={styles.capabilityLogoWrapper}>
+                <Image
+                  className={`${styles.capabilityLogoImage} ${logo.isMain ? styles.isMainLogo : ''} ${logo.isLarger ? styles.isLargerLogo : ''}`}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
+                />
+              </div>
+              {index < capabilityLogos.length - 1 && (
+                <div className={styles.capabilityDivider}></div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
 
         <div className={styles.grid}>
           {services.map((service) => (
-            <Link href="/services" className={styles.card} key={service.title}>
+            <Link href={service.href} className={styles.card} key={service.title}>
               <div className={styles.cardMedia}>
                 <Image
                   fill
@@ -217,7 +192,7 @@ export default function HomeServices() {
                 <span className={styles.tag}>
                   {service.tags[0] || "Fire Safety"}
                 </span>
-                <h3 className={styles.cardTitle}>{service.title}</h3>
+                <h3 className={`${styles.cardTitle} ${service.smallTitle ? styles.cardTitleSmall : ''}`}>{service.title}</h3>
               </div>
             </Link>
           ))}

@@ -26,7 +26,7 @@ footer {
   margin: 0;
   padding: 0;
   list-style: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .main-wrapper,
@@ -586,8 +586,8 @@ footer a[aria-label]:hover {
   footer li a {
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
-    padding-block: 0.5rem;
+    min-height: 28px;
+    padding-block: 0.15rem;
   }
 }
 

@@ -10,6 +10,7 @@ import {
   type Variants,
 } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, type CSSProperties } from "react";
 import styles from "./HomeStoryLegacy.module.css";
 
@@ -38,14 +39,12 @@ const generationReveal: Variants = {
 };
 
 const generations = [
-  { year: "1911", relation: "Great Grand", name: "William Tricklebank", image: "/family/greatgrandad.jpg" },
-  { year: "1931", relation: "Grand", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
+  { year: "1911", relation: "Uncle", name: "William Tricklebank", image: "/family/greatgrandad.jpg" },
+  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
   { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
-  { year: "1957", relation: "Father", name: "Stanley Tricklebank", image: "/family/father.jpg" },
+  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
   { year: "1959", relation: "Uncle", name: "Ian Tricklebank", image: "/family/uncleian.png" },
-  { year: "2009", relation: "NSW Fire Brigades\nSenior Officer", name: "Grant Fuller", image: "/family/grantfuller.png" },
-  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", image: "/family/paul.jpg" },
-  { year: "Current", relation: "Managing Director", name: "Peter Tricklebank", image: "/family/pete.png" }
+  { year: "Current", relation: "Current", name: "Peter Tricklebank", image: "/family/pete.png" }
 ];
 
 type Generation = (typeof generations)[number];
@@ -91,16 +90,14 @@ function TimelineGeneration({
       variants={generationReveal}
     >
       <div
-        className={styles.portrait}
-        style={{
-          ...(generation.image ? {
-            backgroundImage: "none",
-            position: "relative",
-            overflow: "hidden"
-          } : {})
-        } as CSSProperties}
-        role="img"
-        aria-label={`Portrait of ${generation.name}`}
+        className={`${styles.portrait} ${generation.image ? "" : styles.portraitEmpty}`}
+        style={generation.image ? {
+          backgroundImage: "none",
+          position: "relative",
+          overflow: "hidden"
+        } : {} as CSSProperties}
+        role={generation.image ? "img" : "presentation"}
+        aria-label={generation.image ? `Portrait of ${generation.name}` : undefined}
       >
         {generation.image && (
           <Image
@@ -109,10 +106,7 @@ function TimelineGeneration({
             fill
             unoptimized={true}
             sizes="160px"
-            style={{
-              objectFit: "cover",
-              objectPosition: "center"
-            }}
+            style={{ objectFit: "cover", objectPosition: "center" }}
           />
         )}
       </div>
@@ -131,7 +125,7 @@ function TimelineGeneration({
         aria-hidden="true"
       />
       <p className={styles.year}>{generation.year}</p>
-      <p className={`${styles.relation} ${["2009", "2014", "Current"].includes(generation.year) ? styles.smallRelationOnDesktop : ""}`}>
+      <p className={`${styles.relation} ${generation.relation.length > 16 ? styles.smallRelationOnDesktop : ""}`}>
         {generation.relation}
       </p>
       <p className={`${styles.name} ${generation.name.length > 20 ? styles.smallNameOnDesktop : ""}`}>{generation.name.replace(' ', '\n')}</p>
@@ -173,18 +167,39 @@ export default function TimelineSection() {
               whileInView="show"
               viewport={{ once: true, amount: 0.4 }}
             >
-              <p className={styles.kicker}>THE GENERATIONS BEHIND ALL FIRE SERVICES</p>
-              <h2 id="legacy-title">A Family History of Service</h2>
-              <p>
-                From 1911 to today, our family has carried forward a commitment to <strong>protecting lives, property, and communities.</strong>
-                <br /><br />
-                Across four generations, frontline knowledge has been passed down and transformed into the <strong>practical fire protection expertise</strong> behind All Fire Services.
-              </p>
+              <p className={styles.kicker}>The family behind All Fire Services</p>
+              <h2 id="legacy-title">
+                Fire protection<br />
+                runs <span style={{ color: '#ff2a00' }}>in</span> <span style={{
+                  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>
+                  our blood
+                </span>
+              </h2>
+              <div className="flex flex-col items-start" style={{
+                maxWidth: '34rem',
+                color: '#4a4a46',
+                fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
+                lineHeight: 1.55
+              }}>
+                <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
+                  Frontline firefighting knowledge has been passed down through generations. We bring over a century of inherited understanding to the way we protect properties today.
+                </p>
+                <div style={{ marginTop: '0' }}>
+                  <Link href="/about" className={styles.newStoryLink}>
+                    READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
+                  </Link>
+                </div>
+              </div>
             </motion.header>
 
             <div className={styles.timelineViewport}>
               <motion.div
                 className={styles.timelineTrack}
+                style={{ "--timeline-count": generations.length } as CSSProperties}
                 variants={timelineSequence}
                 initial="hidden"
                 whileInView="show"
@@ -203,6 +218,33 @@ export default function TimelineSection() {
                     reduceMotion={reduceMotion}
                   />
                 ))}
+              </motion.div>
+              
+              {/* Centered Next Generation */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: '4rem',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
+                }}>
+                  <p className={styles.year} style={{ marginTop: 0, color: '#d92820', fontSize: 'clamp(1.2rem, 1.8vw, 1.8rem)', fontWeight: 700, textTransform: 'uppercase' }}>NEXT</p>
+                  <p className={styles.relation} style={{ fontSize: 'clamp(1.5rem, 2vw, 1.8rem)', marginTop: '0.85rem', lineHeight: 1.35, whiteSpace: 'pre-line' }}>
+                    Onto the{'\n'}Next{'\n'}Generation
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>

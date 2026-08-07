@@ -50,16 +50,17 @@ const storyCards = [
   },
   {
     eyebrow: "Our story",
-    title: "Founded by a firefighter",
+    title: "Australian owned since 2009",
     copy: (
       <p>
         All Fire Services is an Australian owned and operated business,
-        created by a former NSW Fire Brigades Senior Officer in December 2009.
+        established in December 2009 by a former senior NSW Fire Brigade
+        officer. Peter Tricklebank is the current owner.
       </p>
     ),
     image:
       "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp",
-    imageAlt: "Peter, founder of All Fire Services",
+    imageAlt: "Peter Tricklebank, owner of All Fire Services",
     imageClassName: styles.founderImage,
   },
   {
@@ -203,31 +204,17 @@ const protectionCapabilities: Array<{
   ];
 
 const generations = [
-  { year: "1911", relation: "Great Grand", name: "William Tricklebank", x: "1.5%" },
-  { year: "1931", relation: "Grand", name: "Trevor Tricklebank Snr", x: "12.1%" },
-  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank", x: "22.9%" },
-  { year: "1957", relation: "Father", name: "Stanley Tricklebank", x: "33.5%" },
+  { year: "1911", relation: "Uncle", name: "William Tricklebank", x: "1.5%" },
+  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", x: "12.1%" },
+  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", x: "22.9%" },
+  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", x: "33.5%" },
   { year: "1959", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
-  { year: "1975", relation: "Cousin", name: "Paul Tricklebank", x: "55%" },
-  {
-    year: "2009",
-    relation: "NSW Fire Brigades Senior Officer",
-    name: "Grant Fuller",
-    x: "65.9%",
-  },
-  { year: "2014", relation: "NSW Fire Brigade", name: "Paul Wilson", x: "76.6%" },
   {
     year: "Current",
-    relation: "Managing Director",
+    relation: "Current",
     name: "Peter Tricklebank",
-    x: "87.3%",
-  },
-  {
-    year: "2025",
-    relation: "Next generation",
-    name: "Kyriakos & Orlando Tricklebank",
-    x: "98.2%",
-  },
+    x: "55%",
+  }
 ];
 
 type Generation = (typeof generations)[number];
@@ -462,6 +449,33 @@ export default function HomeStoryLegacy() {
                   />
                 ))}
               </motion.div>
+              
+              {/* Centered Next Generation */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: '4rem',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
+                }}>
+                  <p className={styles.year} style={{ marginTop: 0, color: '#d92820', fontSize: 'clamp(1.2rem, 1.8vw, 1.8rem)', fontWeight: 700, textTransform: 'uppercase' }}>NEXT</p>
+                  <p className={styles.relation} style={{ fontSize: 'clamp(1.5rem, 2vw, 1.8rem)', marginTop: '0.85rem', lineHeight: 1.35, whiteSpace: 'pre-line' }}>
+                    Onto the{'\n'}Next{'\n'}Generation
+                  </p>
+                </div>
+              </motion.div>
             </div>
 
             <motion.p
@@ -604,7 +618,7 @@ export default function HomeStoryLegacy() {
                   </p>
                   <div className={styles.trustPills} aria-label="AllFire values">
                     <span>Family-led</span>
-                    <span>Firefighter-founded</span>
+                    <span>Firefighter-backed</span>
                     <span>Sydney-based</span>
                   </div>
                 </motion.div>

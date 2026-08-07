@@ -22,12 +22,13 @@ export default function SitewideCTA() {
         .pre-faq-cta-card {
           align-items: center;
           background:
-            radial-gradient(circle at 48% 10%, rgba(254, 175, 4, 0.38), transparent 28%),
-            radial-gradient(circle at 12% 18%, rgba(252, 4, 3, 0.28), transparent 32%),
-            linear-gradient(135deg, #fc0403 0%, #fb5614 43%, #feaf04 100%);
+            radial-gradient(circle at 12% 18%, rgba(180, 20, 20, 0.18), transparent 45%),
+            radial-gradient(circle at 88% 82%, rgba(255, 87, 34, 0.16), transparent 45%),
+            linear-gradient(135deg, #fff5f0 0%, #fffaf6 45%, #fff0ea 100%);
+          border: 1px solid rgba(226, 35, 26, 0.18);
           border-radius: 1.5rem;
-          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.16);
-          color: #ffffff;
+          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.12);
+          color: #111111;
           display: flex;
           flex-direction: column;
           isolation: isolate;
@@ -42,8 +43,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-card::before {
           background:
-            linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.72)),
-            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
+            linear-gradient(135deg, rgba(180, 20, 20, 0.06) 0%, rgba(255, 87, 34, 0.04) 50%, rgba(120, 10, 10, 0.08) 100%);
           content: "";
           inset: 0;
           position: absolute;
@@ -62,7 +62,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-logo {
           display: block;
-          filter: brightness(0) invert(1) drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
+          filter: drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
           height: clamp(2.8rem, 5vw, 4.5rem);
           object-fit: contain;
           width: auto;
@@ -73,7 +73,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-title {
-          color: #ffffff;
+          color: #111111;
           font-size: clamp(2rem, 4.2vw, 4rem);
           font-weight: 780;
           letter-spacing: -0.06em;
@@ -84,7 +84,7 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-copy {
-          color: rgba(255, 255, 255, 0.9);
+          color: #4a4a46;
           font-size: clamp(1rem, 1.7vw, 1.18rem);
           font-weight: 700;
           line-height: 1.45;
@@ -103,9 +103,9 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-button {
           align-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.9);
+          border: 1px solid #111111;
           border-radius: 0.55rem;
-          color: #ffffff;
+          color: #111111;
           display: inline-flex;
           font-size: 0.95rem;
           font-weight: 850;
@@ -128,13 +128,13 @@ export default function SitewideCTA() {
         }
 
         .pre-faq-cta-button.is-secondary {
-          background: #feaf04;
-          border-color: #feaf04;
-          color: #111111;
+          background: linear-gradient(135deg, #b41414 0%, #ff5722 50%, #ff8a4c 100%);
+          border-color: #ff5722;
+          color: #ffffff;
         }
 
         .pre-faq-cta-button:focus-visible {
-          outline: 2px solid #ffffff;
+          outline: 2px solid #ff5722;
           outline-offset: 4px;
         }
 
@@ -144,13 +144,14 @@ export default function SitewideCTA() {
           }
 
           .pre-faq-cta-button.is-primary:hover {
-            background: #fc0403;
-            border-color: #fc0403;
+            background: #ff5722;
+            border-color: #ff5722;
+            color: #ffffff;
           }
 
           .pre-faq-cta-button.is-secondary:hover {
-            background: #ffffff;
-            border-color: #ffffff;
+            background: linear-gradient(135deg, #8a0e0e 0%, #e64a19 50%, #ff5722 100%);
+            border-color: #e64a19;
           }
         }
 
@@ -203,7 +204,13 @@ export default function SitewideCTA() {
           />
         </div>
         <h2 className="pre-faq-cta-title" id="sitewide-cta-title">
-          Ready to raise your fire safety standard?
+          Ready to raise <span style={{ color: '#ff2a00' }}>your</span><br />
+          <span style={{
+            background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>fire safety standard?</span>
         </h2>
         <p className="pre-faq-cta-copy">
           Speak with All Fire Services about compliance testing, annual fire

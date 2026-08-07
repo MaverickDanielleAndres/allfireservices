@@ -43,11 +43,15 @@
 
 .header h2 {
   margin: 0;
+  margin-right: -0.15em;
+  padding-left: 0.05em;
+  padding-right: 0.15em;
   color: #111111;
-  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-size: clamp(2.8rem, 5.8vw, 6rem);
   font-weight: 780;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
   line-height: 0.92;
+  text-wrap: balance;
 }
 
 .header > p:last-child {
@@ -63,120 +67,129 @@
   margin-bottom: clamp(4rem, 6vw, 5rem);
   background: #ffffff;
   border-radius: 0.75rem;
-  padding: 1.5rem 1.5rem;
+  padding: 2rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.capabilityLogo {
-  flex-shrink: 0;
+.capabilityLogoWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
-.capabilityLogo img {
-  height: auto;
-  max-height: 95px;
-  width: auto;
+.capabilityLogoImage {
+  width: 140px;
+  height: 140px;
   object-fit: contain;
 }
 
-.capabilityDivider {
-  width: 1.5px;
-  height: 85px;
-  background-color: #171719;
-  opacity: 0.15;
+.capabilityLogoImage.isMainLogo {
+  width: auto;
+  height: auto;
+  max-width: 250px;
+  max-height: 110px;
 }
 
-.capabilityItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.75rem;
-  flex: 1;
+.capabilityLogoImage.isLargerLogo {
+  width: 165px;
+  height: 165px;
 }
 
-.capabilityIconCircle {
-  width: 76px;
-  height: 76px;
-  border: 2px solid #e2231a;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #e2231a;
-}
-
-.capabilityIconCircle svg {
-  width: 40px;
-  height: 40px;
-}
-
-.capabilityLabel {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #171719;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  white-space: pre-line;
-}
-
-.capabilityUnderline {
-  width: 20px;
-  height: 2px;
-  background-color: #e2231a;
-  margin-top: -0.25rem;
-}
-
-@media (max-width: 991px) {
-  .capabilityStrip {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
-  .capabilityDivider {
-    display: none;
-  }
-  
-  .capabilityItem {
-    flex: 0 1 calc(33.333% - 2rem);
+@media (max-width: 1024px) {
+  .capabilityLogoImage.isLargerLogo {
+    width: 130px;
+    height: 130px;
   }
 }
 
 @media (max-width: 767px) {
-  .capabilityLogo {
-    width: 100%;
-    margin-bottom: 1.5rem;
+  .capabilityLogoImage.isLargerLogo {
+    width: 120px;
+    height: 120px;
   }
-  .capabilityLogo img {
-    max-height: 110px;
-  }
-  
+}
+
+.capabilityDivider {
+  width: 1.5px;
+  height: 100px;
+  background-color: #111111;
+  opacity: 0.15;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
   .capabilityStrip {
-    gap: 1.5rem 0.5rem;
+    padding: 1.5rem;
+    gap: 1.25rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
   }
   
-  .capabilityItem {
-    flex: 0 1 calc(33.333% - 0.5rem);
+  .capabilityStrip::-webkit-scrollbar {
+    height: 6px;
   }
   
-  .capabilityLabel {
-    font-size: 0.7rem;
+  .capabilityStrip::-webkit-scrollbar-track {
+    background: transparent;
   }
   
-  .capabilityIconCircle {
-    width: 60px;
-    height: 60px;
+  .capabilityStrip::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  .capabilityLogoImage {
+    width: 110px;
+    height: 110px;
   }
   
-  .capabilityIconCircle svg {
-    width: 30px;
-    height: 30px;
+  .capabilityLogoImage.isMainLogo {
+    max-width: 200px;
+    max-height: 90px;
+  }
+  
+  .capabilityDivider {
+    height: 90px;
+  }
+}
+
+@media (max-width: 767px) {
+  .capabilityStrip {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 0.75rem;
+    padding: 1.5rem 1rem;
+    overflow-x: visible;
+  }
+
+  .capabilityDivider {
+    display: none;
+  }
+
+  .capabilityLogoWrapper {
+    flex: 0 0 calc(50% - 0.5rem);
+  }
+
+  .capabilityLogoWrapper:first-child {
+    flex: 0 0 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .capabilityLogoImage {
+    width: 105px;
+    height: 105px;
+  }
+
+  .capabilityLogoImage.isMainLogo {
+    max-width: 220px;
+    max-height: 90px;
   }
 }
 
@@ -245,6 +258,8 @@
   padding: 0 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0.5rem;
 }
 
@@ -262,6 +277,17 @@
   font-weight: 700;
   color: #111;
   line-height: 1.3;
+}
+
+.cardTitleSmall {
+  font-size: clamp(0.78rem, 0.95vw, 0.95rem);
+  line-height: 1.35;
+}
+
+@media (max-width: 767px) {
+  .cardTitleSmall {
+    font-size: 0.7rem;
+  }
 }
 
 .footer {
@@ -347,7 +373,7 @@
   }
 
   .header h2 {
-    font-size: clamp(2.65rem, 13vw, 4rem);
+    font-size: clamp(3rem, 14vw, 4.5rem);
   }
 
   .grid {
@@ -359,6 +385,15 @@
     height: auto;
     object-fit: contain;
     width: 100%;
+    min-width: 34rem;
+  }
+
+  /* Keep the approved FPA strip artwork intact and legible on small screens:
+     scroll the container instead of shrinking the logo. */
+  .capabilityStrip {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
   }
 }
 

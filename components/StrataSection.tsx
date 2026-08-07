@@ -8,26 +8,26 @@ import styles from "./HomeServices.module.css";
 
 const strataBuildings: CardItem[] = [
   {
-    id: "randwick",
-    title: "Randwick",
-    description: "Servicing premium strata blocks and residential complexes in Randwick.",
-    imgSrc: "/stratapage-cropped/1-all-fire-services-welcome-randwick.webp",
+    id: "bondi",
+    title: "Bondi",
+    description: "Servicing premium strata blocks and residential complexes in Bondi.",
+    imgSrc: "/stratapage-cropped/11-all-fire-services-welcome-bondi.webp",
     icon: <Building2 size={24} />,
     linkHref: "#",
   },
   {
-    id: "enmore",
-    title: "Enmore",
-    description: "Reliable fire safety maintenance for historic and modern buildings in Enmore.",
-    imgSrc: "/stratapage-cropped/2-all-fire-services-welcome-enmore.webp",
+    id: "marrickville1",
+    title: "Marrickville",
+    description: "Reliable fire safety maintenance for historic and modern buildings in Marrickville.",
+    imgSrc: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp",
     icon: <Building2 size={24} />,
     linkHref: "#",
   },
   {
-    id: "greenacre",
-    title: "Greenacre",
-    description: "Comprehensive fire protection for commercial and residential strata in Greenacre.",
-    imgSrc: "/stratapage-cropped/3-all-fire-services-welcome-greenacre.webp",
+    id: "waterloo",
+    title: "Waterloo",
+    description: "Large-scale fire system management for expansive Waterloo developments.",
+    imgSrc: "/stratapage-cropped/7-all-fire-services-welcome-waterloo.webp",
     icon: <Building2 size={24} />,
     linkHref: "#",
   },
@@ -40,26 +40,26 @@ const strataBuildings: CardItem[] = [
     linkHref: "#",
   },
   {
-    id: "chippendale",
-    title: "Chippendale",
-    description: "Modern fire compliance solutions for vibrant Chippendale apartments.",
-    imgSrc: "/stratapage-cropped/5-all-fire-services-welcome-chippendale.webp",
+    id: "randwick",
+    title: "Randwick",
+    description: "Comprehensive fire safety services for Randwick's apartments and strata buildings.",
+    imgSrc: "/stratapage-cropped/randwick-building.webp",
     icon: <Building2 size={24} />,
     linkHref: "#",
   },
   {
-    id: "rockdale",
-    title: "Rockdale",
-    description: "Expert annual fire safety statements for Rockdale strata communities.",
-    imgSrc: "/stratapage-cropped/6-all-fire-services-welcome-rockdale.webp",
+    id: "rosebay",
+    title: "Rose Bay",
+    description: "Specialist fire protection for premium Rose Bay residential complexes.",
+    imgSrc: "/stratapage-cropped/1welcome-to-fireman-family.png",
     icon: <Building2 size={24} />,
     linkHref: "#",
   },
   {
-    id: "waterloo",
-    title: "Waterloo",
-    description: "Large-scale fire system management for expansive Waterloo developments.",
-    imgSrc: "/stratapage-cropped/7-all-fire-services-welcome-waterloo.webp",
+    id: "alexandria",
+    title: "Alexandria",
+    description: "Modern fire compliance solutions for vibrant Alexandria apartments.",
+    imgSrc: "/stratapage-cropped/12-all-fire-services-welcome-alexandria.webp",
     icon: <Building2 size={24} />,
     linkHref: "#",
   }
@@ -78,8 +78,13 @@ export default function StrataSection() {
         <header className={styles.header}>
           <p className={styles.kicker}>Where we work</p>
           <h2>
-            Strata and <span style={{ color: '#fb5614' }}>landmark</span><br />
-            <span style={{ color: '#fb5614' }}>buildings</span> we service
+            Strata and <span style={{ color: '#ff2a00' }}>landmark</span><br />
+            <span style={{ 
+              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>buildings we service</span>
           </h2>
           <p>
             Across Greater Sydney, from single blocks to whole portfolios.

@@ -275,3 +275,57 @@ This document serves as the **comprehensive source of truth** for the styling, b
 
 ## Conclusion
 Whenever a new page is being created (for instance, the Services or Contact pages), you should literally lift these React component structures directly from this document. Replace the content, images, and text, but **leave the classNames, `style={{}}` inline attributes, typography scales, and structures untouched** to ensure perfect visual consistency across the platform.
+
+---
+
+## 5. Our Clients Page (`app/our-clients/page.tsx`) Component Blueprints
+
+### 5.1. Client Logo Grid (`ClientGrid.tsx`)
+**Description:** A 2-column responsive layout (left for large intro text, right for a dynamic grid of client logos with various background handling). 
+**Key Code:**
+```tsx
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
+  {/* Left Column: Text */}
+  <div className="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left">
+    <p style={{ color: '#fb5614', fontWeight: 600 }}>TRUSTED BY</p>
+    <h2 style={{ fontSize: 'clamp(2.8rem, 5.8vw, 4.5rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>
+      Greater Sydney's <span style={{ color: '#fb5614' }}>Property Managers</span>
+    </h2>
+  </div>
+  
+  {/* Right Column: Logos */}
+  <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 items-center justify-items-center">
+    {/* Map logos here */}
+    <div className="flex items-center justify-center w-full h-16 md:h-20 px-4">
+      {/* Logos use standard filter: brightness-0 opacity-90 for SVG/PNG, 
+          and grayscale contrast-125 opacity-90 + mixBlendMode: multiply for JPG/images with white backgrounds */}
+      <Image src="/logo.png" alt="Client Logo" width={150} height={50} className="filter brightness-0 opacity-90" />
+    </div>
+  </div>
+</div>
+```
+
+### 5.2. About Clients Feature Grid (`AboutClients.tsx`)
+**Description:** A grid system similar to the About page's Standard Alternating Grid, but uses `styles.newStoryGrid` from `HomeStoryLegacy.module.css` to allow for tighter spacing and specialized alignments.
+**Key Code:**
+```tsx
+<div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '10rem', alignItems: 'stretch' }}>
+  <div className="relative w-full h-full min-h-[300px] max-h-[440px] rounded-[1.5rem] overflow-hidden m-auto shadow-2xl lg:order-2 order-1">
+    <Image src="/image.webp" alt="Client Feature" fill style={{ objectFit: 'cover' }} />
+  </div>
+
+  <div className={`${styles.newStoryContent} lg:order-1 order-2 flex flex-col justify-center`}>
+    <header className={styles.storyHeaderLeft} style={{ marginTop: 0, marginBottom: '1.5rem', width: '100%' }}>
+      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', color: '#feaf04', fontWeight: 800 }}>
+        EXPERTISE
+      </p>
+      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, color: '#111111', lineHeight: 0.94, letterSpacing: '-0.04em' }}>
+        Every Building. Every <span className={styles.orangeText}>Industry.</span>
+      </h2>
+    </header>
+    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
+      Description text here...
+    </p>
+  </div>
+</div>
+```

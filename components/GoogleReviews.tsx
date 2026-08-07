@@ -169,7 +169,7 @@ export default function GoogleReviews() {
   return (
     <section
       id="testimonials"
-      className="bg-white text-gray-900 pt-16 lg:pt-24 pb-16 lg:pb-32 overflow-hidden"
+      className="bg-white text-gray-900 pt-16 lg:pt-24 pb-6 lg:pb-8 overflow-hidden"
     >
       <style>{`
         .reviews-header {
@@ -192,10 +192,11 @@ export default function GoogleReviews() {
         .reviews-title {
           margin: 0;
           color: #111111;
-          font-size: clamp(2rem, 4.2vw, 4rem);
+          font-size: clamp(2.8rem, 5.8vw, 6rem);
           font-weight: 780;
           letter-spacing: -0.06em;
           line-height: 0.92;
+          text-wrap: balance;
         }
         @media (max-width: 991px) {
           .reviews-header {
@@ -208,11 +209,6 @@ export default function GoogleReviews() {
             margin: 0 0 0.5rem;
           }
         }
-        @media (max-width: 767px) {
-          .reviews-title {
-            font-size: clamp(2.65rem, 13vw, 4rem);
-          }
-        }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -221,7 +217,12 @@ export default function GoogleReviews() {
         <div className="reviews-header">
           <div className="reviews-kicker">Our clients</div>
           <h2 className="reviews-title">
-            What Sydney <span style={{ color: '#fb5614' }}>building</span><br className="hidden lg:block" /><span style={{ color: '#fb5614' }}>managers</span> actually say
+            What Sydney <span style={{ color: '#ff2a00' }}>building</span><br className="hidden lg:block" /><span style={{
+              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>managers actually say</span>
           </h2>
           <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
              {/* Rating Overview */}

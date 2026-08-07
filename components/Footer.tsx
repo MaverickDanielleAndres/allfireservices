@@ -37,34 +37,29 @@ const EmailIcon = () => (
   </svg>
 );
 
-const footerColumns = [
-  {
-    title: "Services",
-    links: [
-      { label: "Fire protection", href: "/fire-protection-services-sydney" },
-      { label: "Annual fire safety", href: "/annual-fire-safety-statement" },
-      { label: "Fire compliance", href: "/fire-safety-compliance" },
-      { label: "Fire consultancy", href: "/fire-consultancy-services" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Home", href: "/" },
-      { label: "About us", href: "/about" },
-      { label: "Services", href: "/services" },
-      { label: "FPA member", href: "/fpa-australia-member" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { label: "Contact", href: "/contact" },
-      { label: "Talk to Peter", href: "/talk-to-peter" },
-      { label: "Find a fitter", href: "/find-a-fitter" },
-      { label: "Strata", href: "/strata" },
-    ],
-  },
+const serviceLinks = [
+  { label: "AFSS", href: "/annual-fire-safety-statement" },
+  { label: "Fire panel / alarms 1670.1", href: "/services?category=fire-panel" },
+  { label: "Smoke detects AS 3876", href: "/services?category=smoke-alarms" },
+  { label: "Fire doors", href: "/services?category=fire-doors" },
+  { label: "Fire extinguishers", href: "/services?category=fire-extinguishers" },
+  { label: "Emergency lights", href: "/services?category=emergency-lights" },
+  { label: "Fire hose reels", href: "/services" },
+  { label: "Diesel / hydrant / sprinkler", href: "/services?category=diesel-pump" },
+  { label: "Air mechanical services", href: "/services?category=air-mechanical" },
+  { label: "Flow test", href: "/services?category=flow-testing" },
+  { label: "Fire penetration", href: "/services?category=service-penetration" },
+  { label: "Block & evacuation plans", href: "/services?category=plans" },
+];
+
+const companyLinks = [
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  { label: "All services", href: "/services" },
+  { label: "FPA member", href: "/fpa-australia-member" },
+  { label: "Talk to Peter", href: "/talk-to-peter" },
+  { label: "Find a fitter", href: "/find-a-fitter" },
+  { label: "Strata", href: "/strata" },
 ];
 
 const socialLinks = [
@@ -80,49 +75,68 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-[#eaded6] bg-white text-[#121212]">
       {/* Top content section — constrained */}
-      <div className="mx-auto w-full max-w-[1440px] px-4 pt-8 sm:px-6 md:pt-10 lg:px-8 lg:pt-12">
-        <div className="grid gap-12 lg:grid-cols-[minmax(18rem,0.82fr)_minmax(0,1.18fr)] lg:gap-16">
-          <div className="min-w-0 max-w-xl flex flex-col h-full">
-            <div>
-              <p className="text-[clamp(2rem,4.2vw,4rem)] font-[780] leading-[0.92] tracking-[-0.06em] text-[#111111]">
-                Protecting people,
-                <br />
-                protecting property.
-              </p>
-              <div className="mt-5 grid max-w-xl grid-cols-2 gap-2 text-sm font-[500] text-[#111111] sm:mt-7 sm:gap-3">
-                <Link
-                  href="/contact"
-                  className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#ff4d16] px-3 !text-white no-underline transition hover:bg-[#e63d0b] sm:px-5"
-                  style={{
-                    backgroundColor: "#ff4d16",
-                    borderRadius: 0,
-                    color: "#ffffff",
-                    display: "flex",
-                    flexWrap: "nowrap",
-                    textDecoration: "none",
-                  }}
-                >
-                  <span className="whitespace-nowrap">Get in touch</span>
-                  <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
-                </Link>
+      <div className="mx-auto w-full max-w-[1440px] px-4 pt-6 sm:px-6 sm:pt-8 md:pt-10 lg:px-8 lg:pt-12">
+        <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1fr)] lg:gap-12">
+          <div className="min-w-0 max-w-xl">
+            <p className="text-[clamp(1.75rem,4.4vw,2.85rem)] font-[780] leading-[0.95] tracking-[-0.06em] text-[#111111]">
+              Protecting people,
+              <br />
+              protecting property.
+            </p>
+            <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
+              <Link
+                href="/contact"
+                className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#ff4d16] px-3 !text-white no-underline transition hover:bg-[#e63d0b] sm:px-4"
+                style={{
+                  backgroundColor: "#ff4d16",
+                  borderRadius: 0,
+                  color: "#ffffff",
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  textDecoration: "none",
+                }}
+              >
+                <span className="whitespace-nowrap">Get in touch</span>
+                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+              </Link>
+              <a
+                href="tel:1300765594"
+                className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#ff4d16] hover:bg-white sm:px-4"
+                style={{
+                  borderRadius: 0,
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  textDecoration: "none",
+                }}
+              >
+                <span className="whitespace-nowrap">Call 1300 765 594</span>
+                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+              </a>
+            </div>
+
+            <div className="mt-5 max-w-xl border-t border-[#2b201b]/12 pt-4 text-[0.85rem] font-[500] leading-relaxed text-[#111111] sm:text-[0.9rem]">
+              <a
+                href="mailto:admin@allfireservices.com.au"
+                className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                style={{ textDecoration: "none" }}
+              >
+                admin@allfireservices.com.au
+              </a>
+              <p className="mt-1">330 Wattle Street, Ultimo NSW 2007</p>
+              <div className="mt-2 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-4">
+                <p>Mon-Fri: 7:00am to 6:30pm</p>
                 <a
-                  href="tel:1300765594"
-                  className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#ff4d16] hover:bg-white sm:px-5"
-                  style={{
-                    borderRadius: 0,
-                    display: "flex",
-                    flexWrap: "nowrap",
-                    textDecoration: "none",
-                  }}
+                  href="tel:0484648400"
+                  className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                  style={{ textDecoration: "none" }}
                 >
-                  <span className="whitespace-nowrap">Call 1300 765 594</span>
-                  <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+                  After hours: 0484 648 400
                 </a>
               </div>
             </div>
 
-            <div className="mt-auto pt-16 md:pt-24 lg:pt-32 pb-6">
-              <p className="mb-4 text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Socials</p>
+            <div className="pb-2 pt-5">
+              <p className="mb-3 text-[0.95rem] font-bold text-[#111111]">Socials</p>
               <div className="flex flex-wrap items-center gap-2 text-[#111111]" aria-label="Social links">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <a
@@ -139,49 +153,40 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid min-w-0 grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 md:gap-x-8 lg:gap-x-10">
-            {footerColumns.map((column) => (
-              <nav key={column.title} aria-label={column.title}>
-                <p className="mb-3 text-[0.95rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">{column.title}</p>
-                <ul className="footer-link-list flex flex-col gap-2 whitespace-normal text-[0.9rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111] md:gap-3">
-                  {column.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="!text-[#111111] transition hover:!text-[#ff4d16]"
-                        style={{
-                          minHeight: "auto",
-                          paddingBlock: 0,
-                          textDecoration: "none",
-                        }}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
+          <div className="grid min-w-0 grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
+            <nav aria-label="Services">
+              <p className="mb-3 text-[0.95rem] font-bold text-[#111111] md:text-base">Services</p>
+              <ul className="footer-link-list grid grid-cols-2 gap-x-6 gap-y-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid-cols-3 md:text-[0.95rem] md:gap-y-3">
+                {serviceLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-            <div className="col-span-2 md:col-span-1 min-w-0 mt-2 md:mt-0">
-              <div className="min-w-0">
-                <p className="mb-3 text-[0.95rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-bold text-[#111111]">Contact</p>
-                <div className="flex flex-col gap-2 text-[0.9rem] md:text-[clamp(1.05rem,1.5vw,1.15rem)] font-[500] leading-snug text-[#111111]">
-                  <a
-                    className="min-w-0 !text-[#111111] transition hover:!text-[#ff4d16]"
-                    href="mailto:admin@allfireservices.com.au"
-                    style={{ overflowWrap: "anywhere", textDecoration: "none" }}
-                  >
-                    admin@allfireservices.com.au
-                  </a>
-                  <p>330 Wattle Street Ultimo NSW 2007</p>
-                  <div className="flex flex-col gap-1 mt-1">
-                    <p>Mon-Fri: 7:00am to 6:30pm</p>
-                    <p>After hours: 0484 648 400</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <nav aria-label="Company">
+              <p className="mb-3 text-[0.95rem] font-bold text-[#111111] md:text-base">Company</p>
+              <ul className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] md:text-[0.95rem] md:gap-3">
+                {companyLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                  ))}
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -212,7 +217,7 @@ export default function Footer() {
 
       {/* Bottom bar — constrained */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-        <div className="mt-5 flex flex-col gap-5 border-t border-[#2b201b]/12 pt-5 pb-6 text-[12px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-4 border-t border-[#2b201b]/12 pb-5 pt-4 text-[11px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
             <span className="text-[#111111]">Privacy policy</span>

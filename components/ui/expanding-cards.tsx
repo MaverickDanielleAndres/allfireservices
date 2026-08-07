@@ -62,7 +62,7 @@ export const ExpandingCards = React.forwardRef<
         "w-full max-w-7xl mx-auto gap-2",
         "grid",
         "h-[600px] md:h-[500px]",
-        "transition-[grid-template-columns,grid-template-rows] duration-500 ease-out",
+        "transition-all duration-300 ease-out will-change-[grid-template-columns,grid-template-rows]",
         className,
       )}
       style={{
@@ -92,27 +92,42 @@ export const ExpandingCards = React.forwardRef<
           <img
             src={item.imgSrc}
             alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-out group-data-[active=true]:scale-100 group-data-[active=true]:grayscale-0 scale-110 grayscale"
+            className="absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-500 ease-out group-data-[active=true]:scale-100 group-data-[active=true]:grayscale-0 scale-110 grayscale"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+          {/* Inactive State Title (Vertical on Desktop, Horizontal on Mobile) */}
+          <div className="absolute inset-0 flex items-center justify-center md:items-end md:pb-12 pointer-events-none transition-opacity duration-300 ease-out group-data-[active=true]:opacity-0">
+            <span 
+              className="!text-[10px] md:!text-[13px] !font-normal text-white tracking-[0.2em] uppercase whitespace-nowrap hidden md:block opacity-60"
+              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+            >
+              {item.title}
+            </span>
+            <span 
+              className="!text-[10px] md:!text-[13px] !font-normal text-white tracking-[0.2em] uppercase whitespace-nowrap md:hidden opacity-60"
+            >
+              {item.title}
+            </span>
+          </div>
 
           <article
-            className="absolute inset-0 flex flex-col justify-end gap-2 p-4"
+            className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-2 p-4 pointer-events-none"
           >
 
 
             {item.icon && (
-              <div className="text-white/90 opacity-0 transition-all duration-300 delay-75 ease-out group-data-[active=true]:opacity-100">
+              <div className="text-white/90 opacity-0 transition-opacity duration-300 delay-75 ease-out group-data-[active=true]:opacity-100">
                 {item.icon}
               </div>
             )}
 
-            <h3 className="text-xl font-bold text-white opacity-0 transition-all duration-300 delay-150 ease-out group-data-[active=true]:opacity-100">
+            <h3 className="text-xl font-bold text-white opacity-0 transition-opacity duration-300 delay-150 ease-out group-data-[active=true]:opacity-100">
               {item.title}
             </h3>
 
             {item.description && (
-              <p className="w-full max-w-xs text-sm text-white/80 opacity-0 transition-all duration-300 delay-225 ease-out group-data-[active=true]:opacity-100">
+              <p className="w-full max-w-xs text-sm text-white/80 opacity-0 transition-opacity duration-300 delay-225 ease-out group-data-[active=true]:opacity-100">
                 {item.description}
               </p>
             )}

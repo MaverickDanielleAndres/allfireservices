@@ -46,7 +46,7 @@ export default function ClientGrid() {
             </div>
 
             {/* Right Column: Logos */}
-            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16 items-center justify-items-center">
+            <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-12 items-center justify-items-center">
               {clients.map((client, index) => {
                 // Determine styling based on image type
                 let filterClass = "filter brightness-0 opacity-90"; // Default for transparent PNG/SVG

@@ -400,10 +400,11 @@
 .timelineTrack {
   --portrait-size: clamp(5.5rem, 14vw, 8.5rem);
   --stem-height: 1.65rem;
+  --timeline-count: 6;
 
   position: relative;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(var(--timeline-count), 1fr);
   width: 100%;
   padding: 0 0.5rem;
 }
@@ -412,8 +413,8 @@
   position: absolute;
   z-index: 0;
   top: calc(var(--portrait-size) + var(--stem-height) + 0.375rem);
-  right: calc(100% / 16);
-  left: calc(100% / 16);
+  right: calc(100% / (var(--timeline-count) * 2));
+  left: calc(100% / (var(--timeline-count) * 2));
   height: 0.25rem;
   /* Made thinner */
   background: rgba(226, 35, 26, 0.2);
@@ -424,8 +425,8 @@
   position: absolute;
   z-index: 0;
   top: calc(var(--portrait-size) + var(--stem-height) + 0.375rem);
-  right: calc(100% / 16);
-  left: calc(100% / 16);
+  right: calc(100% / (var(--timeline-count) * 2));
+  left: calc(100% / (var(--timeline-count) * 2));
   height: 0.25rem;
   /* Made thinner */
   background: #e2231a;
@@ -460,6 +461,11 @@
     border-color 260ms ease,
     box-shadow 260ms ease,
     transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portraitEmpty {
+  background-image: none;
+  background-color: #f9fafb;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -620,25 +626,34 @@
     scroll-snap-type: none;
     padding: 0;
   }
-  
+
   .timelineTrack {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem 1rem;
+    gap: 1.25rem 0.5rem;
     min-width: 0;
     padding: 0 1rem;
   }
-  
+
   .timelineTrack::before,
   .timelineLine,
   .dropLine,
   .timelineDot {
     display: none !important;
   }
-  
+
   .generation {
     width: 100%;
     scroll-snap-align: none;
+  }
+
+  .nextGeneration {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(226, 35, 26, 0.18);
+    text-align: center;
+    align-items: center;
   }
 }
 
@@ -1307,7 +1322,7 @@
   .timelineTrack {
     grid-template-columns: 1fr 1fr !important;
     min-width: 0 !important;
-    gap: 3rem 0.5rem !important;
+    gap: 1.25rem 0.5rem !important;
   }
 
   .timelineTrack::before,
@@ -1315,6 +1330,15 @@
   .dropLine,
   .timelineDot {
     display: none !important;
+  }
+
+  .nextGeneration {
+    grid-column: 1 / -1 !important;
+    margin-top: 0.5rem !important;
+    padding-top: 1.25rem !important;
+    border-top: 1px solid rgba(226, 35, 26, 0.18);
+    text-align: center;
+    align-items: center;
   }
 
   .legacyTagline {

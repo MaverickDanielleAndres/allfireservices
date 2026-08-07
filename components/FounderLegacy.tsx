@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./HomeStoryLegacy.module.css";
 import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
 
 const reveal: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -20,7 +20,7 @@ export default function FounderLegacy() {
         <div className="container-large">
           <div className="padding-section-large" style={{ paddingTop: '5rem', paddingBottom: 'clamp(5rem, 8vw, 10rem)' }}>
 
-            <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
+            <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'center' }}>
               <motion.div
                 className={styles.newStoryContent}
                 style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
@@ -31,35 +31,57 @@ export default function FounderLegacy() {
               >
                 <header
                   className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
-                  style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                  style={{ marginTop: 0, marginBottom: '1.5rem', maxWidth: 'none', width: '100%' }}
                 >
-                  <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
-                  <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(1.8rem, 3.8vw, 4rem)', maxWidth: '100%', lineHeight: 0.94 }}>
-                    The Firefighter Behind<br /><span className={styles.orangeText}>All Fire Services</span>
+                  <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>Our Family Legacy</p>
+                  <h2 className="mx-auto md:mx-0" style={{
+                    fontWeight: 900,
+                    lineHeight: 1.0,
+                    letterSpacing: '-0.04em',
+                    maxWidth: '100%',
+                  }}>
+                    <span style={{ fontSize: 'clamp(3rem, 5.5vw, 6.5rem)' }}>Fire protection<br /></span>
+                    <span style={{ fontSize: 'clamp(4rem, 7.5vw, 9rem)', lineHeight: 0.9 }}>
+                      runs <span style={{ color: '#ff2a00' }}>in</span><br />
+                      <span style={{
+                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}>
+                        our blood
+                      </span>
+                    </span>
                   </h2>
                 </header>
-                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                  All Fire Services was founded by <strong>Peter Tricklebank</strong>, former <strong>NSW Fire Brigades Senior Officer</strong>, after decades of protecting lives in real emergencies. Backed by a family history of firefighters dating back to <strong>1911</strong>, every inspection, certification, and recommendation is shaped by experience earned where it matters most.
+                <p className="text-[#111111] text-[clamp(1rem,1.4vw,1.15rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1rem' }}>
+                  The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
-                <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ fontWeight: 'bold' }}>
-                  When your building&apos;s safety is on the line, trust the people who have spent generations protecting lives and property.
-                </p>
+                <div className="flex justify-center md:justify-start">
+                  <Link href="/about" className={styles.newStoryLink}>
+                    READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
+                  </Link>
+                </div>
               </motion.div>
 
+              {/* YouTube Video replacing photo */}
               <motion.div
-                style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px', maxHeight: '550px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}
+                style={{ width: '100%', maxWidth: '340px', margin: '0 auto', borderRadius: '1.5rem', overflow: 'hidden' }}
                 variants={reveal}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <Image
-                  src="/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp"
-                  alt="Peter Wood, Managing Director"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center 15%' }}
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                />
+                <div style={{ position: 'relative', paddingTop: '177.77%' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                    title="All Fire Services family legacy"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  />
+                </div>
               </motion.div>
             </div>
 

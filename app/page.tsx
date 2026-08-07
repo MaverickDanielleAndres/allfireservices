@@ -96,7 +96,7 @@ function ClientsMarquee() {
         .clients-marquee {
           background: #ffffff;
           overflow: hidden;
-          padding: clamp(3rem, 5vw, 5rem) 0 clamp(6rem, 10vw, 8rem);
+          padding: clamp(0.75rem, 1.5vw, 1.25rem) 0 clamp(1.5rem, 3vw, 2.5rem);
           position: relative;
         }
 
@@ -269,12 +269,13 @@ function PreFaqCTA() {
         .pre-faq-cta-card {
           align-items: center;
           background:
-            radial-gradient(circle at 48% 10%, rgba(254, 175, 4, 0.38), transparent 28%),
-            radial-gradient(circle at 12% 18%, rgba(252, 4, 3, 0.28), transparent 32%),
-            linear-gradient(135deg, #fc0403 0%, #fb5614 43%, #feaf04 100%);
+            radial-gradient(circle at 12% 18%, rgba(180, 20, 20, 0.18), transparent 45%),
+            radial-gradient(circle at 88% 82%, rgba(255, 87, 34, 0.16), transparent 45%),
+            linear-gradient(135deg, #fff5f0 0%, #fffaf6 45%, #fff0ea 100%);
+          border: 1px solid rgba(226, 35, 26, 0.18);
           border-radius: 1.5rem;
-          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.16);
-          color: #ffffff;
+          box-shadow: 0 2rem 4.5rem rgba(17, 17, 17, 0.12);
+          color: #111111;
           display: flex;
           flex-direction: column;
           isolation: isolate;
@@ -289,8 +290,7 @@ function PreFaqCTA() {
 
         .pre-faq-cta-card::before {
           background:
-            linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.72)),
-            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 96px);
+            linear-gradient(135deg, rgba(180, 20, 20, 0.06) 0%, rgba(255, 87, 34, 0.04) 50%, rgba(120, 10, 10, 0.08) 100%);
           content: "";
           inset: 0;
           position: absolute;
@@ -309,7 +309,7 @@ function PreFaqCTA() {
 
         .pre-faq-cta-logo {
           display: block;
-          filter: brightness(0) invert(1) drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
+          filter: drop-shadow(0 0.75rem 1.2rem rgba(17, 17, 17, 0.18));
           height: clamp(2.8rem, 5vw, 4.5rem);
           object-fit: contain;
           width: auto;
@@ -320,7 +320,7 @@ function PreFaqCTA() {
         }
 
         .pre-faq-cta-title {
-          color: #ffffff;
+          color: #111111;
           font-size: clamp(2rem, 4.2vw, 4rem);
           font-weight: 780;
           letter-spacing: -0.06em;
@@ -331,7 +331,7 @@ function PreFaqCTA() {
         }
 
         .pre-faq-cta-copy {
-          color: rgba(255, 255, 255, 0.9);
+          color: #4a4a46;
           font-size: clamp(1rem, 1.7vw, 1.18rem);
           font-weight: 700;
           line-height: 1.45;
@@ -350,9 +350,9 @@ function PreFaqCTA() {
 
         .pre-faq-cta-button {
           align-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.9);
+          border: 1px solid #111111;
           border-radius: 0.55rem;
-          color: #ffffff;
+          color: #111111;
           display: inline-flex;
           font-size: 0.95rem;
           font-weight: 850;
@@ -375,13 +375,13 @@ function PreFaqCTA() {
         }
 
         .pre-faq-cta-button.is-secondary {
-          background: #feaf04;
-          border-color: #feaf04;
-          color: #111111;
+          background: linear-gradient(135deg, #b41414 0%, #ff5722 50%, #ff8a4c 100%);
+          border-color: #ff5722;
+          color: #ffffff;
         }
 
         .pre-faq-cta-button:focus-visible {
-          outline: 2px solid #ffffff;
+          outline: 2px solid #ff5722;
           outline-offset: 4px;
         }
 
@@ -391,13 +391,14 @@ function PreFaqCTA() {
           }
 
           .pre-faq-cta-button.is-primary:hover {
-            background: #fc0403;
-            border-color: #fc0403;
+            background: #ff5722;
+            border-color: #ff5722;
+            color: #ffffff;
           }
 
           .pre-faq-cta-button.is-secondary:hover {
-            background: #ffffff;
-            border-color: #ffffff;
+            background: linear-gradient(135deg, #8a0e0e 0%, #e64a19 50%, #ff5722 100%);
+            border-color: #e64a19;
           }
         }
 
@@ -450,7 +451,13 @@ function PreFaqCTA() {
           />
         </div>
         <h2 className="pre-faq-cta-title" id="pre-faq-cta-title">
-          Ready to raise your fire safety standard?
+          Ready to raise <span style={{ color: '#ff2a00' }}>your</span><br />
+          <span style={{
+            background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>fire safety standard?</span>
         </h2>
         <p className="pre-faq-cta-copy">
           Speak with All Fire Services about compliance testing, annual fire
@@ -541,6 +548,9 @@ export default function Page() {
               color: #ffffff;
               line-height: 1;
               margin-bottom: 0.25rem;
+            }
+            .analytics-number.is-range {
+              white-space: nowrap;
             }
             .analytics-label {
               font-size: 0.9rem;
@@ -773,29 +783,43 @@ export default function Page() {
               }
               .hero-actions {
                 flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
               }
               .hero-actions .btn-primary, .hero-actions .btn-secondary {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
                 width: 100%;
+                min-height: 3rem;
                 padding: 0.8rem 1rem;
                 font-size: 0.95rem;
+                box-sizing: border-box;
               }
               .hero-analytics {
                 flex-direction: row;
                 justify-content: space-between;
                 gap: 0.5rem;
                 margin-bottom: 2rem;
-                align-items: flex-start;
+                align-items: stretch;
                 text-align: center;
                 width: 100%;
               }
               .analytics-item {
-                width: 33.33%;
+                flex: 1 1 0;
+                min-width: 0;
+                width: auto;
                 align-items: center;
+                justify-content: center;
               }
               .analytics-number {
-                font-size: 1.5rem;
+                font-size: clamp(1.2rem, 5vw, 1.5rem);
                 margin-bottom: 0.2rem;
+                line-height: 1.1;
+              }
+              .analytics-number.is-range {
+                font-size: clamp(1.2rem, 5vw, 1.5rem);
               }
               .analytics-label {
                 font-size: 0.7rem;
@@ -866,8 +890,8 @@ export default function Page() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={0} to={17} duration={0.4} /></div>
-                  <div className="analytics-label">Years of experience</div>
+                  <div className="analytics-number is-range">1911&ndash;2026</div>
+                  <div className="analytics-label">Family firefighting legacy</div>
                 </div>
                 <div className="analytics-item">
                   <div className="analytics-number"><Counter from={2026} to={2009} duration={0.4} /></div>

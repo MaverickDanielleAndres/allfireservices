@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import styles from "./HomeStoryLegacy.module.css";
 
@@ -9,36 +9,41 @@ const videos = [
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "dAWVxg6rC7Y", title: "Annual fire safety inspections" },
-  { id: "aQIWX9uKtbs", title: "A phone in a back pocket caught fire" },
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "D85L7WhrPtY", title: "Free Annual Fire Safety Statement offer" },
+  { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
 ];
 
 export default function FireSafetyShorts() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef({ active: false, pointerId: -1, startX: 0, startScrollLeft: 0 });
+  const dragRef = useRef({ active: false, pointerId: -1, startX: 0, startScrollLeft: 0, moved: false });
   const [isDragging, setIsDragging] = useState(false);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [thumbnailErrors, setThumbnailErrors] = useState<Set<number>>(new Set());
+
+  const handlePlayClick = useCallback((idx: number) => {
+    // Only one video can play at a time — switching unmounts the previous iframe
+    setPlayingVideoIndex(idx);
+  }, []);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      setPlayingVideoIndex(null); // Stop video when swiping
-      
+      // Stop playback when scrolling
+      setPlayingVideoIndex(null);
       const container = scrollRef.current;
-      // Scroll by one full page (visible container width)
       const amount = container.clientWidth;
-      
+
       container.style.scrollSnapType = 'none';
       container.scrollBy({
         left: direction === "left" ? -amount : amount,
         behavior: "smooth",
       });
-      
+
       setTimeout(() => {
         if (container) container.style.scrollSnapType = 'x mandatory';
       }, 500);
@@ -49,11 +54,10 @@ export default function FireSafetyShorts() {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       const maxScroll = scrollWidth - clientWidth;
-      
-      // Calculate how many 'pages' of content exist
+
       const pages = Math.max(1, Math.ceil(scrollWidth / clientWidth));
       setTotalPages(pages);
-      
+
       if (maxScroll <= 0) {
         setCurrentPage(0);
         setCanScrollLeft(false);
@@ -71,14 +75,13 @@ export default function FireSafetyShorts() {
     const el = scrollRef.current;
     if (el) {
       el.addEventListener("scroll", handleScroll);
-      // init
       handleScroll();
       return () => el.removeEventListener("scroll", handleScroll);
     }
   }, []);
 
   return (
-    <section 
+    <section
       aria-labelledby="fire-safety-shorts-title"
       style={{ background: "#ffffff", padding: "clamp(72px, 9vw, 116px) 0" }}
     >
@@ -94,10 +97,15 @@ export default function FireSafetyShorts() {
                 fontWeight: 780,
                 letterSpacing: "-0.06em",
                 lineHeight: 0.92,
-              }}>Quick lessons<br />from <span style={{ color: '#fb5614' }}>real</span> jobs</h2>
+              }}>Quick lessons<br /><span style={{
+                background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>from real jobs</span></h2>
             </header>
           <div className="flex gap-2 justify-center w-full md:w-auto shrink-0 mt-2 md:mt-0">
-            <button 
+            <button
               onClick={() => scroll("left")}
               disabled={!canScrollLeft}
               aria-label="Scroll left"
@@ -107,7 +115,7 @@ export default function FireSafetyShorts() {
             >
               <ArrowLeft size={20} color="#111" />
             </button>
-            <button 
+            <button
               onClick={() => scroll("right")}
               disabled={!canScrollRight}
               aria-label="Scroll right"
@@ -121,7 +129,7 @@ export default function FireSafetyShorts() {
         </div>
 
         {/* Carousel */}
-        <div 
+        <div
           ref={scrollRef}
           onPointerDown={(e) => {
             if (e.pointerType === "mouse" && e.button !== 0) return;
@@ -132,8 +140,8 @@ export default function FireSafetyShorts() {
               pointerId: e.pointerId,
               startX: e.clientX,
               startScrollLeft: container.scrollLeft,
+              moved: false,
             };
-            e.currentTarget.setPointerCapture(e.pointerId);
             setIsDragging(true);
             container.style.scrollSnapType = 'none';
           }}
@@ -143,6 +151,7 @@ export default function FireSafetyShorts() {
             const container = scrollRef.current;
             if (!container) return;
             const delta = drag.startX - e.clientX;
+            if (Math.abs(delta) > 5) drag.moved = true;
             container.scrollLeft = drag.startScrollLeft + delta;
           }}
           onPointerUp={(e) => {
@@ -162,90 +171,147 @@ export default function FireSafetyShorts() {
               if (container) container.style.scrollSnapType = 'x mandatory';
             }
           }}
-          style={{ 
-            display: "flex", 
-            overflowX: "auto", 
-            scrollSnapType: "x mandatory", 
+          style={{
+            display: "flex",
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            paddingBottom: "2rem",
-            margin: "0",
             padding: "0 0 2rem 0",
             cursor: isDragging ? "grabbing" : "grab",
-            touchAction: "pan-y"
+            touchAction: "pan-y",
           }}
           className="hide-scrollbar shorts-carousel"
         >
-          {videos.map((video, idx) => (
-            <div 
-              key={`${video.id}-${idx}`} 
-              className="shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
-              style={{ 
-                scrollSnapAlign: "start",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-                pointerEvents: isDragging ? "none" : "auto"
-              }}
-            >
-              <div 
-                className="video-container"
-                style={{ 
-                  position: "relative", 
-                  width: "100%", 
-                  borderRadius: "16px", 
-                  overflow: "hidden",
-                  backgroundColor: "#111",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
+          {videos.map((video, idx) => {
+            const isPlaying = playingVideoIndex === idx;
+            return (
+              <div
+                key={`${video.id}-${idx}`}
+                className="shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
+                style={{
+                  scrollSnapAlign: "start",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
                 }}
               >
-                {playingVideoIndex === idx ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&enablejsapi=1&rel=0&playsinline=1&modestbranding=1`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    style={{ width: "100%", height: "100%", border: 0 }}
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
-                      alt={video.title}
-                      style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.9 }}
-                    />
-                    <button
-                      onClick={() => setPlayingVideoIndex(idx)}
-                      aria-label={`Play ${video.title}`}
+                {/* Aspect-ratio container using padding-top trick for guaranteed height */}
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    paddingTop: "177.78%", // 16:9 inverse = 9:16 vertical video
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    backgroundColor: "#111",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+                  }}
+                >
+                  {isPlaying ? (
+                    <iframe
+                      key={`playing-${idx}-${video.id}`}
+                      src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1&controls=1`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
                       style={{
                         position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: "60px",
-                        height: "60px",
-                        borderRadius: "50%",
-                        backgroundColor: "#e22d2c", // Brand red
-                        border: "none",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        boxShadow: "0 4px 14px rgba(226, 45, 44, 0.4)",
-                        transition: "transform 0.2s ease, background-color 0.2s ease"
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        border: 0,
+                        display: "block",
                       }}
-                      onMouseOver={(e) => e.currentTarget.style.transform = "translate(-50%, -50%) scale(1.05)"}
-                      onMouseOut={(e) => e.currentTarget.style.transform = "translate(-50%, -50%) scale(1)"}
-                    >
-                      <Play fill="#fff" color="#fff" size={24} style={{ marginLeft: "4px" }} />
-                    </button>
-                  </>
-                )}
+                    />
+                  ) : (
+                    <>
+                      {!thumbnailErrors.has(idx) ? (
+                        <img
+                          src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                          alt={video.title}
+                          onError={() => {
+                            setThumbnailErrors((prev) => {
+                              const next = new Set(prev);
+                              next.add(idx);
+                              return next;
+                            });
+                          }}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            opacity: 0.9,
+                            display: "block",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          aria-hidden="true"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            background:
+                              "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #0d0d0d 100%)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "#666",
+                            fontSize: "0.8rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Video preview
+                        </div>
+                      )}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          handlePlayClick(idx);
+                        }}
+                        aria-label={`Play ${video.title}`}
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "#e22d2c",
+                          border: "none",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          boxShadow: "0 4px 14px rgba(226, 45, 44, 0.4)",
+                          transition: "transform 0.2s ease, background-color 0.2s ease",
+                          zIndex: 5,
+                          touchAction: "manipulation",
+                        }}
+                        onMouseOver={(e) => e.currentTarget.style.transform = "translate(-50%, -50%) scale(1.05)"}
+                        onMouseOut={(e) => e.currentTarget.style.transform = "translate(-50%, -50%) scale(1)"}
+                      >
+                        <Play fill="#fff" color="#fff" size={24} style={{ marginLeft: "4px" }} />
+                      </button>
+                    </>
+                  )}
+                </div>
+                <h3 className="shorts-title" style={{ margin: 0, fontSize: "0.95rem", fontWeight: 700, color: "#111", lineHeight: 1.4 }}>
+                  {video.title}
+                </h3>
               </div>
-              <h3 style={{ margin: 0, fontSize: "0.95rem", fontWeight: 700, color: "#111", lineHeight: 1.4 }}>
-                {video.title}
-              </h3>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Progress dots (Pagination) */}
@@ -254,15 +320,15 @@ export default function FireSafetyShorts() {
             {[...Array(totalPages)].map((_, dot) => {
               const isActive = currentPage === dot;
               return (
-                <div 
-                  key={dot} 
-                  style={{ 
-                    width: isActive ? "20px" : "6px", 
-                    height: "6px", 
-                    borderRadius: "3px", 
+                <div
+                  key={dot}
+                  style={{
+                    width: isActive ? "20px" : "6px",
+                    height: "6px",
+                    borderRadius: "3px",
                     backgroundColor: isActive ? "#e22d2c" : "#ccc",
                     transition: "all 0.3s ease"
-                  }} 
+                  }}
                 />
               );
             })}
@@ -308,13 +374,10 @@ export default function FireSafetyShorts() {
         </div>
       </div>
       </div>
-      
+
       <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
-        }
-        .video-container {
-           aspect-ratio: 9/16;
         }
         .shorts-carousel {
           gap: 1.5rem;
@@ -331,11 +394,9 @@ export default function FireSafetyShorts() {
           .shorts-view-more {
             margin-top: 2rem;
           }
-        }
-        @media (max-width: 991px) {
-           .video-container {
-              aspect-ratio: 9/19;
-           }
+          .shorts-title {
+            text-align: center;
+          }
         }
       `}</style>
     </section>

@@ -8,7 +8,7 @@ import { Gallery, GalleryGrid, GalleryImage } from "@/components/ui/shared-eleme
 
 
 const teamMembers = [
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp', name: 'Peter', bio: 'Peter, our founder and former NSW Fire Brigades Senior Officer, brings decades of frontline experience to lead our highly motivated team of professionals.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads a highly motivated team of fire safety professionals across Greater Sydney.' },
   { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp', name: 'Paul', bio: 'Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.' },
   { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Sam', bio: 'Sam ensures excellent service delivery on site, drawing on his background as a serving professional firefighter to keep your building compliant.' },
   { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp', name: 'George', bio: 'George is highly motivated to provide a level of service and safety to the community unequalled by our competition.' },
@@ -142,7 +142,7 @@ export default function Page() {
                         About All Fire Services
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        Founded by a former NSW Fire Brigades Senior Officer, fire protection is in our blood. We deliver elite, professional safety services driven by practical, real-world expertise.
+                        A family firefighting legacy dating back to 1911, and an Australian owned business established in 2009. Fire protection is in our blood, and we deliver elite, professional safety services driven by practical, real-world expertise.
                       </p>
                     </div>
                   </div>
@@ -198,7 +198,67 @@ export default function Page() {
           {/* Timeline Section */}
           <TimelineSection />
 
-          {/* In-Depth History & Gallery */}
+          {/* Why All Fire / Next Generation — with Family Video */}
+          <div className="padding-global" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
+            <div className="container-large">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative items-start lg:items-stretch">
+
+                {/* Text Column (Left) */}
+                <div className="flex flex-col gap-16 lg:gap-40 order-1 px-6 md:px-12 lg:px-0 pb-12 lg:pb-0">
+
+                  {/* Why All Fire Block */}
+                  <div className="flex flex-col justify-start text-center lg:text-left items-center lg:items-start">
+                    <header className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start text-center lg:text-left`}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
+                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Why All Fire ?</p>
+                      <h2 className="mx-auto lg:mx-0 text-center lg:text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '28ch' }}>
+                        &ldquo;Who knows better<br className="hidden lg:block" />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
+                      </h2>
+                    </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
+                      Our customer service technicians are <strong>serving and retired professional firefighters.</strong> It means every client gets <strong>real-life knowledge of the fire safety industry</strong> rather than a checklist.
+                    </p>
+                  </div>
+
+                  {/* Next Generation Block */}
+                  <div className="flex flex-col justify-start text-center lg:text-left items-center lg:items-start">
+                    <header className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start text-center lg:text-left`}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
+                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Next generation</p>
+                      <h2 className="mx-auto lg:mx-0 text-center lg:text-left">
+                        &ldquo;The <span className={styles.orangeText}>Next Generation</span>&rdquo;
+                      </h2>
+                    </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
+                      The Tricklebank story does not stop with Peter. The <strong>next generation</strong> is already growing up around the trade &mdash; and the same standard is being handed on.
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* Video Column (Right) — Sticky */}
+                <div className="order-2 w-full relative h-full">
+                  <div className="w-full max-w-[320px] mx-auto lg:sticky lg:top-32">
+                    <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
+                      <iframe
+                        width="100%"
+                        height="100%"
+                        src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full rounded-[1.5rem]"
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
           <div className="padding-global">
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingTop: '6rem' }}>
@@ -216,37 +276,37 @@ export default function Page() {
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Proudly Serving <br className="md:hidden" />Since <span style={{ color: '#fb5614' }}>1911</span>
+                        A Family Legacy <br className="md:hidden" />Since <span style={{ color: '#fb5614' }}>1911</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        It began with William Tricklebank, whose commitment to protecting the community established a standard of courage, service, and responsibility that continues to guide us today.
+                        It began with William Tricklebank, whose commitment to protecting the community established a standard of courage, service, and responsibility that continues to guide the family today. This is the <strong>Tricklebank family firefighting legacy</strong> &mdash; not the history of the company.
                       </p>
                     </div>
 
                     {/* Row 2 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        From William to Trevor, Stanley, Ian, and Peter, our family has spent generations on the front line of emergency response. That history gives our clients <strong>real-world knowledge</strong> that cannot be learned from a checklist.
+                        From William to Trevor, Trevor Jr, Stanley, and Ian, the Tricklebank family has spent generations on the front line of emergency response. That history gives our clients <strong>real-world knowledge</strong> that cannot be learned from a checklist.
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        A Legacy of Four <span style={{ color: '#fb5614' }}>Generations</span>
+                        Generations of <span style={{ color: '#fb5614' }}>Firefighters</span>
                       </h2>
                     </div>
 
                     {/* Row 3 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Leading from 2009 <br className="md:hidden" />to <span style={{ color: '#fb5614' }}>Today</span>
+                        The Company, <br className="md:hidden" />Established <span style={{ color: '#fb5614' }}>2009</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        Drawing on decades of operational knowledge, Peter established All Fire Services in 2009. What began as a family calling has grown into a trusted fire protection company delivering professional compliance and <strong>practical, reliable fire protection.</strong>
+                        All Fire Services is a separate story. It was established in December 2009 by a former senior NSW Fire Brigade officer. <strong>Peter Tricklebank later became the owner</strong>, and today leads the business &mdash; bringing the family&apos;s inherited understanding of fire to <strong>practical, reliable fire protection.</strong>
                       </p>
                     </div>
 
                     {/* Row 4 (Alternating) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        Every inspection, installation, and certification is supported by more than a century of lived firefighting experience. We do not simply help clients meet requirements. We help them <strong>protect people and property.</strong>
+                        Every inspection, installation, and certification is supported by a team of <strong>serving and retired professional firefighters.</strong> We do not simply help clients meet requirements. We help them <strong>protect people and property.</strong>
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
                         Our Unwavering <br className="md:hidden" /><span style={{ color: '#fb5614' }}>Promise</span> to You
@@ -294,23 +354,23 @@ export default function Page() {
                 {/* Block 2 */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '440px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Founded by a firefighter" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, owner of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET OUR FOUNDER</p>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Founded by<br /><span className={styles.orangeText}>a Firefighter</span>&rdquo;
+                        &ldquo;Australian Owned<br /><span className={styles.orangeText}>Since 2009</span>&rdquo;
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services was established in December 2009 by a former NSW Fire Brigades Senior Officer with a clear belief that fire protection should be delivered by people who <strong>understand it beyond paperwork.</strong>
+                      All Fire Services was established in December 2009 by a former senior NSW Fire Brigade officer, on a clear belief that fire protection should be delivered by people who <strong>understand it beyond paperwork.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      By bringing together <strong>serving and retired professional firefighters</strong>, the company gives clients access to practical judgment, frontline knowledge, and dependable advice.
+                      <strong>Peter Tricklebank is the current owner of the business.</strong> He bought All Fire Services rather than founding it, and he has never been a firefighter himself &mdash; but he grew up inside a family of them. He runs the company to that same standard: a team of <strong>serving and retired professional firefighters</strong> giving clients practical judgment, frontline knowledge, and dependable advice.
                     </p>
                   </div>
                 </div>
@@ -328,7 +388,7 @@ export default function Page() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      With <strong>more than 38 years of experience</strong> in firefighting and fire safety, Peter created All Fire Services to provide a level of service clients could genuinely trust.
+                      All Fire Services exists to provide a level of service clients can genuinely trust &mdash; delivered by technicians who have <strong>real firefighting experience</strong> behind them.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
                       The company combines operational knowledge with professional customer service, ensuring every job is handled with integrity, care, and attention to detail.
