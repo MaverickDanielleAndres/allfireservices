@@ -468,27 +468,8 @@
   background-color: #f9fafb;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .generation:hover {
-    transform: translateY(-0.45rem);
-  }
-
-  .generation:hover .portrait {
-    border-color: #ffd9cf;
-    box-shadow:
-      0 0.9rem 2rem rgba(17, 17, 17, 0.16),
-      0 0 0 0.45rem rgba(226, 35, 26, 0.09);
-    transform: scale(1.06);
-  }
-
-  .generation:hover .portrait img {
-    filter: grayscale(0%);
-  }
-}
-
 .portrait img {
   filter: grayscale(100%);
-  transition: filter 260ms ease;
 }
 
 .dropLine {
@@ -526,7 +507,6 @@
   font-family: "Inter", var(--font-sans), sans-serif;
   font-weight: 700;
   line-height: 1.35;
-  min-height: 4.5rem;
   display: flex;
   align-items: flex-start;
   justify-content: center;
