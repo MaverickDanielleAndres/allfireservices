@@ -32,7 +32,7 @@ export default function ClientGrid() {
               <p className={styles.kicker} style={{ color: '#fb5614', fontWeight: 600 }}>
                 TRUSTED BY
               </p>
-              <h2 style={{ 
+              <h2 style={{
                 margin: 0,
                 color: '#111111',
                 fontSize: 'clamp(2.8rem, 5.8vw, 4.5rem)',
@@ -41,7 +41,12 @@ export default function ClientGrid() {
                 lineHeight: 0.92,
                 textWrap: 'balance'
               }}>
-                Greater Sydney's <span style={{ color: '#fb5614' }}>Property Managers</span>
+                Greater Sydney's<br /><span style={{
+                  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>Property Managers</span>
               </h2>
             </div>
 

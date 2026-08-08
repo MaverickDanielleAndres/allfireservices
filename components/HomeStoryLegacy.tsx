@@ -128,7 +128,11 @@ function TimelineGeneration({
   );
 }
 
-export default function HomeStoryLegacy() {
+type HomeStoryLegacyProps = {
+  aboutPage?: boolean;
+};
+
+export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
 
@@ -162,28 +166,57 @@ export default function HomeStoryLegacy() {
               whileInView="show"
               viewport={{ once: true, amount: 0.4 }}
             >
-              <p className={styles.kicker}>The family behind All Fire Services</p>
-              <h2 id="legacy-title">
-                Fire protection<br />
-                runs <span style={{ color: '#ff2a00' }}>in</span> <span style={{
-                  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}>
-                  our blood
-                </span>
-              </h2>
-              <div className="flex flex-col items-start" style={{
-                maxWidth: '34rem',
-                color: '#4a4a46',
-                fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
-                lineHeight: 1.55
-              }}>
-                <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
-                  We bring over a century of inherited understanding to the way we protect properties today.
-                </p>
-              </div>
+              {aboutPage ? (
+                <>
+                  <p className={styles.kicker}>The family behind All Fire Services</p>
+                  <h2 id="legacy-title" style={{ color: '#111111' }}>
+                    A Family Firefighting<br />
+                    <span style={{
+                      background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}>
+                      Legacy Since 1911
+                    </span>
+                  </h2>
+                  <div className="flex flex-col items-start" style={{
+                    maxWidth: '34rem',
+                    color: '#4a4a46',
+                    fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
+                    lineHeight: 1.55
+                  }}>
+                    <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
+                      The Tricklebank family&apos;s connection to firefighting began more than a century ago. Across generations, that experience has shaped a strong understanding of responsibility, service, and the importance of protecting people and property.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className={styles.kicker}>The family behind All Fire Services</p>
+                  <h2 id="legacy-title">
+                    Fire protection<br />
+                    <span style={{
+                      background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}>
+                      runs in our blood
+                    </span>
+                  </h2>
+                  <div className="flex flex-col items-start" style={{
+                    maxWidth: '34rem',
+                    color: '#4a4a46',
+                    fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
+                    lineHeight: 1.55
+                  }}>
+                    <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
+                      We bring over a century of inherited understanding to the way we protect properties today.
+                    </p>
+                  </div>
+                </>
+              )}
             </motion.header>
 
             <div className={styles.timelineViewport}>

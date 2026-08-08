@@ -109,7 +109,7 @@ const capabilityLogos = [
   { src: "/services-logo/fire-hydrants-boosters.webp", alt: "Fire Hydrants & Boosters", width: 150, height: 150 },
   { src: "/services-logo/emergency-equipment.webp", alt: "Emergency Equipment", width: 150, height: 150 },
   { src: "/services-logo/fire-panels.webp", alt: "Fire Panels", width: 150, height: 150 },
-  { src: "/services-logo/testing-compliance.webp", alt: "Testing & Compliance", width: 150, height: 150, isLarger: true },
+  { src: "/services-logo/testing-compliance.webp", alt: "Testing & Compliance", width: 150, height: 150 },
 ];
 
 export default function HomeServices() {
@@ -144,7 +144,7 @@ export default function HomeServices() {
             <React.Fragment key={logo.src}>
               <div className={styles.capabilityLogoWrapper}>
                 <Image
-                  className={`${styles.capabilityLogoImage} ${logo.isMain ? styles.isMainLogo : ''} ${logo.isLarger ? styles.isLargerLogo : ''}`}
+                  className={`${styles.capabilityLogoImage} ${logo.isMain ? styles.isMainLogo : ''}`}
                   src={logo.src}
                   alt={logo.alt}
                   width={logo.width}

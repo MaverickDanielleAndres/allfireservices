@@ -108,7 +108,7 @@ export default function OurClientsPage() {
                   <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                     <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
                       <div className="header-eyebrow-text hide-desktop mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
-                        OUR CLIENTS
+                        Our Clients
                       </div>
                       <h1
                         className="mx-auto md:mx-0 text-center md:text-left w-full"
@@ -129,7 +129,7 @@ export default function OurClientsPage() {
                     </div>
                     <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
                       <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
-                        OUR CLIENTS
+                        Our Clients
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         Trusted by strata managers, property teams, facility managers, and business owners across Sydney. Discover the organisations that rely on All Fire Services to protect their people, property, and compliance.

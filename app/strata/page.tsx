@@ -1,116 +1,199 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import React, { useState, useRef } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import React, { useState } from "react";
 import Image from "next/image";
-import styles from "./StrataGallery.module.css";
+import styles from "@/components/HomeStoryLegacy.module.css";
+import galleryStyles from "./StrataGallery.module.css";
 
+// All cropped building images with accurate location names.
+// /stratapage-cropped/* files exclude the ALLFIRE Welcome sign AND CALL PETER footer.
+// /stratapage-cropped/banner-* files keep the ALLFIRE Welcome banner (CALL PETER footer cropped off).
+// Initial view shows 16; clicking "More" reveals 12 additional images below (28 total).
 const strataImages = [
-  { src: "/stratapage/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
-  { src: "/stratapage/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
-  { src: "/stratapage/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
-  { src: "/stratapage/8-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage/9-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
-  { src: "/stratapage/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage/30-all-fire-services-welcome-north-sydney.png", name: "North Sydney" },
-  { src: "/stratapage/1welcome-to-fireman-family.png", name: "Rose Bay" },
-  { src: "/stratapage/2welcome-to-fireman-family.png", name: "Randwick" },
-  { src: "/stratapage/3welcome-to-fireman-family.png", name: "Glebe" },
+  // ── Initial 16 (4 rows × 4 columns) ──────────────────────────────────────
+  { src: "/stratapage-cropped/randwick-building.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
+  { src: "/stratapage-cropped/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
+  { src: "/stratapage-cropped/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
+  { src: "/stratapage-cropped/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
+  { src: "/stratapage-cropped/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
+  { src: "/stratapage-cropped/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
+  { src: "/stratapage-cropped/8-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
+  { src: "/stratapage-cropped/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
+  { src: "/stratapage-cropped/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
+  { src: "/stratapage-cropped/13-all-fire-services-welcome-glebe.webp", name: "Glebe" },
+  { src: "/stratapage-cropped/14-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/15-all-fire-services-welcome-north-sydney.webp", name: "North Sydney" },
+  // ── Hidden 12 (3 rows × 4 columns — revealed by "More" button) ───────────
+  { src: "/stratapage-cropped/1welcome-to-fireman-family.png", name: "Rose Bay" },
+  { src: "/stratapage-cropped/2welcome-to-fireman-family.png", name: "Mosman" },
+  { src: "/stratapage-cropped/banner-chippendale.webp", name: "Chippendale" },
+  { src: "/stratapage-cropped/banner-enmore.webp", name: "Enmore" },
+  { src: "/stratapage-cropped/banner-greenacre.webp", name: "Greenacre" },
+  { src: "/stratapage-cropped/banner-haberfield.webp", name: "Haberfield" },
+  { src: "/stratapage-cropped/banner-randwick.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/banner-rockdale.webp", name: "Rockdale" },
+  { src: "/stratapage-cropped/banner-alexandria.webp", name: "Alexandria" },
+  { src: "/stratapage-cropped/banner-bondi.webp", name: "Bondi" },
+  { src: "/stratapage-cropped/banner-stanmore.webp", name: "Stanmore" },
+  { src: "/stratapage-cropped/banner-waterloo.webp", name: "Waterloo" },
+];
+
+const INITIAL_VISIBLE_COUNT = 16;
+
+const gradientStyle = {
+  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+} as const;
+
+const properties = [
+  { title: "Strata & Residential Buildings", description: "Ongoing inspection, testing and maintenance for common property and essential fire-safety systems." },
+  { title: "Commercial Properties", description: "Reliable fire protection and compliance support for offices, workplaces and commercial buildings." },
+  { title: "Retail & Mixed-Use Developments", description: "Fire-safety servicing for properties with multiple tenants, public areas and shared systems." },
+  { title: "Industrial & Warehouse Facilities", description: "Inspection and maintenance of essential systems across operational and industrial environments." },
+  { title: "Managed Properties", description: "Practical support for property and facilities managers responsible for multiple buildings and sites." },
+  { title: "Building & Development Sites", description: "Fire-safety services and documentation supporting new, existing and upgraded properties." },
 ];
 
 export default function Page() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
-  const shouldReduceMotion = useReducedMotion();
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  const [showMore, setShowMore] = useState<boolean>(false);
 
-  const handlePageChange = (newPage: number) => {
-    if (newPage !== currentPage) {
-      setDirection(newPage > currentPage ? 1 : -1);
-      setCurrentPage(newPage);
-      
-      if (sectionRef.current) {
-        const yOffset = -100; // offset for sticky header
-        const y = sectionRef.current.getBoundingClientRect().top + window.scrollY + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-  };
-
-  const imagesToShow = currentPage === 1 ? strataImages : strataImages.slice(0, 8);
-
-  const variants = {
-    enter: (direction: number) => {
-      return {
-        x: direction > 0 ? 300 : -300,
-        opacity: 0
-      };
-    },
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 300 : -300,
-        opacity: 0
-      };
-    }
-  };
+  const openLightbox = (index: number) => setActiveImageIndex(index);
+  const closeLightbox = () => setActiveImageIndex(null);
+  const showNext = () => setActiveImageIndex((i) => (i === null ? null : (i + 1) % strataImages.length));
+  const showPrev = () => setActiveImageIndex((i) => (i === null ? null : (i - 1 + strataImages.length) % strataImages.length));
 
   return (
     <main className="main-wrapper">
-      <div className="scroll-wrapper">
-        <header 
+      <main className="scroll-wrapper">
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .strata-hero-inner {
+            padding-top: 8rem;
+            padding-bottom: 20rem;
+          }
+          .strata-dark-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom,
+              rgba(10,10,10,0.88) 0%,
+              rgba(20,5,5,0.82) 30%,
+              rgba(30,5,5,0.72) 50%,
+              rgba(40,8,8,0.45) 68%,
+              rgba(50,8,8,0.18) 80%,
+              rgba(255,255,255,0) 92%
+            );
+          }
+          .strata-fade-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(to bottom,
+              rgba(255,255,255,0) 0%,
+              rgba(255,255,255,0.01) 8%,
+              rgba(255,255,255,0.03) 16%,
+              rgba(255,255,255,0.07) 24%,
+              rgba(255,255,255,0.13) 32%,
+              rgba(255,255,255,0.22) 40%,
+              rgba(255,255,255,0.34) 49%,
+              rgba(255,255,255,0.49) 57%,
+              rgba(255,255,255,0.64) 65%,
+              rgba(255,255,255,0.78) 73%,
+              rgba(255,255,255,0.89) 81%,
+              rgba(255,255,255,0.96) 89%,
+              #ffffff 95%,
+              #ffffff 100%
+            );
+            z-index: 2;
+          }
+          @media (max-width: 767px) {
+            .strata-hero-inner {
+              padding-top: 6rem !important;
+              padding-bottom: 32rem !important;
+            }
+            .strata-dark-overlay {
+              background: linear-gradient(to bottom,
+                rgba(10,10,10,0.88) 0%,
+                rgba(20,5,5,0.82) 50%,
+                rgba(30,5,5,0.72) 75%,
+                rgba(40,8,8,0.55) 90%,
+                rgba(50,8,8,0.25) 96%,
+                rgba(255,255,255,0) 100%
+              ) !important;
+            }
+            .strata-fade-overlay {
+              height: 220px !important;
+            }
+          }
+        `}} />
+
+        {/* HERO */}
+        <header
           className="section_about-hero is-dark"
-          style={{ 
-            backgroundImage: 'url("/stratapage/1welcome-to-fireman-family.png")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+          style={{
             position: 'relative',
-            marginBottom: '4rem',
             marginTop: '-12rem',
             paddingTop: '12rem',
+            marginBottom: '-2px',
           }}
         >
-          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
-          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <Image
+              src="/stratapage-cropped/1welcome-to-fireman-family.png"
+              alt="Strata Fire Safety Hero"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              priority
+              fetchPriority="high"
+              quality={60}
+              sizes="100vw"
+            />
+          </div>
+          <div className="strata-dark-overlay"></div>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.55) 0%, rgba(30,5,5,0.35) 40%, rgba(70,10,10,0.15) 70%, transparent 100%)', mixBlendMode: 'multiply' }}></div>
+          <div className="strata-fade-overlay"></div>
+
+          <div className="padding-global" style={{ position: 'relative', zIndex: 3, marginTop: '-2px' }}>
             <div className="container-large">
-              <div className="padding-section-large is-about" style={{ paddingTop: '8rem', paddingBottom: '6rem' }}>
+              <div className="padding-section-large is-about strata-hero-inner">
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
-                  <div className="hero_content-wrapper">
-                    <div className="hero_content-left">
-                      <div className="header-eyebrow-text hide-desktop" style={{ color: '#FEAF04', fontWeight: 600 }}>
-                        Strata Fire Safety
+                  <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
+                    <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
+                      <div className="header-eyebrow-text hide-desktop mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
+                        Who We Serve
                       </div>
-                      <h1 
-                        className="heading-style-h1"
-                        style={{ 
-                          color: '#ffffff', 
-                          fontWeight: 900, 
+                      <h1
+                        className="mx-auto md:mx-0 text-center md:text-left w-full"
+                        style={{
+                          fontSize: 'clamp(2rem, 5vw, 5.5rem)',
+                          color: '#ffffff',
+                          fontWeight: 900,
                           textTransform: 'uppercase',
-                          lineHeight: 1.1 
+                          lineHeight: 1.1,
+                          margin: 0
                         }}
                       >
-                        STRATA
+                        <span style={{ display: 'block', whiteSpace: 'nowrap' }}>STRATA</span>
+                        <span style={{ display: 'inline-block', whiteSpace: 'nowrap', paddingRight: '0px', background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                          &amp; RESIDENTIAL
+                        </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right">
-                      <div className="header-eyebrow-text hide-tablet" style={{ color: '#FEAF04', fontWeight: 600 }}>
-                        Strata Fire Safety
+                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
+                      <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
+                        Strata &amp; Residential Buildings
                       </div>
-                      <p className="body-text" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        Ensuring all strata common areas are fully compliant and safe for residents. We provide comprehensive fire safety audits, routine inspections, and expert maintenance for all residential complexes, ensuring complete peace of mind for strata managers and residents alike.
+                      <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                        Practical fire protection for strata and residential buildings across Greater Sydney. Inspections, testing, maintenance and compliance support for owners corporations and strata managers.
                       </p>
                     </div>
                   </div>
@@ -120,90 +203,482 @@ export default function Page() {
           </div>
         </header>
 
-        <div ref={sectionRef} data-theme="light" className="section_process" style={{ padding: '60px 0', background: '#fff' }}>
+        {/* OUR WORK — Gallery (moved to the top, right after the hero) */}
+        <section
+          data-animate-to="light"
+          data-theme="light"
+          className="section_our_work"
+          style={{ position: 'relative', zIndex: 10, background: '#ffffff' }}
+        >
           <div className="padding-global">
             <div className="container-large">
-              
-              <div className="strata-grid-shell">
-                <AnimatePresence mode="wait" custom={direction} initial={false}>
-                  <motion.div
-                    className="strata-grid-page"
-                    key={currentPage}
-                    custom={direction}
-                    variants={variants}
-                    initial={shouldReduceMotion ? false : "enter"}
-                    animate="center"
-                    exit={shouldReduceMotion ? undefined : "exit"}
-                    transition={shouldReduceMotion
-                      ? { duration: 0 }
-                      : {
-                          x: { type: "spring", stiffness: 300, damping: 30 },
-                          opacity: { duration: 0.2 }
-                        }}
-                  >
-                    <div className="strata-grid">
-                      {imagesToShow.map((image) => (
-                        <div
-                          key={image.src}
-                          className={`strata-grid-item ${styles.galleryItem}`}
-                          tabIndex={0}
-                          aria-label={image.name}
-                        >
-                          <Image
-                            src={image.src}
-                            alt={`All Fire Services at ${image.name}`}
-                            fill
-                            sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
-                            className={styles.galleryImage}
-                          />
-                          <span className={styles.galleryOverlay} aria-hidden="true">
-                            <span className={styles.locationName}>{image.name}</span>
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
+              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '2rem' }}>
+                <header
+                  className={styles.legacyHeader}
+                  style={{ marginTop: 0, marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
+                >
+                  <p className={styles.kicker}>Our Work</p>
+                  <h2 id="our-work-title" style={{ color: '#111111', maxWidth: 'none' }}>
+                    <span style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.8rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Buildings We Protect</span><br />
+                    <span style={{ color: '#ff2a00', fontSize: 'clamp(2.4rem, 5vw, 5.2rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Across</span> <span style={{ ...gradientStyle, fontSize: 'clamp(2.4rem, 5vw, 5.2rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Greater Sydney</span>
+                  </h2>
+                  <p>
+                    A snapshot of the properties and locations supported by All Fire Services across the Sydney metropolitan area.
+                  </p>
+                </header>
               </div>
-
-              <nav style={{ display: 'flex', width: '100%', justifyContent: 'center', marginTop: '3rem', marginBottom: '1rem' }} aria-label="Strata gallery pages">
-                <div style={{ display: 'flex', gap: '16px' }}>
-                  <button 
-                    type="button"
-                    onClick={() => handlePageChange(1)} 
-                    className={`px-4 py-2 rounded-md font-medium text-sm transition-colors duration-200 focus:outline-none cursor-pointer border m-0 ${
-                      currentPage === 1 
-                        ? 'bg-[#E3000F] border-[#E3000F] !text-white' 
-                        : 'bg-white border-gray-200 !text-gray-600 hover:!text-gray-900 hover:bg-gray-50'
-                    }`}
-                    aria-label="Show strata gallery page 1"
-                    aria-current={currentPage === 1 ? "page" : undefined}
-                  >
-                    Page 1
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={() => handlePageChange(2)} 
-                    className={`px-4 py-2 rounded-md font-medium text-sm transition-colors duration-200 focus:outline-none cursor-pointer border m-0 ${
-                      currentPage === 2 
-                        ? 'bg-[#E3000F] border-[#E3000F] !text-white' 
-                        : 'bg-white border-gray-200 !text-gray-600 hover:!text-gray-900 hover:bg-gray-50'
-                    }`}
-                    aria-label="Show strata gallery page 2"
-                    aria-current={currentPage === 2 ? "page" : undefined}
-                  >
-                    Page 2
-                  </button>
-                </div>
-              </nav>
-
-
-
             </div>
           </div>
-        </div>
+
+          {/* Grid gallery */}
+          <div className="padding-global">
+            <div className="container-large">
+              <div style={{ paddingBottom: 'clamp(2rem, 4vw, 3rem)' }}>
+                <div className="strata-grid">
+                  {strataImages.slice(0, INITIAL_VISIBLE_COUNT).map((image, index) => (
+                    <div
+                      key={`${image.src}-${index}`}
+                      className={galleryStyles.galleryCard}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Enlarge ${image.name} photo`}
+                      onClick={() => openLightbox(index)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          openLightbox(index);
+                        }
+                      }}
+                    >
+                      <div className={galleryStyles.galleryImageWrap}>
+                        <Image
+                          src={image.src}
+                          alt={`All Fire Services at ${image.name}`}
+                          fill
+                          sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
+                          className={galleryStyles.galleryImage}
+                        />
+                      </div>
+                      <p className={galleryStyles.galleryCaption}>{image.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hidden batch — 12 extra images (3 rows × 4 columns) — rendered above the button */}
+          {showMore && (
+            <div id="strata-gallery-extra" className="padding-global">
+              <div className="container-large">
+                <div style={{ paddingBottom: 'clamp(2rem, 4vw, 3rem)' }}>
+                  <div className="strata-grid">
+                    {strataImages.slice(INITIAL_VISIBLE_COUNT).map((image, index) => {
+                      const realIndex = INITIAL_VISIBLE_COUNT + index;
+                      return (
+                        <div
+                          key={`${image.src}-${realIndex}`}
+                          className={galleryStyles.galleryCard}
+                          role="button"
+                          tabIndex={0}
+                          aria-label={`Enlarge ${image.name} photo`}
+                          onClick={() => openLightbox(realIndex)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              openLightbox(realIndex);
+                            }
+                          }}
+                        >
+                          <div className={galleryStyles.galleryImageWrap}>
+                            <Image
+                              src={image.src}
+                              alt={`All Fire Services at ${image.name}`}
+                              fill
+                              sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
+                              className={galleryStyles.galleryImage}
+                            />
+                          </div>
+                          <p className={galleryStyles.galleryCaption}>{image.name}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* More button — sits at the bottom of the gallery, below all images */}
+          <div className="padding-global">
+            <div className="container-large">
+              <div
+                className={galleryStyles.loadMoreWrap}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: 'clamp(3rem, 6vw, 5rem)',
+                }}
+              >
+                {!showMore ? (
+                  <button
+                    type="button"
+                    className="button-content"
+                    onClick={() => setShowMore(true)}
+                    aria-expanded="false"
+                    aria-controls="strata-gallery-extra"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.95rem 2rem',
+                      fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)',
+                      fontWeight: 700,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      borderRadius: '999px',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                    }}
+                  >
+                    More Buildings
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="button-content"
+                    onClick={() => setShowMore(false)}
+                    aria-expanded="true"
+                    aria-controls="strata-gallery-extra"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.95rem 2rem',
+                      fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)',
+                      fontWeight: 700,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      borderRadius: '999px',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                    }}
+                  >
+                    Show Less
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                      <path d="M3 9l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* THE COVERAGE — Intro section */}
+        <section
+          data-animate-to="light"
+          data-theme="light"
+          className="section_coverage"
+          style={{ position: 'relative', zIndex: 10, background: '#ffffff' }}
+        >
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingTop: '0', paddingBottom: '8rem' }}>
+                <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>The Coverage</p>
+                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ maxWidth: '24ch', color: '#111111' }}>
+                        <span style={{ fontSize: 'clamp(2rem, 4vw, 4.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Fire Protection Across</span><br />
+                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Greater Sydney</span>
+                      </h2>
+                    </header>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      Every building has different fire-safety responsibilities. From residential complexes and commercial properties to managed facilities and mixed-use developments, each site requires the right combination of inspection, testing, maintenance and compliance support.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      All Fire Services works across Greater Sydney to help keep buildings <strong>protected, maintained and ready when it matters.</strong>
+                    </p>
+                  </div>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
+                    <Image src="/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp" alt="Fire protection across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* HOW WE HELP */}
+        <section data-theme="light" className="section_how_we_help" style={{ background: '#ffffff' }}>
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ alignItems: 'stretch' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                  </div>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0`} style={{ textTransform: 'uppercase' }}>How We Help</p>
+                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ color: '#111111' }}>
+                        <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Supporting <span style={{ color: '#ff0000' }}>Buildings</span></span><br />
+                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>of Every Type</span>
+                      </h2>
+                    </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      All Fire Services works with property managers, building owners, facilities teams and businesses across Greater Sydney.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      We coordinate inspections, testing, maintenance, documentation and certification across essential fire-safety systems, helping clients manage their responsibilities without unnecessary complexity.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left">
+                      From routine maintenance to ongoing compliance requirements, our team provides <strong>practical support and clear communication</strong> throughout the process.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROPERTIES WE SERVICE */}
+        <section data-theme="light" className="section_properties" style={{ background: '#ffffff' }}>
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+                <header
+                  className={styles.legacyHeader}
+                  style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+                >
+                  <p className={styles.kicker}>Properties We Service</p>
+                  <h2 id="properties-title" style={{ color: '#111111', maxWidth: 'none' }}>
+                    <span style={{ fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.95 }}>Fire Protection</span><br />
+                    for <span style={{ color: '#ff2a00', fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Every</span> <span style={{ ...gradientStyle, fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Property</span>
+                  </h2>
+                  <p>
+                    Our experience covers a wide range of buildings and property environments across Greater Sydney.
+                  </p>
+                </header>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 max-w-6xl mx-auto">
+                  {properties.map((property) => (
+                    <div
+                      key={property.title}
+                      style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}
+                    >
+                      <h3 style={{
+                        margin: 0,
+                        fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                        fontWeight: 800,
+                        color: '#111111',
+                        letterSpacing: '-0.025em',
+                        lineHeight: 1.18,
+                      }}>
+                        {property.title}
+                      </h3>
+                      <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                        {property.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY ALL FIRE SERVICES */}
+        <section data-theme="light" className="section_why" style={{ background: '#ffffff' }}>
+          <div className="padding-global">
+            <div className="container-large">
+              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+                <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
+                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <header
+                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
+                    >
+                      <p className={`${styles.kickerLeft} mx-auto md:mx-0`} style={{ textTransform: 'uppercase' }}>Why All Fire Services</p>
+                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ color: '#111111' }}>
+                        <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Practical Experience.</span><br />
+                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Professional Service.</span>
+                      </h2>
+                    </header>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                      Our team includes <strong>serving and retired professional firefighters</strong> alongside experienced fire-safety professionals who understand compliance, Australian Standards and the practical requirements of different buildings.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left">
+                      We focus on providing reliable service, straightforward advice and fire protection that suits the property rather than taking a one-size-fits-all approach.
+                    </p>
+                  </div>
+                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
+                    <Image src="/stratapage-cropped/11-all-fire-services-welcome-bondi.webp" alt="All Fire Services team on site" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* LIGHTBOX MODAL */}
+        {activeImageIndex !== null && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Enlarged photo: ${strataImages[activeImageIndex].name}`}
+            onClick={closeLightbox}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 9999,
+              backgroundColor: 'rgba(10, 10, 10, 0.92)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 'clamp(4.5rem, 8vh, 6rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem)',
+            }}
+          >
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
+              aria-label="Close photo"
+              style={{
+                position: 'absolute',
+                top: 'clamp(0.75rem, 2vh, 1.25rem)',
+                right: 'clamp(0.75rem, 2vw, 1.5rem)',
+                width: '2.75rem',
+                height: '2.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'transparent',
+                border: '2px solid rgba(255, 255, 255, 0.7)',
+                borderRadius: '999px',
+                color: '#ffffff',
+                cursor: 'pointer',
+                zIndex: 10,
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); showPrev(); }}
+              aria-label="Previous photo"
+              style={{
+                position: 'absolute',
+                left: 'clamp(0.5rem, 2vw, 1.5rem)',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '2.75rem',
+                height: '2.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'transparent',
+                border: '2px solid rgba(255, 255, 255, 0.7)',
+                borderRadius: '999px',
+                color: '#ffffff',
+                cursor: 'pointer',
+                zIndex: 10,
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M11 4l-6 5 6 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); showNext(); }}
+              aria-label="Next photo"
+              style={{
+                position: 'absolute',
+                right: 'clamp(0.5rem, 2vw, 1.5rem)',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '2.75rem',
+                height: '2.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'transparent',
+                border: '2px solid rgba(255, 255, 255, 0.7)',
+                borderRadius: '999px',
+                color: '#ffffff',
+                cursor: 'pointer',
+                zIndex: 10,
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 4l6 5-6 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: 'min(1100px, 92vw)',
+                maxHeight: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '0.75rem',
+              }}
+            >
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '4 / 3',
+                borderRadius: '1rem',
+                overflow: 'hidden',
+                backgroundColor: '#111111',
+                boxShadow: '0 30px 60px -10px rgba(0, 0, 0, 0.6)',
+              }}>
+                <Image
+                  src={strataImages[activeImageIndex].src}
+                  alt={`All Fire Services at ${strataImages[activeImageIndex].name}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 80vw"
+                  quality={90}
+                  style={{ objectFit: 'contain', backgroundColor: '#111111' }}
+                />
+              </div>
+              <p style={{
+                margin: 0,
+                color: '#ffffff',
+                fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
+                fontWeight: 600,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+              }}>
+                {strataImages[activeImageIndex].name}
+                <span style={{ marginLeft: '0.75rem', opacity: 0.6, fontWeight: 500 }}>
+                  {activeImageIndex + 1} / {strataImages.length}
+                </span>
+              </p>
+            </div>
+          </div>
+        )}
+
         <ContactCTA />
-      </div>
+      </main>
     </main>
   );
 }

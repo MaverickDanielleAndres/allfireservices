@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 
 const FacebookIcon = ({ size = 16 }: { size?: number }) => (
@@ -43,31 +43,30 @@ const XIcon = ({ size = 16 }: { size?: number }) => (
 );
 import { useLenis } from "lenis/react";
 import { assets } from "@/lib/assets";
+import { navLinks, serviceLinks } from "@/lib/navigation";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Our Story", href: "/about" },
-  { label: "Our Clients", href: "/our-clients" },
-  { 
-    label: "Services", 
-    href: "/services",
-    items: [
-      { label: "Fire Safety Compliance", href: "/fire-safety-compliance" },
-      { label: "Fire Protection Services", href: "/fire-protection-services-sydney" },
-      { label: "Fire Safety Training", href: "/fire-safety-training" },
-      { label: "Fire Consultancy", href: "/fire-consultancy-services" },
-      { label: "Annual Fire Safety Statement", href: "/annual-fire-safety-statement" },
-    ]
-  },
-  { label: "Strata", href: "/strata" },
-  { label: "Contact", href: "/contact" },
-];
+// navLinks from @/lib/navigation is the source of truth for top-level items.
+// Services carries the full list (12 offerings + All Services) as its dropdown.
+type NavItem = { label: string; href: string; items?: { label: string; href: string }[] };
+
+const navItems: NavItem[] = navLinks.map((item) =>
+  item.label === "Services" ? { ...item, items: serviceLinks } : item
+);
 
 export default function Navbar() {
+  return (
+    <Suspense fallback={null}>
+      <NavbarContent />
+    </Suspense>
+  );
+}
+
+function NavbarContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const lenis = useLenis();
 
   useEffect(() => {
@@ -109,11 +108,28 @@ export default function Navbar() {
   }, []);
 
   const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
+    const [path, query] = href.split("?");
+    const targetCategory = query
+      ? new URLSearchParams(query).get("category")
+      : null;
+
+    if (path === "/services") {
+      if (pathname !== "/services") return false;
+      const current = searchParams.get("category") || "core-services";
+      // "All Services" only lights up when no explicit category is selected.
+      if (!targetCategory) return !searchParams.get("category");
+      return current === targetCategory;
     }
-    return pathname === href || pathname.startsWith(`${href}/`);
+
+    if (path === "/") return pathname === "/";
+    return pathname === path || pathname.startsWith(`${path}/`);
   };
+
+  // Top-level "Services" highlights for any page inside a service.
+  const isServicesActive =
+    pathname.startsWith("/services") ||
+    serviceLinks.some((s) => isActive(s.href));
+
 
   const closeMenus = () => {
     setMobileOpen(false);
@@ -237,41 +253,92 @@ export default function Navbar() {
 
         .navbar-dropdown {
           position: absolute;
-          top: 100%;
-          left: -1rem;
+          /* Drop clear of the header row (link sits mid-row) + a small gap. */
+          top: calc(100% + 2.25rem);
+          left: 50%;
           background: #ffffff;
-          min-width: 260px;
+          width: min(34rem, calc(100vw - 3rem));
           border-radius: 0.5rem;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-          padding: 0.5rem 0;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+          padding: 0.6rem 0.75rem 0.75rem;
           opacity: 0;
           visibility: hidden;
-          transform: translateY(10px);
-          transition: all 200ms ease;
+          transform: translate(-50%, 10px);
+          transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
           border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Invisible bridge so the pointer can cross the gap without closing. */
+        .navbar-dropdown::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -2.25rem;
+          height: 2.25rem;
         }
 
         .navbar-dropdown.is-open,
         .has-dropdown:hover .navbar-dropdown {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
+          transform: translate(-50%, 0);
+        }
+
+        .navbar-dropdown-top {
+          display: flex;
+          justify-content: center;
+          border-bottom: 1px solid #f0f0f0;
+          margin-bottom: 0.35rem;
+          padding-bottom: 0.35rem;
+        }
+
+        .navbar-dropdown-top .navbar-dropdown-link {
+          text-align: center;
+          justify-content: center;
+          padding: 0.2rem 0.5rem;
+          font-weight: 700;
+          font-size: 0.65rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #888888;
+        }
+
+        .navbar-dropdown-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: 1fr;
+          column-gap: 0.5rem;
+          row-gap: 0;
         }
 
         .navbar-dropdown-link {
-          display: block;
-          padding: 0.75rem 1.5rem;
-          color: #111111;
+          display: flex;
+          align-items: center;
+          border-radius: 0.25rem;
+          padding: 0.35rem 0.5rem;
+          color: #333333;
           text-decoration: none;
           font-weight: 500;
-          font-size: 0.95rem;
-          transition: all 150ms ease;
+          font-size: 0.8rem;
+          line-height: 1.25;
+          transition: color 150ms ease, background-color 150ms ease;
         }
 
-        .navbar-dropdown-link:hover,
-        .navbar-dropdown-link.is-active {
+        .navbar-dropdown-link:hover {
           color: #fb5614;
           background: rgba(251, 86, 20, 0.05);
+        }
+
+        .navbar-dropdown-link.is-active {
+          color: #fb5614;
+          font-weight: 700;
+        }
+
+        .navbar-mobile-link.is-active,
+        .mobile-dropdown-link.is-active {
+          color: #fb5614;
+          font-weight: 700;
         }
 
         .navbar-link-btn {
@@ -283,19 +350,38 @@ export default function Navbar() {
         }
 
         .mobile-dropdown {
-          padding-left: 1.5rem;
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-          margin-top: 0.25rem;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-auto-rows: auto;
+          column-gap: 0.75rem;
+          row-gap: clamp(0.45rem, 1.6vh, 0.85rem);
+          margin-top: clamp(0.35rem, 1.2vh, 0.6rem);
+          margin-bottom: clamp(0.15rem, 0.6vh, 0.35rem);
         }
-        
+
+        .mobile-dropdown-all {
+          grid-column: 1 / -1;
+          justify-content: center;
+          text-align: center;
+          font-weight: 700;
+          color: #a0a0a0;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          font-size: clamp(0.62rem, 2.6vw, 0.72rem);
+          padding-bottom: 0.2rem;
+          margin-bottom: 0.1rem;
+        }
+
         .mobile-dropdown-link {
-          display: block;
-          font-size: 0.95rem;
-          color: #555555;
+          display: flex;
+          align-items: flex-start;
+          font-size: clamp(0.82rem, 3.6vw, 1rem);
+          font-weight: 700;
+          line-height: 1.35;
+          color: #7a7a7a;
           text-decoration: none;
-          padding: 0.35rem 0;
+          padding: 0;
+          overflow-wrap: anywhere;
         }
 
         .mobile-dropdown-link:hover {
@@ -372,12 +458,16 @@ export default function Navbar() {
           bottom: 0;
           background: #ffffff;
           z-index: 1000;
-          padding: 1.5rem 1.5rem 6rem 1.5rem;
+          padding: clamp(0.5rem, 2vh, 1.25rem) 1.25rem clamp(0.75rem, 2vh, 1.25rem);
           transform: translateY(-100%);
           transition: transform 300ms ease;
           opacity: 0;
           pointer-events: none;
-          overflow-y: auto;
+          /* No scrolling: everything is sized to fit the viewport. */
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(0.1rem, 0.8vh, 0.4rem);
         }
 
         .navbar-mobile-panel.is-open {
@@ -386,14 +476,36 @@ export default function Navbar() {
           pointer-events: auto;
         }
 
+        .navbar-mobile-cta-wrap {
+          margin-top: auto;
+          display: flex;
+          flex-direction: row;
+          gap: 0.6rem;
+          padding-top: clamp(0.5rem, 1.8vh, 1rem);
+        }
+
+        .navbar-mobile-cta-wrap > * {
+          flex: 1 1 0;
+          min-width: 0;
+        }
+
+        .navbar-mobile-panel .navbar-cta,
+        .navbar-mobile-panel .navbar-cta-outline {
+          padding: clamp(0.5rem, 1.6vh, 0.8rem) 0.75rem;
+          font-size: clamp(0.75rem, 3vw, 0.9rem);
+          text-align: center;
+          white-space: nowrap;
+        }
+
         .navbar-mobile-link {
           display: block;
-          font-size: 1.15rem;
-          font-weight: 700;
+          font-size: clamp(0.9rem, 3.6vw, 1.1rem);
+          font-weight: 600;
+          letter-spacing: -0.01em;
           color: #111111;
           text-decoration: none;
-          padding: 0.6rem 0;
-          border-bottom: 1px solid #f0f0f0;
+          padding: clamp(0.3rem, 1.2vh, 0.65rem) 0;
+          border-bottom: 1px solid #f2f2f2;
         }
 
         .navbar-spacer {
@@ -462,12 +574,12 @@ export default function Navbar() {
           </Link>
 
           <ul className="navbar-nav">
-            {navLinks.map((item) => (
+            {navItems.map((item) => (
               <li key={item.label} className={item.items ? "has-dropdown" : ""} style={{ position: "relative" }}>
                 {item.items ? (
                   <>
                     <button
-                      className={`navbar-link navbar-link-btn ${isActive(item.href) ? 'is-active' : ''}`}
+                      className={`navbar-link navbar-link-btn ${isServicesActive ? 'is-active' : ''}`}
                       onClick={() => setServicesOpen(!servicesOpen)}
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
@@ -480,16 +592,27 @@ export default function Navbar() {
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      {item.items.map((subItem) => (
+                      <div className="navbar-dropdown-top">
                         <Link
-                          key={subItem.label}
-                          href={subItem.href}
-                          className={`navbar-dropdown-link ${isActive(subItem.href) ? 'is-active' : ''}`}
+                          href={item.items[0].href}
+                          className={`navbar-dropdown-link ${isActive(item.items[0].href) ? 'is-active' : ''}`}
                           onClick={closeMenus}
                         >
-                          {subItem.label}
+                          {item.items[0].label}
                         </Link>
-                      ))}
+                      </div>
+                      <div className="navbar-dropdown-grid">
+                        {item.items.slice(1).map((subItem) => (
+                          <Link
+                            key={subItem.label}
+                            href={subItem.href}
+                            className={`navbar-dropdown-link ${isActive(subItem.href) ? 'is-active' : ''}`}
+                            onClick={closeMenus}
+                          >
+                            {subItem.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </>
                 ) : (
@@ -521,23 +644,23 @@ export default function Navbar() {
       </header>
 
       <div className={`navbar-mobile-panel ${mobileOpen ? 'is-open' : ''}`}>
-        {navLinks.map((item) => (
+        {navItems.map((item) => (
           <div key={item.label}>
             {item.items ? (
               <>
                 <Link
                   href={item.href}
-                  className="navbar-mobile-link"
+                  className={`navbar-mobile-link ${isServicesActive ? 'is-active' : ''}`}
                   onClick={closeMenus}
                 >
                   {item.label}
                 </Link>
                 <div className="mobile-dropdown">
-                  {item.items.map((subItem) => (
+                  {item.items.map((subItem, index) => (
                     <Link
                       key={subItem.label}
                       href={subItem.href}
-                      className="mobile-dropdown-link"
+                      className={`mobile-dropdown-link ${index === 0 ? 'mobile-dropdown-all' : ''} ${isActive(subItem.href) ? 'is-active' : ''}`}
                       onClick={closeMenus}
                     >
                       {subItem.label}
@@ -556,11 +679,11 @@ export default function Navbar() {
             )}
           </div>
         ))}
-        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div className="navbar-mobile-cta-wrap">
           <a href="tel:1300765594" className="navbar-cta-outline">
             Call 1300 765 594
           </a>
-          <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center', marginTop: '0.5rem' }} onClick={closeMenus}>
+          <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center' }} onClick={closeMenus}>
             Get a Quote
           </Link>
         </div>

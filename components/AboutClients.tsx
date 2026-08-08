@@ -3,38 +3,45 @@
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
 
+const gradientStyle = {
+  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+} as const;
+
 const sections = [
   {
     kicker: "EXPERTISE",
-    title: <>Every Building. Every <span className={styles.orangeText}>Industry.</span></>,
+    title: <>Every Building.<br /><span style={gradientStyle}>Every Industry.</span></>,
     altTitle: "Every Building. Every Industry.",
     description: <>From strata communities to large industrial facilities, every property has different fire-safety requirements. We develop <strong>tailored protection and maintenance strategies</strong> that meet the specific compliance needs of each building.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
   },
   {
     kicker: "SAFETY FIRST",
-    title: <>More Than <span className={styles.orangeText}>Compliance</span></>,
+    title: <>More Than<br /><span style={gradientStyle}>Compliance</span></>,
     altTitle: "More Than Compliance",
     description: <>Tick-box compliance isn’t enough. Fire safety is about <strong>protecting lives, property, and business continuity</strong>. We make sure your systems are properly maintained, tested, and ready when they’re needed most.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp",
   },
   {
     kicker: "RELATIONSHIPS",
-    title: <>Partners, Not Just <span className={styles.orangeText}>Providers</span></>,
+    title: <>Partners, Not Just<br /><span style={gradientStyle}>Providers</span></>,
     altTitle: "Partners, Not Just Providers",
     description: <>Strong results come from trust, clear communication, and dependable service. Our clients rely on our <strong>firefighter-led expertise and practical advice</strong> to keep their properties safe without unnecessary disruption.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp",
   },
   {
     kicker: "RELIABILITY",
-    title: <>Here When You Need <span className={styles.orangeText}>Us</span></>,
+    title: <>Here When You Need<br /><span style={gradientStyle}>Us</span></>,
     altTitle: "Here When You Need Us",
     description: <>From complex Annual Fire Safety Statements to urgent after-hours support, our team responds quickly and works efficiently to keep your <strong>fire protection systems compliant and operational</strong>.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp",
   },
   {
     kicker: "OUR PROMISE",
-    title: <>Confidence Comes <span className={styles.orangeText}>Standard</span></>,
+    title: <>Confidence Comes<br /><span style={gradientStyle}>Standard</span></>,
     altTitle: "Confidence Comes Standard",
     description: <>Built on generations of frontline firefighting experience, we bring <strong>professional workmanship, honest advice, and uncompromising care</strong> to every job. That’s why property teams across Greater Sydney continue to trust All Fire Services.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp",
@@ -50,7 +57,12 @@ export default function AboutClients() {
             
             <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(5rem, 8vw, 8rem)' }}>
               <p className={styles.kicker}>WHY SYDNEY TRUSTS ALLFIRE</p>
-              <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Delivering tailored fire <span className={styles.orangeText}>safety solutions</span></h2>
+              <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Delivering tailored<br /><span style={{
+                background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>fire safety solutions</span></h2>
               <p>
                 From routine testing to complex compliance upgrades, we provide end-to-end protection strategies built on real-world firefighting experience.
               </p>

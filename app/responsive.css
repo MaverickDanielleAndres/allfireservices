@@ -111,7 +111,7 @@ footer a[aria-label]:hover {
 .strata-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2vw, 1.25rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem) clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .strata-grid-item {

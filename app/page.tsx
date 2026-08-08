@@ -909,7 +909,9 @@ export default function Page() {
 
         <FounderLegacy />
         <HomeStoryLegacy />
+
         <HomeServices />
+
         <MotionDiv {...sectionReveal}>
           <GoogleReviews />
         </MotionDiv>

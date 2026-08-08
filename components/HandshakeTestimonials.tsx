@@ -59,7 +59,12 @@ export default function HandshakeTestimonials() {
         <div className="container-large">
           <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
             <p className={styles.kicker}>TESTIMONIALS</p>
-            <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Hear from our <span className={styles.orangeText}>clients</span></h2>
+            <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Hear from<br /><span style={{
+              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>our clients</span></h2>
             <p>
               Discover why property managers across Greater Sydney rely on our proactive approach and firefighter-led expertise to protect their assets.
             </p>

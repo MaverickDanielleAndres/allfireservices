@@ -1,19 +1,27 @@
+"use client";
 import ContactCTA from "@/components/ContactCTA";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "@/components/HomeStoryLegacy.module.css";
-import TimelineSection from "@/components/TimelineSection";
+import HomeStoryLegacy from "@/components/HomeStoryLegacy";
 import { LightboxImage } from "@/components/ui/LightboxImage";
-import { Gallery, GalleryGrid, GalleryImage } from "@/components/ui/shared-element-gallery";
+import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
 
-
+const companyGalleryImages = [
+  { id: 1, src: "/History/about (1).jpg", name: "Waterloo", desc: "Residential fire safety servicing in Waterloo." },
+  { id: 2, src: "/History/about (4).jpg", name: "Randwick", desc: "Common-property grounds maintenance, Randwick." },
+  { id: 3, src: "/History/about (6).jpg", name: "Marrickville", desc: "Strata and commercial fire safety in Marrickville." },
+  { id: 4, src: "/History/about (7).jpg", name: "Our Team", desc: "All Fire Services technicians on site." },
+  { id: 5, src: "/History/about (8).jpg", name: "Heritage Fleet", desc: "Vintage fire service vehicle preserved by the family." },
+  { id: 6, src: "/History/about (9).jpg", name: "Heritage Fleet", desc: "Classic fire engines from the family history." },
+  { id: 7, src: "/History/about (10).jpg", name: "Generations of Firefighters", desc: "The Tricklebank family firefighting lineage." },
+];
 const teamMembers = [
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads a highly motivated team of fire safety professionals across Greater Sydney.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads the business and its team of fire-safety professionals across Greater Sydney.' },
   { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp', name: 'Paul', bio: 'Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Sam', bio: 'Sam ensures excellent service delivery on site, drawing on his background as a serving professional firefighter to keep your building compliant.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp', name: 'George', bio: 'George is highly motivated to provide a level of service and safety to the community unequalled by our competition.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp', name: 'Ken', bio: 'Ken brings technical expertise on issues affecting the relevant Building Code of Australia and Australian Standards.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Kyriakos', bio: 'Kyriakos provides approachable, practical and reasonable fire safety services to all our clients across the Greater Sydney Area.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Sam', bio: 'Sam brings the practical experience of a serving professional firefighter to his work, helping clients maintain safe and compliant buildings.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp', name: 'George', bio: 'George is committed to providing a high standard of service and helping clients protect their people and property.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp', name: 'Ken', bio: 'Ken brings technical expertise in matters relating to the Building Code of Australia, Australian Standards, and fire-safety requirements.' },
+  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Kyriakos', bio: 'Kyriakos provides approachable, practical, and dependable fire-safety services to clients across Greater Sydney.' },
 ];
 
 export default function Page() {
@@ -82,6 +90,36 @@ export default function Page() {
               height: 220px !important;
             }
           }
+
+          /* On mobile + tablet (max-width: 991px), for the three Block 2/3/4
+             sections (MEET PETER, EXPERIENCE, STANDARDS), force the image to
+             render BELOW the text and ensure it has a visible height.
+             Desktop keeps the original 2-column side-by-side layout. */
+          @media (max-width: 991px) {
+            .about-meet-peter-section,
+            .about-experience-section,
+            .about-standards-section,
+            .about-our-story-section {
+              grid-template-columns: 1fr !important;
+              gap: 2.5rem !important;
+              padding: 0 1.25rem !important;
+            }
+            .about-meet-peter-section > div,
+            .about-experience-section > div,
+            .about-standards-section > div,
+            .about-our-story-section > div {
+              min-height: 18rem !important;
+              height: auto !important;
+            }
+          }
+          @media (max-width: 767px) {
+            .about-meet-peter-section > div,
+            .about-experience-section > div,
+            .about-standards-section > div,
+            .about-our-story-section > div {
+              min-height: 22rem !important;
+            }
+          }
         `}} />
         <header
           className="section_about-hero is-dark"
@@ -142,7 +180,7 @@ export default function Page() {
                         About All Fire Services
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        A family firefighting legacy dating back to 1911, and an Australian owned business established in 2009. Fire protection is in our blood, and we deliver elite, professional safety services driven by practical, real-world expertise.
+                        A family firefighting legacy dating back to 1911, and an Australian-owned fire protection business established in 2009.
                       </p>
                     </div>
                   </div>
@@ -162,29 +200,31 @@ export default function Page() {
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
 
-                {/* Block 1 */}
-                <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
+                {/* Block 1 — OUR STORY */}
+                <div className={`${styles.newStoryGrid} about-our-story-section`} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
-                      <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Fire Protection<br />Runs in <span className={styles.orangeText}>Our Blood</span>&rdquo;
+                      <h2 className="mx-auto md:mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                        &ldquo;Fire Protection<br /><span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Runs in Our Blood&rdquo;</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem', fontWeight: 'bold' }}>
-                      Fire safety is more than inspections and paperwork. It is a responsibility we take seriously.
+                      Fire safety is more than compliance. It is a responsibility we take seriously.
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                      Since 2009, All Fire Services has delivered practical, professional, and reliable fire protection for properties across Sydney. Every service is shaped around the needs of the building, combining technical knowledge, responsive support, and a commitment to doing the job properly.
+                      Since 2009, All Fire Services has delivered practical, reliable fire protection across Greater Sydney, backed by technical expertise and generations of firefighting heritage.
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
-                      From maintenance and testing to compliance and certification, we help clients protect their people, property, and operations.
-                    </p>
-                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ fontWeight: 'bold' }}>
-                      When safety matters, trust a company built on experience, accountability, and genuine care.
+                      From testing and maintenance to certification and compliance, we help protect <strong>people, property, and businesses.</strong>
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '1.5rem', overflow: 'hidden' }}>
@@ -195,49 +235,59 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Timeline Section */}
-          <TimelineSection />
+          {/* Timeline Section — same as hero page */}
+          <HomeStoryLegacy aboutPage />
 
-          {/* Why All Fire / Next Generation — with Family Video */}
+          {/* Legacy / Company content — with Family Video */}
           <div className="padding-global" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
             <div className="container-large">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative items-start lg:items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.62fr] gap-y-12 lg:gap-x-[clamp(6rem,10vw,10rem)] relative items-start lg:items-stretch" style={{ padding: '0 clamp(2rem, 5vw, 6rem)' }}>
 
                 {/* Text Column (Left) */}
-                <div className="flex flex-col gap-16 lg:gap-40 order-1 px-6 md:px-12 lg:px-0 pb-12 lg:pb-0">
+                <div className="flex flex-col gap-16 lg:gap-40 order-2 lg:order-1 pb-12 lg:pb-0">
 
-                  {/* Why All Fire Block */}
+                  {/* Legacy Block */}
                   <div className="flex flex-col justify-start text-center lg:text-left items-center lg:items-start">
                     <header className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start text-center lg:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
-                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Why All Fire ?</p>
+                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>THE LEGACY</p>
                       <h2 className="mx-auto lg:mx-0 text-center lg:text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '28ch' }}>
-                        &ldquo;Who knows better<br className="hidden lg:block" />than a <span className={styles.orangeText}>fireman</span>?&rdquo;
+                        Generations of <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Firefighters</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
-                      Our customer service technicians are <strong>serving and retired professional firefighters.</strong> It means every client gets <strong>real-life knowledge of the fire safety industry</strong> rather than a checklist.
+                      From William through Trevor, Trevor Jr, Stanley, and Ian, generations of the Tricklebank family served in firefighting and emergency response. That family history brings a deeper appreciation for what fire protection is ultimately about: protecting lives, protecting property, and taking responsibility seriously.
                     </p>
                   </div>
 
-                  {/* Next Generation Block */}
+                  {/* Company Block */}
                   <div className="flex flex-col justify-start text-center lg:text-left items-center lg:items-start">
                     <header className={`${styles.storyHeaderLeft} flex flex-col items-center lg:items-start text-center lg:text-left`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
-                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>Next generation</p>
+                      <p className={`${styles.kickerLeft} mx-auto lg:mx-0`}>THE COMPANY</p>
                       <h2 className="mx-auto lg:mx-0 text-center lg:text-left">
-                        &ldquo;The <span className={styles.orangeText}>Next Generation</span>&rdquo;
+                        Established in <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>2009</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center lg:text-left" style={{ marginBottom: '2.5rem' }}>
-                      The Tricklebank story does not stop with Peter. The <strong>next generation</strong> is already growing up around the trade &mdash; and the same standard is being handed on.
+                      All Fire Services has its own history. The business was established in 2009 by a former senior NSW Fire Brigade officer. Peter Tricklebank later became the owner and today leads All Fire Services with a focus on practical, dependable fire protection and professional customer service.
                     </p>
                   </div>
 
                 </div>
 
                 {/* Video Column (Right) — Sticky */}
-                <div className="order-2 w-full relative h-full">
+                <div className="order-1 lg:order-2 w-full relative h-full">
                   <div className="w-full max-w-[320px] mx-auto lg:sticky lg:top-32">
                     <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
                       <iframe
@@ -265,83 +315,96 @@ export default function Page() {
                 <div style={{ maxWidth: '1000px', margin: '0 auto 6rem auto' }}>
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
                     <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                      A CENTURY OF SERVICE
+                      THE LEGACY
                     </h2>
                     <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 800, letterSpacing: '-0.06em', color: '#111111' }}>
-                      &ldquo;Who Knows Fire Better <span style={{ color: '#fb5614' }}>Than a Firefighter?</span>&rdquo;
+                      Generations of <span style={{
+                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}>Firefighters</span>
                     </p>
                   </div>
 
                   <div className="flex flex-col gap-16 md:gap-32 w-full">
-                    {/* Row 1 */}
+                    {/* Row 1 - THE LEGACY */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        A Family Legacy <br className="md:hidden" />Since <span style={{ color: '#fb5614' }}>1911</span>
+                        Generations of <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Firefighters</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        It began with William Tricklebank, whose commitment to protecting the community established a standard of courage, service, and responsibility that continues to guide the family today. This is the <strong>Tricklebank family firefighting legacy</strong> &mdash; not the history of the company.
+                        From William through Trevor, Trevor Jr, Stanley, and Ian, generations of the Tricklebank family served in firefighting and emergency response.
                       </p>
                     </div>
 
-                    {/* Row 2 (Alternating) */}
+                    {/* Row 2 (Alternating) - THE LEGACY continued */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        From William to Trevor, Trevor Jr, Stanley, and Ian, the Tricklebank family has spent generations on the front line of emergency response. That history gives our clients <strong>real-world knowledge</strong> that cannot be learned from a checklist.
+                        That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Generations of <span style={{ color: '#fb5614' }}>Firefighters</span>
+                        A Family <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Legacy</span>
                       </h2>
                     </div>
 
-                    {/* Row 3 */}
+                    {/* Row 3 - THE COMPANY */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <h2 className="text-center md:text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        The Company, <br className="md:hidden" />Established <span style={{ color: '#fb5614' }}>2009</span>
+                        Established <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>2009</span>
                       </h2>
                       <p className="text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        All Fire Services is a separate story. It was established in December 2009 by a former senior NSW Fire Brigade officer. <strong>Peter Tricklebank later became the owner</strong>, and today leads the business &mdash; bringing the family&apos;s inherited understanding of fire to <strong>practical, reliable fire protection.</strong>
+                        The business was established in 2009 by a former senior NSW Fire Brigade officer. <strong>Peter Tricklebank later became the owner</strong> and today leads All Fire Services with a focus on practical, dependable fire protection and professional customer service.
                       </p>
                     </div>
 
-                    {/* Row 4 (Alternating) */}
+                    {/* Row 4 (Alternating) - THE COMPANY continued */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
                       <p className="order-2 md:order-1 text-center md:text-justify" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        Every inspection, installation, and certification is supported by a team of <strong>serving and retired professional firefighters.</strong> We do not simply help clients meet requirements. We help them <strong>protect people and property.</strong>
+                        The company combines technical fire-safety knowledge with a team that includes <strong>serving and retired professional firefighters</strong>, bringing practical experience into the way clients are supported.
                       </p>
                       <h2 className="order-1 md:order-2 text-center md:text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Our Unwavering <br className="md:hidden" /><span style={{ color: '#fb5614' }}>Promise</span> to You
+                        The <span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Company</span>
                       </h2>
                     </div>
                   </div>
                 </div>
 
-                {/* Interactive Shared-Element Gallery */}
-                <div className="max-w-7xl mx-auto">
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {[
-                      "1 (1).jpg",
-                      "1 (2).jpg",
-                      "1 (3).jpg",
-                      "about (1).jpg",
-                      "about (2).jpg",
-                      "about (3).jpg",
-                      "about (4).jpg",
-                      "about (5).jpg",
-                      "about (6).jpg",
-                      "about (7).jpg",
-                      "about (8).jpg",
-                      "about (9).jpg"
-                    ].map((filename, idx) => (
-                      <LightboxImage
-                        key={idx}
-                        fill
-                        src={`/History/${filename}`}
-                        sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                        alt={`History Gallery Image ${idx + 1}`}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
-                      />
-                    ))}
-                  </div>
+                {/* Bento Gallery — infinite horizontal scroll with auto-movement */}
+                <div style={{ marginTop: '4rem', background: '#ffffff', padding: '0 0 4rem 0' }}>
+                  <InteractiveImageBentoGallery
+                    imageItems={companyGalleryImages.map((img, idx) => ({
+                      id: img.id,
+                      title: img.name,
+                      desc: img.desc,
+                      url: img.src,
+                      span: idx % 5 === 0 ? 'md:row-span-2 md:col-span-2' : '',
+                    }))}
+                    kicker="The Tricklebank Family"
+                    title="Who knows better"
+                    titleAccent="than a fireman?"
+                    description="A look through generations of the Tricklebank family and the firefighting heritage behind All Fire Services. Drag to explore, click to expand."
+                  />
                 </div>
               </div>
             </div>
@@ -351,47 +414,66 @@ export default function Page() {
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingBottom: '6rem' }}>
 
-                {/* Block 2 */}
-                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', maxHeight: '440px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                {/* Block 2 — MEET PETER */}
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-meet-peter-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
+                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '100%', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, owner of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
-                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
                       <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Australian Owned<br /><span className={styles.orangeText}>Since 2009</span>&rdquo;
+                        &ldquo;Australian <span style={{ color: '#ff0000' }}>Owned</span><br /><span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Since 2009</span>&rdquo;
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services was established in December 2009 by a former senior NSW Fire Brigade officer, on a clear belief that fire protection should be delivered by people who <strong>understand it beyond paperwork.</strong>
+                      <strong>Peter Tricklebank is the current owner of All Fire Services.</strong>
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      Born into a family of firefighters and raised around fire stations, Peter grew up with a deep understanding of what it means to protect people and property.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      <strong>Peter Tricklebank is the current owner of the business.</strong> He bought All Fire Services rather than founding it, and he has never been a firefighter himself &mdash; but he grew up inside a family of them. He runs the company to that same standard: a team of <strong>serving and retired professional firefighters</strong> giving clients practical judgment, frontline knowledge, and dependable advice.
+                      Today, he leads All Fire Services alongside a team of experienced fire-safety professionals, including serving and retired firefighters.
                     </p>
                   </div>
                 </div>
 
-                {/* Block 3 */}
-                <div className={styles.newStoryGrid} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
+                {/* Block 3 — EXPERIENCE */}
+                <div className={`${styles.newStoryGrid} about-experience-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>EXPERIENCE</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Built on<br /><span className={styles.orangeText}>Real Experience</span>&rdquo;
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                        &ldquo;Built on<br /><span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Real Experience&rdquo;</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services exists to provide a level of service clients can genuinely trust &mdash; delivered by technicians who have <strong>real firefighting experience</strong> behind them.
+                      <strong>Who Knows Fire Better Than a Firefighter?</strong>
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      Our team includes <strong>serving and retired professional firefighters</strong> who bring practical, real-world understanding to fire protection.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      That experience is supported by qualified fire-safety professionals who understand compliance, <strong>Australian Standards, building requirements, testing, maintenance, and certification.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      The company combines operational knowledge with professional customer service, ensuring every job is handled with integrity, care, and attention to detail.
+                      The result is a service built around more than completing a checklist. It is about understanding the purpose behind the requirements and helping clients protect their buildings properly.
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
@@ -399,26 +481,34 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* Block 4 */}
-                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                {/* Block 4 — STANDARDS */}
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-standards-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
+                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
-                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
                       className={styles.storyHeaderLeft}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>STANDARDS</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                        &ldquo;Always<br /><span className={styles.orangeText}>Learning</span>&rdquo;
+                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                        &ldquo;Always<br /><span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Learning&rdquo;</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                      Fire safety requirements continue to change, and so does our knowledge. Through ongoing professional development and technical training, our team stays current with <strong>Australian Standards and current legislation.</strong>
+                      Fire safety requirements continue to evolve, and so does our knowledge.
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                      Through ongoing professional development and technical training, our team stays informed about relevant <strong>Australian Standards, building requirements, and current legislation.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]">
-                      This allows us to give clients advice that is practical, accurate, and relevant to their property.
+                      This allows us to provide advice that is practical, accurate, and appropriate to each property.
                     </p>
                   </div>
                 </div>
@@ -433,17 +523,22 @@ export default function Page() {
                       >
                         <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR MISSION</p>
                         <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                          &ldquo;Excellence in<br /><span className={styles.orangeText}>Fire Protection</span>&rdquo;
+                          &ldquo;Excellence <span style={{ color: '#ff0000' }}>in</span><br /><span style={{
+                            background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                          }}>Fire Protection</span>&rdquo;
                         </h2>
                       </header>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
                         Our mission is to deliver <strong>practical, reliable fire protection</strong> through trusted advice, technical expertise, and responsive service.
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
-                        We aim to make fire safety easier for every client while maintaining an uncompromising commitment to <strong>protecting people, property, and businesses.</strong>
+                        We aim to make fire safety easier for every client while maintaining a strong commitment to <strong>protecting people, property, and businesses.</strong>
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
-                        We do not simply meet standards. We bring the experience needed to apply them properly.
+                        We do not simply help clients meet requirements. We help them understand and manage their fire-safety responsibilities properly.
                       </p>
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
@@ -470,7 +565,12 @@ export default function Page() {
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', margin: '0 0 1rem 0' }}>The professionals behind All Fire Services</p>
                       <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, maxWidth: '15ch' }}>
-                        Meet the All Fire<br />Services Team
+                        Meet the <span style={{ color: '#ff0000' }}>All Fire</span><br /><span style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}>Services Team</span>
                       </h2>
                     </header>
                     <div className="button-group">
@@ -525,7 +625,6 @@ export default function Page() {
                       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto"
                     >
                       {teamMembers.map((member) => {
-                        const imgUrl = member.img;
                         return (
                           <div key={member.name} role="listitem" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                             <LightboxImage
