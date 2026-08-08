@@ -152,7 +152,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
       id="family-history"
       aria-labelledby="legacy-title"
       data-theme="light"
-      className="padding-section-large"
+      className="padding-section-large home-story-legacy-root"
       style={{ paddingBottom: '4rem' }}
       ref={sectionRef}
     >
@@ -160,7 +160,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
         <div className="padding-global">
           <div className="container-large">
             <motion.header
-              className={styles.legacyHeader}
+              className={`${styles.legacyHeader} ${aboutPage ? styles.legacyHeaderAbout : ''} home-story-legacy-header`}
               variants={reveal}
               initial="hidden"
               whileInView="show"

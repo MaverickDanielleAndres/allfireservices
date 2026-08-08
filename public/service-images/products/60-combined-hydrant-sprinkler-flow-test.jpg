@@ -1,0 +1,2902 @@
+<!doctype html>
+<html lang="en-US">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>(()=>{class RocketLazyLoadScripts{constructor(){this.v="1.2.6",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this.t.bind(this),this.touchStartHandler=this.i.bind(this),this.touchMoveHandler=this.o.bind(this),this.touchEndHandler=this.h.bind(this),this.clickHandler=this.u.bind(this),this.interceptedClicks=[],this.interceptedClickListeners=[],this.l(this),window.addEventListener("pageshow",(t=>{this.persisted=t.persisted,this.everythingLoaded&&this.m()})),this.CSPIssue=sessionStorage.getItem("rocketCSPIssue"),document.addEventListener("securitypolicyviolation",(t=>{this.CSPIssue||"script-src-elem"!==t.violatedDirective||"data"!==t.blockedURI||(this.CSPIssue=!0,sessionStorage.setItem("rocketCSPIssue",!0))})),document.addEventListener("DOMContentLoaded",(()=>{this.k()})),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}p(t){document.hidden?t.t():(this.triggerEvents.forEach((e=>window.addEventListener(e,t.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler))}_(){this.triggerEvents.forEach((t=>window.removeEventListener(t,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}i(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this.L(t.target,!0),this.S(t.target,"onclick","rocket-onclick"),this.C())}o(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this.L(t.target,!1),this.S(t.target,"rocket-onclick","onclick"),this.M()}h(){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}u(t){t.target.removeEventListener("click",this.clickHandler),this.L(t.target,!1),this.S(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this.M()}O(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))}))}l(t){EventTarget.prototype.addEventListenerWPRocketBase=EventTarget.prototype.addEventListener,EventTarget.prototype.addEventListener=function(e,i,o){"click"!==e||t.windowLoaded||i===t.clickHandler||t.interceptedClickListeners.push({target:this,func:i,options:o}),(this||window).addEventListenerWPRocketBase(e,i,o)}}L(t,e){this.interceptedClickListeners.forEach((i=>{i.target===t&&(e?t.removeEventListener("click",i.func,i.options):t.addEventListener("click",i.func,i.options))})),t.parentNode!==document.documentElement&&this.L(t.parentNode,e)}D(){return new Promise((t=>{this.P?this.M=t:t()}))}C(){this.P=!0}M(){this.P=!1}S(t,e,i){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(i,event.target.getAttribute(e)),event.target.removeAttribute(e))}t(){this._(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this.R.bind(this)):this.R()}k(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach((e=>{let i=e.getAttribute("data-rocket-src");if(i&&!i.startsWith("data:")){0===i.indexOf("//")&&(i=location.protocol+i);try{const o=new URL(i).origin;o!==location.origin&&t.push({src:o,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}catch(t){}}})),t=[...new Map(t.map((t=>[JSON.stringify(t),t]))).values()],this.T(t,"preconnect")}async R(){this.lastBreath=Date.now(),this.j(this),this.F(this),this.I(),this.W(),this.q(),await this.A(this.delayedScripts.normal),await this.A(this.delayedScripts.defer),await this.A(this.delayedScripts.async);try{await this.U(),await this.H(this),await this.J()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this.D().then((()=>{this.O()})),this.N()}W(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)}))}async B(t){if(await this.G(),!0!==t.noModule||!("noModule"in HTMLScriptElement.prototype))return new Promise((e=>{let i;function o(){(i||t).setAttribute("data-rocket-status","executed"),e()}try{if(navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor||this.CSPIssue)i=document.createElement("script"),[...t.attributes].forEach((t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),i.setAttribute(e,t.nodeValue))})),t.text&&(i.text=t.text),i.hasAttribute("src")?(i.addEventListener("load",o),i.addEventListener("error",(function(){i.setAttribute("data-rocket-status","failed-network"),e()})),setTimeout((()=>{i.isConnected||e()}),1)):(i.text=t.text,o()),t.parentNode.replaceChild(i,t);else{const i=t.getAttribute("data-rocket-type"),s=t.getAttribute("data-rocket-src");i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",o),t.addEventListener("error",(i=>{this.CSPIssue&&i.target.src.startsWith("data:")?(console.log("WPRocket: data-uri blocked by CSP -> fallback"),t.removeAttribute("src"),this.B(t).then(e)):(t.setAttribute("data-rocket-status","failed-network"),e())})),s?(t.removeAttribute("data-rocket-src"),t.src=s):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}}catch(i){t.setAttribute("data-rocket-status","failed-transform"),e()}}));t.setAttribute("data-rocket-status","skipped")}async A(t){const e=t.shift();return e&&e.isConnected?(await this.B(e),this.A(t)):Promise.resolve()}q(){this.T([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}T(t,e){var i=document.createDocumentFragment();t.forEach((t=>{const o=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(o&&!o.startsWith("data:")){const s=document.createElement("link");s.href=o,s.rel=e,"preconnect"!==e&&(s.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(s.crossOrigin=!0),t.crossOrigin&&(s.crossOrigin=t.crossOrigin),t.integrity&&(s.integrity=t.integrity),i.appendChild(s),this.trash.push(s)}})),document.head.appendChild(i)}j(t){let e={};function i(i,o){return e[o].eventsToRewrite.indexOf(i)>=0&&!t.everythingLoaded?"rocket-"+i:i}function o(t,o){!function(t){e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=i(arguments[0],t),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=i(arguments[0],t),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(o)}function s(e,i){let o=e[i];e[i]=null,Object.defineProperty(e,i,{get:()=>o||function(){},set(s){t.everythingLoaded?o=s:e["rocket"+i]=o=s}})}o(document,"DOMContentLoaded"),o(window,"DOMContentLoaded"),o(window,"load"),o(window,"pageshow"),o(document,"readystatechange"),s(document,"onreadystatechange"),s(window,"onload"),s(window,"onpageshow");try{Object.defineProperty(document,"readyState",{get:()=>t.rocketReadyState,set(e){t.rocketReadyState=e},configurable:!0}),document.readyState="loading"}catch(t){console.log("WPRocket DJE readyState conflict, bypassing")}}F(t){let e;function i(e){return t.everythingLoaded?e:e.split(" ").map((t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t)).join(" ")}function o(o){function s(t){const e=o.fn[t];o.fn[t]=o.fn.init.prototype[t]=function(){return this[0]===window&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{const e=arguments[0][t];delete arguments[0][t],arguments[0][i(t)]=e}))),e.apply(this,arguments),this}}o&&o.fn&&!t.allJQueries.includes(o)&&(o.fn.ready=o.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(o):document.addEventListener("rocket-DOMContentLoaded",(()=>e.bind(document)(o))),o([])},s("on"),s("one"),t.allJQueries.push(o)),e=o}o(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){o(t)}})}async H(t){const e=document.querySelector("script[data-webpack]");e&&(await async function(){return new Promise((t=>{e.addEventListener("load",t),e.addEventListener("error",t)}))}(),await t.K(),await t.H(t))}async U(){this.domReadyFired=!0;try{document.readyState="interactive"}catch(t){}await this.G(),document.dispatchEvent(new Event("rocket-readystatechange")),await this.G(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.G(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this.G(),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}async J(){try{document.readyState="complete"}catch(t){}await this.G(),document.dispatchEvent(new Event("rocket-readystatechange")),await this.G(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this.G(),window.dispatchEvent(new Event("rocket-load")),await this.G(),window.rocketonload&&window.rocketonload(),await this.G(),this.allJQueries.forEach((t=>t(window).trigger("rocket-jquery-load"))),await this.G();const t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this.G(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted}),this.windowLoaded=!0}m(){document.onreadystatechange&&document.onreadystatechange(),window.onload&&window.onload(),window.onpageshow&&window.onpageshow({persisted:this.persisted})}I(){const t=new Map;document.write=document.writeln=function(e){const i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+e);const o=document.createRange(),s=i.parentElement;let n=t.get(i);void 0===n&&(n=i.nextSibling,t.set(i,n));const c=document.createDocumentFragment();o.setStart(c,0),c.appendChild(o.createContextualFragment(e)),s.insertBefore(c,n)}}async G(){Date.now()-this.lastBreath>45&&(await this.K(),this.lastBreath=Date.now())}async K(){return document.hidden?new Promise((t=>setTimeout(t))):new Promise((t=>requestAnimationFrame(t)))}N(){this.trash.forEach((t=>t.remove()))}static run(){const t=new RocketLazyLoadScripts;t.p(t)}}RocketLazyLoadScripts.run()})();</script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>Apex Pumps &#8211; Your Trusted Partner in Fire Protection Solutions</title><link rel="preload" data-rocket-preload as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&#038;family=Source+Sans+Pro:wght@400;600&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&#038;family=Source+Sans+Pro:wght@400;600&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&#038;family=Source+Sans+Pro:wght@400;600&#038;display=swap" /></noscript>
+<meta name='robots' content='max-image-preview:large' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Apex Pumps &raquo; Feed" href="https://www.apexpumps.com.au/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Apex Pumps &raquo; Comments Feed" href="https://www.apexpumps.com.au/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.apexpumps.com.au/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.apexpumps.com.au%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.apexpumps.com.au/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.apexpumps.com.au%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link data-minify="1" rel='stylesheet' id='fluentform-elementor-widget-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluent-forms-elementor-widget.css?ver=1786043467' media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1200px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:root :where(.wp-block-icon svg){width: 24px;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link data-minify="1" rel='stylesheet' id='hello-elementor-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/reset.css?ver=1786043467' media='all' />
+<link data-minify="1" rel='stylesheet' id='hello-elementor-theme-style-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/theme.css?ver=1786043467' media='all' />
+<link data-minify="1" rel='stylesheet' id='hello-elementor-header-footer-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=1786043467' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://www.apexpumps.com.au/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.2.0' media='all' />
+<link rel='stylesheet' id='elementor-post-46-css' href='https://www.apexpumps.com.au/wp-content/uploads/elementor/css/post-46.css?ver=1786043467' media='all' />
+<link rel='stylesheet' id='elementor-post-16-css' href='https://www.apexpumps.com.au/wp-content/uploads/elementor/css/post-16.css?ver=1786043467' media='all' />
+<link rel='stylesheet' id='elementor-post-2380-css' href='https://www.apexpumps.com.au/wp-content/uploads/elementor/css/post-2380.css?ver=1786043467' media='all' />
+<link rel='stylesheet' id='elementor-post-1444-css' href='https://www.apexpumps.com.au/wp-content/uploads/elementor/css/post-1444.css?ver=1786043467' media='all' />
+<style id="elementor-pro-custom-fonts-inline-css">
+@font-face {
+	font-family: 'Work Sans';
+	font-display: auto;
+	src: url('https://www.apexpumps.com.au/wp-content/uploads/WorkSans-VariableFont_wght.ttf') format('truetype');
+}
+
+/*# sourceURL=elementor-pro-custom-fonts-inline-css */
+</style>
+<link rel='stylesheet' id='hello-elementor-child-style-css' href='https://www.apexpumps.com.au/wp-content/themes/hello-theme-child-master/style.css?ver=2.0.0' media='all' />
+<link data-minify="1" rel='stylesheet' id='ekit-widget-styles-css' href='https://www.apexpumps.com.au/wp-content/cache/background-css/www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit-lite/widgets/init/assets/css/widget-styles.css?ver=1786043467&wpr_t=1786210905' media='all' />
+<link data-minify="1" rel='stylesheet' id='ekit-widget-styles-pro-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit/widgets/init/assets/css/widget-styles-pro.css?ver=1786043468' media='all' />
+<link data-minify="1" rel='stylesheet' id='ekit-responsive-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit-lite/widgets/init/assets/css/responsive.css?ver=1786043468' media='all' />
+<link rel='stylesheet' id='eael-general-css' href='https://www.apexpumps.com.au/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=6.7.0' media='all' />
+<style id="rocket-lazyload-inline-css">
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:var(--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player{position:absolute;padding-bottom:0;width:100%;height:100%;top:0;bottom:0;left:0;right:0}
+/*# sourceURL=rocket-lazyload-inline-css */
+</style>
+<link data-minify="1" rel='stylesheet' id='elementor-gf-local-montserrat-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/uploads/elementor/google-fonts/css/montserrat.css?ver=1786043468' media='all' />
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+		var elementskit = {
+			resturl: 'https://www.apexpumps.com.au/wp-json/elementskit/v1/',
+		}
+
+		</script><script id="jquery-core-js-extra">window.addEventListener('DOMContentLoaded', function() {
+var pp = {"ajax_url":"https://www.apexpumps.com.au/wp-admin/admin-ajax.php"};
+//# sourceURL=jquery-core-js-extra
+});</script>
+<script type="rocketlazyloadscript" id="jquery-core-js" data-rocket-src="https://www.apexpumps.com.au/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="jquery-migrate-js" data-rocket-src="https://www.apexpumps.com.au/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" data-rocket-defer defer></script>
+<link rel="https://api.w.org/" href="https://www.apexpumps.com.au/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.apexpumps.com.au/wp-json/wp/v2/pages/16" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.apexpumps.com.au/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.0.3" />
+<link rel="canonical" href="https://www.apexpumps.com.au/" />
+<link rel='shortlink' href='https://www.apexpumps.com.au/' />
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		if (window.wfLogHumanRan) { return; }
+		window.wfLogHumanRan = true;
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//www.apexpumps.com.au/?wordfence_lh=1&hid=5297D0A628181C79CBD830089AE3081A');
+</script><meta name="generator" content="Elementor 4.2.0; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+<!-- Google tag (gtag.js) -->
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-LYHSCFKLT6"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LYHSCFKLT6');
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "qu4hwgl1gn");
+</script>
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KJLHC2XH');</script>
+<!-- End Google Tag Manager -->
+<script type="application/ld+json">{
+"@context": "https://schema.org",
+"@graph": [{
+"@type":"ProfessionalService",
+"@id": "kg:/g/11mckf75zy",
+"name":"Apex Pumps",
+"description":"Apex Pumps is an Australian-owned company based in Sydney, specialising in fire protection services with over 30 years of experience in diesel and plant mechanics. Apex Pumps provide expert servicing and maintenance of diesel and electric fire pumps, hydrants, and sprinkler systems, ensuring full compliance with Australian Standards. Our team is committed to protecting lives and properties through reliable, efficient, and safety-focused fire system solutions across Sydney. Trust Apex Pumps for professional, timely, and compliant fire protection services.",
+"telephone":"+61 1300 012 739",
+"url":"https://www.apexpumps.com.au/",
+"logo":"https://www.apexpumps.com.au/wp-content/uploads/AP-base_logo_transparent_background.webp",
+"hasMap":"https://www.google.com/maps?cid=12902873687142079031",
+    "additionalProperty":"https://en.wikipedia.org/wiki/Fire_pump",
+"openingHours":"Mo 6:00 –16:00 Tu 6:00 –16:00  We 6:00 –16:00  Th 6:00 –16:00  Fr 6:00 –16:00 ",
+"disambiguatingDescription":"Apex Pumps offers fire pump services in Sydney, including installation, repairs, maintenance, & replacement for commercial and industrial sectors. Get a FREE quote",
+"alternateName":"APEX PUMPS PTY LTD",
+"foundingDate":"2024",
+"priceRange":"$$",
+"currenciesAccepted":"AUD",
+"paymentAccepted":"EFT, Cash, Credit Card, Eftops, Deposit",
+"address":{
+"@type":"PostalAddress",
+"streetAddress":"",
+"addressLocality":"Sydney",
+"addressRegion":"New South Wales",
+"postalCode":"2000",
+"addressCountry":"Australia"
+},
+"contactPoint":{
+"@type":"ContactPoint",
+"contactType":"Customer Service",
+"areaServed" : ["Sydney"],
+"telephone":"+61 1300 012 739"
+},
+"image":{
+"@type":"ImageObject",
+"name":"APEX PUMPS PTY LTD Official Logo",
+"creator":"Tradie Web Guys",
+"author":"Tradie Web Guys",
+"description":"APEX PUMPS PTY LTD Logo",
+"url":"https://www.apexpumps.com.au/wp-content/uploads/AP-base_logo_transparent_background.webp",
+"contentLocation":"Sydney NSW"
+},
+"geo":{
+"@type":"GeoCoordinates",
+"name":"Apex Pumps",
+"postalCode":"2000",
+"latitude":"-32.1360981864801",
+"longitude":"148.997674394501",
+"description":"You can find our office in this location."
+},
+"founder":[
+{
+"@type": "Person",
+"alternateName":"Joshua Donaldson",
+"description":"Trade qualified as a mechanic, both heavy diesel and light vehicle. Carried that trade to fire and have extensive experience in wet systems in fire, specialising in maintenance, repairs and installs of pumps, engines and hydraulics as well as flow testing.",
+"jobTitle":"Director",
+"telephone":"+61 1300 012 739",
+"potentialAction": {
+"@id":"https://www.apexpumps.com.au/"
+},
+"name":"Joshua Donaldson Fire protection service expert",
+"url":"https://www.apexpumps.com.au/",
+"givenName":"Joshua",
+"familyName":"Donaldson",
+"image":"https://media.licdn.com/dms/image/v2/C5603AQEo1QPL-oAPlw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1566684223123?e=2147483647&v=beta&t=YUitkSf_5iXCupYbfjWThtoPRitteOTFNHNu3yrfYuM",
+"gender":"Male",
+"worksFor":"https://www.apexpumps.com.au/",
+"workLocation":"Sydney NSW"
+}
+],
+"additionalType":[
+"https://en.wikipedia.org/wiki/Fire_protection",
+"https://en.wikipedia.org/wiki/Active_fire_protection",
+"https://en.wikipedia.org/wiki/Fire_protection_engineering",
+"https://en.wikipedia.org/wiki/Fire_pump",
+"https://en.wikipedia.org/wiki/Fire_sprinkler_system",
+"http://productontology.org/id//Fire_protection",
+"http://productontology.org/id//Active_fire_protection",
+"http://productontology.org/id//Fire_protection_engineering",
+"http://productontology.org/id//Fire_pump",
+"http://productontology.org/id//Fire_sprinkler_system"
+],
+"mainEntityOfPage":"kg:/g/11mckf75zy",
+"sameAs":[
+"https://local.google.com/place?id=12902873687142079031&use=srp",
+"https://www.google.com/maps?cid=12902873687142079031",
+"https://maps.google.com/maps?ll=-32.83115,150.052362&z=6&t=h&hl=en&gl=US&mapclient=embed&cid=12902873687142079031",
+"https://www.google.com/maps/place/Apex+Pumps/@-32.3424666,148.8558318,41661m/data=!3m1!1e3!4m6!3m5!1s0xaad50ec4ae717a7d:0xb31037418fd69a37!8m2!3d-32.8311501!4d150.0523618!16s%2Fg%2F11mckf75zy?hl=en-GB&entry=ttu&g_ep=EgoyMDI1MDQxMy4wIKXMDSoASAFQAw%3D%3D"
+],
+"knowsAbout":[
+"Fire Pumpset Installation",
+"Fire Pumpset Maintenance",
+"Fire Pumpset Testing",
+"Fire Pump Repair",
+"Fire Pumpset Replacement",
+"Fire Hydrant Repair",
+"Sprinkler System Repair"
+],
+"hasOfferCatalog": {
+"@type": "OfferCatalog",
+"name":"Apex Pumps",
+"@id":"https://www.apexpumps.com.au/",
+"url": "https://www.apexpumps.com.au/",
+"additionalType": "http://www.productontology.org/id/website",
+"itemListElement": [
+{
+"@type": "Offer",
+"itemOffered": [
+{
+"@type": "Service",
+"name":"",
+"@id":"",
+"url": "",
+"description":"Apex Pumps is an Australian-owned company based in Sydney, specialising in fire protection services with over 30 years of experience in diesel and plant mechanics. Apex Pumps provide expert servicing and maintenance of diesel and electric fire pumps, hydrants, and sprinkler systems, ensuring full compliance with Australian Standards. Our team is committed to protecting lives and properties through reliable, efficient, and safety-focused fire system solutions across Sydney. Trust Apex Pumps for professional, timely, and compliant fire protection services."
+},
+{
+"@type": "Service",
+"name":"Fire Pump Installation Sydney",
+"@id":"https://www.apexpumps.com.au/fire-pump-installation-sydney/",
+"url": "https://www.apexpumps.com.au/fire-pump-installation-sydney/",
+"description":"Apex Pumps' qualified and trained team installs fire pumps in commercial, strata, and industrial buildings. Call to book yours now"
+},
+{
+"@type": "Service",
+"name":"Fire Pump Maintenance Sydney",
+"@id":"https://www.apexpumps.com.au/fire-pump-maintenance-sydney/",
+"url": "https://www.apexpumps.com.au/fire-pump-maintenance-sydney/",
+"description":"Apex Pumps offers scheduled fire pump maintenance in Sydney, as well as emergency callouts. Contact us now at 1300 012 739"
+},
+{
+"@type": "Service",
+"name":"Fire Pump Testing Sydney",
+"@id":"https://www.apexpumps.com.au/fire-pump-testing-sydney/",
+"url": "https://www.apexpumps.com.au/fire-pump-testing-sydney/",
+"description":"Apex Pumps tests fire pumps in commercial, industrial, and strata buildings to ensure A-1 performance and compliance with Australian safety standards. Call now"
+},
+{
+"@type": "Service",
+"name":"Fire Pump Repair Sydney",
+"@id":"https://www.apexpumps.com.au/fire-pump-repairs-sydney/",
+"url": "https://www.apexpumps.com.au/fire-pump-repairs-sydney/",
+"description":"Looking for fire pump repairs in Sydney? Apex Pumps provides emergency fire pump repairs and maintenance in Sydney. Call 1300 012 739 now"
+},
+{
+"@type": "Service",
+"name":"Fire Pump Replacement Sydney",
+"@id":"https://www.apexpumps.com.au/fire-pump-replacement-sydney/",
+"url": "https://www.apexpumps.com.au/fire-pump-replacement-sydney/",
+"description":"Apex Pumps provides fire pump replacement in Sydney for outdated or malfunctioning pumps. Get your replacement done today. Call now 1300 012 739"
+},
+{
+"@type": "Service",
+"name":"Fire Hydrant Repair Sydney",
+"@id":"https://www.apexpumps.com.au/fire-hydrant-repair-sydney/",
+"url": "https://www.apexpumps.com.au/fire-hydrant-repair-sydney/",
+"description":"Apex Pumps provides scheduled and emergency fire hydrant repairs in Sydney for commercial, industrial, and strata buildings. Dial 1300 012 739 now"
+},
+{
+"@type": "Service",
+"name":"Fire Sprinkler System Repair Sydney",
+"@id":"https://www.apexpumps.com.au/sprinkler-system-repair-sydney/",
+"url": "https://www.apexpumps.com.au/sprinkler-system-repair-sydney/",
+"description":"Apex Pumps offers industrial and commercial fire sprinkler pump system repairs, available on scheduled or emergency call-outs. Call Now 1300 012 739
+"
+}
+]
+}
+]
+}
+}]
+}</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">var elementskit_module_parallax_url = "https://www.apexpumps.com.au/wp-content/plugins/elementskit/modules/parallax/";</script>			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://www.apexpumps.com.au/wp-content/uploads/mark-black-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://www.apexpumps.com.au/wp-content/uploads/mark-black-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.apexpumps.com.au/wp-content/uploads/mark-black-300x300.png" />
+<meta name="msapplication-TileImage" content="https://www.apexpumps.com.au/wp-content/uploads/mark-black-300x300.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/arrow.png');}table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc.png');}table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_desc.png');}table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc_disabled.png');}.rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/img/youtube.png');}.hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero.elementor-1590,
+        [class*="theme-"] .hero,
+        [id*="theme-"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc","style":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png');}","hash":"5664ae0d-a40c-4922-9c3c-278745090ccd","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png"},{"selector":"table.dataTable thead .dt-ordering-asc","style":"table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png');}","hash":"70228fa7-bf30-4344-a8d2-0d732f76eac3","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png"},{"selector":"table.dataTable thead .dt-ordering-desc","style":"table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png');}","hash":"2dc25202-817b-46aa-8394-7ad0ba92d862","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png"},{"selector":"table.dataTable thead .dt-ordering-asc-disabled","style":"table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png');}","hash":"21de692b-9616-43c1-9a1f-1207efe21bde","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png"},{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"789057f7-b2aa-455f-bbc5-285f1118ed21","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"},{"selector":".hero","style":".hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"320cc636-3d85-4e1e-aeb5-692512f9d725","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero","style":".hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero","style":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"}]; const rocket_excluded_pairs = [];</script><meta name="generator" content="WP Rocket 3.17.2" data-wpr-features="wpr_lazyload_css_bg_img wpr_delay_js wpr_defer_js wpr_minify_js wpr_lazyload_images wpr_lazyload_iframes wpr_image_dimensions wpr_minify_css wpr_desktop wpr_preload_links" /></head>
+<body class="home wp-singular page-template page-template-elementor_header_footer page page-id-16 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor wp-child-theme-hello-theme-child-master hello-elementor-default elementor-default elementor-template-full-width elementor-kit-46 elementor-page elementor-page-16">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJLHC2XH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<header data-rocket-location-hash="dd537ce2f78bde173912f92dc617c474" data-elementor-type="header" data-elementor-id="2380" class="elementor elementor-2380 elementor-location-header" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-ddffdd8 e-con-full e-flex e-con e-parent" data-id="ddffdd8" data-element_type="container" data-e-type="container" data-settings="{&quot;ekit_has_onepagescroll_dot&quot;:&quot;yes&quot;}">
+				<div class="elementor-element elementor-element-c11baad elementor-widget__width-inherit elementor-widget elementor-widget-html" data-id="c11baad" data-element_type="widget" data-e-type="widget" data-settings="{&quot;ekit_we_effect_on&quot;:&quot;none&quot;}" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<div id="apex-header">
+  <style>
+    /* Base */
+    #apex-header * { box-sizing: border-box; border-radius: 0 !important; word-wrap: break-word; overflow-wrap: break-word; }
+    #apex-header { font-family: 'Source Sans Pro', sans-serif; line-height:1.6; color:#fff; background:#000; }
+    #apex-header .container { max-width:1200px; margin:0 auto; padding:0 16px; }
+
+    .top-contact-bar { background:#24ccff; color:#000; padding:8px 0; font-size:15px; font-weight:700; }
+    .contact-info { display:flex; justify-content:space-between; align-items:center; }
+    .contact-left { display:flex; align-items:center; gap:15px; }
+    .contact-item, .emergency-service, .separator { color:#000; font-weight:700; font-size:15px; text-decoration:none; }
+/* Fix excess blue bar caused by .contact-info margin */
+#apex-header .contact-info {
+  margin-top: 0 !important;
+}
+    .header { background:#000; position:sticky; top:0; z-index:1000; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; }
+    .logo-image { height:48px; width:auto; } /* mobile default */
+
+    .nav-links { display:none; } /* mobile default */
+    .nav-link { color:#fff; text-decoration:none; font:500 16px/1.2 Roboto,sans-serif; display:flex; gap:5px; transition:color .2s; }
+    .nav-link:hover, .nav-link.active { color:#24ccff; }
+
+    .nav-dropdown { position:relative; }
+    .dropdown-menu { display:none; position:absolute; top:calc(100% - 2px); left:0; background:#317b90; min-width:200px; box-shadow:0 4px 12px rgba(0,0,0,.15); z-index:1001; }
+    .nav-dropdown:hover .dropdown-menu { display:block; }
+    .dropdown-menu a { color:#fff; text-decoration:none; padding:12px 20px; display:block; font:500 14px Roboto,sans-serif; border-bottom:1px solid rgba(255,255,255,.2); }
+    .dropdown-menu a:hover { background:rgba(255,255,255,.1); }
+
+    .apx-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+    .call-now-btn {
+      background:#24ccff; color:#000; padding:10px 16px; text-decoration:none;
+      font:700 13px Roboto,sans-serif; text-transform:uppercase; letter-spacing:.5px;
+      display:inline-flex; align-items:center; gap:8px; border:0; border-radius:4px;
+      transition:transform .15s ease, box-shadow .15s ease; white-space:nowrap;
+    }
+    .call-now-btn:hover { transform:translateY(-1px); box-shadow:0 6px 14px rgba(36,204,255,.35); }
+
+    /* Burger */
+    #apxBurger {
+      display:flex; width:44px; height:44px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.35);
+      color:#fff; border-radius:4px; cursor:pointer;
+      font-size:24px; line-height:1; padding:0;
+      align-items:center; justify-content:center;
+    }
+
+    /* Slideout menu */
+    .apx-menu { display:none; position:absolute; top:100%; right:0; width:86vw; max-width:320px;
+      background:#000; border:1px solid #333; box-shadow:0 8px 30px rgba(0,0,0,.4);
+      z-index:1500; padding:16px 0; max-height:80vh; overflow-y:auto; }
+    .apx-menu.active { display:block !important; }
+    .apx-list { display:flex; flex-direction:column; }
+    .apx-link { color:#fff !important; text-decoration:none; font:500 16px Roboto,sans-serif; padding:12px 20px; border-bottom:1px solid #333; display:block; }
+    .apx-dropdown { border-bottom:1px solid #333; }
+    .apx-dd-toggle { color:#fff !important; font:500 16px Roboto,sans-serif; padding:12px 20px; display:block; cursor:pointer; }
+    .apx-dd { display:none; background:#111; }
+    .apx-dd.active { display:block; }
+    .apx-dd a { color:#ccc !important; text-decoration:none; font:400 14px Roboto,sans-serif; display:block; padding:10px 40px; border-bottom:1px solid #333; }
+
+    /* Desktop overrides */
+    @media (min-width: 1025px){
+      .logo-image { height:56px; }
+      .nav-links { display:flex; justify-content:center; align-items:center; gap:24px; flex:1; }
+      #apxBurger { display:none; }
+    }
+
+    /* Hide contact bar on mobile */
+    @media (max-width: 1024px){
+      .top-contact-bar { display:none !important; }
+      .header { border-top:30px solid #24ccff; overflow:visible; }
+    }
+    
+/* --- Mobile hard overrides --- */
+@media (max-width: 1024px){
+  /* Force-hide desktop links on mobile no matter what the theme does */
+  #apex-header .nav .nav-links {
+    display: none !important;
+  }
+
+  /* Make sure the burger & call button align nicely */
+  #apex-header .nav {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Optional: smaller call button so it doesn't crowd the burger */
+  #apex-header .call-now-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Keep desktop links on a single line when visible (prevents “About / Us” wrap) */
+#apex-header .nav-link { white-space: nowrap; }
+
+
+  </style>
+
+  <!-- Top Contact Bar -->
+  <div class="top-contact-bar">
+    <div class="container">
+      <div class="contact-info">
+        <div class="contact-left">
+          <a href="tel:1300012739" class="contact-item">📞 1300 012 739</a>
+          <span class="separator">|</span>
+          <a href="mailto:info@apexpumps.com.au" class="contact-item">✉️ info@apexpumps.com.au</a>
+        </div>
+        <div class="contact-right">
+          <a href="tel:1300012739" class="emergency-service">📞 24/7 Emergency Service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <img fetchpriority="high" src="https://www.apexpumps.com.au/wp-content/uploads/apex-logo-black.webp" alt="APEX PUMPS" class="logo-image" width="170" height="65" loading="eager" fetchpriority="high">
+        </div>
+
+        <div class="nav-links">
+          <a href="/" class="nav-link active">Home</a>
+          <a href="/about-us" class="nav-link">About Us</a>
+
+          <div class="nav-dropdown">
+            <a href="#" class="nav-link">Services ▼</a>
+            <div class="dropdown-menu">
+              <a href="/fire-pump-installation-sydney">Installation</a>
+              <a href="/fire-pump-maintenance-sydney">Maintenance</a>
+              <a href="/fire-pump-testing-sydney">Testing</a>
+              <a href="/fire-pump-repairs-sydney">Fire Pump Repair</a>
+              <a href="/fire-pump-replacement-sydney">Replacement</a>
+              <a href="/fire-hydrant-repair-sydney">Fire Hydrant Repair</a>
+              <a href="/sprinkler-system-repair-sydney">Sprinkler System Repair</a>
+              <a href="/fire-hydrant-booster-testing-sydney">Fire Hydrant Booster Testing</a>
+              <a href="/hydrostatic-testing-sydney">Hydrostatic Testing</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <a href="#" class="nav-link">Areas We Serve ▼</a>
+            <div class="dropdown-menu">
+              <a href="/areas-we-serve/fire-protection-services-central-coast">Central Coast</a>
+              <a href="/areas-we-serve/fire-protection-services-wollongong">Wollongong</a>
+              <a href="/areas-we-serve/expert-fire-pump-services-in-sydney">Sydney</a>
+              <a href="/areas-we-serve/fire-protection-services-in-new-castle">Newcastle</a>
+              <a href="/areas-we-serve/expert-fire-pump-services-in-hunter-valley">Hunter Valley</a>
+            </div>
+          </div>
+
+          <a href="/fire-pump-spare-parts/" class="nav-link">Spare Parts</a>
+          <a href="/our-blog" class="nav-link">Blog</a>
+          <a href="/contact-us" class="nav-link">Contact Us</a>
+        </div>
+
+        <!-- Right side -->
+        <div class="apx-right">
+          <a href="tel:1300012739" class="call-now-btn">📞 CALL NOW</a>
+          <button id="apxBurger" type="button" aria-label="Open menu" onclick="toggleApxMenu()">☰</button>
+        </div>
+
+        <!-- Slideout Menu -->
+        <div class="apx-menu" id="apxMenu" aria-hidden="true">
+          <div class="apx-list">
+            <a href="/" class="apx-link">Home</a>
+            <a href="/about-us" class="apx-link">About Us</a>
+
+            <div class="apx-dropdown">
+              <span class="apx-dd-toggle" onclick="toggleApxDropdown('services')">Services ▼</span>
+              <div class="apx-dd" id="apx-dd-services">
+                <a href="/fire-pump-installation-sydney">Installation</a>
+                <a href="/fire-pump-maintenance-sydney">Maintenance</a>
+                <a href="/fire-pump-testing-sydney">Testing</a>
+                <a href="/fire-pump-repairs-sydney">Fire Pump Repair</a>
+                <a href="/fire-pump-replacement-sydney">Replacement</a>
+                <a href="/fire-hydrant-repair-sydney">Fire Hydrant Repair</a>
+                <a href="/sprinkler-system-repair-sydney">Sprinkler System Repair</a>
+                <a href="/fire-hydrant-booster-testing-sydney">Fire Hydrant Booster Testing</a>
+                <a href="/hydrostatic-testing-sydney">Hydrostatic Testing</a>
+              </div>
+            </div>
+
+            <div class="apx-dropdown">
+              <span class="apx-dd-toggle" onclick="toggleApxDropdown('areas')">Areas We Serve ▼</span>
+              <div class="apx-dd" id="apx-dd-areas">
+                <a href="/areas-we-serve/fire-protection-services-central-coast">Central Coast</a>
+                <a href="/areas-we-serve/fire-protection-services-wollongong">Wollongong</a>
+                <a href="/areas-we-serve/expert-fire-pump-services-in-sydney">Sydney</a>
+                <a href="/areas-we-serve/fire-protection-services-in-new-castle">Newcastle</a>
+                <a href="/areas-we-serve/expert-fire-pump-services-in-hunter-valley">Hunter Valley</a>
+              </div>
+            </div>
+
+            <a href="/fire-pump-spare-parts/" class="apx-link">Spare Parts</a>
+            <a href="/our-blog" class="apx-link">Blog</a>
+            <a href="/contact-us" class="apx-link">Contact Us</a>
+            <a href="tel:1300012739" class="apx-link" style="background:#24ccff; color:#000; font-weight:700; text-align:center;">📞 CALL NOW</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <script type="rocketlazyloadscript">
+    (function(){
+      const root = document.getElementById('apex-header');
+      const menu = document.getElementById('apxMenu');
+
+      window.toggleApxMenu = function(){
+        const open = menu.classList.toggle('active');
+        menu.setAttribute('aria-hidden', String(!open));
+      };
+
+      window.toggleApxDropdown = function(key){
+        const box = document.getElementById('apx-dd-' + key);
+        if (box) box.classList.toggle('active');
+      };
+
+      // Close on outside click
+      document.addEventListener('click', function(e){
+        if (!root.contains(e.target) && menu.classList.contains('active')) {
+          menu.classList.remove('active');
+          menu.setAttribute('aria-hidden','true');
+        }
+      });
+
+      // Close on any menu link click
+      root.querySelectorAll('.apx-link, .apx-dd a').forEach(a=>{
+        a.addEventListener('click', ()=>{
+          menu.classList.remove('active');
+          menu.setAttribute('aria-hidden','true');
+        });
+      });
+    })();
+  </script>
+</div>
+				</div>
+				</div>
+				</div>
+				</header>
+				<div data-rocket-location-hash="a3979474d5a930c18afd30312e6a119c" data-elementor-type="wp-page" data-elementor-id="16" class="elementor elementor-16" data-elementor-post-type="page">
+				<div class="elementor-element elementor-element-ecb4951 e-con-full e-flex e-con e-parent" data-id="ecb4951" data-element_type="container" data-e-type="container" data-settings="{&quot;ekit_has_onepagescroll_dot&quot;:&quot;yes&quot;}">
+				<div class="elementor-element elementor-element-45eeb978 elementor-widget__width-inherit elementor-widget elementor-widget-html" data-id="45eeb978" data-element_type="widget" data-e-type="widget" data-settings="{&quot;ekit_we_effect_on&quot;:&quot;none&quot;}" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Pumps - Body Content Only</title>
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical fonts -->
+    
+    <noscript></noscript>
+    <!-- Preload critical hero image for LCP optimization -->
+    <link rel="preload" as="image" href="https://www.apexpumps.com.au/wp-content/uploads/hero.webp" fetchpriority="high">
+    <style>
+    /* Critical CSS for above-the-fold content */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: #333; }
+    .hero { background: linear-gradient(135deg, rgba(36, 204, 255, 0.95) 0%, rgba(0, 0, 0, 0.9) 30%, rgba(49, 123, 144, 0.85) 70%, rgba(36, 204, 255, 0.95) 100%), var(--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725); background-size: cover; background-position: center; color: white; padding: 100px 0; text-align: center; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Sharp corners for all elements */
+        * {
+            border-radius: 0 !important;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif; font-display: swap;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Prevent text overflow */
+        * {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(135deg, rgba(36, 204, 255, 0.95) 0%, rgba(0, 0, 0, 0.9) 30%, rgba(49, 123, 144, 0.85) 70%, rgba(36, 204, 255, 0.95) 100%),
+                radial-gradient(circle at 20% 80%, rgba(36, 204, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(49, 123, 144, 0.4) 0%, transparent 50%),
+                var(--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a);
+            background-size: cover, cover, cover, cover;
+            background-position: center, center, center, center;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+    /* Override Elementor's !important rules with more specific selectors */
+        .hero.elementor-1590,
+        [class*="theme-"] .hero,
+        [id*="theme-"] .hero {
+            background: linear-gradient(135deg, rgba(36, 204, 255, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%), 
+                        var(--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9) !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%),
+                linear-gradient(90deg, transparent 0%, rgba(36, 204, 255, 0.1) 25%, transparent 50%, rgba(49, 123, 144, 0.1) 75%, transparent 100%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { 
+                transform: translateX(-100%) translateY(0);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateX(0%) translateY(-10px);
+                opacity: 0.7;
+            }
+            100% { 
+                transform: translateX(100%) translateY(0);
+                opacity: 0.3;
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #24ccff 0%, #317b90 100%);
+            color: white !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #317b90 0%, #24ccff 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(36, 204, 255, 0.3);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(36, 204, 255, 0.05) 50%, transparent 60%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .experience-item {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 0;
+            background: white;
+            border: 1px solid #E5E5E5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #24ccff, #317b90);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .experience-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .experience-icon {
+            width: 220px;
+            height: 220px;
+            background: transparent;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .experience-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .experience-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.8s ease;
+        }
+
+        .experience-icon:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(36, 204, 255, 0.4);
+        }
+
+        .experience-icon:hover::before {
+            transform: translateX(100%);
+        }
+
+        .experience-icon:hover::after {
+            transform: rotate(45deg) translateX(100%);
+        }
+
+        .experience-icon .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: white;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .experience-content {
+            flex: 1;
+            padding: 30px 30px 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            overflow-wrap: break-word;
+        }
+
+        .experience-content h3 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            position: relative;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .experience-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #24ccff, #317b90);
+            transition: width 0.3s ease;
+        }
+
+        .experience-item:hover .experience-content h3::after {
+            width: 100px;
+        }
+
+        .experience-content p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, white 0%, #f8f9fa 50%, white 100%);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #24ccff, transparent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h4 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .feature-list li::before {
+            content: '→';
+            color: #317b90;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info h5 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .phone-number {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 2rem;
+            color: #317b90;
+            letter-spacing: -0.02em;
+        }
+
+        .call-cta-button {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            padding: 15px 25px;
+            background: #000000;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .call-cta-button:hover {
+            background: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .call-cta-button .call-text {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
+        .call-cta-button .phone-number {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #24ccff;
+            margin: 0;
+        }
+
+        .about-image {
+            background: transparent;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        .about-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(36, 204, 255, 0.3);
+        }
+
+        .about-image .image-placeholder {
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #24ccff 0%, #317b90 50%, #24ccff 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 20%, rgba(255,255,255,0.05) 50%, transparent 80%);
+            animation: wave 8s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h3 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 2.5rem;
+            letter-spacing: -0.02em;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
+            border: none;
+            padding: 50px 40px;
+            text-align: left;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #24ccff, #317b90, #24ccff);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #24ccff 0%, #317b90 100%);
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover::after {
+            transform: translateX(0);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-number {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #24ccff;
+            line-height: 1;
+            opacity: 0.8;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-number {
+            transform: scale(1.2);
+            opacity: 1;
+            color: #317b90;
+        }
+
+        .service-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-image {
+            transform: translateX(0);
+        }
+
+        .image-placeholder {
+            background: transparent;
+            color: white;
+            padding: 0;
+            text-align: center;
+            font-size: 1.1rem;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .service-card h4 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+            margin: 0;
+            color: #1a1a1a;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1;
+        }
+
+        .service-card p {
+            color: #666;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1.7;
+        }
+
+        .service-card:hover h4,
+        .service-card:hover p {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .service-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #24ccff, #317b90, #24ccff);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .service-card:hover .service-accent {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover .service-header {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .read-more-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: #317b90 !important;
+            padding: 12px 24px;
+            border: 2px solid #317b90;
+            border-radius: 0;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .read-more-button:hover {
+            background: #317b90;
+            color: white !important;
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover .read-more-button {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .service-cta-btn {
+            background: #000000 !important;
+            color: white !important;
+        }
+
+        .service-cta-btn:hover {
+            background: #333333 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #24ccff 0%, #317b90 50%, #24ccff 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .cta-banner h4 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 2.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button.secondary {
+            background: linear-gradient(135deg, #317b90 0%, #1a4a5a 100%);
+            color: white;
+        }
+
+        .cta-button.secondary:hover {
+            background: linear-gradient(135deg, #1a4a5a 0%, #317b90 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(49, 123, 144, 0.3);
+        }
+
+      /* FPA Membership Section */
+.fpa-membership {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #FFFFFF 50%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.fpa-membership::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #24ccff, transparent);
+}
+
+.fpa-membership .section-header h3 {
+    color: #1a1a1a;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.fpa-membership .section-header p {
+    color: #666;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.membership-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.membership-logo {
+    background: white;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.membership-logo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: #24ccff;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .fpa-membership .section-header h3 {
+        font-size: 2rem;
+    }
+    
+    .fpa-membership .section-header p {
+        font-size: 1rem;
+    }
+    
+    .membership-logo {
+        padding: 20px;
+    }
+    
+    .membership-logo img {
+        height: 100px;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fpa-membership .section-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .membership-logo img {
+        height: 80px;
+        max-width: 200px;
+    }
+}
+        /* Solutions Section */
+        .solutions {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .solutions::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #24ccff, transparent);
+        }
+
+        .solutions-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: stretch;
+        }
+
+        .solutions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .solution-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border: 1px solid #E5E5E5;
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .solution-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .solution-icon {
+            width: 40px;
+            height: 40px;
+            background: #317b90;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .solution-content h4 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.3rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: #0D0E0F;
+        }
+
+        .solution-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .solutions-image {
+            background: linear-gradient(135deg, #425B5F 0%, #2C3E50 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #E5E5E5;
+            padding: 0;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-image {
+            height: 200px;
+            background: linear-gradient(135deg, #24ccff 0%, #317b90 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-content {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-icon {
+            display: none;
+        }
+
+        .feature-card h4 {
+            font-family: 'Roboto', sans-serif; font-display: swap;
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+
+        .features .section-header h3 {
+            color: #000000;
+        }
+
+        .solutions .section-header h3 {
+            color: #000000;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .experience-item {
+                height: auto;
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .experience-icon {
+                width: 100%;
+                height: 200px;
+                flex-shrink: 0;
+            }
+
+            .experience-content {
+                padding: 20px;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solutions-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            /* Mobile carousel adjustments */
+            .carousel-track {
+                animation-duration: 20s;
+                width: calc(120px * 18);
+            }
+
+            .carousel-slide {
+                flex: 0 0 120px;
+                margin: 0 15px;
+            }
+
+            .client-logo {
+                padding: 15px;
+                min-height: 70px;
+                width: 100px;
+            }
+
+            .client-logo svg {
+                width: 100px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .experience-content h3 {
+                font-size: 1.2rem;
+                line-height: 1.3;
+            }
+            
+            .experience-content p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+            
+            .about-text h4 {
+                font-size: 1.5rem;
+            }
+            
+            .about-text p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 5px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .experience-content h3 {
+                font-size: 1.1rem;
+                line-height: 1.2;
+            }
+            
+            .experience-content p {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+            
+            .about-text h4 {
+                font-size: 1.3rem;
+                line-height: 1.2;
+            }
+            
+            .about-text p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+    /* Spare Parts Banner Styles */
+    .spare-parts-banner {
+        width: 100%;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+        color: white;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        border-top: 3px solid #24ccff;
+        border-bottom: 3px solid #24ccff;
+    }
+
+    .spare-parts-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(36, 204, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(49, 123, 144, 0.06) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .spare-parts-banner::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(36, 204, 255, 0.3), transparent);
+        transform: translateY(-50%);
+    }
+
+    .spare-parts-banner-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+
+    .spare-parts-banner-left {
+        text-align: left;
+    }
+
+    .spare-parts-banner-right {
+        text-align: right;
+    }
+
+    .spare-parts-banner .banner-badge {
+        display: inline-block;
+        background: #24ccff;
+        color: #000000;
+        padding: 8px 20px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .spare-parts-banner h3 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 3rem;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        color: #ffffff;
+    }
+
+    .spare-parts-banner h3 .highlight {
+        color: #24ccff;
+    }
+
+    .spare-parts-banner p {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        line-height: 1.7;
+        color: #e0e0e0;
+    }
+
+    .spare-parts-features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .spare-parts-feature-item {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-left: 3px solid #24ccff;
+        transition: all 0.3s ease;
+    }
+
+    .spare-parts-feature-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+
+    .spare-parts-feature-item strong {
+        display: block;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #24ccff;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .spare-parts-feature-item span {
+        display: block;
+        font-size: 0.9rem;
+        color: #b0b0b0;
+        line-height: 1.5;
+    }
+
+    .spare-parts-cta-button {
+        display: inline-block;
+        background: #24ccff;
+        color: white!important;
+        padding: 18px 50px;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .spare-parts-cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s ease;
+        color: white;
+    }
+
+    .spare-parts-cta-button:hover {
+        background: #317b90;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(36, 204, 255, 0.3);
+    }
+
+    .spare-parts-cta-button:hover::before {
+        left: 100%;
+    }
+
+    .spare-parts-cta-button::after {
+        content: '→';
+        margin-left: 10px;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .spare-parts-cta-button:hover::after {
+        transform: translateX(5px);
+    }
+
+    .spare-parts-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .spare-parts-stat {
+        text-align: right;
+    }
+
+    .spare-parts-stat-number {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 3.5rem;
+        color: #24ccff;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    .spare-parts-stat-label {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 1rem;
+        color: #b0b0b0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Mobile Responsive for Spare Parts Banner */
+    @media (max-width: 968px) {
+        .spare-parts-banner-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .spare-parts-banner-left,
+        .spare-parts-banner-right {
+            text-align: center;
+        }
+
+        .spare-parts-features-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .spare-parts-feature-item {
+            border-left: none;
+            border-top: 3px solid #24ccff;
+        }
+
+        .spare-parts-feature-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .spare-parts-stats {
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .spare-parts-stat {
+            text-align: center;
+            min-width: 150px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .spare-parts-banner {
+            padding: 60px 15px;
+        }
+
+        .spare-parts-banner h3 {
+            font-size: 2.2rem;
+        }
+
+        .spare-parts-banner p {
+            font-size: 1.1rem;
+        }
+
+        .spare-parts-stat-number {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .spare-parts-banner h3 {
+            font-size: 1.8rem;
+        }
+
+        .spare-parts-banner p {
+            font-size: 1rem;
+        }
+
+        .spare-parts-cta-button {
+            padding: 15px 35px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/arrow.png');}table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc.png');}table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_desc.png');}table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc_disabled.png');}.rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/img/youtube.png');}.hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero.elementor-1590,
+        [class*="theme-"] .hero,
+        [id*="theme-"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc","style":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png');}","hash":"5664ae0d-a40c-4922-9c3c-278745090ccd","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png"},{"selector":"table.dataTable thead .dt-ordering-asc","style":"table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png');}","hash":"70228fa7-bf30-4344-a8d2-0d732f76eac3","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png"},{"selector":"table.dataTable thead .dt-ordering-desc","style":"table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png');}","hash":"2dc25202-817b-46aa-8394-7ad0ba92d862","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png"},{"selector":"table.dataTable thead .dt-ordering-asc-disabled","style":"table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png');}","hash":"21de692b-9616-43c1-9a1f-1207efe21bde","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png"},{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"789057f7-b2aa-455f-bbc5-285f1118ed21","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"},{"selector":".hero","style":".hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"320cc636-3d85-4e1e-aeb5-692512f9d725","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero","style":".hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero","style":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"}]; const rocket_excluded_pairs = [];</script></head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Sydney's Fire Pump Specialists</h1>
+            <p>Providing Expert Maintenance And Repairs Of Fire Systems Across All of NSW</p>
+            <a href="/contact-us" class="cta-button">GET YOUR FREE QUOTE NOW</a>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="container">
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <div class="experience-icon">
+                        <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/fire-pump-experience.webp" class="image-placeholder rocket-lazyload" style=", url('fire-pump-experience.png');" loading="lazy"></div>
+                    </div>
+                    <div class="experience-content">
+                        <h3>Decades of Experience</h3>
+                        <p>Decades of combined expertise in heavy diesel plant mechanics, fire pumps, and wet-side solutions.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-icon">
+                        <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/emergency-response.webp" class="image-placeholder rocket-lazyload" style=", url('emergency-response.png');" loading="lazy"></div>
+                    </div>
+                    <div class="experience-content">
+                        <h3>24/7 Emergency Callouts</h3>
+                        <p>Available for urgent fire pump set repairs and maintenance to restore your system ASAP.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/Depositphotos_30249081_L.webp" class="image-placeholder rocket-lazyload" style=", url('fire-pump-system 3.png');" loading="lazy"></div>
+                </div>
+                <div class="about-text">
+                    <h4>Australian Owned & Operated Company</h4>
+                    <p>Apex Pumps is an Australian-owned business based in Sydney, founded with a passion for the fire safety industry delivering high-quality fire pump services to fire companies, business owners, and industrial site managers.</p>
+                    <ul class="feature-list">
+                        <li>Full compliance with Australian Safety Standards.</li>
+                        <li>Ensuring the fire pump system is always emergency-ready.</li>
+                        <li>Big or small, all fire pump needs are covered.</li>
+                    </ul>
+                    <div class="contact-info">
+                        <a href="tel:1300012739" class="call-cta-button">
+                            <span class="call-text">Call Us Now</span>
+                            <span class="phone-number">1300 012 739</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h3>Our Services</h3>
+                <p>From repair and maintenance to replacements and testing, every aspect of the fire pump system is handled.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">01</div>
+                        <h4>Fire Pump Maintenance & Servicing</h4>
+                    </div>
+                    <p>Annual or monthly fire pump maintenance, thoroughly examining the valve, gauge, and every component of the fire pump.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/APX-Maintenance-and-Servicing-1000008759.webp" class="image-placeholder rocket-lazyload" style=", url('maintenance-service.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/fire-pump-maintenance-sydney" class="read-more-button">Learn About Fire Pump Maintenance</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">02</div>
+                        <h4>Fire Pump Flow Testing</h4>
+                    </div>
+                    <p>Fire pump flow tests are conducted to ensure compliance with NSW fire regulations, with complete documentation provided after each test.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/APX-Hydrant-pump-flow-testing-1.webp" class="image-placeholder rocket-lazyload" style=", url('flow-testing.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/fire-pump-testing-sydney" class="read-more-button">Learn About Fire Pump Testing</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">03</div>
+                        <h4>Fire Pump Repair</h4>
+                    </div>
+                    <p>Urgent or scheduled fire pump repairs, including system inspections, faulty part replacements, and restoring fire pump functionality ASAP.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/APX-Working-on-pump.webp" class="image-placeholder rocket-lazyload" style=", url('pump-repair.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/fire-pump-repairs-sydney" class="read-more-button">Learn About Fire Pump Repair</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">04</div>
+                        <h4>Fire Pump Replacement</h4>
+                    </div>
+                    <p>If a fire pump fails testing and repairs aren't an option, a new system is recommended, tailored to the building's needs, with ongoing support.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/AP-Control-panel-replacement.webp" class="image-placeholder rocket-lazyload" style=", url('pump-replacement.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/fire-pump-replacement-sydney" class="read-more-button">Learn About Fire Pump Replacement</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">05</div>
+                        <h4>Fire Hydrant Repairs</h4>
+                    </div>
+                    <p>Fire hydrants are repaired to meet the highest water volume requirements of Australian Standards AS2419.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/red-fire-hydrant-on-sidewalk-2024-09-30-23-16-15-utc.webp" class="image-placeholder rocket-lazyload" style=", url('hydrant-service.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/fire-hydrant-repair-sydney" class="read-more-button">Learn About Fire Hydrant Repair</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-number">06</div>
+                        <h4>Sprinkler System Repairs</h4>
+                    </div>
+                    <p>Faults in fire sprinkler systems are repaired, addressing leaks and pipe issues to maintain full operation and compliance.</p>
+                    <div class="service-accent"></div>
+                                         <div class="service-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/APX-Sprinkler-pump-flow-testing.webp" class="image-placeholder rocket-lazyload" style=", url('sprinkler-service.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <a href="/sprinkler-system-repair-sydney" class="read-more-button">Learn About Sprinkler System Repair</a>
+                </div>
+            </div>
+            <div class="service-cta">
+                <a href="/contact-us" class="cta-button service-cta-btn">BOOK YOUR FIRE SAFETY SERVICE NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spare Parts Banner -->
+    <section class="spare-parts-banner">
+        <div class="spare-parts-banner-content">
+            <div class="spare-parts-banner-left">
+                <span class="banner-badge">Shop Now</span>
+                <h3>Fire Pump <span class="highlight">Spare Parts</span></h3>
+                <p>Maintain peak performance with our extensive inventory of genuine fire pump components and replacement parts.</p>
+                
+                <div class="spare-parts-features-grid">
+                    <div class="spare-parts-feature-item">
+                        <strong>Genuine Parts</strong>
+                        <span>OEM certified components</span>
+                    </div>
+                    <div class="spare-parts-feature-item">
+                        <strong>We Ship Nationwide</strong>
+                        <span>Quick shipping available</span>
+                    </div>
+                    <div class="spare-parts-feature-item">
+                        <strong>Quality Assured</strong>
+                        <span>Tested & guaranteed</span>
+                    </div>
+                    <div class="spare-parts-feature-item">
+                        <strong>Expert Support</strong>
+                        <span>Technical assistance included</span>
+                    </div>
+                </div>
+
+                <a href="/fire-pump-spare-parts/" class="spare-parts-cta-button">
+                    View Parts Catalog
+                </a>
+            </div>
+
+            <div class="spare-parts-banner-right">
+                <div class="spare-parts-stats">
+                    <div class="spare-parts-stat">
+                        <div class="spare-parts-stat-number">24/7</div>
+                        <div class="spare-parts-stat-label">Order Support</div>
+                    </div>
+                    <div class="spare-parts-stat">
+                        <div class="spare-parts-stat-number">100%</div>
+                        <div class="spare-parts-stat-label">Genuine Quality</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FPA Membership Section -->
+<section class="fpa-membership">
+    <div class="container">
+        <div class="section-header">
+            <h3>A MEMBER OF</h3>
+            <p>Fire Protection Association Australia - Silver Member</p>
+        </div>
+        <div class="membership-container">
+            <div class="membership-logo">
+                <img width="1299" height="650" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201299%20650'%3E%3C/svg%3E" 
+                     alt="FPA Australia Silver Member Logo" 
+                     style="height: 120px; max-width: 300px; display: block; margin: 0 auto;" data-lazy-src="https://www.apexpumps.com.au/wp-content/uploads/1306-Silver-Member-Logo_HR.webp"><noscript><img width="1299" height="650" decoding="async" src="https://www.apexpumps.com.au/wp-content/uploads/1306-Silver-Member-Logo_HR.webp" 
+                     alt="FPA Australia Silver Member Logo" 
+                     style="height: 120px; max-width: 300px; display: block; margin: 0 auto;"></noscript>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h4>Fire Pumps Always On Guard</h4>
+            <p>Keeping fire pumps compliant and operational 24/7 for effective firefighting.</p>
+            <a href="/contact-us" class="cta-button secondary">CONTACT APEX NOW</a>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h3>Sectors We Work With</h3>
+            </div>
+            <div class="solutions-content">
+                <div class="solutions-list">
+                    <div class="solution-item">
+                        <div class="solution-icon">→</div>
+                        <div class="solution-content">
+                            <h4>Commercial & Strata</h4>
+                            <p>Ensuring fire safety in commercial and strata properties for occupants, employees, and visitors.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">→</div>
+                        <div class="solution-content">
+                            <h4>Facility Managers</h4>
+                            <p>Managing fire protection in offices, apartments, and strata properties.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">→</div>
+                        <div class="solution-content">
+                            <h4>Fire Companies</h4>
+                            <p>Fire pump systems are repaired and maintained to support firefighting operations and adhere to NSW safety regulations.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">→</div>
+                        <div class="solution-content">
+                            <h4>Industrial Sites</h4>
+                            <p>Keeping fire systems emergency-ready in manufacturing plants and high-risk industrial sites.</p>
+                        </div>
+                    </div>
+                </div>
+                                 <div class="solutions-image">
+                     <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/contemporary-industrial-powerful-water-boiler-with-2023-11-27-05-22-43-utc.webp" class="image-placeholder rocket-lazyload" style=", url('ChatGPT Image Aug 2, 2025, 01_21_23 PM.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h3>Why Apex Pumps Leads The Fire Safety Industry</h3>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                                         <div class="feature-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/emergency-response.webp" class="image-placeholder rocket-lazyload" style=", url('emergency-response.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <div class="feature-content">
+                        <h4>Fast and Ready for Urgent Requests</h4>
+                        <p>Working quickly to minimise downtime and always ready for urgent requests.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                                         <div class="feature-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/fire-pump-system.webp" class="image-placeholder rocket-lazyload" style=", url('fire-pump-experience.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <div class="feature-content">
+                        <h4>Accredited Team</h4>
+                        <p>A qualified team with two decades of combined experience and in-depth knowledge of fire pump service and repairs in Sydney.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                                         <div class="feature-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/fire_pump_flow_testing.webp" class="image-placeholder rocket-lazyload" style=", url('flow-testing.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <div class="feature-content">
+                        <h4>Clear and Detailed Reporting</h4>
+                        <p>Highly detailed reports and quotes to ensure complete clarity.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                                         <div class="feature-image">
+                         <div data-bg="https://www.apexpumps.com.au/wp-content/uploads/pump_maintenance.webp" class="image-placeholder rocket-lazyload" style=", url('maintenance-service.png'); background-size: cover; background-position: center; width: 100%; height: 100%;" loading="lazy"></div>
+                     </div>
+                    <div class="feature-content">
+                        <h4>100% Client Satisfaction</h4>
+                        <p>Prioritising clients' needs to deliver tailored solutions and ensure complete satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <h4>Partner With Sydney's Leading Fire Pump Specialists</h4>
+            <a href="tel:1300012739" class="cta-button secondary">CALL NOW</a>
+        </div>
+    </section>
+
+<script>var rocket_beacon_data = {"ajax_url":"https:\/\/www.apexpumps.com.au\/wp-admin\/admin-ajax.php","nonce":"6168da37f1","url":"https:\/\/www.apexpumps.com.au","is_mobile":false,"width_threshold":1600,"height_threshold":700,"delay":500,"debug":null,"status":{"atf":true,"lrc":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800}</script><script data-name="wpr-wpr-beacon" src='https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js' async></script><script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode-wpr",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script></body>
+</html>
+				</div>
+				</div>
+				</div>
+				</div>
+				<footer data-elementor-type="footer" data-elementor-id="1444" class="elementor elementor-1444 elementor-location-footer" data-elementor-post-type="elementor_library">
+					<section class="elementor-section elementor-top-section elementor-element elementor-element-d0b21dc elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="d0b21dc" data-element_type="section" data-e-type="section" data-settings="{&quot;ekit_has_onepagescroll_dot&quot;:&quot;yes&quot;}">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-0eb7ed9" data-id="0eb7ed9" data-element_type="column" data-e-type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-fd4a354 elementor-widget__width-inherit elementor-widget elementor-widget-html" data-id="fd4a354" data-element_type="widget" data-e-type="widget" data-settings="{&quot;ekit_we_effect_on&quot;:&quot;none&quot;}" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Component - Apex Pumps</title>
+    <style>
+        /* Reset and base styles with higher specificity */
+        .apex-footer * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important;
+        }
+
+        .apex-footer {
+            font-family: 'Source Sans Pro', sans-serif !important; 
+            font-display: swap;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .apex-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Main Footer with higher specificity */
+        .apex-footer .main-footer {
+            background: linear-gradient(135deg, #1a4a5a 0%, #0d2a35 100%) !important;
+            color: white !important;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apex-footer .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #24ccff !important;
+        }
+
+        .apex-footer .main-footer .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .apex-footer .footer-column h5 {
+            font-family: 'Roboto', sans-serif !important; 
+            font-display: swap;
+            font-weight: 700 !important;
+            font-size: 1.3rem !important;
+            margin-bottom: 20px !important;
+            color: white !important;
+        }
+
+        .apex-footer .footer-column h4 {
+            font-family: 'Roboto', sans-serif !important; 
+            font-display: swap;
+            font-weight: 700 !important;
+            font-size: 1.3rem !important;
+            margin-bottom: 20px !important;
+            color: white !important;
+        }
+
+        .apex-footer .footer-column p {
+            color: rgba(255,255,255,0.8) !important;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .apex-footer .footer-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .apex-footer .footer-btn {
+            text-decoration: none !important;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif !important; 
+            font-display: swap;
+            font-weight: 500 !important;
+            font-size: 14px !important;
+            transition: all 0.3s ease;
+        }
+
+        .apex-footer .footer-btn.primary {
+            background: #000000 !important;
+            color: white !important;
+        }
+
+        .apex-footer .footer-btn.primary:hover {
+            background: #333333 !important;
+            transform: translateY(-2px);
+        }
+
+        .apex-footer .footer-btn.linkedin {
+            background: #24ccff !important;
+            color: white !important;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .apex-footer .footer-btn.linkedin span {
+            font-weight: 700 !important;
+            font-size: 16px !important;
+        }
+
+        .apex-footer .footer-btn.linkedin:hover {
+            background: #1a9fd8 !important;
+            transform: translateY(-2px);
+        }
+
+        .apex-footer .footer-services {
+            list-style: none !important;
+            padding: 0;
+        }
+
+        .apex-footer .footer-services li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.8) !important;
+        }
+
+        .apex-footer .footer-services .chevron {
+            color: #24ccff !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+        }
+
+        .apex-footer .footer-services a {
+            text-decoration: none !important;
+            color: rgba(255,255,255,0.8) !important;
+            transition: font-weight 0.3s ease;
+        }
+
+        .apex-footer .footer-services a:hover {
+            font-weight: bold !important;
+            color: rgba(255,255,255,1) !important;
+        }
+
+        .apex-footer .contact-column {
+            background: #000000 !important;
+            padding: 30px;
+            border-radius: 0;
+            margin-left: 20px;
+        }
+
+        .apex-footer .contact-column h5 {
+            color: #ffffff !important;
+        }
+
+        .apex-footer .contact-column h4 {
+            color: #ffffff !important;
+        }
+
+        .apex-footer .contact-column .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .apex-footer .contact-column .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .apex-footer .contact-column .contact-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .apex-footer .contact-column .contact-item,
+        .apex-footer .contact-column .contact-item span,
+        .apex-footer .contact-column .contact-item a,
+        .apex-footer .contact-column .contact-item a:visited {
+            color: #ffffff !important;
+        }
+
+        .apex-footer .contact-column .contact-icon {
+            font-size: 16px !important;
+            font-weight: bold !important;
+            min-width: 20px;
+            flex-shrink: 0;
+        }
+
+        .apex-footer .contact-column .contact-item a,
+        .apex-footer .contact-column .contact-item span {
+            text-align: left !important;
+        }
+
+        /* Footer with higher specificity */
+        .apex-footer .footer {
+            background: linear-gradient(135deg, #317b90 0%, #1a4a5a 50%, #317b90 100%) !important;
+            color: white !important;
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apex-footer .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #24ccff, #FFFFFF, #24ccff) !important;
+        }
+
+        .apex-footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .apex-footer .footer-left {
+            color: rgba(255,255,255,0.7) !important;
+            font-size: 0.9rem !important;
+        }
+
+        .apex-footer .footer-right {
+            color: rgba(255,255,255,0.7) !important;
+            font-size: 0.9rem !important;
+        }
+
+        .apex-footer .footer-left a,
+        .apex-footer .footer-right a {
+            color: rgba(255,255,255,0.7) !important;
+            text-decoration: none !important;
+        }
+
+        .apex-footer .footer-left a:hover,
+        .apex-footer .footer-right a:hover {
+            color: white !important;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .apex-footer .main-footer .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .apex-footer .contact-column {
+                margin-left: 0;
+                border-radius: 8px;
+            }
+
+            .apex-footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/arrow.png');}table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc.png');}table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_desc.png');}table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https://www.apexpumps.com.au/wp-content/plugins/elementskit-lite/widgets/init/assets/img/sort_asc_disabled.png');}.rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/img/youtube.png');}.hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}.hero.elementor-1590,
+        [class*="theme-"] .hero,
+        [id*="theme-"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https://www.apexpumps.com.au/wp-content/uploads/hero.webp');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc","style":"table.dataTable thead .dt-orderable-asc,table.dataTable thead .dt-orderable-desc{--wpr-bg-5664ae0d-a40c-4922-9c3c-278745090ccd: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png');}","hash":"5664ae0d-a40c-4922-9c3c-278745090ccd","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/arrow.png"},{"selector":"table.dataTable thead .dt-ordering-asc","style":"table.dataTable thead .dt-ordering-asc{--wpr-bg-70228fa7-bf30-4344-a8d2-0d732f76eac3: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png');}","hash":"70228fa7-bf30-4344-a8d2-0d732f76eac3","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc.png"},{"selector":"table.dataTable thead .dt-ordering-desc","style":"table.dataTable thead .dt-ordering-desc{--wpr-bg-2dc25202-817b-46aa-8394-7ad0ba92d862: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png');}","hash":"2dc25202-817b-46aa-8394-7ad0ba92d862","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_desc.png"},{"selector":"table.dataTable thead .dt-ordering-asc-disabled","style":"table.dataTable thead .dt-ordering-asc-disabled{--wpr-bg-21de692b-9616-43c1-9a1f-1207efe21bde: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png');}","hash":"21de692b-9616-43c1-9a1f-1207efe21bde","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementskit-lite\/widgets\/init\/assets\/img\/sort_asc_disabled.png"},{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-789057f7-b2aa-455f-bbc5-285f1118ed21: url('https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"789057f7-b2aa-455f-bbc5-285f1118ed21","url":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"},{"selector":".hero","style":".hero{--wpr-bg-320cc636-3d85-4e1e-aeb5-692512f9d725: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"320cc636-3d85-4e1e-aeb5-692512f9d725","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero","style":".hero{--wpr-bg-7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"7f4e4165-4cf1-4aa6-8e48-2ecf00c5f86a","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"},{"selector":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero","style":".hero.elementor-1590,\r\n        [class*=\"theme-\"] .hero,\r\n        [id*=\"theme-\"] .hero{--wpr-bg-c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9: url('https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp');}","hash":"c1139ea1-1e77-4179-8a37-0bd6f7cfa8d9","url":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads\/hero.webp"}]; const rocket_excluded_pairs = [];</script></head>
+<body>
+    <!-- Footer wrapped in apex-footer class for specificity -->
+    <div class="apex-footer">
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h4>About</h4>
+                        <p>Apex Pumps is an Australian-owned and operated business based in Sydney, founded from a deep passion for the fire safety industry. With 20 years of experience as diesel and plant mechanics, we specialise in maintaining and servicing fire pumps and water-based fire safety systems to ensure your property remains compliant and protected.</p>
+                        <div class="footer-buttons">
+                            <a href="/about-us" class="footer-btn primary">READ MORE</a>
+                            <a href="https://www.linkedin.com/company/apex-pumps-pty-ltd/" target="_blank" class="footer-btn linkedin">
+                                <span>in</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Our Services</h4>
+                        <ul class="footer-services">
+                            <li><span class="chevron">→</span> <a href="/fire-pump-installation-sydney">Installation</a></li>
+                            <li><span class="chevron">→</span> <a href="/fire-pump-maintenance-sydney">Maintenance</a></li>
+                            <li><span class="chevron">→</span> <a href="/fire-pump-testing-sydney">Testing</a></li>
+                            <li><span class="chevron">→</span> <a href="/fire-pump-repairs-sydney">Fire Pump Repair</a></li>
+                            <li><span class="chevron">→</span> <a href="/fire-pump-replacement-sydney">Replacement</a></li>
+                            <li><span class="chevron">→</span> <a href="/fire-hydrant-repair-sydney">Fire Hydrant Repair</a></li>
+                            <li><span class="chevron">→</span> <a href="/sprinkler-system-repair-sydney">Sprinkler System Repair</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column contact-column">
+                        <h4>Contact</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <span class="contact-icon">📞</span>
+                                <a href="tel:1300012739">1300 012 739</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">✉️</span>
+                                <a href="mailto:info@apexpumps.com.au">info@apexpumps.com.au</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">🕒</span>
+                                <span>Monday to Friday 6AM - 4PM</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">��</span>
+                                <span>ABN: 82 681 973 688</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">G</span>
+                                <a href="https://maps.app.goo.gl/ekMfYrwkL6ersgfP9" target="_blank">Google Business Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+                    </div>
+                    <div class="footer-right">
+                        © 2026 Apex Pumps
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+<script>var rocket_beacon_data = {"ajax_url":"https:\/\/www.apexpumps.com.au\/wp-admin\/admin-ajax.php","nonce":"6168da37f1","url":"https:\/\/www.apexpumps.com.au","is_mobile":false,"width_threshold":1600,"height_threshold":700,"delay":500,"debug":null,"status":{"atf":true,"lrc":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800}</script><script data-name="wpr-wpr-beacon" src='https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js' async></script></body>
+</html>				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</footer>
+		
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/hello-theme-child-master/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+			<script type="rocketlazyloadscript">
+				( () => {
+					const lazyloadRunObserver = () => {
+						const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+						const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+							entries.forEach( ( entry ) => {
+								if ( entry.isIntersecting ) {
+									let lazyloadBackground = entry.target;
+									if( lazyloadBackground ) {
+										lazyloadBackground.classList.add( 'e-lazyloaded' );
+									}
+									lazyloadBackgroundObserver.unobserve( entry.target );
+								}
+							});
+						}, { rootMargin: '200px 0px 200px 0px' } );
+						lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+							lazyloadBackgroundObserver.observe( lazyloadBackground );
+						} );
+					};
+					const events = [
+						'DOMContentLoaded',
+						'elementor/lazyload/observe',
+					];
+					events.forEach( ( event ) => {
+						document.addEventListener( event, lazyloadRunObserver );
+					} );
+				} )();
+			</script>
+			<link data-minify="1" rel='stylesheet' id='elementor-icons-ekiticons-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit-lite/modules/elementskit-icon-pack/assets/css/ekiticons.css?ver=1786043468' media='all' />
+<link data-minify="1" rel='stylesheet' id='elementskit-reset-button-for-pro-form-css-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit/modules/pro-form-reset-button/assets/css/elementskit-reset-button.css?ver=1786043468' media='all' />
+<link data-minify="1" rel='stylesheet' id='fluent-form-styles-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluent-forms-public.css?ver=1786043468' media='all' />
+<link data-minify="1" rel='stylesheet' id='fluentform-public-default-css' href='https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/css/fluentform-public-default.css?ver=1786043469' media='all' />
+<script id="fluentform-elementor-js-extra">
+var fluentformElementor = {"adminUrl":"https://www.apexpumps.com.au/wp-admin/admin.php"};
+//# sourceURL=fluentform-elementor-js-extra
+</script>
+<script type="rocketlazyloadscript" data-minify="1" id="fluentform-elementor-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/fluentform/assets/js/fluent-forms-elementor-widget.js?ver=1785179829" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" data-minify="1" id="ekit-widget-scripts-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit-lite/widgets/init/assets/js/widget-scripts.js?ver=1785179829" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+//# sourceURL=rocket-browser-checker-js-after
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/(index.php/)?(.*)wp-json(/.*|$)|/refer/|/go/|/recommend/|/recommends/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https://www.apexpumps.com.au","onHoverDelay":"100","rateThrottle":"3"};
+//# sourceURL=rocket-preload-links-js-extra
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+
+//# sourceURL=rocket-preload-links-js-after
+</script>
+<script id="rocket_lazyload_css-js-extra">
+var rocket_lazyload_css_data = {"threshold":"300"};
+//# sourceURL=rocket_lazyload_css-js-extra
+</script>
+<script id="rocket_lazyload_css-js-after">
+!function o(n,c,a){function u(t,e){if(!c[t]){if(!n[t]){var r="function"==typeof require&&require;if(!e&&r)return r(t,!0);if(s)return s(t,!0);throw(e=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",e}r=c[t]={exports:{}},n[t][0].call(r.exports,function(e){return u(n[t][1][e]||e)},r,r.exports,o,n,c,a)}return c[t].exports}for(var s="function"==typeof require&&require,e=0;e<a.length;e++)u(a[e]);return u}({1:[function(e,t,r){"use strict";{const c="undefined"==typeof rocket_pairs?[]:rocket_pairs,a=(("undefined"==typeof rocket_excluded_pairs?[]:rocket_excluded_pairs).map(t=>{var e=t.selector;document.querySelectorAll(e).forEach(e=>{e.setAttribute("data-rocket-lazy-bg-"+t.hash,"excluded")})}),document.querySelector("#wpr-lazyload-bg-container"));var o=rocket_lazyload_css_data.threshold||300;const u=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting&&c.filter(e=>t.target.matches(e.selector)).map(t=>{var e;t&&((e=document.createElement("style")).textContent=t.style,a.insertAdjacentElement("afterend",e),t.elements.forEach(e=>{u.unobserve(e),e.setAttribute("data-rocket-lazy-bg-"+t.hash,"loaded")}))})})},{rootMargin:o+"px"});function n(){0<(0<arguments.length&&void 0!==arguments[0]?arguments[0]:[]).length&&c.forEach(t=>{try{document.querySelectorAll(t.selector).forEach(e=>{"loaded"!==e.getAttribute("data-rocket-lazy-bg-"+t.hash)&&"excluded"!==e.getAttribute("data-rocket-lazy-bg-"+t.hash)&&(u.observe(e),(t.elements||=[]).push(e))})}catch(e){console.error(e)}})}n(),function(){const r=window.MutationObserver;return function(e,t){if(e&&1===e.nodeType)return(t=new r(t)).observe(e,{attributes:!0,childList:!0,subtree:!0}),t}}()(document.querySelector("body"),n)}},{}]},{},[1]);
+//# sourceURL=rocket_lazyload_css-js-after
+</script>
+<script type="rocketlazyloadscript" data-minify="1" id="hello-theme-frontend-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/themes/hello-elementor/assets/js/hello-frontend.js?ver=1785179829" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="elementor-webpack-runtime-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="elementor-frontend-modules-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="jquery-ui-core-js" data-rocket-src="https://www.apexpumps.com.au/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" data-rocket-defer defer></script>
+<script id="elementor-frontend-js-extra">
+var EAELImageMaskingConfig = {"svg_dir_url":"https://www.apexpumps.com.au/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/img/image-masking/svg-shapes/"};
+//# sourceURL=elementor-frontend-js-extra
+</script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnX":"Share on X","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"4.2.0","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_panel_promotions":true,"theme_builder_v2":true,"hello-theme-header-footer":true,"nested-elements":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"e_opt_in_v4_page":true,"e_components":true,"e_interactions":true,"e_widget_creation":true,"import-export-customization":true,"e_pro_atomic_form":true,"e_pro_collection_loop":true,"e_pro_variables":true,"e_pro_interactions":true},"urls":{"assets":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/www.apexpumps.com.au\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/www.apexpumps.com.au\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"e96480804b","atomicFormsSendForm":"bffee8ea8c"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","hello_header_logo_type":"logo","hello_header_menu_layout":"horizontal","hello_footer_logo_type":"logo"},"post":{"id":16,"title":"Apex%20Pumps%20%E2%80%93%20Your%20Trusted%20Partner%20in%20Fire%20Protection%20Solutions","excerpt":"","featuredImage":false}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script type="rocketlazyloadscript" id="elementor-frontend-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script id="eael-general-js-extra">
+var localize = {"ajaxurl":"https://www.apexpumps.com.au/wp-admin/admin-ajax.php","nonce":"0b4e734a6b","i18n":{"added":"Added ","compare":"Compare","loading":"Loading..."},"eael_translate_text":{"required_text":"is a required field","invalid_text":"Invalid","billing_text":"Billing","shipping_text":"Shipping","fg_mfp_counter_text":"of"},"page_permalink":"https://www.apexpumps.com.au/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
+//# sourceURL=eael-general-js-extra
+</script>
+<script type="rocketlazyloadscript" id="eael-general-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.7.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="elementor-pro-webpack-runtime-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="wp-hooks-js" data-rocket-src="https://www.apexpumps.com.au/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js" data-rocket-src="https://www.apexpumps.com.au/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script type="rocketlazyloadscript" id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/www.apexpumps.com.au\/wp-admin\/admin-ajax.php","nonce":"28f39ce20d","urls":{"assets":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/www.apexpumps.com.au\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/www.apexpumps.com.au\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+//# sourceURL=elementor-pro-frontend-js-before
+</script>
+<script type="rocketlazyloadscript" id="elementor-pro-frontend-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" id="pro-elements-handlers-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=4.2.0" data-rocket-defer defer></script>
+<script type="rocketlazyloadscript" data-minify="1" id="elementskit-reset-button-js" data-rocket-src="https://www.apexpumps.com.au/wp-content/cache/min/1/wp-content/plugins/elementskit/modules/pro-form-reset-button/assets/js/elementskit-reset-button.js?ver=1785179829" data-rocket-defer defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e,alt,l){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';if(l){t=t.replace('data-lazy-','');t=t.replace('loading="lazy"','');t=t.replace(/<noscript>.*?<\/noscript>/g,'');}t=t.replace('alt=""','alt="'+alt+'"');return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?"":"&"+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var exclusions=[];var e,t,p,u,l,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)(e=document.createElement("div")),(u='https://i.ytimg.com/vi/ID/hqdefault.jpg'),(u=u.replace('ID',a[t].dataset.id)),(l=exclusions.some(exclusion=>u.includes(exclusion))),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query",a[t].dataset.query),e.setAttribute("data-src",a[t].dataset.src),(e.innerHTML=lazyLoadThumb(a[t].dataset.id,a[t].dataset.alt,l)),a[t].appendChild(e),(p=e.querySelector(".play")),(p.onclick=lazyLoadYoutubeIframe)});</script>
+<script>var rocket_beacon_data = {"ajax_url":"https:\/\/www.apexpumps.com.au\/wp-admin\/admin-ajax.php","nonce":"6168da37f1","url":"https:\/\/www.apexpumps.com.au","is_mobile":false,"width_threshold":1600,"height_threshold":700,"delay":500,"debug":null,"status":{"atf":true,"lrc":true},"elements":"img, video, picture, p, main, div, li, svg, section, header, span","lrc_threshold":1800}</script><script data-name="wpr-wpr-beacon" src='https://www.apexpumps.com.au/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js' async></script></body>
+</html>

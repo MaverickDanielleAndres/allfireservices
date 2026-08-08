@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { navLinks } from "@/lib/navigation";
+import { navLinks, serviceLinks } from "@/lib/navigation";
 
 const FacebookIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -37,21 +37,6 @@ const EmailIcon = () => (
     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
   </svg>
 );
-
-const serviceLinks = [
-  { label: "AFSS", href: "/annual-fire-safety-statement" },
-  { label: "Fire panel / alarms 1670.1", href: "/services?category=fire-panel" },
-  { label: "Smoke detects AS 3876", href: "/services?category=smoke-alarms" },
-  { label: "Fire doors", href: "/services?category=fire-doors" },
-  { label: "Fire extinguishers", href: "/services?category=fire-extinguishers" },
-  { label: "Emergency lights", href: "/services?category=emergency-lights" },
-  { label: "Fire hose reels", href: "/services" },
-  { label: "Diesel / hydrant / sprinkler", href: "/services?category=diesel-pump" },
-  { label: "Air mechanical services", href: "/services?category=air-mechanical" },
-  { label: "Flow test", href: "/services?category=flow-testing" },
-  { label: "Fire penetration", href: "/services?category=service-penetration" },
-  { label: "Block & evacuation plans", href: "/services?category=plans" },
-];
 
 const socialLinks = [
   { label: "Facebook", href: "#", icon: FacebookIcon },
@@ -146,25 +131,35 @@ export default function Footer() {
 
           <div className="grid min-w-0 grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
             <nav aria-label="Services">
-              <p className="text-[0.95rem] font-bold text-[#111111] md:text-base">Services</p>
-              <ul className="footer-link-list mt-6 flex flex-col gap-2 pt-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:mt-8 sm:pt-3 sm:grid sm:grid-cols-3 sm:items-start sm:gap-x-6 sm:gap-y-3 md:mt-10 md:pt-4 md:text-[0.95rem]">
-                {serviceLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="!text-[#111111] transition hover:!text-[#ff4d16]"
-                      style={{ textDecoration: "none" }}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+              <p className="text-xl font-extrabold text-[#111111] md:text-2xl">Services</p>
+              <ul
+                className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid sm:grid-cols-3 sm:items-start sm:gap-x-6 sm:gap-y-3 md:text-[0.95rem]"
+                style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
+              >
+                {/* "All Services" is the dropdown's catch-all in the header;
+                    the footer lists the individual offerings only. */}
+                {serviceLinks
+                  .filter((link) => link.href !== "/services")
+                  .map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                        style={{ textDecoration: "none" }}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
               </ul>
             </nav>
 
-            <nav aria-label="Company">
-              <p className="text-[0.95rem] font-bold text-[#111111] md:text-base">Company</p>
-              <ul className="footer-link-list mt-6 flex flex-col gap-2 pt-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:mt-8 sm:pt-3 md:mt-10 md:gap-3 md:pt-4 md:text-[0.95rem]">
+            <nav aria-label="Quick links">
+              <p className="text-xl font-extrabold text-[#111111] md:text-2xl">Quicklinks</p>
+              <ul
+                className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] md:gap-3 md:text-[0.95rem]"
+                style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
+              >
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -175,7 +170,7 @@ export default function Footer() {
                       {link.label}
                     </Link>
                   </li>
-                  ))}
+                ))}
               </ul>
             </nav>
           </div>

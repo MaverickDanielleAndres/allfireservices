@@ -4,13 +4,13 @@
 // The 12 service offerings + "All Services", used by the header Services dropdown.
 export const serviceLinks = [
   { label: "All Services", href: "/services" },
-  { label: "AFSS", href: "/annual-fire-safety-statement" },
+  { label: "AFSS", href: "/services?category=annual-fire-safety-statement" },
   { label: "Fire Panel / Alarms 1670.1", href: "/services?category=fire-panel" },
   { label: "Smoke Detectors AS 3786", href: "/services?category=smoke-alarms" },
   { label: "Fire Doors", href: "/services?category=fire-doors" },
   { label: "Fire Extinguishers", href: "/services?category=fire-extinguishers" },
   { label: "Emergency Lights", href: "/services?category=emergency-lights" },
-  { label: "Fire Hose Reels", href: "/services?category=core-services" },
+  { label: "Fire Hose Reels", href: "/services?category=fire-hose-reels" },
   { label: "Diesel / Hydrant / Sprinkler", href: "/services?category=diesel-pump" },
   { label: "Air Mechanical Services", href: "/services?category=air-mechanical" },
   { label: "Flow Test", href: "/services?category=flow-testing" },

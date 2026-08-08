@@ -30,11 +30,11 @@ export default function FounderLegacy() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <header
-                  className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                  className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                   style={{ marginTop: 0, marginBottom: '1.5rem', maxWidth: 'none', width: '100%' }}
                 >
-                  <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>Our Family Legacy</p>
-                  <h2 className="mx-auto md:mx-0" style={{
+                  <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>Our Family Legacy</p>
+                  <h2 className="mx-0 text-left" style={{
                     fontWeight: 900,
                     lineHeight: 1.0,
                     letterSpacing: '-0.04em',
@@ -54,10 +54,10 @@ export default function FounderLegacy() {
                     </span>
                   </h2>
                 </header>
-                <p className="text-[#111111] text-[clamp(1rem,1.4vw,1.15rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1rem' }}>
+                <p className="text-[#111111] text-[clamp(1rem,1.4vw,1.15rem)] leading-[1.55] text-left" style={{ marginBottom: '1rem' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
-                <div className="flex justify-center md:justify-start">
+                <div className="flex justify-start">
                   <Link href="/about" className={styles.newStoryLink}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
                   </Link>

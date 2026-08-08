@@ -1,0 +1,116 @@
+/* -------------------------------------------------------------------------- */
+/*  HeroScrollCue                                                             */
+/*  Centred "scroll down" affordance pinned to a fixed position from the      */
+/*  bottom of the hero. Stays in one place across every viewport.              */
+/*  Shared by About, Our Clients, Services, Strata and Contact.                */
+/* -------------------------------------------------------------------------- */
+
+.cueWrap {
+  position: absolute;
+  /* Anchored as a percentage of the hero's own height so the cue lands in
+     the same relative spot on every page, regardless of how tall the hero
+     happens to be (About/Clients/Strata/Contact have a much taller hero
+     than Services). */
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cue {
+  pointer-events: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.25rem 0.5rem;
+  /* Strip every trace of a button container, in every state. */
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+  color: #ffffff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 220ms ease;
+}
+
+.cue:hover,
+.cue:focus,
+.cue:active,
+.cue:focus-visible {
+  background: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.cue:hover {
+  color: #ffe9b8;
+}
+
+/* Outline only — never a filled focus container. */
+.cue:focus-visible {
+  outline: 2px solid #ffb700;
+  outline-offset: 4px;
+}
+
+.cueLabel {
+  white-space: nowrap;
+}
+
+/* Plain chevron — no background, no glow. */
+.cueIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0;
+  background: none;
+  background-color: transparent;
+  box-shadow: none;
+  color: inherit;
+  flex: none;
+  text-shadow: none;
+  animation: cueFloat 2.8s ease-in-out infinite;
+}
+
+.cue:hover .cueIcon {
+  background: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Seamless: first and last frame are identical, travel is only 4px. */
+@keyframes cueFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cueIcon {
+    animation: none;
+  }
+
+  .cue {
+    transition: none;
+  }
+}

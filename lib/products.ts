@@ -24,91 +24,188 @@ export interface Product {
 
 export interface Category {
   id: string;
+  slug: string;
   label: string;
+  shortLabel?: string;
   description: string;
+  intro: string;
+  heroImage: string;
   iconName?: string;
   icon?: string;
+  headingLine1?: string;
+  headingLine2?: string;
 }
 
-// ─── Categories ───────────────────────────────────────────────────────────────
+// ─── Categories (12 services from the Navbar) ───────────────────────────────
 
 export const categories: Category[] = [
   {
-    id: "core-services",
-    label: "Core Fire Services",
+    id: "annual-fire-safety-statement",
+    slug: "afss",
+    label: "AFSS",
+    shortLabel: "AFSS",
     description:
-      "Our foundational fire protection services: annual statements, monthly inspections, hydrant testing, and more.",
+      "Annual Fire Safety Statement — inspection, documentation and council submission.",
+    intro:
+      "The Annual Fire Safety Statement is a legal requirement for most NSW commercial buildings. We coordinate every essential inspection and prepare the documentation for council submission.",
+    heroImage: "/service-images/annual-fire-safety-inspection.jpg",
     iconName: "ShieldCheck",
-  },
-  {
-    id: "smoke-alarms",
-    label: "Smoke Alarms (AS 3786)",
-    description:
-      "Compliant standalone and wireless smoke alarms for residential and commercial use, backed by Australian Standard AS 3786.",
-    icon: "🔥",
-  },
-  {
-    id: "fire-extinguishers",
-    label: "Fire Extinguishers & Signage",
-    description:
-      "Portable fire extinguishers, blankets, brackets, cabinets, and all associated fire safety signage.",
-    icon: "🧯",
-  },
-  {
-    id: "emergency-lights",
-    label: "Emergency Lights & Exit Signs",
-    description:
-      "Self-testing LED emergency batten lights, exit signs, oyster lights, and weatherproof twin-head units — all app-enabled with 5-year warranty.",
-    icon: "💡",
-  },
-  {
-    id: "diesel-pump",
-    label: "Diesel Pump & Hydrant",
-    description:
-      "Inspection, servicing, and testing of diesel fire pump systems and hydrant infrastructure.",
-    icon: "⛽",
-  },
-  {
-    id: "air-mechanical",
-    label: "Air & Mechanical Services",
-    description:
-      "Specialised air and mechanical fire safety services including damper inspection, duct systems and HVAC compliance.",
-    icon: "🌬️",
-  },
-  {
-    id: "flow-testing",
-    label: "Flow Testing",
-    description:
-      "Annual and 5-yearly flow testing for hydrant systems and sprinkler infrastructure to confirm adequate water supply.",
-    icon: "💧",
-  },
-  {
-    id: "service-penetration",
-    label: "Service Penetration & Fire Dampers",
-    description:
-      "Inspection, sealing, and certification of service penetrations and fire dampers to maintain fire-rated barriers.",
-    iconName: "Construction",
+    headingLine1: "Annual Fire",
+    headingLine2: "Safety Statement",
   },
   {
     id: "fire-panel",
+    slug: "fire-panel-alarms",
     label: "Fire Panel & Detection (AS 1670.1)",
+    shortLabel: "Fire Panel",
     description:
-      "Installation, testing, and maintenance of fire alarm control panels, MCP units, and automatic detection systems.",
-    iconName: "Monitor",
+      "Installation, testing, and maintenance of fire alarm control panels, MCP units, and automatic detection systems to AS 1670.1.",
+    intro:
+      "AS 1670.1 design, supply, installation and maintenance of automatic fire detection systems across Greater Sydney. We deliver panels, MCPs, sounders and strobes for every property.",
+    heroImage: "/service-images/fire-panel-inspection.jpg",
+    iconName: "Server",
+    headingLine1: "Fire Panel &",
+    headingLine2: "Detection (AS 1670.1)",
+  },
+  {
+    id: "smoke-alarms",
+    slug: "smoke-alarms",
+    label: "Smoke Alarms (AS 3786)",
+    shortLabel: "Smoke Alarms",
+    description:
+      "Photoelectric smoke alarms supplied, installed and tested to AS 3786.",
+    intro:
+      "Compliant standalone and wireless smoke alarms for residential and commercial buildings across Greater Sydney. Every installation is backed by Australian Standard AS 3786.",
+    heroImage: "/service-images/smoke-detector-system.jpg",
+    iconName: "Flame",
+    headingLine1: "Smoke Alarms",
+    headingLine2: "(AS 3786)",
   },
   {
     id: "fire-doors",
+    slug: "fire-doors",
     label: "Fire Doors",
+    shortLabel: "Fire Doors",
     description:
       "Inspection, tagging, gap measurement, and non-compliance reporting for fire-rated doors and frames.",
-    icon: "🚪",
+    intro:
+      "Fire door and frame inspections, compliance tagging, AS 1905.1 gap measurement and non-compliance reporting across Greater Sydney. Completed by qualified technicians.",
+    heroImage: "/service-images/emergency-exit-inspection.jpg",
+    iconName: "DoorOpen",
+    headingLine1: "Fire-Rated",
+    headingLine2: "Doors",
+  },
+  {
+    id: "fire-extinguishers",
+    slug: "fire-extinguishers-signage",
+    label: "Fire Extinguishers & Signage",
+    shortLabel: "Extinguishers",
+    description:
+      "Portable fire extinguishers, blankets, brackets, cabinets, and all associated fire safety signage.",
+    intro:
+      "Portable extinguishers, blankets, brackets, cabinets and AS 2444 compliant signage across Greater Sydney. ABE dry chemical, CO₂, wet chemical and AFFF foam available with annual servicing.",
+    heroImage: "/service-images/fire-extinguisher-equipment.jpg",
+    iconName: "FireExtinguisher",
+    headingLine1: "Extinguishers",
+    headingLine2: "& Signage",
+  },
+  {
+    id: "emergency-lights",
+    slug: "emergency-lights-exit-signs",
+    label: "Emergency Lights & Exit Signs",
+    shortLabel: "Emergency Lights",
+    description:
+      "Self-testing LED emergency batten lights, exit signs, oyster lights, and weatherproof twin-head units — all app-enabled with 5-year warranty.",
+    intro:
+      "AS/NZS 2293.1 compliant emergency battens, exit signs, oyster lights and weatherproof fittings across Greater Sydney. All units are app-monitored with automatic monthly self-tests.",
+    heroImage: "/service-images/emergency-exit-inspection.jpg",
+    iconName: "Lightbulb",
+    headingLine1: "Emergency Lights",
+    headingLine2: "& Exit Signs",
+  },
+  {
+    id: "fire-hose-reels",
+    slug: "fire-hose-reels",
+    label: "Fire Hose Reels",
+    shortLabel: "Hose Reels",
+    description:
+      "Supply, installation, inspection and testing of fire hose reels to AS 2441.",
+    intro:
+      "Fire hose reels supplied, installed and tested to AS 2441 across Greater Sydney. 19mm and 25mm cabinets, swing-arm reels and replacement nozzles available with annual testing.",
+    heroImage: "/service-images/fire-extinguisher-equipment.jpg",
+    iconName: "Droplets",
+    headingLine1: "Fire Hose",
+    headingLine2: "Reels",
+  },
+  {
+    id: "diesel-pump",
+    slug: "diesel-hydrant-sprinkler",
+    label: "Diesel / Hydrant / Sprinkler",
+    shortLabel: "Diesel & Hydrant",
+    description:
+      "Inspection, servicing, and testing of diesel fire pump systems, hydrant and sprinkler infrastructure.",
+    intro:
+      "Monthly inspection, servicing and operational testing of diesel fire pumps and hydrant infrastructure across Greater Sydney. AS 1851 compliant with AFSS-ready documentation.",
+    heroImage: "/service-images/diesel-fire-pump-room.jpg",
+    iconName: "Fuel",
+    headingLine1: "Diesel, Hydrant",
+    headingLine2: "& Sprinkler",
+  },
+  {
+    id: "air-mechanical",
+    slug: "air-mechanical-services",
+    label: "Air & Mechanical Services",
+    shortLabel: "Air & Mechanical",
+    description:
+      "Specialised air and mechanical fire safety services including damper inspection, duct systems and HVAC compliance.",
+    intro:
+      "Fire and smoke damper inspection, HVAC compliance assessment and ductwork sealing across Greater Sydney. All work is completed to AS 1668 and the BCA.",
+    heroImage: "/service-images/sprinkler-riser-inspection.jpg",
+    iconName: "Wind",
+    headingLine1: "Air & Mechanical",
+    headingLine2: "Services",
+  },
+  {
+    id: "flow-testing",
+    slug: "flow-testing",
+    label: "Flow Test",
+    shortLabel: "Flow Test",
+    description:
+      "Annual and 5-yearly flow testing for hydrant systems and sprinkler infrastructure to confirm adequate water supply.",
+    intro:
+      "Annual hydrant flow tests, 5-yearly hydrostatic pressure tests and fire-appliance simulation testing across Greater Sydney. Every test confirms AS 2419 design compliance.",
+    heroImage: "/service-images/hydrant-flow-testing.jpg",
+    iconName: "Droplets",
+    headingLine1: "Flow Testing",
+    headingLine2: "for Compliance",
+  },
+  {
+    id: "service-penetration",
+    slug: "fire-penetration",
+    label: "Fire Penetration",
+    shortLabel: "Fire Penetration",
+    description:
+      "Inspection, sealing, and certification of service penetrations and fire dampers to maintain fire-rated barriers.",
+    intro:
+      "Fire-rated sealing of service penetrations and annual fire damper testing across Greater Sydney. We keep fire compartments intact and certified to AS 1851.",
+    heroImage: "/service-images/annual-fire-safety-inspection.jpg",
+    iconName: "Construction",
+    headingLine1: "Service Penetration",
+    headingLine2: "& Fire Dampers",
   },
   {
     id: "plans",
-    label: "Plans & Evacuation",
+    slug: "zone-block-evacuation-plans",
+    label: "Zone Block / Evacuation / Hydrant Plans",
+    shortLabel: "Plans",
     description:
       "Preparation and supply of fire alarm zone block plans, evacuation diagrams, hydrant block plans, and sprinkler block plans.",
+    intro:
+      "AS 1670.1 zone block plans, AS 3745 evacuation diagrams, hydrant and sprinkler block plans across Greater Sydney. Drafted, printed and ready for your AFSS file.",
+    heroImage: "/service-images/annual-fire-safety-inspection.jpg",
     iconName: "Map",
+    headingLine1: "Zone Block / Evacuation /",
+    headingLine2: "Hydrant Plans",
   },
 ];
 
@@ -140,8 +237,7 @@ export const products: Product[] = [
       { label: "Hush Button", value: "hush" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/13-smoke-r10.jpg",
     categoryId: "smoke-alarms",
     warranty: "10 Year",
     standard: "AS 3786:2014",
@@ -171,8 +267,7 @@ export const products: Product[] = [
       { label: "3-Pack", value: "triple" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
+    imageUrl: "/service-images/products/14-smoke-r10rf.jpg",
     categoryId: "smoke-alarms",
     warranty: "10 Year",
     standard: "AS 3786:2014",
@@ -201,8 +296,7 @@ export const products: Product[] = [
       { label: "With Relay", value: "relay" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80",
+    imageUrl: "/service-images/products/15-smoke-r240.jpg",
     categoryId: "smoke-alarms",
     warranty: "5 Year",
     standard: "AS 3786:2014",
@@ -231,8 +325,7 @@ export const products: Product[] = [
       { label: "Wireless Interlinking", value: "wireless" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/16-smoke-saturn.png",
     categoryId: "smoke-alarms",
     warranty: "5 Year",
     standard: "AS 3786:2014",
@@ -263,8 +356,7 @@ export const products: Product[] = [
       { label: "Without Bracket", value: "no-bracket" },
     ],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    imageUrl: "/service-images/products/25-ext-1kg-abe.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.5",
@@ -289,8 +381,7 @@ export const products: Product[] = [
     model: "EXT-2.5KG-ABE",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    imageUrl: "/service-images/products/26-ext-2-5kg-abe.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.5",
@@ -315,8 +406,7 @@ export const products: Product[] = [
     model: "EXT-3.5KG-CO2",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red / Black band", value: "red-black" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/28-ext-3-5kg-co2.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.2",
@@ -341,8 +431,7 @@ export const products: Product[] = [
     model: "EXT-4.5KG-ABE",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    imageUrl: "/service-images/products/27-ext-4-5kg-abe.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.5",
@@ -366,8 +455,7 @@ export const products: Product[] = [
     model: "EXT-5KG-CO2",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red / Black band", value: "red-black" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/29-ext-5kg-co2.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.2",
@@ -392,8 +480,7 @@ export const products: Product[] = [
     model: "EXT-7L-WETCHEM",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red / Canary yellow band", value: "red-yellow" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.6",
@@ -418,8 +505,7 @@ export const products: Product[] = [
     model: "EXT-9KG-ABE",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.5",
@@ -444,8 +530,7 @@ export const products: Product[] = [
     model: "EXT-9L-AFFF",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red / Blue band", value: "red-blue" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
     warranty: "1 Year",
     standard: "AS/NZS 1841.4",
@@ -469,8 +554,7 @@ export const products: Product[] = [
     model: "COVER-4.5KG",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/30-ext-cover-4-5kg.png",
     categoryId: "fire-extinguishers",
   },
   {
@@ -499,8 +583,7 @@ export const products: Product[] = [
       { label: "Red / White", value: "red-white" },
       { label: "Photoluminescent", value: "glow" },
     ],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
   },
   {
@@ -525,8 +608,7 @@ export const products: Product[] = [
       { label: "Heavy Duty", value: "heavy-duty" },
     ],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
   },
   {
@@ -552,8 +634,7 @@ export const products: Product[] = [
       { label: "Recessed", value: "recessed" },
     ],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/fire-extinguisher-equipment.jpg",
     categoryId: "fire-extinguishers",
   },
 
@@ -582,8 +663,7 @@ export const products: Product[] = [
       { label: "Non-Maintained", value: "non-maintained" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/31-bondi-4ft-diffuser.png",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -612,8 +692,7 @@ export const products: Product[] = [
       { label: "Non-Maintained", value: "non-maintained" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/32-bondi-4ft-wireguard.jpg",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -642,8 +721,7 @@ export const products: Product[] = [
       { label: "Non-Maintained", value: "non-maintained" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/33-bondi-2ft-diffuser.png",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -671,8 +749,7 @@ export const products: Product[] = [
       { label: "Non-Maintained", value: "non-maintained" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/34-bondi-2ft-wireguard.png",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -701,8 +778,7 @@ export const products: Product[] = [
       { label: "Double Face", value: "double" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/35-manly-exit-sign.jpg",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -731,8 +807,7 @@ export const products: Product[] = [
       { label: "Double Face", value: "double" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/products/36-maslin-exit-sign.png",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -761,8 +836,7 @@ export const products: Product[] = [
       { label: "With Exit Sign", value: "with-sign" },
     ],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/emergency-exit-inspection.jpg",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -788,8 +862,7 @@ export const products: Product[] = [
     model: "OCEAN-OYS-ST",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "White", value: "white" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/emergency-exit-inspection.jpg",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -815,8 +888,7 @@ export const products: Product[] = [
     model: "FLOREAT-WP-TH-ST",
     styles: [{ label: "Standard", value: "standard" }],
     colors: [{ label: "Grey", value: "grey" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    imageUrl: "/service-images/emergency-exit-inspection.jpg",
     categoryId: "emergency-lights",
     warranty: "5 Year",
     standard: "AS/NZS 2293.1",
@@ -846,8 +918,7 @@ export const products: Product[] = [
       { label: "Quarterly", value: "quarterly" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    imageUrl: "/service-images/products/43-diesel-electric-inspection.jpg",
     categoryId: "diesel-pump",
     tag: 'Service',
   },
@@ -873,8 +944,7 @@ export const products: Product[] = [
       { label: "Inspection + Replacement", value: "replacement" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/44-hydrant-valve.jpg",
     categoryId: "diesel-pump",
     tag: 'Service',
   },
@@ -902,8 +972,7 @@ export const products: Product[] = [
       { label: "Major Service", value: "major" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    imageUrl: "/service-images/products/45-diesel-servicing.jpg",
     categoryId: "diesel-pump",
     tag: 'Service',
   },
@@ -927,8 +996,7 @@ export const products: Product[] = [
     model: "SVC-JACK-PUMP",
     styles: [{ label: "Standard Inspection", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/46-jacking-pump.png",
     categoryId: "diesel-pump",
     tag: 'Service',
   },
@@ -957,8 +1025,7 @@ export const products: Product[] = [
       { label: "5-Yearly Full Test", value: "5-yearly" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
+    imageUrl: "/service-images/products/49-air-mechanical.jpg",
     categoryId: "air-mechanical",
     tag: 'Service',
   },
@@ -983,8 +1050,7 @@ export const products: Product[] = [
     model: "SVC-FLOW-TEST",
     styles: [{ label: "Standard Flow Test", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/55-flow-test.jpg",
     categoryId: "flow-testing",
     tag: 'Service',
   },
@@ -1008,8 +1074,7 @@ export const products: Product[] = [
     model: "SVC-HYDRO-5YR",
     styles: [{ label: "Standard Test", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/56-hydrostatic-test.jpg",
     categoryId: "flow-testing",
     tag: 'Service',
   },
@@ -1033,8 +1098,7 @@ export const products: Product[] = [
     model: "SVC-FLOW-5YR-APP",
     styles: [{ label: "Standard Simulation", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/57-hydrant-flow-appliance.jpg",
     categoryId: "flow-testing",
     tag: 'Service',
   },
@@ -1064,8 +1128,7 @@ export const products: Product[] = [
       { label: "Inspect & Remediate", value: "remediate" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/products/61-service-penetration-sealing.jpg",
     categoryId: "service-penetration",
     tag: 'Service',
   },
@@ -1093,8 +1156,7 @@ export const products: Product[] = [
       { label: "5-Yearly Full Test", value: "5-yearly" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/products/62-fire-damper-inspection.jpg",
     categoryId: "service-penetration",
     tag: 'Service',
   },
@@ -1120,8 +1182,7 @@ export const products: Product[] = [
     model: "SVC-MCP-TEST",
     styles: [{ label: "Inspection & Test", value: "inspect" }],
     colors: [{ label: "Red", value: "red" }],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/products/07-fire-panel-mcp.jpg",
     categoryId: "fire-panel",
     tag: 'Service',
   },
@@ -1150,8 +1211,7 @@ export const products: Product[] = [
       { label: "Maintenance Contract", value: "maintenance" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    imageUrl: "/service-images/products/08-fire-panel-afds.jpg",
     categoryId: "fire-panel",
     tag: 'Service',
   },
@@ -1176,8 +1236,7 @@ export const products: Product[] = [
     model: "INSP-DOOR-TAG",
     styles: [{ label: "Standard Tag", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/19-fire-door-tag.png",
     categoryId: "fire-doors",
     tag: 'Service',
   },
@@ -1199,8 +1258,7 @@ export const products: Product[] = [
     model: "INSP-FRAME-TAG",
     styles: [{ label: "Standard Tag", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/20-fire-door-frame-tag.jpg",
     categoryId: "fire-doors",
     tag: 'Service',
   },
@@ -1223,8 +1281,7 @@ export const products: Product[] = [
     model: "INSP-DOOR-GAP",
     styles: [{ label: "Standard Measurement", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/21-fire-door-gap.jpg",
     categoryId: "fire-doors",
     tag: 'Service',
   },
@@ -1248,8 +1305,7 @@ export const products: Product[] = [
     model: "INSP-DOOR-NCR",
     styles: [{ label: "Standard Report", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    imageUrl: "/service-images/products/22-fire-door-ncr.jpg",
     categoryId: "fire-doors",
     tag: 'Service',
   },
@@ -1278,8 +1334,7 @@ export const products: Product[] = [
       { label: "Update Existing", value: "update" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/67-fire-alarm-zone-plan.jpg",
     categoryId: "plans",
     tag: 'Service',
   },
@@ -1308,8 +1363,7 @@ export const products: Product[] = [
       { label: "Digital Only", value: "digital" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/68-evacuation-plan.png",
     categoryId: "plans",
     tag: 'Service',
   },
@@ -1336,8 +1390,7 @@ export const products: Product[] = [
       { label: "Update Existing", value: "update" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/69-hydrant-block-plan.jpg",
     categoryId: "plans",
     tag: 'Service',
   },
@@ -1364,8 +1417,7 @@ export const products: Product[] = [
       { label: "Update Existing", value: "update" },
     ],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1524678714210-9917a6c619c2?w=800&q=80",
+    imageUrl: "/service-images/products/70-sprinkler-block-plan.png",
     categoryId: "plans",
     tag: 'Service',
   },
@@ -1390,9 +1442,8 @@ export const products: Product[] = [
     model: "SVC-AFSS",
     styles: [{ label: "Full Service", value: "full" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
-    categoryId: "core-services",
+    imageUrl: "/service-images/products/01-afss-annual-fire-safety-statement.jpg",
+    categoryId: "annual-fire-safety-statement",
     tag: 'Service',
   },
   {
@@ -1414,9 +1465,8 @@ export const products: Product[] = [
     model: "SVC-MONTHLY",
     styles: [{ label: "Full Inspection", value: "full" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&q=80",
-    categoryId: "core-services",
+    imageUrl: "/service-images/products/02-afss-monthly-fire-inspection.jpg",
+    categoryId: "annual-fire-safety-statement",
     tag: 'Service',
   },
   {
@@ -1438,9 +1488,8 @@ export const products: Product[] = [
     model: "SVC-SMOKE-TEST",
     styles: [{ label: "Standard Test", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    categoryId: "core-services",
+    imageUrl: "/service-images/products/03-afss-smoke-alarm-test.png",
+    categoryId: "annual-fire-safety-statement",
     tag: 'Service',
   },
   {
@@ -1462,10 +1511,768 @@ export const products: Product[] = [
     model: "SVC-EL-90MIN",
     styles: [{ label: "Standard Test", value: "standard" }],
     colors: [],
-    imageUrl:
-      "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
-    categoryId: "core-services",
+    imageUrl: "/service-images/products/04-afss-emergency-lighting-90min.jpg",
+    categoryId: "annual-fire-safety-statement",
     tag: 'Service',
+  },
+
+  // ── AFSS — supplementary listings ───────────────────────────────────────
+  {
+    id: "afss-weekly-walk",
+    slug: "weekly-fire-safety-walkthrough",
+    name: "Weekly Fire Safety Walkthrough",
+    subtitle: "On-Site Visual Inspection & Defect Logging",
+    description:
+      "A short weekly visual check of common-property fire safety measures by an All Fire Services technician. Identifies obvious damage, obstructions, and missing signage before the next monthly inspection.",
+    details: [
+      "On-site visual walkthrough of common areas",
+      "Exit signs, hose reels, extinguishers and panels checked",
+      "Photographic log of any defects identified",
+      "Same-day report issued to the building manager",
+      "Recommended cadence between monthly inspections",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-AFSS-WEEKLY",
+    styles: [{ label: "Weekly", value: "weekly" }],
+    colors: [],
+    imageUrl: "/service-images/products/05-afss-weekly-walkthrough.jpg",
+    categoryId: "annual-fire-safety-statement",
+    tag: "Service",
+  },
+  {
+    id: "afss-defect-rectification",
+    slug: "quarterly-defect-rectification",
+    name: "Quarterly Defect Rectification",
+    subtitle: "Targeted Repair & Re-Testing Service",
+    description:
+      "When a defect is raised during your AFSS or monthly inspection, our rectification team can quote, repair and re-test the affected system — keeping the building compliant between scheduled visits.",
+    details: [
+      "Quoted scope for each defect item",
+      "Replacement parts supplied to AS standards",
+      "Re-test after rectification included",
+      "Updated compliance record added to your AFSS file",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-AFSS-RECT",
+    styles: [{ label: "Per Item", value: "item" }],
+    colors: [],
+    imageUrl: "/service-images/products/06-afss-quarterly-defect.jpg",
+    categoryId: "annual-fire-safety-statement",
+    tag: "Service",
+  },
+
+  // ── FIRE PANEL & DETECTION — supplementary listings ─────────────────────
+  {
+    id: "fp-addressable",
+    slug: "addressable-fire-alarm-panel",
+    name: "Addressable Fire Alarm Panel",
+    subtitle: "AS 1670.1 Multi-Loop Addressable Panel",
+    description:
+      "A multi-loop addressable fire alarm panel suitable for medium-to-large buildings. Each device reports its own address to the panel for fast fault-finding and pinpoint alarm location.",
+    details: [
+      "1 to 4 loop addressable panel",
+      "Supports up to 250 devices per loop",
+      "Touch-screen LCD with site-specific labelling",
+      "Networkable for campus-wide systems",
+      "Integrated cause-and-effect programming",
+      "AS 1670.1 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FP-ADDR-04",
+    styles: [
+      { label: "1-Loop", value: "1" },
+      { label: "2-Loop", value: "2" },
+      { label: "4-Loop", value: "4" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/09-fire-panel-addressable.jpg",
+    categoryId: "fire-panel",
+    tag: "Equipment",
+  },
+  {
+    id: "fp-conventional",
+    slug: "conventional-fire-alarm-panel",
+    name: "Conventional Fire Alarm Panel",
+    subtitle: "AS 1670.1 Conventional Zone Panel",
+    description:
+      "A conventional 8 to 32 zone fire alarm panel ideal for small-to-medium commercial and residential buildings. Reliable and easy to maintain.",
+    details: [
+      "8, 16 or 32 zone configurations",
+      "Front-panel LED indication per zone",
+      "Integral battery backup",
+      "Auxiliary relay outputs for BMS integration",
+      "AS 1670.1 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FP-CONV-32",
+    styles: [
+      { label: "8 Zone", value: "8" },
+      { label: "16 Zone", value: "16" },
+      { label: "32 Zone", value: "32" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/10-fire-panel-conventional.jpg",
+    categoryId: "fire-panel",
+    tag: "Equipment",
+  },
+  {
+    id: "fp-photoelectric",
+    slug: "photoelectric-smoke-detector-as1670",
+    name: "Photoelectric Smoke Detector",
+    subtitle: "AS 1670.1 Addressable Smoke Detector",
+    description:
+      "An addressable photoelectric smoke detector head designed to clip into a common AS 1670.1 base. Used inside ceiling spaces to provide early warning of smouldering fires.",
+    details: [
+      "Addressable head with unique serial number",
+      "Optical chamber with insect-resistant screen",
+      "Drift-compensation algorithm reduces false alarms",
+      "Fits common detector base",
+      "AS 1670.1 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FP-PHOTO-A",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [{ label: "White", value: "white" }],
+    imageUrl: "/service-images/products/11-fire-panel-photoelectric.jpg",
+    categoryId: "fire-panel",
+    tag: "Equipment",
+  },
+  {
+    id: "fp-heat",
+    slug: "heat-detector-fixed-temperature",
+    name: "Heat Detector (Fixed Temperature)",
+    subtitle: "AS 1670.1 Fixed-Temperature Heat Detector",
+    description:
+      "A fixed-temperature heat detector head for areas where smoke detection is unsuitable — kitchens, plant rooms, laundries and loading docks. Triggers when the ambient temperature reaches the rated threshold.",
+    details: [
+      "Fixed temperature rating (typically 57°C or 90°C)",
+      "Addressable or conventional variants",
+      "Common detector base",
+      "Suitable for dusty or steamy environments",
+      "AS 1670.1 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FP-HEAT-FT",
+    styles: [
+      { label: "57°C", value: "57" },
+      { label: "90°C", value: "90" },
+    ],
+    colors: [{ label: "White", value: "white" }],
+    imageUrl: "/service-images/products/12-fire-panel-heat-detector.jpg",
+    categoryId: "fire-panel",
+    tag: "Equipment",
+  },
+
+  // ── SMOKE ALARMS — supplementary listings ───────────────────────────────
+  {
+    id: "sa-replacement",
+    slug: "smoke-alarm-replacement",
+    name: "Smoke Alarm Replacement",
+    subtitle: "End-of-Life Smoke Alarm Replacement Service",
+    description:
+      "When your existing smoke alarm reaches end-of-life (usually 10 years), we supply and install a like-for-like replacement to keep the property compliant with AS 3786.",
+    details: [
+      "Supply of equivalent AS 3786 alarm",
+      "Removal and recycling of old unit",
+      "Function test of the new alarm",
+      "Documentation update for your records",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-SMOKE-REP",
+    styles: [{ label: "Standard Replacement", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/17-smoke-replacement.jpg",
+    categoryId: "smoke-alarms",
+    tag: "Service",
+  },
+  {
+    id: "sa-interconnected",
+    slug: "interconnected-smoke-alarm-system",
+    name: "Interconnected Smoke Alarm System",
+    subtitle: "Multi-Unit Wireless Interlink Installation",
+    description:
+      "A complete interconnected smoke alarm system designed for multi-storey homes, dual-occupancy and small strata. When one alarm sounds, every alarm in the property sounds.",
+    details: [
+      "Site survey and system design",
+      "Up to 24 RF interlinking alarms",
+      "Photoelectric sensing throughout",
+      "10-year sealed lithium batteries",
+      "AS 3786 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-SA-INTER",
+    styles: [
+      { label: "3 Alarms", value: "3" },
+      { label: "6 Alarms", value: "6" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/18-smoke-interconnected.jpg",
+    categoryId: "smoke-alarms",
+    tag: "Equipment",
+  },
+
+  // ── FIRE DOORS — supplementary listings ────────────────────────────────
+  {
+    id: "fd-replacement",
+    slug: "fire-door-replacement",
+    name: "Fire Door Replacement",
+    subtitle: "AS 1905.1 Fire Door Assembly Supply & Install",
+    description:
+      "Where a fire door has failed inspection beyond economical repair, we supply and install a new AS 1905.1 compliant fire door assembly, including frame, hardware and signage.",
+    details: [
+      "Door leaf rated to FRL -/60/30 or -/120/30 as required",
+      "Frame and hardware supplied to AS 1905.1",
+      "Old door removed and recycled",
+      "Certification and AFSS-ready record",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FD-REPL",
+    styles: [
+      { label: "Single Leaf", value: "single" },
+      { label: "Double Leaf", value: "double" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/23-fire-door-replacement.jpg",
+    categoryId: "fire-doors",
+    tag: "Equipment",
+  },
+  {
+    id: "fd-intumescent",
+    slug: "intumescent-seal-replacement",
+    name: "Intumescent Seal Replacement",
+    subtitle: "Fire Door Intumescent Strip & Smoke Seal Service",
+    description:
+      "Worn or missing intumescent strips are a common cause of fire door non-compliance. We replace perimeter seals, smoke seals, and bottom seals to restore the door's fire rating.",
+    details: [
+      "Removal of degraded seals",
+      "Supply and install of new intumescent and smoke seals",
+      "Door re-gap measured to AS 1905.1",
+      "Updated inspection record",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "FD-INT",
+    styles: [
+      { label: "Perimeter Only", value: "perimeter" },
+      { label: "Full Seal Kit", value: "full" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/24-fire-door-intumescent.jpg",
+    categoryId: "fire-doors",
+    tag: "Equipment",
+  },
+
+  // ── FIRE HOSE REELS — new category listings ────────────────────────────
+  {
+    id: "hr-19",
+    slug: "19mm-fire-hose-reel",
+    name: "19mm Fire Hose Reel",
+    subtitle: "AS 2441 Fixed 19mm Fire Hose Reel",
+    description:
+      "A fixed 19mm fire hose reel suitable for Class A fire coverage in offices, corridors, carparks and small commercial tenancies. Supplied complete with nozzle, valve and mounting plate.",
+    details: [
+      "19mm internal bore hose",
+      "30 metre standard length (36m available)",
+      "Brass twist-action nozzle",
+      "AS 2441 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "HR-19-30",
+    styles: [
+      { label: "30m", value: "30" },
+      { label: "36m", value: "36" },
+    ],
+    colors: [{ label: "Red", value: "red" }],
+    imageUrl: "/service-images/products/37-hr-19.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Equipment",
+  },
+  {
+    id: "hr-25",
+    slug: "25mm-fire-hose-reel",
+    name: "25mm Fire Hose Reel",
+    subtitle: "AS 2441 Heavy-Duty 25mm Fire Hose Reel",
+    description:
+      "A 25mm heavy-duty fire hose reel for higher-flow applications such as plant rooms, warehouses and industrial tenancies. Provides greater throw distance and water volume than the 19mm reel.",
+    details: [
+      "25mm internal bore hose",
+      "36 metre standard length",
+      "Heavy-duty brass nozzle",
+      "AS 2441 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "HR-25-36",
+    styles: [{ label: "36m", value: "36" }],
+    colors: [{ label: "Red", value: "red" }],
+    imageUrl: "/service-images/products/38-hr-25.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Equipment",
+  },
+  {
+    id: "hr-cabinet",
+    slug: "fire-hose-reel-cabinet",
+    name: "Fire Hose Reel Cabinet",
+    subtitle: "Recessed or Surface-Mount Reel Cabinet",
+    description:
+      "A purpose-built cabinet for housing a fire hose reel. Recessed and surface-mount options available in powder-coated steel or stainless steel.",
+    details: [
+      "Powder-coated steel construction",
+      "Recessed or surface-mount installation",
+      "Lockable door with break-glass panel",
+      "AS 2441 compliant enclosure",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "HR-CAB",
+    styles: [
+      { label: "Recessed", value: "recessed" },
+      { label: "Surface", value: "surface" },
+    ],
+    colors: [{ label: "Red", value: "red" }],
+    imageUrl: "/service-images/products/39-hr-cabinet.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Equipment",
+  },
+  {
+    id: "hr-swing",
+    slug: "swing-arm-fire-hose-reel",
+    name: "Swing-Arm Fire Hose Reel",
+    subtitle: "Swing-Arm 19mm Hose Reel for Tight Spaces",
+    description:
+      "A swing-arm fire hose reel designed for narrow corridors and tight service rooms where a fixed reel will not fit. The arm pivots to provide full coverage along the corridor length.",
+    details: [
+      "180° pivot swing arm",
+      "19mm hose, 30 metre length",
+      "Latch holds reel in service position",
+      "AS 2441 compliant",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "HR-SWING-30",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [{ label: "Red", value: "red" }],
+    imageUrl: "/service-images/products/40-hr-swing.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Equipment",
+  },
+  {
+    id: "hr-nozzle",
+    slug: "fire-hose-reel-nozzle",
+    name: "Fire Hose Reel Nozzle",
+    subtitle: "Replacement Twist-Action Fog/Spray Nozzle",
+    description:
+      "A replacement brass twist-action nozzle for existing fire hose reels. Converts between full jet, spray and off positions.",
+    details: [
+      "Brass body with stainless internals",
+      "Three positions: off / jet / spray",
+      "Fits standard 19mm and 25mm reels",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "HR-NOZ",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/41-hr-nozzle.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Equipment",
+  },
+  {
+    id: "hr-annual",
+    slug: "fire-hose-reel-annual-test",
+    name: "Fire Hose Reel Annual Test",
+    subtitle: "AS 2441 Annual Flow & Pressure Test",
+    description:
+      "Annual inspection and flow test of your fire hose reels to confirm the nozzle, valve and hose are operating correctly and within AS 2441 pressure limits.",
+    details: [
+      "Full pressure test at AS 2441 limits",
+      "Hose condition inspection",
+      "Nozzle operation confirmation",
+      "Annual compliance record for AFSS",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-HR-ANNUAL",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/42-hose-reel-annual-test.jpg",
+    categoryId: "fire-hose-reels",
+    tag: "Service",
+  },
+
+  // ── DIESEL / HYDRANT / SPRINKLER — supplementary listings ──────────────
+  {
+    id: "dp-sprinkler",
+    slug: "sprinkler-pump-inspection",
+    name: "Sprinkler Pump Inspection",
+    subtitle: "AS 1851 Monthly Electric Sprinkler Pump Inspection",
+    description:
+      "Monthly inspection of your electric sprinkler pump, including controller check, run test, pressure verification and AFSS-ready report.",
+    details: [
+      "Monthly inspection to AS 1851",
+      "Controller, alarm and pressure switch check",
+      "Pump run test and current draw log",
+      "AFSS-ready monthly report",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-DP-SPRINK",
+    styles: [{ label: "Monthly", value: "monthly" }],
+    colors: [],
+    imageUrl: "/service-images/products/47-sprinkler-pump-inspection.jpg",
+    categoryId: "diesel-pump",
+    tag: "Service",
+  },
+  {
+    id: "dp-room-signage",
+    slug: "fire-pump-room-signage",
+    name: "Fire Pump Room Signage",
+    subtitle: "Compliant Pump Room ID, Safety & Operation Signs",
+    description:
+      "A full signage pack for your fire pump room: pump room ID, hazard signs, operating instructions, controller labelling and emergency contact details.",
+    details: [
+      "AS 1319 compliant signage",
+      "Pump room ID, hazard and operating signs",
+      "Photoluminescent options for power-failure visibility",
+      "Site-specific controller labelling",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "DP-SIGNAGE",
+    styles: [{ label: "Standard Pack", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/48-fire-pump-room-signage.jpg",
+    categoryId: "diesel-pump",
+    tag: "Equipment",
+  },
+
+  // ── AIR & MECHANICAL — supplementary listings ───────────────────────────
+  {
+    id: "am-smoke-damper",
+    slug: "smoke-damper-testing",
+    name: "Smoke Damper Testing",
+    subtitle: "Annual Smoke Damper Function Test to AS 1851",
+    description:
+      "Annual function test of your smoke dampers to confirm they close correctly on signal from the fire panel and reset for normal HVAC operation.",
+    details: [
+      "Damper function test (motor and fusible link)",
+      "Blade position confirmation",
+      "Reset and re-test",
+      "AS 1851 compliant certificate",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-AM-SMOKE",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/50-smoke-damper.jpg",
+    categoryId: "air-mechanical",
+    tag: "Service",
+  },
+  {
+    id: "am-fire-damper-install",
+    slug: "fire-damper-installation",
+    name: "Fire Damper Installation",
+    subtitle: "AS 1682 Fire Damper Supply & Install",
+    description:
+      "Supply and installation of fire dampers in new or existing ductwork, including access panels, fusible links and electric actuators where required.",
+    details: [
+      "AS 1682 compliant damper selection",
+      "Mechanical or electric actuation",
+      "Access panel and frame installation",
+      "Certification for AFSS",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "AM-FD-INSTALL",
+    styles: [
+      { label: "Mechanical", value: "mech" },
+      { label: "Motorised", value: "motor" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/51-fire-damper-installation.jpg",
+    categoryId: "air-mechanical",
+    tag: "Equipment",
+  },
+  {
+    id: "am-hvac-smoke",
+    slug: "hvac-smoke-control-verification",
+    name: "HVAC Smoke Control Verification",
+    subtitle: "AS 1668.1 Smoke Control System Test",
+    description:
+      "Verification testing of the HVAC smoke control system to confirm supply, return and exhaust fans operate in the correct sequence on a fire signal.",
+    details: [
+      "Fan start/stop sequence test",
+      "Damper operation confirmation",
+      "Pressure differential measurement",
+      "AS 1668.1 compliant report",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-AM-HVAC",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/52-hvac-smoke-control.jpg",
+    categoryId: "air-mechanical",
+    tag: "Service",
+  },
+  {
+    id: "am-stairwell",
+    slug: "stairwell-pressurisation-testing",
+    name: "Stairwell Pressurisation Testing",
+    subtitle: "AS 1668.1 Stairwell Pressurisation Commissioning & Test",
+    description:
+      "Commissioning and periodic testing of stairwell pressurisation systems used to keep evacuation routes tenable during a fire event.",
+    details: [
+      "Pressure differential verification",
+      "Fan operation and redundancy check",
+      "Door-opening force measurement",
+      "AS 1668.1 compliant report",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-AM-STAIR",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/53-stairwell-pressurisation.png",
+    categoryId: "air-mechanical",
+    tag: "Service",
+  },
+  {
+    id: "am-duct-cleaning",
+    slug: "duct-cleaning-certification",
+    name: "Duct Cleaning & Certification",
+    subtitle: "HVAC Ductwork Clean & Compliance Certificate",
+    description:
+      "Mechanical cleaning of HVAC ductwork combined with a compliance certificate suitable for inclusion in your building's maintenance file.",
+    details: [
+      "Mechanical duct cleaning",
+      "Pre- and post-cleaning photos",
+      "Compliance certificate issued",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "AM-DUCT-CLEAN",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/54-duct-cleaning.jpg",
+    categoryId: "air-mechanical",
+    tag: "Service",
+  },
+
+  // ── FLOW TESTING — supplementary listings ───────────────────────────────
+  {
+    id: "ft-sprinkler",
+    slug: "sprinkler-flow-test",
+    name: "Sprinkler Flow Test",
+    subtitle: "Annual Sprinkler System Flow & Pressure Test",
+    description:
+      "Annual flow test of your sprinkler system, including residual pressure measurement at the most hydraulically disadvantaged point.",
+    details: [
+      "Static and residual pressure measurement",
+      "Flow rate at the worst-case test point",
+      "Comparison against AS 2118 design",
+      "Annual compliance certificate",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-FT-SPRINK",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/58-sprinkler-flow-test.jpg",
+    categoryId: "flow-testing",
+    tag: "Service",
+  },
+  {
+    id: "ft-standpipe",
+    slug: "standpipe-flow-test",
+    name: "Standpipe Flow Test",
+    subtitle: "AS 2419 Standpipe Flow & Pressure Test",
+    description:
+      "Flow and pressure test of your building's standpipe system, including hose connection and landing valve verification.",
+    details: [
+      "Static and residual pressure at each landing valve",
+      "Hose connection verification",
+      "AS 2419 compliant report",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-FT-STAND",
+    styles: [{ label: "Annual", value: "annual" }],
+    colors: [],
+    imageUrl: "/service-images/products/59-standpipe-flow-test.jpg",
+    categoryId: "flow-testing",
+    tag: "Service",
+  },
+  {
+    id: "ft-combined",
+    slug: "combined-hydrant-sprinkler-flow-test",
+    name: "Combined Hydrant + Sprinkler Flow Test",
+    subtitle: "AS 1851 Combined 5-Yearly Flow Test",
+    description:
+      "Combined hydrant and sprinkler flow test completed in a single site visit — a cost-effective way to satisfy your 5-yearly AS 1851 obligation for both systems at once.",
+    details: [
+      "Hydrant flow and pressure measurement",
+      "Sprinkler flow and pressure measurement",
+      "Combined AFSS-ready certificate",
+      "5-yearly compliance record",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SVC-FT-COMBO",
+    styles: [{ label: "5-Yearly", value: "5y" }],
+    colors: [],
+    imageUrl: "/service-images/products/60-combined-hydrant-sprinkler-flow-test.jpg",
+    categoryId: "flow-testing",
+    tag: "Service",
+  },
+
+  // ── SERVICE PENETRATION — supplementary listings ───────────────────────
+  {
+    id: "sp-cable-tray",
+    slug: "cable-tray-penetration-sealing",
+    name: "Cable Tray Penetration Sealing",
+    subtitle: "Fire-Rated Sealing of Cable Tray Penetrations",
+    description:
+      "Fire-rated sealing of cable tray penetrations through walls, floors and ceilings using approved intumescent pillows, bags and sealants.",
+    details: [
+      "Mapping of every cable tray penetration",
+      "Approved fire-stop products installed",
+      "Re-penetration friendly where required",
+      "Per-penetration certification label",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SP-CABLE",
+    styles: [{ label: "Inspection + Seal", value: "inspect-seal" }],
+    colors: [],
+    imageUrl: "/service-images/products/63-cable-tray-penetration.png",
+    categoryId: "service-penetration",
+    tag: "Service",
+  },
+  {
+    id: "sp-conduit",
+    slug: "conduit-penetration-sealing",
+    name: "Conduit Penetration Sealing",
+    subtitle: "Fire-Rated Sealing of Conduit & Pipe Penetrations",
+    description:
+      "Fire-rated sealing of electrical conduit, plumbing and HVAC pipe penetrations to maintain the fire rating of the compartment they pass through.",
+    details: [
+      "Mapping of conduit and pipe penetrations",
+      "Intumescent collars, caulk or mortar as appropriate",
+      "Per-penetration certification",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SP-CONDUIT",
+    styles: [{ label: "Inspection + Seal", value: "inspect-seal" }],
+    colors: [],
+    imageUrl: "/service-images/products/64-conduit-penetration-sealing.jpg",
+    categoryId: "service-penetration",
+    tag: "Service",
+  },
+  {
+    id: "sp-intumescent-collar",
+    slug: "intumescent-collar-installation",
+    name: "Intumescent Collar Installation",
+    subtitle: "AS 1530.4 Intumescent Collar for Plastic Pipe",
+    description:
+      "Supply and installation of intumescent collars on plastic pipe penetrations to seal the opening when the pipe softens in a fire.",
+    details: [
+      "AS 1530.4 tested collars",
+      "Sizes to suit 32mm – 150mm pipe",
+      "Surface or cast-in mounting",
+      "Certification for the penetration",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SP-INT-COL",
+    styles: [
+      { label: "32mm", value: "32" },
+      { label: "50mm", value: "50" },
+      { label: "100mm", value: "100" },
+    ],
+    colors: [],
+    imageUrl: "/service-images/products/65-intumescent-collar.jpg",
+    categoryId: "service-penetration",
+    tag: "Equipment",
+  },
+  {
+    id: "sp-mortar",
+    slug: "fire-rated-mortar-installation",
+    name: "Fire-Rated Mortar Installation",
+    subtitle: "Mortar-Based Penetration Sealing for Large Openings",
+    description:
+      "Fire-rated mortar installation for large or irregular openings where pillows or collars are not appropriate. Provides a strong, durable seal suitable for plant rooms and risers.",
+    details: [
+      "Site-mixed or pre-bagged mortar",
+      "Reinforcement with mesh where required",
+      "Suitable for high-traffic areas",
+      "Per-penetration certification",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "SP-MORTAR",
+    styles: [{ label: "Per Opening", value: "per-opening" }],
+    colors: [],
+    imageUrl: "/service-images/products/66-fire-rated-mortar.jpg",
+    categoryId: "service-penetration",
+    tag: "Equipment",
+  },
+
+  // ── PLANS — supplementary listings ──────────────────────────────────────
+  {
+    id: "pl-procedures",
+    slug: "emergency-procedures-manual",
+    name: "Emergency Procedures Manual",
+    subtitle: "Site-Specific Emergency Procedures Manual",
+    description:
+      "A site-specific emergency procedures manual covering evacuation, first aid, incident response and warden responsibilities. Customised for your building layout and operations.",
+    details: [
+      "Site-specific procedures and roles",
+      "Customised for your building layout",
+      "Printable PDF and editable Word copy supplied",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "PL-PROC",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/71-emergency-procedures-manual.jpg",
+    categoryId: "plans",
+    tag: "Service",
+  },
+  {
+    id: "pl-drill",
+    slug: "evacuation-drill-coordination",
+    name: "Evacuation Drill Coordination",
+    subtitle: "Annual Evacuation Drill Coordination & Report",
+    description:
+      "Coordination of your annual evacuation drill, including pre-drill briefing, observer coverage, timing of each stage, and a written report suitable for inclusion in your AFSS file.",
+    details: [
+      "Pre-drill warden briefing",
+      "Observer coverage and timing",
+      "Post-drill debrief and report",
+      "AFSS-ready drill record",
+    ],
+    price: "POA",
+    priceNote: "Contact us for a quote",
+    model: "PL-DRILL",
+    styles: [{ label: "Standard", value: "standard" }],
+    colors: [],
+    imageUrl: "/service-images/products/72-evacuation-drill.jpg",
+    categoryId: "plans",
+    tag: "Service",
   },
 ];
 
@@ -1483,8 +2290,23 @@ export function getCategoryById(id: string): Category | undefined {
   return categories.find((c) => c.id === id);
 }
 
+export function getCategoryBySlug(slug: string): Category | undefined {
+  return categories.find((c) => c.slug === slug);
+}
+
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
   return products
     .filter((p) => p.categoryId === product.categoryId && p.id !== product.id)
     .slice(0, limit);
+}
+
+export function getCategoryIdFromHref(href: string): string | undefined {
+  try {
+    const url = new URL(href, "https://allfireservices.com.au");
+    const id = url.searchParams.get("category");
+    if (!id) return undefined;
+    return categories.some((c) => c.id === id) ? id : undefined;
+  } catch {
+    return undefined;
+  }
 }

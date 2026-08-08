@@ -115,7 +115,7 @@ function NavbarContent() {
 
     if (path === "/services") {
       if (pathname !== "/services") return false;
-      const current = searchParams.get("category") || "core-services";
+      const current = searchParams.get("category") || "annual-fire-safety-statement";
       // "All Services" only lights up when no explicit category is selected.
       if (!targetCategory) return !searchParams.get("category");
       return current === targetCategory;
@@ -291,6 +291,13 @@ function NavbarContent() {
           border-bottom: 1px solid #f0f0f0;
           margin-bottom: 0.35rem;
           padding-bottom: 0.35rem;
+          border-radius: 0.25rem 0.25rem 0 0;
+          transition: background-color 150ms ease, border-color 150ms ease;
+        }
+
+        .navbar-dropdown-top:hover {
+          background: rgba(251, 86, 20, 0.06);
+          border-bottom-color: rgba(251, 86, 20, 0.35);
         }
 
         .navbar-dropdown-top .navbar-dropdown-link {
@@ -302,6 +309,11 @@ function NavbarContent() {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           color: #888888;
+        }
+
+        .navbar-dropdown-top:hover .navbar-dropdown-link {
+          color: #fb5614;
+          background: transparent;
         }
 
         .navbar-dropdown-grid {

@@ -615,6 +615,12 @@
     padding: 0 1rem;
   }
 
+  @media (max-width: 767px) {
+    .timelineTrack {
+      gap: 0.5rem 0.5rem !important;
+    }
+  }
+
   .timelineTrack::before,
   .timelineLine,
   .dropLine,
@@ -1173,6 +1179,16 @@
     gap: 1.5rem;
   }
 
+  .legacyHeaderAbout {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .legacyHeaderStrata {
+    text-align: left;
+    align-items: flex-start;
+  }
+
   .capabilitySystem {
     grid-template-columns: 1fr;
   }
@@ -1642,25 +1658,116 @@
 
 @media (max-width: 767px) {
   .newStoryContent {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .storyHeaderLeft {
-    text-align: center;
-    margin: 0 auto clamp(2rem, 6vw, 3rem) auto;
+    text-align: left;
+    margin: 0 0 clamp(2rem, 6vw, 3rem) 0;
   }
 
   .kickerLeft {
-    margin: 0 auto 1rem;
+    margin: 0 0 1rem;
   }
 
   .storyHeaderLeft h2 {
-    margin: 0 auto;
+    margin: 0;
   }
 
   .newStoryParagraph {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .hereWhenYouNeed {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+}
+
+/* On mobile + tablet (max-width: 991px), force single-column layout for
+   AboutClients sections: text on top, image below. Also ensure the image
+   has a visible minimum height on mobile. */
+@media (max-width: 991px) {
+  .newStoryGrid,
+  .newStoryGridImageFirst {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+    padding: 0 1.25rem !important;
+  }
+  .newStoryGrid > div:first-child,
+  .newStoryGridImageFirst > div:first-child {
+    min-height: 18rem !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .newStoryGrid > div:first-child,
+  .newStoryGridImageFirst > div:first-child {
+    min-height: 14rem !important;
+  }
+
+  /* Reduce the gap between sections (each section has 10rem margin-bottom inline). */
+  .newStoryGrid,
+  .newStoryGridImageFirst {
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .newStoryGrid,
+  .newStoryGridImageFirst {
+    margin-bottom: 3rem !important;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Mobile: tighten the legacy family tree section so NEXT sits closer to the  */
+/*  last generation and the section doesn't waste viewport on empty space.     */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  /* The HomeStoryLegacy section carries `padding-section-large` (=10rem) and
+     its own header has 6rem of margin-bottom on top of that. On phones that
+     stacks into a huge empty band between the header copy and the timeline,
+     and another between the timeline and NEXT. Kill all of it. */
+  .home-story-legacy-root {
+    padding-top: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .home-story-legacy-header {
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* Pull the whole section up. */
+  .timeline-section-root {
+    padding-top: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* The header "The family behind…" runs long on phones — halve its bottom
+     gap so the timeline itself starts much sooner. */
+  .legacyHeader {
+    margin-bottom: 1.75rem !important;
+  }
+
+  /* Tighter between-row gap inside the timeline grid. */
+  .timelineTrack {
+    row-gap: 0.75rem !important;
+  }
+
+  /* The big "NEXT — Onto the Next Generation" block was 4rem below the
+     timeline. Pull it up so it reads as a continuation, not a footer. */
+  .nextGenerationCue {
+    margin-top: 1rem !important;
+  }
+
+  .nextGenerationCue p {
+    margin-top: 0.25rem !important;
   }
 }

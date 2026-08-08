@@ -1,0 +1,131 @@
+/* -------------------------------------------------------------------------- */
+/*  HeroOverlay module                                                        */
+/*  Shared cinematic hero overlay system used by About, Strata, Services.     */
+/*  Provides:                                                                 */
+/*    .hero_root              — relative wrapper, allows negative margin.     */
+/*    .hero_image_layer       — fill the wrapper with the background image.   */
+/*    .about_dark_overlay     — vertical dark gradient.                       */
+/*    .about_directional_overlay — left-to-right warm tint with multiply.     */
+/*    .about_fade_overlay     — white fade to the next section.               */
+/*    .services_hero_inner    — inner padding for services hub hero.          */
+/* -------------------------------------------------------------------------- */
+
+.hero_root {
+  position: relative;
+  margin-top: -12rem;
+  padding-top: 12rem;
+  margin-bottom: -2px;
+  overflow: hidden;
+}
+
+.hero_image_layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about_dark_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.88) 0%,
+    rgba(20, 5, 5, 0.82) 30%,
+    rgba(30, 5, 5, 0.72) 50%,
+    rgba(40, 8, 8, 0.45) 68%,
+    rgba(50, 8, 8, 0.18) 80%,
+    rgba(255, 255, 255, 0) 92%
+  );
+}
+
+.about_directional_overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(30, 5, 5, 0.35) 40%,
+    rgba(70, 10, 10, 0.15) 70%,
+    transparent 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+.about_fade_overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.01) 8%,
+    rgba(255, 255, 255, 0.03) 16%,
+    rgba(255, 255, 255, 0.07) 24%,
+    rgba(255, 255, 255, 0.13) 32%,
+    rgba(255, 255, 255, 0.22) 40%,
+    rgba(255, 255, 255, 0.34) 49%,
+    rgba(255, 255, 255, 0.49) 57%,
+    rgba(255, 255, 255, 0.64) 65%,
+    rgba(255, 255, 255, 0.78) 73%,
+    rgba(255, 255, 255, 0.89) 81%,
+    rgba(255, 255, 255, 0.96) 89%,
+    #ffffff 95%,
+    #ffffff 100%
+  );
+  z-index: 2;
+}
+
+.services_hero_inner {
+  padding-top: 8rem;
+  padding-bottom: 20rem;
+}
+
+.hero_content_layer {
+  position: relative;
+  z-index: 3;
+}
+
+/* ---------- Tablet overrides (≤991px) ------------------------------------ */
+
+/* The 767px tier alone leaves tablets on the desktop 20rem padding, which
+   exposes a tall band of dark hero image below the copy. Shorten the hero and
+   let the white fade cover the whole area beneath the text. */
+@media (max-width: 991px) {
+  .services_hero_inner {
+    padding-top: 7rem !important;
+    padding-bottom: 14rem !important;
+  }
+
+  .about_fade_overlay {
+    height: 260px;
+  }
+}
+
+/* ---------- Mobile overrides (≤767px) ------------------------------------ */
+
+@media (max-width: 767px) {
+  .services_hero_inner {
+    padding-top: 6rem !important;
+    padding-bottom: 12rem !important;
+  }
+
+  .about_dark_overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 10, 10, 0.88) 0%,
+      rgba(20, 5, 5, 0.82) 50%,
+      rgba(30, 5, 5, 0.72) 75%,
+      rgba(40, 8, 8, 0.55) 90%,
+      rgba(50, 8, 8, 0.25) 96%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .about_fade_overlay {
+    height: 230px;
+  }
+}

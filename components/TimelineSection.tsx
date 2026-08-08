@@ -152,7 +152,7 @@ export default function TimelineSection() {
       id="family-history"
       aria-labelledby="legacy-title"
       data-theme="light"
-      className="padding-section-large"
+      className="padding-section-large timeline-section-root"
       style={{ paddingBottom: '4rem' }}
       ref={sectionRef}
     >
@@ -226,6 +226,7 @@ export default function TimelineSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.8 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
+                className={styles.nextGenerationCue}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',

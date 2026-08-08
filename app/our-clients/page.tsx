@@ -4,6 +4,7 @@ import ClientGrid from "@/components/ClientGrid";
 import HandshakeTestimonials from "@/components/HandshakeTestimonials";
 import AboutClients from "@/components/AboutClients";
 import ContactCTA from "@/components/ContactCTA";
+import HeroScrollCue from "@/components/HeroScrollCue";
 
 export const metadata: Metadata = {
   title: "Our Clients",
@@ -57,10 +58,19 @@ export default function OurClientsPage() {
             );
             z-index: 2;
           }
+          @media (max-width: 991px) {
+            .about-hero-inner {
+              padding-top: 7rem !important;
+              padding-bottom: 14rem !important;
+            }
+            .about-fade-overlay {
+              height: 260px !important;
+            }
+          }
           @media (max-width: 767px) {
             .about-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 32rem !important;
+              padding-bottom: 12rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -73,7 +83,7 @@ export default function OurClientsPage() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 220px !important;
+              height: 230px !important;
             }
           }
         `}} />
@@ -140,6 +150,7 @@ export default function OurClientsPage() {
               </div>
             </div>
           </div>
+          <HeroScrollCue />
         </header>
 
         <div className="bg-white relative z-10" style={{ marginTop: '-2px' }}>

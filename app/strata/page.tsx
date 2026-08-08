@@ -1,5 +1,6 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
+import HeroScrollCue from "@/components/HeroScrollCue";
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
@@ -115,10 +116,19 @@ export default function Page() {
             );
             z-index: 2;
           }
+          @media (max-width: 991px) {
+            .strata-hero-inner {
+              padding-top: 7rem !important;
+              padding-bottom: 14rem !important;
+            }
+            .strata-fade-overlay {
+              height: 260px !important;
+            }
+          }
           @media (max-width: 767px) {
             .strata-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 32rem !important;
+              padding-bottom: 12rem !important;
             }
             .strata-dark-overlay {
               background: linear-gradient(to bottom,
@@ -131,7 +141,48 @@ export default function Page() {
               ) !important;
             }
             .strata-fade-overlay {
-              height: 220px !important;
+              height: 230px !important;
+            }
+          }
+
+          /* On mobile + tablet (max-width: 991px), for the HOW WE HELP section,
+             force text on top and image below, and ensure image has visible height.
+             Desktop keeps the original 2-column image-first layout. */
+          @media (max-width: 991px) {
+            .strata-how-we-help {
+              grid-template-columns: 1fr !important;
+              gap: 2.5rem !important;
+              padding: 0 1.25rem !important;
+            }
+            .strata-how-we-help > div {
+              min-height: 18rem !important;
+              height: auto !important;
+            }
+          }
+          @media (max-width: 767px) {
+            .strata-how-we-help > div {
+              min-height: 22rem !important;
+            }
+          }
+
+          /* On mobile + tablet (max-width: 991px), reduce the large gaps
+             between the strata sections so the page flows more compactly. */
+          @media (max-width: 991px) {
+            .section_coverage .padding-section-large,
+            .section_how_we_help .padding-section-large,
+            .section_properties .padding-section-large,
+            .section_why .padding-section-large {
+              padding-top: 1rem !important;
+              padding-bottom: 2rem !important;
+            }
+          }
+          @media (max-width: 767px) {
+            .section_coverage .padding-section-large,
+            .section_how_we_help .padding-section-large,
+            .section_properties .padding-section-large,
+            .section_why .padding-section-large {
+              padding-top: 0.5rem !important;
+              padding-bottom: 1.5rem !important;
             }
           }
         `}} />
@@ -201,6 +252,7 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <HeroScrollCue />
         </header>
 
         {/* OUR WORK — Gallery (moved to the top, right after the hero) */}
@@ -391,19 +443,19 @@ export default function Page() {
                 <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
-                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={`${styles.kickerLeft} mx-auto md:mx-0 justify-center md:justify-start`} style={{ textTransform: 'uppercase' }}>The Coverage</p>
-                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ maxWidth: '24ch', color: '#111111' }}>
+                      <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>The Coverage</p>
+                      <h2 className="mx-0 text-left" style={{ maxWidth: '24ch', color: '#111111' }}>
                         <span style={{ fontSize: 'clamp(2rem, 4vw, 4.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Fire Protection Across</span><br />
                         <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Greater Sydney</span>
                       </h2>
                     </header>
-                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
                       Every building has different fire-safety responsibilities. From residential complexes and commercial properties to managed facilities and mixed-use developments, each site requires the right combination of inspection, testing, maintenance and compliance support.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
                       All Fire Services works across Greater Sydney to help keep buildings <strong>protected, maintained and ready when it matters.</strong>
                     </p>
                   </div>
@@ -421,28 +473,28 @@ export default function Page() {
           <div className="padding-global">
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
-                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst}`} style={{ alignItems: 'stretch' }}>
-                  <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
+                <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} strata-how-we-help`} style={{ alignItems: 'stretch' }}>
+                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
-                  <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
-                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={`${styles.kickerLeft} mx-auto md:mx-0`} style={{ textTransform: 'uppercase' }}>How We Help</p>
-                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ color: '#111111' }}>
+                      <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>How We Help</p>
+                      <h2 className="mx-0 text-left" style={{ color: '#111111' }}>
                         <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Supporting <span style={{ color: '#ff0000' }}>Buildings</span></span><br />
                         <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>of Every Type</span>
                       </h2>
                     </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
                       All Fire Services works with property managers, building owners, facilities teams and businesses across Greater Sydney.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
                       We coordinate inspections, testing, maintenance, documentation and certification across essential fire-safety systems, helping clients manage their responsibilities without unnecessary complexity.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left">
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
                       From routine maintenance to ongoing compliance requirements, our team provides <strong>practical support and clear communication</strong> throughout the process.
                     </p>
                   </div>
@@ -458,7 +510,7 @@ export default function Page() {
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
                 <header
-                  className={styles.legacyHeader}
+                  className={`${styles.legacyHeader} ${styles.legacyHeaderStrata}`}
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
                 >
                   <p className={styles.kicker}>Properties We Service</p>
@@ -506,19 +558,19 @@ export default function Page() {
                 <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
-                      className={`${styles.storyHeaderLeft} flex flex-col items-center md:items-start text-center md:text-left`}
+                      className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={`${styles.kickerLeft} mx-auto md:mx-0`} style={{ textTransform: 'uppercase' }}>Why All Fire Services</p>
-                      <h2 className="mx-auto md:mx-0 text-center md:text-left" style={{ color: '#111111' }}>
+                      <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>Why All Fire Services</p>
+                      <h2 className="mx-0 text-left" style={{ color: '#111111' }}>
                         <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Practical Experience.</span><br />
                         <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Professional Service.</span>
                       </h2>
                     </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left" style={{ marginBottom: '1.5rem' }}>
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
                       Our team includes <strong>serving and retired professional firefighters</strong> alongside experienced fire-safety professionals who understand compliance, Australian Standards and the practical requirements of different buildings.
                     </p>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-center md:text-left">
+                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
                       We focus on providing reliable service, straightforward advice and fire protection that suits the property rather than taking a one-size-fits-all approach.
                     </p>
                   </div>

@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" version="XHTML+RDFa 1.0" dir="ltr"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="alternate" type="application/rss+xml" title="State One Fire Protection &amp; Security RSS" href="https://www.stateonefire.com.au/rss.xml" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="shortcut icon" href="https://www.stateonefire.com.au/sites/default/files/SOF_0.ico" type="image/vnd.microsoft.icon" />
+  <title>State One Fire Protection &amp; Security</title>
+  <link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_TsVRTbLFUpEZAfw-_bWPJu840QT523CPjUVJ5MRWfyk.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_FRkzGAdCOtH0uJeVfvEUSLJNZY5A1lX-dorR2i2AdgY.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_TGJb4peQX-zPXkYpaPJ84mCM5BpWmXDDxHM6QS3jZis.css" media="all and (min-width: 980px)" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_KewDO5wEEsc7lN4pHuveACu0xsD2jrJhTUcVZmmWkVs.css" media="all and (min-width: 760px) and (max-width: 980px)" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_Ody3Rnnxl1jUn-gSkZfNONZA3PvWask0tHZzQnHYUIU.css" media="all and (max-width: 759px)" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_C_vzHNz3uySRX9PVIqYHIZfDtdiunco8PyrPievSG_c.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_jpdMp9l3Up8i5k5_XV9MB0fdiiZkVXNBKHMeT75Zsxk.css" media="all" />
+
+<!--[if (IE 9)&(!IEMobile)]>
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/all/themes/successinc/ie9.css?quw5bm" media="all" />
+<![endif]-->
+
+<!--[if (lt IE 9)&(!IEMobile)]>
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/all/themes/successinc/css/layout-ie.css?quw5bm" media="all" />
+<![endif]-->
+
+<!--[if (lt IE 9)&(!IEMobile)]>
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/all/themes/successinc/ie.css?quw5bm" media="all" />
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="https://www.stateonefire.com.au/sites/default/files/css/css_AbpHGcgLb-kRsJGnwFEktk7uzpZOCcBY74-YBdrKVGs.css" media="all" />
+  <script type="text/javascript" src="https://www.stateonefire.com.au/sites/default/files/js/js_yMSKTzBO0KmozyLwajzFOrrt_kto_9mtccAkb0rm7gc.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery(document).ready(function($) { 
+	$(window).scroll(function() {
+		if($(this).scrollTop() != 0) {
+			$("#toTop").fadeIn();	
+		} else {
+			$("#toTop").fadeOut();
+		}
+	});
+	
+	$("#toTop").click(function() {
+		$("body,html").animate({scrollTop:0},800);
+	});	
+	
+	});
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://www.stateonefire.com.au/sites/default/files/js/js_Rpi5pvdiMNv-muf71momus4X1kJOb4P63o-M6irNOY4.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery(document).ready(function($) { 
+	
+	$("#main-navigation ul.main-menu").mobileMenu({
+		prependTo: "#main-navigation",
+		combine: false,
+		nested: 1,
+		switchWidth: 760,
+		topOptionText: "Select a page"
+	});
+	
+	});
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery(document).ready(function($) { 
+
+	$(window).load(function() {
+	
+		$(".flexslider-shadow").fadeIn("slow");
+	
+		$(".flexslider").fadeIn("slow");
+	
+		$(".flexslider").flexslider({
+			animation: "slide", // Select your animation type, "fade" or "slide"
+			slideDirection: "horizontal", // Select the sliding direction, "horizontal" or "vertical"
+			slideshowSpeed: "10000", // Set the speed of the slideshow cycling, in milliseconds
+			pauseOnAction: false,
+			controlsContainer : ".flexslider-wrapper",
+			before: function($slider){
+			$slider.find(".flex-caption").hide();            
+			},
+			after: function($slider){
+			$slider.find(".flex-caption").fadeIn("slow");            
+			}
+		});
+
+	});
+});
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://www.stateonefire.com.au/sites/default/files/js/js_LaRx9cR9Y0pO9-bsXsAYJ-bOGa4cxrsWgAdsgOlBw18.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-68034917-2", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://www.stateonefire.com.au/sites/default/files/js/js_oWFEmq35rplQwaQ8IbIoFzaIrTLG5NVtHOVjRjkVbXo.js"></script>
+<script type="text/javascript" src="https://www.stateonefire.com.au/sites/default/files/js/js_i43PSWr6SPk2zXtyNez44ogVpc9Y0rqn_dRyk4KDN0Q.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"successinc","theme_token":"0-jt7-89C0-20ergYoKi-uMX86AnWXkB0ihZVdiPABw","js":{"misc\/jquery.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"0":1,"sites\/all\/themes\/successinc\/js\/jquery.mobilemenu.js":1,"1":1,"2":1,"misc\/textarea.js":1,"sites\/all\/modules\/webform\/js\/webform.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"3":1,"sites\/all\/libraries\/superfish\/supposition.js":1,"sites\/all\/libraries\/superfish\/superfish.js":1,"sites\/all\/libraries\/superfish\/supersubs.js":1,"sites\/all\/modules\/superfish\/superfish.js":1,"sites\/all\/themes\/successinc\/js\/flexslider\/jquery.flexslider.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"public:\/\/honeypot\/honeypot.css":1,"sites\/all\/modules\/webform\/css\/webform.css":1,"sites\/all\/libraries\/superfish\/css\/superfish.css":1,"sites\/all\/themes\/successinc\/css\/960.css":1,"sites\/all\/themes\/successinc\/css\/720.css":1,"sites\/all\/themes\/successinc\/css\/mobile.css":1,"sites\/all\/themes\/successinc\/css\/column-layouts.css":1,"sites\/all\/themes\/successinc\/js\/flexslider\/flexslider.css":1,"sites\/all\/themes\/successinc\/style.css":1,"sites\/all\/themes\/successinc\/style-gray.css":1,"sites\/all\/themes\/successinc\/fonts\/http\/ubuntu-font.css":1,"sites\/all\/themes\/successinc\/fonts\/http\/lato-font.css":1,"sites\/all\/themes\/successinc\/fonts\/http\/ptserif-font.css":1,"sites\/all\/themes\/successinc\/ie9.css":1,"sites\/all\/themes\/successinc\/css\/layout-ie.css":1,"sites\/all\/themes\/successinc\/ie.css":1,"sites\/all\/themes\/successinc\/local.css":1}},"urlIsAjaxTrusted":{"\/content\/sign-our-newsletter":true,"\/contact":true},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"superfish":{"1":{"id":"1","sf":{"delay":"200","animation":{"opacity":"show"},"speed":"\u0027fast\u0027","autoArrows":false,"dropShadows":false,"disableHI":false},"plugins":{"supposition":true,"bgiframe":false,"supersubs":{"minWidth":"12","maxWidth":"27","extraWidth":1}}}}});
+//--><!]]>
+</script>
+</head>
+<body class="html front not-logged-in one-sidebar sidebar-first page-node sff-6 slff-1 hff-6 pff-1" >
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div id="toTop">Back to Top</div>
+
+<!-- #header-top -->
+<div id="header-top">
+	<div class="container_12">
+		
+		<!-- #header-top-inside -->
+		<div id="header-top-inside" class="clearfix">
+        
+			<div class="grid_8">
+	            <div class="mt-grid-fix">
+                						<!-- #header-top-left -->
+					<div id="header-top-left" class="clearfix">
+                      <div class="region region-header-top-left">
+    <div id="block-block-1" class="block block-block clearfix">
+
+    
+  <div class="content">
+    <ul class="company-info">
+<li class="home">7B Green Street, Brookvale NSW 2100</li>
+<li class="phone">1300-304-301</li>
+</ul>
+  </div>
+</div>
+  </div>
+                    </div>
+                    <!-- EOF:#header-top-left -->
+                    				</div>
+			</div>
+            
+			<div class="grid_4">
+				<div class="mt-grid-fix">
+                					</div>
+			</div>
+            
+		</div>
+		<!-- EOF: #header-top-inside -->
+		
+	</div>
+</div>
+<!-- EOF: #header-top -->
+
+<!-- #header-wrapper -->
+<div id="header-wrapper" class="clearfix">
+
+	<!-- #header -->
+	<div id="header" class="clearfix">
+		<div class="container_12">
+		
+			<!-- #header-inside -->
+			<div id="header-inside" class="clearfix">
+            
+				<div class="grid_4">
+					<div class="mt-grid-fix">
+                    
+						<!-- #header-inside-left -->
+						<div id="header-inside-left">
+                        
+						                        <div id="logo">
+                        <a href="/" title="Home" rel="home"> <img src="https://www.stateonefire.com.au/sites/default/files/SOF-Logo250.png" alt="Home" /> </a>
+                        </div>
+                                                
+                                                
+                                                
+                                                
+						</div>
+						<!-- EOF: #header-inside-left -->
+                        
+					</div>
+				</div>
+                
+				<div class="grid_8">
+					<div class="mt-grid-fix">
+                    
+						<!-- #header-inside-right -->
+						<div id="header-inside-right">
+							<div id="main-navigation" class="clearfix">
+							                              <div class="region region-navigation">
+    <div id="block-superfish-1" class="block block-superfish clearfix">
+
+    
+  <div class="content">
+    <ul id="superfish-1" class="menu sf-menu sf-main-menu sf-horizontal sf-style-none sf-total-items-6 sf-parent-items-2 sf-single-items-4"><li id="menu-707-1" class="active-trail first odd sf-depth-1 sf-no-children"><a href="/" title="" class="sf-depth-1 active">Home</a></li><li id="menu-658-1" class="middle even sf-depth-1 sf-no-children"><a href="/content/state-one-fire-protection-security" title="" class="sf-depth-1">About</a></li><li id="menu-366-1" class="middle odd sf-depth-1 sf-total-children-4 sf-parent-children-0 sf-single-children-4 menuparent"><a href="/services" title="" class="sf-depth-1 menuparent">Services</a><ul><li id="menu-709-1" class="first odd sf-depth-2 sf-no-children"><a href="/service/annual-fire-safety-statement-nsw" class="sf-depth-2">Annual Fire Safety Statement (NSW)</a></li><li id="menu-710-1" class="middle even sf-depth-2 sf-no-children"><a href="/service/servicing-maintenance" class="sf-depth-2">Servicing &amp; Maintenance</a></li><li id="menu-711-1" class="middle odd sf-depth-2 sf-no-children"><a href="/service/compliance-testing" class="sf-depth-2">Compliance &amp; Testing</a></li><li id="menu-712-1" class="last even sf-depth-2 sf-no-children"><a href="/service/fire-certificate-consultants" class="sf-depth-2">Fire Certificate Consultants</a></li></ul></li><li id="menu-708-1" class="middle even sf-depth-1 sf-no-children"><a href="/service/emergency-training" class="sf-depth-1">Training</a></li><li id="menu-218-1" class="middle odd sf-depth-1 sf-total-children-5 sf-parent-children-0 sf-single-children-5 menuparent"><a href="/content/fire-products-evacuation-diagrams" class="sf-depth-1 menuparent">Products</a><ul><li id="menu-713-1" class="first odd sf-depth-2 sf-no-children"><a href="/product/portable-fire-equipment" class="sf-depth-2">Portable Fire Equipment</a></li><li id="menu-714-1" class="middle even sf-depth-2 sf-no-children"><a href="/product/emergency-evacuation-diagrams" class="sf-depth-2">Emergency Evacuation Diagrams</a></li><li id="menu-715-1" class="middle odd sf-depth-2 sf-no-children"><a href="/product/emergency-procedures-flip-chart" class="sf-depth-2">Emergency Procedures Flip Chart</a></li><li id="menu-716-1" class="middle even sf-depth-2 sf-no-children"><a href="/product/emergency-procedures-manual" class="sf-depth-2">Emergency Procedures Manual</a></li><li id="menu-717-1" class="last odd sf-depth-2 sf-no-children"><a href="/product/fire-safety-certificate" class="sf-depth-2">Fire Safety Certificate</a></li></ul></li><li id="menu-442-1" class="last even sf-depth-1 sf-no-children"><a href="/contact" class="sf-depth-1">Contact</a></li></ul>  </div>
+</div>
+  </div>
+                            							</div>
+						</div>
+						<!-- EOF: #header-inside-right -->
+                        
+					</div>
+				</div>
+                
+			</div>
+            <!-- EOF: #header-inside -->
+		
+		</div>
+	</div>
+	<!-- EOF: #header -->
+	
+	<!-- #banner -->
+			<div id="banner" class="clearfix">
+			<div class="container_12">
+				<div id="banner-inside" class="clearfix">
+					<div class="grid_12">
+						<div class="mt-grid-fix">
+						  <div class="region region-banner">
+    <div id="block-views-slideshow-block-1" class="block block-views clearfix">
+
+    
+  <div class="content">
+    <div class="view view-slideshow view-id-slideshow view-display-id-block_1 view-dom-id-ef304a5a8ecbae59055972116c9a3786">
+        
+  
+  
+      <div class="view-content">
+      <div class="flexslider-wrapper">
+	<div class="flexslider-shadow">
+        <div class="flexslider">
+            <ul class="slides">
+                        <li>
+            
+              
+  <div class="views-field views-field-field-teaser-image">        <div class="field-content"><a href="/service/fire-certificate-consultants"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/slideshow/public/SOF_010_web_0.jpg?itok=NythVrsn" width="940" height="350" alt="" /></a></div>  </div>  
+  <div class="views-field views-field-field-teaser">        <div class="field-content"><div class="flex-caption"><h2>Fire Certificate Consultants</h2><p>All fire safety measures and equipment require regular revision and inspection to ensure they are capable of performing their task and comply with Government regulation – to keep you alive in the event of a fire emergency.</p>
+</div></div>  </div> 
+            
+            </li>
+                        <li>
+            
+              
+  <div class="views-field views-field-field-teaser-image">        <div class="field-content"><a href="/service/servicing-maintenance"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/slideshow/public/maintenance_002-slider.jpg?itok=VDK6Keo2" width="940" height="350" alt="" /></a></div>  </div>  
+  <div class="views-field views-field-field-teaser">        <div class="field-content"><div class="flex-caption"><h2>Servicing &amp; Maintenance</h2><p>All fire safety measures and equipment require regular revision and inspection to ensure they are capable of performing their task and comply with Government regulation.</p>
+</div></div>  </div> 
+            
+            </li>
+                        <li>
+            
+              
+  <div class="views-field views-field-field-teaser-image">        <div class="field-content"><a href="/service/compliance-testing"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/slideshow/public/SOF_002_web_0.jpg?itok=WG7mi-T3" width="940" height="350" alt="" /></a></div>  </div>  
+  <div class="views-field views-field-field-teaser">        <div class="field-content"><div class="flex-caption"><h2>Compliance &amp; Testing</h2><p>It’s required by law to have all fire equipment serviced regularly. You never know when you will need it to save lives.</p>
+</div></div>  </div> 
+            
+            </li>
+                        </ul>
+        </div>
+	</div> 
+</div>
+
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+</div>
+  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- EOF: #banner -->
+
+</div>
+<!-- EOF: #header-wrapper -->
+
+<!-- #page-top -->
+<div id="page-top">
+
+	<!-- #breadcrumb -->
+	<div id="breadcrumb">
+		<div class="container_12">
+		
+			<!-- #breadcrumb-inside -->
+			<div id="breadcrumb-inside" class="clearfix">
+				<div class="grid_12">
+					<div class="mt-grid-fix">
+											</div>
+				</div>
+			</div>
+			<!-- EOF: #breadcrumb-inside -->
+		
+		</div>
+	</div>
+	<!-- EOF: #breadcrumb-wrapper -->
+	
+	<!-- #intro -->
+	<div id="intro">
+		<div class="container_12">
+		
+			<!-- #intro-inside -->
+			<div id="intro-inside"  class="clearfix">
+				<div class="grid_12">
+					<div class="mt-grid-fix">
+						<!-- #highlighted -->
+						<div id="highlighted-wrapper" class="clearfix">
+							
+							                            <div id="highlighted" class="clearfix">
+                              <div class="region region-highlighted">
+    <div id="block-block-4" class="block block-block clearfix">
+
+    <h2>You&#039;re in good hands</h2>
+  
+  <div class="content">
+    <p>State One Fire Protection covers all your fire protection and accreditation needs including:<br /><strong>Fire Safety Programs</strong>, <strong>Fire Protection Equipment Inspections</strong>, <strong>Fire Training</strong> and <strong>Fire Certificate Consultations</strong>.</p>
+  </div>
+</div>
+  </div>
+                            </div>
+														
+							                            
+							                            
+						</div>
+						<!-- EOF: #highlighted -->
+					</div>
+				</div>
+			</div>
+			<!-- EOF: #intro-inside -->
+		
+		</div>
+	</div>
+	<!-- EOF: #intro -->
+
+</div>
+<!-- EOF: #page-top -->
+
+<!-- #page -->
+<div id="page" class="clearfix">
+	<div class="container_12">
+    
+    <!-- #messages-console -->
+        <!-- EOF: #messages-console -->
+	
+	<!-- #promoted -->
+			<div id="promoted" class="clearfix">
+			<div class="grid_12">
+					<div class="mt-grid-fix">
+					  <div class="region region-promoted">
+    <div id="block-views-promoted-posts-block-1" class="block block-views clearfix">
+
+    
+  <div class="content">
+    <div class="view view-promoted-posts view-id-promoted_posts view-display-id-block_1 view-dom-id-592b59a24104fcfe96dc064dc8a5764d">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/service/annual-fire-safety-statement-nsw">Annual Fire Safety Statement (NSW)</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/service/annual-fire-safety-statement-nsw" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/Council-letter.jpg?itok=D8VKZwzI" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>With specific expertise in building maintenance and safety, State One Fire can provide Annual Fire Safety Statements for a wide range of building types.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/service/annual-fire-safety-statement-nsw">Read more</a></span>  </div>  </div>
+  <div class="views-row views-row-2 views-row-even one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/service/fire-certificate-consultants">Fire Certificate Consultants</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/service/fire-certificate-consultants" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/SOF_010_web.jpg?itok=g9sp1C31" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>All fire safety measures and equipment require regular revision and inspection to ensure they are capable of performing their task and comply with Government regulation.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/service/fire-certificate-consultants">Read more</a></span>  </div>  </div>
+  <div class="views-row views-row-3 views-row-odd one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/content/fire-products-evacuation-diagrams">Fire Products &amp; Evacuation Diagrams</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/content/fire-products-evacuation-diagrams" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/Use%20of%20Fire%20Equipment_LR.jpg?itok=Gjelwg2g" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>Regularly serviced and functional fire equipment on hand when and where you need it can mean the difference between a minor blaze and a devastating full scale fire.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/content/fire-products-evacuation-diagrams">Read more</a></span>  </div>  </div>
+  <div class="views-row views-row-4 views-row-even one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/service/servicing-maintenance">Servicing &amp; Maintenance</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/service/servicing-maintenance" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/SOF_web_012.jpg?itok=aLhde58Y" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>All fire safety measures and equipment require regular revision and inspection to ensure they are capable of performing their task and comply with Government regulation.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/service/servicing-maintenance">Read more</a></span>  </div>  </div>
+  <div class="views-row views-row-5 views-row-odd one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/service/compliance-testing">Compliance &amp; Testing</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/service/compliance-testing" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/SOF_002_web.jpg?itok=oK-GalEW" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>It is required by law to have all fire equipment serviced regularly as it is critical to ensure that it is ready to perform in the event of an emergency.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/service/compliance-testing">Read more</a></span>  </div>  </div>
+  <div class="views-row views-row-6 views-row-even views-row-last one-third">
+      
+  <div class="views-field views-field-title">        <h2 class="field-content"><a href="/service/emergency-training">Emergency Training</a></h2>  </div>  
+  <div class="views-field views-field-field-image image-shadow">        <div class="field-content"><a href="/service/emergency-training" class="transparent-border"><img typeof="foaf:Image" src="https://www.stateonefire.com.au/sites/default/files/styles/large/public/EU8_014_web.jpg?itok=4A1tPOJP" width="720" height="350" alt="" /></a> </div>  </div>  
+  <div class="views-field views-field-body">        <div class="field-content"><p>Proactive training, provided with integrity, enabling people to persevere and respond safely to an emergency situation.</p>
+</div>  </div>  
+  <div class="views-field views-field-view-node">        <span class="field-content more-link"><a href="/service/emergency-training">Read more</a></span>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+</div>
+  </div>
+					</div>
+			</div>
+		</div>
+		<!-- EOF: #promoted -->
+    
+		</div>
+</div>
+<!-- EOF: #page -->
+
+<!-- #footer -->
+<div id="footer" class="clearfix">
+	<div class="container_12">
+			
+        <!-- #footer-inside -->
+        <div id="footer-inside" class="clearfix">
+            <div class="grid_4">
+                <div class="mt-grid-fix">
+                    <!-- #footer-first -->
+                                            <div class="footer-area">
+                          <div class="region region-footer-first">
+    <div id="block-block-6" class="block block-block clearfix">
+
+    
+  <div class="content">
+    <h2 class="map">Where to find us</h2>
+<p><strong>Address</strong>:<br />7B Green Street, BROOKVALE, NSW 2100</p>
+<p><strong>Phone</strong>: 1300-304-301</p>
+<p><a href="https://maps.google.com.au/maps?q=7+Green+Street,+Brookvale,+New+South+Wales&amp;hl=en&amp;ll=-33.764717,151.266954&amp;spn=0.016322,0.020728&amp;sll=-33.796923,150.922433&amp;sspn=2.088393,2.653198&amp;oq=7+Green+Street&amp;hnear=7+Green+St,+Brookvale+New+South+Wales+2100&amp;t=m&amp;z=16" target="_blank"><img alt="" src="/sites/default/files/pictures/google-maps.jpg" style="width: 258px; height: 343px;" /></a></p>
+  </div>
+</div>
+  </div>
+                        </div>
+                                        <!-- EOF: #footer-first -->
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="mt-grid-fix">
+                    <!-- #footer-second -->
+                                        <div class="footer-area">
+                      <div class="region region-footer-second">
+    <div id="block-webform-client-block-22" class="block block-webform clearfix">
+
+    <h2>Contact us</h2>
+  
+  <div class="content">
+    <form class="webform-client-form" enctype="multipart/form-data" action="/contact" method="post" id="webform-client-form-22" accept-charset="UTF-8"><div>
+
+<div class="form-item webform-component webform-component-textfield" id="webform-component-name">
+  <label for="edit-submitted-name">Your name <span class="form-required" title="This field is required.">*</span></label>
+ <input placeholder="Your name*" type="text" id="edit-submitted-name" name="submitted[name]" value="" size="60" maxlength="128" class="form-text required" />
+</div>
+<div class="form-item webform-component webform-component-email" id="webform-component-email">
+  <label for="edit-submitted-email--2">Your email <span class="form-required" title="This field is required.">*</span></label>
+ <input class="email form-text form-email required" placeholder="Your email*" type="email" id="edit-submitted-email--2" name="submitted[email]" size="60" />
+</div>
+<div class="form-item webform-component webform-component-textfield" id="webform-component-subject">
+  <label for="edit-submitted-subject">Subject <span class="form-required" title="This field is required.">*</span></label>
+ <input placeholder="Subject*" type="text" id="edit-submitted-subject" name="submitted[subject]" value="" size="60" maxlength="128" class="form-text required" />
+</div>
+<div class="form-item webform-component webform-component-textarea" id="webform-component-message">
+  <label for="edit-submitted-message">Message <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-textarea-wrapper resizable"><textarea placeholder="Message*" id="edit-submitted-message" name="submitted[message]" cols="60" rows="4" class="form-textarea required"></textarea></div>
+</div>
+<input type="hidden" name="details[sid]" />
+<input type="hidden" name="details[page_num]" value="1" />
+<input type="hidden" name="details[page_count]" value="1" />
+<input type="hidden" name="details[finished]" value="0" />
+<input type="hidden" name="form_build_id" value="form-4aI1k564GUSfdNv0UtIGDvb83L8BlcLPkJ3MKG6uyxg" />
+<input type="hidden" name="form_id" value="webform_client_form_22" />
+<input type="hidden" name="honeypot_time" value="1786210908|JKM8_0PBU9bx9l-S4Jw5jRncSh8ZNaSN2Ru15fmYgKM" />
+<div class="url-textfield"><div class="form-item form-type-textfield form-item-url">
+  <label for="edit-url--2">Leave this field blank </label>
+ <input autocomplete="off" type="text" id="edit-url--2" name="url" value="" size="20" maxlength="128" class="form-text" />
+</div>
+</div><div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit--2" name="op" value="Submit" class="form-submit" /></div></div></form>  </div>
+</div>
+  </div>
+                    </div>
+                                        <!-- EOF: #footer-second -->
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="mt-grid-fix">
+                    <!-- #footer-third -->
+                                        <div class="footer-area">
+                      <div class="region region-footer-third">
+    <div id="block-block-11" class="block block-block clearfix">
+
+    <h2>Training Courses</h2>
+  
+  <div class="content">
+    <p>Visit our Evac-You-8 website, for information about accredited training courses.</p>
+<p><a href="http://www.evacyoueight.com.au" target="_blank"><img alt="" src="/sites/default/files/pictures/Running-Man-logo.png" style="width: 200px; height: 54px;" /></a></p>
+  </div>
+</div>
+  </div>
+                    </div>
+                                        <!-- EOF: #footer-third -->
+                </div>
+            </div>
+        </div>
+        <!-- #footer-inside -->
+
+	</div> 
+</div><!-- EOF:#footer -->
+
+<div id="subfooter" class="clearfix">
+	<div class="container_12">
+		
+		<!-- #subfooter-inside -->
+		<div id="subfooter-inside" class="clearfix">
+			<div class="grid_4">
+				<div class="mt-grid-fix">
+					<!-- #subfooter-first -->
+											<div class="subfooter-area">
+						  <div class="region region-sub-footer-first">
+    <div id="block-block-9" class="block block-block clearfix">
+
+    
+  <div class="content">
+    <p>© Copyright 2026 <strong>State One Fire.</strong> All rights reserved.<br />website: <a href="http://www.magicsquirrel.com.au" target="_blank">Magic Squirrel</a></p>
+  </div>
+</div>
+  </div>
+						</div>
+										<!-- EOF: #subfooter-first -->
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="mt-grid-fix">
+					<!-- #subfooter-second -->
+										<!-- EOF: #subfooter-second -->
+				</div>
+			</div>
+			<div class="grid_4">
+				<div class="mt-grid-fix">
+					<!-- #footer-bottom-right -->
+										<!-- EOF: #footer-bottom-right -->
+				</div>
+			</div>
+		</div>
+		<!-- EOF: #subfooter-inside -->
+	
+	</div>
+</div><!-- EOF:#footer-bottom -->
+  </body>
+</html>

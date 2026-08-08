@@ -34,7 +34,7 @@ const sections = [
   },
   {
     kicker: "RELIABILITY",
-    title: <>Here When You Need<br /><span style={gradientStyle}>Us</span></>,
+    title: <>Here When You<br /><span style={gradientStyle}>Need Us</span></>,
     altTitle: "Here When You Need Us",
     description: <>From complex Annual Fire Safety Statements to urgent after-hours support, our team responds quickly and works efficiently to keep your <strong>fire protection systems compliant and operational</strong>.</>,
     image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp",
@@ -70,17 +70,18 @@ export default function AboutClients() {
 
             {sections.map((section, idx) => {
               const isImageFirst = idx % 2 !== 0;
-              
+              const isHereWhenYouNeed = section.altTitle === "Here When You Need Us";
+
               return (
                 <div key={idx} className={`${styles.newStoryGrid} ${isImageFirst ? styles.newStoryGridImageFirst : ''}`} style={{ marginBottom: idx === sections.length - 1 ? '4rem' : '10rem', alignItems: 'stretch' }}>
-                  
-                  <div className={`relative w-full h-full min-h-[300px] max-h-[440px] rounded-[1.5rem] overflow-hidden m-auto shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] ${!isImageFirst ? 'lg:order-2 order-1' : 'order-1'}`}>
+
+                  <div className={`relative w-full h-full min-h-[300px] max-h-[440px] rounded-[1.5rem] overflow-hidden m-auto shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] order-2 ${isImageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
                     <Image src={section.image} alt={section.altTitle} fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
 
-                  <div className={`${styles.newStoryContent} ${!isImageFirst ? 'lg:order-1 order-2' : 'order-2'}`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div className={`${styles.newStoryContent} order-1 ${isImageFirst ? 'lg:order-2' : 'lg:order-1'} ${isHereWhenYouNeed ? styles.hereWhenYouNeed : ''}`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
-                      className={styles.storyHeaderLeft}
+                      className={`${styles.storyHeaderLeft} ${isHereWhenYouNeed ? styles.legacyHeaderAbout : ''}`}
                       style={{ marginTop: 0, marginBottom: '1.5rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', color: '#feaf04', fontWeight: 800 }}>{section.kicker}</p>
@@ -88,11 +89,11 @@ export default function AboutClients() {
                         {section.title}
                       </h2>
                     </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ marginBottom: '1.5rem' }}>
+                    <p className={`text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] ${isHereWhenYouNeed ? 'text-left' : ''}`} style={{ marginBottom: '1.5rem' }}>
                       {section.description}
                     </p>
                   </div>
-                  
+
                 </div>
               );
             })}
