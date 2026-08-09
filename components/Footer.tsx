@@ -59,10 +59,22 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-6 sm:px-6 sm:pt-8 md:pt-10 lg:px-8 lg:pt-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1fr)] lg:gap-12">
           <div className="min-w-0 max-w-xl">
-            <h2 className="text-[clamp(1.75rem,4.4vw,2.85rem)] font-[780] leading-[0.95] tracking-[-0.06em] text-[#111111]">
-              Protecting people,
+            <h2 style={{
+              fontSize: "clamp(1.5rem, 3.2vw, 2.5rem)",
+              fontWeight: 780,
+              letterSpacing: "-0.06em",
+              lineHeight: 0.92,
+              margin: 0,
+              textTransform: "uppercase",
+            }}>
+              <span style={{ color: "#111111" }}>Protecting people,</span>
               <br />
-              protecting property.
+              <span style={{
+                background: "linear-gradient(to right, #ff2a00, #ffb700)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>protecting property.</span>
             </h2>
             <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
               <Link
@@ -118,8 +130,14 @@ export default function Footer() {
               </div>
             </address>
 
-            <div className="pb-2 pt-5">
-              <h3 className="mb-3 text-[0.95rem] font-bold text-[#111111]">Socials</h3>
+            <div className="pt-5">
+              <h3 className="mb-3 text-[#111111]" style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
+                fontWeight: 780,
+                letterSpacing: "-0.06em",
+                lineHeight: 0.92,
+                margin: 0,
+              }}>Socials</h3>
               <ul className="flex flex-wrap items-center gap-2 text-[#111111]">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <li key={label}>
@@ -141,7 +159,13 @@ export default function Footer() {
 
           <div className="grid min-w-0 grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
             <nav aria-label="Services">
-              <h2 className="text-xl font-extrabold text-[#111111] md:text-2xl">Services</h2>
+              <h2 className="text-[#111111]" style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
+                fontWeight: 780,
+                letterSpacing: "-0.06em",
+                lineHeight: 0.92,
+                margin: 0,
+              }}>Services</h2>
               <ul
                 className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid sm:grid-cols-3 sm:items-start sm:gap-x-6 sm:gap-y-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
@@ -163,7 +187,13 @@ export default function Footer() {
             </nav>
 
             <nav aria-label="Quick links">
-              <h2 className="text-xl font-extrabold text-[#111111] md:text-2xl">Quicklinks</h2>
+              <h2 className="text-[#111111]" style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
+                fontWeight: 780,
+                letterSpacing: "-0.06em",
+                lineHeight: 0.92,
+                margin: 0,
+              }}>Quicklinks</h2>
               <ul
                 className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] md:gap-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
