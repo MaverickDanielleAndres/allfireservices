@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import ContactCTA from "@/components/ContactCTA";
 
 export default function Page() {
@@ -12,82 +14,32 @@ export default function Page() {
                   <div className="hero_content-wrapper">
                     <div className="hero_content-left">
                       <div className="header-eyebrow-text hide-desktop">
-                        Strata Fire Safety
+                        Fire Safety Insights
                       </div>
-                      <h1 className="heading-style-h1">
-                        STRATA
-                      </h1>
+                      <h1 className="heading-style-h1">Articles</h1>
                     </div>
                     <div className="hero_content-right">
                       <div className="header-eyebrow-text hide-tablet">
-                        Strata Fire Safety
+                        Fire Safety Insights
                       </div>
                       <p className="body-text">
-                        Our process, refined in our dedicated UK factory,
-                        ensures each system is built to exacting standards. From
-                        initial design to final quality checks, we control every
-                        step.
+                        Plain-language updates on NSW fire safety, annual fire
+                        safety statements and practical protection for strata,
+                        commercial and residential properties across Greater
+                        Sydney.
                       </p>
                     </div>
                   </div>
                   <div className="about-hero_image-wrapper">
                     <div className="about-hero_image-video">
-                      {/* Was a third-party video that no longer loads — show the
-                          logo as a poster so the slot isn't empty. */}
-                      <img
+                      <Image
                         src="/logo.png"
                         loading="lazy"
-                        decoding="async"
-                        alt=""
-                        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                        alt="All Fire Services Australia"
+                        fill
+                        sizes="(max-width: 767px) 100vw, 50vw"
+                        style={{ objectFit: "cover" }}
                       />
-                    </div>
-                    <div
-                      data-theme="dark"
-                      className="process-hero_video-cta-wrap"
-                    >
-                      <a
-                        href="#"
-                        className="video-cta_lightbox w-inline-block w-lightbox"
-                      >
-                        <div className="w-layout-grid video-cta_content">
-                          <div className="video-cta_text-wrap">
-                            <div className="text-size-regular">
-                              Strata compliance support
-                            </div>
-                            <div className="text-size-small opacity-70">
-                              Watch Video
-                            </div>
-                          </div>
-                          <div className="video-cta_icon-wrap">
-                            <div className="video-cta_icon-bg">
-                              <div className="video-cta_icon w-embed">
-                                <svg
-                                  width="100%"
-                                  height="100%"
-                                  viewBox="0 0 9 14"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M8.1577 7.15773L0.0409546 13.4849V0.830566L8.1577 7.15773Z"
-                                    fill="currentcolor"
-                                  ></path>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="video-cta_image-wrap">
-                          <img
-                            src="//logo.png"
-                            loading="lazy"
-                            alt=""
-                            className="video-cta_image"
-                          />
-                          <div className="video-cta_image-overlay"></div>
-                        </div>
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -103,34 +55,23 @@ export default function Page() {
           <div className="padding-global">
             <div className="container-large">
               <div className="padding-section-large">
-                <section id="1" className="process_component">
+                <section className="process_component">
                   <div className="process_content">
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h2 className="heading-style-h1">Article List</h2>
+                          <h2 className="heading-style-h2">Article List</h2>
                         </div>
                         <p className="body-text">
-                          Our process, refined in our dedicated UK factory,
-                          ensures each system is built to exacting standards. From
-                          initial design to final quality checks, we control
-                          every step.
+                          Practical fire safety guidance, regulatory updates and
+                          compliance resources from the All Fire Services team
+                          across Greater Sydney.
                         </p>
                       </div>
                       <div className="button-group">
-                        <a
-                          data-wf--button--size="large"
-                          href="/contact"
-                          className="button-wrap w-inline-block"
-                        >
-                          <div
-                            data-wf--button-style--
-                            className="button-content w-variant-a1ef9764-3803-38f9-aea9-55b770b8a820"
-                          >
-                            <div
-                              data-wf--button-layout--layout="normal"
-                              className="button-layout"
-                            >
+                        <Link href="/contact" className="button-wrap">
+                          <div className="button-content w-variant-a1ef9764-3803-38f9-aea9-55b770b8a820">
+                            <div className="button-layout">
                               <div className="button-text">Get in touch</div>
                               <div className="button-icon">
                                 <div className="icon-slot">
@@ -140,6 +81,7 @@ export default function Page() {
                                       width="100%"
                                       viewBox="0 0 16 17"
                                       fill="none"
+                                      aria-hidden="true"
                                     >
                                       <g clipPath="url(#clip0_6401_1558)">
                                         <path
@@ -163,55 +105,101 @@ export default function Page() {
                               </div>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                   <div className="process_list">
-
-                    <div className="process_item">
+                    <article className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/13-feb-2026-nsw-fire-safety-regulations/strata-alert-webp.webp" loading="lazy" alt="NSW fire safety regulation update" className="process_image" />
+                        <Image
+                          src="/13-feb-2026-nsw-fire-safety-regulations/strata-alert-webp.webp"
+                          width={800}
+                          height={450}
+                          loading="lazy"
+                          alt="NSW fire safety regulation alert graphic"
+                          className="process_image"
+                        />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">01</div>
                         <div className="process_text-wrap">
-                          <h2 className="heading-style-h6">[ARCHIVE-POST-001]</h2>
-                          <p className="body-text">Article title, date, excerpt, thumbnail, and link required from production.</p>
+                          <h3 className="heading-style-h6">
+                            NSW Fire Safety Regulations Update — 13 February 2026
+                          </h3>
+                          <p className="body-text">
+                            What the latest regulatory changes mean for NSW
+                            building owners, strata managers and the AFSS
+                            process.
+                          </p>
+                          <p>
+                            <Link href="/13-feb-2026-nsw-fire-safety-regulations">
+                              Read the full article
+                            </Link>
+                          </p>
                         </div>
                       </div>
-                    </div>
-    
-                    <div className="process_item">
+                    </article>
+
+                    <article className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp" loading="lazy" alt="Fire safety inspection information" className="process_image" />
+                        <Image
+                          src="/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp"
+                          width={800}
+                          height={450}
+                          loading="lazy"
+                          alt="All Fire Services hydrant flow test in progress"
+                          className="process_image"
+                        />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">02</div>
                         <div className="process_text-wrap">
-                          <h2 className="heading-style-h6">[ARCHIVE-POST-002]</h2>
-                          <p className="body-text">Article title, date, excerpt, thumbnail, and link required from production.</p>
+                          <h3 className="heading-style-h6">
+                            Understanding Annual Fire Safety Statements in NSW
+                          </h3>
+                          <p className="body-text">
+                            A practical guide to what an AFSS covers, who
+                            needs one and how All Fire Services can manage the
+                            full annual cycle.
+                          </p>
+                          <p>
+                            <Link href="/annual-fire-safety-statement">
+                              Read the full article
+                            </Link>
+                          </p>
                         </div>
                       </div>
-                    </div>
-    
-                    <div className="process_item">
+                    </article>
+
+                    <article className="process_item">
                       <div className="process_image-wrap">
-                        <img src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp" loading="lazy" alt="All Fire Services technicians" className="process_image" />
+                        <Image
+                          src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp"
+                          width={800}
+                          height={450}
+                          loading="lazy"
+                          alt="All Fire Services team of firefighter technicians"
+                          className="process_image"
+                        />
                       </div>
                       <div className="process_content-right">
                         <div className="heading-style-h4">03</div>
                         <div className="process_text-wrap">
-                          <h2 className="heading-style-h6">[ARCHIVE-POST-003]</h2>
-                          <p className="body-text">Article title, date, excerpt, thumbnail, and link required from production.</p>
+                          <h3 className="heading-style-h6">
+                            Working with the All Fire Services Team
+                          </h3>
+                          <p className="body-text">
+                            Meet the firefighter-technicians behind every
+                            All Fire Services inspection, test and AFSS
+                            submission across Greater Sydney.
+                          </p>
+                          <p>
+                            <Link href="/about">Read the full article</Link>
+                          </p>
                         </div>
                       </div>
-                    </div>
-    
-                    <div className="process_item" style={{justifyContent: 'space-between', padding: '20px 0'}}>
-                       <a href="#" className="button w-button">Previous</a>
-                       <a href="#" className="button w-button">Next</a>
-                    </div>
+                    </article>
                   </div>
                 </section>
               </div>

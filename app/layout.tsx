@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -14,13 +14,17 @@ import {
   DEFAULT_OG_IMAGE,
   SITE_NAME,
   SITE_URL,
+  ogImageUrlFor,
 } from "@/lib/seo";
+import {
+  buildLocalBusinessEntity,
+  buildWebSiteEntity,
+  stringifyJsonLd,
+} from "@/lib/schema";
 
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  // Limit the woff2 download to only the weights we actually use.
-  // Adding unused weights here triples or quadruples the font payload.
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal"],
   display: "swap",
@@ -29,12 +33,20 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#111111",
+};
+
 export const metadata: Metadata = {
   metadataBase: SITE_URL,
-  title: {
-    default: "Fire Safety Services Sydney | All Fire Services Australia",
-    template: "%s | All Fire Services Australia",
-  },
+  // Per-page titles are constructed by createPageMetadata (which appends
+  // the site name itself). We deliberately do NOT define a `title.template`
+  // here because Next.js applies it to every nested title at render time,
+  // which — combined with titles that already include the site name —
+  // produces duplicated "| All Fire Services Australia" suffixes.
+  title: `${SITE_NAME} — Fire Safety Services Sydney`,
   description: DEFAULT_DESCRIPTION,
   applicationName: SITE_NAME,
   category: "Fire protection services",
@@ -45,10 +57,16 @@ export const metadata: Metadata = {
     "AFSS inspection",
     "fire compliance NSW",
     "strata fire safety",
+    "Greater Sydney fire safety",
   ],
-  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  authors: [{ name: SITE_NAME, url: SITE_URL.toString() }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   alternates: {
     canonical: "/",
   },
@@ -61,8 +79,10 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: DEFAULT_OG_IMAGE,
-        alt: "All Fire Services Australia fire safety technicians",
+        url: ogImageUrlFor(DEFAULT_OG_IMAGE),
+        width: 1200,
+        height: 630,
+        alt: "All Fire Services Australia — fire safety services across Greater Sydney",
       },
     ],
   },
@@ -70,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fire Safety Services Sydney | All Fire Services Australia",
     description: DEFAULT_DESCRIPTION,
-    images: [DEFAULT_OG_IMAGE],
+    images: [ogImageUrlFor(DEFAULT_OG_IMAGE)],
   },
   robots: {
     index: true,
@@ -84,67 +104,21 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/tablogo.png",
-    apple: "/tablogo.png",
+    icon: [{ url: "/tablogo.png", type: "image/png" }],
+    apple: [{ url: "/tablogo.png", type: "image/png" }],
   },
 };
 
-const structuredData = {
+// ─── Structured data ──────────────────────────────────────────────────────────
+//
+// Centralised so every page that uses the root layout exposes the same
+// authoritative LocalBusiness + WebSite entities (referenced by other
+// pages via @id).
+const rootStructuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["LocalBusiness", "ProfessionalService"],
-      "@id": `${SITE_URL}#business`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: new URL("/logo.png", SITE_URL),
-      image: new URL(DEFAULT_OG_IMAGE, SITE_URL),
-      telephone: "+61-1300-765-594",
-      email: "admin@allfireservices.com.au",
-      priceRange: "$$",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "330 Wattle Street",
-        addressLocality: "Ultimo",
-        addressRegion: "NSW",
-        postalCode: "2007",
-        addressCountry: "AU",
-      },
-      areaServed: {
-        "@type": "AdministrativeArea",
-        name: "Greater Sydney",
-      },
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-          ],
-          opens: "07:00",
-          closes: "18:30",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Saturday",
-          opens: "07:00",
-          closes: "12:30",
-        },
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}#website`,
-      url: SITE_URL,
-      name: SITE_NAME,
-      inLanguage: "en-AU",
-      publisher: {
-        "@id": `${SITE_URL}#business`,
-      },
-    },
+    buildLocalBusinessEntity(),
+    buildWebSiteEntity(),
   ],
 };
 
@@ -156,35 +130,13 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${inter.variable} antialiased`}>
       <head>
-        {/*
-         * Preconnect / DNS-prefetch — cut TLS handshake time for the origin
-         * and for any future third-party hosts. Useful even though the
-         * assets themselves are first-party.
-         */}
         <link rel="preconnect" href="https://www.allfireservices.com.au" />
         <link rel="dns-prefetch" href="https://www.allfireservices.com.au" />
-        {/*
-         * YouTube thumbnail CDN — preconnect so the lite-embed facade on the
-         * about page paints instantly when the user scrolls into it. The
-         * actual iframe only mounts on user interaction, avoiding 1.8MB of
-         * preloaded JS on initial load.
-         */}
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
-        {/*
-         * Prefetch the most likely next pages so client-side navigation
-         * is effectively instant. The router will warm these chunks on
-         * idle so the user sees no white flash when clicking a Link.
-         */}
-        <link rel="prefetch" href="/services" />
-        <link rel="prefetch" href="/contact" />
-        <link rel="prefetch" href="/about" />
-        {/*
-         * The home page hero portrait is the LCP candidate. Next/Image with
-         * `priority` already auto-injects the right <link rel="preload">
-         * pointing at the optimized _next/image URL, so no need to add
-         * another hint here (duplicating the request would just double-fetch).
-         */}
+        {/* Prefetch hints removed — they compete with the hero image for the
+            critical first-paint budget on the home page. Next.js still
+            prefetches <Link> destinations on hover/viewport automatically. */}
       </head>
       <body
         className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}
@@ -193,7 +145,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+            __html: stringifyJsonLd(rootStructuredData),
           }}
         />
         <SmoothScrolling>
@@ -208,4 +160,3 @@ export default function RootLayout({
     </html>
   );
 }
-

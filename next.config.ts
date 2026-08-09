@@ -23,7 +23,8 @@ const nextConfig: NextConfig = {
   },
 
   // Push longer-lived caching for static assets so repeat visits (and Vercel's
-  // edge) skip the round trip to origin entirely.
+  // edge) skip the round trip to origin entirely. Use stale-while-revalidate
+  // on HTML so the second hit is always served from cache instantly.
   async headers() {
     return [
       {
@@ -43,6 +44,16 @@ const nextConfig: NextConfig = {
         source: "/:path*.(png|jpg|jpeg|gif|webp|avif|svg|ico|mp4|webm)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // Pre-optimized gallery variants — long cache, swr fallback.
+        source: "/stratapage-cropped/opt/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
     ];

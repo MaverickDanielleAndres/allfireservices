@@ -12,35 +12,38 @@ import galleryStyles from "./StrataGallery.module.css";
 // Initial view shows 16; clicking "More" reveals 12 additional images below (28 total).
 const strataImages = [
   // ── Initial 16 (4 rows × 4 columns) ──────────────────────────────────────
-  { src: "/stratapage-cropped/randwick-building.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
-  { src: "/stratapage-cropped/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage-cropped/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage-cropped/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage-cropped/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage-cropped/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
-  { src: "/stratapage-cropped/8-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage-cropped/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
-  { src: "/stratapage-cropped/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage-cropped/13-all-fire-services-welcome-glebe.webp", name: "Glebe" },
-  { src: "/stratapage-cropped/14-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/15-all-fire-services-welcome-north-sydney.webp", name: "North Sydney" },
+  // Source files are pre-optimised to webp and resized to max 720 px in
+  // public/stratapage-cropped/opt/. Sourcing them from there keeps each
+  // gallery card well under 100 KB instead of the 60–150 KB originals.
+  { src: "/stratapage-cropped/opt/randwick-building.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
+  { src: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
+  { src: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
+  { src: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
+  { src: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
+  { src: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
+  { src: "/stratapage-cropped/opt/8-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
+  { src: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
+  { src: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
+  { src: "/stratapage-cropped/opt/13-all-fire-services-welcome-glebe.webp", name: "Glebe" },
+  { src: "/stratapage-cropped/opt/14-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
+  { src: "/stratapage-cropped/opt/15-all-fire-services-welcome-north-sydney.webp", name: "North Sydney" },
   // ── Hidden 12 (3 rows × 4 columns — revealed by "More" button) ───────────
-  { src: "/stratapage-cropped/1welcome-to-fireman-family.png", name: "Rose Bay" },
-  { src: "/stratapage-cropped/2welcome-to-fireman-family.png", name: "Mosman" },
-  { src: "/stratapage-cropped/banner-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage-cropped/banner-enmore.webp", name: "Enmore" },
-  { src: "/stratapage-cropped/banner-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage-cropped/banner-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage-cropped/banner-randwick.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/banner-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage-cropped/banner-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage-cropped/banner-bondi.webp", name: "Bondi" },
-  { src: "/stratapage-cropped/banner-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage-cropped/banner-waterloo.webp", name: "Waterloo" },
+  { src: "/stratapage-cropped/opt/1welcome-to-fireman-family.webp", name: "Rose Bay" },
+  { src: "/stratapage-cropped/opt/2welcome-to-fireman-family.webp", name: "Mosman" },
+  { src: "/stratapage-cropped/opt/banner-chippendale.webp", name: "Chippendale" },
+  { src: "/stratapage-cropped/opt/banner-enmore.webp", name: "Enmore" },
+  { src: "/stratapage-cropped/opt/banner-greenacre.webp", name: "Greenacre" },
+  { src: "/stratapage-cropped/opt/banner-haberfield.webp", name: "Haberfield" },
+  { src: "/stratapage-cropped/opt/banner-randwick.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/opt/banner-rockdale.webp", name: "Rockdale" },
+  { src: "/stratapage-cropped/opt/banner-alexandria.webp", name: "Alexandria" },
+  { src: "/stratapage-cropped/opt/banner-bondi.webp", name: "Bondi" },
+  { src: "/stratapage-cropped/opt/banner-stanmore.webp", name: "Stanmore" },
+  { src: "/stratapage-cropped/opt/banner-waterloo.webp", name: "Waterloo" },
 ];
 
 const INITIAL_VISIBLE_COUNT = 16;
@@ -199,13 +202,13 @@ export default function Page() {
         >
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image
-              src="/stratapage-cropped/1welcome-to-fireman-family.png"
+              src="/stratapage-cropped/opt/1welcome-to-fireman-family.webp"
               alt="Strata Fire Safety Hero"
               fill
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority
               fetchPriority="high"
-              quality={55}
+              quality={65}
               sizes="100vw"
             />
           </div>
@@ -303,13 +306,13 @@ export default function Page() {
                       }}
                     >
                       <div className={galleryStyles.galleryImageWrap}>
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={image.src}
                           alt={`All Fire Services at ${image.name}`}
-                          fill
-                          sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
-                          quality={55}
                           loading="lazy"
+                          decoding="async"
+                          fetchPriority="low"
                           className={galleryStyles.galleryImage}
                         />
                       </div>
@@ -345,13 +348,13 @@ export default function Page() {
                           }}
                         >
                           <div className={galleryStyles.galleryImageWrap}>
-                            <Image
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
                               src={image.src}
                               alt={`All Fire Services at ${image.name}`}
-                              fill
-                              sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
-                              quality={55}
                               loading="lazy"
+                              decoding="async"
+                              fetchPriority="low"
                               className={galleryStyles.galleryImage}
                             />
                           </div>
@@ -464,7 +467,7 @@ export default function Page() {
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
-                    <Image src="/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp" alt="Fire protection across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
+                    <Image src="/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp" alt="Fire protection across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -579,7 +582,7 @@ export default function Page() {
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
-                    <Image src="/stratapage-cropped/11-all-fire-services-welcome-bondi.webp" alt="All Fire Services team on site" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
+                    <Image src="/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp" alt="All Fire Services team on site" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -594,6 +597,8 @@ export default function Page() {
             aria-modal="true"
             aria-label={`Enlarged photo: ${strataImages[activeImageIndex].name}`}
             onClick={closeLightbox}
+            onKeyDown={(e) => { if (e.key === 'Escape') closeLightbox(); }}
+            tabIndex={-1}
             style={{
               position: 'fixed',
               inset: 0,
@@ -602,7 +607,7 @@ export default function Page() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: 'clamp(4.5rem, 8vh, 6rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem)',
+              padding: 'clamp(7rem, 12vh, 9rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem)',
             }}
           >
             <button
@@ -611,15 +616,15 @@ export default function Page() {
               aria-label="Close photo"
               style={{
                 position: 'absolute',
-                top: 'clamp(0.75rem, 2vh, 1.25rem)',
+                top: 'clamp(5.5rem, 9vh, 6.5rem)',
                 right: 'clamp(0.75rem, 2vw, 1.5rem)',
                 width: '2.75rem',
                 height: '2.75rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'transparent',
-                border: '2px solid rgba(255, 255, 255, 0.7)',
+                background: 'rgba(0, 0, 0, 0.4)',
+                border: '2px solid rgba(255, 255, 255, 0.85)',
                 borderRadius: '999px',
                 color: '#ffffff',
                 cursor: 'pointer',
@@ -707,13 +712,18 @@ export default function Page() {
                 backgroundColor: '#111111',
                 boxShadow: '0 30px 60px -10px rgba(0, 0, 0, 0.6)',
               }}>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={strataImages[activeImageIndex].src}
                   alt={`All Fire Services at ${strataImages[activeImageIndex].name}`}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 80vw"
-                  quality={75}
-                  style={{ objectFit: 'contain', backgroundColor: '#111111' }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    backgroundColor: '#111111',
+                  }}
                 />
               </div>
               <p style={{

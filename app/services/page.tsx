@@ -83,11 +83,13 @@ export default function ServicesPage() {
   const [activeCategory, setActiveCategory] = useState<string>(validInitial);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
-  // Hide the hero when arriving with an explicit category in the URL (e.g. from
-  // the Services dropdown on another page). On the bare /services page the
-  // hero is the default landing.
+  // The hero is always rendered so the page has a single, clear H1 in the
+  // initial HTML payload — important for both search engines and Lighthouse
+  // SEO scoring. When arriving with `?category=` we hide the hero visually
+  // (but it remains in the DOM) by collapsing its min-height via a CSS class
+  // — the H1 is still crawlable and accessible.
   const requestedCategory = searchParams.get("category");
-  const showHero = !requestedCategory;
+  const showHero = true;
 
   // Sync state when the user navigates back/forward.
   useEffect(() => {
@@ -95,35 +97,47 @@ export default function ServicesPage() {
   }, [validInitial]);
 
   // When arriving on /services with a valid ?category= in the URL (e.g. from
-  // the Services dropdown on another page like /strata), scroll past the hero
-  // to the hub layout. The Navbar fires its own lenis.scrollTo(0) on every
-  // pathname change, so we wait for that to complete and then drive Lenis
-  // directly — scrollIntoView is ignored by Lenis and would fight it. The ref
-  // tracks the last PATHNAME we scrolled for, so clicking a different sub-item
-  // from the navbar (same pathname, new search params) still re-scrolls to
-  // the hub, while same-page sidebar switches are a no-op since the user is
-  // already at the hub.
+  // the Services dropdown on another page like /our-clients), scroll past the
+  // hero to the hub layout. The Navbar fires its own lenis.scrollTo(0) on
+  // every pathname change, so we drive Lenis directly with `force: true` to
+  // override that reset — and we wait on rAF until both the hub ref and the
+  // Lenis instance are ready (Lenis is created in SmoothScrolling on the
+  // client, so it may not exist on the very first effect run). Using Lenis
+  // instead of window.scrollTo is critical: Lenis intercepts native smooth
+  // scrolls, so the fallback path would silently no-op once Lenis is active.
   const lastScrolledPathname = useRef<string | null>(null);
   useEffect(() => {
     const requested = searchParams.get("category");
     if (!requested) return;
     if (requested !== validInitial) return;
     const pathname = window.location.pathname;
-    if (lastScrolledPathname.current === pathname + requested) return;
-    lastScrolledPathname.current = pathname + requested;
-    const timer = window.setTimeout(() => {
+    const scrollKey = pathname + requested;
+    if (lastScrolledPathname.current === scrollKey) return;
+
+    let cancelled = false;
+    let rafId: number | null = null;
+    const tryScroll = () => {
+      if (cancelled) return;
       const target = hubRef.current;
-      if (!target) return;
-      // -80 clears the fixed navbar so the category heading isn't tucked
-      // underneath it.
-      const top = target.getBoundingClientRect().top + window.scrollY - 80;
-      if (lenis) {
-        lenis.scrollTo(top, { duration: 1.1, easing: (t: number) => 1 - Math.pow(1 - t, 3) });
-      } else {
-        window.scrollTo({ top, behavior: "smooth" });
+      if (!target || !lenis) {
+        rafId = window.requestAnimationFrame(tryScroll);
+        return;
       }
-    }, 500);
-    return () => window.clearTimeout(timer);
+      lastScrolledPathname.current = scrollKey;
+      // -80 clears the fixed navbar so the category heading isn't tucked
+      // underneath it. `force` wins over the Navbar's instant scrollTo(0).
+      lenis.scrollTo(target, {
+        offset: -80,
+        duration: 1.1,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
+        force: true,
+      });
+    };
+    tryScroll();
+    return () => {
+      cancelled = true;
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
   }, [searchParams, validInitial, lenis]);
 
   // Lock body scroll while the mobile category sheet is open.

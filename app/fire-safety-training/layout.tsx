@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Fire Safety Training Sydney",
   description:
-    "Professional fire safety training and practical guidance for workplaces, building teams and strata communities across Sydney.",
+    "Practical fire safety training and warden education for workplaces, building teams and strata communities across Greater Sydney.",
   path: "/fire-safety-training",
 });
 

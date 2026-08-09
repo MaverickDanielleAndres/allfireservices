@@ -172,7 +172,7 @@ export default function FpaAustraliaMember() {
                       <div className="header-eyebrow-text hide-desktop">
                         FPA Australia Member
                       </div>
-                      <h1 className="heading-style-h1">FPA</h1>
+                      <h2 className="heading-style-h2">FPA</h2>
                     </div>
                     <div className="hero_content-right">
                       <div className="header-eyebrow-text hide-tablet">
@@ -207,7 +207,7 @@ export default function FpaAustraliaMember() {
                     <div className="header-wrapper">
                       <div className="header-text-wrap">
                         <div className="header-top">
-                          <h2 className="heading-style-h1">
+                          <h2 className="heading-style-h2">
                             FPA Australia Member
                           </h2>
                         </div>

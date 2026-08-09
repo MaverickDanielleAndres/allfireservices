@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="main-wrapper">
@@ -8,9 +10,15 @@ export default function Page() {
               <div className="padding-section-large is-contact-hero">
                 <div className="contact_component">
                   <div className="contact_content-left">
-                    <h4 className="heading-style-h4">
-                      FREE Annual Fire Safety Statement: Routine Maintenance Requirements. All fire safety measures in applicable buildings must now be inspected and maintained according to AS 1851:2012 standards.
-                    </h4>
+                    <h1 className="heading-style-h2">
+                      Talk to Peter About Fire Safety
+                    </h1>
+                    <p className="body-text">
+                      FREE Annual Fire Safety Statement: Routine Maintenance
+                      Requirements. All fire safety measures in applicable
+                      buildings must now be inspected and maintained according
+                      to AS 1851:2012 standards.
+                    </p>
                   </div>
                   <div
                     id="w-node-_13503068-11ce-9d7d-7f2c-5c20bb077c5d-d652ad6d"
@@ -189,9 +197,9 @@ export default function Page() {
                       <div className="text-size-medium text-weight-medium text-color-black">
                         Visit us:
                       </div>
-                      <div className="body-text">
+                      <address className="body-text not-italic">
                         330 Wattle St, Ultimo NSW 2007, Australia
-                      </div>
+                      </address>
                     </div>
                     <div className="contact_info-item">
                       <div className="text-size-medium text-weight-medium text-color-black">
@@ -215,23 +223,29 @@ export default function Page() {
                         admin@allfireservices.com.au
                       </a>
                     </div>
-                  </div>
                     <div className="contact_info-item">
                       <div className="text-size-medium text-weight-medium text-color-black">
                         Office Hours:
                       </div>
                       <div className="body-text">
-                        Monday â€“ Friday 07:00am â€“ 6:30pm<br/>
-                        Saturday 7:00am â€“ 12:30pm<br/>
+                        Monday – Friday 07:00am – 6:30pm
+                        <br />
+                        Saturday 7:00am – 12:30pm
+                        <br />
                         24/7 After Hours, Phone 0484 648 400
                       </div>
                     </div>
                   </div>
+                  <p style={{ marginTop: "2rem" }}>
+                    Prefer our general enquiry form?{" "}
+                    <Link href="/contact">Visit our contact page</Link>.
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
         </header>
-        
+
       </div>
     </main>
   );

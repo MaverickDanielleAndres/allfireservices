@@ -16,7 +16,7 @@ export default function Page() {
                         Strata Fire Safety
                       </div>
                       <h1 className="heading-style-h1">
-                        STRATA
+                        Fire Safety Inspection Services
                       </h1>
                     </div>
                     <div className="hero_content-right">

@@ -13,7 +13,7 @@ const strataBuildings: CardItem[] = [
     description: "Servicing premium strata blocks and residential complexes in Bondi.",
     imgSrc: "/stratapage-cropped/11-all-fire-services-welcome-bondi.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "marrickville1",
@@ -21,7 +21,7 @@ const strataBuildings: CardItem[] = [
     description: "Reliable fire safety maintenance for historic and modern buildings in Marrickville.",
     imgSrc: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "waterloo",
@@ -29,7 +29,7 @@ const strataBuildings: CardItem[] = [
     description: "Large-scale fire system management for expansive Waterloo developments.",
     imgSrc: "/stratapage-cropped/7-all-fire-services-welcome-waterloo.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "haberfield",
@@ -37,7 +37,7 @@ const strataBuildings: CardItem[] = [
     description: "Trusted strata fire services preserving Haberfield's unique heritage properties.",
     imgSrc: "/stratapage-cropped/4-all-fire-services-welcome-haberfield.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "randwick",
@@ -45,7 +45,7 @@ const strataBuildings: CardItem[] = [
     description: "Comprehensive fire safety services for Randwick's apartments and strata buildings.",
     imgSrc: "/stratapage-cropped/randwick-building.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "rosebay",
@@ -53,7 +53,7 @@ const strataBuildings: CardItem[] = [
     description: "Specialist fire protection for premium Rose Bay residential complexes.",
     imgSrc: "/stratapage-cropped/1welcome-to-fireman-family.png",
     icon: <Building2 size={24} />,
-    linkHref: "#",
+    linkHref: "/our-clients",
   },
   {
     id: "alexandria",
@@ -61,8 +61,8 @@ const strataBuildings: CardItem[] = [
     description: "Modern fire compliance solutions for vibrant Alexandria apartments.",
     imgSrc: "/stratapage-cropped/12-all-fire-services-welcome-alexandria.webp",
     icon: <Building2 size={24} />,
-    linkHref: "#",
-  }
+    linkHref: "/our-clients",
+  },
 ];
 
 export default function StrataSection() {

@@ -2,7 +2,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, CheckCircle2, Phone, ShieldCheck, Award, MapPin, FileCheck, Clock, BadgeCheck } from "lucide-react";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  createServiceMetadata,
+  servicePageTitle,
+  servicePageDescription,
+} from "@/lib/service-metadata";
+import {
+  buildBreadcrumbEntity,
+  buildServiceEntity,
+  buildWebPageEntity,
+  stringifyJsonLd,
+} from "@/lib/schema";
 import {
   getProductBySlug,
   getCategoryById,
@@ -10,6 +20,7 @@ import {
   products,
 } from "@/lib/products";
 import ContactCTA from "@/components/ContactCTA";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import detailStyles from "./ProductDetail.module.css";
 
 const gradientStyle = {
@@ -115,11 +126,8 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return {};
-  return createPageMetadata({
-    title: `${product.name} — ${product.subtitle}`,
-    description: product.description.slice(0, 160),
-    path: `/services/${slug}`,
-  });
+  const category = getCategoryById(product.categoryId);
+  return createServiceMetadata(product, category);
 }
 
 function PrimaryBrandButton({ href, label }: { href: string; label: string }) {
@@ -199,9 +207,43 @@ export default async function ProductDetailPage({ params }: Props) {
   const isService = product.tag === "Service";
   const heroSubtitle = product.subtitle;
 
+  // ── JSON-LD: Service entity, BreadcrumbList, WebPage ────────────────────
+  const breadcrumbSchemaItems: { name: string; path: string }[] = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ];
+  if (category) {
+    breadcrumbSchemaItems.push({
+      name: category.label,
+      path: `/services?category=${category.id}`,
+    });
+  }
+  breadcrumbSchemaItems.push({ name: product.name, path: `/services/${product.slug}` });
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildServiceEntity({
+        name: product.name,
+        description: product.description,
+        path: `/services/${product.slug}`,
+      }),
+      buildBreadcrumbEntity(breadcrumbSchemaItems),
+      buildWebPageEntity({
+        path: `/services/${product.slug}`,
+        name: `${product.name} — ${product.subtitle}`,
+        description: product.description,
+      }),
+    ],
+  };
+
   return (
     <main className="main-wrapper">
       <div className="scroll-wrapper">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: stringifyJsonLd(structuredData) }}
+        />
         {/* PAGE HEADER — mirrors home legacyHeader style (no dark hero bg) */}
         <section
           data-theme="light"
@@ -210,34 +252,12 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="padding-global">
             <div className="container-large">
               {/* Breadcrumb */}
-              <nav className={detailStyles.breadcrumbLight} aria-label="Breadcrumb">
-                <Link href="/" className={detailStyles.breadcrumbLinkLight}>
-                  Home
-                </Link>
-                <span className={detailStyles.breadcrumbSepLight} aria-hidden="true">
-                  ›
-                </span>
-                <Link href="/services" className={detailStyles.breadcrumbLinkLight}>
-                  Services
-                </Link>
-                {category && (
-                  <>
-                    <span className={detailStyles.breadcrumbSepLight} aria-hidden="true">
-                      ›
-                    </span>
-                    <Link
-                      href={`/services?category=${category.id}`}
-                      className={detailStyles.breadcrumbLinkLight}
-                    >
-                      {category.label}
-                    </Link>
-                  </>
-                )}
-                <span className={detailStyles.breadcrumbSepLight} aria-hidden="true">
-                  ›
-                </span>
-                <span className={detailStyles.breadcrumbCurrentLight}>{product.name}</span>
-              </nav>
+              <Breadcrumbs
+                items={breadcrumbSchemaItems.map((item) => ({
+                  label: item.name,
+                  href: item.path === `/services/${product.slug}` ? undefined : item.path,
+                }))}
+              />
 
               <header className={detailStyles.pageHeader}>
                 <div>

@@ -70,12 +70,16 @@ function NavbarContent() {
   const lenis = useLenis();
 
   useEffect(() => {
+    // The /services hub handles its own scroll-to-hub when arriving with a
+    // ?category= param, so don't snap to top here — otherwise the user would
+    // see a flash of the hero before the hub scroll kicks in.
+    if (pathname === "/services" && searchParams.get("category")) return;
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, [pathname, lenis]);
+  }, [pathname, searchParams, lenis]);
 
   useEffect(() => {
     if (mobileOpen) {

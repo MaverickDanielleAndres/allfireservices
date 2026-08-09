@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "FPA Australia Member",
   description:
-    "Learn about All Fire Services Australia's FPA Australia membership and commitment to qualified, professional fire protection services.",
+    "All Fire Services Australia is a member of FPA Australia — the national peak body for fire protection — supporting stronger industry standards and safer communities.",
   path: "/fpa-australia-member",
 });
 

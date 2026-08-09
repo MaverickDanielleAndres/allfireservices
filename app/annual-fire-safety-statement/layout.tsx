@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Annual Fire Safety Statement Sydney",
   description:
-    "Professional Annual Fire Safety Statement inspections, testing and NSW compliance support for Sydney buildings and strata properties.",
+    "Annual Fire Safety Statement (AFSS) inspections, documentation and NSW council submission support for strata, commercial and residential buildings across Greater Sydney.",
   path: "/annual-fire-safety-statement",
 });
 

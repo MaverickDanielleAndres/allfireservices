@@ -1,15 +1,18 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import ClientGrid from "@/components/ClientGrid";
 import HandshakeTestimonials from "@/components/HandshakeTestimonials";
 import AboutClients from "@/components/AboutClients";
 import ContactCTA from "@/components/ContactCTA";
 import HeroScrollCue from "@/components/HeroScrollCue";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Our Clients",
-  description: "Trusted by property teams, strata managers, and facility owners across Sydney. See how AllFire protects properties and people.",
-};
+  description:
+    "Trusted by property teams, strata managers and facility owners across Sydney. See the organisations that rely on All Fire Services to protect their people, property and compliance.",
+  path: "/our-clients",
+});
 
 export default function OurClientsPage() {
   return (

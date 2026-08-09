@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Strata Fire Safety Services Sydney",
   description:
-    "Fire safety inspections, testing, maintenance and compliance support for strata managers and apartment buildings across Sydney.",
+    "Fire safety inspections, testing, maintenance and AFSS support for strata managers, owners corporations and apartment buildings across Greater Sydney.",
   path: "/strata",
 });
 

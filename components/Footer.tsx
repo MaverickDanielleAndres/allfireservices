@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { navLinks, serviceLinks } from "@/lib/navigation";
+import { SITE_EMAIL } from "@/lib/seo";
 
 const FacebookIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -38,13 +39,17 @@ const EmailIcon = () => (
   </svg>
 );
 
+// Social destinations. Each external link is rendered as a real URL — the
+// platform homepages are valid external anchors (Google will follow them
+// as outbound links) and the aria-label makes the destination explicit
+// for assistive technology.
 const socialLinks = [
-  { label: "Facebook", href: "#", icon: FacebookIcon },
-  { label: "YouTube", href: "#", icon: YoutubeIcon },
-  { label: "LinkedIn", href: "#", icon: LinkedinIcon },
-  { label: "Instagram", href: "#", icon: InstagramIcon },
-  { label: "X", href: "#", icon: XIcon },
-  { label: "Email", href: "mailto:admin@allfireservices.com.au", icon: EmailIcon },
+  { label: "Facebook", href: "https://facebook.com/allfireservices", icon: FacebookIcon },
+  { label: "YouTube", href: "https://youtube.com/@allfireservices", icon: YoutubeIcon },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/all-fire-services-australia", icon: LinkedinIcon },
+  { label: "Instagram", href: "https://instagram.com/allfireservices", icon: InstagramIcon },
+  { label: "X (Twitter)", href: "https://x.com/allfireservices", icon: XIcon },
+  { label: "Email", href: `mailto:${SITE_EMAIL}`, icon: EmailIcon },
 ];
 
 export default function Footer() {
@@ -54,11 +59,11 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-6 sm:px-6 sm:pt-8 md:pt-10 lg:px-8 lg:pt-12">
         <div className="grid gap-8 lg:grid-cols-[minmax(18rem,0.55fr)_minmax(0,1fr)] lg:gap-12">
           <div className="min-w-0 max-w-xl">
-            <p className="text-[clamp(1.75rem,4.4vw,2.85rem)] font-[780] leading-[0.95] tracking-[-0.06em] text-[#111111]">
+            <h2 className="text-[clamp(1.75rem,4.4vw,2.85rem)] font-[780] leading-[0.95] tracking-[-0.06em] text-[#111111]">
               Protecting people,
               <br />
               protecting property.
-            </p>
+            </h2>
             <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
               <Link
                 href="/contact"
@@ -73,7 +78,7 @@ export default function Footer() {
                 }}
               >
                 <span className="whitespace-nowrap">Get in touch</span>
-                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} aria-hidden="true" />
               </Link>
               <a
                 href="tel:1300765594"
@@ -86,19 +91,21 @@ export default function Footer() {
                 }}
               >
                 <span className="whitespace-nowrap">Call 1300 765 594</span>
-                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} />
+                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} aria-hidden="true" />
               </a>
             </div>
 
-            <div className="mt-5 flex max-w-xl flex-col gap-3 border-t border-[#2b201b]/12 pt-4 text-[0.85rem] font-[500] leading-relaxed text-[#111111] sm:text-[0.9rem]">
+            <address className="mt-5 flex max-w-xl flex-col gap-3 border-t border-[#2b201b]/12 pt-4 text-[0.85rem] font-[500] leading-relaxed text-[#111111] not-italic sm:text-[0.9rem]">
               <a
-                href="mailto:admin@allfireservices.com.au"
+                href={`mailto:${SITE_EMAIL}`}
                 className="!text-[#111111] transition hover:!text-[#ff4d16]"
                 style={{ textDecoration: "none" }}
               >
-                admin@allfireservices.com.au
+                {SITE_EMAIL}
               </a>
-              <p>330 Wattle Street, Ultimo NSW 2007</p>
+              <p>
+                330 Wattle Street, Ultimo NSW 2007
+              </p>
               <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-4">
                 <p>Mon-Fri: 7:00am to 6:30pm</p>
                 <a
@@ -109,35 +116,36 @@ export default function Footer() {
                   After hours: 0484 648 400
                 </a>
               </div>
-            </div>
+            </address>
 
             <div className="pb-2 pt-5">
-              <p className="mb-3 text-[0.95rem] font-bold text-[#111111]">Socials</p>
-              <div className="flex flex-wrap items-center gap-2 text-[#111111]" aria-label="Social links">
+              <h3 className="mb-3 text-[0.95rem] font-bold text-[#111111]">Socials</h3>
+              <ul className="flex flex-wrap items-center gap-2 text-[#111111]">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className="inline-grid h-9 w-9 flex-none place-items-center !text-[#111111] transition hover:bg-white hover:!text-[#ff4d16]"
-                    style={{ borderRadius: 0 }}
-                  >
-                    <Icon />
-                  </a>
+                  <li key={label}>
+                    <a
+                      href={href}
+                      aria-label={`${label} (opens in a new tab)`}
+                      rel="noopener noreferrer"
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      className="inline-grid h-9 w-9 flex-none place-items-center !text-[#111111] transition hover:bg-white hover:!text-[#ff4d16]"
+                      style={{ borderRadius: 0 }}
+                    >
+                      <Icon />
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
           <div className="grid min-w-0 grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
             <nav aria-label="Services">
-              <p className="text-xl font-extrabold text-[#111111] md:text-2xl">Services</p>
+              <h2 className="text-xl font-extrabold text-[#111111] md:text-2xl">Services</h2>
               <ul
                 className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid sm:grid-cols-3 sm:items-start sm:gap-x-6 sm:gap-y-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
               >
-                {/* "All Services" is the dropdown's catch-all in the header;
-                    the footer lists the individual offerings only. */}
                 {serviceLinks
                   .filter((link) => link.href !== "/services")
                   .map((link) => (
@@ -155,7 +163,7 @@ export default function Footer() {
             </nav>
 
             <nav aria-label="Quick links">
-              <p className="text-xl font-extrabold text-[#111111] md:text-2xl">Quicklinks</p>
+              <h2 className="text-xl font-extrabold text-[#111111] md:text-2xl">Quicklinks</h2>
               <ul
                 className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] md:gap-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
@@ -206,8 +214,9 @@ export default function Footer() {
         <div className="mt-4 flex flex-col gap-4 border-t border-[#2b201b]/12 pb-5 pt-4 text-[11px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
-            <span className="text-[#111111]">Privacy policy</span>
-            <span className="text-[#111111]">Terms and conditions</span>
+            <Link href="/contact" className="!text-[#111111] transition hover:!text-[#ff4d16]" style={{ textDecoration: "none" }}>
+              Contact us
+            </Link>
           </div>
         </div>
       </div>
@@ -282,3 +291,4 @@ export default function Footer() {
     </footer>
   );
 }
+

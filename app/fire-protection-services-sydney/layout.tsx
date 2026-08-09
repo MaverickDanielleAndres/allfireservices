@@ -1,9 +1,9 @@
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Fire Protection Services in Sydney",
+  title: "Fire Protection Services Sydney",
   description:
-    "Reliable fire protection inspections, testing, maintenance and compliance services for commercial and strata buildings across Sydney.",
+    "Fire inspections, testing, maintenance, AFSS, hydrant, sprinkler, alarm, extinguisher and emergency lighting services for strata, commercial and residential buildings across Greater Sydney.",
   path: "/fire-protection-services-sydney",
 });
 
