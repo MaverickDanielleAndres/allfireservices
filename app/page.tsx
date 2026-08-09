@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";
+import DeferredVideo from "@/components/DeferredVideo";
 import Link from "next/link";
 
 const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
@@ -919,15 +920,10 @@ export default function Page() {
           <ClientsMarquee />
         </MotionDiv>
 
-        {/* Full-width Autoplaying Hero Video */}
+        {/* Full-width Autoplaying Hero Video — only mounts once the user scrolls here */}
         <MotionDiv {...sectionReveal} style={{ width: '100%' }}>
-          <video
+          <DeferredVideo
             src="/hero-video.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
             poster="/herosectionimage.webp"
             className="mobile-video-tall"
             style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}

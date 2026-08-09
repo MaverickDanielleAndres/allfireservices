@@ -27,30 +27,10 @@ const testimonials = [
     image: "https://randomuser.me/api/portraits/men/22.jpg",
   },
   {
-    quote: "We’ve used a number of fire safety companies over the years. Our experience with All Fire has been spectacular. Couldn’t be happier. Thanks team.",
-    author: "Jason Leadbitter",
-    image: "https://randomuser.me/api/portraits/men/67.jpg",
-  },
-  {
-    quote: "It was wonderful to have the team at AllFire set our Cafe up efficiently to meet safety standards. These guys were knowledgeable and quick to get the work done. Thoroughly recommend.",
-    author: "Gavin Tooley",
-    image: "https://randomuser.me/api/portraits/men/85.jpg",
-  },
-  {
-    quote: "Extremely professional and thorough. They handled our building's annual fire safety statement with zero stress. The technicians were polite and efficient.",
-    author: "Sarah Jenkins",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
     quote: "All Fire Services has been managing our strata block for three years. They are always on time, transparent with pricing, and proactive about compliance. A true partner.",
     author: "David Chen",
     image: "https://randomuser.me/api/portraits/men/71.jpg",
   },
-  {
-    quote: "Incredible response time for emergency faults. We had an issue with our alarm panel and they were on-site within an hour. Highly dependable service.",
-    author: "Emma Thompson",
-    image: "https://randomuser.me/api/portraits/women/28.jpg",
-  }
 ];
 
 export default function GoogleReviews() {

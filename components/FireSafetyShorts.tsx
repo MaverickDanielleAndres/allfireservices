@@ -231,6 +231,9 @@ export default function FireSafetyShorts() {
                         <img
                           src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
                           alt={video.title}
+                          loading="lazy"
+                          decoding="async"
+                          fetchPriority="low"
                           onError={() => {
                             setThumbnailErrors((prev) => {
                               const next = new Set(prev);

@@ -205,7 +205,7 @@ export default function Page() {
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority
               fetchPriority="high"
-              quality={60}
+              quality={55}
               sizes="100vw"
             />
           </div>
@@ -308,6 +308,8 @@ export default function Page() {
                           alt={`All Fire Services at ${image.name}`}
                           fill
                           sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
+                          quality={55}
+                          loading="lazy"
                           className={galleryStyles.galleryImage}
                         />
                       </div>
@@ -348,6 +350,8 @@ export default function Page() {
                               alt={`All Fire Services at ${image.name}`}
                               fill
                               sizes="(max-width: 767px) 42vw, (max-width: 1023px) 28vw, 22vw"
+                              quality={55}
+                              loading="lazy"
                               className={galleryStyles.galleryImage}
                             />
                           </div>
@@ -460,7 +464,7 @@ export default function Page() {
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
-                    <Image src="/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp" alt="Fire protection across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp" alt="Fire protection across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -475,7 +479,7 @@ export default function Page() {
               <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} strata-how-we-help`} style={{ alignItems: 'stretch' }}>
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -575,7 +579,7 @@ export default function Page() {
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
-                    <Image src="/stratapage-cropped/11-all-fire-services-welcome-bondi.webp" alt="All Fire Services team on site" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/stratapage-cropped/11-all-fire-services-welcome-bondi.webp" alt="All Fire Services team on site" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -708,7 +712,7 @@ export default function Page() {
                   alt={`All Fire Services at ${strataImages[activeImageIndex].name}`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 80vw"
-                  quality={90}
+                  quality={75}
                   style={{ objectFit: 'contain', backgroundColor: '#111111' }}
                 />
               </div>
