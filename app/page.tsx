@@ -1,5 +1,4 @@
 import RevealOnView from "@/components/RevealOnView";
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";

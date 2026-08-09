@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { animate, useMotionValue, useTransform, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
+// Counts from `from` to `to` over `duration` seconds. Uses requestAnimationFrame
+// instead of framer-motion so the home page doesn't ship the framer-motion
+// runtime (~80 KB) just for two animated numbers in the hero.
 export default function Counter({
   from = 0,
   to,
@@ -16,32 +18,43 @@ export default function Counter({
   suffix?: string;
   prefix?: string;
 }) {
-  const ref = useRef(null);
-  const count = useMotionValue(from);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const [value, setValue] = useState<number>(from);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Start animation instantly on mount, matching the parent's 600ms slide-in
-    animate(count, to, { 
-      duration, 
-      ease: [0.33, 1, 0.68, 1] 
-    });
-  }, [count, to, duration]);
+    const start = performance.now();
+    const delta = to - from;
+    const durMs = Math.max(1, duration * 1000);
+    // easeOutCubic — matches the framer-motion default the page used before.
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const t = Math.min(1, elapsed / durMs);
+      setValue(Math.round(from + delta * ease(t)));
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [from, to, duration]);
 
   return (
     <span
-      ref={ref}
       style={{
         display: "inline-block",
         fontVariantNumeric: "tabular-nums",
-        // Reserve enough width for the longest digit string during the count
-        // so the parent layout doesn't shift as the number ticks down.
+        // Reserve enough width for the longest digit string so the parent
+        // layout doesn't shift as the number ticks.
         minWidth: `${Math.max(String(from).length, String(to).length)}ch`,
         textAlign: "center",
       }}
     >
       {prefix}
-      <motion.span>{rounded}</motion.span>
+      {value}
       {suffix}
     </span>
   );

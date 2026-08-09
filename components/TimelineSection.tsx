@@ -39,12 +39,12 @@ const generationReveal: Variants = {
 };
 
 const generations = [
-  { year: "1911", relation: "Uncle", name: "William Tricklebank", image: "/family/greatgrandad.jpg" },
-  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
-  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
-  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", image: "/family/Myfather.png" },
-  { year: "1959", relation: "Uncle", name: "Ian Tricklebank", image: "/family/uncleian.png" },
-  { year: "Current", relation: "Current", name: "Peter Tricklebank", image: "/family/pete.png" }
+  { year: "1911", relation: "Uncle", name: "William Tricklebank", image: "/family/greatgrandad.webp" },
+  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.webp" },
+  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", image: "/family/uncletrevortricklebandjr.webp" },
+  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", image: "/family/Myfather.webp" },
+  { year: "1959", relation: "Uncle", name: "Ian Tricklebank", image: "/family/uncleian.webp" },
+  { year: "Current", relation: "Current", name: "Peter Tricklebank", image: "/family/pete.webp" }
 ];
 
 type Generation = (typeof generations)[number];

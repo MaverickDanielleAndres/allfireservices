@@ -38,9 +38,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Push longer-lived caching for static assets so repeat visits (and Vercel's
-  // edge) skip the round trip to origin entirely. Use stale-while-revalidate
-  // on HTML so the second hit is always served from cache instantly.
+  // Combined headers: caching + security (CSP, COOP, XFO).
   async headers() {
     return [
       {
@@ -72,17 +70,46 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Security headers — needed for Best Practices 100/100
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.youtube.com https://*.youtube-nocookie.com https://*.googletagmanager.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' data: https://fonts.gstatic.com",
+              "img-src 'self' data: blob: https://*.ytimg.com https://*.ggpht.com",
+              "media-src 'self' https://*.youtube.com",
+              "frame-src https://*.youtube.com https://*.youtube-nocookie.com",
+              "connect-src 'self' https://*.youtube.com https://*.youtube-nocookie.com",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join("; "),
+          },
+        ],
+      },
     ];
   },
 
-  // Inline critical CSS automatically (default true on Next 16, but explicit).
   productionBrowserSourceMaps: false,
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ["framer-motion", "lucide-react", "lenis"],
+    // Cut unused exports from these heavy libraries at build time.
+    optimizePackageImports: [
+      "framer-motion",
+      "lucide-react",
+      "lenis",
+      "framer-motion/dom",
+      "@vercel/speed-insights",
+    ],
   },
-  // Surface framer-motion's "min" entry directly so unused exports don't bloat
-  // the initial chunk.
 };
 
 export default nextConfig;

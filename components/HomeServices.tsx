@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { MotionSection } from "@/components/MotionPrimitives";
+import RevealOnView from "@/components/RevealOnView";
 
 import styles from "./HomeServices.module.css";
 
@@ -93,13 +93,6 @@ const services = [
   },
 ];
 
-const reveal = {
-  initial: { opacity: 1, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.08 },
-  transition: { duration: 0.65, ease: "easeOut" as const },
-};
-
 import React from "react";
 
 const capabilityLogos = [
@@ -114,12 +107,14 @@ const capabilityLogos = [
 
 export default function HomeServices() {
   return (
-    <MotionSection
-      {...reveal}
-      id="home-services"
+    <RevealOnView
+      threshold={0.08}
       className={styles.section}
-      aria-labelledby="home-services-title"
     >
+      <section
+        id="home-services"
+        aria-labelledby="home-services-title"
+      >
       <div className={styles.container}>
         <header className={styles.header}>
           <p className={styles.kicker}>What we do</p>
@@ -203,6 +198,7 @@ export default function HomeServices() {
           </Link>
         </div>
       </div>
-    </MotionSection>
+      </section>
+    </RevealOnView>
   );
 }
