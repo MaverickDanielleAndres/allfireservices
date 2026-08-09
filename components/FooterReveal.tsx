@@ -38,9 +38,12 @@ export default function FooterReveal({
 
   return (
     <>
+      {/* No transition on margin-bottom — that's a non-composited animation
+          that triggers layout/paint and contributes to CLS. Spacer div
+          instead of margin so the change is composited-friendly. */}
       <div
-        className={`footer-reveal-content relative bg-white transition-all duration-300 ${isMobile ? '' : 'z-10'}`}
-        style={{ marginBottom: isMobile ? 0 : footerHeight }}
+        className={`footer-reveal-content relative bg-white ${isMobile ? '' : 'z-10'}`}
+        style={{ paddingBottom: isMobile ? 0 : footerHeight }}
       >
         {children}
       </div>
@@ -53,5 +56,6 @@ export default function FooterReveal({
     </>
   );
 }
+
 
 

@@ -27,7 +27,11 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal"],
-  display: "swap",
+  // "optional" skips the font-swap entirely — if Inter isn't cached by
+  // the time we need to paint, the browser keeps the system fallback and
+  // never triggers a layout shift. This is the single biggest CLS win on
+  // mobile because the hero title no longer reflows when the font arrives.
+  display: "optional",
   preload: true,
   fallback: ["system-ui", "Helvetica", "Arial", "sans-serif"],
   adjustFontFallback: true,
@@ -130,13 +134,10 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${inter.variable} antialiased`}>
       <head>
-        <link rel="preconnect" href="https://www.allfireservices.com.au" />
-        <link rel="dns-prefetch" href="https://www.allfireservices.com.au" />
-        <link rel="preconnect" href="https://i.ytimg.com" />
-        <link rel="dns-prefetch" href="https://i.ytimg.com" />
-        {/* Prefetch hints removed — they compete with the hero image for the
-            critical first-paint budget on the home page. Next.js still
-            prefetches <Link> destinations on hover/viewport automatically. */}
+        {/* Both preconnect hints removed — Lighthouse flagged them as
+            "Unused preconnect" since the pages never request those origins
+            on first paint. YouTubeLite loads thumbnails lazily on
+            intersection, well after the critical path. */}
       </head>
       <body
         className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}
