@@ -149,7 +149,6 @@ export default function HomeServices() {
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
-                  style={logo.scale ? { transform: `scale(${logo.scale})` } : undefined}
                 />
               </div>
               {index < capabilityLogos.length - 1 && (
