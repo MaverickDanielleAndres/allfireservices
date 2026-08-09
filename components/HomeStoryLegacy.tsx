@@ -153,71 +153,44 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
       aria-labelledby="legacy-title"
       data-theme="light"
       className="padding-section-large home-story-legacy-root"
-      style={{ paddingBottom: '4rem' }}
+      style={{ paddingTop: '0.5rem', paddingBottom: '4rem' }}
       ref={sectionRef}
     >
       <div>
         <div className="padding-global">
           <div className="container-large">
-            <motion.header
-              className={`${styles.legacyHeader} ${aboutPage ? styles.legacyHeaderAbout : ''} home-story-legacy-header`}
-              variants={reveal}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-            >
-              {aboutPage ? (
-                <>
-                  <p className={styles.kicker}>The family behind All Fire Services</p>
-                  <h2 id="legacy-title" style={{ color: '#111111' }}>
-                    A Family Firefighting<br />
-                    <span style={{
-                      background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}>
-                      Legacy Since 1911
-                    </span>
-                  </h2>
-                  <div className="flex flex-col items-start" style={{
-                    maxWidth: '34rem',
-                    color: '#4a4a46',
-                    fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
-                    lineHeight: 1.55
+            {aboutPage && (
+              <motion.header
+                className={`${styles.legacyHeader} ${styles.legacyHeaderAbout} home-story-legacy-header`}
+                variants={reveal}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.4 }}
+              >
+                <p className={styles.kicker}>The family behind All Fire Services</p>
+                <h2 id="legacy-title" style={{ color: '#111111' }}>
+                  A Family Firefighting<br />
+                  <span style={{
+                    background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                   }}>
-                    <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
-                      The Tricklebank family&apos;s connection to firefighting began more than a century ago. Across generations, that experience has shaped a strong understanding of responsibility, service, and the importance of protecting people and property.
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p className={styles.kicker}>The family behind All Fire Services</p>
-                  <h2 id="legacy-title">
-                    Fire protection<br />
-                    <span style={{
-                      background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}>
-                      runs in our blood
-                    </span>
-                  </h2>
-                  <div className="flex flex-col items-start" style={{
-                    maxWidth: '34rem',
-                    color: '#4a4a46',
-                    fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
-                    lineHeight: 1.55
-                  }}>
-                    <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
-                      We bring over a century of inherited understanding to the way we protect properties today.
-                    </p>
-                  </div>
-                </>
-              )}
-            </motion.header>
+                    Legacy Since 1911
+                  </span>
+                </h2>
+                <div className="flex flex-col items-start" style={{
+                  maxWidth: '34rem',
+                  color: '#4a4a46',
+                  fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
+                  lineHeight: 1.55
+                }}>
+                  <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
+                    The Tricklebank family&apos;s connection to firefighting began more than a century ago. Across generations, that experience has shaped a strong understanding of responsibility, service, and the importance of protecting people and property.
+                  </p>
+                </div>
+              </motion.header>
+            )}
 
             <div className={styles.timelineViewport}>
               <motion.div

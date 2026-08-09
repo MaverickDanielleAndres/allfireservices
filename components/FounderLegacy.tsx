@@ -3,6 +3,7 @@
 import styles from "./HomeStoryLegacy.module.css";
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
+import YouTubeLite from "@/components/YouTubeLite";
 
 const reveal: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -18,7 +19,7 @@ export default function FounderLegacy() {
     <section data-theme="light" style={{ position: 'relative', zIndex: 10, background: '#ffffff' }}>
       <div className="padding-global">
         <div className="container-large">
-          <div className="padding-section-large" style={{ paddingTop: '5rem', paddingBottom: 'clamp(5rem, 8vw, 10rem)' }}>
+          <div className="padding-section-large" style={{ paddingTop: '5rem', paddingBottom: '1rem' }}>
 
             <div className={styles.newStoryGrid} style={{ marginTop: '0', marginBottom: '0', alignItems: 'center' }}>
               <motion.div
@@ -64,7 +65,8 @@ export default function FounderLegacy() {
                 </div>
               </motion.div>
 
-              {/* YouTube Video replacing photo */}
+              {/* YouTube Video replacing photo — lite facade so the 1.8 MB
+                  player script only loads when the user actually scrolls here. */}
               <motion.div
                 style={{ width: '100%', maxWidth: '340px', margin: '0 auto', borderRadius: '1.5rem', overflow: 'hidden' }}
                 variants={reveal}
@@ -73,13 +75,10 @@ export default function FounderLegacy() {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <div style={{ position: 'relative', paddingTop: '177.77%' }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
+                  <YouTubeLite
+                    videoId="PY3FuIT0XQ4"
                     title="All Fire Services family legacy"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    className="absolute inset-0 w-full h-full"
                   />
                 </div>
               </motion.div>
