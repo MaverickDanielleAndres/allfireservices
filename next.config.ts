@@ -5,6 +5,22 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
 
+  // Rewrite the old stratapage-cropped paths to their /opt/ variants so the
+  // browser always lands on the pre-resized webp versions regardless of which
+  // deployment has the /opt/ folder in sync.
+  async rewrites() {
+    return [
+      {
+        source: "/stratapage-cropped/:path(.+).(png|jpg|jpeg)",
+        destination: "/stratapage-cropped/opt/:path.webp",
+      },
+      {
+        source: "/stratapage-cropped/:path(.+).webp",
+        destination: "/stratapage-cropped/opt/:path.webp",
+      },
+    ];
+  },
+
   // Strict image sizes so Next/Image can generate tight AVIF/WebP variants.
   images: {
     qualities: [60, 75],
