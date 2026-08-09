@@ -497,17 +497,52 @@ export default function Page() {
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', backgroundColor: '#fb5614', marginRight: '10px', verticalAlign: 'middle', marginBottom: '2px' }}></span>
                 Reliable fire safety starts here
               </div>
-              <h1 className={heroStyles.heroTitle}>
+              <h1
+                style={{
+                  fontSize: 'clamp(1rem, 5vw, 5.5rem)',
+                  fontWeight: 900,
+                  lineHeight: 1.1,
+                  margin: '0 0 1.5rem',
+                  textTransform: 'uppercase',
+                  color: '#ffffff',
+                }}
+              >
                 <div className={heroStyles.heroTitleDesktop}>
-                  <span className={heroStyles.heroTitleLine}>FIRE SAFETY IS NOT A</span>
-                  <span className={heroStyles.heroTitleLine}>BOX TO TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
-                  <span className={heroStyles.heroTitleLine}><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
+                  <div style={{ whiteSpace: 'nowrap' }}>FIRE SAFETY IS NOT A</div>
+                  <div style={{ whiteSpace: 'nowrap' }}>
+                    BOX TO TICK. <span style={{ color: '#ff0000' }}>IT&apos;S A</span>
+                  </div>
+                  <div style={{ whiteSpace: 'nowrap' }}>
+                    <span
+                      style={{
+                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        paddingRight: '0.05em',
+                      }}
+                    >
+                      RESPONSIBILITY.
+                    </span>
+                  </div>
                 </div>
                 <div className={heroStyles.heroTitleMobile}>
-                  <span className="hero-title-line line-1">FIRE SAFETY IS</span>
-                  <span className="hero-title-line line-2">NOT A BOX TO</span>
-                  <span className="hero-title-line line-3">TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
-                  <span className="hero-title-line line-4"><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
+                  <div style={{ whiteSpace: 'nowrap' }}>FIRE SAFETY IS</div>
+                  <div style={{ whiteSpace: 'nowrap' }}>NOT A BOX TO</div>
+                  <div style={{ whiteSpace: 'nowrap' }}>
+                    TICK. <span style={{ color: '#ff0000' }}>IT&apos;S A</span>
+                  </div>
+                  <div style={{ whiteSpace: 'nowrap' }}>
+                    <span
+                      style={{
+                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        paddingRight: '0.05em',
+                      }}
+                    >
+                      RESPONSIBILITY.
+                    </span>
+                  </div>
                 </div>
               </h1>
               <p className={heroStyles.heroBody}>

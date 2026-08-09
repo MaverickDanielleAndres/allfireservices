@@ -41,8 +41,6 @@
   flex: 1;
   max-width: 1000px;
   color: #ffffff;
-  /* Layout isolation: prevent text reflow from shifting sibling content. */
-  contain: layout;
   animation: heroFadeIn 300ms ease-in-out;
 }
 
@@ -101,14 +99,9 @@
   font-size: clamp(1rem, 5vw, 5.5rem);
   font-weight: 900;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem;
   text-transform: uppercase;
   color: #ffffff;
-  /* Reserve the hero title's height so any font-metric shift between
-     Inter and the system fallback can't cause layout shift. The title has
-     exactly 4 lines at the clamp() min size (1rem) on the narrowest viewport. */
-  min-height: clamp(4.4rem, 22vw, 24.2rem);
-  overflow: hidden;
 }
 
 .heroTitleDesktop {
