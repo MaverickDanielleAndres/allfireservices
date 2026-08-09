@@ -9,7 +9,10 @@ export default function FooterReveal({
   children: React.ReactNode;
 }) {
   const footerRef = React.useRef<HTMLElement>(null);
-  const [footerHeight, setFooterHeight] = React.useState(0);
+  // Seed with a generous default so the main column never starts at 0
+  // margin-bottom and then jumps when the ResizeObserver fires. Prevents
+  // the layout shift that Lighthouse flags as a CLS contributor.
+  const [footerHeight, setFooterHeight] = React.useState(640);
   const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,7 +26,10 @@ export default function FooterReveal({
     if (!footerRef.current || isMobile) return;
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        setFooterHeight(entry.contentRect.height);
+        const h = entry.contentRect.height;
+        // Only push state if the value actually changed — avoids a paint
+        // on every internal observer tick.
+        setFooterHeight((prev) => (Math.abs(prev - h) < 1 ? prev : h));
       }
     });
     resizeObserver.observe(footerRef.current);
@@ -47,4 +53,5 @@ export default function FooterReveal({
     </>
   );
 }
+
 
