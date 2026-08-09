@@ -1609,6 +1609,56 @@
   text-wrap: balance;
 }
 
+/* About-page mission heading — desktop keeps a 2-line composition
+   (Excellence in / Fire Protection). On phones we explicitly force
+   three lines (Excellence in / Fire / Protection) so it never re-wraps
+   to four lines on narrow viewports. */
+.missionHeading {
+  font-size: clamp(2.5rem, 4.8vw, 5.2rem);
+  font-weight: 720;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
+  text-wrap: balance;
+  color: #111111;
+}
+
+.missionLine {
+  display: inline;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.missionAccent {
+  color: #ff0000;
+}
+
+.missionGradient {
+  background: linear-gradient(to right, #ff2a00, #ffb700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 767px) {
+  .missionHeading {
+    text-wrap: wrap;
+  }
+
+  .missionLine {
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(1.55rem, 8vw, 2.1rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+  }
+
+  .missionLineOne {
+    margin-bottom: 0.05em;
+  }
+}
+
 .newStoryContentRight {
   display: flex;
   flex-direction: column;

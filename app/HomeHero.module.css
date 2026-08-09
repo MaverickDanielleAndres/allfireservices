@@ -264,8 +264,28 @@
   .heroContent {
     max-width: 100%;
   }
+  .heroTitle {
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem) !important;
+  }
+  .heroKicker {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
   .heroTitleLine {
     white-space: normal;
+  }
+  .heroBody {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  /* On tablets, swap the 3-line desktop title for the 4-line mobile
+     composition so the long words never wrap mid-character. */
+  .heroTitleDesktop {
+    display: none;
+  }
+  .heroTitleMobile {
+    display: block;
   }
   .heroAnalytics {
     width: 100%;
@@ -314,20 +334,25 @@
     white-space: nowrap;
   }
   .heroTitleMobile .line1 {
-    font-size: clamp(1.2rem, 9vw, 2.75rem);
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
+    line-height: 1.1;
+    white-space: nowrap;
   }
   .heroTitleMobile .line2,
   .heroTitleMobile .line3,
   .heroTitleMobile .line4 {
-    font-size: clamp(1.6rem, 11vw, 2.75rem);
+    font-size: clamp(2rem, 11vw, 2.85rem);
+    line-height: 1.1;
+    white-space: nowrap;
   }
   .heroSubtitle {
-    font-size: 1.05rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
   }
   .heroBody {
-    font-size: 1.15rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
   }
   .heroActions {
     flex-direction: column;

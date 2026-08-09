@@ -138,16 +138,15 @@ export default function Footer() {
                 lineHeight: 0.92,
                 margin: 0,
               }}>Socials</h3>
-              <ul className="flex flex-wrap items-center gap-2 text-[#111111]">
+              <ul className="footer-social-list flex flex-nowrap items-center gap-2 text-[#111111]">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
-                  <li key={label}>
+                  <li key={label} className="footer-social-item flex-none">
                     <a
                       href={href}
                       aria-label={`${label} (opens in a new tab)`}
                       rel="noopener noreferrer"
                       target={href.startsWith("http") ? "_blank" : undefined}
-                      className="inline-grid h-9 w-9 flex-none place-items-center !text-[#111111] transition hover:bg-white hover:!text-[#ff4d16]"
-                      style={{ borderRadius: 0 }}
+                      className="footer-social-link inline-grid flex-none place-items-center !text-[#111111] transition hover:!text-[#ff4d16]"
                     >
                       <Icon />
                     </a>

@@ -65,6 +65,7 @@ function NavbarContent() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const toggleButtonRef = React.useRef<HTMLButtonElement | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const lenis = useLenis();
@@ -110,6 +111,20 @@ function NavbarContent() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close the mobile menu on Escape so keyboard users can dismiss it and
+  // return focus to the toggle button.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        toggleButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
 
   const isActive = (href: string) => {
     const [path, query] = href.split("?");
@@ -401,13 +416,14 @@ function NavbarContent() {
         .mobile-dropdown-link {
           display: flex;
           align-items: flex-start;
-          font-size: clamp(0.82rem, 3.6vw, 1rem);
+          font-size: clamp(0.72rem, 2.9vw, 0.88rem);
           font-weight: 700;
           line-height: 1.35;
           color: #7a7a7a;
           text-decoration: none;
           padding: 0;
-          overflow-wrap: anywhere;
+          overflow-wrap: normal;
+          word-break: normal;
         }
 
         .mobile-dropdown-link:hover {
@@ -484,13 +500,18 @@ function NavbarContent() {
           bottom: 0;
           background: #ffffff;
           z-index: 1000;
-          padding: clamp(0.5rem, 2vh, 1.25rem) 1.25rem clamp(0.75rem, 2vh, 1.25rem);
+          padding: clamp(0.5rem, 2vh, 1.25rem) 1.25rem calc(clamp(0.75rem, 2vh, 1.25rem) + env(safe-area-inset-bottom));
           transform: translateY(-100%);
-          transition: transform 300ms ease;
+          transition: transform 300ms ease, visibility 0s linear 300ms;
           opacity: 0;
           pointer-events: none;
-          /* No scrolling: everything is sized to fit the viewport. */
-          overflow: hidden;
+          /* Scroll inside the panel so long service lists remain reachable on
+             short phones while the page behind stays locked. */
+          overflow-x: hidden;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+          visibility: hidden;
           display: flex;
           flex-direction: column;
           gap: clamp(0.1rem, 0.8vh, 0.4rem);
@@ -500,10 +521,11 @@ function NavbarContent() {
           transform: translateY(0);
           opacity: 1;
           pointer-events: auto;
+          transition: transform 300ms ease, visibility 0s linear 0s;
+          visibility: visible;
         }
 
         .navbar-mobile-cta-wrap {
-          margin-top: auto;
           display: flex;
           flex-direction: row;
           gap: 0.6rem;
@@ -517,20 +539,21 @@ function NavbarContent() {
 
         .navbar-mobile-panel .navbar-cta,
         .navbar-mobile-panel .navbar-cta-outline {
-          padding: clamp(0.5rem, 1.6vh, 0.8rem) 0.75rem;
+          padding: clamp(0.5rem, 1.6vh, 0.8rem) 0.6rem;
           font-size: clamp(0.75rem, 3vw, 0.9rem);
           text-align: center;
           white-space: nowrap;
+          min-height: 44px;
         }
 
         .navbar-mobile-link {
           display: block;
-          font-size: clamp(0.9rem, 3.6vw, 1.1rem);
+          font-size: clamp(0.82rem, 3.2vw, 0.98rem);
           font-weight: 600;
           letter-spacing: -0.01em;
           color: #111111;
           text-decoration: none;
-          padding: clamp(0.3rem, 1.2vh, 0.65rem) 0;
+          padding: clamp(0.3rem, 1.2vh, 0.55rem) 0;
           border-bottom: 1px solid #f2f2f2;
         }
 
@@ -660,16 +683,23 @@ function NavbarContent() {
           </div>
 
           <button
+            ref={toggleButtonRef}
             className="navbar-mobile-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="navbar-mobile-panel"
           >
             {mobileOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </header>
 
-      <div className={`navbar-mobile-panel ${mobileOpen ? 'is-open' : ''}`}>
+      <div
+        id="navbar-mobile-panel"
+        className={`navbar-mobile-panel ${mobileOpen ? 'is-open' : ''}`}
+        aria-hidden={!mobileOpen}
+      >
         {navItems.map((item) => (
           <div key={item.label}>
             {item.items ? (

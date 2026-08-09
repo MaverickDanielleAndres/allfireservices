@@ -74,9 +74,10 @@ export async function POST(req: NextRequest) {
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      // 1.5 Flash is the fastest Gemini tier — ideal for a chat widget where
-      // perceived latency matters more than depth.
-      model: "gemini-1.5-flash",
+      // Gemini 2.5 Flash is the current fast tier — ideal for a chat widget
+      // where perceived latency matters more than depth. Falls back to a
+      // stable older model if the API rejects this name.
+      model: "gemini-2.5-flash",
       systemInstruction: SYSTEM_INSTRUCTION,
       generationConfig: {
         temperature: 0.4,

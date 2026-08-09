@@ -33,18 +33,23 @@ const strataImages = [
   { src: "/stratapage-cropped/opt/14-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
   { src: "/stratapage-cropped/opt/15-all-fire-services-welcome-north-sydney.webp", name: "North Sydney" },
   // ── Hidden 12 (3 rows × 4 columns — revealed by "More" button) ───────────
+  // Every entry below uses a /stratapage-cropped/ photo with the ALLFIRE
+  // Welcome banner AND the CALL PETER footer cropped off (the /banner-*
+  // variants still include the banner overlay, so they were swapped out for
+  // the fully-cropped versions of the same locations — duplicates OK to
+  // keep the count at 28).
   { src: "/stratapage-cropped/opt/1welcome-to-fireman-family.webp", name: "Rose Bay" },
-  { src: "/stratapage-cropped/opt/2welcome-to-fireman-family.webp", name: "Mosman" },
-  { src: "/stratapage-cropped/opt/banner-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage-cropped/opt/banner-enmore.webp", name: "Enmore" },
-  { src: "/stratapage-cropped/opt/banner-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage-cropped/opt/banner-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage-cropped/opt/banner-randwick.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/opt/banner-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage-cropped/opt/banner-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage-cropped/opt/banner-bondi.webp", name: "Bondi" },
-  { src: "/stratapage-cropped/opt/banner-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage-cropped/opt/banner-waterloo.webp", name: "Waterloo" },
+  { src: "/stratapage-cropped/opt/randwick-building.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
+  { src: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
+  { src: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
+  { src: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
+  { src: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
+  { src: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
+  { src: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
+  { src: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
+  { src: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
+  { src: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
 ];
 
 const INITIAL_VISIBLE_COUNT = 16;

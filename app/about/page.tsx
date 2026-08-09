@@ -601,13 +601,16 @@ export default function Page() {
                         style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                       >
                         <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR MISSION</p>
-                        <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
-                          &ldquo;Excellence <span style={{ color: '#ff0000' }}>in</span><br /><span style={{
-                            background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                          }}>Fire Protection</span>&rdquo;
+                        <h2 className={styles.missionHeading} style={{ maxWidth: '24ch' }}>
+                          <span className={`${styles.missionLine} ${styles.missionLineOne}`}>
+                            &ldquo;Excellence
+                          </span>
+                          <span className={`${styles.missionLine} ${styles.missionLineTwo}`}>
+                            <span className={styles.missionAccent}>in</span>&nbsp;Fire
+                          </span>
+                          <span className={`${styles.missionLine} ${styles.missionLineThree} ${styles.missionGradient}`}>
+                            Protection&rdquo;
+                          </span>
                         </h2>
                       </header>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>

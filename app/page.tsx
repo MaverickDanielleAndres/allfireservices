@@ -526,12 +526,12 @@ export default function Page() {
                   </div>
                 </div>
                 <div className={heroStyles.heroTitleMobile}>
-                  <div style={{ whiteSpace: 'nowrap' }}>FIRE SAFETY IS</div>
-                  <div style={{ whiteSpace: 'nowrap' }}>NOT A BOX TO</div>
-                  <div style={{ whiteSpace: 'nowrap' }}>
+                  <div className={heroStyles.line1}>FIRE SAFETY IS</div>
+                  <div className={heroStyles.line2}>NOT A BOX TO</div>
+                  <div className={heroStyles.line3}>
                     TICK. <span style={{ color: '#ff0000' }}>IT&apos;S A</span>
                   </div>
-                  <div style={{ whiteSpace: 'nowrap' }}>
+                  <div className={heroStyles.line4}>
                     <span
                       style={{
                         background: 'linear-gradient(to right, #ff2a00, #ffb700)',
