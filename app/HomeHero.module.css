@@ -1,0 +1,384 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.sharedBgImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.heroSection {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.heroContainer {
+  position: relative;
+  overflow: hidden;
+  min-height: min(65vh, 720px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 4rem 14rem 4rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: transparent;
+  gap: 4rem;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 1000px;
+  color: #ffffff;
+  animation: heroFadeIn 300ms ease-in-out;
+}
+
+.heroAnalytics {
+  position: relative;
+  z-index: 2;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.25rem;
+  text-align: right;
+  margin-bottom: 2rem;
+}
+
+.analyticsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.analyticsNumber {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.analyticsNumberRange {
+  white-space: nowrap;
+}
+
+.analyticsLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.heroKicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.heroTitle {
+  font-size: clamp(1rem, 5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.heroTitleDesktop {
+  display: block;
+}
+
+.heroTitleMobile {
+  display: none;
+}
+
+.heroTitleLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #f7f7f5;
+}
+
+.heroBody {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnPrimary {
+  background: #fb5614;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 99px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 200ms ease;
+}
+
+.btnPrimary:hover {
+  background: #fc0403;
+}
+
+.btnSecondary {
+  background: #ffffff;
+  color: #111111;
+  padding: 1rem 2rem;
+  border-radius: 99px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 200ms ease;
+}
+
+.btnSecondary:hover {
+  background: #f7f7f5;
+}
+
+.infoCardsWrapper {
+  position: relative;
+  padding: 5rem 0 6rem 0;
+  background-color: transparent;
+  z-index: 2;
+}
+
+.infoCardsSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.infoCard {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.infoCardDark {
+  background: #111111;
+  color: #ffffff;
+}
+
+.infoCardCard1 {
+  background: linear-gradient(135deg, #d81b1b, #a31010);
+}
+
+.infoCardCard2 {
+  background: linear-gradient(135deg, #660c0c, #3d0505);
+}
+
+.infoCardCard3 {
+  background: #111111;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #111111;
+  z-index: 2;
+  position: relative;
+}
+
+.infoCardDark .cardTitle {
+  color: #ffffff;
+}
+
+.cardText {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 500;
+  z-index: 2;
+  position: relative;
+}
+
+.infoCardDark .cardText {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cardWatermark {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0.5rem;
+  font-size: 4.5rem;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.03);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.infoCardDark .cardWatermark {
+  color: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 1024px) {
+  .heroContainer {
+    padding: 4rem 2rem 12rem 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .heroContent {
+    max-width: 100%;
+  }
+  .heroTitleLine {
+    white-space: normal;
+  }
+  .heroAnalytics {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .analyticsItem {
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 150px;
+    align-items: flex-start;
+  }
+  .infoCardsSection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 0;
+  }
+  .heroContainer {
+    padding: 2rem 1.5rem 12rem 1.5rem;
+    gap: 2.5rem;
+  }
+  .heroKicker {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .heroTitle {
+    line-height: 1.15;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  .heroTitleDesktop {
+    display: none;
+  }
+  .heroTitleMobile {
+    display: block;
+  }
+  .heroTitleLine {
+    display: block;
+    white-space: nowrap;
+  }
+  .heroTitleMobile .line1 {
+    font-size: clamp(1.2rem, 9vw, 2.75rem);
+  }
+  .heroTitleMobile .line2,
+  .heroTitleMobile .line3,
+  .heroTitleMobile .line4 {
+    font-size: clamp(1.6rem, 11vw, 2.75rem);
+  }
+  .heroSubtitle {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+  .heroBody {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+  }
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .heroActions .btnPrimary,
+  .heroActions .btnSecondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+  .heroAnalytics {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    align-items: stretch;
+    text-align: center;
+    width: 100%;
+  }
+  .analyticsItem {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  .analyticsNumber {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
+  }
+  .analyticsNumberRange {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+  .analyticsLabel {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+  .mobileVideoTall {
+    aspect-ratio: 4/3 !important;
+  }
+  .infoCardsSection {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}

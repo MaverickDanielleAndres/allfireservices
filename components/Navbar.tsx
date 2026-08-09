@@ -264,12 +264,15 @@ function NavbarContent() {
           width: min(34rem, calc(100vw - 3rem));
           border-radius: 0.5rem;
           box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-          padding: 0.6rem 0.75rem 0.75rem;
+          padding: 0 0.75rem 0.75rem;
           opacity: 0;
           visibility: hidden;
           transform: translate(-50%, 10px);
           transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
           border: 1px solid rgba(0,0,0,0.05);
+          /* Clip the hover background to the dropdown's rounded corners so
+             the pink tint on the "ALL SERVICES" row doesn't bleed outside. */
+          overflow: hidden;
         }
 
         /* Invisible bridge so the pointer can cross the gap without closing. */
@@ -293,15 +296,18 @@ function NavbarContent() {
           display: flex;
           justify-content: center;
           border-bottom: 1px solid #f0f0f0;
-          margin-bottom: 0.35rem;
-          padding-bottom: 0.35rem;
-          border-radius: 0.25rem 0.25rem 0 0;
-          transition: background-color 150ms ease, border-color 150ms ease;
+          /* Negative margins on all sides so the hover background extends
+             edge-to-edge inside the dropdown, including the rounded top
+             corners. The inner padding keeps the text centred. */
+          margin: 0 -0.75rem 0.35rem;
+          padding: 0.6rem 0.75rem 0.35rem;
+          border-radius: 0;
+          transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
         }
 
         .navbar-dropdown-top:hover {
-          background: rgba(251, 86, 20, 0.06);
-          border-bottom-color: rgba(251, 86, 20, 0.35);
+          background: rgba(251, 86, 20, 0.12);
+          border-bottom-color: #fb5614;
         }
 
         .navbar-dropdown-top .navbar-dropdown-link {
@@ -313,11 +319,13 @@ function NavbarContent() {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           color: #888888;
+          transition: color 200ms ease, transform 200ms ease;
         }
 
         .navbar-dropdown-top:hover .navbar-dropdown-link {
           color: #fb5614;
           background: transparent;
+          transform: translateY(-1px);
         }
 
         .navbar-dropdown-grid {
@@ -338,17 +346,19 @@ function NavbarContent() {
           font-weight: 500;
           font-size: 0.8rem;
           line-height: 1.25;
-          transition: color 150ms ease, background-color 150ms ease;
+          transition: color 200ms ease, background-color 200ms ease, transform 200ms ease, padding-left 200ms ease;
         }
 
         .navbar-dropdown-link:hover {
           color: #fb5614;
-          background: rgba(251, 86, 20, 0.05);
+          background: rgba(251, 86, 20, 0.12);
+          padding-left: 0.75rem;
         }
 
         .navbar-dropdown-link.is-active {
           color: #fb5614;
           font-weight: 700;
+          background: rgba(251, 86, 20, 0.08);
         }
 
         .navbar-mobile-link.is-active,

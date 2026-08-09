@@ -1,14 +1,11 @@
-import {
-  MotionConfig,
-  MotionDiv,
-  MotionSection,
-} from "@/components/MotionPrimitives";
+import RevealOnView from "@/components/RevealOnView";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Counter from "@/components/Counter";
 import DeferredVideo from "@/components/DeferredVideo";
 import Link from "next/link";
+import heroStyles from "./HomeHero.module.css";
 
 const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
 const StrataSection = dynamic(() => import("@/components/StrataSection"));
@@ -19,13 +16,6 @@ const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
 const FounderLegacy = dynamic(() => import("@/components/FounderLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
-
-const sectionReveal = {
-  initial: { opacity: 1, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.12 },
-  transition: { duration: 0.65, ease: "easeOut" as const },
-};
 
 const clientLogoRows = [
   [
@@ -479,363 +469,9 @@ function PreFaqCTA() {
 
 export default function Page() {
   return (
-    <MotionConfig reducedMotion="user">
-      <main className="main-wrapper">
-        <div className="scroll-wrapper">
-        <div className="hero-and-cards-wrapper">
-          <style>{`
-            .hero-and-cards-wrapper {
-              position: relative;
-              width: 100%;
-              z-index: 10;
-            }
-            .shared-bg-image {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              z-index: 0;
-            }
-            .home-hero-section {
-              position: relative;
-              z-index: 1;
-              width: 100%;
-            }
-            .hero-container {
-              position: relative;
-              overflow: hidden;
-              min-height: 65vh;
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: space-between;
-              padding: 2rem 4rem 14rem 4rem;
-              max-width: 1440px;
-              margin: 0 auto;
-              background-color: transparent;
-              gap: 4rem;
-            }
-
-            .hero-content {
-              position: relative;
-              z-index: 2;
-              flex: 1;
-              max-width: 1000px;
-              color: #ffffff;
-              animation: fade-in 300ms ease-in-out;
-            }
-            .hero-analytics {
-              position: relative;
-              z-index: 2;
-              width: auto;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: flex-end;
-              gap: 1.25rem;
-              text-align: right;
-              margin-bottom: 2rem;
-            }
-            .analytics-item {
-              display: flex;
-              flex-direction: column;
-              align-items: flex-end;
-            }
-            .analytics-number {
-              font-size: 2.25rem;
-              font-weight: 800;
-              color: #ffffff;
-              line-height: 1;
-              margin-bottom: 0.25rem;
-            }
-            .analytics-number.is-range {
-              white-space: nowrap;
-            }
-            .analytics-label {
-              font-size: 0.9rem;
-              font-weight: 600;
-              color: #ffffff;
-            }
-            @keyframes fade-in {
-              from { opacity: 0; transform: translateY(10px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-            .hero-kicker {
-              font-size: 0.8rem;
-              font-weight: 700;
-              text-transform: uppercase;
-              letter-spacing: 1px;
-              margin-bottom: 1rem;
-              color: #ffffff;
-            }
-            .hero-title {
-              font-size: clamp(1rem, 5vw, 5.5rem);
-              font-weight: 900;
-              line-height: 1.1;
-              margin-bottom: 1.5rem;
-              text-transform: uppercase;
-              color: #ffffff;
-            }
-            .hero-title-desktop {
-              display: block;
-            }
-            .hero-title-mobile {
-              display: none;
-            }
-            .hero-title-line {
-              display: block;
-              white-space: nowrap;
-            }
-            .hero-subtitle {
-              font-size: 1.25rem;
-              font-weight: 600;
-              margin-bottom: 1rem;
-              color: #f7f7f5;
-            }
-            .hero-body {
-              font-size: 1.35rem;
-              line-height: 1.5;
-              margin-bottom: 2.5rem;
-              color: rgba(255, 255, 255, 0.9);
-              max-width: 600px;
-            }
-            .hero-actions {
-              display: flex;
-              gap: 1rem;
-            }
-            .btn-primary {
-              background: #fb5614;
-              color: #ffffff;
-              padding: 1rem 2rem;
-              border-radius: 99px;
-              font-weight: 700;
-              text-decoration: none;
-              transition: background-color 200ms ease;
-            }
-            .btn-primary:hover {
-              background: #fc0403;
-            }
-            .btn-secondary {
-              background: #ffffff;
-              color: #111111;
-              padding: 1rem 2rem;
-              border-radius: 99px;
-              font-weight: 700;
-              text-decoration: none;
-              transition: background-color 200ms ease;
-            }
-            .btn-secondary:hover {
-              background: #f7f7f5;
-            }
-            
-            .info-cards-wrapper {
-              position: relative;
-              padding: 5rem 0 6rem 0;
-              background-color: transparent;
-              z-index: 2;
-            }
-            .info-cards-section {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: 1.5rem;
-              max-width: 1440px;
-              margin: 0 auto;
-              padding: 0 2rem;
-              position: relative;
-              z-index: 1;
-            }
-            .info-card {
-              background: #ffffff;
-              border-radius: 1.5rem;
-              padding: 2.5rem;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              position: relative;
-              overflow: hidden;
-              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Increased shadow to pop on light bg */
-            }
-            .info-card.dark {
-              background: #111111;
-              color: #ffffff;
-            }
-            .info-card.card-1 {
-              background: linear-gradient(135deg, #d81b1b, #a31010);
-            }
-            .info-card.card-2 {
-              background: linear-gradient(135deg, #660c0c, #3d0505);
-            }
-            .info-card.card-3 {
-              background: #111111;
-            }
-            .card-title {
-              font-size: 1.5rem;
-              font-weight: 800;
-              margin-bottom: 0.5rem;
-              color: #111111;
-              z-index: 2;
-              position: relative;
-            }
-            .info-card.dark .card-title {
-              color: #ffffff;
-            }
-            .card-text {
-              font-size: 1rem;
-              color: #666666;
-              font-weight: 500;
-              z-index: 2;
-              position: relative;
-            }
-            .info-card.dark .card-text {
-              color: rgba(255, 255, 255, 0.7);
-            }
-            .card-watermark {
-              position: absolute;
-              right: 1.5rem;
-              bottom: 0.5rem;
-              font-size: 4.5rem;
-              line-height: 1;
-              font-weight: 900;
-              color: rgba(0, 0, 0, 0.03); /* Changed to black for white bg */
-              z-index: 1;
-              pointer-events: none;
-              white-space: nowrap;
-            }
-            .info-card.dark .card-watermark {
-              color: rgba(255, 255, 255, 0.03);
-            }
-
-            @media (max-width: 1024px) {
-              .hero-container {
-                padding: 4rem 2rem 12rem 2rem;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
-              }
-              .hero-content {
-                max-width: 100%;
-              }
-              .hero-title-line {
-                white-space: normal;
-              }
-              .hero-analytics {
-                width: 100%;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                text-align: left;
-                align-items: flex-start;
-                gap: 2rem;
-              }
-              .analytics-item {
-                flex: 1 1 calc(33.333% - 1rem);
-                min-width: 150px;
-                align-items: flex-start;
-              }
-              .info-cards-section {
-                grid-template-columns: repeat(2, 1fr);
-              }
-            }
-
-            @media (max-width: 768px) {
-              .home-hero-section {
-                padding: 0;
-              }
-              .hero-container {
-                padding: 2rem 1.5rem 12rem 1.5rem;
-                gap: 2.5rem;
-              }
-              .hero-kicker {
-                font-size: 0.8rem;
-                white-space: nowrap;
-              }
-              .hero-title {
-                line-height: 1.15;
-                word-break: normal;
-                overflow-wrap: break-word;
-              }
-              .hero-title-desktop {
-                display: none;
-              }
-              .hero-title-mobile {
-                display: block;
-              }
-              .hero-title-line {
-                display: block;
-                white-space: nowrap;
-              }
-              .hero-title-mobile .line-1 {
-                font-size: clamp(1.2rem, 9vw, 2.75rem);
-              }
-              .hero-title-mobile .line-2,
-              .hero-title-mobile .line-3,
-              .hero-title-mobile .line-4 {
-                font-size: clamp(1.6rem, 11vw, 2.75rem);
-              }
-              .hero-subtitle {
-                font-size: 1.05rem;
-                margin-bottom: 0.75rem;
-              }
-              .hero-body {
-                font-size: 1.15rem;
-                margin-bottom: 1.5rem;
-              }
-              .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.75rem;
-              }
-              .hero-actions .btn-primary, .hero-actions .btn-secondary {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                width: 100%;
-                min-height: 3rem;
-                padding: 0.8rem 1rem;
-                font-size: 0.95rem;
-                box-sizing: border-box;
-              }
-              .hero-analytics {
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                align-items: stretch;
-                text-align: center;
-                width: 100%;
-              }
-              .analytics-item {
-                flex: 1 1 0;
-                min-width: 0;
-                width: auto;
-                align-items: center;
-                justify-content: center;
-              }
-              .analytics-number {
-                font-size: clamp(1.2rem, 5vw, 1.5rem);
-                margin-bottom: 0.2rem;
-                line-height: 1.1;
-              }
-              .analytics-number.is-range {
-                font-size: clamp(1.2rem, 5vw, 1.5rem);
-              }
-              .analytics-label {
-                font-size: 0.7rem;
-                line-height: 1.2;
-              }
-              .mobile-video-tall {
-                aspect-ratio: 4/3 !important;
-              }
-              .info-cards-section {
-                grid-template-columns: 1fr;
-                padding: 0 1rem;
-              }
-            }
-          `}</style>
-          
+    <main className="main-wrapper">
+      <div className="scroll-wrapper">
+        <div className={heroStyles.wrapper}>
           <div className="bg-wrapper" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image 
               src="/annual-fire-safety-statement/all-fire-services-hydrant-flow-test-1.webp" 
@@ -855,54 +491,52 @@ export default function Page() {
             {/* Seamless fade to white – tall & cubic-eased to prevent any visible line */}
             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '55%', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 8%, rgba(255,255,255,0.03) 16%, rgba(255,255,255,0.07) 24%, rgba(255,255,255,0.13) 32%, rgba(255,255,255,0.22) 40%, rgba(255,255,255,0.34) 49%, rgba(255,255,255,0.49) 57%, rgba(255,255,255,0.64) 65%, rgba(255,255,255,0.78) 73%, rgba(255,255,255,0.89) 81%, rgba(255,255,255,0.96) 89%, #ffffff 95%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
-          <section className="home-hero-section">
-          <div className="hero-container" style={{ minHeight: 'min(65vh, 720px)' }}>
-            <div className="hero-content">
-              <div className="hero-kicker">
+          <section className={heroStyles.heroSection}>
+          <div className={heroStyles.heroContainer} style={{ minHeight: 'min(65vh, 720px)' }}>
+            <div className={heroStyles.heroContent}>
+              <div className={heroStyles.heroKicker}>
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', backgroundColor: '#fb5614', marginRight: '10px', verticalAlign: 'middle', marginBottom: '2px' }}></span>
                 Reliable fire safety starts here
               </div>
-              <h1 className="hero-title">
-                <div className="hero-title-desktop">
-                  <span className="hero-title-line">FIRE SAFETY IS NOT A</span>
-                  <span className="hero-title-line">BOX TO TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
-                  <span className="hero-title-line"><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
+              <h1 className={heroStyles.heroTitle}>
+                <div className={heroStyles.heroTitleDesktop}>
+                  <span className={heroStyles.heroTitleLine}>FIRE SAFETY IS NOT A</span>
+                  <span className={heroStyles.heroTitleLine}>BOX TO TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
+                  <span className={heroStyles.heroTitleLine}><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
                 </div>
-                <div className="hero-title-mobile">
+                <div className={heroStyles.heroTitleMobile}>
                   <span className="hero-title-line line-1">FIRE SAFETY IS</span>
                   <span className="hero-title-line line-2">NOT A BOX TO</span>
                   <span className="hero-title-line line-3">TICK. <span style={{ color: "#ff0000" }}>IT&apos;S A</span></span>
                   <span className="hero-title-line line-4"><span style={{ background: 'linear-gradient(to right, #ff2a00, #ffb700)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', paddingRight: '0.05em' }}>RESPONSIBILITY.</span></span>
                 </div>
               </h1>
-              <p className="hero-body">
+              <p className={heroStyles.heroBody}>
                 <strong style={{ color: "#ffffff", fontWeight: 800 }}>Fire protection is more than a service, it&apos;s in our blood.</strong> Backed by generations of firefighting experience, we deliver practical and reliable fire safety solutions.
               </p>
-              <div className="hero-actions">
-                <Link href="/contact" className="btn-primary">Get a Quote</Link>
-                <Link href="/services" className="btn-secondary">Explore Our Services</Link>
+              <div className={heroStyles.heroActions}>
+                <Link href="/contact" className={heroStyles.btnPrimary}>Get a Quote</Link>
+                <Link href="/services" className={heroStyles.btnSecondary}>Explore Our Services</Link>
               </div>
             </div>
             
-              <MotionDiv 
-                className="hero-analytics"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+              <RevealOnView
+                className={heroStyles.heroAnalytics}
+                threshold={0.05}
               >
-                <div className="analytics-item">
-                  <div className="analytics-number is-range">1911&ndash;2026</div>
-                  <div className="analytics-label">Family firefighting legacy</div>
+                <div className={heroStyles.analyticsItem}>
+                  <div className={`${heroStyles.analyticsNumber} ${heroStyles.analyticsNumberRange}`}>1911&ndash;2026</div>
+                  <div className={heroStyles.analyticsLabel}>Family firefighting legacy</div>
                 </div>
-                <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={2026} to={2009} duration={0.4} /></div>
-                  <div className="analytics-label">Australian owned since</div>
+                <div className={heroStyles.analyticsItem}>
+                  <div className={heroStyles.analyticsNumber}><Counter from={2026} to={2009} duration={0.4} /></div>
+                  <div className={heroStyles.analyticsLabel}>Australian owned since</div>
                 </div>
-                <div className="analytics-item">
-                  <div className="analytics-number"><Counter from={10} to={24} suffix="/7" duration={0.4} /></div>
-                  <div className="analytics-label">Emergency response</div>
+                <div className={heroStyles.analyticsItem}>
+                  <div className={heroStyles.analyticsNumber}><Counter from={10} to={24} suffix="/7" duration={0.4} /></div>
+                  <div className={heroStyles.analyticsLabel}>Emergency response</div>
                 </div>
-              </MotionDiv>
+              </RevealOnView>
             </div>
           </section>
         </div>
@@ -913,42 +547,41 @@ export default function Page() {
 
         <HomeServices />
 
-        <MotionDiv {...sectionReveal}>
+        <RevealOnView>
           <GoogleReviews />
-        </MotionDiv>
-        <MotionDiv {...sectionReveal}>
+        </RevealOnView>
+        <RevealOnView>
           <ClientsMarquee />
-        </MotionDiv>
+        </RevealOnView>
 
         {/* Full-width Autoplaying Hero Video — only mounts once the user scrolls here */}
-        <MotionDiv {...sectionReveal} style={{ width: '100%' }}>
+        <RevealOnView style={{ width: '100%' }}>
           <DeferredVideo
             src="/hero-video.mp4"
             poster="/herosectionimage.webp"
-            className="mobile-video-tall"
+            className={heroStyles.mobileVideoTall}
             style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}
           />
-        </MotionDiv>
+        </RevealOnView>
 
         <StrataSection />
         {/* ── Fire Safety Shorts ── */}
-        <MotionDiv {...sectionReveal}>
+        <RevealOnView>
           <FireSafetyShorts />
-        </MotionDiv>
+        </RevealOnView>
 
-        <MotionDiv {...sectionReveal}>
+        <RevealOnView>
           <FAQ />
-        </MotionDiv>
-        <MotionDiv {...sectionReveal}>
+        </RevealOnView>
+        <RevealOnView>
           <PreFaqCTA />
-        </MotionDiv>
+        </RevealOnView>
 
-        <MotionDiv {...sectionReveal}>
+        <RevealOnView>
           <ContactCTA />
-        </MotionDiv>
+        </RevealOnView>
         </div>
         </div>
       </main>
-    </MotionConfig>
   );
 }

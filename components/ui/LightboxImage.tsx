@@ -1,10 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
+import { useLenis } from "lenis/react";
+import styles from "./LightboxImage.module.css";
 
 export function LightboxImage({ src, alt, sizes, fill, style, className }: any) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const lenis = useLenis();
+
+  useEffect(() => { setMounted(true); }, []);
+
+  // Lock the body scroll and stop Lenis while the lightbox is open —
+  // Lenis in `root` mode intercepts scroll events and can otherwise
+  // interfere with the modal scrim.
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    lenis?.stop?.();
+    return () => {
+      document.body.style.overflow = prev;
+      lenis?.start?.();
+    };
+  }, [isOpen, lenis]);
+
+  const modal = isOpen && (
+    <div
+      className={styles.overlay}
+      onClick={() => setIsOpen(false)}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enlarged image"
+    >
+      <button
+        className={styles.closeBtn}
+        onClick={() => setIsOpen(false)}
+        aria-label="Close gallery"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div
+        className={styles.stage}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={src}
+          alt="Enlarged view"
+          className={styles.image}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <>
       <button
@@ -27,79 +81,7 @@ export function LightboxImage({ src, alt, sizes, fill, style, className }: any) 
         </div>
       </button>
 
-      {isOpen && (
-        <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 9999,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(0,0,0,0.8)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              padding: '90px 24px 24px',
-            }}
-            onClick={() => setIsOpen(false)}
-          >
-            <button
-              onClick={() => setIsOpen(false)}
-              style={{
-                position: 'absolute',
-                top: '110px',
-                right: '24px',
-                zIndex: 50,
-                padding: '0.625rem',
-                background: 'rgba(0,0,0,0.5)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: 'none',
-                borderRadius: '50%',
-                width: '2.5rem',
-                height: '2.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                color: 'white',
-                transition: 'background-color 0.2s',
-                lineHeight: 1,
-              }}
-              aria-label="Close gallery"
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.7)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'; }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-
-            <div
-              style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={src}
-                alt="Enlarged view"
-                style={{
-                  maxWidth: '100%',
-                  maxHeight: 'calc(100vh - 140px)',
-                  width: 'auto',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  borderRadius: '12px',
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
-                  display: 'block'
-                }}
-              />
-            </div>
-          </div>
-      )}
+      {mounted && modal && createPortal(modal, document.body)}
     </>
   );
 }

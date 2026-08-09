@@ -1,0 +1,74 @@
+/* -------------------------------------------------------------------------- */
+/*  Lightbox modal — forces full-viewport coverage and shrinks the image     */
+/*  wrapper to exactly the image's natural size. Uses !important to win     */
+/*  against any inherited / inline style on the bento gallery parent.        */
+/* -------------------------------------------------------------------------- */
+
+.overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 2147483647 !important;
+  /* No display:flex here — we use absolute positioning on the stage so the
+     flex container cannot stretch or centre-misalign the wrapper. */
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+.closeBtn {
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 50 !important;
+  padding: 0.625rem !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  color: white !important;
+  line-height: 1 !important;
+}
+
+/* The image container — absolutely positioned + display:inline-block so it
+   shrinks to the image's natural width instead of being stretched by the
+   overlay's flex layout. This is the key fix. */
+.stage {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: calc(100vw - 48px) !important;
+  max-height: calc(100vh - 48px) !important;
+  line-height: 0 !important; /* kill inline whitespace under image */
+  font-size: 0 !important;
+}
+
+.image {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: calc(100vw - 48px) !important;
+  max-height: calc(100vh - 48px) !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}

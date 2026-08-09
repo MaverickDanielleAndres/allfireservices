@@ -1,7 +1,8 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
 import HeroScrollCue from "@/components/HeroScrollCue";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import galleryStyles from "./StrataGallery.module.css";
@@ -67,6 +68,9 @@ const properties = [
 export default function Page() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [showMore, setShowMore] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const openLightbox = (index: number) => setActiveImageIndex(index);
   const closeLightbox = () => setActiveImageIndex(null);
@@ -590,8 +594,10 @@ export default function Page() {
           </div>
         </section>
 
-        {/* LIGHTBOX MODAL */}
-        {activeImageIndex !== null && (
+        {/* LIGHTBOX MODAL — rendered via portal to escape any transformed ancestor.
+            The image container shrinks to the image's natural size so the dark
+            backdrop only appears around the image, not whitespace. */}
+        {mounted && activeImageIndex !== null && createPortal(
           <div
             role="dialog"
             aria-modal="true"
@@ -602,12 +608,16 @@ export default function Page() {
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 9999,
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              height: '100vh',
+              zIndex: 2147483647,
               backgroundColor: 'rgba(10, 10, 10, 0.92)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 'clamp(7rem, 12vh, 9rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem)',
+              padding: 'clamp(1rem, 3vw, 2rem)',
+              overflow: 'hidden',
             }}
           >
             <button
@@ -616,7 +626,7 @@ export default function Page() {
               aria-label="Close photo"
               style={{
                 position: 'absolute',
-                top: 'clamp(5.5rem, 9vh, 6.5rem)',
+                top: 'clamp(0.75rem, 2vw, 1.5rem)',
                 right: 'clamp(0.75rem, 2vw, 1.5rem)',
                 width: '2.75rem',
                 height: '2.75rem',
@@ -690,37 +700,47 @@ export default function Page() {
               </svg>
             </button>
 
+            {/* Image wrapper — absolutely positioned + width:auto so it
+                shrinks to the image's natural size. No fixed width, no
+                aspect-ratio forcing a 4:3 box. */}
             <div
               onClick={(e) => e.stopPropagation()}
               style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: 'min(1100px, 92vw)',
-                maxHeight: '100%',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: '0.75rem',
+                width: 'auto',
+                height: 'auto',
+                maxWidth: 'calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
+                maxHeight: 'calc(100vh - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
               }}
             >
               <div style={{
                 position: 'relative',
-                width: '100%',
-                aspectRatio: '4 / 3',
+                width: 'auto',
+                height: 'auto',
                 borderRadius: '1rem',
                 overflow: 'hidden',
                 backgroundColor: '#111111',
                 boxShadow: '0 30px 60px -10px rgba(0, 0, 0, 0.6)',
+                lineHeight: 0,
+                fontSize: 0,
               }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={strataImages[activeImageIndex].src}
                   alt={`All Fire Services at ${strataImages[activeImageIndex].name}`}
                   style={{
-                    position: 'absolute',
-                    inset: 0,
-                    width: '100%',
-                    height: '100%',
+                    display: 'block',
+                    width: 'auto',
+                    height: 'auto',
+                    maxWidth: 'calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
+                    maxHeight: 'calc(100vh - 2 * clamp(1rem, 3vw, 2rem) - 100px)',
                     objectFit: 'contain',
                     backgroundColor: '#111111',
                   }}
@@ -733,6 +753,7 @@ export default function Page() {
                 fontWeight: 600,
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
+                whiteSpace: 'nowrap',
               }}>
                 {strataImages[activeImageIndex].name}
                 <span style={{ marginLeft: '0.75rem', opacity: 0.6, fontWeight: 500 }}>
@@ -740,7 +761,8 @@ export default function Page() {
                 </span>
               </p>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
 
         <ContactCTA />
