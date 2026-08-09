@@ -19,6 +19,10 @@ import {
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  // Limit the woff2 download to only the weights we actually use.
+  // Adding unused weights here triples or quadruples the font payload.
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal"],
   display: "swap",
   preload: true,
   fallback: ["system-ui", "Helvetica", "Arial", "sans-serif"],
@@ -160,13 +164,32 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.allfireservices.com.au" />
         <link rel="dns-prefetch" href="https://www.allfireservices.com.au" />
         {/*
+         * YouTube thumbnail CDN — preconnect so the lite-embed facade on the
+         * about page paints instantly when the user scrolls into it. The
+         * actual iframe only mounts on user interaction, avoiding 1.8MB of
+         * preloaded JS on initial load.
+         */}
+        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="dns-prefetch" href="https://i.ytimg.com" />
+        {/*
+         * Prefetch the most likely next pages so client-side navigation
+         * is effectively instant. The router will warm these chunks on
+         * idle so the user sees no white flash when clicking a Link.
+         */}
+        <link rel="prefetch" href="/services" />
+        <link rel="prefetch" href="/contact" />
+        <link rel="prefetch" href="/about" />
+        {/*
          * The home page hero portrait is the LCP candidate. Next/Image with
          * `priority` already auto-injects the right <link rel="preload">
          * pointing at the optimized _next/image URL, so no need to add
          * another hint here (duplicating the request would just double-fetch).
          */}
       </head>
-      <body className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}>
+      <body
+        className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}
+        style={{ scrollbarGutter: "stable" }}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

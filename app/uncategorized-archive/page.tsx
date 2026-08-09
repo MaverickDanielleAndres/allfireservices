@@ -31,36 +31,16 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="about-hero_image-wrapper">
-                    <div
-                      data-poster-url="/logo.png"
-                      data-video-urls="https://cdn.prod.website-files.com/675171b75e69f27843937162%2F678e2d686b21596fe0316b79_process-head-transcode.mp4,https://cdn.prod.website-files.com/675171b75e69f27843937162%2F678e2d686b21596fe0316b79_process-head-transcode.webm"
-                      data-autoplay="true"
-                      data-loop="true"
-                      data-wf-ignore="true"
-                      className="about-hero_image-video w-background-video w-background-video-atom"
-                    >
-                      <video
-                        id="32e39018-a30a-45ed-4f40-93d80a69d746-video"
-                        autoPlay
-                        loop
-                        style={{
-                          backgroundImage:
-                            "url(&quot;/logo.png&quot;)",
-                        }}
-                        muted
-                        playsInline
-                        data-wf-ignore="true"
-                        data-object-fit="cover"
-                      >
-                        <source
-                          src="https://cdn.prod.website-files.com/675171b75e69f27843937162%2F678e2d686b21596fe0316b79_process-head-transcode.mp4"
-                          data-wf-ignore="true"
-                        />
-                        <source
-                          src="https://cdn.prod.website-files.com/675171b75e69f27843937162%2F678e2d686b21596fe0316b79_process-head-transcode.webm"
-                          data-wf-ignore="true"
-                        />
-                      </video>
+                    <div className="about-hero_image-video">
+                      {/* Was a third-party video that no longer loads — show the
+                          logo as a poster so the slot isn't empty. */}
+                      <img
+                        src="/logo.png"
+                        loading="lazy"
+                        decoding="async"
+                        alt=""
+                        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                      />
                     </div>
                     <div
                       data-theme="dark"

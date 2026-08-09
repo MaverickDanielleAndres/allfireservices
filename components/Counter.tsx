@@ -29,7 +29,17 @@ export default function Counter({
   }, [count, to, duration]);
 
   return (
-    <span ref={ref} style={{ display: "inline-block" }}>
+    <span
+      ref={ref}
+      style={{
+        display: "inline-block",
+        fontVariantNumeric: "tabular-nums",
+        // Reserve enough width for the longest digit string during the count
+        // so the parent layout doesn't shift as the number ticks down.
+        minWidth: `${Math.max(String(from).length, String(to).length)}ch`,
+        textAlign: "center",
+      }}
+    >
       {prefix}
       <motion.span>{rounded}</motion.span>
       {suffix}

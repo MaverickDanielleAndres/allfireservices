@@ -230,7 +230,7 @@ export default function GoogleReviews() {
                <div className="flex -space-x-3 justify-center">
                   {testimonials.slice(0, 4).map((t, i) => (
                     <div key={i} className="w-12 h-12 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center shadow-sm overflow-hidden">
-                       <img src={t.image} alt={t.author} className="w-full h-full object-cover" />
+                       <img src={t.image} alt={t.author} loading="lazy" decoding="async" width={48} height={48} className="w-full h-full object-cover" />
                     </div>
                   ))}
                </div>
@@ -342,7 +342,7 @@ export default function GoogleReviews() {
                     <div className="mt-8">
                        <div className="flex items-center gap-4">
                          <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 overflow-hidden shrink-0">
-                            <img src={testimonial.image} alt={testimonial.author} className="w-full h-full object-cover" />
+                            <img src={testimonial.image} alt={testimonial.author} loading="lazy" decoding="async" width={48} height={48} className="w-full h-full object-cover" />
                          </div>
                          <div>
                             <div className="text-gray-900 text-sm md:text-[15px] font-bold">{testimonial.author}</div>

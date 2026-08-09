@@ -855,7 +855,7 @@ export default function Page() {
             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '55%', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 8%, rgba(255,255,255,0.03) 16%, rgba(255,255,255,0.07) 24%, rgba(255,255,255,0.13) 32%, rgba(255,255,255,0.22) 40%, rgba(255,255,255,0.34) 49%, rgba(255,255,255,0.49) 57%, rgba(255,255,255,0.64) 65%, rgba(255,255,255,0.78) 73%, rgba(255,255,255,0.89) 81%, rgba(255,255,255,0.96) 89%, #ffffff 95%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className="home-hero-section">
-          <div className="hero-container">
+          <div className="hero-container" style={{ minHeight: 'min(65vh, 720px)' }}>
             <div className="hero-content">
               <div className="hero-kicker">
                 <span style={{ display: 'inline-block', width: '8px', height: '8px', backgroundColor: '#fb5614', marginRight: '10px', verticalAlign: 'middle', marginBottom: '2px' }}></span>
@@ -921,15 +921,16 @@ export default function Page() {
 
         {/* Full-width Autoplaying Hero Video */}
         <MotionDiv {...sectionReveal} style={{ width: '100%' }}>
-          <video 
-            src="/hero-video.mp4" 
-            autoPlay 
-            loop 
-            muted 
+          <video
+            src="/hero-video.mp4"
+            autoPlay
+            loop
+            muted
             playsInline
             preload="none"
+            poster="/herosectionimage.webp"
             className="mobile-video-tall"
-            style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover' }}
+            style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}
           />
         </MotionDiv>
 

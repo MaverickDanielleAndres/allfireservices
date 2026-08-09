@@ -114,3 +114,33 @@
     transition: none;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Responsive positioning                                                     */
+/*  On mobile/tablet the hero text stacks into a single column and grows       */
+/*  taller, so the cue needs to sit BELOW the body copy instead of overlapping */
+/*  it. We pin to a small fixed offset from the bottom of the hero.           */
+/* -------------------------------------------------------------------------- */
+
+/* Tablet (portrait) — fixed offset from the bottom so the cue stays clear
+   of the stacked text regardless of how short the hero collapses to. */
+@media (max-width: 991px) {
+  .cueWrap {
+    bottom: 1.25rem !important;
+  }
+}
+
+/* Mobile — pin just above the bottom edge so the chevron never lands on
+   top of the paragraph. */
+@media (max-width: 767px) {
+  .cueWrap {
+    bottom: 1rem !important;
+  }
+}
+
+/* Very small phones — nudge down a touch more if needed */
+@media (max-width: 480px) {
+  .cueWrap {
+    bottom: 0.75rem !important;
+  }
+}

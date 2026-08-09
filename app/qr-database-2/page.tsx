@@ -16,7 +16,13 @@ export default function Page() {
                     id="w-node-_13503068-11ce-9d7d-7f2c-5c20bb077c5d-d652ad6d"
                     className="contact-cta_form-block w-form"
                   >
-                    <iframe src="https://example.com/qr-database" width="100%" height="600" loading="lazy" style={{ border: "none", borderRadius: "8px" }} title="QR Database"></iframe>
+                    <p className="body-text text-neutral-600 italic">
+                      The QR database is currently unavailable. If you need access
+                      to inspection or asset records, please call our team on{" "}
+                      <a href="tel:1300765594" className="text-size-regular is-link">1300 765 594</a>{" "}
+                      or email{" "}
+                      <a href="mailto:admin@allfireservices.com.au" className="text-size-regular is-link">admin@allfireservices.com.au</a>.
+                    </p>
                     <div className="form_message-success-wrapper w-form-done">
                       <div className="form_message-success">
                         <div className="success-text">

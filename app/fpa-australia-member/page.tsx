@@ -114,27 +114,36 @@ export default function FpaAustraliaMember() {
   return (
     <main className="main-wrapper">
       <div className="scroll-wrapper">
-        <header 
-          className="section_about-hero is-dark" 
-          style={{ 
-            backgroundImage: 'url("/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+        <header
+          className="section_about-hero is-dark"
+          style={{
             position: 'relative',
             marginBottom: '4rem',
             marginTop: '-12rem',
             paddingTop: '12rem',
           }}
         >
-          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)' }} />
-          <div className="padding-global" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+            <Image
+              src="/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp"
+              alt="FPA Australia Member hero"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              priority
+              fetchPriority="high"
+              quality={60}
+              sizes="100vw"
+            />
+          </div>
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 1 }} />
+          <div className="padding-global" style={{ position: 'relative', zIndex: 2 }}>
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingTop: '13rem', paddingBottom: '4rem' }}>
-                <h1 
+                <h1
                   className="heading-style-h1"
-                  style={{ 
-                    color: '#ffffff', 
-                    fontWeight: 900, 
+                  style={{
+                    color: '#ffffff',
+                    fontWeight: 900,
                     textTransform: 'uppercase',
                     lineHeight: 1.1,
                     margin: 0

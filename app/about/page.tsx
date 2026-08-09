@@ -6,6 +6,7 @@ import styles from "@/components/HomeStoryLegacy.module.css";
 import HomeStoryLegacy from "@/components/HomeStoryLegacy";
 import { LightboxImage } from "@/components/ui/LightboxImage";
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
+import YouTubeLite from "@/components/YouTubeLite";
 
 const companyGalleryImages = [
   { id: 1, src: "/History/about (1).jpg", name: "Waterloo", desc: "Residential fire safety servicing in Waterloo." },
@@ -91,7 +92,7 @@ export default function Page() {
           @media (max-width: 767px) {
             .about-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 12rem !important;
+              padding-bottom: 17rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -372,16 +373,12 @@ export default function Page() {
                 <div className="order-1 lg:order-2 w-full relative h-full">
                   <div className="w-full max-w-[320px] mx-auto lg:sticky lg:top-32">
                     <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/PY3FuIT0XQ4?autoplay=1&mute=1&loop=1&playlist=PY3FuIT0XQ4&controls=0&showinfo=0&rel=0"
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
+                      <YouTubeLite
+                        videoId="PY3FuIT0XQ4"
+                        title="All Fire Services family story"
+                        autoplay
                         className="absolute inset-0 w-full h-full rounded-[1.5rem]"
-                      ></iframe>
+                      />
                     </div>
                   </div>
                 </div>

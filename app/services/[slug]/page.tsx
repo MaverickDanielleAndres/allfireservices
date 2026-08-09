@@ -271,6 +271,9 @@ export default async function ProductDetailPage({ params }: Props) {
                       alt={product.name}
                       fill
                       sizes="(max-width: 991px) 100vw, 50vw"
+                      priority
+                      fetchPriority="high"
+                      quality={70}
                       className={detailStyles.image}
                     />
                     {isService && (
