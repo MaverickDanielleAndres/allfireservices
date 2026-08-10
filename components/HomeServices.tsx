@@ -93,18 +93,6 @@ const services = [
   },
 ];
 
-import React from "react";
-
-const capabilityLogos = [
-  { src: "/services-logo/fpa-bronze-member.webp", alt: "FPA Australia Bronze Member", width: 320, height: 140, isMain: true },
-  { src: "/services-logo/fire-extinguishers.webp", alt: "Fire Extinguishers", width: 150, height: 150 },
-  { src: "/services-logo/fire-hoses-reels.webp", alt: "Fire Hoses & Reels", width: 150, height: 150 },
-  { src: "/services-logo/fire-hydrants-boosters.webp", alt: "Fire Hydrants & Boosters", width: 150, height: 150 },
-  { src: "/services-logo/emergency-equipment.webp", alt: "Emergency Equipment", width: 150, height: 150 },
-  { src: "/services-logo/fire-panels.webp", alt: "Fire Panels", width: 150, height: 150 },
-  { src: "/services-logo/testing-compliance.webp", alt: "Testing & Compliance", width: 150, height: 150 },
-];
-
 export default function HomeServices() {
   return (
     <RevealOnView
@@ -133,25 +121,6 @@ export default function HomeServices() {
             Everything you need to keep your property protected, compliant, and ready.
           </p>
         </header>
-
-        <div className={styles.capabilityStrip}>
-          {capabilityLogos.map((logo, index) => (
-            <React.Fragment key={logo.src}>
-              <div className={styles.capabilityLogoWrapper}>
-                <Image
-                  className={`${styles.capabilityLogoImage} ${logo.isMain ? styles.isMainLogo : ''}`}
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={logo.width}
-                  height={logo.height}
-                />
-              </div>
-              {index < capabilityLogos.length - 1 && (
-                <div className={styles.capabilityDivider}></div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
 
         <div className={styles.grid}>
           {services.map((service) => (

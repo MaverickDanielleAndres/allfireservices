@@ -2,11 +2,6 @@
 
 import {
   motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue,
   type Variants,
 } from "framer-motion";
 import Image from "next/image";
@@ -22,7 +17,6 @@ import {
   Siren,
   type LucideIcon,
 } from "lucide-react";
-import { useRef, type CSSProperties } from "react";
 import styles from "./HomeStoryLegacy.module.css";
 
 const storyCards = [
@@ -142,23 +136,6 @@ const reveal: Variants = {
   },
 };
 
-const timelineSequence: Variants = {
-  hidden: {},
-  show: {
-    transition: { delayChildren: 0.28, staggerChildren: 0.1 },
-  },
-};
-
-const generationReveal: Variants = {
-  hidden: { opacity: 0, y: 34, scale: 0.82 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.58, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
 const protectionCapabilities: Array<{
   code: string;
   title: string;
@@ -203,103 +180,7 @@ const protectionCapabilities: Array<{
     },
   ];
 
-const generations = [
-  { year: "1911", relation: "Uncle", name: "William Tricklebank", x: "1.5%" },
-  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", x: "12.1%" },
-  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", x: "22.9%" },
-  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", x: "33.5%" },
-  { year: "1959", relation: "Uncle", name: "Ian Tricklebank", x: "44.3%" },
-  {
-    year: "Current",
-    relation: "Current",
-    name: "Peter Tricklebank",
-    x: "55%",
-  }
-];
-
-type Generation = (typeof generations)[number];
-
-function TimelineGeneration({
-  generation,
-  index,
-  progress,
-  reduceMotion,
-}: {
-  generation: Generation;
-  index: number;
-  progress: MotionValue<number>;
-  reduceMotion: boolean;
-}) {
-  const markerPosition = index / (generations.length - 1);
-  const markerStart = Math.max(0, markerPosition - 0.055);
-  const markerEnd = Math.min(1, markerPosition + 0.012);
-  const stemProgress = useTransform(
-    progress,
-    [markerStart, markerEnd],
-    [0, 1],
-  );
-  const dotScale = useTransform(
-    progress,
-    [markerStart, markerEnd],
-    [0.72, 1],
-  );
-  const dotOpacity = useTransform(
-    progress,
-    [markerStart, markerEnd],
-    [0.28, 1],
-  );
-  const dotColor = useTransform(
-    progress,
-    [markerStart, markerEnd],
-    ["#ffffff", "#e2231a"],
-  );
-
-  return (
-    <motion.article
-      className={styles.generation}
-      variants={generationReveal}
-    >
-      <div
-        className={styles.portrait}
-        style={{ "--portrait-x": generation.x } as CSSProperties}
-        role="img"
-        aria-label={`Portrait of ${generation.name}`}
-      />
-      <motion.span
-        className={styles.dropLine}
-        style={{ scaleY: reduceMotion ? 1 : stemProgress }}
-        aria-hidden="true"
-      />
-      <motion.span
-        className={styles.timelineDot}
-        style={{
-          scale: reduceMotion ? 1 : dotScale,
-          opacity: reduceMotion ? 1 : dotOpacity,
-          backgroundColor: reduceMotion ? "#e2231a" : dotColor,
-        }}
-        aria-hidden="true"
-      />
-      <p className={styles.year}>{generation.year}</p>
-      <p className={styles.relation}>{generation.relation}</p>
-      <p className={styles.name}>{generation.name}</p>
-    </motion.article>
-  );
-}
-
 export default function HomeStoryLegacy() {
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion() ?? false;
-  const { scrollYProgress: timelineScrollProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 82%", "end 42%"],
-  });
-  const timelineProgress = useSpring(timelineScrollProgress, {
-    stiffness: 105,
-    damping: 28,
-    mass: 0.24,
-    restDelta: 0.001,
-  });
-
   return (
     <>
       <section id="team-spirit" className={styles.storySection} data-theme="light">
@@ -412,82 +293,6 @@ export default function HomeStoryLegacy() {
       >
         <div className="padding-global">
           <div className="container-large">
-            <motion.header
-              className={styles.legacyHeader}
-              variants={reveal}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.4 }}
-            >
-              <p className={styles.kicker}>The generations behind All Fire Services</p>
-              <h2 id="legacy-title">A family history of service</h2>
-              <p>
-                From 1911 to the next generation, a legacy built around
-                protecting people and property.
-              </p>
-            </motion.header>
-
-            <div className={styles.timelineViewport} ref={timelineRef}>
-              <motion.div
-                className={styles.timelineTrack}
-                variants={timelineSequence}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.12 }}
-              >
-                <motion.div
-                  className={styles.timelineLine}
-                  style={{ scaleX: reduceMotion ? 1 : timelineProgress }}
-                />
-                {generations.map((generation, index) => (
-                  <TimelineGeneration
-                    key={`${generation.year}-${generation.name}`}
-                    generation={generation}
-                    index={index}
-                    progress={timelineProgress}
-                    reduceMotion={reduceMotion}
-                  />
-                ))}
-              </motion.div>
-              
-              {/* Centered Next Generation */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: '4rem',
-                  textAlign: 'center'
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
-                }}>
-                  <p className={styles.year} style={{ marginTop: 0, color: '#d92820', fontSize: 'clamp(1.2rem, 1.8vw, 1.8rem)', fontWeight: 700, textTransform: 'uppercase' }}>NEXT</p>
-                  <p className={styles.relation} style={{ fontSize: 'clamp(1.5rem, 2vw, 1.8rem)', marginTop: '0.85rem', lineHeight: 1.35, whiteSpace: 'pre-line' }}>
-                    Onto the{'\n'}Next{'\n'}Generation
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            <motion.p
-              className={styles.legacyTagline}
-              initial={{ opacity: 0, scaleX: 0.92 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true, amount: 0.65 }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            >
-              A legacy of service. A future of leadership.
-            </motion.p>
-
             <motion.section
               className={styles.capabilitySystem}
               aria-labelledby="capability-title"

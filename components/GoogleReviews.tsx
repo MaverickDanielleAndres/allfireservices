@@ -219,15 +219,21 @@ export default function GoogleReviews() {
             }}>managers tell us</span>
           </h2>
           <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
-            {/* Avatar stack — initials only, no stock photos */}
+            {/* Avatar stack — generic user profile placeholder */}
             <div className="flex -space-x-3 justify-center">
               {feedbackItems.slice(0, 4).map((item, i) => (
                 <div
                   key={i}
-                  className="w-12 h-12 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center shadow-sm text-sm font-semibold text-gray-700"
+                  className="w-12 h-12 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center shadow-sm overflow-hidden"
                   aria-hidden="true"
                 >
-                  {item.initials}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/userprofile.avif"
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
@@ -313,10 +319,16 @@ export default function GoogleReviews() {
                     <div className="mt-8">
                       <div className="flex items-center gap-4">
                         <div
-                          className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 text-sm font-semibold text-gray-700"
+                          className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 overflow-hidden"
                           aria-hidden="true"
                         >
-                          {item.initials}
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="/userprofile.avif"
+                            alt=""
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
                         <div>
                           <div className="text-gray-500 text-[13px] mt-0.5">
