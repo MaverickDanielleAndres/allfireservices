@@ -283,8 +283,8 @@ export default function Page() {
                 >
                   <p className={styles.kicker}>Our Work</p>
                   <h2 id="our-work-title" style={{ color: '#111111', maxWidth: 'none' }}>
-                    <span style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.8rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Buildings We Protect</span><br />
-                    <span style={{ color: '#ff2a00', fontSize: 'clamp(2.4rem, 5vw, 5.2rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Across</span> <span style={{ ...gradientStyle, fontSize: 'clamp(2.4rem, 5vw, 5.2rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Greater Sydney</span>
+                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Buildings We Protect</span><br />
+                    <span style={{ color: '#ff2a00', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Across</span> <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Greater Sydney</span>
                   </h2>
                   <p>
                     A snapshot of the properties and locations supported by All Fire Services across the Sydney metropolitan area.
@@ -464,8 +464,8 @@ export default function Page() {
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>The Coverage</p>
                       <h2 className="mx-0 text-left" style={{ maxWidth: '24ch', color: '#111111' }}>
-                        <span style={{ fontSize: 'clamp(2rem, 4vw, 4.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Fire Protection Across</span><br />
-                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Greater Sydney</span>
+                        <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Fire Protection Across</span><br />
+                        <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Greater Sydney</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
@@ -500,8 +500,8 @@ export default function Page() {
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>How We Help</p>
                       <h2 className="mx-0 text-left" style={{ color: '#111111' }}>
-                        <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Supporting <span style={{ color: '#ff0000' }}>Buildings</span></span><br />
-                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>of Every Type</span>
+                        <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Supporting <span style={{ color: '#ff0000' }}>Buildings</span></span><br />
+                        <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>of Every Type</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
@@ -530,9 +530,9 @@ export default function Page() {
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
                 >
                   <p className={styles.kicker}>Properties We Service</p>
-                  <h2 id="properties-title" style={{ color: '#111111', maxWidth: 'none' }}>
-                    <span style={{ fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.95 }}>Fire Protection</span><br />
-                    for <span style={{ color: '#ff2a00', fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Every</span> <span style={{ ...gradientStyle, fontSize: 'clamp(2.8rem, 5.8vw, 6rem)', fontWeight: 780, letterSpacing: '-0.06em', lineHeight: 0.92 }}>Property</span>
+                  <h2 id="properties-title" style={{ ...gradientStyle, maxWidth: 'none' }}>
+                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Fire Protection</span><br />
+                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>for Every Property</span>
                   </h2>
                   <p>
                     Our experience covers a wide range of buildings and property environments across Greater Sydney.
@@ -540,26 +540,31 @@ export default function Page() {
                 </header>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 max-w-6xl mx-auto">
-                  {properties.map((property) => (
-                    <div
-                      key={property.title}
-                      style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}
-                    >
-                      <h3 style={{
-                        margin: 0,
-                        fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
-                        fontWeight: 800,
-                        color: '#111111',
-                        letterSpacing: '-0.025em',
-                        lineHeight: 1.18,
-                      }}>
-                        {property.title}
-                      </h3>
-                      <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                        {property.description}
-                      </p>
-                    </div>
-                  ))}
+                  {properties.map((property) => {
+                    const titleWords = property.title.trim().split(/\s+/);
+                    const lastWord = titleWords.pop() ?? '';
+                    const leadingTitle = titleWords.join(' ');
+                    return (
+                      <div
+                        key={property.title}
+                        style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}
+                      >
+                        <h3 style={{
+                          margin: 0,
+                          fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                          fontWeight: 800,
+                          color: '#111111',
+                          letterSpacing: '-0.025em',
+                          lineHeight: 1.18,
+                        }}>
+                          {leadingTitle && <>{leadingTitle} </>}<span style={gradientStyle}>{lastWord}</span>
+                        </h3>
+                        <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                          {property.description}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -579,8 +584,8 @@ export default function Page() {
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>Why All Fire Services</p>
                       <h2 className="mx-0 text-left" style={{ color: '#111111' }}>
-                        <span style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 1.05 }}>Practical Experience.</span><br />
-                        <span style={{ ...gradientStyle, fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94 }}>Professional Service.</span>
+                        <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Practical Experience.</span><br />
+                        <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Professional Service.</span>
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>

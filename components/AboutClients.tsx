@@ -84,8 +84,8 @@ export default function AboutClients() {
                       className={`${styles.storyHeaderLeft} ${isHereWhenYouNeed ? styles.legacyHeaderAbout : ''}`}
                       style={{ marginTop: 0, marginBottom: '1.5rem', maxWidth: 'none', width: '100%' }}
                     >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', color: '#feaf04', fontWeight: 800 }}>{section.kicker}</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, color: '#111111', lineHeight: 0.94, letterSpacing: '-0.04em' }}>
+                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>{section.kicker}</p>
+                      <h2 className="section-heading">
                         {section.title}
                       </h2>
                     </header>

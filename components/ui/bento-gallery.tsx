@@ -458,7 +458,7 @@ const InteractiveImageBentoGallery: React.FC<
           }
           @media (max-width: 767px) {
             .bento-legacy-header h2 {
-              font-size: clamp(2.65rem, 13vw, 4rem) !important;
+              font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
             }
           }
         `
@@ -496,9 +496,9 @@ const InteractiveImageBentoGallery: React.FC<
             maxWidth: '13ch',
             margin: 0,
             color: '#111111',
-            fontSize: 'clamp(2.8rem, 5.8vw, 6rem)',
+            fontSize: 'clamp(2.2rem, 4.3vw, 3.8rem)',
             fontWeight: 780,
-            letterSpacing: '-0.06em',
+            letterSpacing: '-0.04em',
             lineHeight: 0.92,
             textWrap: 'balance',
           }}

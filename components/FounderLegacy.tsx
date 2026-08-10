@@ -30,15 +30,21 @@ const generations: Generation[] = [
   { year: "Current", relation: "Current", name: "Peter Tricklebank", image: "/family/pete.png" },
 ];
 
-function CompactTimeline() {
+export function CompactTimeline({ larger = false }: { larger?: boolean }) {
+  // Larger font sizes used on the About page so the family tree reads bigger.
+  const yearFontSize = larger ? "clamp(1.35rem, 1.9vw, 1.85rem)" : "clamp(1rem, 1.25vw, 1.35rem)";
+  const relationFontSize = larger ? "clamp(1.15rem, 1.6vw, 1.55rem)" : "clamp(0.9rem, 1.05vw, 1.1rem)";
+  const nameFontSize = larger ? "clamp(1.05rem, 1.4vw, 1.4rem)" : "clamp(0.82rem, 0.95vw, 1rem)";
+  const portraitSize = larger ? "clamp(6.5rem, 9.5vw, 9.5rem)" : "clamp(5rem, 7.5vw, 7.5rem)";
+
   return (
     <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 0.5rem' }}>
       <div
         className={styles.timelineTrack}
         style={
           {
-            "--portrait-size": "clamp(5rem, 7.5vw, 7.5rem)",
-            "--stem-height": "1.4rem",
+            "--portrait-size": portraitSize,
+            "--stem-height": larger ? "1.8rem" : "1.4rem",
             "--timeline-count": "7",
             "--timeline-line-offset": "0.3rem",
           } as React.CSSProperties
@@ -135,7 +141,7 @@ function CompactTimeline() {
             <p
               style={{
                 margin: "0.85rem 0 0",
-                fontSize: "clamp(1rem, 1.25vw, 1.35rem)",
+                fontSize: yearFontSize,
                 color: "#d92820",
                 fontWeight: 700,
                 lineHeight: 1.1,
@@ -149,7 +155,7 @@ function CompactTimeline() {
             <p
               style={{
                 margin: "0.45rem 0 0",
-                fontSize: "clamp(0.9rem, 1.05vw, 1.1rem)",
+                fontSize: relationFontSize,
                 color: "#161d28",
                 fontWeight: 700,
                 lineHeight: 1.25,
@@ -162,7 +168,7 @@ function CompactTimeline() {
             <p
               style={{
                 margin: "0.2rem 0 0",
-                fontSize: "clamp(0.82rem, 0.95vw, 1rem)",
+                fontSize: nameFontSize,
                 color: "#161d28",
                 fontWeight: 600,
                 lineHeight: 1.2,
@@ -238,7 +244,7 @@ function CompactTimeline() {
           <p
             style={{
               margin: "0.85rem 0 0",
-              fontSize: "clamp(1rem, 1.25vw, 1.35rem)",
+              fontSize: yearFontSize,
               color: "#d92820",
               fontWeight: 700,
               lineHeight: 1.1,
@@ -252,7 +258,7 @@ function CompactTimeline() {
           <p
             style={{
               margin: "0.45rem 0 0",
-              fontSize: "clamp(0.82rem, 0.95vw, 1rem)",
+              fontSize: nameFontSize,
               color: "#161d28",
               fontWeight: 600,
               lineHeight: 1.25,
@@ -299,9 +305,6 @@ export default function FounderLegacy() {
                 >
                   <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase', marginBottom: '0.4rem', textAlign: 'center' }}>Our Family Legacy</p>
                   <h2 className="mx-0" style={{
-                    fontWeight: 900,
-                    lineHeight: 1.0,
-                    letterSpacing: '-0.04em',
                     maxWidth: '100%',
                     margin: 0,
                     color: '#111111',

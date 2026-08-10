@@ -55,19 +55,17 @@ const heroEyebrowStyle = {
 
 const sectionH2Line1Style = {
   color: "#111111",
-  fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
-  fontWeight: 800,
+  fontWeight: 780,
   letterSpacing: "-0.04em",
-  lineHeight: 0.95,
+  lineHeight: 0.92,
   display: "block",
 };
 
 const sectionH2Line2Style = {
   ...gradientStyle,
-  fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
-  fontWeight: 800,
+  fontWeight: 780,
   letterSpacing: "-0.04em",
-  lineHeight: 0.95,
+  lineHeight: 0.92,
   display: "block",
 };
 

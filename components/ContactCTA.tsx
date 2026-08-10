@@ -246,7 +246,7 @@ export default function ContactCTA({
             >
               <div className="contact-cta_content contact-info">
                 <div className="contact-cta_header" style={{ textAlign: "left", marginBottom: "1.5rem", width: "100%" }}>
-                  <h2 className="heading-style-h3" style={{ fontSize: "clamp(2rem, 4.2vw, 4rem)", marginBottom: "1.5rem", textAlign: "left", color: "#111111", fontWeight: 780, letterSpacing: "-0.06em", lineHeight: 0.92 }}>
+                  <h2 className="heading-style-h3" style={{ marginBottom: "1.5rem", textAlign: "left", color: "#111111" }}>
                     Get in <span style={{
                       background: "linear-gradient(to right, #ff2a00, #ffb700)",
                       WebkitBackgroundClip: "text",

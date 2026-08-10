@@ -4,9 +4,17 @@ import HeroScrollCue from "@/components/HeroScrollCue";
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import HomeStoryLegacy from "@/components/HomeStoryLegacy";
+import { CompactTimeline } from "@/components/FounderLegacy";
 import { LightboxImage } from "@/components/ui/LightboxImage";
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
 import YouTubeLite from "@/components/YouTubeLite";
+
+const gradientStyle = {
+  background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+} as const;
 
 const companyGalleryImages = [
   { id: 1, src: "/History/about (1).jpg", name: "Waterloo", desc: "Residential fire safety servicing in Waterloo." },
@@ -177,6 +185,30 @@ export default function Page() {
             }
             .about-bento-section {
               padding-top: 1rem !important;
+              padding-bottom: 0 !important;
+            }
+            /* The .padding-section-large inside .about-bento-section still has
+               7rem bottom padding from allfireservices.css — kill it. */
+            .about-bento-section > div > div.padding-section-large {
+              padding-bottom: 0 !important;
+            }
+            /* Kill the bento gallery component's internal vertical padding
+               (py-16 sm:py-20 md:py-24) so the gallery sits flush above
+               the MEET PETER block. */
+            .about-bento-section section[class*="py-"] {
+              padding-top: 0.5rem !important;
+              padding-bottom: 0 !important;
+            }
+            /* Belt-and-braces: also collapse the wrapping <div> around the
+               gallery and the .padding-section-large above MEET PETER. */
+            .about-bento-section [class*="py-16"],
+            .about-bento-section [class*="sm:py-20"],
+            .about-bento-section [class*="md:py-24"],
+            .about-bento-section [class~="py-16"],
+            .about-bento-section [class~="sm:py-20"],
+            .about-bento-section [class~="md:py-24"] {
+              padding-top: 0.5rem !important;
+              padding-bottom: 0 !important;
             }
             /* Reduce gap between Legacy and Company blocks */
             .about-legacy-company-text {
@@ -291,7 +323,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
-                      <h2 className="mx-0" style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                      <h2 className="mx-0" style={{ maxWidth: '24ch' }}>
                         &ldquo;Fire Protection<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -304,10 +336,13 @@ export default function Page() {
                       Fire safety is more than compliance. It is a responsibility we take seriously.
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Since 2009, All Fire Services has delivered practical, reliable fire protection across Greater Sydney, backed by technical expertise and generations of firefighting heritage.
+                      Since 2009, All Fire Services has delivered <strong>reliable fire protection across Greater Sydney</strong>, backed by <strong>technical expertise</strong> and <strong>generations of firefighting heritage.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
-                      From testing and maintenance to certification and compliance, we help protect <strong>people, property, and businesses.</strong>
+                      From <strong>testing and maintenance to certification and compliance</strong>, we focus on what matters most, <strong>protecting people, property, and businesses.</strong>
+                    </p>
+                    <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
+                      Our goal is simple: <strong>keep every property safe, compliant, and ready when it matters most.</strong>
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '1.5rem', overflow: 'hidden' }}>
@@ -320,6 +355,18 @@ export default function Page() {
 
           {/* Timeline Section — same as hero page */}
           <HomeStoryLegacy aboutPage />
+
+          {/* Family Tree Timeline — copied from the homepage FounderLegacy */}
+          <section
+            data-theme="light"
+            style={{ position: 'relative', zIndex: 10, background: '#ffffff', paddingBottom: '4rem' }}
+          >
+            <div className="padding-global">
+              <div className="container-large">
+                <CompactTimeline larger />
+              </div>
+            </div>
+          </section>
 
           {/* Legacy / Company content — with Family Video */}
           <div className="padding-global about-legacy-company-section" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
@@ -334,7 +381,7 @@ export default function Page() {
                     <header className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
                       <p className={`${styles.kickerLeft} mx-0`}>THE LEGACY</p>
-                      <h2 className="mx-0 text-left" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', maxWidth: '28ch' }}>
+                      <h2 className="mx-0 text-left" style={{ maxWidth: '28ch' }}>
                         Generations of <span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -344,7 +391,7 @@ export default function Page() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '2.5rem' }}>
-                      From William through Trevor, Trevor Jr, Stanley, and Ian, generations of the Tricklebank family served in firefighting and emergency response. That family history brings a deeper appreciation for what fire protection is ultimately about: protecting lives, protecting property, and taking responsibility seriously.
+                      From William through Trevor, Trevor Jr, Stanley, and Ian, <strong>generations of the Tricklebank family served in firefighting and emergency response.</strong> That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
                     </p>
                   </div>
 
@@ -353,7 +400,7 @@ export default function Page() {
                     <header className={`${styles.storyHeaderLeft} flex flex-col items-start`}
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
                       <p className={`${styles.kickerLeft} mx-0`}>THE COMPANY</p>
-                      <h2 className="mx-0 text-left">
+                      <h2 className="mx-0 text-left" style={{ maxWidth: '28ch' }}>
                         Established in <span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -363,7 +410,7 @@ export default function Page() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '2.5rem' }}>
-                      All Fire Services has its own history. The business was established in 2009 by a former senior NSW Fire Brigade officer. Peter Tricklebank later became the owner and today leads All Fire Services with a focus on practical, dependable fire protection and professional customer service.
+                      All Fire Services has its own history. The business was <strong>established in 2009 by a former senior NSW Fire Brigade officer.</strong> Peter Tricklebank later became the owner and today leads All Fire Services with a focus on <strong>practical, dependable fire protection</strong> and <strong>professional customer service.</strong>
                     </p>
                   </div>
 
@@ -391,86 +438,122 @@ export default function Page() {
           <div className="padding-global about-bento-section">
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingTop: '6rem' }}>
-                <div style={{ maxWidth: '1000px', margin: '0 auto 6rem auto' }}>
-                  <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-                    <h2 style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                      THE LEGACY
-                    </h2>
-                    <p style={{ marginTop: '1.5rem', fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: 800, letterSpacing: '-0.06em', color: '#111111' }}>
-                      Generations of <span style={{
-                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}>Firefighters</span>
+                {/* Header — same layout as strata /properties section */}
+                <header
+                  className={`${styles.legacyHeader} ${styles.legacyHeaderStrata}`}
+                  style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+                >
+                  <p className={styles.kicker}>The Legacy</p>
+                  <h2 id="about-legacy-title" style={{ color: '#111111', maxWidth: 'none' }}>
+                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>The Tricklebank</span><br />
+                    <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Family Legacy</span>
+                  </h2>
+                  <p>
+                    Generations of firefighting heritage meet practical, dependable fire protection. Here is what shapes All Fire Services and the people behind it.
+                  </p>
+                </header>
+
+                {/* Cards — same 3-col / 2-col / 1-col responsive grid as strata properties */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 max-w-6xl mx-auto">
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      Generations of <span style={{ ...gradientStyle }}>Firefighters</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      From William through Trevor, Trevor Jr, Stanley, and Ian, <strong>generations of the Tricklebank family served in firefighting and emergency response</strong>, building a long-standing connection to protecting people and property.
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-16 md:gap-32 w-full">
-                    {/* Row 1 - THE LEGACY */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
-                      <h2 className="text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Generations of <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>Firefighters</span>
-                      </h2>
-                      <p className="text-left" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        From William through Trevor, Trevor Jr, Stanley, and Ian, generations of the Tricklebank family served in firefighting and emergency response.
-                      </p>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      A Family <span style={{ ...gradientStyle }}>Legacy</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
+                    </p>
+                  </div>
 
-                    {/* Row 2 (Alternating) - THE LEGACY continued */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
-                      <p className="order-2 md:order-1 text-right" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
-                      </p>
-                      <h2 className="order-1 md:order-2 text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        A Family <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>Legacy</span>
-                      </h2>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      Established <span style={{ ...gradientStyle }}>2009</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      The business was <strong>established in 2009 by a former senior NSW Fire Brigade officer</strong>. Peter Tricklebank later became the owner and today leads All Fire Services.
+                    </p>
+                  </div>
 
-                    {/* Row 3 - THE COMPANY */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
-                      <h2 className="text-left" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        Established <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>2009</span>
-                      </h2>
-                      <p className="text-left" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        The business was established in 2009 by a former senior NSW Fire Brigade officer. <strong>Peter Tricklebank later became the owner</strong> and today leads All Fire Services with a focus on practical, dependable fire protection and professional customer service.
-                      </p>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      The <span style={{ ...gradientStyle }}>Company</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      The company combines technical fire-safety knowledge with a team that includes <strong>serving and retired professional firefighters</strong>, bringing practical experience into the way clients are supported.
+                    </p>
+                  </div>
 
-                    {/* Row 4 (Alternating) - THE COMPANY continued */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center w-full">
-                      <p className="order-2 md:order-1 text-right" style={{ color: '#111111', fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)', lineHeight: 1.55, margin: 0 }}>
-                        The company combines technical fire-safety knowledge with a team that includes <strong>serving and retired professional firefighters</strong>, bringing practical experience into the way clients are supported.
-                      </p>
-                      <h2 className="order-1 md:order-2 text-right" style={{ fontSize: 'clamp(2.5rem, 4.2vw, 4rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0 }}>
-                        The <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>Company</span>
-                      </h2>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      Built on Practical <span style={{ ...gradientStyle }}>Experience</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      The knowledge behind All Fire Services comes from more than technical requirements alone. <strong>Real firefighting experience helps shape how risks are identified, understood, and addressed</strong>, giving the team a practical perspective on fire protection.
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', textAlign: 'left' }}>
+                    <h3 style={{
+                      margin: 0,
+                      fontSize: 'clamp(1.15rem, 1.7vw, 1.5rem)',
+                      fontWeight: 800,
+                      color: '#111111',
+                      letterSpacing: '-0.025em',
+                      lineHeight: 1.18,
+                    }}>
+                      The Next <span style={{ ...gradientStyle }}>Generation</span>
+                    </h3>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
+                      The Tricklebank legacy continues through the next generation, carrying forward the same values of <strong>responsibility, service, and protecting the community</strong> while building a modern fire protection company for the future.
+                    </p>
                   </div>
                 </div>
 
                 {/* Bento Gallery — infinite horizontal scroll with auto-movement */}
-                <div style={{ marginTop: '4rem', background: '#ffffff', padding: '0 0 4rem 0' }}>
+                <div style={{ marginTop: '5rem', background: '#ffffff', padding: 0 }}>
                   <InteractiveImageBentoGallery
                     imageItems={companyGalleryImages.map((img, idx) => ({
                       id: img.id,
@@ -491,7 +574,7 @@ export default function Page() {
 
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingBottom: '6rem' }}>
+              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '6rem' }}>
 
                 {/* Block 2 — MEET PETER */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-meet-peter-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
@@ -504,7 +587,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch' }}>
+                      <h2 style={{ maxWidth: '24ch' }}>
                         &ldquo;Australian <span style={{ color: '#ff0000' }}>Owned</span><br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -533,7 +616,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>EXPERIENCE</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                      <h2 style={{ maxWidth: '24ch' }}>
                         &ldquo;Built on<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -571,7 +654,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>STANDARDS</p>
-                      <h2 style={{ fontSize: 'clamp(2.5rem, 4.8vw, 5.2rem)', maxWidth: '24ch', color: '#111111' }}>
+                      <h2 style={{ maxWidth: '24ch' }}>
                         &ldquo;Always<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -646,7 +729,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '2rem', maxWidth: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', margin: '0 0 1rem 0' }}>The professionals behind All Fire Services</p>
-                      <h2 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.94, color: '#111111', margin: 0, maxWidth: '15ch' }}>
+                      <h2 style={{ margin: 0, maxWidth: '15ch' }}>
                         Meet the <span style={{ color: '#ff0000' }}>All Fire</span><br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',

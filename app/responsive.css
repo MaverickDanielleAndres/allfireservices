@@ -41,6 +41,57 @@ svg {
   max-width: 100%;
 }
 
+/* ── Section heading standardization ─────────────────────────────────────
+ * Match the non-hero section h2 typography of the homepage Strata
+ * section (HomeServices.module.css .header h2). Applies wherever the
+ * global Webflow .heading-style-h{1..4} utility is used inside a
+ * non-hero section on pages we don't control via a CSS module.
+ *
+ * Intentionally does NOT override the .hero-* classes — hero h1s keep
+ * their existing typography. We also avoid setting `color` here so the
+ * dark-theme white-text rule at the @767px media query keeps working
+ * for pages rendered with data-theme="dark".
+ */
+.section_process :where(h2, h3).heading-style-h1,
+.section_process :where(h2, h3).heading-style-h2,
+.section_process :where(h2, h3).heading-style-h3,
+.section_process :where(h2, h3).heading-style-h4,
+.regulation-update-section :where(h2, h3).heading-style-h3 {
+  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-weight: 780;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.section_contact-cta .contact-cta_header h2 {
+  font-size: clamp(2.2rem, 4.3vw, 3.8rem) !important;
+  font-weight: 780 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.92 !important;
+  text-wrap: balance;
+}
+
+/* Global utility for any non-hero section h2 that doesn't already
+ * inherit typography from a scoped module (e.g. brand-coloured text on
+ * the homepage testimonials wrapper, or h2s that aren't inside a
+ * .legacyHeader/.storyHeader* parent). */
+.section-heading {
+  margin: 0;
+  color: #111111;
+  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-weight: 780;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .section-heading {
+    font-size: clamp(2.3rem, 11vw, 3.5rem);
+  }
+}
+
 h1,
 h2,
 h3,
@@ -334,6 +385,18 @@ textarea {
     line-height: 1.12;
   }
 
+  /* Keep section (non-hero) headings on the standard clamp even at
+     ≤767px so they stay consistent with the homepage Strata section. */
+  .section_process :where(h2, h3).heading-style-h1,
+  .section_process :where(h2, h3).heading-style-h2,
+  .section_process :where(h2, h3).heading-style-h3,
+  .section_process :where(h2, h3).heading-style-h4,
+  .regulation-update-section :where(h2, h3).heading-style-h3 {
+    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+
   .body-text {
     font-size: 1rem !important;
     line-height: 1.6 !important;
@@ -548,7 +611,7 @@ textarea {
   }
 
   .section_contact-cta .contact-cta_header h2 {
-    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+    font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
   }
 
   .section_contact-cta .contact-cta_header .body-text,

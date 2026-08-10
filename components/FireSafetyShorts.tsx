@@ -96,7 +96,7 @@ export default function FireSafetyShorts() {
                 color: "#111111",
                 fontSize: "clamp(2.2rem, 4.3vw, 3.8rem)",
                 fontWeight: 780,
-                letterSpacing: "-0.06em",
+                letterSpacing: "-0.04em",
                 lineHeight: 0.92,
               }}>Quick lessons<br /><span style={{
                 background: 'linear-gradient(to right, #ff2a00, #ffb700)',

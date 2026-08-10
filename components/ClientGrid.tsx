@@ -29,18 +29,10 @@ export default function ClientGrid() {
             
             {/* Left Column: Text */}
             <div className="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left">
-              <p className={styles.kicker} style={{ color: '#fb5614', fontWeight: 600 }}>
+              <p className={styles.kicker}>
                 TRUSTED BY
               </p>
-              <h2 style={{
-                margin: 0,
-                color: '#111111',
-                fontSize: 'clamp(2.8rem, 5.8vw, 4.5rem)',
-                fontWeight: 780,
-                letterSpacing: '-0.06em',
-                lineHeight: 0.92,
-                textWrap: 'balance'
-              }}>
+              <h2 className="section-heading">
                 Greater Sydney's<br /><span style={{
                   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                   WebkitBackgroundClip: 'text',

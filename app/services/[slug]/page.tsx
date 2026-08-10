@@ -59,6 +59,18 @@ const legacyHeaderHeading = {
   textWrap: "balance" as const,
 };
 
+/* Section h2 (non-hero) — matches the standard section heading used
+ * elsewhere on the site (HomeServices.module.css .header h2). */
+const sectionHeading = {
+  margin: "0 0 1.5rem",
+  color: "#111111",
+  fontSize: "clamp(2.2rem, 4.3vw, 3.8rem)",
+  fontWeight: 780,
+  letterSpacing: "-0.04em",
+  lineHeight: 0.92,
+  textWrap: "balance" as const,
+};
+
 const legacyHeaderGradientLine = {
   ...gradientStyle,
   fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)",
@@ -457,7 +469,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   <p style={legacyHeaderKicker}>
                     More in {category.shortLabel ?? category.label}
                   </p>
-                  <h2 style={legacyHeaderHeading}>
+                  <h2 style={sectionHeading}>
                     Other listings<br />
                     <span style={gradientStyle}>
                       in this category

@@ -189,9 +189,14 @@ export default function GoogleReviews() {
           color: #111111;
           font-size: clamp(2.2rem, 4.3vw, 3.8rem);
           font-weight: 780;
-          letter-spacing: -0.06em;
+          letter-spacing: -0.04em;
           line-height: 0.92;
           text-wrap: balance;
+        }
+        @media (max-width: 767px) {
+          .reviews-title {
+            font-size: clamp(2.3rem, 11vw, 3.5rem);
+          }
         }
         @media (max-width: 991px) {
           .reviews-header {
