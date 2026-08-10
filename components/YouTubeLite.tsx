@@ -66,14 +66,12 @@ export default function YouTubeLite({
     return (
       <div ref={ref} className={className} style={style}>
         <iframe
-          width="100%"
-          height="100%"
           src={src}
           title={title}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          style={{ border: 0 }}
+          style={{ border: 0, width: '100%', height: '100%', display: 'block' }}
         />
       </div>
     );

@@ -32,7 +32,7 @@ const generations: Generation[] = [
 
 function CompactTimeline() {
   return (
-    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 1.5rem', marginBottom: '3.5rem' }}>
+    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 1rem', marginBottom: '2rem' }}>
       <div
         className={styles.timelineTrack}
         style={
@@ -54,7 +54,7 @@ function CompactTimeline() {
             right: "calc(100% / (var(--timeline-count) * 2))",
             height: "0.3rem",
             background:
-              "linear-gradient(to right, rgba(226, 35, 26, 0) 0%, rgba(226, 35, 26, 0.45) 12%, rgba(226, 35, 26, 0.45) 88%, rgba(226, 35, 26, 0) 100%)",
+              "linear-gradient(to right, rgba(255, 42, 0, 0) 0%, rgba(255, 42, 0, 0.25) 12%, rgba(255, 183, 0, 0.25) 88%, rgba(255, 183, 0, 0) 100%)",
             borderRadius: "999px",
           }}
         />
@@ -67,7 +67,7 @@ function CompactTimeline() {
             left: "calc(100% / (var(--timeline-count) * 2))",
             right: "calc(100% / (var(--timeline-count) * 2))",
             background:
-              "linear-gradient(to right, rgba(226, 35, 26, 0) 0%, #e2231a 10%, #e2231a 90%, rgba(226, 35, 26, 0) 100%)",
+              "linear-gradient(to right, rgba(255, 42, 0, 0) 0%, #ff2a00 10%, #ffb700 90%, rgba(255, 183, 0, 0) 100%)",
           }}
         />
         {generations.map((generation) => (
@@ -116,7 +116,8 @@ function CompactTimeline() {
                 height: "var(--stem-height)",
                 margin: "0 auto",
                 backgroundImage:
-                  "repeating-linear-gradient(to bottom, #e2231a 0, #e2231a 0.18rem, transparent 0.18rem, transparent 0.38rem)",
+                  "repeating-linear-gradient(to bottom, #ff2a00 0, #ff2a00 0.18rem, transparent 0.18rem, transparent 0.38rem), linear-gradient(to bottom, #ff2a00, #ffb700)",
+                backgroundBlendMode: "normal",
               }}
             />
             <span
@@ -126,8 +127,8 @@ function CompactTimeline() {
                 width: "0.85rem",
                 height: "0.85rem",
                 borderRadius: "999px",
-                background: "#e2231a",
-                boxShadow: "0 0 0 0.18rem #ffffff, 0 0 0 0.32rem rgba(226, 35, 26, 0.22)",
+                background: "linear-gradient(135deg, #ff2a00, #ffb700)",
+                boxShadow: "0 0 0 0.18rem #ffffff, 0 0 0 0.32rem rgba(255, 42, 0, 0.22)",
                 marginTop: "0",
               }}
             />
@@ -218,7 +219,8 @@ function CompactTimeline() {
               height: "var(--stem-height)",
               margin: "0 auto",
               backgroundImage:
-                "repeating-linear-gradient(to bottom, #e2231a 0, #e2231a 0.18rem, transparent 0.18rem, transparent 0.38rem)",
+                "repeating-linear-gradient(to bottom, #ff2a00 0, #ff2a00 0.18rem, transparent 0.18rem, transparent 0.38rem), linear-gradient(to bottom, #ff2a00, #ffb700)",
+              backgroundBlendMode: "normal",
             }}
           />
           <span
@@ -228,8 +230,8 @@ function CompactTimeline() {
               width: "0.85rem",
               height: "0.85rem",
               borderRadius: "999px",
-              background: "#e2231a",
-              boxShadow: "0 0 0 0.18rem #ffffff, 0 0 0 0.32rem rgba(226, 35, 26, 0.22)",
+              background: "linear-gradient(135deg, #ff2a00, #ffb700)",
+              boxShadow: "0 0 0 0.18rem #ffffff, 0 0 0 0.32rem rgba(255, 42, 0, 0.22)",
               marginTop: "0",
             }}
           />
@@ -307,7 +309,7 @@ export default function FounderLegacy() {
                     color: '#111111',
                   }}>
                     <span style={{
-                      fontSize: 'clamp(1.85rem, 4.2vw, 5rem)',
+                      fontSize: 'clamp(2.25rem, 5.6vw, 6.75rem)',
                       display: 'block',
                       color: '#111111',
                     }}>
@@ -343,12 +345,11 @@ export default function FounderLegacy() {
                 </div>
               </motion.div>
 
-              {/* RIGHT COLUMN: tall vertical video card */}
+              {/* RIGHT COLUMN: video card hugging the video */}
               <motion.div
                 style={{
                   width: '100%',
                   height: '100%',
-                  minHeight: '100%',
                   margin: '0 auto',
                   display: 'flex',
                   alignItems: 'stretch',
@@ -364,22 +365,24 @@ export default function FounderLegacy() {
               >
                 <div
                   style={{
-                    position: 'relative',
-                    width: '100%',
+                    width: 'fit-content',
                     height: '100%',
-                    minHeight: '100%',
-                    borderRadius: '18px',
                     overflow: 'hidden',
-                    boxShadow: '0 18px 40px rgba(0, 0, 0, 0.12)',
-                    backgroundColor: '#111',
+                    borderRadius: '18px',
+                    boxShadow: '0 30px 60px rgba(0, 0, 0, 0.15)',
+                    backgroundColor: 'transparent',
                     flexShrink: 0,
                   }}
                 >
                   <YouTubeLite
                     videoId="PY3FuIT0XQ4"
                     title="All Fire Services family legacy"
-                    className="absolute inset-0 w-full h-full"
-                    style={{ objectFit: 'cover', width: '100%', height: '100%', display: 'block' }}
+                    style={{
+                      display: 'block',
+                      width: 'auto',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
                   />
                 </div>
               </motion.div>
