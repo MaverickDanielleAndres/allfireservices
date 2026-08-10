@@ -1472,8 +1472,8 @@
 
 @media (min-width: 992px) {
   .newStoryGrid {
-    grid-template-columns: 1.55fr 1fr;
-    gap: clamp(1.5rem, 2.5vw, 3rem);
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+    gap: 64px;
     align-items: stretch;
     padding: 0;
   }

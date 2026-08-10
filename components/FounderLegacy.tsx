@@ -32,7 +32,7 @@ const generations: Generation[] = [
 
 function CompactTimeline() {
   return (
-    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 1.5rem' }}>
+    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 1.5rem', marginBottom: '3.5rem' }}>
       <div
         className={styles.timelineTrack}
         style={
@@ -270,7 +270,7 @@ export default function FounderLegacy() {
   return (
     <section data-theme="light" style={{ position: 'relative', zIndex: 10, background: '#ffffff', overflow: 'hidden' }}>
       <div className="padding-global" style={{ paddingLeft: 'clamp(0.75rem, 1.5vw, 1.5rem)', paddingRight: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}>
-        <div className="container-large" style={{ maxWidth: '82rem' }}>
+        <div className="container-large" style={{ maxWidth: '1440px', paddingInline: '48px' }}>
           <div className="padding-section-large" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
 
             <div
@@ -295,7 +295,7 @@ export default function FounderLegacy() {
 
                 <header
                   className={`flex flex-col items-start`}
-                  style={{ marginTop: 0, marginBottom: 0, maxWidth: 'none', width: '100%' }}
+                  style={{ marginTop: 0, marginBottom: 0, maxWidth: 'none', width: '100%', paddingLeft: '0.5rem' }}
                 >
                   <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase', marginBottom: '0.4rem' }}>Our Family Legacy</p>
                   <h2 className="mx-0 text-left" style={{
@@ -333,7 +333,7 @@ export default function FounderLegacy() {
                   </h2>
                 </header>
 
-                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '1rem', marginBottom: '0.75rem' }}>
+                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '1rem', marginBottom: '0.75rem', paddingLeft: '0.5rem' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
                 <div className="flex justify-start" style={{ marginTop: '0.25rem', paddingLeft: '0.5rem' }}>
@@ -347,10 +347,11 @@ export default function FounderLegacy() {
               <motion.div
                 style={{
                   width: '100%',
-                  height: 'auto',
+                  height: '100%',
+                  minHeight: '100%',
                   margin: '0 auto',
                   display: 'flex',
-                  alignItems: 'flex-start',
+                  alignItems: 'stretch',
                   justifyContent: 'center',
                   minHeight: 0,
                   minWidth: 0,
@@ -365,9 +366,9 @@ export default function FounderLegacy() {
                   style={{
                     position: 'relative',
                     width: '100%',
-                    maxWidth: 'min(100%, 380px)',
-                    aspectRatio: '4 / 5',
-                    borderRadius: '1.25rem',
+                    height: '100%',
+                    minHeight: '100%',
+                    borderRadius: '18px',
                     overflow: 'hidden',
                     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.12)',
                     backgroundColor: '#111',
@@ -378,6 +379,7 @@ export default function FounderLegacy() {
                     videoId="PY3FuIT0XQ4"
                     title="All Fire Services family legacy"
                     className="absolute inset-0 w-full h-full"
+                    style={{ objectFit: 'cover', width: '100%', height: '100%', display: 'block' }}
                   />
                 </div>
               </motion.div>
