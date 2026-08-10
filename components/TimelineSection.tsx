@@ -128,7 +128,9 @@ function TimelineGeneration({
       <p className={`${styles.relation} ${generation.relation.length > 16 ? styles.smallRelationOnDesktop : ""}`}>
         {generation.relation}
       </p>
-      <p className={`${styles.name} ${generation.name.length > 20 ? styles.smallNameOnDesktop : ""}`}>{generation.name.replace(' ', '\n')}</p>
+      {/* Let CSS wrap the name on whitespace instead of forcing a `\n` break
+          at the first space — gives every column a clean, even rhythm. */}
+      <p className={`${styles.name} ${generation.name.length > 20 ? styles.smallNameOnDesktop : ""}`}>{generation.name}</p>
     </motion.article>
   );
 }

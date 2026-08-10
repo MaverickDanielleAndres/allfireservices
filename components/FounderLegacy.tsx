@@ -22,31 +22,37 @@ type Generation = {
 };
 
 const generations: Generation[] = [
-  { year: "1911", relation: "Uncle", name: "William Tricklebank", image: "/family/unclewilliam.PNG" },
-  { year: "1931", relation: "Granddad", name: "Trevor Tricklebank", image: "/family/grandfathertrevor.jpg" },
-  { year: "1955", relation: "Uncle", name: "Trevor Tricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
-  { year: "1957", relation: "My Father", name: "Stanley Tricklebank", image: "/family/myfather.jpg" },
-  { year: "1959", relation: "Uncle", name: "Ian Tricklebank", image: "/family/uncleian.png" },
-  { year: "Current", relation: "Current", name: "Peter Tricklebank", image: "/family/pete.png" },
+  { year: "1911", relation: "Uncle", name: "William\nTricklebank", image: "/family/unclewilliam.PNG" },
+  { year: "1931", relation: "Granddad", name: "Trevor\nTricklebank", image: "/family/grandfathertrevor.jpg" },
+  { year: "1955", relation: "Uncle", name: "Trevor\nTricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
+  { year: "1957", relation: "My Father", name: "Stanley\nTricklebank", image: "/family/myfather.jpg" },
+  { year: "1959", relation: "Uncle", name: "Ian\nTricklebank", image: "/family/uncleian.png" },
+  { year: "Current", relation: "Current", name: "Peter\nTricklebank", image: "/family/pete.png" },
 ];
 
 export function CompactTimeline({ larger = false }: { larger?: boolean }) {
   // Larger font sizes used on the About page so the family tree reads bigger.
-  const yearFontSize = larger ? "clamp(1.35rem, 1.9vw, 1.85rem)" : "clamp(1rem, 1.25vw, 1.35rem)";
-  const relationFontSize = larger ? "clamp(1.15rem, 1.6vw, 1.55rem)" : "clamp(0.9rem, 1.05vw, 1.1rem)";
-  const nameFontSize = larger ? "clamp(1.05rem, 1.4vw, 1.4rem)" : "clamp(0.82rem, 0.95vw, 1rem)";
-  const portraitSize = larger ? "clamp(6.5rem, 9.5vw, 9.5rem)" : "clamp(5rem, 7.5vw, 7.5rem)";
+  // Home page compact mode is tuned for a ~131px column width: portrait
+  // ~115px gives ~16px visible breathing room between adjacent circles.
+  const yearFontSize = larger ? "clamp(1.35rem, 1.9vw, 1.85rem)" : "clamp(1.1rem, 1.45vw, 1.35rem)";
+  const relationFontSize = larger ? "clamp(1.15rem, 1.6vw, 1.55rem)" : "clamp(0.95rem, 1.2vw, 1.15rem)";
+  const nameFontSize = larger ? "clamp(1.05rem, 1.4vw, 1.4rem)" : "clamp(0.85rem, 1.05vw, 1rem)";
+  const portraitSize = larger ? "clamp(6.5rem, 9.5vw, 9.5rem)" : "clamp(6rem, 7.6vw, 7.2rem)";
 
   return (
-    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 0.5rem' }}>
+    <div className={styles.timelineViewport} style={{ padding: '0', overflow: 'visible' }}>
       <div
         className={styles.timelineTrack}
         style={
           {
             "--portrait-size": portraitSize,
-            "--stem-height": larger ? "1.8rem" : "1.4rem",
+            /* 10–15px between portrait and timeline line. */
+            "--stem-height": larger ? "0.85rem" : "0.75rem",
             "--timeline-count": "7",
-            "--timeline-line-offset": "0.3rem",
+            "--timeline-line-offset": "0.18rem",
+            /* No column-gap — visible breathing room is created by the
+               gap between each ~115px circle and its ~131px column. */
+            columnGap: "0",
           } as React.CSSProperties
         }
       >
@@ -140,7 +146,8 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
             />
             <p
               style={{
-                margin: "0.85rem 0 0",
+                /* ~10–14px below the marker. */
+                margin: "0.7rem 0 0",
                 fontSize: yearFontSize,
                 color: "#d92820",
                 fontWeight: 700,
@@ -148,18 +155,24 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
                 textTransform: "uppercase",
                 fontFamily: '"Inter", var(--font-sans), sans-serif',
                 width: "100%",
+                /* Keep "CURRENT" and "NEXT" on a single line. */
+                whiteSpace: "nowrap",
               }}
             >
               {generation.year}
             </p>
             <p
               style={{
-                margin: "0.45rem 0 0",
+                /* ~6–10px below the year. */
+                margin: "0.5rem 0 0",
                 fontSize: relationFontSize,
                 color: "#161d28",
                 fontWeight: 700,
                 lineHeight: 1.25,
-                whiteSpace: "pre-line",
+                whiteSpace: "normal",
+                overflowWrap: "normal",
+                wordBreak: "normal",
+                hyphens: "none",
                 width: "100%",
               }}
             >
@@ -167,16 +180,24 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
             </p>
             <p
               style={{
-                margin: "0.2rem 0 0",
+                /* ~6–10px below relation (tight). */
+                margin: "0.45rem 0 0",
                 fontSize: nameFontSize,
                 color: "#161d28",
                 fontWeight: 600,
-                lineHeight: 1.2,
+                lineHeight: 1.22,
+                /* The data inserts "\n" between first and last name so every
+                   generation renders the same two-line rhythm
+                   (e.g. "Ian" / "Tricklebank"). `pre-line` honours the
+                   newline as a soft break without splitting words. */
                 whiteSpace: "pre-line",
+                overflowWrap: "normal",
+                wordBreak: "normal",
+                hyphens: "none",
                 width: "100%",
               }}
             >
-              {generation.name.replace(" ", "\n")}
+              {generation.name}
             </p>
           </div>
         ))}
@@ -243,7 +264,8 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
           />
           <p
             style={{
-              margin: "0.85rem 0 0",
+              /* ~10–14px below marker — matches the year rhythm. */
+              margin: "0.7rem 0 0",
               fontSize: yearFontSize,
               color: "#d92820",
               fontWeight: 700,
@@ -251,18 +273,26 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
               textTransform: "uppercase",
               fontFamily: '"Inter", var(--font-sans), sans-serif',
               width: "100%",
+              /* "NEXT" stays on one line. */
+              whiteSpace: "nowrap",
             }}
           >
             NEXT
           </p>
           <p
             style={{
-              margin: "0.45rem 0 0",
+              /* ~6–10px below the year. The string already contains
+                 real newlines so `pre-line` renders them as soft
+                 breaks without splitting words. */
+              margin: "0.5rem 0 0",
               fontSize: nameFontSize,
               color: "#161d28",
               fontWeight: 600,
-              lineHeight: 1.25,
+              lineHeight: 1.22,
               whiteSpace: "pre-line",
+              overflowWrap: "normal",
+              wordBreak: "normal",
+              hyphens: "none",
               width: "100%",
             }}
           >
@@ -283,7 +313,23 @@ export default function FounderLegacy() {
 
             <div
               className={styles.newStoryGrid}
-              style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch', overflow: 'hidden', minWidth: 0 }}
+              style={
+                {
+                  marginTop: '0',
+                  marginBottom: '0',
+                  alignItems: 'stretch',
+                  overflow: 'hidden',
+                  minWidth: 0,
+                  /* DESKTOP SPACING — per spec:
+                       Left  ~65–70% (heading + description + timeline)
+                       Right ~25–30% (vertical video)
+                       Gap   ~40–60px between them
+                     2.3fr / 1fr at ~1440px viewport with a 50px gap:
+                       timeline ≈ 65.7%, video ≈ 28.6% — right inside the spec. */
+                  gridTemplateColumns: 'minmax(0, 2.3fr) minmax(280px, 1fr)',
+                  columnGap: '50px',
+                } as React.CSSProperties
+              }
             >
               {/* LEFT COLUMN: timeline + headline + description + CTA */}
               <motion.div
@@ -335,24 +381,30 @@ export default function FounderLegacy() {
                   <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
 
-                <CompactTimeline />
+                {/* Even vertical rhythm: ~22px above AND ~22px below the
+                   timeline, so the description and the CTA sit at equal
+                   distances from the family-tree row. */}
+                <div style={{ marginTop: '22px', width: '100%' }}>
+                  <CompactTimeline />
+                </div>
 
-                <div className="flex justify-center" style={{ marginTop: '1rem', width: '100%' }}>
+                <div className="flex justify-center" style={{ marginTop: '22px', width: '100%' }}>
                   <Link href="/about" className={styles.newStoryLink} style={{ textAlign: 'center' }}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
                   </Link>
                 </div>
               </motion.div>
 
-              {/* RIGHT COLUMN: video edge-to-edge */}
+              {/* RIGHT COLUMN: vertical video, kept compact + aligned to top */}
               <motion.div
                 style={{
                   width: '100%',
                   margin: '0 auto',
                   display: 'flex',
-                  alignItems: 'stretch',
+                  alignItems: 'flex-start',
                   justifyContent: 'center',
                   minWidth: 0,
+                  maxWidth: '420px',
                 }}
                 variants={reveal}
                 initial="hidden"
