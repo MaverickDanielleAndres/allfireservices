@@ -118,7 +118,7 @@ export default function HomeServices() {
             </span>
           </h2>
           <p>
-            Everything you need to keep your property protected, compliant, and ready.
+            Professional fire protection services designed to safeguard your people, property, and business.
           </p>
         </header>
 

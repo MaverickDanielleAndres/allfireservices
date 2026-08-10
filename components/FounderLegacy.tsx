@@ -32,7 +32,7 @@ const generations: Generation[] = [
 
 function CompactTimeline() {
   return (
-    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 1rem', marginBottom: '2rem' }}>
+    <div className={styles.timelineViewport} style={{ padding: '0 0.5rem 0.5rem' }}>
       <div
         className={styles.timelineTrack}
         style={
@@ -286,15 +286,13 @@ export default function FounderLegacy() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
-                  gap: '0.25rem',
+                  gap: '1.25rem',
                 }}
                 variants={reveal}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <CompactTimeline />
-
                 <header
                   className={`flex flex-col items-center`}
                   style={{ marginTop: 0, marginBottom: 0, maxWidth: 'none', width: '100%', textAlign: 'center' }}
@@ -336,11 +334,14 @@ export default function FounderLegacy() {
                   </h2>
                 </header>
 
-                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55]" style={{ marginTop: '1rem', marginBottom: '0.75rem', maxWidth: 'min(100%, 36rem)', textAlign: 'center', marginInline: 'auto' }}>
+                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55]" style={{ marginTop: '0.5rem', marginBottom: 0, maxWidth: '100%', textAlign: 'center', marginInline: 'auto' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>.{' '}
                   <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
-                <div className="flex justify-center" style={{ marginTop: '0.25rem', width: '100%' }}>
+
+                <CompactTimeline />
+
+                <div className="flex justify-center" style={{ marginTop: '1rem', width: '100%' }}>
                   <Link href="/about" className={styles.newStoryLink} style={{ textAlign: 'center' }}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
                   </Link>

@@ -78,13 +78,13 @@ export default function StrataSection() {
         <header className={styles.header}>
           <p className={styles.kicker}>Where we work</p>
           <h2>
-            Strata and <span style={{ color: '#ff2a00' }}>landmark</span><br />
-            <span style={{ 
+            Strata and <span style={{ color: '#ff2a00' }}>Building</span><br />
+            <span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-            }}>buildings we service</span>
+            }}>we service</span>
           </h2>
           <p>
             Across Greater Sydney, from single blocks to whole portfolios.

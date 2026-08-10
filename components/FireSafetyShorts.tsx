@@ -84,7 +84,7 @@ export default function FireSafetyShorts() {
   return (
     <section
       aria-labelledby="fire-safety-shorts-title"
-      style={{ background: "#ffffff", padding: "clamp(72px, 9vw, 116px) 0" }}
+      style={{ background: "#ffffff", padding: "clamp(4rem, 7vw, 5.5rem) 0" }}
     >
       <div className="padding-global">
         <div className="container-large">
@@ -94,7 +94,7 @@ export default function FireSafetyShorts() {
               <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
               <h2 id="fire-safety-shorts-title" className="mx-auto md:mx-0" style={{
                 color: "#111111",
-                fontSize: "clamp(2.8rem, 5.8vw, 6rem)",
+                fontSize: "clamp(2.2rem, 4.3vw, 3.8rem)",
                 fontWeight: 780,
                 letterSpacing: "-0.06em",
                 lineHeight: 0.92,

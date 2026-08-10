@@ -164,7 +164,7 @@ export default function GoogleReviews() {
   return (
     <section
       id="testimonials"
-      className="bg-white text-gray-900 pt-16 lg:pt-24 pb-6 lg:pb-8 overflow-hidden"
+      className="bg-white text-gray-900 py-[clamp(4rem,7vw,5.5rem)] overflow-hidden"
     >
       <style>{`
         .reviews-header {
@@ -172,7 +172,7 @@ export default function GoogleReviews() {
           grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.7fr);
           column-gap: 4rem;
           align-items: end;
-          margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+          margin-bottom: clamp(2.75rem, 4.5vw, 3.5rem);
         }
         .reviews-kicker {
           grid-column: 1 / -1;
@@ -187,7 +187,7 @@ export default function GoogleReviews() {
         .reviews-title {
           margin: 0;
           color: #111111;
-          font-size: clamp(2.8rem, 5.8vw, 6rem);
+          font-size: clamp(2.2rem, 4.3vw, 3.8rem);
           font-weight: 780;
           letter-spacing: -0.06em;
           line-height: 0.92;

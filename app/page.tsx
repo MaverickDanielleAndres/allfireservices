@@ -10,8 +10,6 @@ const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
 const StrataSection = dynamic(() => import("@/components/StrataSection"));
 const FireSafetyShorts = dynamic(() => import("@/components/FireSafetyShorts"));
 const ClientFeedback = dynamic(() => import("@/components/testimonial"));
-const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
-const FAQ = dynamic(() => import("@/components/FAQ"));
 const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
 const FounderLegacy = dynamic(() => import("@/components/FounderLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
@@ -582,9 +580,6 @@ export default function Page() {
         <HomeServices />
 
         <RevealOnView>
-          <GoogleReviews />
-        </RevealOnView>
-        <RevealOnView>
           <ClientsMarquee />
         </RevealOnView>
 
@@ -604,9 +599,6 @@ export default function Page() {
           <FireSafetyShorts />
         </RevealOnView>
 
-        <RevealOnView>
-          <FAQ />
-        </RevealOnView>
         <RevealOnView>
           <PreFaqCTA />
         </RevealOnView>
