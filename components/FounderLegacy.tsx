@@ -280,7 +280,7 @@ export default function FounderLegacy() {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  gap: '0.5rem',
+                  gap: '0.25rem',
                 }}
                 variants={reveal}
                 initial="hidden"
@@ -293,7 +293,7 @@ export default function FounderLegacy() {
                   className={`flex flex-col items-start`}
                   style={{ marginTop: 0, marginBottom: '0.25rem', maxWidth: 'none', width: '100%' }}
                 >
-                  <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>Our Family Legacy</p>
+                  <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase', marginBottom: '0.4rem' }}>Our Family Legacy</p>
                   <h2 className="mx-0 text-left" style={{
                     fontWeight: 900,
                     lineHeight: 1.0,
@@ -325,7 +325,7 @@ export default function FounderLegacy() {
                   </h2>
                 </header>
 
-                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginBottom: '0.75rem' }}>
+                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '0.25rem', marginBottom: '0.5rem' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
                 <div className="flex justify-start">
@@ -357,9 +357,9 @@ export default function FounderLegacy() {
                   style={{
                     position: 'relative',
                     width: '100%',
-                    maxWidth: 'min(100%, 460px)',
-                    paddingTop: '155.55%',
-                    borderRadius: '1.5rem',
+                    maxWidth: 'min(100%, 320px)',
+                    paddingTop: '177.78%',
+                    borderRadius: '1.25rem',
                     overflow: 'hidden',
                     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.12)',
                     backgroundColor: '#111',
