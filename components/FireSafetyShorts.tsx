@@ -7,13 +7,13 @@ import styles from "./HomeStoryLegacy.module.css";
 
 const videos = [
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "D85L7WhrPtY", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "dAWVxg6rC7Y", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "QcKiSqHT9NM", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "ixSruB_GggQ", title: "Why fire near sprinklers can shut a business down overnight" },
   { id: "X-gp3cokXj8", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "SrN-g_YeYJE", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "3vmqgGDO1u4", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "mMPD6LFNzEo", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "CiogIrZXuz0", title: "Why fire near sprinklers can shut a business down overnight" },
   { id: "MtpcUHtEO7o", title: "Why fire near sprinklers can shut a business down overnight" },
-  { id: "TE1gyYDl5M8", title: "Why fire near sprinklers can shut a business down overnight" },
+  { id: "Cm-iK7Oe4kY", title: "Why fire near sprinklers can shut a business down overnight" },
 ];
 
 export default function FireSafetyShorts() {
