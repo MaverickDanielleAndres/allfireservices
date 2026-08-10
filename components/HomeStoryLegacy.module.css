@@ -368,6 +368,20 @@
   margin-bottom: clamp(1rem, 2vw, 2rem);
 }
 
+/* FounderLegacy heading lines — desktop size, overridden for mobile/tablet. */
+.founderHeadingLine {
+  display: block;
+  line-height: 0.95;
+  color: #111111;
+  font-size: clamp(1.5rem, 5vw, 4.5rem);
+}
+
+@media (max-width: 991px) {
+  .founderHeadingLine {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+  }
+}
+
 .legacyHeader .kicker {
   grid-column: 1 / -1;
 }
@@ -1819,5 +1833,31 @@
 
   .nextGenerationCue p {
     margin-top: 0.25rem !important;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Founder video: fills the parent width on mobile/tablet (capped at 320px),  */
+/*  but reverts to a tall portrait tile that matches the timeline column on    */
+/*  desktop.                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.founderVideo {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .founderVideo {
+    width: auto;
+    max-width: none;
+    height: 100%;
+    flex-shrink: 0;
+    margin: 0;
   }
 }

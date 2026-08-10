@@ -83,7 +83,13 @@ const LABEL_STYLE: React.CSSProperties = {
   display: "block",
 };
 
-export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: boolean }) {
+export default function ContactCTA({
+  hideSitewideCTA,
+  layout = "split",
+}: {
+  hideSitewideCTA?: boolean;
+  layout?: "single" | "split";
+}) {
   const formId = useId();
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -218,11 +224,28 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
       <div className="padding-global">
         <div className="container-large">
           {!hideSitewideCTA && <SitewideCTA />}
-          <div className="padding-section-large pt-8">
+          <div
+            className="padding-section-large pt-16"
+            style={{
+              paddingTop:
+                layout === "split"
+                  ? hideSitewideCTA
+                    ? "clamp(2rem, 3vw, 3rem)"
+                    : "clamp(5rem, 7vw, 7rem)"
+                  : "clamp(8rem, 14vw, 13rem)",
+            }}
+          >
 
-            <div className="contact-cta_component">
-              <div className="contact-cta_content">
-                <div className="contact-cta_header" style={{ textAlign: "left", marginBottom: "1rem", width: "100%" }}>
+            <div
+              className={`contact-cta_component${layout === "split" ? " contact-cta_split contact-grid" : ""}`}
+              style={
+                layout === "split"
+                  ? undefined
+                  : { display: "flex", flexDirection: "column", gap: "3rem", alignItems: "stretch" }
+              }
+            >
+              <div className="contact-cta_content contact-info">
+                <div className="contact-cta_header" style={{ textAlign: "left", marginBottom: "1.5rem", width: "100%" }}>
                   <h2 className="heading-style-h3" style={{ fontSize: "clamp(2rem, 4.2vw, 4rem)", marginBottom: "1.5rem", textAlign: "left", color: "#111111", fontWeight: 780, letterSpacing: "-0.06em", lineHeight: 0.92 }}>
                     Get in <span style={{
                       background: "linear-gradient(to right, #ff2a00, #ffb700)",
@@ -231,13 +254,13 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                       backgroundClip: "text",
                     }}>touch</span>
                   </h2>
-                  <p className="body-text" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "left", margin: 0, lineHeight: 1.5, color: "#111111", fontWeight: 500, textWrap: "balance" }}>
+                  <p className="body-text" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "left", margin: "0 0 2rem", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
                     We&rsquo;re always happy to hear from property managers and
                     owners, whether it&rsquo;s to enquire about a new fire safety audit,
                     or just to chat about all things fire safety-related.
                   </p>
                 </div>
-                <div className="contact-cta_info-wrapper" style={{ display: "flex", flexDirection: "column", gap: "1.5rem", alignItems: "flex-start", textAlign: "left", padding: 0, margin: 0, width: "100%" }}>
+                <div className="contact-cta_info-wrapper" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start", textAlign: "left", padding: "1.5rem 0 0", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", marginTop: "0.25rem" }}>
                     <h3 className="heading-style-h5" style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "#111111", textTransform: "uppercase", textAlign: "left" }}>SOCIALS</h3>
                     <ul className="contact-social-links" style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-start", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
@@ -252,8 +275,8 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                 </div>
               </div>
 
-              <div className="contact-cta_form-wrapper">
-                <div className="contact-cta_form-block w-form">
+              <div className="contact-cta_form-wrapper contact-form-column">
+                <div className="contact-cta_form-block w-form" style={{ width: "100%" }}>
                   <form
                     onSubmit={handleSubmit}
                     onReset={handleReset}
@@ -263,7 +286,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                     className="contact-cta_form"
                     aria-busy={isSubmitting}
                   >
-                    <div className="form_field-wrapper _2col" style={{ gap: "1rem", marginBottom: 0 }}>
+                    <div className="form_field-wrapper _2col" style={{ gap: "1.5rem", marginBottom: 0 }}>
                       <div className="form_field-wrapper">
                         <label htmlFor={`${formId}-name`} className="form_field-label" style={LABEL_STYLE}>
                           Name <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
@@ -313,7 +336,7 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                       </div>
                     </div>
 
-                    <div className="form_field-wrapper _2col" style={{ gap: "1rem" }}>
+                    <div className="form_field-wrapper _2col" style={{ gap: "1.5rem" }}>
                       <div className="form_field-wrapper">
                         <label htmlFor={`${formId}-email`} className="form_field-label" style={LABEL_STYLE}>
                           Email address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
@@ -477,11 +500,11 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                       <p id={`${formId}-consent-error`} style={{ margin: "-0.5rem 0 0.75rem 1.7rem", fontSize: 12.5, color: "#b91c1c" }}>{errors.consent}</p>
                     )}
 
-                    <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", alignSelf: "start", justifySelf: "start" }}>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="button max-width-full w-button"
+                        className="button w-button"
                         style={{
                           padding: "12px 22px",
                           minHeight: 48,
@@ -494,11 +517,13 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           cursor: isSubmitting ? "not-allowed" : "pointer",
                           display: "inline-flex",
                           alignItems: "center",
+                          justifyContent: "center",
                           gap: 10,
                           outline: "none",
                           boxShadow: "0 6px 18px rgba(255, 42, 0, 0.25)",
                           transition: "transform 0.12s, box-shadow 0.2s",
                           fontFamily: "inherit",
+                          textAlign: "center",
                         }}
                         onMouseDown={(e) => {
                           if (!isSubmitting) e.currentTarget.style.transform = "translateY(1px)";
@@ -545,6 +570,10 @@ export default function ContactCTA({ hideSitewideCTA }: { hideSitewideCTA?: bool
                           borderRadius: 8,
                           cursor: isSubmitting ? "not-allowed" : "pointer",
                           fontFamily: "inherit",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          textAlign: "center",
                         }}
                       >
                         Reset

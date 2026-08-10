@@ -2,21 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export default function SitewideCTA() {
-  const pathname = usePathname();
-
-  if (pathname === "/") {
-    return null;
-  }
-
   return (
-    <section className="pre-faq-cta" aria-labelledby="sitewide-cta-title">
+    <section
+      className="pre-faq-cta"
+      aria-labelledby="sitewide-cta-title"
+      style={{
+        marginBottom: "0",
+        marginTop: "0",
+      }}
+    >
       <style>{`
         .pre-faq-cta {
           background: transparent;
-          padding: 5rem 1.25rem 5rem;
+          padding: 2rem 1.25rem 2rem;
         }
 
         .pre-faq-cta-card {

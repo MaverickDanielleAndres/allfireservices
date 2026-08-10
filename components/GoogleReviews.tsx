@@ -208,7 +208,7 @@ export default function GoogleReviews() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <div className="reviews-header">
+        <div className="reviews-header" style={{ marginBottom: "1.75rem", gridTemplateColumns: "minmax(0, 1fr) auto" }}>
           <div className="reviews-kicker">Client feedback</div>
           <h2 className="reviews-title">
             What Sydney <span style={{ color: '#ff2a00' }}>building</span><br className="hidden lg:block" /><span style={{
@@ -218,48 +218,26 @@ export default function GoogleReviews() {
               backgroundClip: 'text',
             }}>managers tell us</span>
           </h2>
-          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-end w-full gap-6 lg:gap-4 mt-2 lg:mt-0">
-            {/* Avatar stack — generic user profile placeholder */}
-            <div className="flex -space-x-3 justify-center">
-              {feedbackItems.slice(0, 4).map((item, i) => (
-                <div
-                  key={i}
-                  className="w-12 h-12 rounded-full border-2 border-white bg-gray-50 flex items-center justify-center shadow-sm overflow-hidden"
-                  aria-hidden="true"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/userprofile.avif"
-                    alt=""
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="flex gap-3 shrink-0 justify-end items-end">
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+              aria-label="Previous feedback"
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-900" />
+            </button>
 
-            {/* Navigation Arrows */}
-            <div className="flex gap-4 shrink-0 justify-center">
-              <button
-                onClick={prevSlide}
-                className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
-                aria-label="Previous feedback"
-              >
-                <ChevronLeft className="w-5 h-5 text-gray-900" />
-              </button>
-
-              <button
-                onClick={nextSlide}
-                className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
-                aria-label="Next feedback"
-              >
-                <ChevronRight className="w-5 h-5 text-gray-900" />
-              </button>
-            </div>
+            <button
+              onClick={nextSlide}
+              className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
+              aria-label="Next feedback"
+            >
+              <ChevronRight className="w-5 h-5 text-gray-900" />
+            </button>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 lg:gap-8 mt-6">
+        <div className="flex flex-col gap-6 lg:gap-8">
 
           {/* Swipable / Draggable Track Container */}
           <div

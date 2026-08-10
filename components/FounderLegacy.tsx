@@ -176,7 +176,7 @@ function CompactTimeline() {
         ))}
         {/* Next generation marker */}
         <div
-          className={styles.generation}
+          className={`${styles.generation} ${styles.nextGeneration}`}
           style={{
             padding: "0",
             minWidth: 0,
@@ -272,8 +272,8 @@ export default function FounderLegacy() {
   return (
     <section data-theme="light" style={{ position: 'relative', zIndex: 10, background: '#ffffff', overflow: 'hidden' }}>
       <div className="padding-global" style={{ paddingLeft: 'clamp(0.75rem, 1.5vw, 1.5rem)', paddingRight: 'clamp(0.75rem, 1.5vw, 1.5rem)' }}>
-        <div className="container-large" style={{ maxWidth: '1440px', paddingInline: '48px' }}>
-          <div className="padding-section-large" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+        <div className="container-large" style={{ maxWidth: '1440px', paddingInline: 'clamp(1rem, 3vw, 3rem)' }}>
+          <div className="padding-section-large" style={{ paddingTop: 'clamp(1.25rem, 2.5vw, 3rem)', paddingBottom: 'clamp(1rem, 2vw, 3rem)' }}>
 
             <div
               className={styles.newStoryGrid}
@@ -307,27 +307,20 @@ export default function FounderLegacy() {
                     color: '#111111',
                     textAlign: 'center',
                   }}>
-                    <span style={{
-                      fontSize: 'clamp(2.25rem, 5.6vw, 6.75rem)',
-                      display: 'block',
-                      color: '#111111',
-                    }}>
+                    <span className={styles.founderHeadingLine}>
                       Fire protection
                     </span>
-                    <span style={{
-                      fontSize: 'clamp(2.25rem, 5.6vw, 6.75rem)',
-                      lineHeight: 0.95,
-                      display: 'block',
-                      whiteSpace: 'nowrap',
-                      color: '#111111',
-                    }}>
+                    <span className={styles.founderHeadingLine}>
                       runs <span style={{ color: '#ff2a00' }}>in</span>{' '}
-                      <span style={{
-                        background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}>
+                      <span
+                        className="block md:inline"
+                        style={{
+                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                        }}
+                      >
                         our blood
                       </span>
                     </span>
@@ -352,12 +345,10 @@ export default function FounderLegacy() {
               <motion.div
                 style={{
                   width: '100%',
-                  height: '100%',
                   margin: '0 auto',
                   display: 'flex',
                   alignItems: 'stretch',
                   justifyContent: 'center',
-                  minHeight: 0,
                   minWidth: 0,
                 }}
                 variants={reveal}
@@ -368,15 +359,7 @@ export default function FounderLegacy() {
                 <YouTubeLite
                   videoId="PY3FuIT0XQ4"
                   title="All Fire Services family legacy"
-                  style={{
-                    display: 'block',
-                    width: 'auto',
-                    height: '100%',
-                    aspectRatio: '9 / 16',
-                    flexShrink: 0,
-                    borderRadius: '18px',
-                    overflow: 'hidden',
-                  }}
+                  className={styles.founderVideo}
                 />
               </motion.div>
             </div>

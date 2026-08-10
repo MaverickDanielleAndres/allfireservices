@@ -147,7 +147,7 @@ export default function Page() {
         </header>
 
         <div className="bg-white relative z-10">
-          <ContactCTA hideSitewideCTA={true} />
+          <ContactCTA hideSitewideCTA={true} layout="split" />
           <SitewideCTA />
         </div>
       </main>

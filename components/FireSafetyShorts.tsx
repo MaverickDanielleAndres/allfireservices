@@ -84,12 +84,12 @@ export default function FireSafetyShorts() {
   return (
     <section
       aria-labelledby="fire-safety-shorts-title"
-      style={{ background: "#ffffff", padding: "clamp(4rem, 7vw, 5.5rem) 0" }}
+      style={{ background: "#ffffff", padding: "clamp(2rem, 4vw, 3rem) 0", marginTop: "clamp(4rem, 7vw, 6rem)" }}
     >
       <div className="padding-global">
         <div className="container-large">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-4 md:gap-6 mb-8 md:mb-[clamp(5rem,8vw,7rem)] w-full text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-4 md:gap-6 mb-6 md:mb-[clamp(2rem,4vw,3.5rem)] w-full text-center md:text-left">
             <header className="mb-0 block w-full md:w-auto">
               <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
               <h2 id="fire-safety-shorts-title" className="mx-auto md:mx-0" style={{
@@ -178,7 +178,7 @@ export default function FireSafetyShorts() {
             scrollSnapType: "x mandatory",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            padding: "0 0 2rem 0",
+            padding: "0 0 1rem 0",
             cursor: isDragging ? "grabbing" : "grab",
             touchAction: "pan-y",
           }}
@@ -389,14 +389,14 @@ export default function FireSafetyShorts() {
         .shorts-view-more {
           display: flex;
           justify-content: center;
-          margin-top: 3.5rem;
+          margin-top: 2rem;
         }
         @media (max-width: 767px) {
           .shorts-carousel {
             gap: 0.75rem;
           }
           .shorts-view-more {
-            margin-top: 2rem;
+            margin-top: 1.25rem;
           }
           .shorts-title {
             text-align: center;

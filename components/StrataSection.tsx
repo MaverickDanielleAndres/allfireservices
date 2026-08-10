@@ -67,8 +67,9 @@ const strataBuildings: CardItem[] = [
 
 export default function StrataSection() {
   return (
-    <MotionSection 
+    <MotionSection
       className={styles.section}
+      style={{ marginTop: "clamp(4rem, 7vw, 6rem)" }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -87,15 +88,15 @@ export default function StrataSection() {
             }}>we service</span>
           </h2>
           <p>
-            Across Greater Sydney, from single blocks to whole portfolios.
+            Trusted fire protection for strata communities, commercial buildings, and managed properties across Greater Sydney.
           </p>
         </header>
 
         <ExpandingCards items={strataBuildings} defaultActiveIndex={0} />
 
         <div className={styles.footer}>
-          <Link 
-            href="/our-clients" 
+          <Link
+            href="/our-clients"
             className={styles.viewMore}
           >
             View all Strata
