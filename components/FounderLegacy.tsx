@@ -53,7 +53,8 @@ function CompactTimeline() {
             left: "calc(100% / (var(--timeline-count) * 2))",
             right: "calc(100% / (var(--timeline-count) * 2))",
             height: "0.3rem",
-            background: "rgba(226, 35, 26, 0.18)",
+            background:
+              "linear-gradient(to right, rgba(226, 35, 26, 0) 0%, rgba(226, 35, 26, 0.45) 12%, rgba(226, 35, 26, 0.45) 88%, rgba(226, 35, 26, 0) 100%)",
             borderRadius: "999px",
           }}
         />
@@ -65,6 +66,8 @@ function CompactTimeline() {
             height: "0.3rem",
             left: "calc(100% / (var(--timeline-count) * 2))",
             right: "calc(100% / (var(--timeline-count) * 2))",
+            background:
+              "linear-gradient(to right, rgba(226, 35, 26, 0) 0%, #e2231a 10%, #e2231a 90%, rgba(226, 35, 26, 0) 100%)",
           }}
         />
         {generations.map((generation) => (
@@ -330,7 +333,7 @@ export default function FounderLegacy() {
                   </h2>
                 </header>
 
-                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '0.5rem', marginBottom: '0.75rem' }}>
+                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '1rem', marginBottom: '0.75rem' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
                 <div className="flex justify-start" style={{ marginTop: '0.25rem', paddingLeft: '0.5rem' }}>
@@ -344,7 +347,7 @@ export default function FounderLegacy() {
               <motion.div
                 style={{
                   width: '100%',
-                  height: '100%',
+                  height: 'auto',
                   margin: '0 auto',
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -362,12 +365,13 @@ export default function FounderLegacy() {
                   style={{
                     position: 'relative',
                     width: '100%',
-                    maxWidth: 'min(100%, 320px)',
-                    paddingTop: '130%',
+                    maxWidth: 'min(100%, 380px)',
+                    aspectRatio: '4 / 5',
                     borderRadius: '1.25rem',
                     overflow: 'hidden',
                     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.12)',
                     backgroundColor: '#111',
+                    flexShrink: 0,
                   }}
                 >
                   <YouTubeLite
