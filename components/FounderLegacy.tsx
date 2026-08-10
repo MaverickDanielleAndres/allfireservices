@@ -196,12 +196,13 @@ function CompactTimeline() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/family/nexgenimage.webp"
+              src="/family/nexgenimage.png"
               alt="Next Generation Firefighter"
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                filter: "grayscale(100%)",
                 display: "block",
               }}
             />
@@ -279,7 +280,7 @@ export default function FounderLegacy() {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  justifyContent: 'flex-start',
                   gap: '0.25rem',
                 }}
                 variants={reveal}
@@ -291,7 +292,7 @@ export default function FounderLegacy() {
 
                 <header
                   className={`flex flex-col items-start`}
-                  style={{ marginTop: 0, marginBottom: '0.25rem', maxWidth: 'none', width: '100%' }}
+                  style={{ marginTop: 0, marginBottom: 0, maxWidth: 'none', width: '100%' }}
                 >
                   <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase', marginBottom: '0.4rem' }}>Our Family Legacy</p>
                   <h2 className="mx-0 text-left" style={{
@@ -299,10 +300,13 @@ export default function FounderLegacy() {
                     lineHeight: 1.0,
                     letterSpacing: '-0.04em',
                     maxWidth: '100%',
+                    margin: 0,
+                    color: '#111111',
                   }}>
                     <span style={{
                       fontSize: 'clamp(1.85rem, 4.2vw, 5rem)',
                       display: 'block',
+                      color: '#111111',
                     }}>
                       Fire protection
                     </span>
@@ -311,6 +315,7 @@ export default function FounderLegacy() {
                       lineHeight: 0.95,
                       display: 'block',
                       whiteSpace: 'nowrap',
+                      color: '#111111',
                     }}>
                       runs <span style={{ color: '#ff2a00' }}>in</span>{' '}
                       <span style={{
@@ -325,10 +330,10 @@ export default function FounderLegacy() {
                   </h2>
                 </header>
 
-                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '0.25rem', marginBottom: '0.5rem' }}>
+                <p className="text-[#111111] text-[clamp(0.95rem,1.2vw,1.1rem)] leading-[1.55] text-left" style={{ marginTop: '0.5rem', marginBottom: '0.75rem' }}>
                   The Tricklebank family has served on the front line of firefighting since <strong>1911</strong>. <strong>All Fire Services</strong> is a separate story — an Australian owned business established in <strong>2009</strong>, today owned by <strong>Peter Tricklebank</strong>.
                 </p>
-                <div className="flex justify-start">
+                <div className="flex justify-start" style={{ marginTop: '0.25rem', paddingLeft: '0.5rem' }}>
                   <Link href="/about" className={styles.newStoryLink}>
                     READ OUR FULL STORY <span className={styles.newStoryLinkArrow}>&rarr;</span>
                   </Link>
@@ -358,7 +363,7 @@ export default function FounderLegacy() {
                     position: 'relative',
                     width: '100%',
                     maxWidth: 'min(100%, 320px)',
-                    paddingTop: '177.78%',
+                    paddingTop: '130%',
                     borderRadius: '1.25rem',
                     overflow: 'hidden',
                     boxShadow: '0 18px 40px rgba(0, 0, 0, 0.12)',
