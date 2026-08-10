@@ -395,16 +395,20 @@ export default function FounderLegacy() {
                 </div>
               </motion.div>
 
-              {/* RIGHT COLUMN: vertical video, kept compact + aligned to top */}
+              {/* RIGHT COLUMN: vertical video that grows with the LEFT
+                  column height. The grid uses `align-items: stretch` so
+                  this motion.div already inherits the row height (set
+                  by the tallest column — i.e. the left one). We then
+                  fill that height with the 9:16 portrait video. */}
               <motion.div
                 style={{
                   width: '100%',
                   margin: '0 auto',
                   display: 'flex',
-                  alignItems: 'flex-start',
+                  alignItems: 'stretch',
                   justifyContent: 'center',
                   minWidth: 0,
-                  maxWidth: '420px',
+                  height: '100%',
                 }}
                 variants={reveal}
                 initial="hidden"
