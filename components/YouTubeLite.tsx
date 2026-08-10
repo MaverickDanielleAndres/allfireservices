@@ -61,7 +61,7 @@ export default function YouTubeLite({
   if (activated) {
     const src = autoplay
       ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`
-      : `https://www.youtube.com/embed/${videoId}?rel=0`;
+      : `https://www.youtube.com/embed/${videoId}?rel=0&controls=0&modestbranding=1&disablekb=1&fs=0`;
 
     return (
       <div ref={ref} className={className} style={style}>

@@ -371,6 +371,7 @@ export default function FounderLegacy() {
                     display: 'block',
                     width: 'auto',
                     height: '100%',
+                    aspectRatio: '9 / 16',
                     flexShrink: 0,
                     borderRadius: '18px',
                     overflow: 'hidden',
