@@ -539,10 +539,7 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           </span>
           <span style={{ position: "relative", zIndex: 1, textAlign: "left" }}>
             <span style={{ display: "block", margin: 0, fontSize: 11, fontWeight: 750, color: "#171717", lineHeight: 1.1 }}>
-              Ask ALLFIRE
-            </span>
-            <span style={{ display: "block", marginTop: 3, fontSize: 10.5, color: "#747474", lineHeight: 1.1 }}>
-              Service help
+              Ask Flame<br />from ALLFIRE
             </span>
           </span>
         </button>
