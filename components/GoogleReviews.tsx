@@ -18,6 +18,9 @@ interface FeedbackItem {
   context: string;
   /** Initials used for the avatar (no stock photos of named individuals). */
   initials: string;
+  /** Avatar image from /public/testinonial/ — round-robined across the
+   *  five profile images supplied for the testimonials feature. */
+  imageSrc: string;
 }
 
 // Client feedback examples — presented as illustrative feedback, not as
@@ -29,24 +32,28 @@ const feedbackItems: FeedbackItem[] = [
       "Punctual, professional and friendly team. George was really patient in explaining what needed to be completed on site and how all the systems work.",
     context: "Strata manager, Sydney",
     initials: "JA",
+    imageSrc: "/testinonial/testimonialprofile.jpg",
   },
   {
     quote:
       "Great team providing impeccable professional fire protection system installation followed by on call service for a couple of small faults. Highly recommend these guys.",
     context: "Commercial property owner",
     initials: "MS",
+    imageSrc: "/testinonial/testimonialprofile2.jpg",
   },
   {
     quote:
       "I am very satisfied with both the quality of work and fair pricing. Peter is honest, quick to respond, and very knowledgeable of all things fire safety.",
     context: "Owners corporation, Sydney",
     initials: "JA",
+    imageSrc: "/testinonial/testimonialprofile3.avif",
   },
   {
     quote:
       "All Fire Services has been managing our strata block for three years. They are always on time, transparent with pricing, and proactive about compliance.",
     context: "Strata committee, Inner West",
     initials: "DC",
+    imageSrc: "/testinonial/testimonialprofile4.jpg",
   },
 ];
 
@@ -307,7 +314,7 @@ export default function GoogleReviews() {
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src="/userprofile.avif"
+                            src={item.imageSrc}
                             alt=""
                             className="w-full h-full object-cover"
                             loading="lazy"

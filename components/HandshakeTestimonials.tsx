@@ -10,42 +10,44 @@ const testimonials = [
     quote: "All Fire Services keeps our annual fire safety statements moving without the last-minute stress. Their team explains what matters, turns up prepared, and follows through.",
     name: "Sarah Jenkins",
     role: "Strata Manager, Inner West Sydney",
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
+    image: "/testinonial/testimonialprofile.jpg",
   },
   {
     brand: "Facilities",
     quote: "The difference is practical experience. When something needs attention, All Fire Services tells us what is urgent, what is compliant, and what can be planned properly.",
     name: "Mark Taylor",
     role: "Facilities Manager, Commercial Portfolio",
-    image: "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
+    image: "/testinonial/testimonialprofile2.jpg",
   },
   {
     brand: "Owners",
     quote: "They are reliable, clear, and easy to work with. We have confidence that our fire protection maintenance is being handled by people who understand real buildings.",
     name: "David Chen",
     role: "Building Owner, Greater Sydney",
-    image: "/Fireprotectionservicesimage/monthlyfireprotection.webp",
+    image: "/testinonial/testimonialprofile3.avif",
   },
   {
     brand: "Compliance",
     quote: "All Fire Services helped us get our compliance records organised and kept our committee informed in plain language. That made approvals much easier.",
     name: "Lisa Wong",
     role: "Owners Corporation Secretary",
-    image: "/annual-fire-safety-statement/fire-truck-all-fire-services.webp",
+    image: "/testinonial/testimonialprofile4.jpg",
   },
   {
     brand: "Maintenance",
     quote: "Their technicians are punctual and professional. They leave useful notes after each inspection, which helps us stay ahead of defects before they become bigger issues.",
     name: "Michael Kavanagh",
     role: "Asset Manager, Sydney",
-    image: "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
+    image: "/testinonial/testimonialprofile5.jpg",
   },
   {
     brand: "Support",
     quote: "We call All Fire Services because they respond quickly and give us direct answers. The firefighter-led knowledge shows in the way they solve problems on site.",
     name: "Paul Davis",
     role: "Operations Director, Property Group",
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp",
+    // Six testimonials, five avatar images — wrap to keep the rotation
+    // visually consistent at the loop seam.
+    image: "/testinonial/testimonialprofile.jpg",
   },
 ];
 
