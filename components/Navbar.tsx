@@ -604,7 +604,7 @@ function NavbarContent() {
           </div>
           <div className="navbar-topbar-right">
             <a href="https://www.facebook.com/profile.php?id=61566630403365" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon size={16} /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={16} /></a>
+            <a href="https://www.instagram.com/_allfireservices_/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={16} /></a>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={16} /></a>
             <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><YoutubeIcon size={16} /></a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><XIcon size={14} /></a>
