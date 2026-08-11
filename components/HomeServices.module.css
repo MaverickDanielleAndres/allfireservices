@@ -62,6 +62,18 @@
   line-height: 1.55;
 }
 
+/* "Where we work — Strata and Building we service" cards. The
+   ExpandingCards component ships with Tailwind `max-w-7xl` (80rem),
+   which indented the cards ~1rem from the .container's 82rem edge and
+   pulled them off-grid with the header above. Override so the card row
+   starts at exactly the same left edge as the heading text. */
+.expandingCardsRow {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .capabilityStrip {
   width: 100%;
   margin-bottom: clamp(2rem, 3vw, 2.5rem);

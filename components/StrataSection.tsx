@@ -92,7 +92,11 @@ export default function StrataSection() {
           </p>
         </header>
 
-        <ExpandingCards items={strataBuildings} defaultActiveIndex={0} />
+        <ExpandingCards
+          items={strataBuildings}
+          defaultActiveIndex={0}
+          className={styles.expandingCardsRow}
+        />
 
         <div className={styles.footer}>
           <Link

@@ -11,7 +11,7 @@ const clients = [
   { name: "Netstrata", src: "/client-logos/netstrata.svg", width: 240, height: 68 },
   { name: "Get Strata", src: "/client-logos/get-strata.png", width: 135, height: 72 },
   { name: "Cambridge Lodge", src: "/client-logos/cambridge-lodge.jpg", width: 296, height: 90, className: "has-bg" },
-  { name: "Strathfield Partners", src: "https://www.strathfieldpartners.com.au/wp-content/uploads/2020/11/cropped-logosp.png", width: 500, height: 221, className: "has-bg" },
+  { name: "Strathfield Partners", src: "/client-logos/strathfield-partners.png", width: 500, height: 221, className: "has-bg" },
   { name: "Arriva", src: "/client-logos/arriva.svg", width: 131, height: 39 },
   // Adding 3 duplicated clients to balance out the grid dynamically
   { name: "Household Properties", src: "/client-logos/household-properties.png", width: 250, height: 88 },
