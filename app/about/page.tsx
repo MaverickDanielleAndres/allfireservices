@@ -26,12 +26,14 @@ const companyGalleryImages = [
   { id: 7, src: "/History/about (10).jpg", name: "Generations of Firefighters", desc: "The Tricklebank family firefighting lineage." },
 ];
 const teamMembers = [
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads the business and its team of fire-safety professionals across Greater Sydney.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp', name: 'Paul', bio: 'Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Sam', bio: 'Sam brings the practical experience of a serving professional firefighter to his work, helping clients maintain safe and compliant buildings.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp', name: 'George', bio: 'George is committed to providing a high standard of service and helping clients protect their people and property.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp', name: 'Ken', bio: 'Ken brings technical expertise in matters relating to the Building Code of Australia, Australian Standards, and fire-safety requirements.' },
-  { img: '/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp', name: 'Kyriakos', bio: 'Kyriakos provides approachable, practical, and dependable fire-safety services to clients across Greater Sydney.' },
+  { img: '/technician/pete.jpg', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads the business and its team of fire-safety professionals across Greater Sydney.' },
+  { img: '/technician/team1.jpg', name: 'Paul', bio: 'Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.' },
+  { img: '/technician/team2.jpg', name: 'Sam', bio: 'Sam brings the practical experience of a serving professional firefighter to his work, helping clients maintain safe and compliant buildings.' },
+  { img: '/technician/team3.jpg', name: 'George', bio: 'George is committed to providing a high standard of service and helping clients protect their people and property.' },
+  { img: '/technician/team4.jpg', name: 'Ken', bio: 'Ken brings technical expertise in matters relating to the Building Code of Australia, Australian Standards, and fire-safety requirements.' },
+  // Six team slots, five supplied portraits — share team1 with Kyriakos
+  // (he sits in row 2 col 3, not vertically next to Paul in row 1 col 2).
+  { img: '/technician/team1.jpg', name: 'Kyriakos', bio: 'Kyriakos provides approachable, practical, and dependable fire-safety services to clients across Greater Sydney.' },
 ];
 
 export default function Page() {
@@ -707,7 +709,7 @@ export default function Page() {
                       </p>
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                      <Image src="/History/1 (1).jpg" alt="Our Mission" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                      <Image src="/technician/group.jpg" alt="Our Mission" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                     </div>
                   </div>
                 </div>

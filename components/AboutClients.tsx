@@ -16,7 +16,7 @@ const sections = [
     title: <>Every Building.<br /><span style={gradientStyle}>Every Industry.</span></>,
     altTitle: "Every Building. Every Industry.",
     description: <>From strata communities to large industrial facilities, every property has different fire-safety requirements. We develop <strong>tailored protection and maintenance strategies</strong> that meet the specific compliance needs of each building.</>,
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
+    image: "/buildingcompilation.jpg",
   },
   {
     kicker: "SAFETY FIRST",
@@ -30,7 +30,7 @@ const sections = [
     title: <>Partners, Not Just<br /><span style={gradientStyle}>Providers</span></>,
     altTitle: "Partners, Not Just Providers",
     description: <>Strong results come from trust, clear communication, and dependable service. Our clients rely on our <strong>firefighter-led expertise and practical advice</strong> to keep their properties safe without unnecessary disruption.</>,
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp",
+    image: "/technician/group.jpg",
   },
   {
     kicker: "RELIABILITY",
