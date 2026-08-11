@@ -561,6 +561,23 @@ function NavbarContent() {
           height: 8rem; /* 50px topbar + 5.5rem inner roughly = 128px */
         }
 
+        /* Desktop only: match the services dropdown text to the header nav size. */
+        @media (min-width: 1025px) {
+          .navbar-dropdown {
+            width: min(42rem, calc(100vw - 3rem));
+          }
+          .navbar-dropdown-link {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 0.6rem;
+            line-height: 1.3;
+          }
+          .navbar-dropdown-top .navbar-dropdown-link {
+            font-size: 0.75rem;
+            font-weight: 700;
+          }
+        }
+
         @media (max-width: 1024px) {
           .navbar-nav, .navbar-actions {
             display: none;
