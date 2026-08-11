@@ -48,7 +48,7 @@ const socialLinks = [
   { label: "YouTube", href: "https://youtube.com/@allfireservices", icon: YoutubeIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/all-fire-services-australia", icon: LinkedinIcon },
   { label: "Instagram", href: "https://www.instagram.com/_allfireservices_/", icon: InstagramIcon },
-  { label: "X (Twitter)", href: "https://x.com/allfireservices", icon: XIcon },
+  { label: "X (Twitter)", href: "https://x.com/Allfiresydney", icon: XIcon },
   { label: "Email", href: `mailto:${SITE_EMAIL}`, icon: EmailIcon },
 ];
 
