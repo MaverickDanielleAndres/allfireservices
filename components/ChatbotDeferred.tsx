@@ -1,13 +1,18 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
-const Chatbot = dynamic(() => import("./Chatbot"), {
-  ssr: false,
-});
+// External Flame chatbot URL. We launch it via a centered popup
+// window because flame.antman.xyz sends `Content-Security-Policy:
+// frame-ancestors 'none'`, which forbids any site (including ours)
+// from framing it.
+const CHATBOT_URL = "https://flame.antman.xyz/";
+
+// Popup-window sizing for the chatbot launcher.
+const POPUP_WIDTH = 480;
+const POPUP_HEIGHT = 760;
 
 function BrandCorner() {
   return (
@@ -40,8 +45,36 @@ function BrandCorner() {
   );
 }
 
+// Position a popup window at the centre of the user's screen,
+// accounting for multi-monitor layouts and Windows taskbar offsets.
+function centredPopupFeatures(width: number, height: number) {
+  const dualScreenLeft = window.screenLeft ?? window.screenX ?? 0;
+  const dualScreenTop = window.screenTop ?? window.screenY ?? 0;
+  const screenWidth =
+    (window.screen?.availWidth ?? window.innerWidth) +
+    (Math.abs((window.screen?.availLeft ?? dualScreenLeft) - dualScreenLeft) || 0);
+  const screenHeight =
+    (window.screen?.availHeight ?? window.innerHeight) +
+    (Math.abs((window.screen?.availTop ?? dualScreenTop) - dualScreenTop) || 0);
+
+  const left = dualScreenLeft + (screenWidth - width) / 2;
+  const top = dualScreenTop + (screenHeight - height) / 2;
+
+  return [
+    `width=${width}`,
+    `height=${height}`,
+    `left=${Math.max(0, Math.round(left))}`,
+    `top=${Math.max(0, Math.round(top))}`,
+    "resizable=yes",
+    "scrollbars=yes",
+    "status=no",
+    "toolbar=no",
+    "menubar=no",
+    "location=no",
+  ].join(",");
+}
+
 export default function ChatbotDeferred() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   useEffect(() => {
@@ -56,13 +89,23 @@ export default function ChatbotDeferred() {
       }
     };
     handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (isLoaded) {
-    return <Chatbot initialOpen />;
-  }
+  const openChatbot = () => {
+    // Primary: centered popup window. If the browser blocks the popup
+    // (e.g. user has a strict blocker), gracefully degrade to a new
+    // tab so the click still does *something*.
+    const popup = window.open(
+      CHATBOT_URL,
+      "ALLFIRE Assistant — Flame",
+      centredPopupFeatures(POPUP_WIDTH, POPUP_HEIGHT),
+    );
+    if (!popup) {
+      window.open(CHATBOT_URL, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <motion.div
@@ -80,7 +123,7 @@ export default function ChatbotDeferred() {
       <button
         type="button"
         aria-label="Open ALLFIRE assistant"
-        onClick={() => setIsLoaded(true)}
+        onClick={openChatbot}
         style={{
           position: "relative",
           overflow: "hidden",

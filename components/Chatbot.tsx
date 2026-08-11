@@ -1,22 +1,14 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { HelpCircle, MapPin, MessageCircle, Phone, RefreshCw, Send, X } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { MapPin, MessageCircle, Phone, X } from "lucide-react";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 
-type Message = {
-  role: "user" | "model";
-  content: string;
-};
-
-const POPULAR_QUESTIONS = [
-  "What services does ALLFIRE provide?",
-  "Do you work with strata properties?",
-  "Can ALLFIRE assist with an AFSS?",
-  "Where does ALLFIRE operate?",
-];
+// External chatbot host. The ALLFIRE branded chatbox shells an iframe
+// pointing at this URL so the visitor still sees "Ask Flame from ALLFIRE"
+// but the conversation itself is rendered by flame.antman.xyz.
+const CHATBOT_SRC = "https://flame.antman.xyz/";
 
 function BrandCorner({ compact = false }: { compact?: boolean }) {
   const size = compact ? { width: 68, height: 48 } : { width: 168, height: 122 };
@@ -51,42 +43,8 @@ function BrandCorner({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function SubtleWave() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 340 120"
-      preserveAspectRatio="none"
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 128,
-        width: "100%",
-        height: 120,
-        opacity: 0.25,
-        pointerEvents: "none",
-      }}
-    >
-      {Array.from({ length: 10 }).map((_, index) => (
-        <path
-          key={index}
-          d={`M-28 ${58 + index * 5} C 42 ${96 + index * 3}, 74 ${108 + index * 2}, 116 ${48 + index * 3} S 206 ${26 + index * 3}, 258 ${68 + index * 2} S 338 ${88 + index * 3}, 372 ${42 + index * 2}`}
-          fill="none"
-          stroke="#d8d8d8"
-          strokeWidth="0.7"
-        />
-      ))}
-    </svg>
-  );
-}
-
 export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean }) {
   const [isOpen, setIsOpen] = useState(initialOpen);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
@@ -96,10 +54,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length, isLoading]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
@@ -116,66 +70,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
       document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [isOpen]);
-
-  const handleSend = async (text: string) => {
-    if (!text.trim() || isLoading) return;
-    const userMessage = text.trim();
-    setInput("");
-    const newMessages: Message[] = [...messages, { role: "user", content: userMessage }];
-    setMessages(newMessages);
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMessages }),
-      });
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || "Error");
-      }
-      if (!response.body) throw new Error("Error");
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
-      setMessages((prev) => [...prev, { role: "model", content: "" }]);
-
-      while (!done) {
-        const { value, done: readerDone } = await reader.read();
-        done = readerDone;
-        if (value) {
-          const chunkText = decoder.decode(value, { stream: true });
-          setMessages((prev) =>
-            prev.map((message, index) =>
-              index === prev.length - 1
-                ? { ...message, content: message.content + chunkText }
-                : message,
-            ),
-          );
-        }
-      }
-    } catch (error: unknown) {
-      const errorMessage = error instanceof Error ? error.message : "";
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "model",
-          content: errorMessage
-            ? `Sorry, there was an error: ${errorMessage}. Please call us on **1300 765 594**.`
-            : "Sorry, there was an error. Please call us on **1300 765 594**.",
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSend(input);
-  };
 
   return (
     <motion.div
@@ -197,9 +91,9 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           aria-label="ALLFIRE assistant"
           style={{
             position: "relative",
-            width: isMobileOrTablet ? "calc(100vw - 20px)" : 340,
-            height: 560,
-            maxWidth: 340,
+            width: isMobileOrTablet ? "calc(100vw - 20px)" : 380,
+            height: 620,
+            maxWidth: 380,
             maxHeight: "86vh",
             borderRadius: 8,
             boxShadow: "0 18px 46px rgba(18, 18, 18, 0.16)",
@@ -211,7 +105,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           }}
         >
           <BrandCorner />
-          <SubtleWave />
 
           <header style={{ position: "relative", zIndex: 1, padding: "18px 18px 12px", flexShrink: 0 }}>
             <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16 }}>
@@ -233,199 +126,48 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                 </p>
               </div>
 
-              <div style={{ display: "flex", gap: 4, marginTop: 2 }}>
-                <button
-                  onClick={() => setMessages([])}
-                  title="Reset chat"
-                  aria-label="Reset chat"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 999,
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    background: "rgba(255,255,255,0.82)",
-                    color: "#4b4b4b",
-                    display: "grid",
-                    placeItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <RefreshCw size={14} strokeWidth={2} />
-                </button>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close chat"
-                  style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 999,
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    background: "rgba(255,255,255,0.82)",
-                    color: "#4b4b4b",
-                    display: "grid",
-                    placeItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <X size={15} strokeWidth={2} />
-                </button>
-              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 999,
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  background: "rgba(255,255,255,0.82)",
+                  color: "#4b4b4b",
+                  display: "grid",
+                  placeItems: "center",
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              >
+                <X size={15} strokeWidth={2} />
+              </button>
             </div>
           </header>
 
-          <div style={{ position: "relative", zIndex: 1, flex: 1, overflowY: "auto", padding: "0 14px 12px" }}>
-            {messages.length === 0 ? (
-              <div style={{ display: "flex", flexDirection: "column", gap: 14, paddingTop: 10 }}>
-                <div
-                  style={{
-                    border: "1px solid #eeeeee",
-                    borderRadius: 8,
-                    padding: "13px 14px",
-                    background: "rgba(255,255,255,0.9)",
-                  }}
-                >
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7 }}>
-                    <MessageCircle size={15} color="#fb5614" strokeWidth={2.3} />
-                    <h3 style={{ margin: 0, fontSize: 14, fontWeight: 750, color: "#171717" }}>How can I help?</h3>
-                  </div>
-                  <p style={{ margin: 0, fontSize: 12, color: "#666", lineHeight: 1.55 }}>
-                    I can help with general ALLFIRE service questions. For property-specific advice, our team can arrange an assessment.
-                  </p>
-                </div>
-
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 8 }}>
-                    <HelpCircle size={13} color="#fb5614" strokeWidth={2.3} />
-                    <span style={{ fontSize: 11, fontWeight: 750, color: "#767676", textTransform: "uppercase" }}>
-                      Popular questions
-                    </span>
-                  </div>
-                  <div style={{ display: "grid", gap: 7 }}>
-                    {POPULAR_QUESTIONS.map((question) => (
-                      <button
-                        key={question}
-                        onClick={() => handleSend(question)}
-                        style={{
-                          width: "100%",
-                          minHeight: 38,
-                          background: "#fff",
-                          border: "1px solid #e8e2dc",
-                          borderRadius: 8,
-                          padding: "9px 10px",
-                          textAlign: "left",
-                          fontSize: 12,
-                          color: "#2d2d2d",
-                          lineHeight: 1.35,
-                          cursor: "pointer",
-                          fontFamily: "inherit",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = "#fb5614";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = "#e8e2dc";
-                        }}
-                      >
-                        {question}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div style={{ display: "flex", flexDirection: "column", gap: 10, paddingTop: 10 }}>
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      display: "flex",
-                      justifyContent: message.role === "user" ? "flex-end" : "flex-start",
-                      alignItems: "flex-end",
-                      gap: 7,
-                    }}
-                  >
-                    {message.role === "model" && (
-                      <div
-                        style={{
-                          width: 24,
-                          height: 24,
-                          borderRadius: "50%",
-                          background: "#fff",
-                          border: "1px solid #ece7e2",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
-                        }}
-                      >
-                        <Image src="/logo.png" alt="ALLFIRE" width={15} height={15} style={{ objectFit: "contain", width: 15, height: 15 }} />
-                      </div>
-                    )}
-                    <div
-                      style={{
-                        maxWidth: "78%",
-                        padding: "9px 11px",
-                        fontSize: 12,
-                        lineHeight: 1.5,
-                        borderRadius: message.role === "user" ? "12px 12px 3px 12px" : "12px 12px 12px 3px",
-                        background: message.role === "user" ? "#fb5614" : "#fff",
-                        color: message.role === "user" ? "#fff" : "#242424",
-                        border: message.role === "model" ? "1px solid #ece7e2" : "1px solid #fb5614",
-                        boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
-                      }}
-                    >
-                      {message.role === "model" ? <ReactMarkdown>{message.content}</ReactMarkdown> : message.content}
-                    </div>
-                  </div>
-                ))}
-                {isLoading && (
-                  <div style={{ display: "flex", alignItems: "flex-end", gap: 7 }}>
-                    <div
-                      style={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: "50%",
-                        background: "#fff",
-                        border: "1px solid #ece7e2",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <Image src="/logo.png" alt="ALLFIRE" width={15} height={15} style={{ objectFit: "contain", width: 15, height: 15 }} />
-                    </div>
-                    <div
-                      style={{
-                        background: "#fff",
-                        border: "1px solid #ece7e2",
-                        borderRadius: "12px 12px 12px 3px",
-                        padding: "10px 13px",
-                        display: "flex",
-                        gap: 4,
-                        alignItems: "center",
-                      }}
-                    >
-                      {[0, 0.2, 0.4].map((delay, index) => (
-                        <span
-                          key={index}
-                          style={{
-                            width: 5,
-                            height: 5,
-                            borderRadius: "50%",
-                            background: "#c8c8c8",
-                            display: "inline-block",
-                            animation: `bounce 1s ${delay}s infinite`,
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            )}
-          </div>
+          {/*
+            External Flame chatbot rendered inside an iframe so the
+            ALLFIRE shell (header / footer / close) frames it. The
+            iframe fills the remaining vertical space between the
+            header and the footer bar.
+          */}
+          <iframe
+            src={CHATBOT_SRC}
+            title="ALLFIRE Assistant — Powered by Flame"
+            loading="lazy"
+            allow="microphone; camera; clipboard-read; clipboard-write"
+            referrerPolicy="strict-origin-when-cross-origin"
+            style={{
+              position: "relative",
+              zIndex: 1,
+              flex: 1,
+              width: "100%",
+              border: 0,
+              background: "#fff",
+            }}
+          />
 
           <footer style={{ position: "relative", zIndex: 1, background: "#fff", borderTop: "1px solid #ece7e2", flexShrink: 0 }}>
             <div
@@ -449,54 +191,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
                 <span style={{ fontSize: 11.5, fontWeight: 750 }}>1300 765 594</span>
               </a>
             </div>
-
-            <form onSubmit={handleSubmit} style={{ display: "flex", gap: 8, alignItems: "center", padding: 10 }}>
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about ALLFIRE services"
-                disabled={isLoading}
-                style={{
-                  flex: 1,
-                  minWidth: 0,
-                  border: "1px solid #ded8d2",
-                  borderRadius: 999,
-                  padding: "9px 13px",
-                  fontSize: 12,
-                  outline: "none",
-                  color: "#282828",
-                  background: "#fff",
-                  fontFamily: "inherit",
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.borderColor = "#fb5614";
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "#ded8d2";
-                }}
-              />
-              <button
-                type="submit"
-                disabled={!input.trim() || isLoading}
-                aria-label="Send message"
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "#fb5614",
-                  border: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  flexShrink: 0,
-                  opacity: !input.trim() || isLoading ? 0.45 : 1,
-                }}
-              >
-                <Send size={14} color="#fff" strokeWidth={2.5} style={{ transform: "translateX(-1px) translateY(1px)" }} />
-              </button>
-            </form>
           </footer>
         </section>
       )}
@@ -544,21 +238,6 @@ export default function Chatbot({ initialOpen = false }: { initialOpen?: boolean
           </span>
         </button>
       )}
-
-      <style>{`
-        @keyframes bounce {
-          0%,100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
-
-        .chatbot-window p {
-          margin: 0;
-        }
-
-        .chatbot-window p + p {
-          margin-top: 0.5rem;
-        }
-      `}</style>
     </motion.div>
   );
 }
