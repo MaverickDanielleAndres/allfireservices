@@ -48,14 +48,22 @@ function BrandCorner() {
 // Position a popup window at the centre of the user's screen,
 // accounting for multi-monitor layouts and Windows taskbar offsets.
 function centredPopupFeatures(width: number, height: number) {
+  // `availLeft` / `availTop` are non-standard `Screen` properties
+  // (used by some browsers for multi-monitor offsets) that aren't
+  // part of TypeScript's lib.dom `Screen` interface, so widen the
+  // type to include them.
+  const screen = window.screen as (typeof window.screen & {
+    availLeft?: number;
+    availTop?: number;
+  }) | null;
   const dualScreenLeft = window.screenLeft ?? window.screenX ?? 0;
   const dualScreenTop = window.screenTop ?? window.screenY ?? 0;
   const screenWidth =
-    (window.screen?.availWidth ?? window.innerWidth) +
-    (Math.abs((window.screen?.availLeft ?? dualScreenLeft) - dualScreenLeft) || 0);
+    (screen?.availWidth ?? window.innerWidth) +
+    (Math.abs((screen?.availLeft ?? dualScreenLeft) - dualScreenLeft) || 0);
   const screenHeight =
-    (window.screen?.availHeight ?? window.innerHeight) +
-    (Math.abs((window.screen?.availTop ?? dualScreenTop) - dualScreenTop) || 0);
+    (screen?.availHeight ?? window.innerHeight) +
+    (Math.abs((screen?.availTop ?? dualScreenTop) - dualScreenTop) || 0);
 
   const left = dualScreenLeft + (screenWidth - width) / 2;
   const top = dualScreenTop + (screenHeight - height) / 2;
