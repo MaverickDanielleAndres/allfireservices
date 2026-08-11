@@ -44,7 +44,7 @@ const EmailIcon = () => (
 // as outbound links) and the aria-label makes the destination explicit
 // for assistive technology.
 const socialLinks = [
-  { label: "Facebook", href: "https://facebook.com/allfireservices", icon: FacebookIcon },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61566630403365", icon: FacebookIcon },
   { label: "YouTube", href: "https://youtube.com/@allfireservices", icon: YoutubeIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/all-fire-services-australia", icon: LinkedinIcon },
   { label: "Instagram", href: "https://instagram.com/allfireservices", icon: InstagramIcon },

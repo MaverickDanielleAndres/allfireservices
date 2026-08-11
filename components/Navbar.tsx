@@ -603,7 +603,7 @@ function NavbarContent() {
             <a href="mailto:admin@allfireservices.com.au"><Mail size={14} /> admin@allfireservices.com.au</a>
           </div>
           <div className="navbar-topbar-right">
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon size={16} /></a>
+            <a href="https://www.facebook.com/profile.php?id=61566630403365" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon size={16} /></a>
             <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={16} /></a>
             <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={16} /></a>
             <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube"><YoutubeIcon size={16} /></a>
