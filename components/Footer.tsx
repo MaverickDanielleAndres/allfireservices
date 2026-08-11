@@ -46,7 +46,7 @@ const EmailIcon = () => (
 const socialLinks = [
   { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61566630403365", icon: FacebookIcon },
   { label: "YouTube", href: "https://youtube.com/@allfireservices", icon: YoutubeIcon },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/all-fire-services-australia", icon: LinkedinIcon },
+  { label: "LinkedIn", href: "https://au.linkedin.com/in/allfire-services-sydney-92690516", icon: LinkedinIcon },
   { label: "Instagram", href: "https://www.instagram.com/_allfireservices_/", icon: InstagramIcon },
   { label: "X (Twitter)", href: "https://x.com/Allfiresydney", icon: XIcon },
   { label: "Email", href: `mailto:${SITE_EMAIL}`, icon: EmailIcon },
