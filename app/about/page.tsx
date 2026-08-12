@@ -523,7 +523,7 @@ export default function Page() {
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
                       <h2 style={{ maxWidth: '24ch' }}>
-                        &ldquo;Australian <span style={{ color: '#ff0000' }}>Owned</span><br /><span style={{
+                        &ldquo;Australian <span style={{ color: '#ff0000' }}>Owned</span> <span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',

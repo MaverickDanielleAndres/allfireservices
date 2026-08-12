@@ -251,23 +251,25 @@ export default function Page() {
       <div className="scroll-wrapper">
         <div className={heroStyles.wrapper}>
           <div className="bg-wrapper" style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-            <Image 
-              src="/annual-fire-safety-statement/all-fire-services-hydrant-flow-test-1.webp" 
-              alt="All Fire Services Hydrant Test" 
-              fill 
-              style={{ objectFit: 'cover' }}
-              priority
-              fetchPriority="high"
-              quality={60}
-              sizes="100vw"
+            {/* Hero background video — autoplays muted / looped / inline as
+                soon as the wrapper enters the viewport (DeferredVideo defers
+                the <video> mount until then, so mobile data isn't burned).
+                The poster image is shown first as a seamless placeholder. */}
+            <DeferredVideo
+              src="/hero-video.mp4"
+              poster="/herosectionimage.webp"
+              autoPlayOnView
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
-            {/* Dark tint overlay – fades away toward bottom so white fade is unobstructed */}
+            {/* Dark tint overlay – sits ABOVE the video so the headline copy
+                stays legible even when a bright frame rolls past. */}
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to bottom, rgba(10,10,10,0.88) 0%, rgba(20,5,5,0.82) 30%, rgba(30,5,5,0.72) 50%, rgba(40,8,8,0.45) 68%, rgba(50,8,8,0.18) 80%, rgba(255,255,255,0) 92%)' }}></div>
             {/* Right-side colour tint (horizontal) – kept separate so it doesn't interfere with vertical fade */}
             <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.55) 0%, rgba(30,5,5,0.35) 40%, rgba(70,10,10,0.15) 70%, transparent 100%)', mixBlendMode: 'multiply' }}></div>
 
-            {/* Seamless fade to white – tall & cubic-eased to prevent any visible line */}
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 55%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.78) 85%, rgba(255,255,255,0.96) 95%, #ffffff 100%)', zIndex: 2 }}></div>
+            {/* Seamless fade to white – short band so the next section sits
+                close to the hero without a tall blank gap. */}
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '32%', background: 'linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 12%, rgba(255,255,255,0.12) 24%, rgba(255,255,255,0.22) 36%, rgba(255,255,255,0.36) 48%, rgba(255,255,255,0.54) 60%, rgba(255,255,255,0.72) 72%, rgba(255,255,255,0.86) 84%, rgba(255,255,255,0.96) 94%, #ffffff 100%)', zIndex: 2 }}></div>
           </div>
           <section className={heroStyles.heroSection}>
           <div className={heroStyles.heroContainer} style={{ minHeight: 'min(50vh, 540px)', paddingBottom: '5rem' }}>

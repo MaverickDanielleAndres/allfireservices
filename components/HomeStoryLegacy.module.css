@@ -387,7 +387,8 @@
 
 @media (max-width: 767px) {
   .founderHeadingLine {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
   }
 }
 
@@ -1294,7 +1295,9 @@
   }
 
   .storyHeader h2 {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .storyGrid {
@@ -1349,7 +1352,9 @@
   }
 
   .legacyHeader h2 {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .timelineViewport {
@@ -1655,6 +1660,14 @@
   text-wrap: balance;
 }
 
+@media (max-width: 767px) {
+  .storyHeaderLeft h2 {
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
+  }
+}
+
 /* About-page mission heading — desktop keeps a 2-line composition
    (Excellence in / Fire Protection). On phones we explicitly force
    three lines (Excellence in / Fire / Protection) so it never re-wraps
@@ -1690,13 +1703,25 @@
 @media (max-width: 767px) {
   .missionHeading {
     text-wrap: wrap;
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    max-width: none;
+  }
+
+  /* The mission heading is built from three missionLine spans that
+     desktop uses as separate lines (Excellence / in Fire / Protection).
+     On phones we collapse the first two onto one line so the heading
+     fits the user's "2 lines max on mobile" rule. The gradient stays
+     on the last (third) line. */
+  .missionLineOne,
+  .missionLineTwo {
+    display: inline;
+  }
+  .missionLineThree {
+    display: block;
   }
 
   .missionLine {
-    display: block;
-    white-space: nowrap;
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
   }
@@ -1904,14 +1929,16 @@
   }
 }
 
-/* Larger h2 family on phones. The desktop 6vw clamp renders ~6rem on
-   tablet and ~3.75rem on small phones; on a phone the long lines
-   ("A Family Firefighting", "Fire protection / runs in our blood", etc.)
-   would otherwise wrap to 3 lines. Mirrors the .storyHeader h2 mobile
-   clamp so all the larger h2 variants stay in step. */
+/* Larger h2 family on phones. Unified with the canonical mobile clamp
+   so "A Family Firefighting / Legacy Since 1911" and friends stay on
+   exactly 2 lines. text-wrap: wrap (not balance) so balance doesn't
+   force an awkward 3rd line. max-width: none so the 17ch / 13ch caps
+   on desktop don't force a 3rd line on narrow viewports. */
 @media (max-width: 767px) {
   .newStoryHeading,
   .storyHeaderRight h2 {
-    font-size: clamp(2.4rem, 10vw, 3.8rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
   }
 }

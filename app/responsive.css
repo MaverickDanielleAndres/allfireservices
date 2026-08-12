@@ -88,7 +88,9 @@ svg {
 
 @media (max-width: 767px) {
   .section-heading {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
   }
 }
 
@@ -370,14 +372,18 @@ textarea {
 
   .heading-style-h1,
   .section_about-hero .heading-style-h1 {
-    font-size: clamp(1.85rem, 9vw, 3rem);
+    font-size: clamp(1.5rem, 7vw, 2.1rem);
     line-height: 1.02;
     letter-spacing: -0.04em;
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .heading-style-h2 {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
     line-height: 1.08;
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .heading-style-h3 {
@@ -392,9 +398,11 @@ textarea {
   .section_process :where(h2, h3).heading-style-h3,
   .section_process :where(h2, h3).heading-style-h4,
   .regulation-update-section :where(h2, h3).heading-style-h3 {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .body-text {
@@ -611,7 +619,9 @@ textarea {
   }
 
   .section_contact-cta .contact-cta_header h2 {
-    font-size: clamp(1.75rem, 8.5vw, 2.6rem) !important;
+    font-size: clamp(1.35rem, 6.5vw, 2rem) !important;
+    text-wrap: wrap;
+    max-width: none;
   }
 
   .section_contact-cta .contact-cta_header .body-text,

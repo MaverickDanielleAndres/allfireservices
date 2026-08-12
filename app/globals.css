@@ -102,3 +102,34 @@
 #family-history {
   padding-top: 0.5rem !important;
 }
+
+/*
+ * Shorten the dark hero across all inner pages. The pages each declare
+ * `.about-hero-inner` (or `.strata-hero-inner` on /strata, `.services_hero_inner`
+ * on /services) with 8-20rem of bottom padding to leave room for the
+ * fade-to-white overlay. Combined with the section rhythm of the next
+ * section this produced a large empty band below the hero copy. These
+ * rules reduce the bottom padding to 5rem/3rem/2rem at desktop/tablet/
+ * mobile so the hero ends soon after the content, without changing the
+ * padding-top (which controls the distance from the top of the hero to
+ * the first content).
+ */
+.about-hero-inner,
+.strata-hero-inner,
+.services_hero_inner {
+  padding-bottom: 5rem !important;
+}
+@media (max-width: 991px) {
+  .about-hero-inner,
+  .strata-hero-inner,
+  .services_hero_inner {
+    padding-bottom: 3rem !important;
+  }
+}
+@media (max-width: 767px) {
+  .about-hero-inner,
+  .strata-hero-inner,
+  .services_hero_inner {
+    padding-bottom: 2rem !important;
+  }
+}

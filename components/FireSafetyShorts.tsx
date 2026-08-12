@@ -405,7 +405,8 @@ export default function FireSafetyShorts() {
             text-align: center;
           }
           .shortsHeading {
-            font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+            font-size: clamp(1.5rem, 7.5vw, 2.2rem);
+            text-wrap: wrap;
           }
         }
       `}</style>
