@@ -44,6 +44,19 @@ export default function Page() {
             padding-top: 8rem;
             padding-bottom: 20rem;
           }
+          /* Desktop-only: small breathing-room margin between the navbar and the
+             hero H1 (was 0, now 1.5rem). The outer <header>'s margin/padding
+             buffer still overlaps the navbar so the hero container size
+             is preserved. */
+          @media (min-width: 992px) {
+            .about-hero-inner {
+              padding-top: 1.5rem !important;
+            }
+            .padding-section-large.is-about {
+              padding-top: 1.5rem !important;
+              padding-bottom: 7rem !important;
+            }
+          }
           /* Global override: the outer <header> carries inline padding-top:12rem
              and margin-top:-12rem to overlap the desktop navbar. That makes the
              hero text sit way below the navbar. Override these so the text
@@ -96,22 +109,25 @@ export default function Page() {
             }
             .about-hero-inner {
               padding-top: 1.5rem !important;
-              padding-bottom: 2rem !important;
+              padding-bottom: 0.5rem !important;
             }
             .about-fade-overlay {
-              height: 100px !important;
+              height: 60px !important;
             }
 
-            /* Tighten the OUR STORY block padding on tablet */
+            /* Tighten the OUR STORY block padding on tablet — beat the
+               .padding-section-large.is-about rule from responsive.css by
+               using higher specificity. */
+            .padding-section-large.is-about.about-our-story-wrap,
             .about-our-story-wrap {
-              padding-top: 1.5rem !important;
-              padding-bottom: 2.5rem !important;
+              padding-top: 0 !important;
+              padding-bottom: 1.25rem !important;
             }
 
             /* Pull the family-history block up closer to the OUR STORY image */
             #family-history {
-              padding-top: 1rem !important;
-              padding-bottom: 1.5rem !important;
+              padding-top: 0.5rem !important;
+              padding-bottom: 1rem !important;
             }
           }
 
@@ -128,19 +144,22 @@ export default function Page() {
             }
             .about-hero-inner {
               padding-top: 1rem !important;
-              padding-bottom: 2.5rem !important;
+              padding-bottom: 0.5rem !important;
             }
 
-            /* Tighten the OUR STORY block padding on mobile */
+            /* Tighten the OUR STORY block padding on mobile — beat the
+               .padding-section-large.is-about rule from responsive.css by
+               using higher specificity. */
+            .padding-section-large.is-about.about-our-story-wrap,
             .about-our-story-wrap {
-              padding-top: 1rem !important;
-              padding-bottom: 1.75rem !important;
+              padding-top: 0 !important;
+              padding-bottom: 1rem !important;
             }
 
             /* Pull the family-history block up closer to the OUR STORY image */
             #family-history {
               padding-top: 0.5rem !important;
-              padding-bottom: 1rem !important;
+              padding-bottom: 0.75rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -153,7 +172,7 @@ export default function Page() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 70px !important;
+              height: 40px !important;
             }
           }
 
@@ -308,8 +327,8 @@ export default function Page() {
           className="section_about-hero is-dark about-hero-header"
           style={{
             position: 'relative',
-            marginTop: '-12rem',
-            paddingTop: '12rem',
+            marginTop: '-5rem',
+            paddingTop: '5rem',
             marginBottom: '-2px',
           }}
         >
@@ -358,7 +377,7 @@ export default function Page() {
                         </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
+                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
                       <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         About All Fire Services
                       </div>

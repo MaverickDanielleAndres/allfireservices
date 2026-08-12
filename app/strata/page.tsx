@@ -106,6 +106,17 @@ export default function Page() {
             padding-top: 8rem;
             padding-bottom: 10rem;
           }
+          /* Desktop-only: small breathing-room margin between the navbar and the
+             hero H1. */
+          @media (min-width: 992px) {
+            .strata-hero-inner {
+              padding-top: 1.5rem !important;
+            }
+            .padding-section-large.is-about {
+              padding-top: 1.5rem !important;
+              padding-bottom: 7rem !important;
+            }
+          }
           /* Global override: shrink the outer <header>'s inline padding-top:12rem
              so the hero copy sits high on every viewport. */
           .section_about-hero {
@@ -264,8 +275,8 @@ export default function Page() {
           className="section_about-hero is-dark"
           style={{
             position: 'relative',
-            marginTop: '-12rem',
-            paddingTop: '12rem',
+            marginTop: '-5rem',
+            paddingTop: '5rem',
             marginBottom: '-2px',
           }}
         >
@@ -311,7 +322,7 @@ export default function Page() {
                         </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
+                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
                       <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         Strata &amp; Residential Buildings
                       </div>

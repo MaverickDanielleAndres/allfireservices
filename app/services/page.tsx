@@ -241,7 +241,7 @@ export default function ServicesPage() {
                         </span>
                       </h1>
                     </div>
-                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[8rem] md:pb-0">
+                    <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
                       <div
                         className="header-eyebrow-text hide-tablet mx-auto md:mx-0"
                         style={heroEyebrowStyle}

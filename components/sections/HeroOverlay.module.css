@@ -12,10 +12,22 @@
 
 .hero_root {
   position: relative;
-  margin-top: -7rem;
-  padding-top: 7rem;
+  margin-top: -5rem;
+  padding-top: 5rem;
   margin-bottom: -2px;
   overflow: hidden;
+}
+
+/* Desktop-only: small breathing-room margin between the navbar and the
+   hero H1 on /services. */
+@media (min-width: 992px) {
+  .services_hero_inner {
+    padding-top: 1.5rem !important;
+  }
+  .padding-section-large.is-about {
+    padding-top: 1.5rem !important;
+    padding-bottom: 7rem !important;
+  }
 }
 
 .hero_image_layer {

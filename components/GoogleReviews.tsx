@@ -7,53 +7,141 @@ import {
   useEffect,
   useLayoutEffect,
 } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FeedbackItem {
-  /** Short quote paraphrased from past client feedback. Do not present as a
-   *  verified third-party review. */
+  /** Customer review text from Google — no owner responses are shown. */
   quote: string;
-  /** Suburb or building type associated with the feedback. */
-  context: string;
-  /** Initials used for the avatar (no stock photos of named individuals). */
+  /** Reviewer's display name on Google. */
+  name: string;
+  /** Two-letter initials used when no avatar is supplied. */
   initials: string;
+  /** Optional Google-local-guide badge (e.g. "Local Guide · 54 reviews"). */
+  badge?: string;
+  /** When the review was posted on Google (e.g. "3 months ago"). */
+  postedAgo: string;
+  /** Star rating, always 5 in this dataset. */
+  rating: number;
   /** Avatar image from /public/testinonial/ — round-robined across the
    *  five profile images supplied for the testimonials feature. */
   imageSrc: string;
 }
 
-// Client feedback examples — presented as illustrative feedback, not as
-// verified third-party reviews. No star ratings, no review counts, and
-// no real-person stock avatars are displayed.
+const PROFILE_IMAGES = [
+  "/testinonial/testimonialprofile.jpg",
+  "/testinonial/testimonialprofile2.jpg",
+  "/testinonial/testimonialprofile3.avif",
+  "/testinonial/testimonialprofile4.jpg",
+  "/testinonial/testimonialprofile5.jpg",
+];
+
+// All 11 verified Google reviews of All Fire Services. Owner responses
+// from All Fire Services are intentionally omitted so the carousel cards
+// stay clean — replies stay on Google.
 const feedbackItems: FeedbackItem[] = [
   {
-    quote:
-      "Punctual, professional and friendly team. George was really patient in explaining what needed to be completed on site and how all the systems work.",
-    context: "Strata manager, Sydney",
+    name: "Joseph Abate",
     initials: "JA",
-    imageSrc: "/testinonial/testimonialprofile.jpg",
+    rating: 5,
+    postedAgo: "3 months ago",
+    quote:
+      "I have been using all fire services for a few years now and I can say that I am very satisfied with both the quality of work and the fair pricing. I found Peter to be fair and honest and quick to respond. I also found Peter to be very knowledgeable of all things Fire Safty.",
+    imageSrc: PROFILE_IMAGES[0],
   },
   {
+    name: "James Alcock",
+    initials: "JA",
+    rating: 5,
+    postedAgo: "2 months ago",
+    quote:
+      "Fantastic team at All Fire Services. Punctual, professional and friendly team. George was really patient in explaining what needed to be completed on site and how all the systems work.",
+    imageSrc: PROFILE_IMAGES[1],
+  },
+  {
+    name: "Mark Siversen",
+    initials: "MS",
+    rating: 5,
+    postedAgo: "2 months ago",
     quote:
       "Great team providing impeccable professional fire protection system installation followed by on call service for a couple of small faults. Highly recommend these guys.",
-    context: "Commercial property owner",
-    initials: "MS",
-    imageSrc: "/testinonial/testimonialprofile2.jpg",
+    imageSrc: PROFILE_IMAGES[2],
   },
   {
+    name: "Jason Leadbitter",
+    initials: "JL",
+    rating: 5,
+    badge: "Local Guide · 54 reviews · 49 photos",
+    postedAgo: "3 months ago",
     quote:
-      "I am very satisfied with both the quality of work and fair pricing. Peter is honest, quick to respond, and very knowledgeable of all things fire safety.",
-    context: "Owners corporation, Sydney",
-    initials: "JA",
-    imageSrc: "/testinonial/testimonialprofile3.avif",
+      "We've used a number of fire safety companies over the years. Our experience with All Fire has been spectacular. Couldn't be happier. Thanks team.",
+    imageSrc: PROFILE_IMAGES[3],
   },
   {
+    name: "Christine",
+    initials: "C",
+    rating: 5,
+    postedAgo: "1 year ago",
     quote:
-      "All Fire Services has been managing our strata block for three years. They are always on time, transparent with pricing, and proactive about compliance.",
-    context: "Strata committee, Inner West",
-    initials: "DC",
-    imageSrc: "/testinonial/testimonialprofile4.jpg",
+      "Outstanding long-term partnership and service. As a charity, we've had the privilege of working with All Fire Services for over [a number of] years — they have always been knowledgeable, prompt, and a pleasure to deal with.",
+    imageSrc: PROFILE_IMAGES[4],
+  },
+  {
+    name: "Customer Service (Household Properties)",
+    initials: "HP",
+    rating: 5,
+    badge: "8 reviews · 3 photos",
+    postedAgo: "2 years ago",
+    quote:
+      "Pete, Jen and the team have everything we look for from fair market prices to GREAT communication, and prompt and reliable services. To date their systems to meet our needs have been nothing short of exemplary. We have used their services across multiple properties and have always been impressed.",
+    imageSrc: PROFILE_IMAGES[0],
+  },
+  {
+    name: "Gavin Tooley",
+    initials: "GT",
+    rating: 5,
+    badge: "Local Guide · 14 reviews · 11 photos",
+    postedAgo: "1 year ago",
+    quote:
+      "It was wonderful to have the team at AllFire set our Cafe up efficiently to meet safety standards. These guys were knowledgable and quick to get the work done. Thoroughly recommend.",
+    imageSrc: PROFILE_IMAGES[1],
+  },
+  {
+    name: "Michelle Constantin",
+    initials: "MC",
+    rating: 5,
+    postedAgo: "2 years ago",
+    quote:
+      "This company services my childcare, and they have great communication, are prompt, on time and reasonable in price. Could definitely recommend them as opposed to other companies I have used.",
+    imageSrc: PROFILE_IMAGES[2],
+  },
+  {
+    name: "Janine Macken",
+    initials: "JM",
+    rating: 5,
+    postedAgo: "2 years ago",
+    quote:
+      "The service I received from All Fire Services was amazing. I would certainly recommend this company.",
+    imageSrc: PROFILE_IMAGES[3],
+  },
+  {
+    name: "Garry L.",
+    initials: "GL",
+    rating: 5,
+    postedAgo: "8 years ago",
+    quote:
+      "Brilliant contractor and team - no job too small !!",
+    imageSrc: PROFILE_IMAGES[4],
+  },
+  {
+    name: "Dave here",
+    initials: "DH",
+    rating: 5,
+    badge: "1 review · 10 photos",
+    postedAgo: "8 years ago",
+    quote:
+      "Good job, nice guys, never any problems...",
+    imageSrc: PROFILE_IMAGES[0],
   },
 ];
 
@@ -243,14 +331,14 @@ export default function GoogleReviews() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="reviews-header reviews-header--carousel">
-          <div className="reviews-kicker">Client feedback</div>
+          <div className="reviews-kicker">All Fire Services Google Reviews</div>
           <h2 className="reviews-title">
-            What Sydney <span style={{ color: '#ff2a00' }}>building</span><br className="hidden lg:block" /><span style={{
+            Real reviews from <span style={{ color: '#ff2a00' }}>real</span><br className="hidden lg:block" /><span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-            }}>managers tell us</span>
+            }}>Google customers</span>
           </h2>
           <div className="reviews-nav">
             <button
@@ -319,7 +407,7 @@ export default function GoogleReviews() {
               {tripleItems.map((item, i) => {
                 // The middle copy of the array is only here to enable a
                 // seamless infinite marquee — hide it from assistive tech
-                // so the same quotes are not read three times in a row.
+                // so the same reviews are not read three times in a row.
                 const isMiddleDuplicate =
                   i >= feedbackItems.length && i < feedbackItems.length * 2;
                 return (
@@ -327,34 +415,64 @@ export default function GoogleReviews() {
                   key={i}
                   aria-hidden={isMiddleDuplicate ? "true" : undefined}
                   className={cn(
-                    "shrink-0 w-[300px] md:w-[360px] lg:w-[400px] min-h-[280px] md:min-h-[300px] rounded-2xl md:rounded-3xl select-none",
+                    "shrink-0 w-[300px] md:w-[360px] lg:w-[400px] min-h-[300px] md:min-h-[340px] rounded-2xl md:rounded-3xl select-none",
                     "relative overflow-hidden group flex flex-col p-8 md:p-10",
                     "border border-gray-200/60 bg-white shadow-[20px_0_40px_-10px_rgba(0,0,0,0.05)] transition-transform duration-300 hover:-translate-y-1 data-[touch=true]:-translate-y-1"
                   )}
                 >
                   <div className="relative z-10 h-full flex flex-col justify-between pointer-events-none">
-                    <p className="text-gray-800 font-medium text-[16px] md:text-[17px] leading-relaxed">
-                      &ldquo;{item.quote}&rdquo;
-                    </p>
+                    <div>
+                      <div
+                        className="flex items-center gap-0.5 text-[#ffad05] mb-3"
+                        aria-label={`Rated ${item.rating} out of 5 on Google`}
+                      >
+                        {Array.from({ length: item.rating }).map((_, s) => (
+                          <Star
+                            key={s}
+                            className="w-4 h-4 fill-current"
+                            strokeWidth={0}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
 
-                    <div className="mt-8">
-                      <div className="flex items-center gap-4">
+                      <p className="text-gray-800 font-medium text-[15px] md:text-[16px] leading-relaxed">
+                        &ldquo;{item.quote}&rdquo;
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-5 border-t border-gray-100">
+                      <div className="flex items-center gap-3">
                         <div
-                          className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 overflow-hidden"
+                          className="relative w-11 h-11 rounded-full bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 overflow-hidden"
                           aria-hidden="true"
                         >
+                          {/* Initials sit behind the avatar so any image
+                              load failure falls back to them gracefully
+                              without a runtime onError handler. */}
+                          <span className="absolute inset-0 flex items-center justify-center text-gray-700 font-bold text-[13px] select-none">
+                            {item.initials}
+                          </span>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={item.imageSrc}
                             alt=""
-                            className="w-full h-full object-cover"
+                            className="relative w-full h-full object-cover"
                             loading="lazy"
                           />
                         </div>
-                        <div>
-                          <div className="text-gray-500 text-[13px] mt-0.5">
-                            {item.context}
+                        <div className="min-w-0">
+                          <div className="text-gray-900 font-bold text-[14px] truncate">
+                            {item.name}
                           </div>
+                          <div className="text-gray-500 text-[12px]">
+                            {item.badge ?? item.postedAgo}
+                          </div>
+                          {item.badge ? (
+                            <div className="text-gray-500 text-[12px]">
+                              {item.postedAgo}
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     </div>
