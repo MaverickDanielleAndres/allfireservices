@@ -223,16 +223,15 @@ export default function ContactCTA({
       <ToastViewport toasts={toasts} onDismiss={dismissToast} />
       <div className="padding-global">
         <div className="container-large">
-          {!hideSitewideCTA && <SitewideCTA />}
+          {!hideSitewideCTA && (
+            <div style={{ marginBottom: "clamp(4rem, 6vw, 6rem)" }}>
+              <SitewideCTA />
+            </div>
+          )}
           <div
-            className="padding-section-large pt-16"
+            className="padding-section-large"
             style={{
-              paddingTop:
-                layout === "split"
-                  ? hideSitewideCTA
-                    ? "clamp(2rem, 3vw, 3rem)"
-                    : "clamp(10rem, 12vw, 12rem)"
-                  : "clamp(10rem, 14vw, 13rem)",
+              paddingTop: layout === "split" ? "0" : "clamp(10rem, 14vw, 13rem)",
             }}
           >
 

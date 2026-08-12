@@ -157,20 +157,19 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0">
-            <nav aria-label="Quick links">
-              <h2 className="text-[#111111]" style={{
-                fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
-                fontWeight: 780,
-                letterSpacing: "-0.06em",
-                lineHeight: 0.92,
-                margin: 0,
-              }}>Quicklinks</h2>
-              <ul
-                className="footer-link-list mt-6 columns-1 sm:columns-2 lg:columns-3 gap-x-8 text-[0.85rem] font-[500] leading-snug text-[#111111] md:text-[0.95rem]"
-              >
-                {navLinks.flatMap((link) => {
-                  const items = [
-                    <li key={link.href} className="mb-3 break-inside-avoid">
+            <div className="flex flex-row gap-4 sm:gap-8 lg:gap-12">
+              <nav aria-label="Quick links" className="flex-1 sm:flex-none sm:w-[200px]">
+                <h2 className="text-[#111111]" style={{
+                  fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
+                  fontWeight: 780,
+                  letterSpacing: "-0.06em",
+                  lineHeight: 0.92,
+                  margin: 0,
+                  marginBottom: "1.5rem",
+                }}>Quicklinks</h2>
+                <ul className="flex flex-col gap-3 text-[0.85rem] font-[500] leading-snug text-[#111111] md:text-[0.95rem]">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
                       <Link
                         href={link.href}
                         className="inline-block !text-[#111111] transition hover:!text-[#d64012]"
@@ -179,29 +178,36 @@ export default function Footer() {
                         {link.label}
                       </Link>
                     </li>
-                  ];
+                  ))}
+                </ul>
+              </nav>
 
-                  if (link.label === "Our Services") {
-                    const subItems = serviceLinks
-                      .filter((slink) => slink.href !== "/services")
-                      .map((slink) => (
-                        <li key={slink.href} className="mb-3 ml-3 pl-3 border-l-2 border-[#eaeaea] break-inside-avoid">
-                          <Link
-                            href={slink.href}
-                            className="inline-block !text-[#555555] transition hover:!text-[#d64012]"
-                            style={{ textDecoration: "none" }}
-                          >
-                            {slink.label}
-                          </Link>
-                        </li>
-                      ));
-                    items.push(...subItems);
-                  }
-
-                  return items;
-                })}
-              </ul>
-            </nav>
+              <nav aria-label="Our Services" className="flex-1">
+                <h2 className="text-[#111111]" style={{
+                  fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
+                  fontWeight: 780,
+                  letterSpacing: "-0.06em",
+                  lineHeight: 0.92,
+                  margin: 0,
+                  marginBottom: "1.5rem",
+                }}>Our Services</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 text-[0.85rem] font-[500] leading-snug text-[#111111] md:text-[0.95rem]">
+                  {serviceLinks
+                    .filter((slink) => slink.href !== "/services")
+                    .map((slink) => (
+                      <li key={slink.href}>
+                        <Link
+                          href={slink.href}
+                          className="inline-block !text-[#555555] transition hover:!text-[#d64012]"
+                          style={{ textDecoration: "none" }}
+                        >
+                          {slink.label}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
