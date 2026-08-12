@@ -37,7 +37,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
                 viewport={{ once: true, amount: 0.4 }}
               >
                 <p className={styles.kicker}>The family behind All Fire Services</p>
-                <h2 id="legacy-title" style={{ color: '#111111' }}>
+                <h2 id="legacy-title" className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ color: '#111111', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                   A Family Firefighting<br />
                   <span style={{
                     background: 'linear-gradient(to right, #ff2a00, #ffb700)',

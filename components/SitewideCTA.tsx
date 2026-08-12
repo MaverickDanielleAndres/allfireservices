@@ -74,7 +74,7 @@ export default function SitewideCTA() {
 
         .pre-faq-cta-title {
           color: #111111;
-          font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+          font-size: clamp(2.2rem, 3.8vw, 3.4rem);
           font-weight: 780;
           letter-spacing: -0.04em;
           line-height: 0.92;

@@ -502,7 +502,7 @@ const InteractiveImageBentoGallery: React.FC<
             maxWidth: '20ch',
             margin: 0,
             color: '#111111',
-            fontSize: 'clamp(2.2rem, 4.3vw, 3.8rem)',
+            fontSize: 'clamp(2.2rem, 3.8vw, 3.4rem)',
             fontWeight: 780,
             letterSpacing: '-0.04em',
             lineHeight: 0.92,

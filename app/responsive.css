@@ -57,7 +57,7 @@ svg {
 .section_process :where(h2, h3).heading-style-h3,
 .section_process :where(h2, h3).heading-style-h4,
 .regulation-update-section :where(h2, h3).heading-style-h3 {
-  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.92;
@@ -65,7 +65,7 @@ svg {
 }
 
 .section_contact-cta .contact-cta_header h2 {
-  font-size: clamp(2.2rem, 4.3vw, 3.8rem) !important;
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem) !important;
   font-weight: 780 !important;
   letter-spacing: -0.04em !important;
   line-height: 0.92 !important;
@@ -79,7 +79,7 @@ svg {
 .section-heading {
   margin: 0;
   color: #111111;
-  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.92;

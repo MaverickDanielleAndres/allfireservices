@@ -231,8 +231,8 @@ export default function ContactCTA({
                 layout === "split"
                   ? hideSitewideCTA
                     ? "clamp(2rem, 3vw, 3rem)"
-                    : "clamp(5rem, 7vw, 7rem)"
-                  : "clamp(8rem, 14vw, 13rem)",
+                    : "clamp(10rem, 12vw, 12rem)"
+                  : "clamp(10rem, 14vw, 13rem)",
             }}
           >
 

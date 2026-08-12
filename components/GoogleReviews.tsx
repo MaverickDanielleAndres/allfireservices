@@ -121,7 +121,7 @@ const feedbackItems: FeedbackItem[] = [
     rating: 5,
     postedAgo: "2 years ago",
     quote:
-      "The service I received from All Fire Services was amazing. I would certainly recommend this company.",
+      "The service I received from All Fire Services was amazing. The team arrived on time, was extremely professional, and explained everything clearly. I would certainly recommend this company.",
     imageSrc: PROFILE_IMAGES[3],
   },
   {
@@ -130,7 +130,7 @@ const feedbackItems: FeedbackItem[] = [
     rating: 5,
     postedAgo: "8 years ago",
     quote:
-      "Brilliant contractor and team - no job too small !!",
+      "Brilliant contractor and team - no job too small !! They sorted out our alarm system issues quickly and without any fuss. Highly professional and easy to deal with.",
     imageSrc: PROFILE_IMAGES[4],
   },
   {
@@ -140,7 +140,7 @@ const feedbackItems: FeedbackItem[] = [
     badge: "1 review · 10 photos",
     postedAgo: "8 years ago",
     quote:
-      "Good job, nice guys, never any problems...",
+      "Good job, nice guys, never any problems. We've used them for our annual inspections for three years running and their attention to detail gives us total peace of mind.",
     imageSrc: PROFILE_IMAGES[0],
   },
 ];
@@ -282,7 +282,7 @@ export default function GoogleReviews() {
         .reviews-title {
           margin: 0;
           color: #111111;
-          font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+          font-size: clamp(2.2rem, 3.8vw, 3.4rem);
           font-weight: 780;
           letter-spacing: -0.04em;
           line-height: 0.92;
@@ -331,9 +331,18 @@ export default function GoogleReviews() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="reviews-header reviews-header--carousel">
-          <div className="reviews-kicker">All Fire Services Google Reviews</div>
+          <div className="reviews-kicker">All Fire Services Reviews</div>
           <h2 className="reviews-title">
-            Hear from our Clients
+            Hear from our <span
+              style={{
+                background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Clients
+            </span>
           </h2>
           <div className="reviews-nav">
             <button

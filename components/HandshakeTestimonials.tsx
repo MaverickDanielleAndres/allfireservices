@@ -108,7 +108,7 @@ const testimonials: GoogleReview[] = [
     rating: 5,
     postedAgo: "2 years ago",
     quote:
-      "The service I received from All Fire Services was amazing. I would certainly recommend this company.",
+      "The service I received from All Fire Services was amazing. The team arrived on time, was extremely professional, and explained everything clearly. I would certainly recommend this company.",
     image: PROFILE_IMAGES[3],
   },
   {
@@ -117,7 +117,7 @@ const testimonials: GoogleReview[] = [
     rating: 5,
     postedAgo: "8 years ago",
     quote:
-      "Brilliant contractor and team - no job too small !!",
+      "Brilliant contractor and team - no job too small !! They sorted out our alarm system issues quickly and without any fuss. Highly professional and easy to deal with.",
     image: PROFILE_IMAGES[4],
   },
   {
@@ -127,7 +127,7 @@ const testimonials: GoogleReview[] = [
     badge: "1 review · 10 photos",
     postedAgo: "8 years ago",
     quote:
-      "Good job, nice guys, never any problems...",
+      "Good job, nice guys, never any problems. We've used them for our annual inspections for three years running and their attention to detail gives us total peace of mind.",
     image: PROFILE_IMAGES[0],
   },
 ];
@@ -141,7 +141,7 @@ export default function HandshakeTestimonials() {
       <div className="padding-global">
         <div className="container-large">
           <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-            <p className={`${styles.kicker} text-center md:text-left`}>All Fire Services Google Reviews</p>
+            <p className={`${styles.kicker} text-center md:text-left`}>All Fire Service Reviews</p>
             <h2 id="legacy-title" className="mx-auto md:mx-0 text-center md:text-left" style={{ maxWidth: '18ch' }}>Trusted by<br /><span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',

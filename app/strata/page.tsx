@@ -525,7 +525,7 @@ export default function Page() {
                       upward so the top of the compilation is the canonical
                       view on every viewport. */}
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', minHeight: '300px', aspectRatio: '0.62 / 1', maxHeight: '44rem', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto', background: '#f4f4f4' }}>
-                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover', objectPosition: 'center 18%' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
+                    <Image src="/allbuildings.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'contain', objectPosition: 'center' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -567,9 +567,9 @@ export default function Page() {
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
                 >
                   <p className={styles.kicker}>Properties We Service</p>
-                  <h2 id="properties-title" style={{ ...gradientStyle, maxWidth: 'none' }}>
+                  <h2 id="properties-title" style={{ maxWidth: 'none', color: '#111111' }}>
                     <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Fire Protection</span><br />
-                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>for Every Property</span>
+                    <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>for Every Property</span>
                   </h2>
                   <p>
                     Our experience covers a wide range of buildings and property environments across Greater Sydney.

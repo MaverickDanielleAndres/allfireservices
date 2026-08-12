@@ -52,7 +52,7 @@ const reasonSections = [
         properly documented and fully compliant with local council regulations.
       </>
     ),
-    image: "/service-images/annual-fire-safety-inspection.jpg",
+    image: "/services/AFSS.png",
   },
   {
     number: "02",
@@ -94,7 +94,7 @@ const reasonSections = [
         punctual maintenance visits.
       </>
     ),
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp",
+    image: "/annual-fire-safety-statement/fire-truck-all-fire-services.webp",
   },
   {
     number: "04",
@@ -117,7 +117,7 @@ const reasonSections = [
         , we offer a complete suite of solutions under one roof.
       </>
     ),
-    image: "/service-images/fire-panel-inspection.jpg",
+    image: "/services/servicescompilationcutted.jpg",
   },
   {
     number: "05",
@@ -138,7 +138,7 @@ const reasonSections = [
         owners across the metropolitan area.
       </>
     ),
-    image: "/buildingcompilation.jpg",
+    image: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp",
   },
   {
     number: "06",
@@ -160,7 +160,7 @@ const reasonSections = [
         the highest level of accuracy and care.
       </>
     ),
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp",
+    image: "/services/diesel hydrant.jpg",
   },
 ];
 
@@ -186,6 +186,7 @@ const storySections = [
       </>
     ),
     image: "/buildingcompilation.jpg",
+    objectFit: "contain",
   },
   {
     number: "08",
@@ -206,7 +207,7 @@ const storySections = [
         they're needed most.
       </>
     ),
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp",
+    image: "/services/Fire Panel &Detection (AS 1670.1).jpg",
   },
   {
     number: "09",
@@ -227,7 +228,7 @@ const storySections = [
         their properties safe without unnecessary disruption.
       </>
     ),
-    image: "/technician/group.jpg",
+    image: "/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
   },
   {
     number: "10",
@@ -247,7 +248,7 @@ const storySections = [
         <strong>fire protection systems compliant and operational</strong>.
       </>
     ),
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp",
+    image: "/technician/technician.jpg",
   },
   {
     number: "11",
@@ -270,7 +271,7 @@ const storySections = [
         trust All Fire Services.
       </>
     ),
-    image: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp",
+    image: "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",
   },
 ];
 
@@ -328,7 +329,7 @@ function StoryGrid({
                       src={section.image}
                       alt={section.altTitle}
                       fill
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: (section as any).objectFit || "cover" }}
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   </div>

@@ -416,7 +416,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
-                      <h2 className="mx-0 md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
+                      <h2 className="mx-0 text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                         &ldquo;Fire Protection<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -480,9 +480,9 @@ export default function Page() {
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
                 >
                   <p className={styles.kicker}>The Legacy</p>
-                  <h2 id="about-legacy-title" className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ color: '#111111', maxWidth: 'none' }}>
-                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>The Tricklebank</span><br />
-                    <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Family Legacy</span>
+                  <h2 id="about-legacy-title" className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ color: '#111111', maxWidth: 'none', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
+                    <span>The Tricklebank</span><br />
+                    <span style={gradientStyle}>Family Legacy</span>
                   </h2>
                   <p>
                     Generations of firefighting heritage meet practical, dependable fire protection. Here is what shapes All Fire Services and the people behind it.
@@ -623,7 +623,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
-                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
+                      <h2 className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                         &ldquo;Australian <span style={{ color: '#111111' }}>Owned</span> <span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -652,7 +652,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>EXPERIENCE</p>
-                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
+                      <h2 className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                         &ldquo;Built on<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -690,7 +690,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>STANDARDS</p>
-                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
+                      <h2 className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                         &ldquo;Always<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -720,7 +720,7 @@ export default function Page() {
                         style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                       >
                         <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR MISSION</p>
-                        <h2 className={`${styles.missionHeading} md:text-[clamp(2.2rem,4.3vw,3.8rem)]`} style={{ maxWidth: '24ch' }}>
+                        <h2 className={`${styles.missionHeading} text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]`} style={{ maxWidth: '24ch', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                           <span className={`${styles.missionLine} ${styles.missionLineOne}`}>
                             &ldquo;Excellence{' '}
                           </span>
