@@ -141,17 +141,17 @@ export default function Page() {
           }
           @media (max-width: 991px) {
             .strata-hero-inner {
-              padding-top: 7rem !important;
-              padding-bottom: 5rem !important;
+              padding-top: 5rem !important;
+              padding-bottom: 2rem !important;
             }
             .strata-fade-overlay {
-              height: 160px !important;
+              height: 100px !important;
             }
           }
           @media (max-width: 767px) {
             .strata-hero-inner {
-              padding-top: 6rem !important;
-              padding-bottom: 4rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 1.5rem !important;
             }
             .strata-dark-overlay {
               background: linear-gradient(to bottom,
@@ -164,7 +164,7 @@ export default function Page() {
               ) !important;
             }
             .strata-fade-overlay {
-              height: 130px !important;
+              height: 70px !important;
             }
           }
 

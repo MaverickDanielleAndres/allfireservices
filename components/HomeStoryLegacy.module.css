@@ -1661,8 +1661,11 @@
 }
 
 @media (max-width: 767px) {
+  /* Mobile headings — bigger so the quote hooks land visually,
+     but constrained to keep the wrapped quote at exactly 2 lines.
+     Centred on mobile per the redesign. */
   .storyHeaderLeft h2 {
-    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
     text-wrap: wrap;
     max-width: none;
   }
@@ -1703,8 +1706,9 @@
 @media (max-width: 767px) {
   .missionHeading {
     text-wrap: wrap;
-    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
     max-width: none;
+    text-align: center;
   }
 
   /* The mission heading is built from three missionLine spans that
@@ -1721,7 +1725,7 @@
   }
 
   .missionLine {
-    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
   }
@@ -1780,26 +1784,27 @@
 
 @media (max-width: 767px) {
   .newStoryContent {
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
   }
 
   .storyHeaderLeft {
-    text-align: left;
-    margin: 0 0 clamp(2rem, 6vw, 3rem) 0;
+    text-align: center;
+    margin: 0 auto clamp(2rem, 6vw, 3rem);
   }
 
   .kickerLeft {
     margin: 0 0 1rem;
+    text-align: center;
   }
 
   .storyHeaderLeft h2 {
-    margin: 0;
+    margin: 0 auto;
   }
 
   .newStoryParagraph {
     max-width: 100%;
-    text-align: left;
+    text-align: center;
   }
 }
 

@@ -120,6 +120,7 @@ export default function HomeServices() {
               <div className={styles.cardMedia}>
                 <Image
                   fill
+                  unoptimized
                   src={service.image}
                   sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 25vw"
                   alt={service.imageAlt}

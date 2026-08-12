@@ -58,17 +58,17 @@ export default function OurClientsPage() {
           }
           @media (max-width: 991px) {
             .about-hero-inner {
-              padding-top: 7rem !important;
-              padding-bottom: 5rem !important;
+              padding-top: 5rem !important;
+              padding-bottom: 2rem !important;
             }
             .about-fade-overlay {
-              height: 160px !important;
+              height: 100px !important;
             }
           }
           @media (max-width: 767px) {
             .about-hero-inner {
-              padding-top: 6rem !important;
-              padding-bottom: 4rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 1.5rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -81,7 +81,7 @@ export default function OurClientsPage() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 130px !important;
+              height: 70px !important;
             }
           }
         `}} />

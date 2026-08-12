@@ -459,6 +459,11 @@ const InteractiveImageBentoGallery: React.FC<
           @media (max-width: 767px) {
             .bento-legacy-header h2 {
               font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
+              /* Allow the full mobile container width so "Who knows better"
+                 stays on one line and the whole heading wraps to 2 lines
+                 (line 1 = "Who knows better", line 2 = "than a fireman?")
+                 instead of 3. */
+              max-width: none !important;
             }
           }
         `

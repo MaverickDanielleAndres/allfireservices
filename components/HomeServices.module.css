@@ -355,7 +355,8 @@
 
 @media (max-width: 767px) {
   .section {
-    padding-inline: clamp(1rem, 5vw, 1.5rem);
+    margin-top: 0;
+    padding: 1rem clamp(1rem, 5vw, 1.5rem) clamp(2.5rem, 4vw, 3.5rem);
   }
 
   .header h2 {

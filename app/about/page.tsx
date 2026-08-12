@@ -79,11 +79,23 @@ export default function Page() {
           }
           @media (max-width: 991px) {
             .about-hero-inner {
-              padding-top: 7rem !important;
-              padding-bottom: 5rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 2rem !important;
             }
             .about-fade-overlay {
-              height: 160px !important;
+              height: 100px !important;
+            }
+
+            /* Tighten the OUR STORY block padding on tablet */
+            .about-our-story-wrap {
+              padding-top: 1.5rem !important;
+              padding-bottom: 2.5rem !important;
+            }
+
+            /* Pull the family-history block up closer to the OUR STORY image */
+            #family-history {
+              padding-top: 1rem !important;
+              padding-bottom: 1.5rem !important;
             }
           }
 
@@ -95,8 +107,20 @@ export default function Page() {
 
           @media (max-width: 767px) {
             .about-hero-inner {
-              padding-top: 6rem !important;
-              padding-bottom: 4rem !important;
+              padding-top: 3.5rem !important;
+              padding-bottom: 2.5rem !important;
+            }
+
+            /* Tighten the OUR STORY block padding on mobile */
+            .about-our-story-wrap {
+              padding-top: 1rem !important;
+              padding-bottom: 1.75rem !important;
+            }
+
+            /* Pull the family-history block up closer to the OUR STORY image */
+            #family-history {
+              padding-top: 0.5rem !important;
+              padding-bottom: 1rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -109,7 +133,7 @@ export default function Page() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 130px !important;
+              height: 70px !important;
             }
           }
 
@@ -229,6 +253,14 @@ export default function Page() {
             .about-mission-section {
               padding-bottom: 1.5rem !important;
             }
+
+            /* Add visible breathing room between the bento gallery carousel
+               and the MEET PETER TRICKLEBANK block on mobile. The bento's
+               own padding is collapsed on mobile (see rules above), so the
+               gap below it comes from this wrapper's padding-top. */
+            .about-meet-peter-wrap {
+              padding-top: 6rem !important;
+            }
           }
         `}} />
         <header
@@ -308,7 +340,7 @@ export default function Page() {
         >
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
+              <div className="padding-section-large about-our-story-wrap" style={{ paddingTop: '4rem', paddingBottom: '8rem' }}>
 
                 {/* Block 1 — OUR STORY */}
                 <div className={`${styles.newStoryGrid} about-our-story-section`} style={{ marginTop: '0', marginBottom: '0', alignItems: 'stretch' }}>
@@ -509,7 +541,7 @@ export default function Page() {
 
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '6rem' }}>
+              <div className="padding-section-large about-meet-peter-wrap" style={{ paddingTop: '4rem', paddingBottom: '6rem' }}>
 
                 {/* Block 2 — MEET PETER */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-meet-peter-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>

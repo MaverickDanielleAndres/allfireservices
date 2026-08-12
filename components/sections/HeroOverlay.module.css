@@ -92,12 +92,12 @@
    much shorter so the next section sits closer to the hero. */
 @media (max-width: 991px) {
   .services_hero_inner {
-    padding-top: 7rem !important;
-    padding-bottom: 5rem !important;
+    padding-top: 5rem !important;
+    padding-bottom: 2rem !important;
   }
 
   .about_fade_overlay {
-    height: 160px;
+    height: 100px;
   }
 }
 
@@ -105,8 +105,8 @@
 
 @media (max-width: 767px) {
   .services_hero_inner {
-    padding-top: 6rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 1.5rem !important;
   }
 
   .about_dark_overlay {
@@ -122,6 +122,6 @@
   }
 
   .about_fade_overlay {
-    height: 130px;
+    height: 70px;
   }
 }

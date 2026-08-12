@@ -3,6 +3,28 @@
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
 
+// Mobile-only rule: center the "WHY SYDNEY TRUSTS ALLFIRE" header
+// (kicker + h2 + intro paragraph) on phones so the section reads as a
+// tidy intro block instead of a left-aligned slab. Desktop stays
+// left-aligned to match the rest of the our-clients page layout.
+const mobileHeaderCenterStyle = `
+@media (max-width: 767px) {
+  .clients-trust-header {
+    text-align: center;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+  .clients-trust-header > p:last-child {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .clients-trust-header h2 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+`;
+
 const gradientStyle = {
   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
   WebkitBackgroundClip: 'text',
@@ -54,8 +76,10 @@ export default function AboutClients() {
       <div className="padding-global">
         <div className="container-large">
           <div className="padding-section-large pb-4">
-            
-            <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(5rem, 8vw, 8rem)' }}>
+
+            <style dangerouslySetInnerHTML={{ __html: mobileHeaderCenterStyle }} />
+
+            <header className={`${styles.legacyHeader} clients-trust-header`} style={{ marginTop: 0, marginBottom: 'clamp(5rem, 8vw, 8rem)' }}>
               <p className={styles.kicker}>WHY SYDNEY TRUSTS ALLFIRE</p>
               <h2 id="legacy-title" style={{ maxWidth: '14ch' }}>Delivering tailored<br /><span style={{
                 background: 'linear-gradient(to right, #ff2a00, #ffb700)',

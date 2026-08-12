@@ -377,11 +377,12 @@ export default function FireSafetyShorts() {
         .shortsHeading {
           margin: 0;
           color: #111111;
-          font-size: clamp(2.2rem, 4.3vw, 3.8rem);
-          font-weight: 780;
+          font-size: clamp(2.5rem, 4.5vw, 4rem);
+          font-weight: 900;
           letter-spacing: -0.04em;
-          line-height: 0.92;
+          line-height: 0.95;
           text-wrap: balance;
+          max-width: 14ch;
         }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
@@ -405,7 +406,15 @@ export default function FireSafetyShorts() {
             text-align: center;
           }
           .shortsHeading {
-            font-size: clamp(1.5rem, 7.5vw, 2.2rem);
+            /* Match the testimonial / "What Sydney building managers tell us"
+               heading on mobile: text-4xl/text-5xl Tailwind scale with
+               font-weight 900 (font-black) so both line "Quick lessons" and
+               "What Sydney building" render as bold as the testimonial. */
+            font-size: clamp(2.5rem, 7vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            max-width: 14ch;
             text-wrap: wrap;
           }
         }

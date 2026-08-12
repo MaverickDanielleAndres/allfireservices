@@ -64,11 +64,11 @@
 }
 
 .analyticsNumber {
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .analyticsNumberRange {
@@ -76,7 +76,7 @@
 }
 
 .analyticsLabel {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #ffffff;
 }
@@ -311,7 +311,7 @@
     padding: 0;
   }
   .heroContainer {
-    padding: 2rem 1.5rem 12rem 1.5rem;
+    padding: 2rem 1.5rem 5rem 1.5rem;
     gap: 2.5rem;
   }
   .heroKicker {
@@ -391,10 +391,11 @@
     font-size: clamp(1.05rem, 4.4vw, 1.35rem);
     margin-bottom: 0.2rem;
     line-height: 1.1;
-    /* The hero fades to white below the fold on mobile, so flip the stat
-       text to black for legibility — the dark hero still keeps white
-       text on tablet and desktop. */
-    color: #111111;
+    /* Keep the stats white on mobile too — they sit on top of the dark
+       hero image with a strong drop-shadow, which keeps them legible
+       against the fade-to-white at the bottom of the hero. */
+    color: #ffffff;
+    text-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.55);
     /* Allow the longer stat values to wrap so they fit inside the
        narrower 4-up grid on phones. The 1911–2026 range still uses
        .analyticsNumberRange for nowrap behaviour. */
@@ -402,14 +403,18 @@
   }
   .analyticsNumberRange {
     font-size: clamp(1.05rem, 4.4vw, 1.35rem);
+    color: #ffffff;
   }
   .analyticsLabel {
     font-size: 0.66rem;
     line-height: 1.2;
-    color: #333333;
+    color: #ffffff;
+    text-shadow: 0 0.05rem 0.25rem rgba(0, 0, 0, 0.55);
   }
   .mobileVideoTall {
-    aspect-ratio: 4/3 !important;
+    /* Shorter ratio on mobile so the video doesn't dominate the viewport
+       and push the next section ("WHAT WE DO") far down the page. */
+    aspect-ratio: 16/7 !important;
   }
   .infoCardsSection {
     grid-template-columns: 1fr;
