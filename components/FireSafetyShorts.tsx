@@ -212,7 +212,7 @@ export default function FireSafetyShorts() {
                   {isPlaying ? (
                     <iframe
                       key={`playing-${idx}-${video.id}`}
-                      src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1&controls=1`}
+                      src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&mute=1&rel=0&playsinline=1&modestbranding=1&controls=1`}
                       title={video.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
@@ -230,7 +230,7 @@ export default function FireSafetyShorts() {
                     <>
                       {!thumbnailErrors.has(idx) ? (
                         <img
-                          src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                          src={`/youtube-thumbnails/${video.id}.webp`}
                           alt={video.title}
                           loading="lazy"
                           decoding="async"

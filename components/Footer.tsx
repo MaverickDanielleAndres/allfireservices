@@ -79,9 +79,9 @@ export default function Footer() {
             <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
               <Link
                 href="/contact"
-                className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#ff4d16] px-3 !text-white no-underline transition hover:bg-[#e63d0b] sm:px-4"
+                className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#d64012] px-3 !text-white no-underline transition hover:bg-[#cf3a0f] sm:px-4"
                 style={{
-                  backgroundColor: "#ff4d16",
+                  backgroundColor: "#d64012",
                   borderRadius: 0,
                   color: "#ffffff",
                   display: "flex",
@@ -94,7 +94,7 @@ export default function Footer() {
               </Link>
               <a
                 href="tel:1300765594"
-                className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#ff4d16] hover:bg-white sm:px-4"
+                className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#d64012] hover:bg-white sm:px-4"
                 style={{
                   borderRadius: 0,
                   display: "flex",
@@ -110,7 +110,7 @@ export default function Footer() {
             <address className="mt-5 flex max-w-xl flex-col gap-3 border-t border-[#2b201b]/12 pt-4 text-[0.85rem] font-[500] leading-relaxed text-[#111111] not-italic sm:text-[0.9rem]">
               <a
                 href={`mailto:${SITE_EMAIL}`}
-                className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                className="!text-[#111111] transition hover:!text-[#d64012]"
                 style={{ textDecoration: "none" }}
               >
                 {SITE_EMAIL}
@@ -122,7 +122,7 @@ export default function Footer() {
                 <p>Mon-Fri: 7:00am to 6:30pm</p>
                 <a
                   href="tel:0484648400"
-                  className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                  className="!text-[#111111] transition hover:!text-[#d64012]"
                   style={{ textDecoration: "none" }}
                 >
                   After hours: 0484 648 400
@@ -146,7 +146,7 @@ export default function Footer() {
                       aria-label={`${label} (opens in a new tab)`}
                       rel="noopener noreferrer"
                       target={href.startsWith("http") ? "_blank" : undefined}
-                      className="footer-social-link inline-grid flex-none place-items-center !text-[#111111] transition hover:!text-[#ff4d16]"
+                      className="footer-social-link inline-grid flex-none place-items-center !text-[#111111] transition hover:!text-[#d64012]"
                     >
                       <Icon />
                     </a>
@@ -175,7 +175,7 @@ export default function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                        className="!text-[#111111] transition hover:!text-[#d64012]"
                         style={{ textDecoration: "none" }}
                       >
                         {link.label}
@@ -201,7 +201,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="!text-[#111111] transition hover:!text-[#ff4d16]"
+                      className="!text-[#111111] transition hover:!text-[#d64012]"
                       style={{ textDecoration: "none" }}
                     >
                       {link.label}
@@ -219,7 +219,7 @@ export default function Footer() {
         <Link
           href="/"
           aria-label="All Fire Services Australia home"
-          className="footer-wordmark block w-full whitespace-nowrap !text-[#ff4d16] font-black italic uppercase leading-[0.9] tracking-normal transition hover:!text-[#ff6a3d]"
+          className="footer-wordmark block w-full whitespace-nowrap !text-[#d64012] font-black italic uppercase leading-[0.9] tracking-normal transition hover:!text-[#ff6a3d]"
           style={{
             display: "flex",
             fontSize: "clamp(2.35rem, 10vw, 9.9rem)",
@@ -243,7 +243,7 @@ export default function Footer() {
         <div className="mt-4 flex flex-col gap-4 border-t border-[#2b201b]/12 pb-5 pt-4 text-[11px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
-            <Link href="/contact" className="!text-[#111111] transition hover:!text-[#ff4d16]" style={{ textDecoration: "none" }}>
+            <Link href="/contact" className="!text-[#111111] transition hover:!text-[#d64012]" style={{ textDecoration: "none" }}>
               Contact us
             </Link>
           </div>

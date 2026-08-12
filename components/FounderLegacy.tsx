@@ -3,6 +3,7 @@
 import styles from "./HomeStoryLegacy.module.css";
 import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import YouTubeLite from "@/components/YouTubeLite";
 
 const reveal: Variants = {
@@ -97,6 +98,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
           >
             <div
               style={{
+                position: "relative",
                 width: "var(--portrait-size)",
                 height: "var(--portrait-size)",
                 borderRadius: "999px",
@@ -107,13 +109,12 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
                 backgroundColor: "#f9fafb",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={generation.image}
                 alt={`Portrait of ${generation.name}`}
+                fill
+                sizes="160px"
                 style={{
-                  width: "100%",
-                  height: "100%",
                   objectFit: "cover",
                   filter: "grayscale(100%)",
                   display: "block",
@@ -215,6 +216,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
         >
           <div
             style={{
+              position: "relative",
               width: "var(--portrait-size)",
               height: "var(--portrait-size)",
               borderRadius: "999px",
@@ -225,13 +227,12 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
               backgroundColor: "#f9fafb",
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/family/nexgenimage.png"
               alt="Next Generation Firefighter"
+              fill
+              sizes="160px"
               style={{
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
                 filter: "grayscale(100%)",
                 display: "block",

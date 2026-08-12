@@ -20,7 +20,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
   return (
     <section
       id="family-history"
-      aria-labelledby="legacy-title"
+      aria-label="Family firefighting legacy"
       data-theme="light"
       className="padding-section-large home-story-legacy-root"
       style={{ paddingTop: '0.5rem', paddingBottom: '4rem' }}

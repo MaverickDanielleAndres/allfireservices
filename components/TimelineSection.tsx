@@ -104,7 +104,6 @@ function TimelineGeneration({
             src={generation.image}
             alt={`Portrait of ${generation.name}`}
             fill
-            unoptimized={true}
             sizes="160px"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />

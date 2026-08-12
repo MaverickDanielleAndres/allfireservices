@@ -18,8 +18,10 @@ const thumbCache = new Map<string, string>();
 
 function getThumbnailUrl(videoId: string): string {
   if (thumbCache.has(videoId)) return thumbCache.get(videoId)!;
-  // maxresdefault is 1280x720; hqdefault is 480x360 fallback.
-  const url = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+  // Self-hosted webp poster (generated from the YouTube maxresdefault frame).
+  // Serving it from our own origin removes the i.ytimg.com round trip and its
+  // 2h cache TTL, and lets it inherit our 1-year immutable cache header.
+  const url = `/youtube-thumbnails/${videoId}.webp`;
   thumbCache.set(videoId, url);
   return url;
 }
@@ -33,35 +35,22 @@ export default function YouTubeLite({
 }: YouTubeLiteProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [activated, setActivated] = useState(autoplay);
+  // Distinguishes "mounted because the user clicked" from "mounted because the
+  // caller asked for an autoplaying background video".
+  const [userInitiated, setUserInitiated] = useState(false);
 
   useEffect(() => {
-    if (autoplay) {
-      setActivated(true);
-      return;
-    }
-    if (typeof IntersectionObserver === "undefined") return;
-    const node = ref.current;
-    if (!node) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActivated(true);
-            observer.disconnect();
-            break;
-          }
-        }
-      },
-      { rootMargin: "200px" },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
+    if (autoplay) setActivated(true);
   }, [autoplay]);
 
   if (activated) {
+    // youtube-nocookie.com avoids setting the YSC / VISITOR_INFO1_LIVE
+    // third-party cookies that fail the Best Practices audit.
     const src = autoplay
-      ? `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`
-      : `https://www.youtube.com/embed/${videoId}?rel=0&controls=0&modestbranding=1&disablekb=1&fs=0`;
+      ? `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`
+      : `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&controls=0&modestbranding=1&disablekb=1&fs=0${
+          userInitiated ? "&autoplay=1" : ""
+        }`;
 
     return (
       <div ref={ref} className={className} style={style}>
@@ -92,10 +81,14 @@ export default function YouTubeLite({
       role="button"
       tabIndex={0}
       aria-label={`Play ${title}`}
-      onClick={() => setActivated(true)}
+      onClick={() => {
+        setUserInitiated(true);
+        setActivated(true);
+      }}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          setUserInitiated(true);
           setActivated(true);
         }
       }}

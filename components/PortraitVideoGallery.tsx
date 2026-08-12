@@ -118,7 +118,7 @@ export default function PortraitVideoGallery() {
                   <div
                     className="afs-service-video-poster"
                     style={{
-                      backgroundImage: `url("https://i.ytimg.com/vi/${video.id}/hqdefault.jpg")`,
+                      backgroundImage: `url("/youtube-thumbnails/${video.id}.webp")`,
                     }}
                   />
                 )}

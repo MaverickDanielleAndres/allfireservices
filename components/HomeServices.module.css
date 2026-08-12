@@ -33,7 +33,7 @@
 .kicker {
   grid-column: 1 / -1;
   margin: 0 0 1rem;
-  color: #e94716;
+  color: #d64114;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -258,7 +258,7 @@
 }
 
 .tag {
-  color: #fc0403;
+  color: #ec0302;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -327,7 +327,7 @@
   }
 
   .card:hover .cardTitle {
-    color: #fc0403;
+    color: #ec0302;
   }
 
   .viewMore:hover {

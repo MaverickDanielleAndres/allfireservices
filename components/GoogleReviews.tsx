@@ -184,7 +184,7 @@ export default function GoogleReviews() {
         .reviews-kicker {
           grid-column: 1 / -1;
           margin: 0 0 1rem;
-          color: #e94716;
+          color: #d64114;
           font-size: 0.78rem;
           font-weight: 800;
           letter-spacing: 0.12em;
@@ -205,8 +205,22 @@ export default function GoogleReviews() {
             font-size: clamp(2.3rem, 11vw, 3.5rem);
           }
         }
+        /* Title column + arrows column on desktop. Declared here rather than
+           inline so the mobile/tablet override below can actually win. */
+        .reviews-header--carousel {
+          grid-template-columns: minmax(0, 1fr) auto;
+          margin-bottom: 1.75rem;
+        }
+        .reviews-nav {
+          display: flex;
+          gap: 0.75rem;
+          flex-shrink: 0;
+          align-items: flex-end;
+          justify-content: flex-end;
+        }
         @media (max-width: 991px) {
-          .reviews-header {
+          .reviews-header,
+          .reviews-header--carousel {
             grid-template-columns: 1fr;
             gap: 1.5rem;
             justify-items: center;
@@ -215,12 +229,19 @@ export default function GoogleReviews() {
           .reviews-kicker {
             margin: 0 0 0.5rem;
           }
+          /* Arrows drop onto their own row beneath the heading and centre. */
+          .reviews-nav {
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 0.25rem;
+          }
         }
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <div className="reviews-header" style={{ marginBottom: "1.75rem", gridTemplateColumns: "minmax(0, 1fr) auto" }}>
+        <div className="reviews-header reviews-header--carousel">
           <div className="reviews-kicker">Client feedback</div>
           <h2 className="reviews-title">
             What Sydney <span style={{ color: '#ff2a00' }}>building</span><br className="hidden lg:block" /><span style={{
@@ -230,7 +251,7 @@ export default function GoogleReviews() {
               backgroundClip: 'text',
             }}>managers tell us</span>
           </h2>
-          <div className="flex gap-3 shrink-0 justify-end items-end">
+          <div className="reviews-nav">
             <button
               onClick={prevSlide}
               className="w-12 h-12 shrink-0 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-200 bg-white hover:scale-105 active:scale-95 shadow-sm cursor-pointer"

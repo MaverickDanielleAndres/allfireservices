@@ -203,7 +203,7 @@ function NavbarContent() {
         }
 
         .navbar-topbar-left a:hover {
-          color: #fb5614;
+          color: #d04710;
         }
 
         .navbar-topbar-right {
@@ -221,7 +221,7 @@ function NavbarContent() {
         }
 
         .navbar-topbar-right a:hover {
-          color: #fb5614;
+          color: #d04710;
         }
 
         .navbar-inner {
@@ -267,7 +267,7 @@ function NavbarContent() {
         }
 
         .navbar-link:hover, .navbar-link.is-active {
-          color: #fb5614;
+          color: #d04710;
         }
 
         .navbar-dropdown {
@@ -322,7 +322,7 @@ function NavbarContent() {
 
         .navbar-dropdown-top:hover {
           background: rgba(251, 86, 20, 0.12);
-          border-bottom-color: #fb5614;
+          border-bottom-color: #d04710;
         }
 
         .navbar-dropdown-top .navbar-dropdown-link {
@@ -338,7 +338,7 @@ function NavbarContent() {
         }
 
         .navbar-dropdown-top:hover .navbar-dropdown-link {
-          color: #fb5614;
+          color: #d04710;
           background: transparent;
           transform: translateY(-1px);
         }
@@ -365,20 +365,20 @@ function NavbarContent() {
         }
 
         .navbar-dropdown-link:hover {
-          color: #fb5614;
+          color: #d04710;
           background: rgba(251, 86, 20, 0.12);
           padding-left: 0.75rem;
         }
 
         .navbar-dropdown-link.is-active {
-          color: #fb5614;
+          color: #d04710;
           font-weight: 700;
           background: rgba(251, 86, 20, 0.08);
         }
 
         .navbar-mobile-link.is-active,
         .mobile-dropdown-link.is-active {
-          color: #fb5614;
+          color: #d04710;
           font-weight: 700;
         }
 
@@ -427,7 +427,7 @@ function NavbarContent() {
         }
 
         .mobile-dropdown-link:hover {
-          color: #fb5614;
+          color: #d04710;
         }
 
         .navbar-actions {
@@ -445,11 +445,11 @@ function NavbarContent() {
         }
         
         .navbar-phone:hover {
-          color: #fb5614;
+          color: #d04710;
         }
 
         .navbar-cta {
-          background: #fb5614;
+          background: #d04710;
           color: #ffffff;
           padding: 0.875rem 1.75rem;
           border-radius: 99px;
