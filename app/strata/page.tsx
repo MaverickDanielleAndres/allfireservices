@@ -205,6 +205,10 @@ export default function Page() {
             .strata-how-we-help > div {
               min-height: 18rem !important;
               height: auto !important;
+              /* Cap the single-column image so it doesn't blow up taller than
+                 its portrait aspect ratio. */
+              max-width: 32rem !important;
+              margin: 0 auto !important;
             }
           }
           @media (max-width: 767px) {
@@ -513,8 +517,15 @@ export default function Page() {
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} strata-how-we-help`} style={{ alignItems: 'stretch' }}>
-                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
+                  {/* The compilation image is portrait (412×1024). The old
+                      landscape container + `object-fit: cover` cropped the
+                      top and bottom buildings off. We now (a) use a portrait
+                      aspect ratio, (b) use `object-fit: contain` so the full
+                      image is always visible, and (c) bias `object-position`
+                      upward so the top of the compilation is the canonical
+                      view on every viewport. */}
+                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', minHeight: '300px', aspectRatio: '0.62 / 1', maxHeight: '44rem', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto', background: '#f4f4f4' }}>
+                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover', objectPosition: 'center 18%' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header

@@ -51,7 +51,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
                 <div className="flex flex-col items-start" style={{
                   maxWidth: '34rem',
                   color: '#4a4a46',
-                  fontSize: 'clamp(1rem, 1.45vw, 1.18rem)',
+                  fontSize: 'clamp(0.85rem, 1.1vw, 0.98rem)',
                   lineHeight: 1.55
                 }}>
                   <p style={{ margin: 0, paddingBottom: '0.5rem' }}>

@@ -1,6 +1,7 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import HomeStoryLegacy from "@/components/HomeStoryLegacy";
 import { CompactTimeline } from "@/components/FounderLegacy";
@@ -23,16 +24,9 @@ const companyGalleryImages = [
   { id: 6, src: "/History/about (9).jpg", name: "Heritage Fleet", desc: "Classic fire engines from the family history." },
   { id: 7, src: "/History/about (10).jpg", name: "Generations of Firefighters", desc: "The Tricklebank family firefighting lineage." },
 ];
-const teamMembers = [
-  { img: '/technician/pete.jpg', name: 'Peter', bio: 'Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads the business and its team of fire-safety professionals across Greater Sydney.' },
-  { img: '/technician/team1.jpg', name: 'Paul', bio: 'Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.' },
-  { img: '/technician/team2.jpg', name: 'Sam', bio: 'Sam brings the practical experience of a serving professional firefighter to his work, helping clients maintain safe and compliant buildings.' },
-  { img: '/technician/team3.jpg', name: 'George', bio: 'George is committed to providing a high standard of service and helping clients protect their people and property.' },
-  { img: '/technician/team4.jpg', name: 'Ken', bio: 'Ken brings technical expertise in matters relating to the Building Code of Australia, Australian Standards, and fire-safety requirements.' },
-  // Six team slots, five supplied portraits — share team1 with Kyriakos
-  // (he sits in row 2 col 3, not vertically next to Paul in row 1 col 2).
-  { img: '/technician/team1.jpg', name: 'Kyriakos', bio: 'Kyriakos provides approachable, practical, and dependable fire-safety services to clients across Greater Sydney.' },
-];
+// Team member data now lives with the Our Team section in
+// components/OurTeam.tsx (rendered at /our-team) so Our Story can stay focused
+// on history and heritage.
 
 export default function Page() {
   return (
@@ -322,6 +316,18 @@ export default function Page() {
               margin-top: 2rem !important;
             }
           }
+
+          /* Desktop only: tighten the large gaps between story sections */
+          @media (min-width: 992px) {
+            .about-meet-peter-section,
+            .about-experience-section,
+            .about-standards-section {
+              margin-bottom: 6rem !important;
+            }
+            .about-mission-section {
+              margin-top: 4rem !important;
+            }
+          }
         `}} />
         <header
           className="section_about-hero is-dark about-hero-header"
@@ -410,7 +416,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={`${styles.kickerLeft} mx-0`} style={{ textTransform: 'uppercase' }}>OUR STORY</p>
-                      <h2 className="mx-0" style={{ maxWidth: '24ch' }}>
+                      <h2 className="mx-0 md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
                         &ldquo;Fire Protection<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -474,7 +480,7 @@ export default function Page() {
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
                 >
                   <p className={styles.kicker}>The Legacy</p>
-                  <h2 id="about-legacy-title" style={{ color: '#111111', maxWidth: 'none' }}>
+                  <h2 id="about-legacy-title" className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ color: '#111111', maxWidth: 'none' }}>
                     <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>The Tricklebank</span><br />
                     <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Family Legacy</span>
                   </h2>
@@ -617,8 +623,8 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>MEET PETER TRICKLEBANK</p>
-                      <h2 style={{ maxWidth: '24ch' }}>
-                        &ldquo;Australian <span style={{ color: '#ff0000' }}>Owned</span> <span style={{
+                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
+                        &ldquo;Australian <span style={{ color: '#111111' }}>Owned</span> <span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
@@ -646,7 +652,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>EXPERIENCE</p>
-                      <h2 style={{ maxWidth: '24ch' }}>
+                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
                         &ldquo;Built on<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -684,7 +690,7 @@ export default function Page() {
                       style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                     >
                       <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>STANDARDS</p>
-                      <h2 style={{ maxWidth: '24ch' }}>
+                      <h2 className="md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ maxWidth: '24ch' }}>
                         &ldquo;Always<br /><span style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',
@@ -714,12 +720,12 @@ export default function Page() {
                         style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}
                       >
                         <p className={styles.kickerLeft} style={{ textTransform: 'uppercase' }}>OUR MISSION</p>
-                        <h2 className={styles.missionHeading} style={{ maxWidth: '24ch' }}>
+                        <h2 className={`${styles.missionHeading} md:text-[clamp(2.2rem,4.3vw,3.8rem)]`} style={{ maxWidth: '24ch' }}>
                           <span className={`${styles.missionLine} ${styles.missionLineOne}`}>
-                            &ldquo;Excellence
+                            &ldquo;Excellence{' '}
                           </span>
                           <span className={`${styles.missionLine} ${styles.missionLineTwo}`}>
-                            <span className={styles.missionAccent}>in</span>&nbsp;Fire
+                            <span className={styles.missionAccent}>in</span>&nbsp;Fire{' '}
                           </span>
                           <span className={`${styles.missionLine} ${styles.missionLineThree} ${styles.missionGradient}`}>
                             Protection&rdquo;
@@ -748,103 +754,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="section_team">
-          <div className="padding-global">
-            <div className="container-large">
-              <div className="padding-section-large is-team" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-                <div className="team_component">
-                  <div className="team_header max-w-5xl mx-auto" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
-                    <header
-                      className={styles.storyHeaderLeft}
-                      style={{ marginTop: 0, marginBottom: '2rem', maxWidth: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}
-                    >
-                      <p className={styles.kickerLeft} style={{ textTransform: 'uppercase', margin: '0 0 1rem 0' }}>The professionals behind All Fire Services</p>
-                      <h2 style={{ margin: 0, maxWidth: '15ch' }}>
-                        Meet the <span style={{ color: '#ff0000' }}>All Fire</span><br /><span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>Services Team</span>
-                      </h2>
-                    </header>
-                    <div className="button-group">
-                      <a
-                        data-wf--button--size="large"
-                        href="/contact"
-                        className="button-wrap w-inline-block"
-                      >
-                        <div data-wf--button-style-- className="button-content">
-                          <div
-                            data-wf--button-layout--layout="normal"
-                            className="button-layout"
-                          >
-                            <div className="button-text">Get started</div>
-                            <div className="button-icon">
-                              <div className="icon-slot">
-                                <div className="icon-slot">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="100%"
-                                    viewBox="0 0 16 17"
-                                    fill="none"
-                                  >
-                                    <g clipPath="url(#clip0_6401_1558)">
-                                      <path
-                                        d="M10.9541 3.45557L6.00455 3.49545L5.99226 5.02155L10.5927 4.98503L3.05492 12.5549L4.12551 13.6255L11.6959 6.02298L11.6583 10.6887L13.1844 10.6764L13.2249 5.72629C13.2282 5.11964 12.9913 4.5402 12.5657 4.11468C12.1402 3.68916 11.5608 3.45218 10.9541 3.45557Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </g>
-                                    <defs>
-                                      <clipPath id="clip0_6401_1558">
-                                        <rect
-                                          width="16"
-                                          height="16"
-                                          fill="currentColor"
-                                          transform="translate(0 0.5)"
-                                        ></rect>
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="team_list-wrapper w-dyn-list">
-                    <div
-                      role="list"
-                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 max-w-5xl mx-auto"
-                    >
-                      {teamMembers.map((member) => {
-                        return (
-                          <div key={member.name} role="listitem" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                            <LightboxImage
-                              fill
-                              src={member.img}
-                              sizes="(max-width: 767px) 50vw, (max-width: 1200px) 33vw, 280px"
-                              alt={member.name}
-                              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 300ms' }}
-                            />
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.5rem' }}>
-                              <h3 style={{ margin: 0, fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111111' }}>{member.name}</h3>
-                              <div style={{ margin: 0, fontSize: '1rem', color: '#111111', lineHeight: 1.5 }}>
-                                <p>{member.bio}</p>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
         <ContactCTA />
       </main>
     </main>

@@ -333,12 +333,7 @@ export default function GoogleReviews() {
         <div className="reviews-header reviews-header--carousel">
           <div className="reviews-kicker">All Fire Services Google Reviews</div>
           <h2 className="reviews-title">
-            Real reviews from <span style={{ color: '#ff2a00' }}>real</span><br className="hidden lg:block" /><span style={{
-              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>Google customers</span>
+            Hear from our Clients
           </h2>
           <div className="reviews-nav">
             <button
@@ -368,8 +363,8 @@ export default function GoogleReviews() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-l from-white to-transparent" />
-            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-r from-white to-transparent" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-l from-white to-transparent hidden md:block" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 z-30 pointer-events-none bg-gradient-to-r from-white to-transparent hidden md:block" />
 
             <div
               ref={trackRef}

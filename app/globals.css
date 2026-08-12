@@ -148,3 +148,10 @@
     padding-bottom: 2rem !important;
   }
 }
+
+/*
+ * Hide the chatbot when the mobile menu is open so it doesn't overlap the navigation.
+ */
+body.mobile-menu-open .chatbot-container {
+  display: none !important;
+}

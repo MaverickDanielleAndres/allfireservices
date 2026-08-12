@@ -1,28 +1,35 @@
 // Shared navigation links used by both the Navbar and the Footer.
 // Keep this list as the single source of truth for primary nav items.
 
-// The 12 service offerings + "All Services", used by the header Services dropdown.
+import { services } from "./services";
+
+/**
+ * The Our Services dropdown: "All Services" + the 12 approved services.
+ *
+ * Labels and destinations are derived from lib/services.ts so the dropdown
+ * always reads exactly the same as the homepage Services section, the Our
+ * Services page and the footer. Do not hard-code service names here.
+ */
 export const serviceLinks = [
   { label: "All Services", href: "/services" },
-  { label: "AFSS", href: "/services?category=annual-fire-safety-statement" },
-  { label: "Fire Panel / Alarms 1670.1", href: "/services?category=fire-panel" },
-  { label: "Smoke Detectors AS 3786", href: "/services?category=smoke-alarms" },
-  { label: "Fire Doors", href: "/services?category=fire-doors" },
-  { label: "Fire Extinguishers", href: "/services?category=fire-extinguishers" },
-  { label: "Emergency Lights", href: "/services?category=emergency-lights" },
-  { label: "Fire Hose Reels", href: "/services?category=fire-hose-reels" },
-  { label: "Diesel / Hydrant / Sprinkler", href: "/services?category=diesel-pump" },
-  { label: "Air Mechanical Services", href: "/services?category=air-mechanical" },
-  { label: "Flow Test", href: "/services?category=flow-testing" },
-  { label: "Fire Penetration", href: "/services?category=service-penetration" },
-  { label: "Zone Block / Evacuation / Hydrant Plans", href: "/services?category=plans" },
+  ...services.map((service) => ({ label: service.name, href: service.href })),
 ];
 
+/**
+ * Primary navigation.
+ *
+ * `/about` is the Our Story route and `/services` is the Our Services route —
+ * the existing URLs are kept so nothing that already works breaks. Why All Fire
+ * is a section of the Our Story page rather than a separate route, so it is
+ * linked by anchor.
+ */
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Our Story", href: "/about" },
+  { label: "Our Services", href: "/services" },
+  { label: "Our Team", href: "/our-team" },
   { label: "Our Clients", href: "/our-clients" },
-  { label: "Services", href: "/services" },
+  { label: "Why All Fire", href: "/why-all-fire" },
   { label: "Strata", href: "/strata" },
   { label: "Contact", href: "/contact" },
 ];

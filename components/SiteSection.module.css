@@ -1,0 +1,283 @@
+/* ───────────────────────────────────────────────────────────────────────────
+   Shared section shell for the Our Team and Why All Fire sections.
+
+   Every value here is copied from components/HomeServices.module.css — the
+   approved homepage Services section — so these areas read as the same design
+   system rather than a newer or older variant. Do not diverge from these
+   numbers without changing the homepage too.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  --section-bg: #ffffff;
+  --section-text: #171719;
+  position: relative;
+  z-index: 1;
+  padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1rem, 4vw, 3rem);
+  overflow: hidden;
+  color: var(--section-text);
+  background: var(--section-bg);
+}
+
+.container {
+  position: relative;
+  width: min(100%, 82rem);
+  margin-inline: auto;
+}
+
+/* Header — identical grid, kicker, h2 and intro treatment to HomeServices. */
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(16rem, 0.7fr);
+  column-gap: 4rem;
+  align-items: end;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.kicker {
+  grid-column: 1 / -1;
+  margin: 0 0 1rem;
+  color: #d64114;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  margin: 0;
+  margin-right: -0.15em;
+  padding-left: 0.05em;
+  padding-right: 0.15em;
+  color: #111111;
+  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-weight: 780;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.gradient {
+  background: linear-gradient(to right, #ff2a00, #ffb700);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.header > p:last-child {
+  max-width: 34rem;
+  margin: 0;
+  color: #4a4a46;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.55;
+}
+
+/* ── Grids ───────────────────────────────────────────────────────────────── */
+
+/* Team: 3-up on desktop so six people sit in two clean rows. */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+/* Why All Fire: 3-up so the six reasons also form two clean rows. */
+.reasonGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2rem);
+}
+
+/* ── Cards — the homepage card, exactly ──────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 300ms ease;
+}
+
+.cardMedia {
+  position: relative;
+  aspect-ratio: 1.25;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #f4f4f4;
+}
+
+.image {
+  object-fit: cover;
+  /* Portraits: bias the crop to the upper third so faces are never cut off. */
+  object-position: center 22%;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 300ms ease;
+}
+
+.cardContent {
+  padding: 0 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: #111;
+  line-height: 1.3;
+}
+
+.cardBody {
+  margin: 0;
+  color: #4a4a46;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* Why All Fire cards carry no imagery, so they need their own padding. */
+.reasonCard {
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  gap: 0.6rem;
+}
+
+.reasonIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.35rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5614, #ffad05);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(255, 86, 20, 0.3);
+}
+
+.reasonTitle {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: 700;
+  color: #111;
+  line-height: 1.3;
+  text-transform: none;
+}
+
+/* ── Footer action — the homepage "View more services" pill, exactly ─────── */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.action {
+  display: inline-flex;
+  min-width: 12rem;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.6rem;
+  border: 1px solid var(--section-text);
+  border-radius: 999px;
+  color: var(--section-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: #ff5614;
+    box-shadow: 0 8px 25px rgba(255, 86, 20, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .card:hover .image {
+    transform: scale(1.05);
+  }
+
+  .action:hover {
+    color: var(--section-bg);
+    background: #ff5614;
+    border-color: #ff5614;
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Responsive — the homepage breakpoints, exactly ──────────────────────── */
+
+@media (max-width: 1200px) {
+  .teamGrid,
+  .reasonGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991px) {
+  .teamGrid,
+  .reasonGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .header > p:last-child {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 1rem clamp(1rem, 5vw, 1.5rem) clamp(2.5rem, 4vw, 3.5rem);
+  }
+
+  .header h2 {
+    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    text-wrap: wrap;
+    max-width: none;
+  }
+
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .reasonGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Reason cards carry a paragraph each — one column keeps the copy readable
+     at phone widths instead of squeezing it into a narrow half-column. */
+  .reasonGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardMedia,
+  .image,
+  .action {
+    transition: none;
+  }
+}

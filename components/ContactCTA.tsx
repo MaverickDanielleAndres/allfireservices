@@ -254,13 +254,13 @@ export default function ContactCTA({
                       backgroundClip: "text",
                     }}>touch</span>
                   </h2>
-                  <p className="body-text" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "left", margin: "0 0 2rem", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
+                  <p className="body-text mb-2 md:mb-8" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "left", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
                     We&rsquo;re always happy to hear from property managers and
                     owners, whether it&rsquo;s to enquire about a new fire safety audit,
                     or just to chat about all things fire safety-related.
                   </p>
                 </div>
-                <div className="contact-cta_info-wrapper" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start", textAlign: "left", padding: "1.5rem 0 0", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
+                <div className="contact-cta_info-wrapper pt-3 md:pt-6" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start", textAlign: "left", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", marginTop: "0.25rem" }}>
                     <h3 className="heading-style-h5" style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "#111111", textTransform: "uppercase", textAlign: "left" }}>SOCIALS</h3>
                     <ul className="contact-social-links" style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-start", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
@@ -500,7 +500,7 @@ export default function ContactCTA({
                       <p id={`${formId}-consent-error`} style={{ margin: "-0.5rem 0 0.75rem 1.7rem", fontSize: 12.5, color: "#b91c1c" }}>{errors.consent}</p>
                     )}
 
-                    <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", alignSelf: "start", justifySelf: "start" }}>
+                    <div className="flex gap-3 items-center flex-wrap self-center md:self-start justify-self-center md:justify-self-start mx-auto md:mx-0">
                       <button
                         type="submit"
                         disabled={isSubmitting}

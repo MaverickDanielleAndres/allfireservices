@@ -4,8 +4,10 @@ import {
   createPageMetadata,
   canonicalUrlFor,
   ogImageUrlFor,
+  LEGAL_NAME,
 } from "./seo";
 import { Product, Category } from "./products";
+import { services } from "./services";
 
 const SERVICE_LOCATION = "Sydney";
 
@@ -52,7 +54,10 @@ export function servicePageKeywords(
     out.add(`${category.label.toLowerCase()} fire safety`);
   }
   out.add("fire safety services Sydney");
-  out.add("AFSS");
+  // "AFSS" is the well-known abbreviation for the public-facing category
+  // "Annual Fire Safety Statement" — search users still type the abbreviation,
+  // so we expose both in keywords.
+  out.add("Annual Fire Safety Statement");
   if (product.standard) {
     out.add(product.standard);
   }
@@ -97,9 +102,10 @@ export function createServicesHubMetadata(category?: Category): Metadata {
   }
 
   return createPageMetadata({
-    title: "Fire Protection Services Sydney",
-    description:
-      "Browse all All Fire Services Australia fire protection services across Greater Sydney — AFSS, fire panels, smoke alarms, fire doors, extinguishers, emergency lighting, hose reels, hydrants, sprinklers, fire pumps, mechanical services and more.",
+    title: "Our Services",
+    description: `Browse all ${LEGAL_NAME} fire protection services across Greater Sydney — ${services
+      .map((s) => s.name)
+      .join(", ")}.`,
     path: "/services",
   });
 }

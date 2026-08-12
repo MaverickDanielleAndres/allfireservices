@@ -137,25 +137,25 @@ export default function HandshakeTestimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="bg-white overflow-hidden padding-section-large pt-0" data-theme="light">
+    <section className="bg-white overflow-hidden pt-0" data-theme="light">
       <div className="padding-global">
         <div className="container-large">
           <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-            <p className={styles.kicker}>All Fire Services Google Reviews</p>
-            <h2 id="legacy-title" style={{ maxWidth: '18ch' }}>Real reviews from<br /><span style={{
+            <p className={`${styles.kicker} text-center md:text-left`}>All Fire Services Google Reviews</p>
+            <h2 id="legacy-title" className="mx-auto md:mx-0 text-center md:text-left" style={{ maxWidth: '18ch' }}>Trusted by<br /><span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-            }}>real Google customers</span></h2>
-            <p>
-              Verified five-star reviews left on the All Fire Services Google Business profile — straight from the people who book the inspections.
+            }}>Real Clients</span></h2>
+            <p className="mx-auto md:mx-0 text-center md:text-left">
+              See what our customers have to say about their experience with All Fire Services, from reliable service and clear communication to professional fire safety support.
             </p>
           </header>
         </div>
       </div>
 
-      <div className="relative flex overflow-hidden pb-16">
+      <div className="relative flex overflow-hidden pb-4 md:pb-8">
         <motion.div
           className="flex gap-6 w-max px-3 cursor-grab active:cursor-grabbing"
           animate={{ x: ["0%", "-50%"] }}

@@ -46,11 +46,14 @@ import { assets } from "@/lib/assets";
 import { navLinks, serviceLinks } from "@/lib/navigation";
 
 // navLinks from @/lib/navigation is the source of truth for top-level items.
-// Services carries the full list (12 offerings + All Services) as its dropdown.
+// "Our Services" carries the full list (12 offerings + All Services) as its
+// dropdown; every label comes from lib/services.ts.
 type NavItem = { label: string; href: string; items?: { label: string; href: string }[] };
 
+const SERVICES_NAV_LABEL = "Our Services";
+
 const navItems: NavItem[] = navLinks.map((item) =>
-  item.label === "Services" ? { ...item, items: serviceLinks } : item
+  item.label === SERVICES_NAV_LABEL ? { ...item, items: serviceLinks } : item
 );
 
 export default function Navbar() {
@@ -280,7 +283,7 @@ function NavbarContent() {
         .navbar-nav {
           display: flex;
           align-items: center;
-          gap: 2.5rem;
+          gap: clamp(0.85rem, 1.5vw, 2rem);
           list-style: none;
           margin: 0;
           padding: 0;
@@ -290,7 +293,8 @@ function NavbarContent() {
           color: #111111;
           text-decoration: none;
           font-weight: 600;
-          font-size: 1rem;
+          font-size: clamp(0.85rem, 0.95vw, 1rem);
+          white-space: nowrap;
           transition: color 200ms ease;
           display: flex;
           align-items: center;
@@ -376,7 +380,7 @@ function NavbarContent() {
 
         .navbar-dropdown-grid {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           grid-auto-rows: 1fr;
           column-gap: 0.5rem;
           row-gap: 0;
@@ -423,12 +427,12 @@ function NavbarContent() {
 
         .mobile-dropdown {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(2, minmax(0, 1fr));
           grid-auto-rows: auto;
-          column-gap: 0.75rem;
-          row-gap: clamp(0.45rem, 1.6vh, 0.85rem);
-          margin-top: clamp(0.35rem, 1.2vh, 0.6rem);
-          margin-bottom: clamp(0.15rem, 0.6vh, 0.35rem);
+          column-gap: 0.5rem;
+          row-gap: clamp(0.3rem, 1vh, 0.6rem);
+          margin-top: clamp(0.2rem, 1vh, 0.4rem);
+          margin-bottom: clamp(0.1rem, 0.5vh, 0.2rem);
         }
 
         .mobile-dropdown-all {
@@ -439,7 +443,7 @@ function NavbarContent() {
           color: #a0a0a0;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          font-size: clamp(0.62rem, 2.6vw, 0.72rem);
+          font-size: clamp(0.58rem, 2.3vw, 0.68rem);
           padding-bottom: 0.2rem;
           margin-bottom: 0.1rem;
         }
@@ -447,14 +451,14 @@ function NavbarContent() {
         .mobile-dropdown-link {
           display: flex;
           align-items: flex-start;
-          font-size: clamp(0.72rem, 2.9vw, 0.88rem);
+          font-size: clamp(0.65rem, 2.5vw, 0.8rem);
           font-weight: 700;
-          line-height: 1.35;
+          line-height: 1.25;
           color: #7a7a7a;
           text-decoration: none;
           padding: 0;
-          overflow-wrap: normal;
-          word-break: normal;
+          overflow-wrap: break-word;
+          word-break: break-word;
         }
 
         .mobile-dropdown-link:hover {
@@ -525,7 +529,7 @@ function NavbarContent() {
 
         .navbar-mobile-panel {
           position: fixed;
-          top: 5.5rem;
+          top: 5.5rem; /* matches .navbar-inner height; topbar is hidden on mobile */
           left: 0;
           right: 0;
           bottom: 0;
@@ -579,13 +583,34 @@ function NavbarContent() {
 
         .navbar-mobile-link {
           display: block;
-          font-size: clamp(0.82rem, 3.2vw, 0.98rem);
+          font-size: clamp(0.75rem, 2.8vw, 0.9rem);
           font-weight: 600;
           letter-spacing: -0.01em;
           color: #111111;
           text-decoration: none;
-          padding: clamp(0.3rem, 1.2vh, 0.55rem) 0;
+          padding: clamp(0.25rem, 1vh, 0.45rem) 0;
           border-bottom: 1px solid #f2f2f2;
+        }
+
+        .navbar-mobile-socials {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1.5rem;
+          margin-top: clamp(1.5rem, 3vh, 2.5rem);
+          padding-bottom: 1rem;
+        }
+
+        .navbar-mobile-socials a {
+          color: #111111;
+          transition: color 200ms ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .navbar-mobile-socials a:hover {
+          color: #d04710;
         }
 
         .navbar-spacer {
@@ -595,10 +620,10 @@ function NavbarContent() {
         /* Desktop only: match the services dropdown text to the header nav size. */
         @media (min-width: 1025px) {
           .navbar-dropdown {
-            width: min(42rem, calc(100vw - 3rem));
+            width: min(40rem, calc(100vw - 3rem));
           }
           .navbar-dropdown-link {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             padding: 0.5rem 0.6rem;
             line-height: 1.3;
@@ -609,12 +634,33 @@ function NavbarContent() {
           }
         }
 
-        @media (max-width: 1024px) {
-          .navbar-nav, .navbar-actions {
+        /* Between 1025px and 1400px the eight nav items, the phone number and
+           both CTAs cannot all fit on one row. Reclaim the space from the
+           gutters and the phone number rather than letting the nav wrap. */
+        @media (min-width: 1025px) and (max-width: 1400px) {
+          .navbar-inner {
+            padding: 0 2rem;
+          }
+          .navbar-actions {
+            gap: 1rem;
+          }
+          .navbar-phone {
             display: none;
           }
+          .navbar-cta {
+            padding: 0.75rem 1.35rem;
+            font-size: 0.9rem;
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .navbar-nav, .navbar-actions {
+            display: none !important;
+          }
           .navbar-mobile-toggle {
-            display: block;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
           }
           .navbar-inner {
             padding: 0 1rem;
@@ -640,6 +686,9 @@ function NavbarContent() {
           }
           .navbar-spacer {
             height: 5.5rem;
+          }
+          .navbar-mobile-panel {
+            top: 5.5rem;
           }
         }
       `}</style>
@@ -791,6 +840,13 @@ function NavbarContent() {
           <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center' }} onClick={closeMenus}>
             Get a Quote
           </Link>
+        </div>
+        <div className="navbar-mobile-socials">
+          <a href="https://www.facebook.com/profile.php?id=61566630403365" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon size={20} /></a>
+          <a href="https://www.instagram.com/_allfireservices_/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={20} /></a>
+          <a href="https://au.linkedin.com/in/allfire-services-sydney-92690516" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={20} /></a>
+          <a href="https://www.youtube.com/@allfireservices" target="_blank" rel="noreferrer" aria-label="YouTube"><YoutubeIcon size={20} /></a>
+          <a href="https://x.com/Allfiresydney" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><XIcon size={18} /></a>
         </div>
       </div>
     </>

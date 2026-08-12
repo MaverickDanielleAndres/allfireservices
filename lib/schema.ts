@@ -12,6 +12,25 @@ import {
   BUSINESS_AREA_SERVED,
   absoluteUrl,
 } from "./seo";
+import { services } from "./services";
+
+/** Service names that the schema should know the business "knows about",
+ *  derived from the central services list (in the approved display order).
+ *  The list intentionally mixes the approved public-facing names with a few
+ *  standard industry terms (e.g. "Exit signs", "Fire flow testing") that the
+ *  public-facing category does not mention by name but that a search engine
+ *  needs to match to structured data. */
+const SUPPLEMENTARY_SAFETY_TERMS = [
+  "Exit signs",
+  "Fire hydrants",
+  "Sprinkler systems",
+  "Fire pumps",
+  "Smoke dampers",
+  "Fire dampers",
+  "Fire flow testing",
+  "Evacuation diagrams",
+  "Zone block plans",
+] as const;
 
 // ─── Stable entity IDs ────────────────────────────────────────────────────────
 //
@@ -45,7 +64,9 @@ export function buildLocalBusinessEntity(
     ),
     description:
       options.description ??
-      "All Fire Services provides fire protection inspections, testing, maintenance and compliance support across Greater Sydney, including annual fire safety statements, fire alarm panels, smoke alarms, fire doors, extinguishers, emergency lighting, hydrants, sprinklers, fire pumps, mechanical fire services, fire dampers, flow testing and fire penetration sealing.",
+      `All Fire Services provides fire protection inspections, testing, maintenance and compliance support across Greater Sydney, including ${services
+        .map((s) => s.name.toLowerCase())
+        .join(", ")}.`,
     telephone: SITE_PHONE_TEL,
     email: SITE_EMAIL,
     priceRange: "$$",
@@ -109,24 +130,8 @@ export function buildLocalBusinessEntity(
     ],
     knowsAbout: [
       "Fire safety inspections",
-      "Annual Fire Safety Statements",
-      "Fire alarm panels",
-      "Smoke alarms",
-      "Fire doors",
-      "Fire extinguishers",
-      "Emergency lighting",
-      "Exit signs",
-      "Fire hose reels",
-      "Fire hydrants",
-      "Sprinkler systems",
-      "Fire pumps",
-      "Mechanical fire services",
-      "Fire dampers",
-      "Smoke dampers",
-      "Service penetration sealing",
-      "Fire flow testing",
-      "Evacuation diagrams",
-      "Zone block plans",
+      ...services.map((s) => s.name),
+      ...SUPPLEMENTARY_SAFETY_TERMS,
     ],
   };
 }

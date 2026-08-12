@@ -156,17 +156,20 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid min-w-0 grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
-            <nav aria-label="Services">
+          <div className="grid min-w-0 grid-cols-1 gap-8 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] sm:gap-x-8 lg:grid-cols-[2.4fr_1fr] lg:gap-x-12">
+            <nav aria-label="Our Services">
               <h2 className="text-[#111111]" style={{
                 fontSize: "clamp(1rem, 1.4vw, 1.2rem)",
                 fontWeight: 780,
                 letterSpacing: "-0.06em",
                 lineHeight: 0.92,
                 margin: 0,
-              }}>Services</h2>
+              }}>Our Services</h2>
+              {/* Two columns, not three. The approved service names are full
+                  words rather than abbreviations, so three columns forced most
+                  items onto two lines and made this block feel crowded. */}
               <ul
-                className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid sm:grid-cols-3 sm:items-start sm:gap-x-6 sm:gap-y-3 md:text-[0.95rem]"
+                className="footer-link-list grid grid-cols-1 gap-x-6 gap-y-2.5 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid-cols-2 sm:items-start sm:gap-y-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
               >
                 {serviceLinks
@@ -193,8 +196,11 @@ export default function Footer() {
                 lineHeight: 0.92,
                 margin: 0,
               }}>Quicklinks</h2>
+              {/* Mirrors the main navigation exactly (lib/navigation.ts). Two
+                  columns on small screens so eight links don't run down the
+                  page, one column once there is room beside them. */}
               <ul
-                className="footer-link-list flex flex-col gap-2 text-[0.85rem] font-[500] leading-snug text-[#111111] md:gap-3 md:text-[0.95rem]"
+                className="footer-link-list grid grid-cols-2 gap-x-6 gap-y-2.5 text-[0.85rem] font-[500] leading-snug text-[#111111] sm:grid-cols-1 md:gap-y-3 md:text-[0.95rem]"
                 style={{ marginTop: "1.5rem", paddingTop: "1.00rem" }}
               >
                 {navLinks.map((link) => (
@@ -238,15 +244,12 @@ export default function Footer() {
         </Link>
       </div>
 
-      {/* Bottom bar — constrained */}
+      {/* Bottom bar — constrained. Kept to the copyright line only: Contact is
+          already reachable from the "Get in touch" button above and from
+          Quicklinks, so a third link here added nothing. */}
       <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="mt-4 flex flex-col gap-4 border-t border-[#2b201b]/12 pb-5 pt-4 text-[11px] font-[500] text-[#111111] sm:flex-row sm:items-center sm:justify-between sm:text-[12px]">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
-            <Link href="/contact" className="!text-[#111111] transition hover:!text-[#d64012]" style={{ textDecoration: "none" }}>
-              Contact us
-            </Link>
-          </div>
+          <p>&copy; {new Date().getFullYear()} All Fire Services Australia. All rights reserved.</p>
         </div>
       </div>
       <style

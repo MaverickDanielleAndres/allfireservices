@@ -2,84 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import RevealOnView from "@/components/RevealOnView";
+import { services } from "@/lib/services";
 
 import styles from "./HomeServices.module.css";
 
-const services = [
-  {
-    title: "Annual Fire Safety Statement",
-    href: "/annual-fire-safety-statement",
-    image: "/services/AFSS.png",
-    imageAlt: "NSW annual fire safety statement documentation",
-  },
-  {
-    title: "Fire Panels & Alarms",
-    href: "/services?category=fire-panel",
-    image: "/services/Fire%20Panel%20%26Detection%20(AS%201670.1).jpg",
-    imageAlt: "All Fire Services fire indicator panel under inspection",
-  },
-  {
-    title: "Smoke Detectors",
-    href: "/services?category=smoke-alarms",
-    image: "/services/Smoke%20Alarms(AS%203786).png",
-    imageAlt: "Technician testing a ceiling-mounted smoke detector",
-  },
-  {
-    title: "Fire Doors",
-    href: "/services?category=fire-doors",
-    image: "/services/firedoor.jpg",
-    imageAlt: "All Fire Services technicians on site",
-  },
-  {
-    title: "Fire Extinguishers",
-    href: "/services?category=fire-extinguishers",
-    image: "/services/Fire%20extinguishers.jpg",
-    imageAlt: "Fire extinguisher maintenance tag being inspected",
-  },
-  {
-    title: "Emergency Lights",
-    href: "/services?category=emergency-lights",
-    image: "/services/emergencylights.jpg",
-    imageAlt: "Emergency lighting fitting undergoing a 90-minute test",
-  },
-  {
-    title: "Fire Hose Reels",
-    href: "/services",
-    image: "/services/firehose.png",
-    imageAlt: "All Fire Services hydrant and hose system",
-  },
-  {
-    title: "Diesel / Hydrant / Sprinkler",
-    href: "/services?category=diesel-pump",
-    image: "/services/diesel%20hydrant.jpg",
-    imageAlt: "Diesel fire pump and pipework in a building plant room",
-  },
-  {
-    title: "Air & Mechanical Services",
-    href: "/services?category=air-mechanical",
-    image: "/services/mechanical.jpg",
-    imageAlt: "Fire services pipework, valves and pressure gauges",
-  },
-  {
-    title: "Flow Testing",
-    href: "/services?category=flow-testing",
-    image: "/services/flowtest.jpg",
-    imageAlt: "All Fire Services technician carrying out a hydrant flow test",
-  },
-  {
-    title: "Fire Penetration",
-    href: "/services?category=service-penetration",
-    image: "/services/passivefire.jpg",
-    imageAlt: "Fire safety inspection being carried out on site",
-  },
-  {
-    title: "Zone Block / Evacuation / Hydrant & Sprinkler Plans",
-    href: "/services?category=plans",
-    image: "/services/zoneblockplan.jpg",
-    imageAlt: "Zone block plan and evacuation diagram for a building",
-    smallTitle: true,
-  },
-];
+// Long names get a smaller card title so they stay on two lines rather than
+// running three or four lines deep on narrow cards.
+const SMALL_TITLE_THRESHOLD = 28;
 
 export default function HomeServices() {
   return (
@@ -116,7 +45,7 @@ export default function HomeServices() {
 
         <div className={styles.grid}>
           {services.map((service) => (
-            <Link href={service.href} className={styles.card} key={service.title}>
+            <Link href={service.href} className={styles.card} key={service.id}>
               <div className={styles.cardMedia}>
                 <Image
                   fill
@@ -145,7 +74,15 @@ export default function HomeServices() {
                 </div>
               </div>
               <div className={styles.cardContent}>
-                <h3 className={`${styles.cardTitle} ${service.smallTitle ? styles.cardTitleSmall : ''}`}>{service.title}</h3>
+                <h3
+                  className={`${styles.cardTitle} ${
+                    service.name.length > SMALL_TITLE_THRESHOLD
+                      ? styles.cardTitleSmall
+                      : ""
+                  }`}
+                >
+                  {service.name}
+                </h3>
               </div>
             </Link>
           ))}

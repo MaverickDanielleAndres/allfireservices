@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ClientGrid from "@/components/ClientGrid";
 import HandshakeTestimonials from "@/components/HandshakeTestimonials";
-import AboutClients from "@/components/AboutClients";
+import StrataSection from "@/components/StrataSection";
 import ContactCTA from "@/components/ContactCTA";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -180,7 +180,7 @@ export default function OurClientsPage() {
         <div className="bg-white relative z-10" style={{ marginTop: '-2px' }}>
           <ClientGrid />
           <HandshakeTestimonials />
-          <AboutClients />
+          <StrataSection />
           <ContactCTA />
         </div>
       </main>

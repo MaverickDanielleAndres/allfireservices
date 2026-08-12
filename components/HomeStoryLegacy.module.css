@@ -400,11 +400,17 @@
   max-width: 13ch;
   margin: 0;
   color: #111111;
-  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.92;
   text-wrap: balance;
+}
+
+/* About-page variant: "A Family Firefighting / Legacy Since 1911" must stay on 2 lines */
+.legacyHeaderAbout h2 {
+  max-width: none;
+  white-space: nowrap;
 }
 
 .legacyHeader>p:last-child {
@@ -1352,9 +1358,14 @@
   }
 
   .legacyHeader h2 {
-    font-size: clamp(1.35rem, 6.5vw, 2rem);
+    font-size: clamp(1.15rem, 5.5vw, 1.7rem);
     text-wrap: wrap;
     max-width: none;
+  }
+
+  /* Reset nowrap on mobile to prevent horizontal overflow */
+  .legacyHeaderAbout h2 {
+    white-space: normal;
   }
 
   .timelineViewport {
@@ -1653,7 +1664,7 @@
   max-width: 17ch;
   margin: 0;
   color: #111111;
-  font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.92;
@@ -1665,7 +1676,7 @@
      but constrained to keep the wrapped quote at exactly 2 lines.
      Centred on mobile per the redesign. */
   .storyHeaderLeft h2 {
-    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
+    font-size: clamp(1.3rem, 7vw, 1.85rem);
     text-wrap: wrap;
     max-width: none;
   }
@@ -1692,7 +1703,7 @@
 }
 
 .missionAccent {
-  color: #ff0000;
+  color: #111111;
 }
 
 .missionGradient {
@@ -1705,33 +1716,24 @@
 
 @media (max-width: 767px) {
   .missionHeading {
-    text-wrap: wrap;
-    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
+    text-wrap: balance;
+    font-size: clamp(1.4rem, 6.5vw, 2.2rem);
     max-width: none;
     text-align: center;
   }
 
-  /* The mission heading is built from three missionLine spans that
-     desktop uses as separate lines (Excellence / in Fire / Protection).
-     On phones we collapse the first two onto one line so the heading
-     fits the user's "2 lines max on mobile" rule. The gradient stays
-     on the last (third) line. */
+  /* Make all lines inline and rely on text-wrap: balance to form
+     a neat two-liner on mobile. */
   .missionLineOne,
-  .missionLineTwo {
-    display: inline;
-  }
+  .missionLineTwo,
   .missionLineThree {
-    display: block;
+    display: inline;
   }
 
   .missionLine {
-    font-size: clamp(1.85rem, 8.6vw, 2.6rem);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
-  }
-
-  .missionLineOne {
-    margin-bottom: 0.05em;
+    font-size: clamp(1.4rem, 6.5vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 }
 

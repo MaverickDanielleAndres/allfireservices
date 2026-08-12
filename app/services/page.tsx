@@ -339,6 +339,7 @@ export default function ServicesPage() {
                 <section className={styles.content} aria-live="polite">
                   {currentCategory && (
                     <header className={styles.contentHeader}>
+                      <p className={styles.contentKicker}>Our Services</p>
                       <h2 className={styles.contentHeading}>
                         <span style={sectionH2Line1Style}>
                           {currentCategory.headingLine1 ?? currentCategory.label}
@@ -370,7 +371,7 @@ export default function ServicesPage() {
                           >
                             <div className={styles.cardImageWrap}>
                               <Image
-                                src={product.imageUrl}
+                                src={currentCategory?.heroImage ?? product.imageUrl}
                                 alt={product.name}
                                 fill
                                 sizes="(max-width: 540px) 100vw, (max-width: 1100px) 50vw, 33vw"
