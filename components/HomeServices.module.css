@@ -254,15 +254,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.5rem;
-}
-
-.tag {
-  color: #ec0302;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  gap: 0.25rem;
 }
 
 .cardTitle {
@@ -367,7 +359,7 @@
   }
 
   .header h2 {
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
   }
 
   .grid {

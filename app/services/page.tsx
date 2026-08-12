@@ -7,7 +7,6 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { ArrowUpRight, ChevronDown, Flame, FireExtinguisher, Lightbulb, Fuel, Wind, Droplets, Construction, Server, DoorOpen, Map, Menu, ShieldCheck, X } from "lucide-react";
 import ContactCTA from "@/components/ContactCTA";
-import HeroScrollCue from "@/components/HeroScrollCue";
 import {
   categories,
   getProductsByCategory,
@@ -261,7 +260,6 @@ export default function ServicesPage() {
               </div>
             </div>
           </div>
-          <HeroScrollCue />
         </header>
         )}
 

@@ -1,13 +1,11 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import HeroScrollCue from "@/components/HeroScrollCue";
 import Image from "next/image";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import HomeStoryLegacy from "@/components/HomeStoryLegacy";
 import { CompactTimeline } from "@/components/FounderLegacy";
 import { LightboxImage } from "@/components/ui/LightboxImage";
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
-import YouTubeLite from "@/components/YouTubeLite";
 
 const gradientStyle = {
   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
@@ -64,21 +62,17 @@ export default function Page() {
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 55%;
+            height: 32%;
             background: linear-gradient(to bottom,
               rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0.01) 8%,
-              rgba(255,255,255,0.03) 16%,
-              rgba(255,255,255,0.07) 24%,
-              rgba(255,255,255,0.13) 32%,
-              rgba(255,255,255,0.22) 40%,
-              rgba(255,255,255,0.34) 49%,
-              rgba(255,255,255,0.49) 57%,
-              rgba(255,255,255,0.64) 65%,
-              rgba(255,255,255,0.78) 73%,
-              rgba(255,255,255,0.89) 81%,
-              rgba(255,255,255,0.96) 89%,
-              #ffffff 95%,
+              rgba(255,255,255,0.05) 12%,
+              rgba(255,255,255,0.12) 24%,
+              rgba(255,255,255,0.22) 36%,
+              rgba(255,255,255,0.36) 48%,
+              rgba(255,255,255,0.54) 60%,
+              rgba(255,255,255,0.72) 72%,
+              rgba(255,255,255,0.86) 84%,
+              rgba(255,255,255,0.96) 94%,
               #ffffff 100%
             );
             z-index: 2;
@@ -86,10 +80,10 @@ export default function Page() {
           @media (max-width: 991px) {
             .about-hero-inner {
               padding-top: 7rem !important;
-              padding-bottom: 14rem !important;
+              padding-bottom: 5rem !important;
             }
             .about-fade-overlay {
-              height: 260px !important;
+              height: 160px !important;
             }
           }
 
@@ -102,7 +96,7 @@ export default function Page() {
           @media (max-width: 767px) {
             .about-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 17rem !important;
+              padding-bottom: 4rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -115,7 +109,7 @@ export default function Page() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 230px !important;
+              height: 130px !important;
             }
           }
 
@@ -304,7 +298,6 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <HeroScrollCue />
         </header>
 
         <section
@@ -370,71 +363,11 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Legacy / Company content — with Family Video */}
-          <div className="padding-global about-legacy-company-section" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
-            <div className="container-large">
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.62fr] gap-y-12 lg:gap-x-[clamp(6rem,10vw,10rem)] relative items-start lg:items-stretch" style={{ padding: '0 clamp(2rem, 5vw, 6rem)' }}>
-
-                {/* Text Column (Left) */}
-                <div className="flex flex-col gap-16 lg:gap-40 order-2 lg:order-1 pb-12 lg:pb-0 about-legacy-company-text">
-
-                  {/* Legacy Block */}
-                  <div className="flex flex-col justify-start text-left items-start">
-                    <header className={`${styles.storyHeaderLeft} flex flex-col items-start`}
-                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
-                      <p className={`${styles.kickerLeft} mx-0`}>THE LEGACY</p>
-                      <h2 className="mx-0 text-left" style={{ maxWidth: '28ch' }}>
-                        Generations of <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>Firefighters</span>
-                      </h2>
-                    </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '2.5rem' }}>
-                      From William through Trevor, Trevor Jr, Stanley, and Ian, <strong>generations of the Tricklebank family served in firefighting and emergency response.</strong> That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
-                    </p>
-                  </div>
-
-                  {/* Company Block */}
-                  <div className="flex flex-col justify-start text-left items-start">
-                    <header className={`${styles.storyHeaderLeft} flex flex-col items-start`}
-                      style={{ marginTop: 0, marginBottom: '1rem', maxWidth: 'none', width: '100%' }}>
-                      <p className={`${styles.kickerLeft} mx-0`}>THE COMPANY</p>
-                      <h2 className="mx-0 text-left" style={{ maxWidth: '28ch' }}>
-                        Established in <span style={{
-                          background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          backgroundClip: 'text',
-                        }}>2009</span>
-                      </h2>
-                    </header>
-                    <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '2.5rem' }}>
-                      All Fire Services has its own history. The business was <strong>established in 2009 by a former senior NSW Fire Brigade officer.</strong> Peter Tricklebank later became the owner and today leads All Fire Services with a focus on <strong>practical, dependable fire protection</strong> and <strong>professional customer service.</strong>
-                    </p>
-                  </div>
-
-                </div>
-
-                {/* Video Column (Right) — Sticky */}
-                <div className="order-1 lg:order-2 w-full relative h-full">
-                  <div className="w-full max-w-[320px] mx-auto lg:sticky lg:top-32">
-                    <div className="relative w-full aspect-[9/16] rounded-[1.5rem] overflow-hidden shadow-2xl">
-                      <YouTubeLite
-                        videoId="PY3FuIT0XQ4"
-                        title="All Fire Services family story"
-                        autoplay
-                        className="absolute inset-0 w-full h-full rounded-[1.5rem]"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
+          {/* Legacy / Company content — DUPLICATE removed. The same
+              "Generations of Firefighters" + "Established in 2009" copy is
+              presented as a richer 6-card grid in the .about-bento-section
+              below. Keeping both produced visibly duplicated content on the
+              About page. The bento section is the canonical version. */}
 
 
           <div className="padding-global about-bento-section">

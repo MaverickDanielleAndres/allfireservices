@@ -7,88 +7,76 @@ import styles from "./HomeServices.module.css";
 
 const services = [
   {
-    title: "AFSS",
+    title: "Annual Fire Safety Statement",
     href: "/annual-fire-safety-statement",
     image: "/services/AFSS.png",
     imageAlt: "NSW annual fire safety statement documentation",
-    tags: ["Compliance"],
   },
   {
-    title: "FIRE PANEL/ALARMS 1670.1",
+    title: "Fire Panels & Alarms",
     href: "/services?category=fire-panel",
     image: "/services/Fire%20Panel%20%26Detection%20(AS%201670.1).jpg",
     imageAlt: "All Fire Services fire indicator panel under inspection",
-    tags: ["Detection"],
   },
   {
-    title: "Smoke detects AS 3876",
+    title: "Smoke Detectors",
     href: "/services?category=smoke-alarms",
     image: "/services/Smoke%20Alarms(AS%203786).png",
     imageAlt: "Technician testing a ceiling-mounted smoke detector",
-    tags: ["Detection"],
   },
   {
     title: "Fire Doors",
     href: "/services?category=fire-doors",
     image: "/services/firedoor.jpg",
     imageAlt: "All Fire Services technicians on site",
-    tags: ["Passive fire"],
   },
   {
-    title: "Fire extinguishers",
+    title: "Fire Extinguishers",
     href: "/services?category=fire-extinguishers",
     image: "/services/Fire%20extinguishers.jpg",
     imageAlt: "Fire extinguisher maintenance tag being inspected",
-    tags: ["Equipment"],
   },
   {
-    title: "EMERGENCY LIGHTS",
+    title: "Emergency Lights",
     href: "/services?category=emergency-lights",
     image: "/services/emergencylights.jpg",
     imageAlt: "Emergency lighting fitting undergoing a 90-minute test",
-    tags: ["Emergency lighting"],
   },
   {
-    title: "FIRE HOSE REELS",
+    title: "Fire Hose Reels",
     href: "/services",
-    image: "/services/firehose.jpg",
+    image: "/services/firehose.png",
     imageAlt: "All Fire Services hydrant and hose system",
-    tags: ["Equipment"],
   },
   {
-    title: "DIESEL / HYDRANT / SPRINKLER",
+    title: "Diesel / Hydrant / Sprinkler",
     href: "/services?category=diesel-pump",
     image: "/services/diesel%20hydrant.jpg",
     imageAlt: "Diesel fire pump and pipework in a building plant room",
-    tags: ["Fire pumps"],
   },
   {
-    title: "AIR MECHANICAL SERVICES",
+    title: "Air & Mechanical Services",
     href: "/services?category=air-mechanical",
     image: "/services/mechanical.jpg",
     imageAlt: "Fire services pipework, valves and pressure gauges",
-    tags: ["Mechanical"],
   },
   {
-    title: "Flow test",
+    title: "Flow Testing",
     href: "/services?category=flow-testing",
     image: "/services/flowtest.jpg",
     imageAlt: "All Fire Services technician carrying out a hydrant flow test",
-    tags: ["Testing"],
   },
   {
     title: "Fire Penetration",
     href: "/services?category=service-penetration",
     image: "/services/passivefire.jpg",
     imageAlt: "Fire safety inspection being carried out on site",
-    tags: ["Passive fire"],
   },
   {
-    title: "ZONE BLOCK PLAN / EVACUATION PLAN / HYDRANT & SPRINKLER PLAN",
+    title: "Zone Block / Evacuation / Hydrant & Sprinkler Plans",
     href: "/services?category=plans",
     image: "/services/zoneblockplan.jpg",
     imageAlt: "Zone block plan and evacuation diagram for a building",
-    tags: ["Plans"],
     smallTitle: true,
   },
 ];
@@ -107,18 +95,22 @@ export default function HomeServices() {
         <header className={styles.header}>
           <p className={styles.kicker}>What we do</p>
           <h2 id="home-services-title">
-            Our Fire<br />
-            <span style={{ color: '#ff2a00' }}>Protection</span> <span style={{
-              background: 'linear-gradient(to right, #ff2a00, #ffb700)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>
+            <span>Our Fire Protection</span>
+            <br />
+            <span
+              style={{
+                background: 'linear-gradient(to right, #ff2a00, #ffb700)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
               Services
             </span>
           </h2>
           <p>
-            Professional fire protection services designed to safeguard your people, property, and business.
+            Everything you need to keep your property protected, compliant, and ready.
           </p>
         </header>
 
@@ -152,9 +144,6 @@ export default function HomeServices() {
                 </div>
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.tag}>
-                  {service.tags[0] || "Fire Safety"}
-                </span>
                 <h3 className={`${styles.cardTitle} ${service.smallTitle ? styles.cardTitleSmall : ''}`}>{service.title}</h3>
               </div>
             </Link>

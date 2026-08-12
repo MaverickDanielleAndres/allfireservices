@@ -387,7 +387,7 @@
 
 @media (max-width: 767px) {
   .founderHeadingLine {
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
   }
 }
 
@@ -1294,7 +1294,7 @@
   }
 
   .storyHeader h2 {
-    font-size: clamp(2.65rem, 12vw, 4.4rem);
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
   }
 
   .storyGrid {
@@ -1349,7 +1349,7 @@
   }
 
   .legacyHeader h2 {
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
   }
 
   .timelineViewport {
@@ -1690,13 +1690,13 @@
 @media (max-width: 767px) {
   .missionHeading {
     text-wrap: wrap;
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
   }
 
   .missionLine {
     display: block;
     white-space: nowrap;
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
   }
@@ -1901,5 +1901,17 @@
     aspect-ratio: 9 / 16;
     flex-shrink: 0;
     margin: 0 auto;
+  }
+}
+
+/* Larger h2 family on phones. The desktop 6vw clamp renders ~6rem on
+   tablet and ~3.75rem on small phones; on a phone the long lines
+   ("A Family Firefighting", "Fire protection / runs in our blood", etc.)
+   would otherwise wrap to 3 lines. Mirrors the .storyHeader h2 mobile
+   clamp so all the larger h2 variants stay in step. */
+@media (max-width: 767px) {
+  .newStoryHeading,
+  .storyHeaderRight h2 {
+    font-size: clamp(2.4rem, 10vw, 3.8rem);
   }
 }

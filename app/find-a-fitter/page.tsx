@@ -2,7 +2,7 @@ export default function FindFitterPage() {
   return (
     <main className="flex-1 w-full bg-white text-black pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+        <h1 className="text-2xl md:text-6xl font-bold tracking-tight mb-6">
           Find an Approved Fitter
         </h1>
         <p className="text-xl text-neutral-600 mb-12">

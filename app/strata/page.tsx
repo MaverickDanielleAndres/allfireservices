@@ -1,58 +1,82 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import HeroScrollCue from "@/components/HeroScrollCue";
-import React, { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import React, { useState } from "react";
 import Image from "next/image";
+import { Building2 } from "lucide-react";
+import { ExpandingCards, CardItem } from "@/components/ui/expanding-cards";
 import styles from "@/components/HomeStoryLegacy.module.css";
-import galleryStyles from "./StrataGallery.module.css";
 
-// All cropped building images with accurate location names.
-// /stratapage-cropped/* files exclude the ALLFIRE Welcome sign AND CALL PETER footer.
-// /stratapage-cropped/banner-* files keep the ALLFIRE Welcome banner (CALL PETER footer cropped off).
-// Initial view shows 16; clicking "More" reveals 12 additional images below (28 total).
-const strataImages = [
-  // ── Initial 16 (4 rows × 4 columns) ──────────────────────────────────────
-  // Source files are pre-optimised to webp and resized to max 720 px in
-  // public/stratapage-cropped/opt/. Sourcing them from there keeps each
-  // gallery card well under 100 KB instead of the 60–150 KB originals.
-  { src: "/stratapage-cropped/opt/randwick-building.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
-  { src: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
-  { src: "/stratapage-cropped/opt/8-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
-  { src: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage-cropped/opt/13-all-fire-services-welcome-glebe.webp", name: "Glebe" },
-  { src: "/stratapage-cropped/opt/14-all-fire-services-welcome-marrickville.webp", name: "Marrickville" },
-  { src: "/stratapage-cropped/opt/15-all-fire-services-welcome-north-sydney.webp", name: "North Sydney" },
-  // ── Hidden 12 (3 rows × 4 columns — revealed by "More" button) ───────────
-  // Every entry below uses a /stratapage-cropped/ photo with the ALLFIRE
-  // Welcome banner AND the CALL PETER footer cropped off (the /banner-*
-  // variants still include the banner overlay, so they were swapped out for
-  // the fully-cropped versions of the same locations — duplicates OK to
-  // keep the count at 28).
-  { src: "/stratapage-cropped/opt/1welcome-to-fireman-family.webp", name: "Rose Bay" },
-  { src: "/stratapage-cropped/opt/randwick-building.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", name: "Chippendale" },
-  { src: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", name: "Enmore" },
-  { src: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", name: "Greenacre" },
-  { src: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", name: "Haberfield" },
-  { src: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", name: "Randwick" },
-  { src: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", name: "Rockdale" },
-  { src: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", name: "Alexandria" },
-  { src: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", name: "Bondi" },
-  { src: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", name: "Stanmore" },
-  { src: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", name: "Waterloo" },
+// 28 properties All Fire Services supports across Greater Sydney, presented
+// as four stacked rows of 7 ExpandingCards each. The first two rows are
+// visible by default; the last two are revealed when the user clicks
+// "More Buildings". Source files are pre-optimised to webp in
+// public/stratapage-cropped/opt/ so each card stays well under 100 KB.
+const ROW_SIZE = 7;
+const VISIBLE_ROWS = 2;
+
+const descriptionByLocation: Record<string, string> = {
+  Bondi: "Servicing premium strata blocks and residential complexes in Bondi.",
+  Marrickville: "Reliable fire safety maintenance for historic and modern buildings in Marrickville.",
+  Waterloo: "Large-scale fire system management for expansive Waterloo developments.",
+  Haberfield: "Trusted strata fire services preserving Haberfield's unique heritage properties.",
+  Randwick: "Comprehensive fire safety services for Randwick's apartments and strata buildings.",
+  "Rose Bay": "Specialist fire protection for premium Rose Bay residential complexes.",
+  Alexandria: "Modern fire compliance solutions for vibrant Alexandria apartments.",
+  Enmore: "Practical fire safety servicing for Enmore's residential and mixed-use buildings.",
+  Greenacre: "Comprehensive fire protection across Greenacre's residential communities.",
+  Chippendale: "Fire safety support for Chippendale's apartments and commercial properties.",
+  Rockdale: "Trusted fire safety servicing for Rockdale's residential blocks and shops.",
+  Stanmore: "Fire safety maintenance for Stanmore's terraces and apartment buildings.",
+  Glebe: "Fire safety services for Glebe's heritage and modern apartment buildings.",
+  "North Sydney": "Reliable fire protection for North Sydney's high-rise and commercial developments.",
+};
+
+const strataBuildings: CardItem[] = [
+  // ── Row 1 (7 cards) ─────────────────────────────────────────────────────
+  { id: "randwick-building", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/randwick-building.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "randwick-welcome", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "enmore", title: "Enmore", description: descriptionByLocation.Enmore, imgSrc: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "greenacre", title: "Greenacre", description: descriptionByLocation.Greenacre, imgSrc: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "haberfield-1", title: "Haberfield", description: descriptionByLocation.Haberfield, imgSrc: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "chippendale-1", title: "Chippendale", description: descriptionByLocation.Chippendale, imgSrc: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "rockdale-1", title: "Rockdale", description: descriptionByLocation.Rockdale, imgSrc: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  // ── Row 2 (7 cards) ─────────────────────────────────────────────────────
+  { id: "waterloo-1", title: "Waterloo", description: descriptionByLocation.Waterloo, imgSrc: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "marrickville-1", title: "Marrickville", description: descriptionByLocation.Marrickville, imgSrc: "/stratapage-cropped/opt/8-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "marrickville-2", title: "Marrickville", description: descriptionByLocation.Marrickville, imgSrc: "/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "stanmore-1", title: "Stanmore", description: descriptionByLocation.Stanmore, imgSrc: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "bondi-1", title: "Bondi", description: descriptionByLocation.Bondi, imgSrc: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "alexandria-1", title: "Alexandria", description: descriptionByLocation.Alexandria, imgSrc: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "glebe", title: "Glebe", description: descriptionByLocation.Glebe, imgSrc: "/stratapage-cropped/opt/13-all-fire-services-welcome-glebe.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  // ── Row 3 (7 cards) — revealed by "More Buildings" ─────────────────────
+  { id: "marrickville-3", title: "Marrickville", description: descriptionByLocation.Marrickville, imgSrc: "/stratapage-cropped/opt/14-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "north-sydney", title: "North Sydney", description: descriptionByLocation["North Sydney"], imgSrc: "/stratapage-cropped/opt/15-all-fire-services-welcome-north-sydney.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "rose-bay", title: "Rose Bay", description: descriptionByLocation["Rose Bay"], imgSrc: "/stratapage-cropped/opt/1welcome-to-fireman-family.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "randwick-building-2", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/randwick-building.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "chippendale-2", title: "Chippendale", description: descriptionByLocation.Chippendale, imgSrc: "/stratapage-cropped/opt/5-all-fire-services-welcome-chippendale.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "enmore-2", title: "Enmore", description: descriptionByLocation.Enmore, imgSrc: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "greenacre-2", title: "Greenacre", description: descriptionByLocation.Greenacre, imgSrc: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  // ── Row 4 (7 cards) — revealed by "More Buildings" ─────────────────────
+  { id: "haberfield-2", title: "Haberfield", description: descriptionByLocation.Haberfield, imgSrc: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "randwick-welcome-2", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "rockdale-2", title: "Rockdale", description: descriptionByLocation.Rockdale, imgSrc: "/stratapage-cropped/opt/6-all-fire-services-welcome-rockdale.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "alexandria-2", title: "Alexandria", description: descriptionByLocation.Alexandria, imgSrc: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "bondi-2", title: "Bondi", description: descriptionByLocation.Bondi, imgSrc: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "stanmore-2", title: "Stanmore", description: descriptionByLocation.Stanmore, imgSrc: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "waterloo-2", title: "Waterloo", description: descriptionByLocation.Waterloo, imgSrc: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
 ];
 
-const INITIAL_VISIBLE_COUNT = 16;
+const visibleBuildings = strataBuildings.slice(0, ROW_SIZE * VISIBLE_ROWS);
+const hiddenBuildings = strataBuildings.slice(ROW_SIZE * VISIBLE_ROWS);
+
+const visibleRows: CardItem[][] = [];
+for (let i = 0; i < visibleBuildings.length; i += ROW_SIZE) {
+  visibleRows.push(visibleBuildings.slice(i, i + ROW_SIZE));
+}
+const hiddenRows: CardItem[][] = [];
+for (let i = 0; i < hiddenBuildings.length; i += ROW_SIZE) {
+  hiddenRows.push(hiddenBuildings.slice(i, i + ROW_SIZE));
+}
 
 const gradientStyle = {
   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
@@ -71,16 +95,7 @@ const properties = [
 ];
 
 export default function Page() {
-  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [showMore, setShowMore] = useState<boolean>(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
-  const openLightbox = (index: number) => setActiveImageIndex(index);
-  const closeLightbox = () => setActiveImageIndex(null);
-  const showNext = () => setActiveImageIndex((i) => (i === null ? null : (i + 1) % strataImages.length));
-  const showPrev = () => setActiveImageIndex((i) => (i === null ? null : (i - 1 + strataImages.length) % strataImages.length));
 
   return (
     <main className="main-wrapper">
@@ -89,7 +104,7 @@ export default function Page() {
           __html: `
           .strata-hero-inner {
             padding-top: 8rem;
-            padding-bottom: 20rem;
+            padding-bottom: 10rem;
           }
           .strata-dark-overlay {
             position: absolute;
@@ -109,21 +124,17 @@ export default function Page() {
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 55%;
+            height: 32%;
             background: linear-gradient(to bottom,
               rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0.01) 8%,
-              rgba(255,255,255,0.03) 16%,
-              rgba(255,255,255,0.07) 24%,
-              rgba(255,255,255,0.13) 32%,
-              rgba(255,255,255,0.22) 40%,
-              rgba(255,255,255,0.34) 49%,
-              rgba(255,255,255,0.49) 57%,
-              rgba(255,255,255,0.64) 65%,
-              rgba(255,255,255,0.78) 73%,
-              rgba(255,255,255,0.89) 81%,
-              rgba(255,255,255,0.96) 89%,
-              #ffffff 95%,
+              rgba(255,255,255,0.05) 12%,
+              rgba(255,255,255,0.12) 24%,
+              rgba(255,255,255,0.22) 36%,
+              rgba(255,255,255,0.36) 48%,
+              rgba(255,255,255,0.54) 60%,
+              rgba(255,255,255,0.72) 72%,
+              rgba(255,255,255,0.86) 84%,
+              rgba(255,255,255,0.96) 94%,
               #ffffff 100%
             );
             z-index: 2;
@@ -131,16 +142,16 @@ export default function Page() {
           @media (max-width: 991px) {
             .strata-hero-inner {
               padding-top: 7rem !important;
-              padding-bottom: 14rem !important;
+              padding-bottom: 5rem !important;
             }
             .strata-fade-overlay {
-              height: 260px !important;
+              height: 160px !important;
             }
           }
           @media (max-width: 767px) {
             .strata-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 12rem !important;
+              padding-bottom: 4rem !important;
             }
             .strata-dark-overlay {
               background: linear-gradient(to bottom,
@@ -153,7 +164,7 @@ export default function Page() {
               ) !important;
             }
             .strata-fade-overlay {
-              height: 230px !important;
+              height: 130px !important;
             }
           }
 
@@ -195,6 +206,30 @@ export default function Page() {
             .section_why .padding-section-large {
               padding-top: 0.5rem !important;
               padding-bottom: 1.5rem !important;
+            }
+          }
+
+          /* Desktop: tighten the large bottom paddings on the Strata
+             coverage / how-we-help / properties / why sections so they
+             align with the Home page rhythm. */
+          @media (min-width: 992px) {
+            .section_coverage .padding-section-large,
+            .section_how_we_help .padding-section-large,
+            .section_properties .padding-section-large,
+            .section_why .padding-section-large {
+              padding-bottom: 4.5rem !important;
+              padding-top: 1rem !important;
+            }
+            .section_our_work .padding-section-large {
+              padding-bottom: 1.5rem !important;
+            }
+
+            /* Pin the scroll-down cue closer to the bottom of the Strata
+               hero so it sits well below the body copy and just above the
+               white-fade, instead of landing near the middle of the
+               viewport. */
+            .section_about-hero .cueWrap {
+              bottom: 6% !important;
             }
           }
         `}} />
@@ -264,10 +299,12 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <HeroScrollCue />
         </header>
 
-        {/* OUR WORK — Gallery (moved to the top, right after the hero) */}
+        {/* WHERE WE WORK — 28 buildings as four stacked ExpandingCards rows.
+            The first two rows (14 cards) are visible by default; the second
+            two rows (14 cards) are revealed when the user clicks
+            "More Buildings". Matches the home page StrataSection layout. */}
         <section
           data-animate-to="light"
           data-theme="light"
@@ -276,116 +313,66 @@ export default function Page() {
         >
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '4rem', paddingBottom: '2rem' }}>
+              <div className="padding-section-large" style={{ paddingTop: '3rem', paddingBottom: '2rem' }}>
                 <header
                   className={styles.legacyHeader}
                   style={{ marginTop: 0, marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
                 >
-                  <p className={styles.kicker}>Our Work</p>
+                  <p className={styles.kicker}>Where we work</p>
                   <h2 id="our-work-title" style={{ color: '#111111', maxWidth: 'none' }}>
-                    <span style={{ fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Buildings We Protect</span><br />
-                    <span style={{ color: '#ff2a00', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Across</span> <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Greater Sydney</span>
+                    Strata and <span style={{ color: '#ff2a00', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Buildings</span><br />
+                    <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>we service</span>
                   </h2>
                   <p>
-                    A snapshot of the properties and locations supported by All Fire Services across the Sydney metropolitan area.
+                    Trusted fire protection for strata communities, commercial buildings, and managed properties across Greater Sydney.
                   </p>
                 </header>
               </div>
             </div>
           </div>
 
-          {/* Grid gallery */}
+          {/* Visible ExpandingCards rows — first 2 rows of 7 cards. */}
           <div className="padding-global">
-            <div className="container-large">
-              <div style={{ paddingBottom: 'clamp(2rem, 4vw, 3rem)' }}>
-                <div className="strata-grid">
-                  {strataImages.slice(0, INITIAL_VISIBLE_COUNT).map((image, index) => (
-                    <div
-                      key={`${image.src}-${index}`}
-                      className={galleryStyles.galleryCard}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Enlarge ${image.name} photo`}
-                      onClick={() => openLightbox(index)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          openLightbox(index);
-                        }
-                      }}
-                    >
-                      <div className={galleryStyles.galleryImageWrap}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={image.src}
-                          alt={`All Fire Services at ${image.name}`}
-                          loading="lazy"
-                          decoding="async"
-                          fetchPriority="low"
-                          className={galleryStyles.galleryImage}
-                        />
-                      </div>
-                      <p className={galleryStyles.galleryCaption}>{image.name}</p>
-                    </div>
+            <div className="container-large" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {visibleRows.map((row, rowIndex) => (
+                <ExpandingCards
+                  key={`visible-row-${rowIndex}`}
+                  items={row}
+                  defaultActiveIndex={
+                    // Row 1 (first visible row) — first image on the left.
+                    // Row 2 (second visible row) — last image on the right.
+                    rowIndex === 0 ? 0 : row.length - 1
+                  }
+                />
+              ))}
+
+              {/* Hidden ExpandingCards rows — revealed by "More Buildings". */}
+              {showMore && (
+                <div
+                  id="strata-gallery-extra"
+                  style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                >
+                  {hiddenRows.map((row, rowIndex) => (
+                    <ExpandingCards
+                      key={`hidden-row-${rowIndex}`}
+                      items={row}
+                      defaultActiveIndex={
+                        // Row 3 (first hidden row) — first image on the left.
+                        // Row 4 (second hidden row) — last image on the right.
+                        rowIndex === 0 ? 0 : row.length - 1
+                      }
+                    />
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
+              )}
 
-          {/* Hidden batch — 12 extra images (3 rows × 4 columns) — rendered above the button */}
-          {showMore && (
-            <div id="strata-gallery-extra" className="padding-global">
-              <div className="container-large">
-                <div style={{ paddingBottom: 'clamp(2rem, 4vw, 3rem)' }}>
-                  <div className="strata-grid">
-                    {strataImages.slice(INITIAL_VISIBLE_COUNT).map((image, index) => {
-                      const realIndex = INITIAL_VISIBLE_COUNT + index;
-                      return (
-                        <div
-                          key={`${image.src}-${realIndex}`}
-                          className={galleryStyles.galleryCard}
-                          role="button"
-                          tabIndex={0}
-                          aria-label={`Enlarge ${image.name} photo`}
-                          onClick={() => openLightbox(realIndex)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              openLightbox(realIndex);
-                            }
-                          }}
-                        >
-                          <div className={galleryStyles.galleryImageWrap}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={image.src}
-                              alt={`All Fire Services at ${image.name}`}
-                              loading="lazy"
-                              decoding="async"
-                              fetchPriority="low"
-                              className={galleryStyles.galleryImage}
-                            />
-                          </div>
-                          <p className={galleryStyles.galleryCaption}>{image.name}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* More button — sits at the bottom of the gallery, below all images */}
-          <div className="padding-global">
-            <div className="container-large">
+              {/* More / Show less toggle — mirrors the home page's footer CTA pattern. */}
               <div
-                className={galleryStyles.loadMoreWrap}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  paddingBottom: 'clamp(3rem, 6vw, 5rem)',
+                  paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)',
+                  paddingBottom: 'clamp(2rem, 4vw, 3rem)',
                 }}
               >
                 {!showMore ? (
@@ -455,7 +442,7 @@ export default function Page() {
         >
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '0', paddingBottom: '8rem' }}>
+              <div className="padding-section-large" style={{ paddingTop: '0', paddingBottom: '4rem' }}>
                 <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -488,7 +475,7 @@ export default function Page() {
         <section data-theme="light" className="section_how_we_help" style={{ background: '#ffffff' }}>
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+              <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} strata-how-we-help`} style={{ alignItems: 'stretch' }}>
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
                     <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 42vw" quality={60} loading="lazy" />
@@ -524,7 +511,7 @@ export default function Page() {
         <section data-theme="light" className="section_properties" style={{ background: '#ffffff' }}>
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+              <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
                 <header
                   className={`${styles.legacyHeader} ${styles.legacyHeaderStrata}`}
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
@@ -575,7 +562,7 @@ export default function Page() {
         <section data-theme="light" className="section_why" style={{ background: '#ffffff' }}>
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingBottom: '8rem' }}>
+              <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
                 <div className={`${styles.newStoryGrid}`} style={{ alignItems: 'stretch' }}>
                   <div className={styles.newStoryContent} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -604,179 +591,9 @@ export default function Page() {
           </div>
         </section>
 
-        {/* LIGHTBOX MODAL — rendered via portal to escape any transformed ancestor.
-            The image container shrinks to the image's natural size so the dark
-            backdrop only appears around the image, not whitespace. */}
-        {mounted && activeImageIndex !== null && createPortal(
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Enlarged photo: ${strataImages[activeImageIndex].name}`}
-            onClick={closeLightbox}
-            onKeyDown={(e) => { if (e.key === 'Escape') closeLightbox(); }}
-            tabIndex={-1}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100vw',
-              height: '100vh',
-              zIndex: 2147483647,
-              backgroundColor: 'rgba(10, 10, 10, 0.92)',
-              padding: 'clamp(1rem, 3vw, 2rem)',
-              overflow: 'hidden',
-            }}
-          >
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-              aria-label="Close photo"
-              style={{
-                position: 'absolute',
-                top: 'clamp(0.75rem, 2vw, 1.5rem)',
-                right: 'clamp(0.75rem, 2vw, 1.5rem)',
-                width: '2.75rem',
-                height: '2.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'rgba(0, 0, 0, 0.4)',
-                border: '2px solid rgba(255, 255, 255, 0.85)',
-                borderRadius: '999px',
-                color: '#ffffff',
-                cursor: 'pointer',
-                zIndex: 10,
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </button>
-
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); showPrev(); }}
-              aria-label="Previous photo"
-              style={{
-                position: 'absolute',
-                left: 'clamp(0.5rem, 2vw, 1.5rem)',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '2.75rem',
-                height: '2.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'transparent',
-                border: '2px solid rgba(255, 255, 255, 0.7)',
-                borderRadius: '999px',
-                color: '#ffffff',
-                cursor: 'pointer',
-                zIndex: 10,
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M11 4l-6 5 6 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); showNext(); }}
-              aria-label="Next photo"
-              style={{
-                position: 'absolute',
-                right: 'clamp(0.5rem, 2vw, 1.5rem)',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '2.75rem',
-                height: '2.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'transparent',
-                border: '2px solid rgba(255, 255, 255, 0.7)',
-                borderRadius: '999px',
-                color: '#ffffff',
-                cursor: 'pointer',
-                zIndex: 10,
-              }}
-            >
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M7 4l6 5-6 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            {/* Image wrapper — absolutely positioned + width:auto so it
-                shrinks to the image's natural size. No fixed width, no
-                aspect-ratio forcing a 4:3 box. */}
-            <div
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.75rem',
-                width: 'auto',
-                height: 'auto',
-                maxWidth: 'calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
-                maxHeight: 'calc(100vh - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
-              }}
-            >
-              <div style={{
-                position: 'relative',
-                width: 'auto',
-                height: 'auto',
-                borderRadius: '1rem',
-                overflow: 'hidden',
-                backgroundColor: '#111111',
-                boxShadow: '0 30px 60px -10px rgba(0, 0, 0, 0.6)',
-                lineHeight: 0,
-                fontSize: 0,
-              }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={strataImages[activeImageIndex].src}
-                  alt={`All Fire Services at ${strataImages[activeImageIndex].name}`}
-                  style={{
-                    display: 'block',
-                    width: 'auto',
-                    height: 'auto',
-                    maxWidth: 'calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 80px)',
-                    maxHeight: 'calc(100vh - 2 * clamp(1rem, 3vw, 2rem) - 100px)',
-                    objectFit: 'contain',
-                    backgroundColor: '#111111',
-                  }}
-                />
-              </div>
-              <p style={{
-                margin: 0,
-                color: '#ffffff',
-                fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)',
-                fontWeight: 600,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}>
-                {strataImages[activeImageIndex].name}
-                <span style={{ marginLeft: '0.75rem', opacity: 0.6, fontWeight: 500 }}>
-                  {activeImageIndex + 1} / {strataImages.length}
-                </span>
-              </p>
-            </div>
-          </div>,
-          document.body
-        )}
-
         <ContactCTA />
       </main>
     </main>
   );
 }
+

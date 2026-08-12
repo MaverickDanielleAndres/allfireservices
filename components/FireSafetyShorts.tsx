@@ -92,13 +92,7 @@ export default function FireSafetyShorts() {
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-4 md:gap-6 mb-6 md:mb-[clamp(2rem,4vw,3.5rem)] w-full text-center md:text-left">
             <header className="mb-0 block w-full md:w-auto">
               <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
-              <h2 id="fire-safety-shorts-title" className="mx-auto md:mx-0" style={{
-                color: "#111111",
-                fontSize: "clamp(2.2rem, 4.3vw, 3.8rem)",
-                fontWeight: 780,
-                letterSpacing: "-0.04em",
-                lineHeight: 0.92,
-              }}>Quick lessons<br /><span style={{
+              <h2 id="fire-safety-shorts-title" className={`${styles.shortsHeading} mx-auto md:mx-0`}>Quick lessons<br /><span style={{
                 background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -380,6 +374,15 @@ export default function FireSafetyShorts() {
       </div>
 
       <style>{`
+        .shortsHeading {
+          margin: 0;
+          color: #111111;
+          font-size: clamp(2.2rem, 4.3vw, 3.8rem);
+          font-weight: 780;
+          letter-spacing: -0.04em;
+          line-height: 0.92;
+          text-wrap: balance;
+        }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
@@ -400,6 +403,9 @@ export default function FireSafetyShorts() {
           }
           .shorts-title {
             text-align: center;
+          }
+          .shortsHeading {
+            font-size: clamp(1.75rem, 8.5vw, 2.6rem);
           }
         }
       `}</style>

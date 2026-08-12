@@ -159,6 +159,12 @@ export default function SitewideCTA() {
           .pre-faq-cta {
             padding-inline: 1rem;
           }
+          .pre-faq-cta-title {
+            /* Match the canonical section h2 mobile clamp so the
+               "Ready to raise your / fire safety standard?" heading
+               stays on 2 lines at every phone width. */
+            font-size: clamp(1.75rem, 8.5vw, 2.6rem);
+          }
 
           .pre-faq-cta-card {
             border-radius: 1rem;

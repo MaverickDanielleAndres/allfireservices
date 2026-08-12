@@ -361,9 +361,7 @@ export default function FounderLegacy() {
                       Fire protection
                     </span>
                     <span className={styles.founderHeadingLine}>
-                      runs <span style={{ color: '#ff2a00' }}>in</span>{' '}
-                      <span
-                        className="block md:inline"
+                      runs in <span
                         style={{
                           background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                           WebkitBackgroundClip: 'text',

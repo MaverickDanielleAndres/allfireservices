@@ -257,9 +257,21 @@ function NavbarContent() {
         }
 
         .navbar-logo {
-          height: 2.75rem;
+          height: 3.5rem;
           width: auto;
           object-fit: contain;
+        }
+
+        @media (max-width: 1024px) {
+          .navbar-logo {
+            height: 3rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .navbar-logo {
+            height: 2.75rem;
+          }
         }
 
         .navbar-nav {
@@ -650,7 +662,7 @@ function NavbarContent() {
               alt="All Fire Services"
               width={527}
               height={257}
-              sizes="96px"
+              sizes="(max-width: 480px) 88px, (max-width: 1024px) 96px, 112px"
               className="navbar-logo"
               priority
             />

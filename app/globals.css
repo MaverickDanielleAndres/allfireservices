@@ -59,3 +59,46 @@
     height: 5.5rem;
   }
 }
+
+/*
+ * After the dark hero (.section_about-hero), each page's first content block
+ * used to sit 7rem/112px below the hero on desktop. Combined with the hero's
+ * 14rem fade-to-white padding, the result was continuous flow with no visible
+ * white band. When the hero bottom padding was reduced, the section rhythm
+ * top padding became visible as a gap. These rules close that gap aggressively
+ * (small value that still gives a touch of breathing room) and use !important
+ * to win against inline paddingTop styles on the inner .padding-section-large
+ * wrappers in the page templates. Inner rhythm (padding-bottom, mobile
+ * spacing) is preserved.
+ */
+.section_about-hero + *,
+.section_about-hero + * .padding-section-large {
+  padding-top: 0.5rem !important;
+}
+@media (max-width: 1024px) {
+  .section_about-hero + *,
+  .section_about-hero + * .padding-section-large {
+    padding-top: 0.5rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .section_about-hero + *,
+  .section_about-hero + * .padding-section-large {
+    padding-top: 0.5rem !important;
+  }
+}
+
+/*
+ * Homepage hero uses a different wrapper (HomeHero.module.css .wrapper, with
+ * hash-prefixed class). The first sibling is a white wrapper div that
+ * contains <FounderLegacy />. The wrapper itself has no padding, but the
+ * first section inside it (#family-history) uses .padding-section-large. Trim
+ * that too. The class hash is stable across rebuilds (it comes from
+ * CSS-modules determinism) so we target both the module class and a generic
+ * HomeHero-module__*__wrapper pattern as a safety net.
+ */
+[class*="HomeHero-module"][class*="wrapper"] + *,
+[class*="HomeHero-module"][class*="wrapper"] + * .padding-section-large,
+#family-history {
+  padding-top: 0.5rem !important;
+}

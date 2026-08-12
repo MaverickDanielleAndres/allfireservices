@@ -69,7 +69,7 @@ export default function StrataSection() {
   return (
     <MotionSection
       className={styles.section}
-      style={{ marginTop: "clamp(4rem, 7vw, 6rem)" }}
+      style={{ marginTop: "clamp(1.5rem, 2.5vw, 2.5rem)", paddingTop: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -79,7 +79,7 @@ export default function StrataSection() {
         <header className={styles.header}>
           <p className={styles.kicker}>Where we work</p>
           <h2>
-            Strata and <span style={{ color: '#ff2a00' }}>Building</span><br />
+            Strata and <span style={{ color: '#ff2a00' }}>Buildings</span><br />
             <span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',

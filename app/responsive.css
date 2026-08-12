@@ -88,7 +88,7 @@ svg {
 
 @media (max-width: 767px) {
   .section-heading {
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
   }
 }
 
@@ -370,13 +370,13 @@ textarea {
 
   .heading-style-h1,
   .section_about-hero .heading-style-h1 {
-    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    font-size: clamp(1.85rem, 9vw, 3rem);
     line-height: 1.02;
     letter-spacing: -0.04em;
   }
 
   .heading-style-h2 {
-    font-size: clamp(1.85rem, 8vw, 2.6rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
     line-height: 1.08;
   }
 
@@ -392,7 +392,7 @@ textarea {
   .section_process :where(h2, h3).heading-style-h3,
   .section_process :where(h2, h3).heading-style-h4,
   .regulation-update-section :where(h2, h3).heading-style-h3 {
-    font-size: clamp(2.3rem, 11vw, 3.5rem);
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem);
     line-height: 0.92;
     letter-spacing: -0.04em;
   }
@@ -611,7 +611,7 @@ textarea {
   }
 
   .section_contact-cta .contact-cta_header h2 {
-    font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
+    font-size: clamp(1.75rem, 8.5vw, 2.6rem) !important;
   }
 
   .section_contact-cta .contact-cta_header .body-text,

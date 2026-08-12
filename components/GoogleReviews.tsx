@@ -171,7 +171,7 @@ export default function GoogleReviews() {
   return (
     <section
       id="testimonials"
-      className="bg-white text-gray-900 py-[clamp(4rem,7vw,5.5rem)] overflow-hidden"
+      className="bg-white text-gray-900 py-[clamp(2.5rem,4.5vw,3.75rem)] overflow-hidden"
     >
       <style>{`
         .reviews-header {
@@ -202,7 +202,7 @@ export default function GoogleReviews() {
         }
         @media (max-width: 767px) {
           .reviews-title {
-            font-size: clamp(2.3rem, 11vw, 3.5rem);
+            font-size: clamp(1.75rem, 8.5vw, 2.6rem);
           }
         }
         /* Title column + arrows column on desktop. Declared here rather than
@@ -312,10 +312,19 @@ export default function GoogleReviews() {
               }}
               onPointerUp={(event) => finishDrag(event.pointerId)}
               onPointerCancel={(event) => finishDrag(event.pointerId)}
+              role="region"
+              aria-label="Client feedback carousel"
             >
-              {tripleItems.map((item, i) => (
+              {tripleItems.map((item, i) => {
+                // The middle copy of the array is only here to enable a
+                // seamless infinite marquee — hide it from assistive tech
+                // so the same quotes are not read three times in a row.
+                const isMiddleDuplicate =
+                  i >= feedbackItems.length && i < feedbackItems.length * 2;
+                return (
                 <div
                   key={i}
+                  aria-hidden={isMiddleDuplicate ? "true" : undefined}
                   className={cn(
                     "shrink-0 w-[300px] md:w-[360px] lg:w-[400px] min-h-[280px] md:min-h-[300px] rounded-2xl md:rounded-3xl select-none",
                     "relative overflow-hidden group flex flex-col p-8 md:p-10",
@@ -350,7 +359,8 @@ export default function GoogleReviews() {
                     </div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

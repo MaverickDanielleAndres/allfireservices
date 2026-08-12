@@ -1,6 +1,5 @@
 import Image from "next/image";
 import ContactCTA from "@/components/ContactCTA";
-import HeroScrollCue from "@/components/HeroScrollCue";
 import SitewideCTA from "@/components/SitewideCTA";
 
 export default function Page() {
@@ -31,21 +30,17 @@ export default function Page() {
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 55%;
+            height: 32%;
             background: linear-gradient(to bottom,
               rgba(255,255,255,0) 0%,
-              rgba(255,255,255,0.01) 8%,
-              rgba(255,255,255,0.03) 16%,
-              rgba(255,255,255,0.07) 24%,
-              rgba(255,255,255,0.13) 32%,
-              rgba(255,255,255,0.22) 40%,
-              rgba(255,255,255,0.34) 49%,
-              rgba(255,255,255,0.49) 57%,
-              rgba(255,255,255,0.64) 65%,
-              rgba(255,255,255,0.78) 73%,
-              rgba(255,255,255,0.89) 81%,
-              rgba(255,255,255,0.96) 89%,
-              #ffffff 95%,
+              rgba(255,255,255,0.05) 12%,
+              rgba(255,255,255,0.12) 24%,
+              rgba(255,255,255,0.22) 36%,
+              rgba(255,255,255,0.36) 48%,
+              rgba(255,255,255,0.54) 60%,
+              rgba(255,255,255,0.72) 72%,
+              rgba(255,255,255,0.86) 84%,
+              rgba(255,255,255,0.96) 94%,
               #ffffff 100%
             );
             z-index: 2;
@@ -53,16 +48,16 @@ export default function Page() {
           @media (max-width: 991px) {
             .about-hero-inner {
               padding-top: 7rem !important;
-              padding-bottom: 14rem !important;
+              padding-bottom: 5rem !important;
             }
             .about-fade-overlay {
-              height: 260px !important;
+              height: 160px !important;
             }
           }
           @media (max-width: 767px) {
             .about-hero-inner {
               padding-top: 6rem !important;
-              padding-bottom: 12rem !important;
+              padding-bottom: 4rem !important;
             }
             .about-dark-overlay {
               background: linear-gradient(to bottom,
@@ -75,7 +70,7 @@ export default function Page() {
               ) !important;
             }
             .about-fade-overlay {
-              height: 230px !important;
+              height: 130px !important;
             }
           }
         `}} />
@@ -143,7 +138,6 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <HeroScrollCue />
         </header>
 
         <div className="bg-white relative z-10">
