@@ -7,6 +7,21 @@
 @source "../lib";
 @custom-variant dark (&:is(.dark *));
 
+/* ── Chatbot spinner (used by the in-app Gemini chatbox) ────────────── */
+@keyframes chatbot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.chatbot-spin {
+  animation: chatbot-spin 0.9s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chatbot-spin {
+    animation-duration: 3s;
+  }
+}
+
 /* ── Reveal animation (replaces framer-motion on home page) ─────────── */
 .reveal {
   transform: translateY(24px);
