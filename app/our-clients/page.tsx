@@ -23,6 +23,12 @@ export default function OurClientsPage() {
             padding-top: 8rem;
             padding-bottom: 20rem;
           }
+          /* Global override: shrink the outer <header>'s inline padding-top:12rem
+             so the hero copy sits high on every viewport. */
+          .section_about-hero {
+            margin-top: -7rem !important;
+            padding-top: 7rem !important;
+          }
           .about-dark-overlay {
             position: absolute;
             inset: 0;
@@ -57,8 +63,14 @@ export default function OurClientsPage() {
             z-index: 2;
           }
           @media (max-width: 991px) {
-            .about-hero-inner {
+            /* Override the inline padding-top:12rem on the outer <header>
+               so the hero copy starts close to the navbar on tablets. */
+            .section_about-hero {
+              margin-top: -5rem !important;
               padding-top: 5rem !important;
+            }
+            .about-hero-inner {
+              padding-top: 1.5rem !important;
               padding-bottom: 2rem !important;
             }
             .about-fade-overlay {
@@ -66,8 +78,12 @@ export default function OurClientsPage() {
             }
           }
           @media (max-width: 767px) {
+            .section_about-hero {
+              margin-top: -4.5rem !important;
+              padding-top: 4.5rem !important;
+            }
             .about-hero-inner {
-              padding-top: 4rem !important;
+              padding-top: 1rem !important;
               padding-bottom: 1.5rem !important;
             }
             .about-dark-overlay {

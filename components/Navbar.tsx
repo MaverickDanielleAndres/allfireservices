@@ -257,20 +257,23 @@ function NavbarContent() {
         }
 
         .navbar-logo {
-          height: 3.5rem;
+          /* Logo fills almost the entire .navbar-inner height (5.5rem / 88px)
+             so the top + bottom padding collapses to ~4px each side. The
+             navbar itself stays 5.5rem tall — only the logo gets bigger. */
+          height: 5rem;
           width: auto;
           object-fit: contain;
         }
 
         @media (max-width: 1024px) {
           .navbar-logo {
-            height: 3rem;
+            height: 4rem;
           }
         }
 
         @media (max-width: 480px) {
           .navbar-logo {
-            height: 2.75rem;
+            height: 3.5rem;
           }
         }
 
@@ -477,7 +480,7 @@ function NavbarContent() {
         }
 
         .navbar-cta {
-          background: #d04710;
+          background: #fb5614;
           color: #ffffff;
           padding: 0.875rem 1.75rem;
           border-radius: 99px;
@@ -488,7 +491,7 @@ function NavbarContent() {
         }
 
         .navbar-cta:hover {
-          background: #111111;
+          background: #fc0403;
           transform: translateY(-2px);
         }
 
@@ -662,7 +665,7 @@ function NavbarContent() {
               alt="All Fire Services"
               width={527}
               height={257}
-              sizes="(max-width: 480px) 88px, (max-width: 1024px) 96px, 112px"
+              sizes="(max-width: 480px) 112px, (max-width: 1024px) 128px, 160px"
               className="navbar-logo"
               priority
             />

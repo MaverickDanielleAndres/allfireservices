@@ -44,6 +44,14 @@ export default function Page() {
             padding-top: 8rem;
             padding-bottom: 20rem;
           }
+          /* Global override: the outer <header> carries inline padding-top:12rem
+             and margin-top:-12rem to overlap the desktop navbar. That makes the
+             hero text sit way below the navbar. Override these so the text
+             appears much higher on every viewport. */
+          .section_about-hero {
+            margin-top: -7rem !important;
+            padding-top: 7rem !important;
+          }
           .about-dark-overlay {
             position: absolute;
             inset: 0;
@@ -78,8 +86,16 @@ export default function Page() {
             z-index: 2;
           }
           @media (max-width: 991px) {
+            /* The outer <header> has inline padding-top:12rem + margin-top:-12rem
+               so it sits flush under the fixed navbar on desktop. On smaller
+               screens the navbar is shorter, so we collapse that buffer so
+               the visible copy actually starts near the top of the page. */
+            .section_about-hero {
+              margin-top: -5rem !important;
+              padding-top: 5rem !important;
+            }
             .about-hero-inner {
-              padding-top: 4rem !important;
+              padding-top: 1.5rem !important;
               padding-bottom: 2rem !important;
             }
             .about-fade-overlay {
@@ -106,8 +122,12 @@ export default function Page() {
           }
 
           @media (max-width: 767px) {
+            .section_about-hero {
+              margin-top: -4.5rem !important;
+              padding-top: 4.5rem !important;
+            }
             .about-hero-inner {
-              padding-top: 3.5rem !important;
+              padding-top: 1rem !important;
               padding-bottom: 2.5rem !important;
             }
 
@@ -134,6 +154,17 @@ export default function Page() {
             }
             .about-fade-overlay {
               height: 70px !important;
+            }
+          }
+
+          /* Make the bento "Legacy" section grid sit inside the same
+             horizontal margin as every other section on the page on mobile.
+             The 6-card grid uses mx-auto + max-w-6xl which leaves cards
+             flush against the column edge on small screens unless we
+             reserve inline padding here. */
+          @media (max-width: 767px) {
+            .about-bento-section > div > div.padding-section-large {
+              padding-inline: clamp(1rem, 5vw, 1.5rem) !important;
             }
           }
 
@@ -184,6 +215,15 @@ export default function Page() {
             /* Reduce gap between Mission section and HomeStoryLegacy (family-history) section */
             #family-history {
               padding-top: 1.5rem !important;
+            }
+
+            /* Visible gap between the bento gallery (Tricklebank Family)
+               and the MEET PETER TRICKLEBANK section on tablet. The bento's
+               own bottom padding is killed on mobile/tablet, so this is
+               the only source of breathing room between the two blocks. */
+            .about-meet-peter-wrap {
+              padding-top: 8rem !important;
+              margin-top: 2rem !important;
             }
           }
           @media (max-width: 767px) {
@@ -254,12 +294,13 @@ export default function Page() {
               padding-bottom: 1.5rem !important;
             }
 
-            /* Add visible breathing room between the bento gallery carousel
-               and the MEET PETER TRICKLEBANK block on mobile. The bento's
-               own padding is collapsed on mobile (see rules above), so the
-               gap below it comes from this wrapper's padding-top. */
+            /* Strong, unambiguous gap between the bento gallery carousel
+               and the MEET PETER TRICKLEBANK block on mobile. Padding + a
+               tiny margin-top belt-and-braces so it survives any inline
+               override. */
             .about-meet-peter-wrap {
-              padding-top: 6rem !important;
+              padding-top: 8rem !important;
+              margin-top: 2rem !important;
             }
           }
         `}} />
@@ -404,7 +445,10 @@ export default function Page() {
 
           <div className="padding-global about-bento-section">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingTop: '6rem' }}>
+              <div
+                className="padding-section-large"
+                style={{ paddingTop: '6rem', paddingInline: 'clamp(1rem, 5vw, 1.5rem)' }}
+              >
                 {/* Header — same layout as strata /properties section */}
                 <header
                   className={`${styles.legacyHeader} ${styles.legacyHeaderStrata}`}

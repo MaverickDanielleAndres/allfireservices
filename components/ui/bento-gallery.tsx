@@ -457,12 +457,13 @@ const InteractiveImageBentoGallery: React.FC<
             }
           }
           @media (max-width: 767px) {
+            /* Match the size of the other About-page headings on mobile
+               (clamp(1.85rem, 8.6vw, 2.6rem)). Force max-width: none so
+               "Who knows better" stays on a single line and the whole
+               heading wraps to exactly 2 lines (line 1 = "Who knows
+               better", line 2 = "than a fireman?") instead of 3. */
             .bento-legacy-header h2 {
-              font-size: clamp(2.3rem, 11vw, 3.5rem) !important;
-              /* Allow the full mobile container width so "Who knows better"
-                 stays on one line and the whole heading wraps to 2 lines
-                 (line 1 = "Who knows better", line 2 = "than a fireman?")
-                 instead of 3. */
+              font-size: clamp(1.85rem, 8.6vw, 2.6rem) !important;
               max-width: none !important;
             }
           }
@@ -498,7 +499,7 @@ const InteractiveImageBentoGallery: React.FC<
         ) : null}
         <h2
           style={{
-            maxWidth: '13ch',
+            maxWidth: '20ch',
             margin: 0,
             color: '#111111',
             fontSize: 'clamp(2.2rem, 4.3vw, 3.8rem)',

@@ -106,6 +106,12 @@ export default function Page() {
             padding-top: 8rem;
             padding-bottom: 10rem;
           }
+          /* Global override: shrink the outer <header>'s inline padding-top:12rem
+             so the hero copy sits high on every viewport. */
+          .section_about-hero {
+            margin-top: -7rem !important;
+            padding-top: 7rem !important;
+          }
           .strata-dark-overlay {
             position: absolute;
             inset: 0;
@@ -140,8 +146,12 @@ export default function Page() {
             z-index: 2;
           }
           @media (max-width: 991px) {
-            .strata-hero-inner {
+            .section_about-hero {
+              margin-top: -5rem !important;
               padding-top: 5rem !important;
+            }
+            .strata-hero-inner {
+              padding-top: 1.5rem !important;
               padding-bottom: 2rem !important;
             }
             .strata-fade-overlay {
@@ -149,8 +159,12 @@ export default function Page() {
             }
           }
           @media (max-width: 767px) {
+            .section_about-hero {
+              margin-top: -4.5rem !important;
+              padding-top: 4.5rem !important;
+            }
             .strata-hero-inner {
-              padding-top: 4rem !important;
+              padding-top: 1rem !important;
               padding-bottom: 1.5rem !important;
             }
             .strata-dark-overlay {
@@ -230,6 +244,17 @@ export default function Page() {
                viewport. */
             .section_about-hero .cueWrap {
               bottom: 6% !important;
+            }
+          }
+
+          /* Make the Properties We Service card grid sit inside the same
+             horizontal margin as every other section on the page on mobile.
+             The grid uses mx-auto + max-w-6xl which leaves the cards flush
+             against the column edge on small screens unless we reserve
+             inline padding here. */
+          @media (max-width: 767px) {
+            .section_properties .padding-section-large {
+              padding-inline: clamp(1rem, 5vw, 1.5rem) !important;
             }
           }
         `}} />
@@ -511,7 +536,10 @@ export default function Page() {
         <section data-theme="light" className="section_properties" style={{ background: '#ffffff' }}>
           <div className="padding-global">
             <div className="container-large">
-              <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
+              <div
+                className="padding-section-large"
+                style={{ paddingBottom: '4rem', paddingInline: 'clamp(1rem, 5vw, 1.5rem)' }}
+              >
                 <header
                   className={`${styles.legacyHeader} ${styles.legacyHeaderStrata}`}
                   style={{ marginTop: 0, marginBottom: 'clamp(3rem, 5vw, 5rem)' }}

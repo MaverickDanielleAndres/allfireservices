@@ -12,8 +12,8 @@
 
 .hero_root {
   position: relative;
-  margin-top: -12rem;
-  padding-top: 12rem;
+  margin-top: -7rem;
+  padding-top: 7rem;
   margin-bottom: -2px;
   overflow: hidden;
 }
@@ -91,8 +91,14 @@
    a tall band of dark hero image below the copy. The fade overlay is now
    much shorter so the next section sits closer to the hero. */
 @media (max-width: 991px) {
-  .services_hero_inner {
+  /* Override the outer .hero_root's inline-equivalent padding-top:12rem
+     so the visible services-page hero copy starts near the navbar. */
+  .hero_root {
+    margin-top: -5rem !important;
     padding-top: 5rem !important;
+  }
+  .services_hero_inner {
+    padding-top: 1.5rem !important;
     padding-bottom: 2rem !important;
   }
 
@@ -104,8 +110,12 @@
 /* ---------- Mobile overrides (≤767px) ------------------------------------ */
 
 @media (max-width: 767px) {
+  .hero_root {
+    margin-top: -4.5rem !important;
+    padding-top: 4.5rem !important;
+  }
   .services_hero_inner {
-    padding-top: 4rem !important;
+    padding-top: 1rem !important;
     padding-bottom: 1.5rem !important;
   }
 

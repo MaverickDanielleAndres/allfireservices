@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import styles from "./HomeStoryLegacy.module.css";
+import shortsStyles from "./FireSafetyShorts.module.css";
 
 const videos = [
   { id: "QE5U0pd84gc", title: "Why fire near sprinklers can shut a business down overnight" },
@@ -92,7 +93,7 @@ export default function FireSafetyShorts() {
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end flex-wrap gap-4 md:gap-6 mb-6 md:mb-[clamp(2rem,4vw,3.5rem)] w-full text-center md:text-left">
             <header className="mb-0 block w-full md:w-auto">
               <p className={`${styles.kicker} mx-auto md:mx-0`}>Fire safety shorts</p>
-              <h2 id="fire-safety-shorts-title" className={`${styles.shortsHeading} mx-auto md:mx-0`}>Quick lessons<br /><span style={{
+              <h2 id="fire-safety-shorts-title" className={`${shortsStyles.shortsHeading} mx-auto md:mx-0`}>Quick lessons<br /><span style={{
                 background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
