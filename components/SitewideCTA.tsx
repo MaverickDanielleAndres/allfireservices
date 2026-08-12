@@ -194,6 +194,7 @@ export default function SitewideCTA() {
             alt="All Fire Services"
             width={527}
             height={257}
+            sizes="176px"
           />
           <Image
             className="pre-faq-cta-logo"
@@ -201,6 +202,7 @@ export default function SitewideCTA() {
             alt="FPA Australia Bronze Member"
             width={302}
             height={144}
+            sizes="140px"
           />
         </div>
         <h2 className="pre-faq-cta-title" id="sitewide-cta-title">

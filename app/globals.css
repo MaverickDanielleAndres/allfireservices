@@ -32,3 +32,30 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 }
+
+/*
+ * Navbar spacer — reserves the height of the position:fixed .navbar-shell.
+ *
+ * These rules MUST live in a real render-blocking stylesheet rather than in
+ * Navbar.tsx's styled-jsx block. The navbar is wrapped in a Suspense boundary
+ * that bails out of SSR (NavbarContent calls useSearchParams()), and
+ * styled-jsx CSS is not flushed into the prerendered HTML for it. With the
+ * rule only in styled-jsx the spacer painted at height 0 and then jumped to
+ * full height on hydration, pushing <main> down and producing effectively all
+ * of the page's cumulative layout shift.
+ *
+ * Keep in sync with the .navbar-spacer rules inside NavbarContent.
+ */
+.navbar-spacer {
+  height: 8rem;
+}
+@media (min-width: 1025px) {
+  .navbar-spacer {
+    height: 10rem;
+  }
+}
+@media (max-width: 768px) {
+  .navbar-spacer {
+    height: 5.5rem;
+  }
+}

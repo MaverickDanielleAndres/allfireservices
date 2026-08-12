@@ -55,9 +55,25 @@ const navItems: NavItem[] = navLinks.map((item) =>
 
 export default function Navbar() {
   return (
-    <Suspense fallback={null}>
-      <NavbarContent />
-    </Suspense>
+    <>
+      <Suspense fallback={null}>
+        <NavbarContent />
+      </Suspense>
+      {/* The spacer lives OUTSIDE the Suspense boundary so it is present in
+          the server-rendered HTML. NavbarContent calls useSearchParams(),
+          which makes this boundary bail out of SSR on statically prerendered
+          routes — so nothing inside it is in the initial HTML. The spacer is
+          the only navbar element in normal flow (.navbar-shell is
+          position:fixed), so when it appeared only on hydration it pushed
+          <main> down by its full height, which was the entire source of the
+          page's layout shift.
+          Its height rules live in app/globals.css, NOT in a styled-jsx block:
+          styled-jsx CSS is not flushed into the prerendered HTML here, so a
+          scoped rule would leave the spacer at height 0 on first paint and
+          the shift would remain. Keep those rules in sync with the
+          .navbar-spacer rules in NavbarContent's style block. */}
+      <div className="navbar-spacer" />
+    </>
   );
 }
 
@@ -634,6 +650,7 @@ function NavbarContent() {
               alt="All Fire Services"
               width={527}
               height={257}
+              sizes="96px"
               className="navbar-logo"
               priority
             />
@@ -761,7 +778,6 @@ function NavbarContent() {
           </Link>
         </div>
       </div>
-      <div className="navbar-spacer" />
     </>
   );
 }
