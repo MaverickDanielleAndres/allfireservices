@@ -12,6 +12,12 @@ const FacebookIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
+const TikTokIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.12z" />
+  </svg>
+);
+
 const InstagramIcon = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -44,6 +50,7 @@ const XIcon = ({ size = 16 }: { size?: number }) => (
 import { useLenis } from "lenis/react";
 import { assets } from "@/lib/assets";
 import { navLinks, serviceLinks } from "@/lib/navigation";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 
 // navLinks from @/lib/navigation is the source of truth for top-level items.
 // "Our Services" carries the full list (12 offerings + All Services) as its
@@ -704,6 +711,7 @@ function NavbarContent() {
             <a href="https://www.instagram.com/_allfireservices_/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={16} /></a>
             <a href="https://au.linkedin.com/in/allfire-services-sydney-92690516" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={16} /></a>
             <a href="https://www.youtube.com/@allfireservices" target="_blank" rel="noreferrer" aria-label="YouTube"><YoutubeIcon size={16} /></a>
+            <a href="https://tiktok.com/@allfireservices" target="_blank" rel="noreferrer" aria-label="TikTok"><TikTokIcon size={14} /></a>
             <a href="https://x.com/Allfiresydney" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><XIcon size={14} /></a>
           </div>
         </div>
@@ -777,7 +785,12 @@ function NavbarContent() {
 
           <div className="navbar-actions">
             <a href="tel:1300765594" className="navbar-phone">1300 765 594</a>
-            <Link href="/contact" className="navbar-cta">Get a Quote</Link>
+            <FreeSiteVisitButton
+              source="header"
+              pulse
+              className="navbar-cta"
+              style={{ padding: "0.875rem 1.75rem" }}
+            />
           </div>
 
           <button
@@ -837,15 +850,25 @@ function NavbarContent() {
           <a href="tel:1300765594" className="navbar-cta-outline">
             Call 1300 765 594
           </a>
-          <Link href="/contact" className="navbar-cta" style={{ textAlign: 'center' }} onClick={closeMenus}>
-            Get a Quote
-          </Link>
+          <FreeSiteVisitButton
+            source="header"
+            variant="compact"
+            pulse
+            onClick={closeMenus}
+            style={{
+              padding: "clamp(0.5rem, 1.6vh, 0.8rem) 0.6rem",
+              fontSize: "clamp(0.75rem, 3vw, 0.9rem)",
+              minHeight: 44,
+              whiteSpace: "nowrap",
+            }}
+          />
         </div>
         <div className="navbar-mobile-socials">
           <a href="https://www.facebook.com/profile.php?id=61566630403365" target="_blank" rel="noreferrer" aria-label="Facebook"><FacebookIcon size={20} /></a>
           <a href="https://www.instagram.com/_allfireservices_/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon size={20} /></a>
           <a href="https://au.linkedin.com/in/allfire-services-sydney-92690516" target="_blank" rel="noreferrer" aria-label="LinkedIn"><LinkedinIcon size={20} /></a>
           <a href="https://www.youtube.com/@allfireservices" target="_blank" rel="noreferrer" aria-label="YouTube"><YoutubeIcon size={20} /></a>
+          <a href="https://tiktok.com/@allfireservices" target="_blank" rel="noreferrer" aria-label="TikTok"><TikTokIcon size={18} /></a>
           <a href="https://x.com/Allfiresydney" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><XIcon size={18} /></a>
         </div>
       </div>

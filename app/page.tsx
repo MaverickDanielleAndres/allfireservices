@@ -3,6 +3,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import DeferredVideo from "@/components/DeferredVideo";
 import Link from "next/link";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 import heroStyles from "./HomeHero.module.css";
 
 const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
@@ -330,7 +331,12 @@ export default function Page() {
                 <strong style={{ color: "#ffffff", fontWeight: 800 }}>Fire protection is more than a service, it&apos;s in our blood.</strong> Backed by generations of firefighting experience, we deliver practical and reliable fire safety solutions.
               </p>
               <div className={heroStyles.heroActions}>
-                <Link href="/contact" className={heroStyles.btnPrimary}>Get a Quote</Link>
+                <FreeSiteVisitButton
+                  source="hero"
+                  pulse
+                  className={heroStyles.btnPrimary}
+                  style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
+                />
                 <Link href="/services" className={heroStyles.btnSecondary}>Explore Our Services</Link>
               </div>
             </div>

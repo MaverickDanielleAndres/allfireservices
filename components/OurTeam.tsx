@@ -1,7 +1,12 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 
 import RevealOnView from "@/components/RevealOnView";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 
 import styles from "./SiteSection.module.css";
 
@@ -15,44 +20,69 @@ import styles from "./SiteSection.module.css";
  */
 const teamMembers = [
   {
-    img: "/technician/pete.jpg",
+    img: "/technician/Peter - Managing Director.jpg",
     name: "Peter",
-    bio: "Peter is the current owner of All Fire Services. Backed by a family firefighting legacy dating to 1911, he leads the business and its team of fire-safety professionals across Greater Sydney.",
+    position: "Managing Director",
   },
   {
-    img: "/technician/paulimage.PNG",
-    name: "Paul",
-    bio: "Paul is a dedicated Customer Service Technician and professional firefighter, bringing real-life knowledge and extensive experience to every inspection.",
-  },
-  {
-    img: "/technician/team2.jpg",
-    name: "Sam",
-    bio: "Sam brings the practical experience of a serving professional firefighter to his work, helping clients maintain safe and compliant buildings.",
-  },
-  {
-    img: "/technician/team3.jpg",
-    name: "George",
-    bio: "George is committed to providing a high standard of service and helping clients protect their people and property.",
-  },
-  {
-    img: "/technician/team4.jpg",
+    img: "/technician/Ken - Administration Manager.jpg",
     name: "Ken",
-    bio: "Ken brings technical expertise in matters relating to the Building Code of Australia, Australian Standards, and fire-safety requirements.",
+    position: "Administration Manager",
   },
-  // Six team slots, five supplied portraits — Kyriakos shares team1.jpg.
-  // Carried over from the previous Our Story team grid; imagery is handled
-  // separately and no images were added or replaced here.
   {
-    img: "/technician/team1.jpg",
-    name: "Kyriakos",
-    bio: "Kyriakos provides approachable, practical, and dependable fire-safety services to clients across Greater Sydney.",
+    img: "/technician/Roda - Office Manager.jpg",
+    name: "Roda",
+    position: "Office Manager",
+  },
+  {
+    img: "/technician/Caroline - Accounts manager.png",
+    name: "Caroline",
+    position: "Accounts Manager",
+  },
+  {
+    img: "/technician/Cornelius - Diesel Pump and Sprinkler system technician.jpg",
+    name: "Cornelius",
+    position: "Diesel Pump and Sprinkler System Technician",
+  },
+  {
+    img: "/technician/Paul - Senior Fire Technician.PNG",
+    name: "Paul",
+    position: "Senior Fire Technician",
+  },
+  {
+    img: "/technician/George - Fire Panel manger.jpg",
+    name: "George",
+    position: "Fire Panel Manager",
+  },
+  {
+    img: "/technician/HAMID - SENIOR FIRE ELECTRICIAN.png",
+    name: "Hamid",
+    position: "Senior Fire Electrician",
+  },
+  {
+    img: "/technician/Mem - Fire Technician.jpg",
+    name: "Mem",
+    position: "Fire Technician",
+  },
+  {
+    img: "/technician/Ryan - Fire Technician.jpg",
+    name: "Ryan",
+    position: "Fire Technician",
   },
 ];
 
 export default function OurTeam() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <RevealOnView threshold={0.08} className={styles.section}>
-      <section id="our-team" aria-labelledby="our-team-title">
+    <>
+      <RevealOnView threshold={0.08} className={styles.section}>
+        <section id="our-team" aria-labelledby="our-team-title">
         <div className={styles.container}>
           <header className={styles.header}>
             <p className={styles.kicker}>The professionals behind All Fire Services</p>
@@ -70,7 +100,11 @@ export default function OurTeam() {
           <div className={styles.teamGrid}>
             {teamMembers.map((member) => (
               <article className={styles.card} key={member.name}>
-                <div className={styles.cardMedia}>
+                <div 
+                  className={styles.cardMedia}
+                  onClick={() => setSelectedImage(member.img)}
+                  style={{ cursor: "pointer" }}
+                >
                   <Image
                     fill
                     src={member.img}
@@ -81,19 +115,93 @@ export default function OurTeam() {
                 </div>
                 <div className={styles.cardContent}>
                   <h3 className={styles.cardTitle}>{member.name}</h3>
-                  <p className={styles.cardBody}>{member.bio}</p>
+                  <p 
+                    className={styles.cardPosition}
+                    style={member.name === "Cornelius" ? { fontSize: "0.75rem", lineHeight: "1.3" } : {}}
+                  >
+                    {member.position.split(" ").slice(0, -1).join(" ")}
+                    <br />
+                    <span className={styles.gradient}>
+                      {member.position.split(" ").pop()}
+                    </span>
+                  </p>
                 </div>
               </article>
             ))}
           </div>
 
           <div className={styles.footer}>
-            <Link href="/contact" className={styles.action}>
-              Talk to our team
-            </Link>
+            <FreeSiteVisitButton
+              source="our_team"
+              pulse
+              className={styles.action}
+              label="Request a Site Visit with Peter"
+            />
           </div>
         </div>
       </section>
     </RevealOnView>
+      
+    {mounted && selectedImage && createPortal(
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          zIndex: 999999,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "1rem",
+        }}
+        onClick={() => setSelectedImage(null)}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            maxHeight: "85vh",
+            maxWidth: "85vw",
+          }}
+        >
+          <button
+            onClick={() => setSelectedImage(null)}
+            style={{
+              position: "absolute",
+              top: "-10px",
+              right: "-10px",
+              zIndex: 10,
+              background: "black",
+              color: "white",
+              border: "2px solid white",
+              borderRadius: "50%",
+              width: "36px",
+              height: "36px",
+              cursor: "pointer",
+              fontWeight: "bold",
+              fontSize: "1.2rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            aria-label="Close modal"
+          >
+            ×
+          </button>
+          <Image
+            src={selectedImage}
+            alt="Team member preview"
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+      </div>,
+      document.body
+    )}
+    </>
   );
 }

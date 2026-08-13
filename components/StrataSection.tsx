@@ -3,6 +3,7 @@
 import { Building2 } from "lucide-react";
 import { ExpandingCards, CardItem } from "@/components/ui/expanding-cards";
 import Link from "next/link";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 import { MotionSection } from "@/components/MotionPrimitives";
 import styles from "./HomeServices.module.css";
 
@@ -105,6 +106,13 @@ export default function StrataSection() {
           >
             View all Strata
           </Link>
+          <FreeSiteVisitButton
+            source="strata"
+            pulse
+            className={styles.viewMore}
+            style={{ marginLeft: "0.75rem" }}
+            label="Free Site Visit"
+          />
         </div>
       </div>
     </MotionSection>

@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { ArrowUpRight, ChevronDown, Flame, FireExtinguisher, Lightbulb, Fuel, Wind, Droplets, Construction, Server, DoorOpen, Map, Menu, ShieldCheck, X } from "lucide-react";
 import ContactCTA from "@/components/ContactCTA";
+import FreeSiteVisitOffer from "@/components/free-site-visit/FreeSiteVisitOffer";
 import {
   categories,
   getProductsByCategory,
@@ -481,6 +482,11 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        <div className="padding-global">
+          <div className="container-large" style={{ paddingTop: "clamp(2rem, 5vw, 4rem)", paddingBottom: "clamp(1rem, 3vw, 2rem)" }}>
+            <FreeSiteVisitOffer source="service_page" />
+          </div>
+        </div>
         <ContactCTA />
       </div>
     </main>

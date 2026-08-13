@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import RevealOnView from "@/components/RevealOnView";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 import styles from "@/components/HomeStoryLegacy.module.css";
 import cardStyles from "./SiteSection.module.css";
 
@@ -406,9 +407,11 @@ export default function WhyAllFire() {
         <section id="why-all-fire" aria-labelledby="why-all-fire-cta">
           <div className={cardStyles.container}>
             <div className={cardStyles.footer}>
-              <Link href="/contact" className={cardStyles.action}>
-                Get a Quote
-              </Link>
+              <FreeSiteVisitButton
+                source="why_all_fire"
+                pulse
+                className={cardStyles.action}
+              />
             </div>
           </div>
         </section>

@@ -21,6 +21,8 @@ import {
 } from "@/lib/products";
 import ContactCTA from "@/components/ContactCTA";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
+import { freeSiteVisitLabelForServiceId } from "@/lib/free-site-visit/constants";
 import detailStyles from "./ProductDetail.module.css";
 
 const gradientStyle = {
@@ -400,7 +402,11 @@ export default async function ProductDetailPage({ params }: Props) {
 
                   {/* CTAs */}
                   <div className={detailStyles.actions}>
-                    <PrimaryBrandButton href="/contact" label="Get a Quote" />
+                    <FreeSiteVisitButton
+                      source="service_page"
+                      service={freeSiteVisitLabelForServiceId(product.categoryId)}
+                      pulse
+                    />
                     <OutlinePhoneButton phone="1300 765 594" label="Call 1300 765 594" />
                   </div>
 

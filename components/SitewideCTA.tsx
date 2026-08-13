@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 
 export default function SitewideCTA() {
   return (
@@ -229,9 +230,12 @@ export default function SitewideCTA() {
           <a className="pre-faq-cta-button is-primary" href="tel:1300765594">
             Call 1300 765 594
           </a>
-          <Link className="pre-faq-cta-button is-secondary" href="/contact">
-            Get a Quote
-          </Link>
+          <FreeSiteVisitButton
+            source="sitewide"
+            pulse
+            className="pre-faq-cta-button is-secondary"
+            style={{ padding: "0 1.2rem", minHeight: "2.75rem" }}
+          />
         </div>
       </div>
     </section>

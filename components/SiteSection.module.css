@@ -75,10 +75,10 @@
 
 /* ── Grids ───────────────────────────────────────────────────────────────── */
 
-/* Team: 3-up on desktop so six people sit in two clean rows. */
+/* Team: 5-up on desktop */
 .teamGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(1.25rem, 2vw, 2rem);
 }
 
@@ -142,6 +142,14 @@
   margin: 0;
   color: #4a4a46;
   font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.cardPosition {
+  margin: 0;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: bold;
   line-height: 1.55;
 }
 
@@ -221,14 +229,18 @@
 /* ── Responsive — the homepage breakpoints, exactly ──────────────────────── */
 
 @media (max-width: 1200px) {
-  .teamGrid,
+  .teamGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
   .reasonGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 991px) {
-  .teamGrid,
+  .teamGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .reasonGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -257,7 +269,7 @@
   }
 
   .teamGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
   }
 

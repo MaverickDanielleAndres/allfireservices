@@ -1,5 +1,6 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
+import FreeSiteVisitOffer from "@/components/free-site-visit/FreeSiteVisitOffer";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/components/HomeStoryLegacy.module.css";
@@ -755,6 +756,11 @@ export default function Page() {
         </section>
 
 
+        <div className="padding-global">
+          <div className="container-large" style={{ paddingTop: "clamp(2rem, 5vw, 4rem)", paddingBottom: "clamp(1rem, 3vw, 2rem)" }}>
+            <FreeSiteVisitOffer source="our_story" />
+          </div>
+        </div>
         <ContactCTA />
       </main>
     </main>

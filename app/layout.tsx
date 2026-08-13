@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterReveal from "@/components/FooterReveal";
 import ChatbotDeferred from "@/components/ChatbotDeferred";
+import FreeSiteVisitClientShell from "@/components/free-site-visit/FreeSiteVisitClientShell";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_IMAGE,
@@ -151,8 +152,10 @@ export default function RootLayout({
         />
         <SmoothScrolling>
           <FooterReveal footerContent={<Footer />}>
-            <Navbar />
-            {children}
+            <FreeSiteVisitClientShell>
+              <Navbar />
+              {children}
+            </FreeSiteVisitClientShell>
           </FooterReveal>
         </SmoothScrolling>
         <ChatbotDeferred />

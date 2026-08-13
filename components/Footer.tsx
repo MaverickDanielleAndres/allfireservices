@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { navLinks, serviceLinks } from "@/lib/navigation";
 import { SITE_EMAIL } from "@/lib/seo";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 
 const FacebookIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -77,21 +78,19 @@ export default function Footer() {
               }}>protecting property.</span>
             </h2>
             <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
-              <Link
-                href="/contact"
-                className="min-h-11 min-w-0 items-center justify-center gap-2 bg-[#d64012] px-3 !text-white no-underline transition hover:bg-[#cf3a0f] sm:px-4"
+              <FreeSiteVisitButton
+                source="header"
+                pulse
                 style={{
-                  backgroundColor: "#d64012",
+                  background: "#d64012",
                   borderRadius: 0,
                   color: "#ffffff",
-                  display: "flex",
-                  flexWrap: "nowrap",
-                  textDecoration: "none",
+                  padding: "0 0.75rem",
+                  minHeight: "2.75rem",
+                  boxShadow: "none",
+                  fontSize: "1rem",
                 }}
-              >
-                <span className="whitespace-nowrap">Get in touch</span>
-                <ArrowUpRight className="flex-none" size={16} strokeWidth={2.4} aria-hidden="true" />
-              </Link>
+              />
               <a
                 href="tel:1300765594"
                 className="min-h-11 min-w-0 items-center justify-center gap-2 border border-[#2b201b]/25 px-3 !text-[#121212] no-underline transition hover:border-[#d64012] hover:bg-white sm:px-4"
