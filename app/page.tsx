@@ -256,7 +256,7 @@ export default function Page() {
                 the <video> mount until then, so mobile data isn't burned).
                 The poster image is shown first as a seamless placeholder. */}
             <DeferredVideo
-              src="/hero-video.mp4"
+              src="/hero-video.mp4?v=2"
               poster="/herosectionimage.webp"
               autoPlayOnView
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -375,7 +375,7 @@ export default function Page() {
         {/* Full-width Autoplaying Hero Video — only mounts once the user scrolls here */}
         <RevealOnView style={{ width: '100%' }}>
           <DeferredVideo
-            src="/hero-video.mp4"
+            src="/hero-video.mp4?v=2"
             poster="/herosectionimage.webp"
             className={heroStyles.mobileVideoTall}
             style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}

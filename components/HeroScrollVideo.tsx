@@ -31,7 +31,7 @@ export default function HeroScrollVideo() {
           preload="metadata"
           poster="/herosectionimage.webp"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4?v=2" type="video/mp4" />
         </video>
       </motion.div>
     </div>
