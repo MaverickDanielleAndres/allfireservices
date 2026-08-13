@@ -293,7 +293,7 @@ function NavbarContent() {
           color: #111111;
           text-decoration: none;
           font-weight: 600;
-          font-size: clamp(0.85rem, 0.95vw, 1rem);
+          font-size: clamp(1rem, 1.2vw, 1.25rem);
           white-space: nowrap;
           transition: color 200ms ease;
           display: flex;
@@ -623,7 +623,7 @@ function NavbarContent() {
             width: min(40rem, calc(100vw - 3rem));
           }
           .navbar-dropdown-link {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             font-weight: 600;
             padding: 0.5rem 0.6rem;
             line-height: 1.3;
