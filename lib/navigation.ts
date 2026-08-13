@@ -30,6 +30,5 @@ export const navLinks = [
   { label: "Our Team", href: "/our-team" },
   { label: "Our Clients", href: "/our-clients" },
   { label: "Why All Fire", href: "/why-all-fire" },
-  { label: "Strata", href: "/strata" },
   { label: "Contact", href: "/contact" },
 ];

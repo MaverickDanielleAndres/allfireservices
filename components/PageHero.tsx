@@ -3,7 +3,7 @@ import Image from "next/image";
 /**
  * The site's standard dark page hero.
  *
- * This is the exact hero treatment already used by /our-clients, /strata and
+ * This is the exact hero treatment already used by /our-clients and
  * /services — same overlays, same spacing, same type scale — extracted so new
  * pages inherit it instead of re-implementing (and drifting from) it.
  *

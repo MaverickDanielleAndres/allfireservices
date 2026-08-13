@@ -15,7 +15,6 @@ const routes: RouteEntry[] = [
   { path: "/services", changeFrequency: "monthly", priority: 0.9 },
   { path: "/annual-fire-safety-statement", changeFrequency: "monthly", priority: 0.9 },
   { path: "/fire-protection-services-sydney", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/strata", changeFrequency: "monthly", priority: 0.85 },
   { path: "/fire-safety-compliance", changeFrequency: "monthly", priority: 0.8 },
   { path: "/fire-consultancy-services", changeFrequency: "monthly", priority: 0.8 },
   { path: "/fire-safety-training", changeFrequency: "monthly", priority: 0.8 },

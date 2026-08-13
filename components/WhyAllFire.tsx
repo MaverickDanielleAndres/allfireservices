@@ -185,7 +185,7 @@ const storySections = [
         the specific compliance needs of each building.
       </>
     ),
-    image: "/buildingcompilation.jpg",
+    image: "/buildingcompilation-v2.jpg",
     objectFit: "contain",
   },
   {
