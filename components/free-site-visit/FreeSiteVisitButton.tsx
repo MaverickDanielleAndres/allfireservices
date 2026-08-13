@@ -143,27 +143,45 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           }
 
           /* The pulse — only on the primary CTA when *pulse* is true.
-             Cheaper implementations would animate every button on the page
-             which we explicitly avoid. */
+             A slow, tasteful "breathing" pulse rather than a constant glow:
+               ~1.6s of scale/shadow expansion
+               ~3.2s of rest
+             The transform caps at 1.025 so the layout never shifts. */
           .fsv-btn--pulse {
-            animation: fsv-pulse 3s ease-in-out infinite;
+            animation: fsv-pulse 4.8s ease-in-out infinite;
           }
           @keyframes fsv-pulse {
             0% {
-              box-shadow: 0 10px 24px rgba(255, 42, 0, 0.28),
-                0 0 0 0 rgba(255, 42, 0, 0.55),
+              transform: scale(1);
+              box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
+                0 0 0 0 rgba(255, 42, 0, 0.45),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             }
-            50% {
-              box-shadow: 0 10px 24px rgba(255, 42, 0, 0.28),
-                0 0 0 14px rgba(255, 42, 0, 0),
+            33% {
+              transform: scale(1.025);
+              box-shadow: 0 10px 24px rgba(255, 42, 0, 0.32),
+                0 0 0 12px rgba(255, 42, 0, 0),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             }
-            100% {
-              box-shadow: 0 10px 24px rgba(255, 42, 0, 0.28),
+            66% {
+              transform: scale(1);
+              box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
                 0 0 0 0 rgba(255, 42, 0, 0),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             }
+            100% {
+              transform: scale(1);
+              box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
+                0 0 0 0 rgba(255, 42, 0, 0),
+                0 1px 0 rgba(255, 255, 255, 0.25) inset;
+            }
+          }
+          /* Pause the perpetual pulse on hover/focus/active so the button
+             trades the breathing motion for a deliberate interaction state. */
+          .fsv-btn--pulse:hover,
+          .fsv-btn--pulse:focus-visible,
+          .fsv-btn--pulse:active {
+            animation: none;
           }
           @media (prefers-reduced-motion: reduce) {
             .fsv-btn--pulse {

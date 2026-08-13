@@ -17,15 +17,13 @@ import React from "react";
 import Image from "next/image";
 
 import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
-import {
-  type FreeSiteVisitSource,
-} from "@/lib/free-site-visit/analytics";
+import { type FreeSiteVisitSource } from "@/lib/free-site-visit/analytics";
 
 export interface FreeSiteVisitOfferProps {
   source: FreeSiteVisitSource;
   /** Service id (lib/services.ts) to pre-select. */
   service?: string;
-  /** Optional custom heading. Defaults to "Let's send the boss." */
+  /** Optional custom heading. Defaults to the standard offer copy. */
   heading?: string;
   /** Optional supporting copy. Defaults to the standard offer copy. */
   copy?: string;
@@ -34,8 +32,8 @@ export interface FreeSiteVisitOfferProps {
 export default function FreeSiteVisitOffer({
   source,
   service,
-  heading = "We’ll send the boss.",
-  copy = "Want a personal look at your fire safety? Request a free site visit with Peter Tricklebank, Managing Director of All Fire Services. Peter personally visits the property to understand your building and your fire protection requirements.",
+  heading = "Peter will personally come to your property.",
+  copy = "Request a free site visit with Peter Tricklebank, Managing Director of All Fire Services, to discuss your property and fire protection requirements.",
 }: FreeSiteVisitOfferProps) {
   return (
     <section
@@ -49,8 +47,8 @@ export default function FreeSiteVisitOffer({
         .fsv-offer-card {
           position: relative;
           display: grid;
-          grid-template-columns: 140px minmax(0, 1fr);
-          gap: clamp(1rem, 2.5vw, 1.6rem);
+          grid-template-columns: 110px minmax(0, 1fr);
+          gap: clamp(1rem, 2.5vw, 1.5rem);
           align-items: center;
           padding: clamp(1rem, 2.5vw, 1.5rem);
           border-radius: 14px;
@@ -145,7 +143,6 @@ export default function FreeSiteVisitOffer({
               service={service}
               variant="compact"
               pulse
-              label="Request a Free Site Visit"
             />
           </div>
         </div>

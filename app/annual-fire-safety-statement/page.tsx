@@ -227,7 +227,7 @@ export default function Page() {
                               data-wf--button-layout--layout="normal"
                               className="button-layout"
                             >
-                              <div className="button-text">Get in touch</div>
+                              <div className="button-text">Free Site Visit</div>
                               <ArrowIcon />
                             </div>
                           </div>

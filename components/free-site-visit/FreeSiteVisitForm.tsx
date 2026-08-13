@@ -1,24 +1,24 @@
 "use client";
 
 /**
- * FreeSiteVisitForm — the actual form inside the modal.
+ * FreeSiteVisitForm — the form inside the Free Site Visit modal.
  * ──────────────────────────────────────────────────────────────────────────
- * A single, self-contained form that submits to /api/free-site-visit. It is
- * intentionally transport-agnostic — the modal that wraps it (or any other
- * host) doesn't need to know about the form internals.
+ * Single, self-contained form that submits to /api/free-site-visit.
  *
- * Validation:
- *   • Name, email, mobile are mandatory and validated on the client.
- *   • The server re-validates everything — the client-side validation is
- *     an ergonomic touch only. The server is the source of truth.
+ * Fields (matches the contact form's data model):
+ *   Required — Name, Phone, Email address, Suburb, Message
+ *   Optional — Company / Building, Property / Building, Property address,
+ *              Service required, Previous Annual Fire Safety Statement
  *
- * Submission:
- *   • multipart/form-data when a file is attached, application/json otherwise.
- *   • Suspicious / oversized files are rejected before being sent.
+ * The contact-only fields sit behind an "+ Add property details (optional)"
+ * disclosure to keep the initial view simple. The modal panel also shows
+ * the social icons in the bottom row so the visitor can find us on any
+ * channel from the same surface.
  */
 
 import React, { useCallback, useId, useRef, useState } from "react";
 import Image from "next/image";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { FREE_SITE_VISIT_SERVICE_OPTIONS } from "@/lib/free-site-visit/constants";
 import { trackFreeSiteVisitEvent } from "@/lib/free-site-visit/analytics";
@@ -35,9 +35,12 @@ const ALLOWED_EXT = new Set(["pdf", "doc", "docx"]);
 const NAME_MIN = 2;
 const NAME_MAX = 120;
 const EMAIL_MAX = 254;
+const SUBURB_MIN = 2;
+const SUBURB_MAX = 120;
 const COMPANY_MAX = 160;
 const PROPERTY_NAME_MAX = 160;
 const PROPERTY_ADDRESS_MAX = 240;
+const MESSAGE_MIN = 5;
 const MESSAGE_MAX = 2000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,12 +50,12 @@ interface FreeSiteVisitFormState {
   name: string;
   email: string;
   mobile: string;
+  suburb: string;
   company: string;
   propertyName: string;
   propertyAddress: string;
   service: string;
   message: string;
-  consent: boolean;
   /** Honeypot — must stay empty. Bots fill it. */
   hp: string;
 }
@@ -61,12 +64,12 @@ const EMPTY_FORM: FreeSiteVisitFormState = {
   name: "",
   email: "",
   mobile: "",
+  suburb: "",
   company: "",
   propertyName: "",
   propertyAddress: "",
   service: "",
   message: "",
-  consent: false,
   hp: "",
 };
 
@@ -81,12 +84,13 @@ export interface FreeSiteVisitFormProps {
   onSubmitted?: () => void;
 }
 
+// Compact input styling — the modal must fit the viewport without scrolling.
 const inputStyle: React.CSSProperties = {
-  padding: "10px 14px",
-  minHeight: 44,
-  fontSize: "1rem",
+  padding: "6px 10px",
+  minHeight: 34,
+  fontSize: "0.875rem",
   color: "#111111",
-  borderRadius: 8,
+  borderRadius: 6,
   border: "1px solid #d8d8d8",
   width: "100%",
   fontFamily: "inherit",
@@ -101,21 +105,22 @@ const inputErrorStyle: React.CSSProperties = {
   boxShadow: "0 0 0 3px rgba(220, 38, 38, 0.12)",
 };
 const labelStyle: React.CSSProperties = {
-  fontSize: "0.95rem",
+  fontSize: "0.8rem",
   fontWeight: 600,
   color: "#111111",
-  marginBottom: 6,
+  marginBottom: 3,
   display: "block",
+  letterSpacing: "0.005em",
 };
 const helperStyle: React.CSSProperties = {
-  fontSize: 12.5,
+  fontSize: 11.5,
   color: "#6b6b6b",
-  lineHeight: 1.5,
-  marginTop: 4,
+  lineHeight: 1.4,
+  marginTop: 3,
 };
 const errorStyle: React.CSSProperties = {
-  margin: "4px 0 0",
-  fontSize: 12.5,
+  margin: "3px 0 0",
+  fontSize: 11.5,
   color: "#b91c1c",
   lineHeight: 1.4,
 };
@@ -137,6 +142,7 @@ export default function FreeSiteVisitForm({
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [formStartFired, setFormStartFired] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
   const successRef = useRef<HTMLDivElement>(null);
   const formId = useId();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -167,11 +173,14 @@ export default function FreeSiteVisitForm({
     if (state.name.trim().length < NAME_MIN || state.name.trim().length > NAME_MAX) {
       next.name = "Please enter your name.";
     }
+    if (!PHONE_RE.test(state.mobile.trim())) {
+      next.mobile = "Please enter your phone number.";
+    }
     if (!EMAIL_RE.test(state.email.trim()) || state.email.trim().length > EMAIL_MAX) {
       next.email = "Please enter a valid email address.";
     }
-    if (!PHONE_RE.test(state.mobile.trim())) {
-      next.mobile = "Please enter your mobile number.";
+    if (state.suburb.trim().length < SUBURB_MIN || state.suburb.trim().length > SUBURB_MAX) {
+      next.suburb = "Please enter your suburb.";
     }
     if (state.company.length > COMPANY_MAX) {
       next.company = "Please shorten the company name.";
@@ -182,11 +191,8 @@ export default function FreeSiteVisitForm({
     if (state.propertyAddress.length > PROPERTY_ADDRESS_MAX) {
       next.propertyAddress = "Please shorten the property address.";
     }
-    if (state.message.length > MESSAGE_MAX) {
-      next.message = "Please shorten your message.";
-    }
-    if (!state.consent) {
-      next.consent = "Please confirm you agree to be contacted.";
+    if (state.message.trim().length < MESSAGE_MIN || state.message.length > MESSAGE_MAX) {
+      next.message = "Please tell us how we can help (5–2000 characters).";
     }
     return next;
   }, []);
@@ -242,12 +248,13 @@ export default function FreeSiteVisitForm({
         fd.set("name", form.name.trim());
         fd.set("email", form.email.trim());
         fd.set("mobile", form.mobile.trim());
+        fd.set("suburb", form.suburb.trim());
         fd.set("company", form.company.trim());
         fd.set("propertyName", form.propertyName.trim());
         fd.set("propertyAddress", form.propertyAddress.trim());
         fd.set("service", form.service);
         fd.set("message", form.message.trim());
-        fd.set("consent", form.consent ? "1" : "0");
+        fd.set("consent", "1");
         fd.set("hp", form.hp);
         fd.set("source", source ?? "other");
         if (preselectedService) fd.set("preselectedService", preselectedService);
@@ -262,7 +269,7 @@ export default function FreeSiteVisitForm({
         try {
           data = await response.json();
         } catch {
-          // Non-JSON — treat as failure.
+          /* Non-JSON — treat as failure. */
         }
 
         if (response.ok && data.ok) {
@@ -270,6 +277,7 @@ export default function FreeSiteVisitForm({
           setStatusMessage("Thanks — we've received your request.");
           setForm(EMPTY_FORM);
           setFile(null);
+          setDetailsOpen(false);
           if (fileInputRef.current) fileInputRef.current.value = "";
           visit?.markSubmitted();
           trackFreeSiteVisitEvent("free_site_visit_success", {
@@ -277,7 +285,6 @@ export default function FreeSiteVisitForm({
             service: preselectedService,
           });
           onSubmitted?.();
-          // Focus the success region for assistive tech.
           requestAnimationFrame(() => {
             successRef.current?.focus();
           });
@@ -327,21 +334,21 @@ export default function FreeSiteVisitForm({
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
-          gap: "1rem",
-          padding: "0.5rem 0",
+          gap: "0.65rem",
+          padding: "0.25rem 0",
         }}
       >
         <div
           aria-hidden="true"
           style={{
-            width: 48,
-            height: 48,
+            width: 36,
+            height: 36,
             borderRadius: "50%",
             background: "linear-gradient(135deg, #ff2a00 0%, #ffb700 100%)",
             display: "grid",
             placeItems: "center",
             color: "#ffffff",
-            fontSize: "1.5rem",
+            fontSize: "1.1rem",
           }}
         >
           ✓
@@ -349,7 +356,7 @@ export default function FreeSiteVisitForm({
         <h3
           style={{
             margin: 0,
-            fontSize: "clamp(1.25rem, 2.5vw, 1.5rem)",
+            fontSize: "clamp(1.1rem, 2.2vw, 1.3rem)",
             fontWeight: 800,
             color: "#111111",
             lineHeight: 1.2,
@@ -361,18 +368,18 @@ export default function FreeSiteVisitForm({
           style={{
             margin: 0,
             color: "#1f1f1f",
-            lineHeight: 1.55,
-            fontSize: "1rem",
+            lineHeight: 1.5,
+            fontSize: "0.9rem",
           }}
         >
-          Our team will review your details and contact you about your Free Site Visit.
+          Our team will review your details and contact you regarding your Free Site Visit.
         </p>
         <p
           style={{
             margin: 0,
             color: "#4b4b4b",
-            fontSize: "0.875rem",
-            lineHeight: 1.5,
+            fontSize: "0.8rem",
+            lineHeight: 1.4,
           }}
         >
           If it&apos;s urgent, you can also call us on{" "}
@@ -396,21 +403,11 @@ export default function FreeSiteVisitForm({
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "0.85rem",
+        gap: "0.35rem",
         width: "100%",
+        minHeight: 0,
       }}
     >
-      <p
-        style={{
-          margin: 0,
-          fontSize: "0.9rem",
-          color: "#5b5b5b",
-          fontStyle: "italic",
-        }}
-      >
-        Tell Peter about your property.
-      </p>
-
       {/* Honeypot — hidden from real users, visible to bots. */}
       <div
         aria-hidden="true"
@@ -435,64 +432,42 @@ export default function FreeSiteVisitForm({
         </label>
       </div>
 
-      {/* Name */}
-      <div>
-        <label htmlFor={`${formId}-name`} style={labelStyle}>
-          Name <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
-        </label>
-        <input
-          id={`${formId}-name`}
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          maxLength={NAME_MAX}
-          value={form.name}
-          onChange={(e) => update("name", e.target.value)}
-          disabled={submitting}
-          aria-invalid={errors.name ? "true" : undefined}
-          aria-describedby={errors.name ? `${formId}-name-error` : undefined}
-          placeholder="John Smith"
-          style={errors.name ? inputErrorStyle : inputStyle}
-        />
-        {errors.name && (
-          <p id={`${formId}-name-error`} style={errorStyle}>
-            {errors.name}
-          </p>
-        )}
-      </div>
-
-      {/* Email + Mobile */}
-      <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
+      {/* Name + Phone */}
+      <div
+        style={{
+          display: "grid",
+          gap: "0.5rem",
+          gridTemplateColumns: "1fr 1fr",
+        }}
+      >
         <div>
-          <label htmlFor={`${formId}-email`} style={labelStyle}>
-            Email <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+          <label htmlFor={`${formId}-name`} style={labelStyle}>
+            Name <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
           </label>
           <input
-            id={`${formId}-email`}
-            name="email"
-            type="email"
-            autoComplete="email"
-            inputMode="email"
+            id={`${formId}-name`}
+            name="name"
+            type="text"
+            autoComplete="name"
             required
-            maxLength={EMAIL_MAX}
-            value={form.email}
-            onChange={(e) => update("email", e.target.value)}
+            maxLength={NAME_MAX}
+            value={form.name}
+            onChange={(e) => update("name", e.target.value)}
             disabled={submitting}
-            aria-invalid={errors.email ? "true" : undefined}
-            aria-describedby={errors.email ? `${formId}-email-error` : undefined}
-            placeholder="name@example.com"
-            style={errors.email ? inputErrorStyle : inputStyle}
+            aria-invalid={errors.name ? "true" : undefined}
+            aria-describedby={errors.name ? `${formId}-name-error` : undefined}
+            placeholder="John Smith"
+            style={errors.name ? inputErrorStyle : inputStyle}
           />
-          {errors.email && (
-            <p id={`${formId}-email-error`} style={errorStyle}>
-              {errors.email}
+          {errors.name && (
+            <p id={`${formId}-name-error`} style={errorStyle}>
+              {errors.name}
             </p>
           )}
         </div>
         <div>
           <label htmlFor={`${formId}-mobile`} style={labelStyle}>
-            Mobile <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+            Phone <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
           </label>
           <input
             id={`${formId}-mobile`}
@@ -518,66 +493,90 @@ export default function FreeSiteVisitForm({
         </div>
       </div>
 
-      {/* Company + Property */}
-      <div style={{ display: "grid", gap: "0.85rem", gridTemplateColumns: "1fr 1fr" }}>
+      {/* Email address + Suburb */}
+      <div
+        style={{
+          display: "grid",
+          gap: "0.5rem",
+          gridTemplateColumns: "1fr 1fr",
+        }}
+      >
         <div>
-          <label htmlFor={`${formId}-company`} style={labelStyle}>
-            Company / Organisation <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
+          <label htmlFor={`${formId}-email`} style={labelStyle}>
+            Email address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
           </label>
           <input
-            id={`${formId}-company`}
-            name="company"
-            type="text"
-            autoComplete="organization"
-            maxLength={COMPANY_MAX}
-            value={form.company}
-            onChange={(e) => update("company", e.target.value)}
+            id={`${formId}-email`}
+            name="email"
+            type="email"
+            autoComplete="email"
+            inputMode="email"
+            required
+            maxLength={EMAIL_MAX}
+            value={form.email}
+            onChange={(e) => update("email", e.target.value)}
             disabled={submitting}
-            placeholder="Strata plan, building name, or company"
-            style={inputStyle}
+            aria-invalid={errors.email ? "true" : undefined}
+            aria-describedby={errors.email ? `${formId}-email-error` : undefined}
+            placeholder="name@example.com"
+            style={errors.email ? inputErrorStyle : inputStyle}
           />
+          {errors.email && (
+            <p id={`${formId}-email-error`} style={errorStyle}>
+              {errors.email}
+            </p>
+          )}
         </div>
         <div>
-          <label htmlFor={`${formId}-propertyName`} style={labelStyle}>
-            Property / Building <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
+          <label htmlFor={`${formId}-suburb`} style={labelStyle}>
+            Suburb <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
           </label>
           <input
-            id={`${formId}-propertyName`}
-            name="propertyName"
+            id={`${formId}-suburb`}
+            name="suburb"
             type="text"
-            maxLength={PROPERTY_NAME_MAX}
-            value={form.propertyName}
-            onChange={(e) => update("propertyName", e.target.value)}
+            autoComplete="address-level2"
+            required
+            maxLength={SUBURB_MAX}
+            value={form.suburb}
+            onChange={(e) => update("suburb", e.target.value)}
             disabled={submitting}
-            placeholder="e.g. &ldquo;Bayside Apartments&rdquo;"
-            style={inputStyle}
+            aria-invalid={errors.suburb ? "true" : undefined}
+            aria-describedby={errors.suburb ? `${formId}-suburb-error` : undefined}
+            placeholder="Sydney"
+            style={errors.suburb ? inputErrorStyle : inputStyle}
           />
+          {errors.suburb && (
+            <p id={`${formId}-suburb-error`} style={errorStyle}>
+              {errors.suburb}
+            </p>
+          )}
         </div>
       </div>
 
-      {/* Property address */}
+      {/* Company or building (optional) */}
       <div>
-        <label htmlFor={`${formId}-propertyAddress`} style={labelStyle}>
-          Property address <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
+        <label htmlFor={`${formId}-company`} style={labelStyle}>
+          Company or building <span style={{ color: "#6b6b6b", fontSize: "0.7rem", fontWeight: 500 }}>(optional)</span>
         </label>
         <input
-          id={`${formId}-propertyAddress`}
-          name="propertyAddress"
+          id={`${formId}-company`}
+          name="company"
           type="text"
-          autoComplete="street-address"
-          maxLength={PROPERTY_ADDRESS_MAX}
-          value={form.propertyAddress}
-          onChange={(e) => update("propertyAddress", e.target.value)}
+          autoComplete="organization"
+          maxLength={COMPANY_MAX}
+          value={form.company}
+          onChange={(e) => update("company", e.target.value)}
           disabled={submitting}
-          placeholder="123 Example Street, Sydney NSW 2000"
+          placeholder="Strata plan, building name, or company"
           style={inputStyle}
         />
       </div>
 
-      {/* Service */}
+      {/* Service required */}
       <div>
         <label htmlFor={`${formId}-service`} style={labelStyle}>
-          What can we help with? <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
+          Service required
         </label>
         <select
           id={`${formId}-service`}
@@ -591,8 +590,8 @@ export default function FreeSiteVisitForm({
             backgroundImage:
               "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "right 14px center",
-            paddingRight: 36,
+            backgroundPosition: "right 12px center",
+            paddingRight: 32,
           }}
         >
           <option value="">Select a service (optional)</option>
@@ -607,173 +606,219 @@ export default function FreeSiteVisitForm({
       {/* Message */}
       <div>
         <label htmlFor={`${formId}-message`} style={labelStyle}>
-          Message <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
+          Message <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
         </label>
         <textarea
           id={`${formId}-message`}
           name="message"
+          required
           maxLength={MESSAGE_MAX}
-          rows={4}
+          rows={2}
           value={form.message}
           onChange={(e) => update("message", e.target.value)}
           disabled={submitting}
-          placeholder="Hi Peter, we&apos;d like you to come and have a look at our property..."
+          aria-invalid={errors.message ? "true" : undefined}
+          aria-describedby={errors.message ? `${formId}-message-error` : undefined}
+          placeholder="Tell us about your property, what you need help with, and any timing considerations."
           style={{
-            ...inputStyle,
-            minHeight: 96,
-            padding: "12px 14px",
+            ...(errors.message ? inputErrorStyle : inputStyle),
+            minHeight: 60,
+            padding: "7px 11px",
             resize: "vertical",
             fontFamily: "inherit",
           }}
         />
-      </div>
-
-      {/* File upload */}
-      <div>
-        <label htmlFor={`${formId}-afss`} style={labelStyle}>
-          Previous Annual Fire Safety Statement <span style={{ color: "#6b6b6b", fontWeight: 500, fontSize: "0.85rem" }}>(optional)</span>
-        </label>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.75rem",
-            flexWrap: "wrap",
-          }}
-        >
-          <label
-            htmlFor={`${formId}-afss`}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.55rem 0.9rem",
-              borderRadius: 6,
-              border: "1px solid #d1d5db",
-              cursor: submitting ? "not-allowed" : "pointer",
-              background: "#ffffff",
-              fontWeight: 500,
-              fontSize: "0.9rem",
-              color: "#111111",
-            }}
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="17 8 12 3 7 8" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
-            {file ? "Replace file" : "Choose file"}
-          </label>
-          <input
-            ref={fileInputRef}
-            id={`${formId}-afss`}
-            name="afss"
-            type="file"
-            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            disabled={submitting}
-            onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
-            style={{
-              position: "absolute",
-              width: 1,
-              height: 1,
-              padding: 0,
-              margin: -1,
-              overflow: "hidden",
-              clip: "rect(0,0,0,0)",
-              whiteSpace: "nowrap",
-              border: 0,
-            }}
-          />
-          <span
-            style={{
-              fontSize: "0.85rem",
-              color: file ? "#111111" : "#6b6b6b",
-              flex: "1 1 auto",
-              minWidth: 0,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {file ? `${file.name} (${formatBytes(file.size)})` : "No file chosen — PDF or Word, up to 10MB."}
-          </span>
-          {file && (
-            <button
-              type="button"
-              onClick={() => {
-                setFile(null);
-                if (fileInputRef.current) fileInputRef.current.value = "";
-              }}
-              disabled={submitting}
-              style={{
-                padding: "0.4rem 0.7rem",
-                borderRadius: 6,
-                border: "1px solid #d1d5db",
-                background: "transparent",
-                color: "#111111",
-                fontSize: "0.85rem",
-                cursor: submitting ? "not-allowed" : "pointer",
-              }}
-            >
-              Remove
-            </button>
-          )}
-        </div>
-        <p style={helperStyle}>
-          Have your previous Annual Fire Safety Statement? Attach it here if available.
-        </p>
-        {fileError && <p style={errorStyle}>{fileError}</p>}
-      </div>
-
-      {/* Consent */}
-      <div>
-        <label
-          htmlFor={`${formId}-consent`}
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "0.55rem",
-            cursor: submitting ? "not-allowed" : "pointer",
-            marginTop: "0.25rem",
-          }}
-        >
-          <input
-            id={`${formId}-consent`}
-            name="consent"
-            type="checkbox"
-            checked={form.consent}
-            onChange={(e) => update("consent", e.target.checked)}
-            disabled={submitting}
-            required
-            aria-invalid={errors.consent ? "true" : undefined}
-            aria-describedby={errors.consent ? `${formId}-consent-error` : undefined}
-            style={{
-              width: 18,
-              height: 18,
-              marginTop: 2,
-              cursor: submitting ? "not-allowed" : "pointer",
-              flex: "0 0 auto",
-            }}
-          />
-          <span style={{ fontSize: "0.875rem", color: "#111111", lineHeight: 1.5 }}>
-            By submitting this form, you agree to be contacted by All Fire Services
-            regarding your Free Site Visit. We&apos;ll never share your details.
-          </span>
-        </label>
-        {errors.consent && (
-          <p id={`${formId}-consent-error`} style={{ ...errorStyle, marginLeft: "1.7rem" }}>
-            {errors.consent}
+        {errors.message && (
+          <p id={`${formId}-message-error`} style={errorStyle}>
+            {errors.message}
           </p>
+        )}
+      </div>
+
+      {/* Add property details — optional file upload only */}
+      <div>
+        <button
+          type="button"
+          onClick={() => setDetailsOpen((v) => !v)}
+          aria-expanded={detailsOpen}
+          aria-controls={`${formId}-details`}
+          disabled={submitting}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.3rem",
+            background: "transparent",
+            border: "none",
+            padding: "0.1rem 0",
+            cursor: submitting ? "not-allowed" : "pointer",
+            color: "#d64012",
+            fontWeight: 600,
+            fontSize: "0.78rem",
+            fontFamily: "inherit",
+          }}
+        >
+          {detailsOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+          {detailsOpen ? "Hide property details" : "+ Add property details (optional)"}
+        </button>
+
+        {detailsOpen && (
+          <div
+            id={`${formId}-details`}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+              paddingTop: "0.35rem",
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gap: "0.5rem",
+                gridTemplateColumns: "1fr 1fr",
+              }}
+            >
+              <div>
+                <label htmlFor={`${formId}-propertyName`} style={labelStyle}>
+                  Property / Building
+                </label>
+                <input
+                  id={`${formId}-propertyName`}
+                  name="propertyName"
+                  type="text"
+                  maxLength={PROPERTY_NAME_MAX}
+                  value={form.propertyName}
+                  onChange={(e) => update("propertyName", e.target.value)}
+                  disabled={submitting}
+                  placeholder="e.g. Bayside Apartments"
+                  style={inputStyle}
+                />
+              </div>
+              <div>
+                <label htmlFor={`${formId}-propertyAddress`} style={labelStyle}>
+                  Property address
+                </label>
+                <input
+                  id={`${formId}-propertyAddress`}
+                  name="propertyAddress"
+                  type="text"
+                  autoComplete="street-address"
+                  maxLength={PROPERTY_ADDRESS_MAX}
+                  value={form.propertyAddress}
+                  onChange={(e) => update("propertyAddress", e.target.value)}
+                  disabled={submitting}
+                  placeholder="123 Example St, Sydney NSW 2000"
+                  style={inputStyle}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor={`${formId}-afss`} style={labelStyle}>
+                Previous Annual Fire Safety Statement
+              </label>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  flexWrap: "wrap",
+                }}
+              >
+                <label
+                  htmlFor={`${formId}-afss`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    padding: "0.4rem 0.7rem",
+                    borderRadius: 6,
+                    border: "1px solid #d1d5db",
+                    cursor: submitting ? "not-allowed" : "pointer",
+                    background: "#ffffff",
+                    fontWeight: 500,
+                    fontSize: "0.78rem",
+                    color: "#111111",
+                  }}
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                  {file ? "Replace file" : "Choose file"}
+                </label>
+                <input
+                  ref={fileInputRef}
+                  id={`${formId}-afss`}
+                  name="afss"
+                  type="file"
+                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  disabled={submitting}
+                  onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
+                  style={{
+                    position: "absolute",
+                    width: 1,
+                    height: 1,
+                    padding: 0,
+                    margin: -1,
+                    overflow: "hidden",
+                    clip: "rect(0,0,0,0)",
+                    whiteSpace: "nowrap",
+                    border: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: "0.75rem",
+                    color: file ? "#111111" : "#6b6b6b",
+                    flex: "1 1 auto",
+                    minWidth: 0,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {file ? `${file.name} (${formatBytes(file.size)})` : "No file chosen"}
+                </span>
+                {file && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFile(null);
+                      if (fileInputRef.current) fileInputRef.current.value = "";
+                    }}
+                    disabled={submitting}
+                    style={{
+                      padding: "0.3rem 0.55rem",
+                      borderRadius: 5,
+                      border: "1px solid #d1d5db",
+                      background: "transparent",
+                      color: "#111111",
+                      fontSize: "0.75rem",
+                      cursor: submitting ? "not-allowed" : "pointer",
+                    }}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              <p style={helperStyle}>
+                Have your previous Annual Fire Safety Statement? Attach it here if available. PDF or Word, up to 10MB.
+              </p>
+              {fileError && <p style={errorStyle}>{fileError}</p>}
+            </div>
+          </div>
         )}
       </div>
 
@@ -782,13 +827,13 @@ export default function FreeSiteVisitForm({
         <div
           role="alert"
           style={{
-            padding: "0.75rem 0.9rem",
-            borderRadius: 8,
+            padding: "0.45rem 0.6rem",
+            borderRadius: 6,
             background: "#fef2f2",
             border: "1px solid #fecaca",
             color: "#991b1b",
-            fontSize: "0.9rem",
-            lineHeight: 1.5,
+            fontSize: "0.78rem",
+            lineHeight: 1.4,
           }}
         >
           {statusMessage}{" "}
@@ -806,26 +851,27 @@ export default function FreeSiteVisitForm({
         disabled={submitting}
         className="fsv-submit"
         style={{
-          marginTop: "0.5rem",
-          padding: "0.95rem 1.4rem",
-          minHeight: 52,
-          fontSize: "1.05rem",
+          marginTop: "0.2rem",
+          padding: "0.7rem 1.2rem",
+          minHeight: 42,
+          fontSize: "0.95rem",
           fontWeight: 700,
           color: "#ffffff",
           background: submitting
             ? "#f87171"
             : "linear-gradient(135deg, #ff2a00 0%, #ffb700 100%)",
           border: "none",
-          borderRadius: 10,
+          borderRadius: 8,
           cursor: submitting ? "not-allowed" : "pointer",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           gap: 10,
           outline: "none",
-          boxShadow: "0 8px 22px rgba(255, 42, 0, 0.28)",
+          boxShadow: "0 6px 18px rgba(255, 42, 0, 0.28)",
           transition: "transform 0.12s, box-shadow 0.2s",
           fontFamily: "inherit",
+          whiteSpace: "nowrap",
         }}
         onMouseDown={(e) => {
           if (!submitting) e.currentTarget.style.transform = "translateY(1px)";
@@ -842,8 +888,8 @@ export default function FreeSiteVisitForm({
             <span
               aria-hidden="true"
               style={{
-                width: 16,
-                height: 16,
+                width: 14,
+                height: 14,
                 borderRadius: "50%",
                 border: "2px solid rgba(255,255,255,0.45)",
                 borderTopColor: "#ffffff",
@@ -858,22 +904,76 @@ export default function FreeSiteVisitForm({
         )}
       </button>
 
+      {/* Privacy note */}
       <p
         style={{
           margin: 0,
-          fontSize: "0.8rem",
-          color: "#6b6b6b",
-          lineHeight: 1.5,
+          fontSize: "0.75rem",
+          color: "#4b4b4b",
+          lineHeight: 1.4,
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 5,
         }}
       >
-        Prefer to call?{" "}
-        <a
-          href="tel:1300765594"
-          style={{ color: "#d64012", fontWeight: 600, textDecoration: "underline" }}
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+          style={{ color: "#16a34a", flex: "0 0 auto", marginTop: 2 }}
         >
-          1300 765 594
-        </a>
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        Your information is secure and will only be used to contact you about your site visit request.
       </p>
+
+      {/* Prefer to call + socials — single bold row at the bottom */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "0.75rem",
+          flexWrap: "wrap",
+          marginTop: "0.15rem",
+          paddingTop: "0.4rem",
+          borderTop: "1px solid rgba(17,17,17,0.08)",
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            fontSize: "0.78rem",
+            color: "#111111",
+            lineHeight: 1.4,
+            fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+          }}
+        >
+          <span style={{ color: "#4b4b4b", fontWeight: 600 }}>Prefer to call?</span>
+          <a
+            href="tel:1300765594"
+            style={{
+              color: "#d64012",
+              fontWeight: 800,
+              textDecoration: "underline",
+              letterSpacing: "0.01em",
+            }}
+          >
+            1300 765 594
+          </a>
+        </p>
+        <FreeSiteVisitSocials />
+      </div>
 
       <style>{`
         @keyframes fsv-spin {
@@ -883,21 +983,14 @@ export default function FreeSiteVisitForm({
         @media (prefers-reduced-motion: reduce) {
           .fsv-submit { transition: none !important; }
         }
-
-        /* On phones, the email + mobile + company + property name grid
-           collapses to a single column so the form stays usable. */
         @media (max-width: 600px) {
-          .fsv-submit {
-            width: 100%;
-          }
+          .fsv-submit { width: 100%; }
         }
       `}</style>
 
-      {/* Reference the Image import so Next.js still bundles the optimizer
-          for tree-shaking purposes; the actual Peter image is rendered
-          elsewhere in the modal — see FreeSiteVisitModal. */}
+      {/* Reference the Image import so Next.js still bundles the optimizer. */}
       <span aria-hidden="true" style={{ display: "none" }}>
-        <Image src="/technician/pete.jpg" alt="" width={1} height={1} />
+        <Image src="/technician/Peter - Managing Director.jpg" alt="" width={1} height={1} />
       </span>
     </form>
   );
@@ -907,4 +1000,115 @@ function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+/**
+ * FreeSiteVisitSocials — the social icon row that sits at the bottom of
+ * the modal so the visitor can find us on any channel from the same
+ * surface. Reuses the same verified external URLs as the rest of the
+ * site (header + footer + contact page).
+ */
+function FreeSiteVisitSocials() {
+  const links: Array<{ label: string; href: string; icon: React.ReactNode }> = [
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61566630403365",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      ),
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/_allfireservices_/",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+        </svg>
+      ),
+    },
+    {
+      label: "LinkedIn",
+      href: "https://au.linkedin.com/in/allfire-services-sydney-92690516",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      ),
+    },
+    {
+      label: "YouTube",
+      href: "https://youtube.com/@allfireservices",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      ),
+    },
+    {
+      label: "TikTok",
+      href: "https://tiktok.com/@allfireservices",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.12z" />
+        </svg>
+      ),
+    },
+    {
+      label: "X (Twitter)",
+      href: "https://x.com/Allfiresydney",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <ul
+      aria-label="Social links"
+      style={{
+        display: "flex",
+        gap: "0.4rem",
+        listStyle: "none",
+        margin: 0,
+        padding: 0,
+        alignItems: "center",
+      }}
+    >
+      {links.map((link) => (
+        <li key={link.label}>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${link.label} (opens in a new tab)`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 26,
+              height: 26,
+              borderRadius: 999,
+              background: "rgba(17,17,17,0.06)",
+              color: "#111111",
+              transition: "background-color 0.18s, color 0.18s",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#d64012";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "rgba(17,17,17,0.06)";
+              e.currentTarget.style.color = "#111111";
+            }}
+          >
+            {link.icon}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
 }

@@ -72,7 +72,7 @@ export default function Page() {
                         <Link href="/contact" className="button-wrap">
                           <div className="button-content w-variant-a1ef9764-3803-38f9-aea9-55b770b8a820">
                             <div className="button-layout">
-                              <div className="button-text">Get in touch</div>
+                              <div className="button-text">Free Site Visit</div>
                               <div className="button-icon">
                                 <div className="icon-slot">
                                   <div className="icon-slot">

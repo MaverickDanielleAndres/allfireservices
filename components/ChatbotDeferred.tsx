@@ -221,7 +221,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
       {isOpen && (
         <section
           className="chatbot-window"
-          aria-label="ALLFIRE assistant"
+          aria-label="Flame from ALLFIRE"
           style={{
             position: "relative",
             width: fullScreen ? "calc(100vw - 20px)" : 380,
@@ -268,7 +268,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
                       display: "inline-block",
                     }}
                   />
-                  <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#161616" }}>ALLFIRE Assistant</p>
+                  <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: "#161616" }}>Flame from ALLFIRE</p>
                 </div>
                 <p style={{ margin: "4px 0 0", fontSize: 11.5, color: "#777", lineHeight: 1.45 }}>
                   Ask about services, coverage, inspections, and enquiries.
@@ -522,7 +522,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          aria-label="Open ALLFIRE assistant"
+          aria-label="Ask Flame from ALLFIRE"
           style={{
             position: "relative",
             overflow: "hidden",
@@ -557,7 +557,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
           </span>
           <span style={{ position: "relative", zIndex: 1, textAlign: "left" }}>
             <span style={{ display: "block", margin: 0, fontSize: 11, fontWeight: 750, color: "#171717", lineHeight: 1.1 }}>
-              Ask ALLFIRE<br />Assistant
+              Ask Flame<br />from ALLFIRE
             </span>
           </span>
         </button>

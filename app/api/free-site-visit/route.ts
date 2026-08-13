@@ -48,6 +48,7 @@ interface FreeSiteVisitPayload {
   name: string;
   email: string;
   mobile: string;
+  suburb: string;
   company: string;
   propertyName: string;
   propertyAddress: string;
@@ -104,6 +105,7 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
   const name = cleanText(form.get("name"));
   const email = cleanText(form.get("email"), EMAIL_MAX);
   const mobile = cleanText(form.get("mobile"));
+  const suburb = cleanText(form.get("suburb"), 120);
   const company = cleanText(form.get("company"), COMPANY_MAX);
   const propertyName = cleanText(form.get("propertyName"), PROPERTY_NAME_MAX);
   const propertyAddress = cleanText(form.get("propertyAddress"), PROPERTY_ADDRESS_MAX);
@@ -122,7 +124,10 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
     fields.email = "Please enter a valid email address.";
   }
   if (!PHONE_RE.test(mobile)) {
-    fields.mobile = "Please enter your mobile number.";
+    fields.mobile = "Please enter your phone number.";
+  }
+  if (suburb.length < 2 || suburb.length > 120) {
+    fields.suburb = "Please enter your suburb.";
   }
   if (company.length > COMPANY_MAX) {
     fields.company = "Please shorten the company name.";
@@ -133,8 +138,8 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
   if (propertyAddress.length > PROPERTY_ADDRESS_MAX) {
     fields.propertyAddress = "Please shorten the property address.";
   }
-  if (message.length > MESSAGE_MAX) {
-    fields.message = "Please shorten your message.";
+  if (message.length < 5 || message.length > MESSAGE_MAX) {
+    fields.message = "Please tell us how we can help (5–2000 characters).";
   }
   if (!consent) {
     fields.consent = "Please confirm you agree to be contacted.";
@@ -182,6 +187,7 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
       name,
       email,
       mobile,
+      suburb,
       company,
       propertyName,
       propertyAddress,
@@ -208,7 +214,8 @@ function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
   const rows: Array<[string, string]> = [
     ["Name", htmlEscape(p.name)],
     ["Email", `<a href="mailto:${htmlEscape(p.email)}" style="color:#fb5614;">${htmlEscape(p.email)}</a>`],
-    ["Mobile", `<a href="tel:${htmlEscape(p.mobile)}" style="color:#fb5614;">${htmlEscape(p.mobile)}</a>`],
+    ["Phone", `<a href="tel:${htmlEscape(p.mobile)}" style="color:#fb5614;">${htmlEscape(p.mobile)}</a>`],
+    ["Suburb", htmlEscape(p.suburb)],
     ["Company / Organisation", p.company ? htmlEscape(p.company) : "—"],
     ["Property / Building", p.propertyName ? htmlEscape(p.propertyName) : "—"],
     ["Property Address", p.propertyAddress ? htmlEscape(p.propertyAddress) : "—"],
@@ -291,7 +298,8 @@ function buildTextEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
     "──────────────────────────────────────────────",
     `Name:           ${p.name}`,
     `Email:          ${p.email}`,
-    `Mobile:         ${p.mobile}`,
+    `Phone:          ${p.mobile}`,
+    `Suburb:         ${p.suburb}`,
     `Company:        ${p.company || "—"}`,
     `Property:       ${p.propertyName || "—"}`,
     `Address:        ${p.propertyAddress || "—"}`,

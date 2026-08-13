@@ -135,7 +135,6 @@ export default function OurTeam() {
               source="our_team"
               pulse
               className={styles.action}
-              label="Request a Site Visit with Peter"
             />
           </div>
         </div>
