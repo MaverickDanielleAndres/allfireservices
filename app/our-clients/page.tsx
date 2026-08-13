@@ -1,6 +1,5 @@
 "use client";
 import ContactCTA from "@/components/ContactCTA";
-import FreeSiteVisitOffer from "@/components/free-site-visit/FreeSiteVisitOffer";
 import { useState } from "react";
 import Image from "next/image";
 import { Building2 } from "lucide-react";
@@ -648,11 +647,6 @@ export default function OurClientsPage() {
           </div>
         </section>
 
-        <div className="padding-global">
-          <div className="container-large" style={{ paddingTop: "clamp(2rem, 5vw, 4rem)", paddingBottom: "clamp(1rem, 3vw, 2rem)" }}>
-            <FreeSiteVisitOffer source="our_clients" />
-          </div>
-        </div>
         <ContactCTA />
       </main>
     </main>

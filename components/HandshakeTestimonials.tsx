@@ -141,14 +141,14 @@ export default function HandshakeTestimonials() {
       <div className="padding-global">
         <div className="container-large">
           <header className={styles.legacyHeader} style={{ marginTop: 0, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-            <p className={`${styles.kicker} text-center md:text-left`}>All Fire Service Reviews</p>
-            <h2 id="legacy-title" className="mx-auto md:mx-0 text-center md:text-left" style={{ maxWidth: '18ch' }}>Trusted by<br /><span style={{
+            <p className={`${styles.kicker} !text-center lg:!text-left`}>All Fire Service Reviews</p>
+            <h2 id="legacy-title" className="!mx-auto lg:!mx-0 !text-center lg:!text-left" style={{ maxWidth: '18ch' }}>Trusted by<br /><span style={{
               background: 'linear-gradient(to right, #ff2a00, #ffb700)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>Real Clients</span></h2>
-            <p className="mx-auto md:mx-0 text-center md:text-left">
+            <p className="!mx-auto lg:!mx-0 !text-center lg:!text-left">
               See what our customers have to say about their experience with All Fire Services, from reliable service and clear communication to professional fire safety support.
             </p>
           </header>

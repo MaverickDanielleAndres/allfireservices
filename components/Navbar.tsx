@@ -290,7 +290,7 @@ function NavbarContent() {
         .navbar-nav {
           display: flex;
           align-items: center;
-          gap: clamp(0.85rem, 1.5vw, 2rem);
+          gap: 1.5rem;
           list-style: none;
           margin: 0;
           padding: 0;
@@ -300,7 +300,7 @@ function NavbarContent() {
           color: #111111;
           text-decoration: none;
           font-weight: 600;
-          font-size: clamp(1rem, 1.2vw, 1.25rem);
+          font-size: 1rem;
           white-space: nowrap;
           transition: color 200ms ease;
           display: flex;
@@ -478,18 +478,6 @@ function NavbarContent() {
           gap: 1.5rem;
         }
 
-        .navbar-phone {
-          color: #111111;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 1rem;
-          transition: color 200ms ease;
-        }
-        
-        .navbar-phone:hover {
-          color: #d04710;
-        }
-
         .navbar-cta {
           background: #fb5614;
           color: #ffffff;
@@ -641,18 +629,14 @@ function NavbarContent() {
           }
         }
 
-        /* Between 1025px and 1400px the eight nav items, the phone number and
-           both CTAs cannot all fit on one row. Reclaim the space from the
-           gutters and the phone number rather than letting the nav wrap. */
+        /* Between 1025px and 1400px the eight nav items and the CTA
+           cannot all fit on one row. Reclaim the space from the gutters. */
         @media (min-width: 1025px) and (max-width: 1400px) {
           .navbar-inner {
             padding: 0 2rem;
           }
           .navbar-actions {
             gap: 1rem;
-          }
-          .navbar-phone {
-            display: none;
           }
           .navbar-cta {
             padding: 0.75rem 1.35rem;
@@ -784,7 +768,6 @@ function NavbarContent() {
           </ul>
 
           <div className="navbar-actions">
-            <a href="tel:1300765594" className="navbar-phone">1300 765 594</a>
             <FreeSiteVisitButton
               source="header"
               pulse

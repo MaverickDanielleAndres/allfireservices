@@ -19,6 +19,7 @@ export type FreeSiteVisitSource =
   | "floating"
   | "mobile_sticky"
   | "contact"
+  | "home-services"
   | "service_page"
   | "strata"
   | "our_clients"

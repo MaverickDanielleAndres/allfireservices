@@ -243,9 +243,9 @@ export default function ContactCTA({
                   : { display: "flex", flexDirection: "column", gap: "3rem", alignItems: "stretch" }
               }
             >
-              <div className="contact-cta_content contact-info">
-                <div className="contact-cta_header" style={{ textAlign: "left", marginBottom: "1.5rem", width: "100%" }}>
-                  <h2 className="heading-style-h3" style={{ marginBottom: "1.5rem", textAlign: "left", color: "#111111" }}>
+              <div className="contact-cta_content contact-info" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                <div className="contact-cta_header" style={{ textAlign: "center", marginBottom: "0.5rem", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <h2 className="heading-style-h3" style={{ marginBottom: "1.5rem", textAlign: "center", color: "#111111" }}>
                     Get in <span style={{
                       background: "linear-gradient(to right, #ff2a00, #ffb700)",
                       WebkitBackgroundClip: "text",
@@ -253,16 +253,16 @@ export default function ContactCTA({
                       backgroundClip: "text",
                     }}>touch</span>
                   </h2>
-                  <p className="body-text mb-2 md:mb-8" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "left", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
+                  <p className="body-text mb-2 md:mb-4" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "center", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
                     We&rsquo;re always happy to hear from property managers and
                     owners, whether it&rsquo;s to enquire about a new fire safety audit,
                     or just to chat about all things fire safety-related.
                   </p>
                 </div>
-                <div className="contact-cta_info-wrapper pt-3 md:pt-6" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "flex-start", textAlign: "left", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%", marginTop: "0.25rem" }}>
-                    <h3 className="heading-style-h5" style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "#111111", textTransform: "uppercase", textAlign: "left" }}>SOCIALS</h3>
-                    <ul className="contact-social-links" style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-start", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
+                <div className="contact-cta_info-wrapper pt-3 md:pt-6" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "center", textAlign: "center", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", marginTop: "0.25rem" }}>
+                    <h3 className="heading-style-h5" style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "#111111", textTransform: "uppercase", textAlign: "center" }}>SOCIALS</h3>
+                    <ul className="contact-social-links" style={{ display: "flex", gap: "clamp(0.4rem, 1.5vw, 0.75rem)", flexWrap: "nowrap", justifyContent: "center", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
                       <li><a className="contact-social-link" href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
                       <li><a className="contact-social-link" href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></li>
                       <li><a className="contact-social-link" href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
@@ -270,6 +270,47 @@ export default function ContactCTA({
                       <li><a className="contact-social-link" href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a></li>
                       <li><a className="contact-social-link" href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
                     </ul>
+                  </div>
+
+                  <div className="relative w-full mt-auto rounded-[20px] overflow-hidden shadow-2xl" style={{ minHeight: "440px", display: "flex", flexDirection: "column" }}>
+                    <img 
+                      src="/technician/Peter%20-%20Managing%20Director.jpg" 
+                      alt="Peter Tricklebank - Managing Director" 
+                      style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} 
+                    />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.9) 100%)", pointerEvents: "none" }} />
+                    
+                    <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full justify-between text-left" style={{ flexGrow: 1, textAlign: "left" }}>
+                      <div>
+                        <div className="text-[#FEAF04] text-xs font-bold uppercase tracking-widest mb-2" style={{ letterSpacing: "0.15em" }}>FREE SITE VISIT</div>
+                        <h3 className="text-white font-black uppercase mb-3" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 0.9, fontFamily: "Impact, sans-serif" }}>BOOK THE BOSS</h3>
+                        <p className="text-white font-bold leading-tight mb-4" style={{ fontSize: "clamp(1.2rem, 2vw, 1.4rem)" }}>
+                          Peter will personally<br />
+                          <span style={{
+                            background: "linear-gradient(to right, #ff2a00, #ffb700)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            backgroundClip: "text",
+                          }}>come to your property.</span>
+                        </p>
+                      </div>
+                      
+                      <div className="mt-8">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="w-10 h-10 rounded-full bg-[#ff5500] flex items-center justify-center shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          </div>
+                          <div>
+                            <div className="text-white font-bold text-lg leading-tight">Peter Tricklebank</div>
+                            <div className="text-white/70 text-sm leading-tight">Managing Director</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 pl-1 mt-3">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FEAF04" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          <span className="text-white/90 font-medium text-sm">Personally attends every Free Site Visit.</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -499,14 +540,16 @@ export default function ContactCTA({
                       <p id={`${formId}-consent-error`} style={{ margin: "-0.5rem 0 0.75rem 1.7rem", fontSize: 12.5, color: "#b91c1c" }}>{errors.consent}</p>
                     )}
 
-                    <div className="flex gap-3 items-center flex-wrap self-center md:self-start justify-self-center md:justify-self-start mx-auto md:mx-0">
+                    <div className="flex flex-col items-center gap-4 w-full mt-2">
+                      <div className="flex gap-3 items-center flex-wrap justify-center w-full">
                       <button
                         type="submit"
                         disabled={isSubmitting}
                         className="button w-button"
                         style={{
-                          padding: "12px 22px",
+                          padding: "16px 48px",
                           minHeight: 48,
+                          minWidth: 240,
                           fontSize: "1rem",
                           fontWeight: 600,
                           color: "#ffffff",
@@ -523,15 +566,16 @@ export default function ContactCTA({
                           transition: "transform 0.12s, box-shadow 0.2s",
                           fontFamily: "inherit",
                           textAlign: "center",
+                          animation: "fsv-pulse 3s ease-in-out infinite"
                         }}
                         onMouseDown={(e) => {
-                          if (!isSubmitting) e.currentTarget.style.transform = "translateY(1px)";
+                          if (!isSubmitting) e.currentTarget.style.transform = "translateY(1px) scale(0.98)";
                         }}
                         onMouseUp={(e) => {
-                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.transform = "translateY(0) scale(1)";
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.transform = "translateY(0) scale(1)";
                         }}
                       >
                         {isSubmitting ? (
@@ -551,7 +595,7 @@ export default function ContactCTA({
                             Sending…
                           </>
                         ) : (
-                          "Send enquiry"
+                          "BOOK TO BOSS"
                         )}
                       </button>
                       <button
@@ -577,6 +621,11 @@ export default function ContactCTA({
                       >
                         Reset
                       </button>
+                      </div>
+                      <div className="text-center mt-1">
+                        <span style={{ fontSize: "1.05rem", color: "#111111", fontWeight: 600 }}>Prefer to call? </span>
+                        <a href="tel:1300765594" style={{ fontSize: "1.05rem", color: "#ff2a00", fontWeight: 700, textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseOut={(e) => e.currentTarget.style.textDecoration = "none"}>Call 1300 765 594</a>
+                      </div>
                     </div>
 
                     {/* Live region for screen readers; focuses on success so AT users know what happened. */}

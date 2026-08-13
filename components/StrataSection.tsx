@@ -109,7 +109,7 @@ export default function StrataSection() {
           <FreeSiteVisitButton
             source="strata"
             pulse
-            className={styles.viewMore}
+            className={`${styles.viewMore} ${styles.hideOnMobile}`}
             style={{ marginLeft: "0.75rem" }}
             label="Free Site Visit"
           />

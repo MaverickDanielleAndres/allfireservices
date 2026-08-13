@@ -384,6 +384,10 @@
     -webkit-overflow-scrolling: touch;
     padding: 1rem;
   }
+
+  .hideOnMobile {
+    display: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

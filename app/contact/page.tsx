@@ -1,6 +1,5 @@
 import Image from "next/image";
 import ContactCTA from "@/components/ContactCTA";
-import FreeSiteVisitOffer from "@/components/free-site-visit/FreeSiteVisitOffer";
 import SitewideCTA from "@/components/SitewideCTA";
 
 export default function Page() {
@@ -167,13 +166,10 @@ export default function Page() {
         </header>
 
         <div className="bg-white relative z-10">
-          <div className="padding-global">
-            <div className="container-large" style={{ paddingTop: "clamp(2rem, 5vw, 4rem)" }}>
-              <FreeSiteVisitOffer source="contact" />
-            </div>
-          </div>
           <ContactCTA hideSitewideCTA={true} layout="split" />
-          <SitewideCTA />
+          <div className="pb-16 md:pb-32">
+            <SitewideCTA />
+          </div>
         </div>
       </main>
     </main>

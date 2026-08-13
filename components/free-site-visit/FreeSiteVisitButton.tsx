@@ -143,34 +143,36 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           }
 
           /* The pulse — only on the primary CTA when *pulse* is true.
-             A slow, tasteful "breathing" pulse rather than a constant glow:
-               ~1.6s of scale/shadow expansion
-               ~3.2s of rest
-             The transform caps at 1.025 so the layout never shifts. */
+             A noticeable "beating" pulse that changes color slightly and expands.
+               More distinct scale, color shift (brightness/saturation), and glow. */
           .fsv-btn--pulse {
-            animation: fsv-pulse 4.8s ease-in-out infinite;
+            animation: fsv-pulse 3s ease-in-out infinite;
           }
           @keyframes fsv-pulse {
             0% {
               transform: scale(1);
+              filter: brightness(1) saturate(1);
               box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
                 0 0 0 0 rgba(255, 42, 0, 0.45),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             }
-            33% {
-              transform: scale(1.025);
-              box-shadow: 0 10px 24px rgba(255, 42, 0, 0.32),
-                0 0 0 12px rgba(255, 42, 0, 0),
-                0 1px 0 rgba(255, 255, 255, 0.25) inset;
+            25% {
+              transform: scale(1.05);
+              filter: brightness(1.15) saturate(1.2);
+              box-shadow: 0 12px 28px rgba(255, 42, 0, 0.4),
+                0 0 0 16px rgba(255, 42, 0, 0),
+                0 1px 0 rgba(255, 255, 255, 0.3) inset;
             }
-            66% {
+            50% {
               transform: scale(1);
+              filter: brightness(1) saturate(1);
               box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
                 0 0 0 0 rgba(255, 42, 0, 0),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;
             }
             100% {
               transform: scale(1);
+              filter: brightness(1) saturate(1);
               box-shadow: 0 8px 18px rgba(255, 42, 0, 0.24),
                 0 0 0 0 rgba(255, 42, 0, 0),
                 0 1px 0 rgba(255, 255, 255, 0.25) inset;

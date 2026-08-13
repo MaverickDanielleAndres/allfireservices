@@ -28,6 +28,12 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const TiktokIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.64 3.9-1.85 5.43-1.15 1.46-2.82 2.45-4.66 2.8-1.92.36-3.95.14-5.69-.73-1.8-1.02-3.18-2.65-3.8-4.61-.63-1.93-.41-4.08.57-5.85 1-1.78 2.68-3.08 4.63-3.6 1.72-.45 3.55-.4 5.22.14v4.11c-1.14-.38-2.42-.31-3.47.2-1.01.48-1.77 1.34-2.13 2.37-.36 1.05-.27 2.22.25 3.19.5 1 1.42 1.74 2.5 2.06 1.15.34 2.41.24 3.46-.3.97-.49 1.71-1.31 2.06-2.34.19-.53.28-1.1.28-1.66V2.66c-.01-.88 0-1.76 0-2.64z" />
+  </svg>
+);
+
 const XIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
@@ -49,6 +55,7 @@ const socialLinks = [
   { label: "YouTube", href: "https://youtube.com/@allfireservices", icon: YoutubeIcon },
   { label: "LinkedIn", href: "https://au.linkedin.com/in/allfire-services-sydney-92690516", icon: LinkedinIcon },
   { label: "Instagram", href: "https://www.instagram.com/_allfireservices_/", icon: InstagramIcon },
+  { label: "TikTok", href: "https://www.tiktok.com/@allfireservices", icon: TiktokIcon },
   { label: "X (Twitter)", href: "https://x.com/Allfiresydney", icon: XIcon },
   { label: "Email", href: `mailto:${SITE_EMAIL}`, icon: EmailIcon },
 ];

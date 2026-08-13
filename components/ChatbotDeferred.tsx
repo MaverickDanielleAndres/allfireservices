@@ -213,7 +213,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
       style={{
         fontFamily: "var(--font-sans), Inter, Arial, sans-serif",
         position: "fixed",
-        bottom: isMobileOrTablet ? 10 : 20,
+        bottom: isMobileOrTablet ? 76 : 20,
         right: isMobileOrTablet ? 10 : 20,
         zIndex: 9999,
       }}

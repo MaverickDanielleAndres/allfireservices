@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
 
 import RevealOnView from "@/components/RevealOnView";
 import { services } from "@/lib/services";
@@ -92,6 +93,13 @@ export default function HomeServices() {
           <Link href="/services" className={styles.viewMore}>
             View more services
           </Link>
+          <FreeSiteVisitButton
+            source="home-services"
+            pulse
+            className={`${styles.viewMore} ${styles.hideOnMobile}`}
+            style={{ marginLeft: "0.75rem" }}
+            label="Free Site Visit"
+          />
         </div>
       </div>
       </section>

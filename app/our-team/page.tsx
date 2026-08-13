@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import ContactCTA from "@/components/ContactCTA";
-import FreeSiteVisitOffer from "@/components/free-site-visit/FreeSiteVisitOffer";
 import OurTeam from "@/components/OurTeam";
 import PageHero from "@/components/PageHero";
 import { createPageMetadata } from "@/lib/seo";
@@ -27,11 +26,6 @@ export default function OurTeamPage() {
 
         <div className="bg-white relative z-10" style={{ marginTop: "-2px" }}>
           <OurTeam />
-          <div className="padding-global">
-            <div className="container-large" style={{ paddingTop: "clamp(2rem, 5vw, 4rem)", paddingBottom: "clamp(1rem, 3vw, 2rem)" }}>
-              <FreeSiteVisitOffer source="our_team" />
-            </div>
-          </div>
           <ContactCTA />
         </div>
       </div>
