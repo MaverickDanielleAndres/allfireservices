@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Loader, MapPin, MessageCircle, Phone, Send, X } from "lucide-react";
 import Image from "next/image";
+import { useLenis } from "lenis/react";
 
 // Local Gemini-backed chat route. The bot is owned by ALLFIRE — it streams
 // from /api/chat (Google Gemini 2.5 Flash) using the knowledge base in
@@ -79,6 +80,35 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
   const bodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  
+  const lenis = useLenis();
+  const [isCtaVisible, setIsCtaVisible] = useState(false);
+
+  // Sync with the mobile sticky CTA so we can move the chat bubble up when it appears.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let mounted = true;
+    let raf = 0;
+    const onScroll = () => {
+      if (!mounted) return;
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        if (!mounted) return;
+        const isMobileScreen = window.innerWidth <= 768;
+        const y = (lenis?.scroll ?? window.scrollY) ?? 0;
+        const next = isMobileScreen && (y > Math.min(window.innerHeight * 0.7, 480));
+        setIsCtaVisible((prev) => (prev === next ? prev : next));
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      mounted = false;
+      window.removeEventListener("scroll", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, [lenis]);
 
   // Track viewport so we can collapse the window to a full-screen modal on
   // phones — a 380px panel is too cramped below ~768px.
@@ -213,9 +243,10 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
       style={{
         fontFamily: "var(--font-sans), Inter, Arial, sans-serif",
         position: "fixed",
-        bottom: isMobileOrTablet ? 76 : 20,
+        bottom: isMobileOrTablet ? (isCtaVisible ? 80 : 10) : 20,
         right: isMobileOrTablet ? 10 : 20,
         zIndex: 9999,
+        transition: "bottom 280ms cubic-bezier(0.16, 1, 0.3, 1)",
       }}
     >
       {isOpen && (

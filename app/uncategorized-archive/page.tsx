@@ -164,7 +164,7 @@ export default function Page() {
                             full annual cycle.
                           </p>
                           <p>
-                            <Link href="/annual-fire-safety-statement">
+                            <Link href="/services?category=annual-fire-safety-statement">
                               Read the full article
                             </Link>
                           </p>

@@ -184,6 +184,7 @@ export default function FreeSiteVisitModal() {
       className="fsv-modal-root"
       onClick={handleBackdrop}
       role="presentation"
+      data-lenis-prevent="true"
       style={{
         position: "fixed",
         inset: 0,
@@ -195,8 +196,8 @@ export default function FreeSiteVisitModal() {
         backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         padding: "clamp(0.5rem, 2vw, 1.5rem)",
         overflowX: "hidden",
         overflowY: "auto",
@@ -215,14 +216,16 @@ export default function FreeSiteVisitModal() {
         aria-labelledby="fsv-modal-title"
         aria-describedby="fsv-modal-subtitle"
         className="fsv-modal-card"
+        data-lenis-prevent="true"
         style={{
           background: "#ffffff",
           borderRadius: 16,
           boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
           maxWidth: 880,
           width: "100%",
-          margin: "auto",
+          margin: "0 auto",
           position: "relative",
+          flexShrink: 0,
         }}
       >
         <style>{`
@@ -232,6 +235,11 @@ export default function FreeSiteVisitModal() {
           @keyframes fsv-fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
+          }
+          .fsv-modal-root::before,
+          .fsv-modal-root::after {
+            content: "";
+            margin: auto;
           }
           .fsv-modal-card {
             display: grid;
@@ -267,16 +275,12 @@ export default function FreeSiteVisitModal() {
              even on a small laptop screen or iPad portrait — no
              dependence on backdrop scroll, which can stall on iOS. */
           @media (max-width: 1024px) {
-            .fsv-modal-root {
-              align-items: flex-start !important;
-            }
             .fsv-modal-card {
               display: flex !important;
               flex-direction: column !important;
               grid-template-columns: unset !important;
               max-width: min(720px, 92vw) !important;
               width: 100% !important;
-              margin: auto !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;
@@ -312,16 +316,14 @@ export default function FreeSiteVisitModal() {
           @media (max-width: 767px) {
             .fsv-modal-root {
               padding: 12px !important;
-              align-items: flex-start !important;
             }
             .fsv-modal-card {
               display: flex !important;
               flex-direction: column !important;
               grid-template-columns: unset !important;
-              width: calc(100vw - 24px) !important;
+              width: 100% !important;
               max-width: 100% !important;
               border-radius: 14px !important;
-              margin: auto !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;

@@ -13,7 +13,6 @@ interface RouteEntry {
 const routes: RouteEntry[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/services", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/annual-fire-safety-statement", changeFrequency: "monthly", priority: 0.9 },
   { path: "/fire-protection-services-sydney", changeFrequency: "monthly", priority: 0.9 },
   { path: "/fire-safety-compliance", changeFrequency: "monthly", priority: 0.8 },
   { path: "/fire-consultancy-services", changeFrequency: "monthly", priority: 0.8 },

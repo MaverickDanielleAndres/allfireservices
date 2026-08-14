@@ -109,15 +109,6 @@ export function FreeSiteVisitProvider({
   const close = useCallback(
     (reason: "manual" | "submit" | "auto" | "backdrop" = "manual") => {
       setIsOpen(false);
-      // Anything that closes the modal counts as a dismissal — the auto
-      // popup should never re-fire once the visitor has touched it.
-      if (typeof window !== "undefined") {
-        try {
-          window.sessionStorage.setItem(SESSION_KEY_DISMISSED, "1");
-        } catch {
-          /* sessionStorage blocked — continue */
-        }
-      }
       trackFreeSiteVisitEvent("free_site_visit_popup_close", {
         source,
         service: preselectedService,
@@ -146,12 +137,8 @@ export function FreeSiteVisitProvider({
   }, []);
 
   const markAutoOpened = useCallback(() => {
-    if (typeof window === "undefined") return;
-    try {
-      window.sessionStorage.setItem(SESSION_KEY_OPENED, "1");
-    } catch {
-      /* ignored */
-    }
+    // No-op: we no longer track opened state in sessionStorage 
+    // so it can re-fire on refresh/revisit.
   }, []);
 
   // Schedule the auto popup once per session.
@@ -161,23 +148,15 @@ export function FreeSiteVisitProvider({
     if (autoScheduledRef.current) return;
     autoScheduledRef.current = true;
 
-    let storageSnapshot: {
-      opened: boolean;
-      dismissed: boolean;
-      submitted: boolean;
-    } = { opened: false, dismissed: false, submitted: false };
+    let isSubmitted = false;
     try {
-      storageSnapshot = {
-        opened: window.sessionStorage.getItem(SESSION_KEY_OPENED) === "1",
-        dismissed: window.sessionStorage.getItem(SESSION_KEY_DISMISSED) === "1",
-        submitted: window.sessionStorage.getItem(SESSION_KEY_SUBMITTED) === "1",
-      };
+      isSubmitted = window.sessionStorage.getItem(SESSION_KEY_SUBMITTED) === "1";
     } catch {
-      // sessionStorage unavailable — never block the popup in that case.
-      storageSnapshot = { opened: false, dismissed: false, submitted: false };
+      // sessionStorage unavailable
+      isSubmitted = false;
     }
 
-    if (storageSnapshot.opened || storageSnapshot.dismissed || storageSnapshot.submitted) {
+    if (isSubmitted) {
       return;
     }
 
@@ -192,19 +171,15 @@ export function FreeSiteVisitProvider({
         : autoPopupDelayMs;
 
     const timer = window.setTimeout(() => {
-      // Re-check inside the timer — the visitor may have submitted,
-      // opened, or dismissed the modal in the meantime.
-      let latest = { opened: false, dismissed: false, submitted: false };
+      // Re-check inside the timer — the visitor may have submitted
+      // in the meantime.
+      let latestSubmitted = false;
       try {
-        latest = {
-          opened: window.sessionStorage.getItem(SESSION_KEY_OPENED) === "1",
-          dismissed: window.sessionStorage.getItem(SESSION_KEY_DISMISSED) === "1",
-          submitted: window.sessionStorage.getItem(SESSION_KEY_SUBMITTED) === "1",
-        };
+        latestSubmitted = window.sessionStorage.getItem(SESSION_KEY_SUBMITTED) === "1";
       } catch {
-        latest = { opened: false, dismissed: false, submitted: false };
+        latestSubmitted = false;
       }
-      if (latest.opened || latest.dismissed || latest.submitted) return;
+      if (latestSubmitted) return;
       if (document.visibilityState !== "visible") return;
       markAutoOpened();
       open({ source: "auto_30s" });

@@ -409,14 +409,13 @@ export default function ContactCTA({
 
                     <div className="w-full">
                       <label htmlFor={`${formId}-address`} className="form_field-label" style={LABEL_STYLE}>
-                        Address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+                        Address <span style={{ color: "#6b6b6b", fontSize: "0.85rem", fontWeight: 400 }}>(Optional)</span>
                       </label>
                       <input
                         id={`${formId}-address`}
                         name="address"
                         type="text"
                         autoComplete="street-address"
-                        required
                         maxLength={200}
                         value={form.address}
                         onChange={(e) => update("address", e.target.value)}

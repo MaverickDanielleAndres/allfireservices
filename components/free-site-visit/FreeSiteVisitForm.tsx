@@ -199,9 +199,6 @@ export default function FreeSiteVisitForm({
     if (state.suburb.trim().length < SUBURB_MIN || state.suburb.trim().length > SUBURB_MAX) {
       next.suburb = "Please enter your suburb.";
     }
-    if (state.address.trim().length < ADDRESS_MIN || state.address.trim().length > ADDRESS_MAX) {
-      next.address = "Please enter your property address.";
-    }
     if (state.message.trim().length < MESSAGE_MIN || state.message.length > MESSAGE_MAX) {
       next.message = "Please tell us how we can help (5–2000 characters).";
     }
@@ -563,7 +560,16 @@ export default function FreeSiteVisitForm({
           a plain input when no provider has been configured. */}
       <div>
         <label htmlFor={`${formId}-address`} style={labelStyle}>
-          Address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+          Address{" "}
+          <span
+            style={{
+              color: "#6b6b6b",
+              fontSize: "0.85rem",
+              fontWeight: 400,
+            }}
+          >
+            (Optional)
+          </span>
         </label>
         <AddressAutocomplete
           inputId={`${formId}-address`}
@@ -849,6 +855,7 @@ export default function FreeSiteVisitForm({
 
       {/* Prefer to call — single bold row at the bottom */}
       <div
+        className="fsv-bottom-row"
         style={{
           display: "flex",
           alignItems: "center",
@@ -915,6 +922,13 @@ export default function FreeSiteVisitForm({
             width: 100%;
             white-space: normal;
             text-align: center;
+          }
+        }
+        @media (max-width: 480px) {
+          .fsv-bottom-row {
+            justify-content: center !important;
+            flex-direction: column !important;
+            gap: 0.65rem !important;
           }
         }
       `}</style>
@@ -1109,7 +1123,6 @@ function AddressAutocomplete({
         name={name}
         type="text"
         autoComplete="street-address"
-        required
         maxLength={ADDRESS_MAX}
         value={value}
         onChange={(e) => handleChange(e.target.value)}
@@ -1128,7 +1141,6 @@ function AddressAutocomplete({
         name={name}
         type="text"
         autoComplete="street-address"
-        required
         maxLength={ADDRESS_MAX}
         value={value}
         onChange={(e) => handleChange(e.target.value)}

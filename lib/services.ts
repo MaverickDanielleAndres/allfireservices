@@ -57,10 +57,8 @@ export const services: ServiceDefinition[] = [
     id: "annual-fire-safety-statement",
     name: "Annual Fire Safety Statement",
     shortName: "Annual Fire Safety Statement",
-    // This service has its own dedicated page, so that is its canonical
-    // destination everywhere. The /services?category=annual-fire-safety-statement
-    // hub view still exists and is reachable from the hub sidebar.
-    href: "/annual-fire-safety-statement",
+    // Redirect to the services hub view for AFSS
+    href: "/services?category=annual-fire-safety-statement",
     headingLine1: "Annual Fire",
     headingLine2: "Safety Statement",
     image: "/services/AFSS.png",
