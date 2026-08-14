@@ -82,6 +82,7 @@ export default function ServicesPage() {
     : "annual-fire-safety-statement";
   const [activeCategory, setActiveCategory] = useState<string>(validInitial);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   // The hero is always rendered so the page has a single, clear H1 in the
   // initial HTML payload — important for both search engines and Lighthouse
@@ -93,6 +94,7 @@ export default function ServicesPage() {
   // Sync state when the user navigates back/forward.
   useEffect(() => {
     setActiveCategory(validInitial);
+    setCurrentPage(1);
   }, [validInitial]);
 
   // When arriving on /services with a valid ?category= in the URL (e.g. from
@@ -169,8 +171,16 @@ export default function ServicesPage() {
     () => getProductsByCategory(activeCategory),
     [activeCategory]
   );
-  const products = useMemo(() => allProducts.slice(0, 6), [allProducts]);
-  const moreCount = Math.max(0, allProducts.length - products.length);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+  
+  const products = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return allProducts.slice(startIndex, startIndex + itemsPerPage);
+  }, [allProducts, currentPage]);
+  
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(startIndex + itemsPerPage - 1, allProducts.length);
 
   return (
     <main className="main-wrapper">
@@ -321,6 +331,7 @@ export default function ServicesPage() {
                               type="button"
                               onClick={() => {
                                 setActiveCategory(cat.id);
+                                setCurrentPage(1);
                                 router.replace(`/services?category=${cat.id}`, { scroll: false });
                               }}
                               aria-current={isActive ? "true" : undefined}
@@ -367,16 +378,14 @@ export default function ServicesPage() {
                         Items in this category are being added. Call our team to discuss your building.
                       </p>
                     ) : (
-                      products.map((product) => {
+                      products.map((product, index) => {
                         const isService = product.tag === "Service";
-                        return (
-                          <Link
-                            key={product.id}
-                            href={`/services/${product.slug}`}
-                            className={styles.card}
-                            aria-label={`View ${product.name} details`}
-                          >
-                            <div className={styles.cardImageWrap}>
+                        const isPatched = index > 0;
+                        const filterStyle = isPatched ? { filter: "blur(6px)", opacity: 0.8, pointerEvents: "none" as const, userSelect: "none" as const } : {};
+
+                        const cardContent = (
+                          <>
+                            <div className={styles.cardImageWrap} style={filterStyle}>
                               <Image
                                 src={currentCategory?.heroImage ?? product.imageUrl}
                                 alt={product.name}
@@ -390,7 +399,7 @@ export default function ServicesPage() {
                                 <span className={styles.cardBadge}>Equipment</span>
                               )}
                             </div>
-                            <div className={styles.cardBody}>
+                            <div className={styles.cardBody} style={filterStyle}>
                               <h3 className={styles.cardName}>{product.name}</h3>
                               <p className={styles.cardSubtitle}>{product.subtitle}</p>
                               <p className={styles.cardDesc}>{product.description}</p>
@@ -403,25 +412,73 @@ export default function ServicesPage() {
                                 </span>
                               </div>
                             </div>
+                            {isPatched && (
+                              <div className={styles.patchOverlay}>
+                                <div className={styles.patchCard}>
+                                  <div className={styles.patchIcon}>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                      <circle cx="12" cy="12" r="10"></circle>
+                                      <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                  </div>
+                                  <span className={styles.patchText}>Details being updated</span>
+                                  <span className={styles.patchSubtext}>Available soon</span>
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        );
+
+                        return isPatched ? (
+                          <div
+                            key={product.id}
+                            className={`${styles.card} ${styles.cardPatched}`}
+                          >
+                            {cardContent}
+                          </div>
+                        ) : (
+                          <Link
+                            key={product.id}
+                            href={`/services/${product.slug}`}
+                            className={styles.card}
+                            aria-label={`View ${product.name} details`}
+                          >
+                            {cardContent}
                           </Link>
                         );
                       })
                     )}
                   </div>
 
-                  {moreCount > 0 && (
+                  {totalPages > 1 && (
                     <div className={styles.moreRow}>
                       <p className={styles.moreText}>
-                        Showing the first 6 of {allProducts.length} listings in{" "}
+                        Showing {startIndex}-{endIndex} of {allProducts.length} listings in{" "}
                         <strong>{currentCategory?.label}</strong>.
                       </p>
-                      <Link
-                        href={`/services?category=${currentCategory?.id ?? ""}`}
-                        className={styles.moreLink}
-                      >
-                        View more services
-                        <ArrowUpRight size={16} strokeWidth={2.4} aria-hidden="true" />
-                      </Link>
+                      <div className={styles.pagination}>
+                        {Array.from({ length: totalPages }).map((_, i) => {
+                          const page = i + 1;
+                          const isCurrent = page === currentPage;
+                          return (
+                            <button
+                              key={page}
+                              type="button"
+                              className={`${styles.pageBtn} ${isCurrent ? styles.pageBtnActive : ""}`}
+                              onClick={() => {
+                                setCurrentPage(page);
+                                const target = document.getElementById("services-hub");
+                                if (target && lenis) {
+                                  lenis.scrollTo(target, { offset: -80, duration: 0.8 });
+                                }
+                              }}
+                              aria-current={isCurrent ? "page" : undefined}
+                            >
+                              {page}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
                 </section>
@@ -470,6 +527,7 @@ export default function ServicesPage() {
                       type="button"
                       onClick={() => {
                         setActiveCategory(cat.id);
+                        setCurrentPage(1);
                         setMobileOpen(false);
                         router.replace(`/services?category=${cat.id}`, { scroll: false });
                       }}

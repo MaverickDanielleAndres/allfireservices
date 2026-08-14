@@ -18,6 +18,7 @@ import {
   getCategoryById,
   getRelatedProducts,
   products,
+  getProductsByCategory,
 } from "@/lib/products";
 import ContactCTA from "@/components/ContactCTA";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -487,38 +488,72 @@ export default async function ProductDetailPage({ params }: Props) {
                 </header>
 
                 <div className={detailStyles.relatedGrid}>
-                  {related.map((rel) => (
-                    <Link
-                      key={rel.id}
-                      href={`/services/${rel.slug}`}
-                      className={detailStyles.relatedCard}
-                      aria-label={`View ${rel.name} details`}
-                    >
-                      <div className={detailStyles.relatedImageWrap}>
-                        <Image
-                          src={rel.imageUrl}
-                          alt={rel.name}
-                          fill
-                          sizes="(max-width: 600px) 100vw, (max-width: 991px) 50vw, 33vw"
-                          className={detailStyles.relatedImage}
-                        />
-                        {rel.tag === "Service" && (
-                          <span className={detailStyles.relatedBadge}>Service</span>
+                  {related.map((rel) => {
+                    const categoryProducts = getProductsByCategory(rel.categoryId);
+                    const mainProductId = categoryProducts.length > 0 ? categoryProducts[0].id : null;
+                    const isPatched = rel.id !== mainProductId;
+                    const filterStyle = isPatched ? { filter: "blur(6px)", opacity: 0.8, pointerEvents: "none" as const, userSelect: "none" as const } : {};
+
+                    const cardContent = (
+                      <>
+                        <div className={detailStyles.relatedImageWrap} style={filterStyle}>
+                          <Image
+                            src={rel.imageUrl}
+                            alt={rel.name}
+                            fill
+                            sizes="(max-width: 600px) 100vw, (max-width: 991px) 50vw, 33vw"
+                            className={detailStyles.relatedImage}
+                          />
+                          {rel.tag === "Service" && (
+                            <span className={detailStyles.relatedBadge}>Service</span>
+                          )}
+                        </div>
+                        <div className={detailStyles.relatedBody} style={filterStyle}>
+                          <p className={detailStyles.relatedName}>{rel.name}</p>
+                          <p className={detailStyles.relatedSubtitle}>{rel.subtitle}</p>
+                          <p className={detailStyles.relatedPrice}>{rel.price}</p>
+                          <span
+                            className={detailStyles.relatedArrow}
+                            aria-hidden="true"
+                          >
+                            <ArrowUpRight size={14} />
+                          </span>
+                        </div>
+                        {isPatched && (
+                          <div className={detailStyles.patchOverlay}>
+                            <div className={detailStyles.patchCard}>
+                              <div className={detailStyles.patchIcon}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <circle cx="12" cy="12" r="10"></circle>
+                                  <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                              </div>
+                              <span className={detailStyles.patchText}>Details being updated</span>
+                              <span className={detailStyles.patchSubtext}>Available soon</span>
+                            </div>
+                          </div>
                         )}
+                      </>
+                    );
+
+                    return isPatched ? (
+                      <div
+                        key={rel.id}
+                        className={`${detailStyles.relatedCard} ${detailStyles.relatedPatched}`}
+                      >
+                        {cardContent}
                       </div>
-                      <div className={detailStyles.relatedBody}>
-                        <p className={detailStyles.relatedName}>{rel.name}</p>
-                        <p className={detailStyles.relatedSubtitle}>{rel.subtitle}</p>
-                        <p className={detailStyles.relatedPrice}>{rel.price}</p>
-                        <span
-                          className={detailStyles.relatedArrow}
-                          aria-hidden="true"
-                        >
-                          <ArrowUpRight size={14} />
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
+                    ) : (
+                      <Link
+                        key={rel.id}
+                        href={`/services/${rel.slug}`}
+                        className={detailStyles.relatedCard}
+                        aria-label={`View ${rel.name} details`}
+                      >
+                        {cardContent}
+                      </Link>
+                    );
+                  })}
                 </div>
 
                 <div className={detailStyles.relatedActions}>
