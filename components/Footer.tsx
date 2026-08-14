@@ -86,15 +86,13 @@ export default function Footer() {
             </h2>
             <div className="mt-4 grid max-w-xl grid-cols-1 gap-2 text-sm font-[500] text-[#111111] sm:mt-5 sm:grid-cols-2 sm:gap-2">
               <FreeSiteVisitButton
-                source="header"
+                source="footer"
                 pulse
                 style={{
-                  background: "#d64012",
                   borderRadius: 0,
                   color: "#ffffff",
                   padding: "0 0.75rem",
                   minHeight: "2.75rem",
-                  boxShadow: "none",
                   fontSize: "1rem",
                 }}
               />

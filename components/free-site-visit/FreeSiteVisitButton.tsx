@@ -49,7 +49,7 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
       service,
       variant = "primary",
       pulse = false,
-      label = "Free Site Visit",
+      label = "BOOK TO BOSS",
       trailingIcon,
       leadingIcon,
       onClick,
@@ -94,6 +94,7 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
             transition: background-color 200ms ease, transform 200ms ease,
               box-shadow 200ms ease, color 200ms ease, border-color 200ms ease;
             -webkit-tap-highlight-color: transparent;
+            text-transform: uppercase;
           }
           .fsv-btn:focus-visible {
             outline: 2px solid #ff5722;
@@ -195,6 +196,11 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
             .fsv-btn--primary:hover,
             .fsv-btn--compact:hover {
               transform: none;
+            }
+          }
+          @media (max-width: 768px) {
+            .fsv-btn {
+              font-size: 1.15rem;
             }
           }
         `}</style>

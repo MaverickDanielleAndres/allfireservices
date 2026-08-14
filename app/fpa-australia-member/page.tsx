@@ -227,7 +227,7 @@ export default function FpaAustraliaMember() {
                               data-wf--button-layout--layout="normal"
                               className="button-layout"
                             >
-                              <div className="button-text">Free Site Visit</div>
+                              <div className="button-text">BOOK TO BOSS</div>
                               <ArrowIcon />
                             </div>
                           </div>

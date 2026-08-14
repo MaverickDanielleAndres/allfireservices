@@ -12,8 +12,11 @@
  *     dark overlay, the eyebrow + headline + supporting copy overlaid on
  *     the upper portion, and the Peter badge at the bottom. Right:
  *     form block with all required fields.
- *   • Mobile — single column. Peter image as a slim banner at the top
- *     with the same overlay + headline + supporting copy. Form below.
+ *   • Tablet  (≤ 1024px) — single column. Peter image becomes a slim
+ *     banner at the top, form fills the rest of the modal.
+ *   • Mobile  (< 768px) — single column. Compact banner at the top,
+ *     form below, modal fits viewport with calc(100% - 24px) width and
+ *     scrolls internally on overflow.
  *
  * Accessibility:
  *   • role="dialog" + aria-modal="true"
@@ -150,7 +153,10 @@ export default function FreeSiteVisitModal() {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 1100,
+        // Modal layering — must sit above the chat widget (zIndex 9999),
+        // the page header, floating buttons, social icons, and any other
+        // fixed element on the site. 2147483000 is the safe maximum.
+        zIndex: 2147483000,
         background: "rgba(8, 8, 10, 0.78)",
         backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
@@ -178,8 +184,6 @@ export default function FreeSiteVisitModal() {
           overflowY: "auto",
           overflowX: "hidden",
           position: "relative",
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 0.85fr) minmax(0, 1.15fr)",
         }}
       >
         <style>{`
@@ -191,6 +195,8 @@ export default function FreeSiteVisitModal() {
             to { opacity: 1; }
           }
           .fsv-modal-card {
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
             animation: fsv-card-in 320ms cubic-bezier(0.16, 1, 0.3, 1);
           }
           @keyframes fsv-card-in {
@@ -201,38 +207,110 @@ export default function FreeSiteVisitModal() {
             .fsv-modal-root, .fsv-modal-card { animation: none !important; }
           }
 
-          /* Tablet/mobile — collapse to a single column with the Peter
-             image as a slim banner on top. */
-          @media (max-width: 720px) {
+          /* Close button — always on top of the modal content and never
+             overlapping form fields. */
+          .fsv-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 50;
+          }
+
+          /* ── Tablet (≤ 1024px) ─────────────────────────────────────────
+             Stack the portrait banner above the form. Keep the modal
+             centred and within the viewport. */
+          @media (max-width: 1024px) {
             .fsv-modal-card {
-              grid-template-columns: minmax(0, 1fr);
-              max-height: calc(100vh - 1rem);
+              display: flex !important;
+              flex-direction: column !important;
+              grid-template-columns: unset !important;
+              max-width: min(720px, 92vw) !important;
+              max-height: 90dvh !important;
+              max-height: 90vh !important;
+              width: 100% !important;
             }
             .fsv-modal-portrait {
-              height: 200px !important;
+              width: 100% !important;
+              min-height: 220px !important;
+              height: 220px !important;
+              max-height: 220px !important;
+              flex: 0 0 auto !important;
+            }
+            .fsv-modal-form-wrap {
+              width: 100% !important;
+              min-width: 0 !important;
+              padding: 1.1rem 1.4rem 1.1rem !important;
+              flex: 1 1 auto !important;
+              min-height: 0 !important;
+            }
+            .fsv-close {
+              top: 10px;
+              right: 10px;
             }
           }
 
-          /* Mobile — bottom sheet style. */
-          @media (max-width: 720px) {
+          /* ── Mobile (< 768px) ──────────────────────────────────────────
+             Single column, banner on top, form below. Modal fits the
+             viewport with a 12px gutter, scrolls internally on overflow. */
+          @media (max-width: 767px) {
             .fsv-modal-root {
-              padding: 0;
-              align-items: flex-end;
+              padding: 12px !important;
+              align-items: center !important;
             }
             .fsv-modal-card {
-              border-radius: 16px 16px 0 0;
-              max-height: 94vh;
-              max-height: 94dvh;
-              animation: fsv-card-up 360ms cubic-bezier(0.16, 1, 0.3, 1);
+              display: flex !important;
+              flex-direction: column !important;
+              grid-template-columns: unset !important;
+              width: calc(100vw - 24px) !important;
+              max-width: 100% !important;
+              max-height: 92dvh !important;
+              max-height: 92vh !important;
+              border-radius: 14px !important;
             }
-            @keyframes fsv-card-up {
-              from { opacity: 0; transform: translateY(100%); }
-              to { opacity: 1; transform: translateY(0); }
+            .fsv-modal-portrait {
+              width: 100% !important;
+              min-height: 190px !important;
+              height: 190px !important;
+              max-height: 190px !important;
+              flex: 0 0 190px !important;
             }
+            .fsv-modal-form-wrap {
+              width: 100% !important;
+              min-width: 0 !important;
+              padding: 0.9rem 1rem 0.85rem !important;
+              gap: 0.45rem !important;
+              flex: 1 1 auto !important;
+              min-height: 0 !important;
+              overflow-y: auto !important;
+            }
+            .fsv-close {
+              width: 40px !important;
+              height: 40px !important;
+              top: 8px;
+              right: 8px;
+              background: rgba(255,255,255,0.98) !important;
+              box-shadow: 0 4px 14px rgba(0,0,0,0.22) !important;
+            }
+          }
+
+          /* Very narrow phones (≤ 380px) — tighten the banner copy so
+             nothing wraps badly and keep all text readable. */
+          @media (max-width: 380px) {
+            .fsv-modal-portrait {
+              min-height: 210px !important;
+              height: 210px !important;
+              max-height: 210px !important;
+              flex-basis: 210px !important;
+            }
+            .fsv-banner-eyebrow { font-size: 0.62rem !important; letter-spacing: 0.18em !important; }
+            .fsv-banner-headline { font-size: 2.1rem !important; }
+            .fsv-banner-subhead { font-size: 0.95rem !important; }
+            .fsv-banner-body { font-size: 0.7rem !important; }
           }
         `}</style>
 
-        {/* Left — Peter portrait with text overlay on the dark image */}
+        {/* Left — Peter portrait with text overlay on the dark image.
+            On tablet/mobile this becomes the top banner. */}
         <div
           aria-hidden="true"
           className="fsv-modal-portrait"
@@ -247,7 +325,7 @@ export default function FreeSiteVisitModal() {
             src="/technician/Peter - Managing Director.jpg"
             alt="Peter Tricklebank, Managing Director of All Fire Services"
             fill
-            sizes="(max-width: 720px) 100vw, 360px"
+            sizes="(max-width: 767px) 100vw, (max-width: 1024px) 100vw, 360px"
             style={{ objectFit: "cover", objectPosition: "center 35%" }}
             priority
           />
@@ -280,6 +358,7 @@ export default function FreeSiteVisitModal() {
             }}
           >
             <p
+              className="fsv-banner-eyebrow"
               style={{
                 margin: "0 0 0.8rem 0",
                 fontSize: "0.7rem",
@@ -293,6 +372,7 @@ export default function FreeSiteVisitModal() {
             </p>
             <h2
               aria-hidden="true"
+              className="fsv-banner-headline"
               style={{
                 margin: 0,
                 fontSize: "clamp(2.1rem, 5.6vw, 3.1rem)",
@@ -311,6 +391,7 @@ export default function FreeSiteVisitModal() {
             </h2>
             <h2
               id="fsv-modal-title"
+              className="fsv-banner-subhead"
               style={{
                 margin: "0.3rem 0 0",
                 fontSize: "clamp(1.1rem, 2.2vw, 1.4rem)",
@@ -335,6 +416,7 @@ export default function FreeSiteVisitModal() {
             </h2>
             <p
               id="fsv-modal-subtitle"
+              className="fsv-banner-body"
               style={{
                 margin: "0.4rem 0 0",
                 fontSize: "0.75rem",
@@ -443,50 +525,44 @@ export default function FreeSiteVisitModal() {
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "0.95rem 1.3rem 0.85rem",
+            padding: "2.2rem 1.5rem 0.85rem",
             gap: "0.4rem",
             position: "relative",
             minHeight: 0,
           }}
         >
-          <div
-            style={{
-              position: "sticky",
-              top: 0,
-              zIndex: 10,
-              display: "flex",
-              justifyContent: "flex-end",
-              marginBottom: "-32px",
-            }}
-          >
-            <button
-              ref={closeButtonRef}
-              type="button"
-              onClick={() => visit.close("manual")}
-              aria-label="Close Free Site Visit dialog"
-              className="fsv-close"
-              style={{
-                width: 32,
-                height: 32,
-                borderRadius: 999,
-                border: "none",
-                background: "rgba(255,255,255,0.95)",
-                color: "#111111",
-                display: "grid",
-                placeItems: "center",
-                cursor: "pointer",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-              }}
-            >
-              <X size={16} strokeWidth={2.4} aria-hidden="true" />
-            </button>
-          </div>
+
 
           <FreeSiteVisitForm
             source={visit.source}
             preselectedService={visit.preselectedService}
           />
         </div>
+
+        {/* Close button — sibling of the banner + form so it can stay
+            fixed in the top-right of the dialog regardless of which
+            column it is in. */}
+        <button
+          ref={closeButtonRef}
+          type="button"
+          onClick={() => visit.close("manual")}
+          aria-label="Close Free Site Visit dialog"
+          className="fsv-close"
+          style={{
+            width: 36,
+            height: 36,
+            borderRadius: 999,
+            border: "none",
+            background: "rgba(255,255,255,0.96)",
+            color: "#111111",
+            display: "grid",
+            placeItems: "center",
+            cursor: "pointer",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+          }}
+        >
+          <X size={18} strokeWidth={2.4} aria-hidden="true" />
+        </button>
       </div>
     </div>
   );

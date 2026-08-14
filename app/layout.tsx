@@ -8,7 +8,6 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterReveal from "@/components/FooterReveal";
-import ChatbotDeferred from "@/components/ChatbotDeferred";
 import FreeSiteVisitClientShell from "@/components/free-site-visit/FreeSiteVisitClientShell";
 import {
   DEFAULT_DESCRIPTION,
@@ -158,7 +157,6 @@ export default function RootLayout({
             </FreeSiteVisitClientShell>
           </FooterReveal>
         </SmoothScrolling>
-        <ChatbotDeferred />
         <SpeedInsights />
       </body>
     </html>

@@ -292,7 +292,7 @@ export default function FreeSiteVisitForm({
           setStatus("error");
           setStatusMessage(
             data.error ??
-              "We couldn't send your request. Please try again or call 1300 765 594.",
+            "We couldn't send your request. Please try again or call 1300 765 594.",
           );
           if (data.fields && Object.keys(data.fields).length > 0) {
             setErrors(data.fields as FieldErrors);
@@ -434,6 +434,7 @@ export default function FreeSiteVisitForm({
 
       {/* Name + Phone */}
       <div
+        className="fsv-row-2col"
         style={{
           display: "grid",
           gap: "0.5rem",
@@ -495,6 +496,7 @@ export default function FreeSiteVisitForm({
 
       {/* Email address + Suburb */}
       <div
+        className="fsv-row-2col"
         style={{
           display: "grid",
           gap: "0.5rem",
@@ -672,6 +674,7 @@ export default function FreeSiteVisitForm({
             }}
           >
             <div
+              className="fsv-row-2col"
               style={{
                 display: "grid",
                 gap: "0.5rem",
@@ -900,7 +903,7 @@ export default function FreeSiteVisitForm({
             Sending&hellip;
           </>
         ) : (
-          "Request My Free Site Visit"
+          "Send Request to Peter"
         )}
       </button>
 
@@ -931,7 +934,7 @@ export default function FreeSiteVisitForm({
           <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
         </svg>
-        Your information is secure and will only be used to contact you about your site visit request.
+        Peter and the team will be in touch shortly to confirm your visit. Your information is secure.
       </p>
 
       {/* Prefer to call + socials — single bold row at the bottom */}
@@ -983,8 +986,33 @@ export default function FreeSiteVisitForm({
         @media (prefers-reduced-motion: reduce) {
           .fsv-submit { transition: none !important; }
         }
-        @media (max-width: 600px) {
-          .fsv-submit { width: 100%; }
+        /* Tablet & mobile — collapse the two-column form rows into a
+           single column so inputs aren't compressed. The CTA button also
+           goes full-width here so it never gets cropped, and its label
+           is allowed to wrap so long button copy never overflows. */
+        @media (max-width: 1024px) {
+          .fsv-submit {
+            width: 100% !important;
+            white-space: normal !important;
+            text-align: center;
+          }
+        }
+        @media (max-width: 768px) {
+          .fsv-row-2col {
+            grid-template-columns: minmax(0, 1fr) !important;
+          }
+          .fsv-submit {
+            width: 100% !important;
+            white-space: normal !important;
+            text-align: center;
+            font-size: 0.9rem !important;
+            line-height: 1.2;
+          }
+        }
+        /* Very narrow phones — shrink the CTA copy slightly so it never
+           clips. */
+        @media (max-width: 380px) {
+          .fsv-submit { font-size: 0.82rem !important; }
         }
       `}</style>
 

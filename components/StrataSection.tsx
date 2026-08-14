@@ -111,7 +111,7 @@ export default function StrataSection() {
             pulse
             className={`${styles.viewMore} ${styles.hideOnMobile}`}
             style={{ marginLeft: "0.75rem" }}
-            label="Free Site Visit"
+            label="BOOK TO BOSS"
           />
         </div>
       </div>
