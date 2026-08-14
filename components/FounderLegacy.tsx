@@ -23,7 +23,7 @@ type Generation = {
 };
 
 const generations: Generation[] = [
-  { year: "1911", relation: "Uncle", name: "William\nTricklebank", image: "/family/unclewilliam.PNG" },
+  { year: "1911", relation: "Great Granddad", name: "William\nTricklebank", image: "/family/greatgrandad.jpg" },
   { year: "1931", relation: "Granddad", name: "Trevor\nTricklebank", image: "/family/grandfathertrevor.jpg" },
   { year: "1955", relation: "Uncle", name: "Trevor\nTricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
   { year: "1957", relation: "My Father", name: "Stanley\nTricklebank", image: "/family/myfather.jpg" },

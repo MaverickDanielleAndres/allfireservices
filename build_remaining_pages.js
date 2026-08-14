@@ -67,7 +67,7 @@ if (listStart !== -1 && sectionEnd !== -1) {
     `;
   });
   newList += '                  </div>\n                ';
-  
+
   content = content.substring(0, listStart) + newList + content.substring(sectionEnd);
 }
 
@@ -86,7 +86,7 @@ const pagesToBuild = [
     items: [
       {
         title: 'Fire Consultancy Services',
-        desc: 'Professional Fire-Fighters both serving and retired as our service technicians, providing a level of service unequalled by our competition.',
+        desc: 'Professional Fire-Fighters serving as our service technicians, providing a level of service unequalled by our competition.',
         img: '/assets/placeholders/services/fire-consultancy-services.webp'
       },
       {
@@ -237,7 +237,7 @@ pagesToBuild.forEach(page => {
       `;
     });
     newList += '                  </div>\n                ';
-    
+
     pContent = pContent.substring(0, lStart) + newList + pContent.substring(sEnd);
   }
 

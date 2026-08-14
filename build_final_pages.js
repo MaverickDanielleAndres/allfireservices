@@ -9,7 +9,7 @@ const pagesToBuild = [
     path: path.join(__dirname, 'app', 'fire-consultancy-services', 'page.tsx'),
     heroText: 'FIRE CONSULTANCY SERVICES',
     heroSubText: 'Professional Expertise',
-    heroDesc: 'All Fire Services provides Professional Fire-Fighters both serving and retired to be our service technicians.',
+    heroDesc: 'All Fire Services provides Professional Fire-Fighters serving to be our service technicians.',
     processHeading: 'Our Consultancy Services',
     processDesc: 'Excellent Service Delivery reflecting the current Fire Safety Regulation requirements.',
     items: [
@@ -133,7 +133,7 @@ const pagesToBuild = [
 ];
 
 pagesToBuild.forEach(page => {
-  let pContent = content; 
+  let pContent = content;
 
   pContent = pContent.replace(
     '<h1 className="heading-style-h1">STRATA</h1>',
@@ -156,7 +156,7 @@ pagesToBuild.forEach(page => {
     '<h1 className="heading-style-h1">Strata Fire Safety Services</h1>',
     `<h1 className="heading-style-h1">${page.processHeading}</h1>`
   );
-  
+
   const pMatch = pContent.match(/<h1 className="heading-style-h1">[^<]+<\/h1>\s*<\/div>\s*<p className="body-text">([^<]+)<\/p>/);
   if (pMatch) {
     pContent = pContent.replace(
@@ -192,7 +192,7 @@ pagesToBuild.forEach(page => {
       `;
     });
     newList += '                  </div>\n                ';
-    
+
     pContent = pContent.substring(0, lStart) + newList + pContent.substring(sEnd);
   }
 

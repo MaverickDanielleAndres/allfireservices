@@ -111,7 +111,7 @@ Greater Sydney — including but not limited to Randwick, Enmore, Greenacre, Hab
 ────────────────────── TRUST SIGNALS ───────────────────────
 - Trusted by Sydney property teams: Household Properties, Civium, LUNA Management, Vital Strata Management, Netstrata, Get Strata, Cambridge Lodge, Strathfield Partners, Arriva.
 - FPA Australia member.
-- Serving and retired professional firefighters carry out our inspections.
+- Serving professional firefighters carry out our inspections.
 - All work performed to AS 1851:2012, AS 3786, AS 2444, AS/NZS 2293, BCA, and the NSW Fire Safety Regulation 2022.
 
 ────────────────────── RESPONSE GUIDELINES ─────────────────

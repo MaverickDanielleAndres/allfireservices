@@ -19,8 +19,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-import { FREE_SITE_VISIT_SERVICE_OPTIONS } from "@/lib/free-site-visit/constants";
-
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
@@ -39,9 +37,9 @@ const PHONE_RE = /^[0-9 +()\-\s]{6,}$/;
 const NAME_MIN = 2;
 const NAME_MAX = 120;
 const EMAIL_MAX = 254;
-const COMPANY_MAX = 160;
-const PROPERTY_NAME_MAX = 160;
-const PROPERTY_ADDRESS_MAX = 240;
+const SUBURB_MAX = 120;
+const ADDRESS_MIN = 4;
+const ADDRESS_MAX = 240;
 const MESSAGE_MAX = 2000;
 
 interface FreeSiteVisitPayload {
@@ -49,14 +47,10 @@ interface FreeSiteVisitPayload {
   email: string;
   mobile: string;
   suburb: string;
-  company: string;
-  propertyName: string;
-  propertyAddress: string;
-  service: string;
+  address: string;
   message: string;
   consent: boolean;
   source: string;
-  preselectedService: string;
   /** Already-mime-checked, size-checked, sanitized filename. */
   file:
     | { name: string; content: Buffer; contentType: string; size: number }
@@ -105,17 +99,13 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
   const name = cleanText(form.get("name"));
   const email = cleanText(form.get("email"), EMAIL_MAX);
   const mobile = cleanText(form.get("mobile"));
-  const suburb = cleanText(form.get("suburb"), 120);
-  const company = cleanText(form.get("company"), COMPANY_MAX);
-  const propertyName = cleanText(form.get("propertyName"), PROPERTY_NAME_MAX);
-  const propertyAddress = cleanText(form.get("propertyAddress"), PROPERTY_ADDRESS_MAX);
-  const service = cleanText(form.get("service"));
+  const suburb = cleanText(form.get("suburb"), SUBURB_MAX);
+  const address = cleanText(form.get("address"), ADDRESS_MAX);
   const message = cleanText(form.get("message"), MESSAGE_MAX);
   const consentRaw = form.get("consent");
   const consent =
     consentRaw === "true" || consentRaw === "on" || consentRaw === "1";
   const source = cleanText(form.get("source"), 64) || "other";
-  const preselectedService = cleanText(form.get("preselectedService"), 64);
 
   if (name.length < NAME_MIN || name.length > NAME_MAX) {
     fields.name = "Please enter your name.";
@@ -126,17 +116,11 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
   if (!PHONE_RE.test(mobile)) {
     fields.mobile = "Please enter your phone number.";
   }
-  if (suburb.length < 2 || suburb.length > 120) {
+  if (suburb.length < 2 || suburb.length > SUBURB_MAX) {
     fields.suburb = "Please enter your suburb.";
   }
-  if (company.length > COMPANY_MAX) {
-    fields.company = "Please shorten the company name.";
-  }
-  if (propertyName.length > PROPERTY_NAME_MAX) {
-    fields.propertyName = "Please shorten the property name.";
-  }
-  if (propertyAddress.length > PROPERTY_ADDRESS_MAX) {
-    fields.propertyAddress = "Please shorten the property address.";
+  if (address.length < ADDRESS_MIN || address.length > ADDRESS_MAX) {
+    fields.address = "Please enter your property address.";
   }
   if (message.length < 5 || message.length > MESSAGE_MAX) {
     fields.message = "Please tell us how we can help (5–2000 characters).";
@@ -144,11 +128,8 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
   if (!consent) {
     fields.consent = "Please confirm you agree to be contacted.";
   }
-  if (service && !FREE_SITE_VISIT_SERVICE_OPTIONS.includes(service)) {
-    fields.service = "Please choose a service from the list.";
-  }
 
-  // File validation
+  // File validation — optional Previous Annual Fire Safety Statement.
   const fileEntry = form.get("afss");
   let file: FreeSiteVisitPayload["file"] = null;
   if (fileEntry && typeof fileEntry === "object" && "arrayBuffer" in fileEntry) {
@@ -188,14 +169,10 @@ async function validate(form: FormData): Promise<{ ok: true; value: FreeSiteVisi
       email,
       mobile,
       suburb,
-      company,
-      propertyName,
-      propertyAddress,
-      service,
+      address,
       message,
       consent,
       source,
-      preselectedService,
       file,
     },
   };
@@ -210,16 +187,12 @@ function getClientIp(req: NextRequest): string | null {
 }
 
 function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string | null): string {
-  const service = p.service ? htmlEscape(p.service) : "Not specified";
   const rows: Array<[string, string]> = [
     ["Name", htmlEscape(p.name)],
     ["Email", `<a href="mailto:${htmlEscape(p.email)}" style="color:#fb5614;">${htmlEscape(p.email)}</a>`],
     ["Phone", `<a href="tel:${htmlEscape(p.mobile)}" style="color:#fb5614;">${htmlEscape(p.mobile)}</a>`],
     ["Suburb", htmlEscape(p.suburb)],
-    ["Company / Organisation", p.company ? htmlEscape(p.company) : "—"],
-    ["Property / Building", p.propertyName ? htmlEscape(p.propertyName) : "—"],
-    ["Property Address", p.propertyAddress ? htmlEscape(p.propertyAddress) : "—"],
-    ["Service requested", service],
+    ["Address", htmlEscape(p.address)],
     ["Previous AFSS attached", p.file ? `${htmlEscape(p.file.name)} (${(p.file.size / 1024).toFixed(1)} KB)` : "—"],
     ["Source CTA", htmlEscape(p.source)],
     ["Received", htmlEscape(receivedAt)],
@@ -250,7 +223,7 @@ function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
 <html lang="en-AU">
 <head>
   <meta charset="utf-8" />
-  <title>New Free Site Visit request</title>
+  <title>New Book the Boss — Free Site Visit request</title>
 </head>
 <body style="margin:0;padding:0;background:#f7f4f0;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#1a1a1a;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f4f0;padding:24px 12px;">
@@ -260,7 +233,7 @@ function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
           <tr>
             <td style="background:linear-gradient(135deg,#ff2a00 0%,#ffb700 100%);padding:22px 24px;color:#ffffff;">
               <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;opacity:0.92;">All Fire Services Australia</p>
-              <h1 style="margin:0;font-size:22px;line-height:1.35;font-weight:800;">New Free Site Visit request</h1>
+              <h1 style="margin:0;font-size:22px;line-height:1.35;font-weight:800;">New Book the Boss — Free Site Visit request</h1>
               <p style="margin:8px 0 0 0;font-size:13px;opacity:0.92;">A visitor has requested a free site visit with Peter.</p>
             </td>
           </tr>
@@ -281,7 +254,7 @@ function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
           ${messageBlock}
           <tr>
             <td style="padding:0 24px 24px 24px;">
-              <p style="margin:0;font-size:11px;color:#777;line-height:1.5;">Submitted via the Free Site Visit modal on the All Fire Services website. The submitter agreed to be contacted about their site visit.</p>
+              <p style="margin:0;font-size:11px;color:#777;line-height:1.5;">Submitted via the Book the Boss modal on the All Fire Services website. The submitter agreed to be contacted about their site visit.</p>
             </td>
           </tr>
         </table>
@@ -294,16 +267,13 @@ function buildHtmlEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
 
 function buildTextEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string | null): string {
   const lines = [
-    "Free Site Visit request — All Fire Services Australia",
+    "Book the Boss — Free Site Visit request — All Fire Services Australia",
     "──────────────────────────────────────────────",
     `Name:           ${p.name}`,
     `Email:          ${p.email}`,
     `Phone:          ${p.mobile}`,
     `Suburb:         ${p.suburb}`,
-    `Company:        ${p.company || "—"}`,
-    `Property:       ${p.propertyName || "—"}`,
-    `Address:        ${p.propertyAddress || "—"}`,
-    `Service:        ${p.service || "—"}`,
+    `Address:        ${p.address}`,
     `AFSS attached:  ${p.file ? `${p.file.name} (${(p.file.size / 1024).toFixed(1)} KB)` : "—"}`,
     `Source CTA:     ${p.source}`,
     `Received:       ${receivedAt}`,
@@ -321,7 +291,7 @@ function buildTextEmail(p: FreeSiteVisitPayload, receivedAt: string, ip: string 
 }
 
 function buildSubject(p: FreeSiteVisitPayload): string {
-  return `Free Site Visit Request — ${p.name}`;
+  return `Book the Boss — Free Site Visit request from ${p.name}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -386,19 +356,7 @@ export async function POST(req: NextRequest) {
           ]
         : undefined,
       tags: [
-        { name: "source", value: "website-free-site-visit" },
-        ...(payload.service
-          ? [
-              {
-                name: "service",
-                value: payload.service
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-")
-                  .replace(/^-+|-+$/g, "")
-                  .slice(0, 60) || "other",
-              },
-            ]
-          : []),
+        { name: "source", value: "website-book-the-boss" },
         ...(payload.source
           ? [
               {

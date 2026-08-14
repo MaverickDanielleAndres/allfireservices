@@ -1,26 +1,29 @@
 "use client";
 
 /**
- * SitewideCTA — "Peter will personally come to your property."
+ * SitewideCTA — "Book the Boss" offer card.
  * ─────────────────────────────────────────────────────────────────────────
- * 1-to-1 rebuild of the approved Peter Tricklebank offer card.
+ * The persistent, sitewide CTA hero card. Simplified for Phase 1 of the
+ * latest client changes — the homepage global CTA now reads:
+ *
+ *   FREE SITE VISIT   ← eyebrow / supporting context
+ *   BOOK THE BOSS     ← primary action
+ *   Peter will personally come to your property.
+ *   [ Book the Boss → ]   ← primary button
  *
  * Composition (top → bottom):
  *   • All Fire Services + FPA Australia Bronze Member wordmarks, with a
  *     hairline divider between them, anchored top-left.
- *   • "FREE SITE VISIT" eyebrow in brand orange.
+ *   • "Free Site Visit" eyebrow in brand orange.
  *   • Two-line heading — "Peter will personally" then the payoff
  *     "come to your property." wrapped in the signature gradient.
- *   • Short supporting copy introducing Peter.
- *   • Orange primary CTA "BOOK TO BOSS →" (with header-style breathing
+ *   • Orange primary CTA "Book the Boss →" (with header-style breathing
  *     pulse) + black "Call 1300 765 594".
  *
- * Right-hand region is the Peter (Managing Director) portrait, blended
- * seamlessly into the card surface via a CSS mask-image gradient. The
- * mask turns the photograph's left and bottom edges into actual alpha
- * transparency, so the card's peach surface shows through and there is
- * no visible seam — no gradient line to read, no overlay colour to
- * match, just one continuous warm surface with Peter in it.
+ * Right-hand region is the Peter portrait, blended into the card surface
+ * via a CSS mask-image gradient so there is no visible seam — no gradient
+ * line to read, no overlay colour to match, just one continuous warm
+ * surface with Peter in it.
  *
  * Design tokens come from `BRANDING_AND_LAYOUT_PRINCIPLES.md` §3, §4,
  * §7 and §8. The rectangular CTA shape and the half-card cover image
@@ -394,25 +397,19 @@ export default function SitewideCTA() {
             </div>
           </div>
 
-          <p className="pre-faq-cta-eyebrow">BOOK TO BOSS</p>
+          <p className="pre-faq-cta-eyebrow">Free Site Visit</p>
 
           <h2 className="pre-faq-cta-title" id="sitewide-cta-title">
             Peter will personally<br />
             <span className="pre-faq-cta-title-line-2">come to your property.</span>
           </h2>
 
-          <p className="pre-faq-cta-copy">
-            Request a free site visit with Peter Tricklebank, Managing Director
-            of All Fire Services, to discuss your property and fire protection
-            requirements.
-          </p>
-
           <div className="pre-faq-cta-actions">
             <FreeSiteVisitButton
               source="sitewide"
               pulse
               className="pre-faq-cta-button is-primary"
-              label="BOOK TO BOSS"
+              label="Book the Boss"
               trailingIcon={
                 <svg
                   className="fsv-btn__arrow"
@@ -451,7 +448,7 @@ export default function SitewideCTA() {
         <div className="pre-faq-cta-art" aria-hidden="true">
           <Image
             className="pre-faq-cta-portrait"
-            src="/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp"
+            src="/petercropped.jpg"
             alt=""
             width={2048}
             height={1536}

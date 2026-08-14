@@ -47,7 +47,7 @@ const teamMembers = [
   {
     img: "/technician/Paul - Senior Fire Technician.PNG",
     name: "Paul",
-    position: "Senior Fire Technician",
+    position: "Senior Firefighter",
   },
   {
     img: "/technician/George - Fire Panel manger.jpg",
@@ -83,124 +83,124 @@ export default function OurTeam() {
     <>
       <RevealOnView threshold={0.08} className={styles.section}>
         <section id="our-team" aria-labelledby="our-team-title">
-        <div className={styles.container}>
-          <header className={styles.header}>
-            <p className={styles.kicker}>The professionals behind All Fire Services</p>
-            <h2 id="our-team-title">
-              <span>Meet the All Fire</span>
-              <br />
-              <span className={styles.gradient}>Services Team</span>
-            </h2>
-            <p>
-              Serving and retired professional firefighters alongside qualified
-              fire-safety technicians, working across Greater Sydney.
-            </p>
-          </header>
+          <div className={styles.container}>
+            <header className={styles.header}>
+              <p className={styles.kicker}>The professionals behind All Fire Services</p>
+              <h2 id="our-team-title">
+                <span>Meet the All Fire</span>
+                <br />
+                <span className={styles.gradient}>Services Team</span>
+              </h2>
+              <p>
+                Serving professional firefighters alongside qualified
+                fire-safety technicians, working across Greater Sydney.
+              </p>
+            </header>
 
-          <div className={styles.teamGrid}>
-            {teamMembers.map((member) => (
-              <article className={styles.card} key={member.name}>
-                <div 
-                  className={styles.cardMedia}
-                  onClick={() => setSelectedImage(member.img)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <Image
-                    fill
-                    src={member.img}
-                    sizes="(max-width: 767px) 50vw, (max-width: 991px) 50vw, 33vw"
-                    alt={`${member.name} — All Fire Services`}
-                    className={styles.image}
-                  />
-                </div>
-                <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>{member.name}</h3>
-                  <p 
-                    className={styles.cardPosition}
-                    style={member.name === "Cornelius" ? { fontSize: "0.75rem", lineHeight: "1.3" } : {}}
+            <div className={styles.teamGrid}>
+              {teamMembers.map((member) => (
+                <article className={styles.card} key={member.name}>
+                  <div
+                    className={styles.cardMedia}
+                    onClick={() => setSelectedImage(member.img)}
+                    style={{ cursor: "pointer" }}
                   >
-                    {member.position.split(" ").slice(0, -1).join(" ")}
-                    <br />
-                    <span className={styles.gradient}>
-                      {member.position.split(" ").pop()}
-                    </span>
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
+                    <Image
+                      fill
+                      src={member.img}
+                      sizes="(max-width: 767px) 50vw, (max-width: 991px) 50vw, 33vw"
+                      alt={`${member.name} — All Fire Services`}
+                      className={styles.image}
+                    />
+                  </div>
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.cardTitle}>{member.name}</h3>
+                    <p
+                      className={styles.cardPosition}
+                      style={member.name === "Cornelius" ? { fontSize: "0.75rem", lineHeight: "1.3" } : {}}
+                    >
+                      {member.position.split(" ").slice(0, -1).join(" ")}
+                      <br />
+                      <span className={styles.gradient}>
+                        {member.position.split(" ").pop()}
+                      </span>
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
 
-          <div className={styles.footer}>
-            <FreeSiteVisitButton
-              source="our_team"
-              pulse
-              className={styles.action}
-            />
+            <div className={styles.footer}>
+              <FreeSiteVisitButton
+                source="our_team"
+                pulse
+                className={styles.action}
+              />
+            </div>
           </div>
-        </div>
-      </section>
-    </RevealOnView>
-      
-    {mounted && selectedImage && createPortal(
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
-          zIndex: 999999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "1rem",
-        }}
-        onClick={() => setSelectedImage(null)}
-      >
+        </section>
+      </RevealOnView>
+
+      {mounted && selectedImage && createPortal(
         <div
           style={{
-            position: "relative",
+            position: "fixed",
+            top: 0,
+            left: 0,
             width: "100%",
             height: "100%",
-            maxHeight: "85vh",
-            maxWidth: "85vw",
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            zIndex: 999999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1rem",
           }}
+          onClick={() => setSelectedImage(null)}
         >
-          <button
-            onClick={() => setSelectedImage(null)}
+          <div
             style={{
-              position: "absolute",
-              top: "-10px",
-              right: "-10px",
-              zIndex: 10,
-              background: "black",
-              color: "white",
-              border: "2px solid white",
-              borderRadius: "50%",
-              width: "36px",
-              height: "36px",
-              cursor: "pointer",
-              fontWeight: "bold",
-              fontSize: "1.2rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              maxHeight: "85vh",
+              maxWidth: "85vw",
             }}
-            aria-label="Close modal"
           >
-            ×
-          </button>
-          <Image
-            src={selectedImage}
-            alt="Team member preview"
-            fill
-            style={{ objectFit: "contain" }}
-          />
-        </div>
-      </div>,
-      document.body
-    )}
+            <button
+              onClick={() => setSelectedImage(null)}
+              style={{
+                position: "absolute",
+                top: "-10px",
+                right: "-10px",
+                zIndex: 10,
+                background: "black",
+                color: "white",
+                border: "2px solid white",
+                borderRadius: "50%",
+                width: "36px",
+                height: "36px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              aria-label="Close modal"
+            >
+              ×
+            </button>
+            <Image
+              src={selectedImage}
+              alt="Team member preview"
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   );
 }

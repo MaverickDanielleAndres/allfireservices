@@ -33,7 +33,7 @@ export default function FreeSiteVisitOffer({
   source,
   service,
   heading = "Peter will personally come to your property.",
-  copy = "Request a free site visit with Peter Tricklebank, Managing Director of All Fire Services, to discuss your property and fire protection requirements.",
+  copy = "Book the Boss — a free site visit with Peter at your property.",
 }: FreeSiteVisitOfferProps) {
   return (
     <section
@@ -136,13 +136,14 @@ export default function FreeSiteVisitOffer({
           <h2 id="fsv-offer-title" className="fsv-offer-title">
             {heading}
           </h2>
-          <p className="fsv-offer-copy">{copy}</p>
+          {copy ? <p className="fsv-offer-copy">{copy}</p> : null}
           <div className="fsv-offer-cta">
             <FreeSiteVisitButton
               source={source}
               service={service}
               variant="compact"
               pulse
+              label="Book the Boss"
             />
           </div>
         </div>

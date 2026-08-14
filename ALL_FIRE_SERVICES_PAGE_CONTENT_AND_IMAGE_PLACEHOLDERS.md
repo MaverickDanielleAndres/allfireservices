@@ -363,7 +363,7 @@ ALL FIRE Services - Fire Extinguisher Test
 
 WHY ALLFIRE SERVICES?
 
-To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters both serving and retired to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.
+To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters serving to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.
 
 If you are not sure of the safety of your building and wondering if you’re compliant to Australian Standards, find your existing AFS statement or council letter then talk to us so we can discuss how we can make your building up to the standards to ensure safety.
 
@@ -380,7 +380,7 @@ Contact Us
 ### Image Placeholders
 
 ```md
-![HOME-WHY-IMG-001 — Serving and retired professional firefighters](assets/placeholders/home/why-allfire-professional-firefighters.webp)
+![HOME-WHY-IMG-001 — Serving  professional firefighters](assets/placeholders/home/why-allfire-professional-firefighters.webp)
 
 ![HOME-WHY-IMG-002 — Customer-service technician inspecting fire-safety equipment](assets/placeholders/home/why-allfire-technician.webp)
 
@@ -555,12 +555,12 @@ All Fire Services is an Australian owned and operated business created by a form
 
 ### Text Content
 
-To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters both serving and retired to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.
+To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters serving to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.
 
 ### Image Placeholders
 
 ```md
-![ABOUT-IMG-004 — Serving and retired professional firefighter team](assets/placeholders/about/about-professional-firefighters.webp)
+![ABOUT-IMG-004 — Serving  professional firefighter team](assets/placeholders/about/about-professional-firefighters.webp)
 
 ![ABOUT-IMG-005 — Customer-service technician carrying out an inspection](assets/placeholders/about/about-customer-service-technician.webp)
 ```
@@ -749,7 +749,7 @@ Services
 
 FIRE CONSULTANCY SERVICES
 
-All Fire Services was founded with the unique concept to provide Professional Fire-Fighters both serving and retired to be our service technicians. These people are professional, experienced and highly motivated to provide a level of service to the community unequalled by our competition.
+All Fire Services was founded with the unique concept to provide Professional Fire-Fighters serving to be our service technicians. These people are professional, experienced and highly motivated to provide a level of service to the community unequalled by our competition.
 
 ### Button
 
@@ -803,7 +803,7 @@ Learn More
 
 FIRE SAFETY TRAINING
 
-All Fire Services provide Professional Fire-Fighters both serving and retired as our workplace trainers. These people are professional and highly motivated to provide a level of service to the community unequalled by our competition backed up by real life experience.
+All Fire Services provide Professional Fire-Fighters serving as our workplace trainers. These people are professional and highly motivated to provide a level of service to the community unequalled by our competition backed up by real life experience.
 
 ### Button
 
@@ -1033,7 +1033,7 @@ Fire Consultancy Services
 
 ### Text Content
 
-All Fire Services was founded with the unique concept to provide Professional Fire-Fighters both serving and retired to be our service technicians. These people are professional, experienced and highly motivated to provide a level of service to the community unequalled by our competition.
+All Fire Services was founded with the unique concept to provide Professional Fire-Fighters serving to be our service technicians. These people are professional, experienced and highly motivated to provide a level of service to the community unequalled by our competition.
 
 ## Section 3: Technical Expertise
 
@@ -1119,7 +1119,7 @@ We offer Fire Safety Training in the following areas:
 
 ### Text Content
 
-All Fire Services provide Professional Fire-Fighters both serving and retired as our workplace trainers. These people are professional and highly motivated to provide a level of service to the community unequalled by our competition backed up by real life experience.
+All Fire Services provide Professional Fire-Fighters serving as our workplace trainers. These people are professional and highly motivated to provide a level of service to the community unequalled by our competition backed up by real life experience.
 
 ## Section 3: Fire Extinguisher Training
 
@@ -1803,7 +1803,7 @@ Our Services
 
 Building Code of Australia Compliance
 
-Professional firefighters serving and retired as customer-service technicians
+Professional firefighters serving  as customer-service technicians
 
 Real-life fire-safety knowledge
 

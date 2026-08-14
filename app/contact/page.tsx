@@ -155,7 +155,7 @@ export default function Page() {
                         Contact Us
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        Get in touch with All Fire Services today. Our team is ready to help with fire safety inspections, compliance support and service enquiries across Greater Sydney.
+                        Get in touch with All Fire Services for practical <strong>fire protection</strong>, inspections, compliance support and property enquiries across Greater Sydney.
                       </p>
                     </div>
                   </div>

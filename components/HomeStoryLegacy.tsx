@@ -55,7 +55,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
                   lineHeight: 1.55
                 }}>
                   <p style={{ margin: 0, paddingBottom: '0.5rem' }}>
-                    The Tricklebank family&apos;s connection to firefighting began more than a century ago. Across generations, that experience has shaped a strong understanding of responsibility, service, and the importance of protecting people and property.
+                    The Tricklebank family&apos;s connection to fire protection spans more than 115 years. Across generations, that experience has shaped a strong understanding of responsibility, service, and the importance of protecting people and property.
                   </p>
                 </div>
               </motion.header>

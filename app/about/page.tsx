@@ -388,7 +388,7 @@ export default function Page() {
                         About All Fire Services
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        A family firefighting legacy dating back to 1911, and an Australian-owned fire protection business established in 2009.
+                        A family firefighting legacy dating back to 1911, and an Australian-owned fire protection company established in 2009.
                       </p>
                     </div>
                   </div>
@@ -432,7 +432,7 @@ export default function Page() {
                       Since 2009, All Fire Services has delivered <strong>reliable fire protection across Greater Sydney</strong>, backed by <strong>technical expertise</strong> and <strong>generations of firefighting heritage.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
-                      From <strong>testing and maintenance to certification and compliance</strong>, we focus on what matters most, <strong>protecting people, property, and businesses.</strong>
+                      From <strong>fire protection testing and maintenance to certification and compliance</strong>, we focus on what matters most, <strong>protecting people, property, and businesses.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
                       Our goal is simple: <strong>keep every property safe, compliant, and ready when it matters most.</strong>
@@ -485,7 +485,7 @@ export default function Page() {
                     <span style={gradientStyle}>Family Legacy</span>
                   </h2>
                   <p>
-                    Generations of firefighting heritage meet practical, dependable fire protection. Here is what shapes All Fire Services and the people behind it.
+                    Generations of firefighting heritage meet practical, dependable <strong>fire protection</strong>. Here is what shapes All Fire Services and the people behind it.
                   </p>
                 </header>
 
@@ -503,7 +503,7 @@ export default function Page() {
                       Generations of <span style={{ ...gradientStyle }}>Firefighters</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      From William through Trevor, Trevor Jr, Stanley, and Ian, <strong>generations of the Tricklebank family served in firefighting and emergency response</strong>, building a long-standing connection to protecting people and property.
+                      From William through Trevor, Trevor Jr, Stanley, and Ian, <strong>generations of the Tricklebank family served in firefighting and emergency response</strong>, building a long-standing connection to <strong>fire protection and the responsibility of protecting people and property.</strong>
                     </p>
                   </div>
 
@@ -519,7 +519,7 @@ export default function Page() {
                       A Family <span style={{ ...gradientStyle }}>Legacy</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      That family history brings a deeper appreciation for what fire protection is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
+                      That family history brings a deeper appreciation for what <strong>fire protection</strong> is ultimately about: <strong>protecting lives, protecting property, and taking responsibility seriously.</strong>
                     </p>
                   </div>
 
@@ -535,7 +535,7 @@ export default function Page() {
                       Established <span style={{ ...gradientStyle }}>2009</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      The business was <strong>established in 2009 by a former senior NSW Fire Brigade officer</strong>. Peter Tricklebank later became the owner and today leads All Fire Services.
+                      The business was <strong>established in 2009 by a former senior NSW Fire Brigade officer</strong>. Peter Tricklebank later became the <strong>Boss of All Fire Services</strong> and today helps lead the company's approach to <strong>practical and dependable fire protection.</strong>
                     </p>
                   </div>
 
@@ -551,7 +551,7 @@ export default function Page() {
                       The <span style={{ ...gradientStyle }}>Company</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      The company combines technical fire-safety knowledge with a team that includes <strong>serving and retired professional firefighters</strong>, bringing practical experience into the way clients are supported.
+                      The company combines technical <strong>fire protection knowledge</strong> with a team that includes <strong>serving professional firefighters</strong>, bringing practical, real-world experience into the way clients and properties are supported.
                     </p>
                   </div>
 
@@ -567,7 +567,7 @@ export default function Page() {
                       Built on Practical <span style={{ ...gradientStyle }}>Experience</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      The knowledge behind All Fire Services comes from more than technical requirements alone. <strong>Real firefighting experience helps shape how risks are identified, understood, and addressed</strong>, giving the team a practical perspective on fire protection.
+                      The knowledge behind All Fire Services comes from more than technical requirements alone. <strong>Real firefighting experience helps shape how fire protection risks are identified, understood, and addressed</strong>, giving the team a practical perspective on protecting people and property.
                     </p>
                   </div>
 
@@ -583,7 +583,7 @@ export default function Page() {
                       The Next <span style={{ ...gradientStyle }}>Generation</span>
                     </h3>
                     <p style={{ margin: 0, fontSize: 'clamp(0.95rem, 1.1vw, 1.05rem)', color: '#4a4a46', lineHeight: 1.55 }}>
-                      The Tricklebank legacy continues through the next generation, carrying forward the same values of <strong>responsibility, service, and protecting the community</strong> while building a modern fire protection company for the future.
+                      The Tricklebank family <strong>hopes the legacy will continue through the next generation</strong>, carrying forward the same values of responsibility, service, and protecting the community while helping shape the future of <strong>fire protection</strong>.
                     </p>
                   </div>
                 </div>
@@ -615,7 +615,7 @@ export default function Page() {
                 {/* Block 2 — MEET PETER */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-meet-peter-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '100%', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, owner of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, the Boss of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -633,13 +633,13 @@ export default function Page() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      <strong>Peter Tricklebank is the current owner of All Fire Services.</strong>
+                      <strong>Peter Tricklebank is the Boss of All Fire Services.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Born into a family of firefighters and raised around fire stations, Peter grew up with a deep understanding of what it means to protect people and property.
+                      Born into a family of firefighters and raised around fire stations, Peter grew up with a deep understanding of <strong>fire protection and what it means to protect people and property.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      Today, he leads All Fire Services alongside a team of experienced fire-safety professionals, including serving and retired firefighters.
+                      Today, he leads All Fire Services alongside experienced <strong>fire protection professionals, including serving senior firefighters</strong>, bringing practical firefighting knowledge into the company's work.
                     </p>
                   </div>
                 </div>
@@ -665,13 +665,13 @@ export default function Page() {
                       <strong>Who Knows Fire Better Than a Firefighter?</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Our team includes <strong>serving and retired professional firefighters</strong> who bring practical, real-world understanding to fire protection.
+                      Our team includes <strong>serving professional firefighters</strong> who bring practical, real-world understanding to <strong>fire protection</strong>.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
                       That experience is supported by qualified fire-safety professionals who understand compliance, <strong>Australian Standards, building requirements, testing, maintenance, and certification.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      The result is a service built around more than completing a checklist. It is about understanding the purpose behind the requirements and helping clients protect their buildings properly.
+                      The result is a <strong>fire protection service</strong> built around more than completing a checklist. It is about understanding the purpose behind the requirements and helping clients protect their buildings properly.
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
@@ -700,13 +700,13 @@ export default function Page() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Fire safety requirements continue to evolve, and so does our knowledge.
+                      <strong>Fire protection requirements continue to evolve, and so does our knowledge.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Through ongoing professional development and technical training, our team stays informed about relevant <strong>Australian Standards, building requirements, and current legislation.</strong>
+                      Through ongoing professional development and technical training, our team stays informed about relevant <strong>Australian Standards, building requirements, current legislation, and evolving fire protection practices.</strong>
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      This allows us to provide advice that is practical, accurate, and appropriate to each property.
+                      This allows us to provide <strong>fire protection advice</strong> that is practical, accurate, and appropriate to each property.
                     </p>
                   </div>
                 </div>
@@ -736,7 +736,7 @@ export default function Page() {
                         Our mission is to deliver <strong>practical, reliable fire protection</strong> through trusted advice, technical expertise, and responsive service.
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                        We aim to make fire safety easier for every client while maintaining a strong commitment to <strong>protecting people, property, and businesses.</strong>
+                        We aim to make <strong>fire protection and fire safety easier for every client</strong> while maintaining a strong commitment to <strong>protecting people, property, and businesses.</strong>
                       </p>
                       <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ fontWeight: 'bold', color: '#111', borderLeft: '4px solid #ff2a00', paddingLeft: '1rem' }}>
                         We do not simply help clients meet requirements. We help them understand and manage their fire-safety responsibilities properly.

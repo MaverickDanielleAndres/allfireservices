@@ -143,7 +143,7 @@ export default function ClientGrid() {
             >
               <p className={styles.kicker}>Trusted by</p>
               <h2 id="clients-marquee-title" style={{ color: '#111111', maxWidth: 'none' }}>
-                Greater Sydney&rsquo;s <span style={{ color: '#ff2a00', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Property</span><br />
+                Sydney <span style={{ color: '#ff2a00', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>Strata</span><br />
                 <span style={{
                   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
                   WebkitBackgroundClip: 'text',
@@ -152,10 +152,10 @@ export default function ClientGrid() {
                   fontWeight: 780,
                   letterSpacing: '-0.04em',
                   lineHeight: 0.92,
-                }}>Managers</span>
+                }}>Companies</span>
               </h2>
               <p>
-                The property managers, strata teams and building owners across Greater Sydney who trust All Fire Services with their compliance, inspections and ongoing fire-safety support.
+                Strata companies, property managers, and building owners across Sydney trust All Fire Services for reliable <strong>fire protection</strong>, compliance, inspections, testing, and ongoing support.
               </p>
             </header>
           </div>

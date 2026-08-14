@@ -70,7 +70,7 @@ export const faqs: FaqItem[] = [
   {
     question: "Do you provide fire warden and extinguisher training?",
     answer:
-      "Yes. We deliver on-site workplace fire safety training led by serving and retired professional firefighters — including extinguisher training (with live or simulated discharge), fire warden and evacuation training, and bespoke Emergency and Evacuation Plans aligned to AS 3745.",
+      "Yes. We deliver on-site workplace fire safety training led by serving professional firefighters — including extinguisher training (with live or simulated discharge), fire warden and evacuation training, and bespoke Emergency and Evacuation Plans aligned to AS 3745.",
   },
   {
     question: "Which fire safety systems can you test, service and certify?",

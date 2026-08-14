@@ -125,11 +125,11 @@ export default function Footer() {
               <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-x-4">
                 <p>Mon-Fri: 7:00am to 6:30pm</p>
                 <a
-                  href="tel:0484648400"
+                  href="tel:1300765594"
                   className="!text-[#111111] transition hover:!text-[#d64012]"
                   style={{ textDecoration: "none" }}
                 >
-                  After hours: 0484 648 400
+                  After Hours: 1300 765 594
                 </a>
               </div>
             </address>
@@ -142,7 +142,7 @@ export default function Footer() {
                 lineHeight: 0.92,
                 margin: 0,
               }}>Socials</h3>
-              <ul className="footer-social-list flex flex-nowrap items-center gap-2 text-[#111111]">
+              <ul className="footer-social-list flex flex-wrap items-center gap-3 text-[#111111] sm:gap-4">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <li key={label} className="footer-social-item flex-none">
                     <a

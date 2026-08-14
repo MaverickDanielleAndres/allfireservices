@@ -62,7 +62,7 @@
 
 **All Fire Services Australia** is a Sydney-based, Australian-owned fire protection company that provides end-to-end fire safety services for commercial, residential, strata, and industrial buildings. We were founded by a former Senior Officer of the NSW Fire Brigades. Our founding insight was simple and powerful: **the people who know fire safety best are the firefighters who have lived it on the ground.**
 
-To turn that into a service model, we built our entire team around that conviction. Our customer-service technicians, trainers, and consultants are (or were) professional firefighters — both serving and retired. They bring real-life incident command experience, regulatory knowledge, and on-the-ground judgment to every inspection, every audit, every defect report, every training session, and every conversation.
+To turn that into a service model, we built our entire team around that conviction. Our customer-service technicians, trainers, and consultants are (or were) professional firefighters — serving . They bring real-life incident command experience, regulatory knowledge, and on-the-ground judgment to every inspection, every audit, every defect report, every training session, and every conversation.
 
 What began as a single Sydney operation has grown into a company proudly serving the **Greater Sydney Area** with a dedicated team. Our growth has been driven by word-of-mouth from strata managers, building owners, facility managers, and property professionals who have come to trust our proactive, transparent, and practical approach.
 
@@ -110,7 +110,7 @@ This is our brand cornerstone and the question we want every prospect to ask the
 - Our training is delivered by people who have actually been in the fire — not just read about it.
 - Our defect reports prioritise the issues that matter in a real fire, not just the issues that pass a desktop audit.
 
-We employ serving and retired **NSW firefighters** to perform our monthly, six-monthly, and yearly inspections for the Annual Fire Safety Statement. They also deliver our fire safety training and provide our consultancy services.
+We employ serving  **NSW firefighters** to perform our monthly, six-monthly, and yearly inspections for the Annual Fire Safety Statement. They also deliver our fire safety training and provide our consultancy services.
 
 ---
 
@@ -362,7 +362,7 @@ Our consultants are licensed fire safety professionals with operational firefigh
 
 ## 13. Fire Safety Training
 
-We provide professional workplace fire safety training, delivered by **Professional Firefighters — both serving and retired** — who bring real-life experience to the classroom.
+We provide professional workplace fire safety training, delivered by **Professional Firefighters — serving ** — who bring real-life experience to the classroom.
 
 ### Courses Offered
 
@@ -755,7 +755,7 @@ We are **Competitive Pricing** — fair and transparent, with no hidden fees.
 We provide complete fire protection services across Greater Sydney — inspections, testing, maintenance, repairs, Annual Fire Safety Statements, consultancy, training, and products.
 
 ### Q: Who does the inspections?
-Real professional firefighters — both serving and retired. They are licensed, fully trained, and bring real-life experience to every inspection.
+Real professional firefighters — serving . They are licensed, fully trained, and bring real-life experience to every inspection.
 
 ### Q: Are you licensed?
 Yes. We are licensed across all major fire safety systems and are an FPA Australia Bronze Member.

@@ -17,26 +17,26 @@ const ROW_SIZE = 7;
 const VISIBLE_ROWS = 2;
 
 const descriptionByLocation: Record<string, string> = {
-  Bondi: "Servicing premium strata blocks and residential complexes in Bondi.",
-  Marrickville: "Reliable fire safety maintenance for historic and modern buildings in Marrickville.",
-  Waterloo: "Large-scale fire system management for expansive Waterloo developments.",
-  Haberfield: "Trusted strata fire services preserving Haberfield's unique heritage properties.",
-  Randwick: "Comprehensive fire safety services for Randwick's apartments and strata buildings.",
+  Bondi: "Reliable fire protection services for premium strata blocks and residential complexes in Bondi.",
+  Marrickville: "Reliable fire protection maintenance for historic and modern buildings in Marrickville.",
+  Waterloo: "Large-scale fire protection system management for expansive Waterloo developments.",
+  Haberfield: "Trusted fire protection services supporting Haberfield's unique heritage properties and strata buildings.",
+  Randwick: "Comprehensive fire protection services for Randwick apartments and strata buildings.",
   "Rose Bay": "Specialist fire protection for premium Rose Bay residential complexes.",
-  Alexandria: "Modern fire compliance solutions for vibrant Alexandria apartments.",
-  Enmore: "Practical fire safety servicing for Enmore's residential and mixed-use buildings.",
-  Greenacre: "Comprehensive fire protection across Greenacre's residential communities.",
-  Chippendale: "Fire safety support for Chippendale's apartments and commercial properties.",
-  Rockdale: "Trusted fire safety servicing for Rockdale's residential blocks and shops.",
-  Stanmore: "Fire safety maintenance for Stanmore's terraces and apartment buildings.",
-  Glebe: "Fire safety services for Glebe's heritage and modern apartment buildings.",
+  Alexandria: "Practical fire protection and compliance support for Alexandria apartments and managed properties.",
+  Enmore: "Practical fire protection servicing for Enmore residential and mixed-use buildings.",
+  Greenacre: "Comprehensive fire protection across Greenacre residential communities.",
+  Chippendale: "Reliable fire protection support for Chippendale apartments and commercial properties.",
+  Rockdale: "Trusted fire protection servicing for Rockdale residential blocks and shops.",
+  Stanmore: "Ongoing fire protection maintenance for Stanmore terraces and apartment buildings.",
+  Glebe: "Professional fire protection services for Glebe heritage and modern apartment buildings.",
   "North Sydney": "Reliable fire protection for North Sydney's high-rise and commercial developments.",
 };
 
 const strataBuildings: CardItem[] = [
   // ── Row 1 (7 cards) ─────────────────────────────────────────────────────
   { id: "randwick-building", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/randwick-building.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
-  { id: "randwick-welcome", title: "Randwick", description: descriptionByLocation.Randwick, imgSrc: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "randwick-welcome", title: "Randwick", description: "Reliable fire protection and fire safety support for Randwick residential and strata properties.", imgSrc: "/stratapage-cropped/opt/1-all-fire-services-welcome-randwick.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "enmore", title: "Enmore", description: descriptionByLocation.Enmore, imgSrc: "/stratapage-cropped/opt/2-all-fire-services-welcome-enmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "greenacre", title: "Greenacre", description: descriptionByLocation.Greenacre, imgSrc: "/stratapage-cropped/opt/3-all-fire-services-welcome-greenacre.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "haberfield-1", title: "Haberfield", description: descriptionByLocation.Haberfield, imgSrc: "/stratapage-cropped/opt/4-all-fire-services-welcome-haberfield.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
@@ -45,7 +45,7 @@ const strataBuildings: CardItem[] = [
   // ── Row 2 (7 cards) ─────────────────────────────────────────────────────
   { id: "waterloo-1", title: "Waterloo", description: descriptionByLocation.Waterloo, imgSrc: "/stratapage-cropped/opt/7-all-fire-services-welcome-waterloo.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "marrickville-1", title: "Marrickville", description: descriptionByLocation.Marrickville, imgSrc: "/stratapage-cropped/opt/8-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
-  { id: "marrickville-2", title: "Marrickville", description: descriptionByLocation.Marrickville, imgSrc: "/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
+  { id: "marrickville-2", title: "Marrickville", description: "Practical fire protection servicing for Marrickville residential and mixed-use properties.", imgSrc: "/stratapage-cropped/opt/9-all-fire-services-welcome-marrickville.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "stanmore-1", title: "Stanmore", description: descriptionByLocation.Stanmore, imgSrc: "/stratapage-cropped/opt/10-all-fire-services-welcome-stanmore.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "bondi-1", title: "Bondi", description: descriptionByLocation.Bondi, imgSrc: "/stratapage-cropped/opt/11-all-fire-services-welcome-bondi.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
   { id: "alexandria-1", title: "Alexandria", description: descriptionByLocation.Alexandria, imgSrc: "/stratapage-cropped/opt/12-all-fire-services-welcome-alexandria.webp", icon: <Building2 size={24} />, linkHref: "/our-clients" },
@@ -88,12 +88,12 @@ const gradientStyle = {
 } as const;
 
 const properties = [
-  { title: "Strata & Residential Buildings", description: "Ongoing inspection, testing and maintenance for common property and essential fire-safety systems." },
-  { title: "Commercial Properties", description: "Reliable fire protection and compliance support for offices, workplaces and commercial buildings." },
-  { title: "Retail & Mixed-Use Developments", description: "Fire-safety servicing for properties with multiple tenants, public areas and shared systems." },
-  { title: "Industrial & Warehouse Facilities", description: "Inspection and maintenance of essential systems across operational and industrial environments." },
-  { title: "Managed Properties", description: "Practical support for property and facilities managers responsible for multiple buildings and sites." },
-  { title: "Building & Development Sites", description: "Fire-safety services and documentation supporting new, existing and upgraded properties." },
+  { title: "Strata & Residential Buildings", description: "Ongoing fire protection inspections, testing, and maintenance for common property and essential fire-safety systems." },
+  { title: "Commercial Properties", description: "Reliable fire protection and compliance support for offices, workplaces, and commercial buildings." },
+  { title: "Retail & Mixed-Use Developments", description: "Practical fire protection servicing for properties with multiple tenants, public areas, and shared systems." },
+  { title: "Industrial & Warehouse Facilities", description: "Inspection and maintenance of essential fire protection systems across operational and industrial environments." },
+  { title: "Managed Properties", description: "Practical fire protection support for property and facilities managers responsible for multiple buildings and sites." },
+  { title: "Building & Development Sites", description: "Fire protection services and documentation supporting new, existing, and upgraded properties." },
 ];
 
 export default function OurClientsPage() {
@@ -333,7 +333,7 @@ export default function OurClientsPage() {
                         Our Clients
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        Trusted by strata managers, property teams, facility managers, and business owners across Sydney. Discover the organisations that rely on All Fire Services to protect their people, property, and compliance.
+                        Trusted by strata managers, property teams, facility managers, and business owners across Sydney. Discover the organisations that rely on All Fire Services for <strong>practical fire protection</strong>, helping protect their people, property, and compliance.
                       </p>
                     </div>
                   </div>
@@ -371,7 +371,7 @@ export default function OurClientsPage() {
                     <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>we service</span>
                   </h2>
                   <p>
-                    Trusted fire protection for strata communities, commercial buildings, and managed properties across Greater Sydney.
+                    Practical, reliable <strong>fire protection</strong> for strata communities, commercial buildings, residential properties, and managed sites across Greater Sydney.
                   </p>
                 </header>
               </div>
@@ -503,10 +503,10 @@ export default function OurClientsPage() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Every building has different fire-safety responsibilities. From residential complexes and commercial properties to managed facilities and mixed-use developments, each site requires the right combination of inspection, testing, maintenance and compliance support.
+                      Every building has different <strong>fire protection and fire-safety responsibilities</strong>. From residential complexes and commercial properties to managed facilities and mixed-use developments, each site requires the right combination of inspection, testing, maintenance, and compliance support.
                     </p>
                     <p className="text-[#111111] text-[clamp(1rem,1.3vw,1.15rem)] leading-[1.6] text-left" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services works across Greater Sydney to help keep buildings <strong>protected, maintained and ready when it matters.</strong>
+                      All Fire Services works across Greater Sydney to provide practical <strong>fire protection</strong>, helping keep buildings <strong>protected, maintained, and ready when it matters most.</strong>
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
@@ -524,14 +524,8 @@ export default function OurClientsPage() {
             <div className="container-large">
               <div className="padding-section-large" style={{ paddingBottom: '4rem' }}>
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} our-clients-how-we-help`} style={{ alignItems: 'stretch' }}>
-                  {/* The compilation image is rendered with explicit
-                      width/height so the container hugs it perfectly — no
-                      extra space, no overflow, no fixed aspect-ratio
-                      clipping. The image scales with
-                      `width: 100%; height: auto` so its height settles to
-                      the natural ratio at the current viewport width. */}
-                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto', background: '#f4f4f4' }}>
-                    <Image src="/allbuildings.jpg" alt="All Fire Services supporting buildings across Greater Sydney" width={824} height={1024} style={{ width: '100%', height: 'auto', display: 'block' }} sizes="(max-width: 1024px) 100vw, 50vw" quality={60} loading="lazy" />
+                  <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>
+                    <Image src="/buildingcompilation.jpg" alt="All Fire Services supporting buildings across Greater Sydney" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" quality={60} loading="lazy" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -545,13 +539,13 @@ export default function OurClientsPage() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services works with property managers, building owners, facilities teams and businesses across Greater Sydney.
+                      All Fire Services provides <strong>fire protection support</strong> to property managers, building owners, facilities teams, and businesses across Greater Sydney.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      We coordinate inspections, testing, maintenance, documentation and certification across essential fire-safety systems, helping clients manage their responsibilities without unnecessary complexity.
+                      We coordinate inspections, testing, maintenance, documentation, and certification across essential <strong>fire protection systems</strong>, helping clients manage their responsibilities without unnecessary complexity.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      From routine maintenance to ongoing compliance requirements, our team provides <strong>practical support and clear communication</strong> throughout the process.
+                      From routine maintenance to ongoing compliance requirements, our team provides <strong>practical fire protection support and clear communication</strong> throughout the process.
                     </p>
                   </div>
                 </div>
@@ -578,7 +572,7 @@ export default function OurClientsPage() {
                     <span style={{ ...gradientStyle, fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92 }}>for Every Property</span>
                   </h2>
                   <p>
-                    Our experience covers a wide range of buildings and property environments across Greater Sydney.
+                    Our <strong>fire protection experience</strong> covers a wide range of buildings and property environments across Greater Sydney.
                   </p>
                 </header>
 
@@ -632,10 +626,10 @@ export default function OurClientsPage() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      Our team includes <strong>serving and retired professional firefighters</strong> alongside experienced fire-safety professionals who understand compliance, Australian Standards and the practical requirements of different buildings.
+                      Our team includes <strong>serving professional firefighters</strong> alongside experienced <strong>fire protection professionals</strong> who understand compliance, Australian Standards, and the practical requirements of different buildings.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      We focus on providing reliable service, straightforward advice and fire protection that suits the property rather than taking a one-size-fits-all approach.
+                      We focus on providing reliable service, straightforward advice, and <strong>fire protection that suits each property</strong>, rather than taking a one-size-fits-all approach.
                     </p>
                   </div>
                   <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden' }}>

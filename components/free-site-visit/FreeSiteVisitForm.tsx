@@ -1,26 +1,31 @@
 "use client";
 
 /**
- * FreeSiteVisitForm — the form inside the Free Site Visit modal.
+ * FreeSiteVisitForm — the form inside the Book the Boss modal.
  * ──────────────────────────────────────────────────────────────────────────
  * Single, self-contained form that submits to /api/free-site-visit.
  *
- * Fields (matches the contact form's data model):
- *   Required — Name, Phone, Email address, Suburb, Message
- *   Optional — Company / Building, Property / Building, Property address,
- *              Service required, Previous Annual Fire Safety Statement
+ * Fields (the simplified "Book the Boss" hierarchy):
+ *   Required — Name, Phone, Email, Suburb, Address, Message
+ *   Optional — Previous Annual Fire Safety Statement (PDF/DOC up to 10MB)
  *
- * The contact-only fields sit behind an "+ Add property details (optional)"
- * disclosure to keep the initial view simple. The modal panel also shows
- * the social icons in the bottom row so the visitor can find us on any
- * channel from the same surface.
+ * The form is intentionally compact so the modal fits the typical desktop
+ * viewport without scrolling. The Address field uses address autocomplete
+ * powered by the address provider selected at build/config time (see the
+ * constant ADDRESS_PROVIDER below). When no provider has been configured
+ * the field falls back to a plain text input — the form still works.
+ *
+ * The contact-only fields have all been simplified per the latest client
+ * direction:
+ *   • Removed — Company / Building, Property / Building, Property address
+ *     duplicates, Service required dropdown
+ *   • Added   — A single Address field with Australian autocomplete
+ *   • Kept    — Suburb (as a separate field so autofill remains accurate)
  */
 
-import React, { useCallback, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronDown, ChevronUp } from "lucide-react";
 
-import { FREE_SITE_VISIT_SERVICE_OPTIONS } from "@/lib/free-site-visit/constants";
 import { trackFreeSiteVisitEvent } from "@/lib/free-site-visit/analytics";
 import { useFreeSiteVisitSafe } from "@/lib/free-site-visit/FreeSiteVisitContext";
 
@@ -37,9 +42,8 @@ const NAME_MAX = 120;
 const EMAIL_MAX = 254;
 const SUBURB_MIN = 2;
 const SUBURB_MAX = 120;
-const COMPANY_MAX = 160;
-const PROPERTY_NAME_MAX = 160;
-const PROPERTY_ADDRESS_MAX = 240;
+const ADDRESS_MIN = 4;
+const ADDRESS_MAX = 240;
 const MESSAGE_MIN = 5;
 const MESSAGE_MAX = 2000;
 
@@ -51,10 +55,7 @@ interface FreeSiteVisitFormState {
   email: string;
   mobile: string;
   suburb: string;
-  company: string;
-  propertyName: string;
-  propertyAddress: string;
-  service: string;
+  address: string;
   message: string;
   /** Honeypot — must stay empty. Bots fill it. */
   hp: string;
@@ -65,10 +66,7 @@ const EMPTY_FORM: FreeSiteVisitFormState = {
   email: "",
   mobile: "",
   suburb: "",
-  company: "",
-  propertyName: "",
-  propertyAddress: "",
-  service: "",
+  address: "",
   message: "",
   hp: "",
 };
@@ -76,12 +74,37 @@ const EMPTY_FORM: FreeSiteVisitFormState = {
 type FieldErrors = Partial<Record<keyof FreeSiteVisitFormState, string>>;
 
 export interface FreeSiteVisitFormProps {
-  /** Service id to pre-select when the modal opens. */
+  /**
+   * Pre-selected service id (kept for backwards compatibility with the
+   * modal call site). The Book the Boss form no longer shows a service
+   * selector, so this prop is accepted but ignored at render time.
+   */
   preselectedService?: string;
   /** Where the button came from — for analytics & email metadata. */
   source?: string;
   /** Callback once the form successfully submits. */
   onSubmitted?: () => void;
+}
+
+// ─── Address autocomplete ────────────────────────────────────────────────────
+// The provider is selected by environment variable. The default is "none"
+// so the form falls back to a vanilla <input> when no provider has been
+// configured — the form keeps working and the visitor can still type their
+// address manually. When NEXT_PUBLIC_ADDRESS_PROVIDER=google is set together
+// with NEXT_PUBLIC_GOOGLE_PLACES_API_KEY, the input renders a Google Places
+// autocomplete with full keyboard / mouse support.
+const ADDRESS_PROVIDER =
+  (typeof process !== "undefined" &&
+    process.env?.NEXT_PUBLIC_ADDRESS_PROVIDER) ||
+  "none";
+
+interface AddressSuggestion {
+  /** Human-readable main text (street). */
+  main: string;
+  /** Secondary text (suburb, state). */
+  secondary: string;
+  /** Full description as the API returned it. */
+  full: string;
 }
 
 // Compact input styling — the modal must fit the viewport without scrolling.
@@ -126,15 +149,11 @@ const errorStyle: React.CSSProperties = {
 };
 
 export default function FreeSiteVisitForm({
-  preselectedService,
   source,
   onSubmitted,
 }: FreeSiteVisitFormProps) {
   const visit = useFreeSiteVisitSafe();
-  const [form, setForm] = useState<FreeSiteVisitFormState>(() => ({
-    ...EMPTY_FORM,
-    service: preselectedService ?? "",
-  }));
+  const [form, setForm] = useState<FreeSiteVisitFormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [file, setFile] = useState<File | null>(null);
@@ -142,7 +161,6 @@ export default function FreeSiteVisitForm({
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [formStartFired, setFormStartFired] = useState(false);
-  const [detailsOpen, setDetailsOpen] = useState(false);
   const successRef = useRef<HTMLDivElement>(null);
   const formId = useId();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -161,11 +179,10 @@ export default function FreeSiteVisitForm({
         setFormStartFired(true);
         trackFreeSiteVisitEvent("free_site_visit_form_start", {
           source: (source as never) ?? "other",
-          service: preselectedService,
         });
       }
     },
-    [formStartFired, source, preselectedService],
+    [formStartFired, source],
   );
 
   const validate = useCallback((state: FreeSiteVisitFormState): FieldErrors => {
@@ -182,14 +199,8 @@ export default function FreeSiteVisitForm({
     if (state.suburb.trim().length < SUBURB_MIN || state.suburb.trim().length > SUBURB_MAX) {
       next.suburb = "Please enter your suburb.";
     }
-    if (state.company.length > COMPANY_MAX) {
-      next.company = "Please shorten the company name.";
-    }
-    if (state.propertyName.length > PROPERTY_NAME_MAX) {
-      next.propertyName = "Please shorten the property name.";
-    }
-    if (state.propertyAddress.length > PROPERTY_ADDRESS_MAX) {
-      next.propertyAddress = "Please shorten the property address.";
+    if (state.address.trim().length < ADDRESS_MIN || state.address.trim().length > ADDRESS_MAX) {
+      next.address = "Please enter your property address.";
     }
     if (state.message.trim().length < MESSAGE_MIN || state.message.length > MESSAGE_MAX) {
       next.message = "Please tell us how we can help (5–2000 characters).";
@@ -219,9 +230,8 @@ export default function FreeSiteVisitForm({
     setFile(next);
     trackFreeSiteVisitEvent("free_site_visit_file_attached", {
       source: (source as never) ?? "other",
-      service: preselectedService,
     });
-  }, [source, preselectedService]);
+  }, [source]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -249,15 +259,11 @@ export default function FreeSiteVisitForm({
         fd.set("email", form.email.trim());
         fd.set("mobile", form.mobile.trim());
         fd.set("suburb", form.suburb.trim());
-        fd.set("company", form.company.trim());
-        fd.set("propertyName", form.propertyName.trim());
-        fd.set("propertyAddress", form.propertyAddress.trim());
-        fd.set("service", form.service);
+        fd.set("address", form.address.trim());
         fd.set("message", form.message.trim());
         fd.set("consent", "1");
         fd.set("hp", form.hp);
         fd.set("source", source ?? "other");
-        if (preselectedService) fd.set("preselectedService", preselectedService);
         if (file) fd.set("afss", file);
 
         const response = await fetch("/api/free-site-visit", {
@@ -277,12 +283,10 @@ export default function FreeSiteVisitForm({
           setStatusMessage("Thanks — we've received your request.");
           setForm(EMPTY_FORM);
           setFile(null);
-          setDetailsOpen(false);
           if (fileInputRef.current) fileInputRef.current.value = "";
           visit?.markSubmitted();
           trackFreeSiteVisitEvent("free_site_visit_success", {
             source: (source as never) ?? "other",
-            service: preselectedService,
           });
           onSubmitted?.();
           requestAnimationFrame(() => {
@@ -299,7 +303,6 @@ export default function FreeSiteVisitForm({
           }
           trackFreeSiteVisitEvent("free_site_visit_error", {
             source: (source as never) ?? "other",
-            service: preselectedService,
           });
         }
       } catch (err) {
@@ -310,13 +313,12 @@ export default function FreeSiteVisitForm({
         );
         trackFreeSiteVisitEvent("free_site_visit_error", {
           source: (source as never) ?? "other",
-          service: preselectedService,
         });
       } finally {
         setIsSubmitting(false);
       }
     },
-    [form, file, isSubmitting, onSubmitted, preselectedService, source, validate, visit],
+    [form, file, isSubmitting, onSubmitted, source, validate, visit],
   );
 
   const submitting = isSubmitting;
@@ -372,7 +374,7 @@ export default function FreeSiteVisitForm({
             fontSize: "0.9rem",
           }}
         >
-          Our team will review your details and contact you regarding your Free Site Visit.
+          Peter and the team will be in touch to confirm your visit.
         </p>
         <p
           style={{
@@ -397,8 +399,8 @@ export default function FreeSiteVisitForm({
     <form
       onSubmit={handleSubmit}
       noValidate
-      name={`${formId}-free-site-visit-form`}
-      id={`${formId}-free-site-visit-form`}
+      name={`${formId}-book-the-boss-form`}
+      id={`${formId}-book-the-boss-form`}
       aria-busy={submitting}
       style={{
         display: "flex",
@@ -494,7 +496,7 @@ export default function FreeSiteVisitForm({
         </div>
       </div>
 
-      {/* Email address + Suburb */}
+      {/* Email + Suburb */}
       <div
         className="fsv-row-2col"
         style={{
@@ -505,7 +507,7 @@ export default function FreeSiteVisitForm({
       >
         <div>
           <label htmlFor={`${formId}-email`} style={labelStyle}>
-            Email address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+            Email <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
           </label>
           <input
             id={`${formId}-email`}
@@ -556,78 +558,56 @@ export default function FreeSiteVisitForm({
         </div>
       </div>
 
-      {/* Company or building (optional) */}
+      {/* Address — single column so the input remains readable.
+          Renders the autocomplete wrapper which automatically degrades to
+          a plain input when no provider has been configured. */}
       <div>
-        <label htmlFor={`${formId}-company`} style={labelStyle}>
-          Company or building <span style={{ color: "#6b6b6b", fontSize: "0.7rem", fontWeight: 500 }}>(optional)</span>
+        <label htmlFor={`${formId}-address`} style={labelStyle}>
+          Address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
         </label>
-        <input
-          id={`${formId}-company`}
-          name="company"
-          type="text"
-          autoComplete="organization"
-          maxLength={COMPANY_MAX}
-          value={form.company}
-          onChange={(e) => update("company", e.target.value)}
+        <AddressAutocomplete
+          inputId={`${formId}-address`}
+          name="address"
+          value={form.address}
+          onChange={(value) => update("address", value)}
+          onSelectSuburb={(suburb) => update("suburb", suburb)}
+          placeholder="123 Example St, Sydney NSW 2000"
           disabled={submitting}
-          placeholder="Strata plan, building name, or company"
-          style={inputStyle}
+          aria-invalid={errors.address ? "true" : undefined}
+          aria-describedby={errors.address ? `${formId}-address-error` : undefined}
+          inputStyle={errors.address ? inputErrorStyle : inputStyle}
         />
-      </div>
-
-      {/* Service required */}
-      <div>
-        <label htmlFor={`${formId}-service`} style={labelStyle}>
-          Service required
-        </label>
-        <select
-          id={`${formId}-service`}
-          name="service"
-          value={form.service}
-          onChange={(e) => update("service", e.target.value)}
-          disabled={submitting}
-          style={{
-            ...inputStyle,
-            appearance: "none",
-            backgroundImage:
-              "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right 12px center",
-            paddingRight: 32,
-          }}
-        >
-          <option value="">Select a service (optional)</option>
-          {FREE_SITE_VISIT_SERVICE_OPTIONS.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
+        {errors.address && (
+          <p id={`${formId}-address-error`} style={errorStyle}>
+            {errors.address}
+          </p>
+        )}
       </div>
 
       {/* Message */}
       <div>
         <label htmlFor={`${formId}-message`} style={labelStyle}>
-          Message <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
+          Message
         </label>
         <textarea
           id={`${formId}-message`}
           name="message"
-          required
           maxLength={MESSAGE_MAX}
-          rows={2}
+          rows={3}
           value={form.message}
           onChange={(e) => update("message", e.target.value)}
           disabled={submitting}
           aria-invalid={errors.message ? "true" : undefined}
           aria-describedby={errors.message ? `${formId}-message-error` : undefined}
-          placeholder="Tell us about your property, what you need help with, and any timing considerations."
+          placeholder="Tell us about your property or what you need help with."
           style={{
-            ...(errors.message ? inputErrorStyle : inputStyle),
-            minHeight: 60,
+            ...inputStyle,
+            minHeight: 64,
             padding: "7px 11px",
             resize: "vertical",
             fontFamily: "inherit",
+            lineHeight: 1.4,
+            ...(errors.message ? inputErrorStyle : {}),
           }}
         />
         {errors.message && (
@@ -637,192 +617,120 @@ export default function FreeSiteVisitForm({
         )}
       </div>
 
-      {/* Add property details — optional file upload only */}
-      <div>
-        <button
-          type="button"
-          onClick={() => setDetailsOpen((v) => !v)}
-          aria-expanded={detailsOpen}
-          aria-controls={`${formId}-details`}
-          disabled={submitting}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.3rem",
-            background: "transparent",
-            border: "none",
-            padding: "0.1rem 0",
-            cursor: submitting ? "not-allowed" : "pointer",
-            color: "#d64012",
-            fontWeight: 600,
-            fontSize: "0.78rem",
-            fontFamily: "inherit",
-          }}
-        >
-          {detailsOpen ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-          {detailsOpen ? "Hide property details" : "+ Add property details (optional)"}
-        </button>
-
-        {detailsOpen && (
-          <div
-            id={`${formId}-details`}
+      {/* Previous Annual Fire Safety Statement — clearly optional. */}
+      <div style={{ marginTop: "0.1rem" }}>
+        <label htmlFor={`${formId}-afss`} style={labelStyle}>
+          Previous Annual Fire Safety Statement{" "}
+          <span
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.5rem",
-              paddingTop: "0.35rem",
+              color: "#6b6b6b",
+              fontSize: "0.7rem",
+              fontWeight: 500,
             }}
           >
-            <div
-              className="fsv-row-2col"
+            Optional
+          </span>
+        </label>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            flexWrap: "wrap",
+          }}
+        >
+          <label
+            htmlFor={`${formId}-afss`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.4rem",
+              padding: "0.4rem 0.7rem",
+              borderRadius: 6,
+              border: "1px solid #d1d5db",
+              cursor: submitting ? "not-allowed" : "pointer",
+              background: "#ffffff",
+              fontWeight: 500,
+              fontSize: "0.78rem",
+              color: "#111111",
+            }}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            {file ? "Replace file" : "Choose file"}
+          </label>
+          <input
+            ref={fileInputRef}
+            id={`${formId}-afss`}
+            name="afss"
+            type="file"
+            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            disabled={submitting}
+            onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
+            style={{
+              position: "absolute",
+              width: 1,
+              height: 1,
+              padding: 0,
+              margin: -1,
+              overflow: "hidden",
+              clip: "rect(0,0,0,0)",
+              whiteSpace: "nowrap",
+              border: 0,
+            }}
+          />
+          <span
+            style={{
+              fontSize: "0.75rem",
+              color: file ? "#111111" : "#6b6b6b",
+              flex: "1 1 auto",
+              minWidth: 0,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {file ? `${file.name} (${formatBytes(file.size)})` : "No file chosen"}
+          </span>
+          {file && (
+            <button
+              type="button"
+              onClick={() => {
+                setFile(null);
+                if (fileInputRef.current) fileInputRef.current.value = "";
+              }}
+              disabled={submitting}
               style={{
-                display: "grid",
-                gap: "0.5rem",
-                gridTemplateColumns: "1fr 1fr",
+                padding: "0.3rem 0.55rem",
+                borderRadius: 5,
+                border: "1px solid #d1d5db",
+                background: "transparent",
+                color: "#111111",
+                fontSize: "0.75rem",
+                cursor: submitting ? "not-allowed" : "pointer",
               }}
             >
-              <div>
-                <label htmlFor={`${formId}-propertyName`} style={labelStyle}>
-                  Property / Building
-                </label>
-                <input
-                  id={`${formId}-propertyName`}
-                  name="propertyName"
-                  type="text"
-                  maxLength={PROPERTY_NAME_MAX}
-                  value={form.propertyName}
-                  onChange={(e) => update("propertyName", e.target.value)}
-                  disabled={submitting}
-                  placeholder="e.g. Bayside Apartments"
-                  style={inputStyle}
-                />
-              </div>
-              <div>
-                <label htmlFor={`${formId}-propertyAddress`} style={labelStyle}>
-                  Property address
-                </label>
-                <input
-                  id={`${formId}-propertyAddress`}
-                  name="propertyAddress"
-                  type="text"
-                  autoComplete="street-address"
-                  maxLength={PROPERTY_ADDRESS_MAX}
-                  value={form.propertyAddress}
-                  onChange={(e) => update("propertyAddress", e.target.value)}
-                  disabled={submitting}
-                  placeholder="123 Example St, Sydney NSW 2000"
-                  style={inputStyle}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor={`${formId}-afss`} style={labelStyle}>
-                Previous Annual Fire Safety Statement
-              </label>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  flexWrap: "wrap",
-                }}
-              >
-                <label
-                  htmlFor={`${formId}-afss`}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
-                    padding: "0.4rem 0.7rem",
-                    borderRadius: 6,
-                    border: "1px solid #d1d5db",
-                    cursor: submitting ? "not-allowed" : "pointer",
-                    background: "#ffffff",
-                    fontWeight: 500,
-                    fontSize: "0.78rem",
-                    color: "#111111",
-                  }}
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" y1="3" x2="12" y2="15" />
-                  </svg>
-                  {file ? "Replace file" : "Choose file"}
-                </label>
-                <input
-                  ref={fileInputRef}
-                  id={`${formId}-afss`}
-                  name="afss"
-                  type="file"
-                  accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  disabled={submitting}
-                  onChange={(e) => handleFile(e.target.files?.[0] ?? null)}
-                  style={{
-                    position: "absolute",
-                    width: 1,
-                    height: 1,
-                    padding: 0,
-                    margin: -1,
-                    overflow: "hidden",
-                    clip: "rect(0,0,0,0)",
-                    whiteSpace: "nowrap",
-                    border: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    color: file ? "#111111" : "#6b6b6b",
-                    flex: "1 1 auto",
-                    minWidth: 0,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {file ? `${file.name} (${formatBytes(file.size)})` : "No file chosen"}
-                </span>
-                {file && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFile(null);
-                      if (fileInputRef.current) fileInputRef.current.value = "";
-                    }}
-                    disabled={submitting}
-                    style={{
-                      padding: "0.3rem 0.55rem",
-                      borderRadius: 5,
-                      border: "1px solid #d1d5db",
-                      background: "transparent",
-                      color: "#111111",
-                      fontSize: "0.75rem",
-                      cursor: submitting ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
-              <p style={helperStyle}>
-                Have your previous Annual Fire Safety Statement? Attach it here if available. PDF or Word, up to 10MB.
-              </p>
-              {fileError && <p style={errorStyle}>{fileError}</p>}
-            </div>
-          </div>
-        )}
+              Remove
+            </button>
+          )}
+        </div>
+        <p style={helperStyle}>
+          Optional — upload it if available. PDF or Word, up to 10MB.
+        </p>
+        {fileError && <p style={errorStyle}>{fileError}</p>}
       </div>
 
       {/* Status (error) */}
@@ -854,11 +762,11 @@ export default function FreeSiteVisitForm({
         disabled={submitting}
         className="fsv-submit"
         style={{
-          marginTop: "0.2rem",
+          marginTop: "0.25rem",
           padding: "0.7rem 1.2rem",
           minHeight: 42,
           fontSize: "0.95rem",
-          fontWeight: 700,
+          fontWeight: 800,
           color: "#ffffff",
           background: submitting
             ? "#f87171"
@@ -875,6 +783,8 @@ export default function FreeSiteVisitForm({
           transition: "transform 0.12s, box-shadow 0.2s",
           fontFamily: "inherit",
           whiteSpace: "nowrap",
+          letterSpacing: "0.02em",
+          textTransform: "uppercase",
         }}
         onMouseDown={(e) => {
           if (!submitting) e.currentTarget.style.transform = "translateY(1px)";
@@ -903,7 +813,7 @@ export default function FreeSiteVisitForm({
             Sending&hellip;
           </>
         ) : (
-          "Send Request to Peter"
+          "Book the Boss"
         )}
       </button>
 
@@ -937,7 +847,7 @@ export default function FreeSiteVisitForm({
         Peter and the team will be in touch shortly to confirm your visit. Your information is secure.
       </p>
 
-      {/* Prefer to call + socials — single bold row at the bottom */}
+      {/* Prefer to call — single bold row at the bottom */}
       <div
         style={{
           display: "flex",
@@ -986,14 +896,14 @@ export default function FreeSiteVisitForm({
         @media (prefers-reduced-motion: reduce) {
           .fsv-submit { transition: none !important; }
         }
-        /* Tablet & mobile — collapse the two-column form rows into a
-           single column so inputs aren't compressed. The CTA button also
-           goes full-width here so it never gets cropped, and its label
-           is allowed to wrap so long button copy never overflows. */
+        /* Tablet & mobile — stack the two-column form rows so inputs
+           aren't compressed on narrow viewports, and allow the CTA
+           button label to wrap rather than overflow. Visual design,
+           height, font-size, gradient and radius are all preserved. */
         @media (max-width: 1024px) {
           .fsv-submit {
-            width: 100% !important;
-            white-space: normal !important;
+            width: 100%;
+            white-space: normal;
             text-align: center;
           }
         }
@@ -1002,17 +912,10 @@ export default function FreeSiteVisitForm({
             grid-template-columns: minmax(0, 1fr) !important;
           }
           .fsv-submit {
-            width: 100% !important;
-            white-space: normal !important;
+            width: 100%;
+            white-space: normal;
             text-align: center;
-            font-size: 0.9rem !important;
-            line-height: 1.2;
           }
-        }
-        /* Very narrow phones — shrink the CTA copy slightly so it never
-           clips. */
-        @media (max-width: 380px) {
-          .fsv-submit { font-size: 0.82rem !important; }
         }
       `}</style>
 
@@ -1022,6 +925,328 @@ export default function FreeSiteVisitForm({
       </span>
     </form>
   );
+}
+
+/**
+ * AddressAutocomplete — wraps the Address input and (when configured)
+ * shows a dropdown of address suggestions. Falls back to a vanilla text
+ * input when no provider key has been supplied to the environment, so the
+ * form continues to function without any autocomplete provider.
+ *
+ * Provider chosen via NEXT_PUBLIC_ADDRESS_PROVIDER. Supports:
+ *   • "google" — Google Places Autocomplete (uses NEXT_PUBLIC_GOOGLE_PLACES_API_KEY)
+ *   • "none"   — vanilla text input (default; no third-party script loaded)
+ *
+ * When Google Places is enabled, the Google script is loaded once at module
+ * level. The script creates `window.google.maps.places`; we watch for it via
+ * a small poll and hide the list cleanly when the input loses focus.
+ */
+function AddressAutocomplete({
+  inputId,
+  name,
+  value,
+  onChange,
+  onSelectSuburb,
+  placeholder,
+  disabled,
+  inputStyle,
+  ...aria
+}: {
+  inputId: string;
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+  onSelectSuburb?: (suburb: string) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  inputStyle: React.CSSProperties;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "name" | "value" | "onChange" | "placeholder" | "id" | "disabled" | "style">) {
+  const providerIsGoogle = ADDRESS_PROVIDER === "google";
+  const googleApiKey = (typeof process !== "undefined" &&
+    process.env?.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY) ||
+    "";
+  const googleReady = useGooglePlacesScript(providerIsGoogle && !!googleApiKey, googleApiKey);
+
+  const [suggestions, setSuggestions] = useState<AddressSuggestion[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [open, setOpen] = useState(false);
+
+  // When the Google script has loaded and the provider is configured,
+  // attach a Places AutocompleteService via window.google.maps.places.
+  const autocompleteServiceRef = useRef<unknown>(null);
+  const sessionTokenRef = useRef<unknown>(null);
+  useEffect(() => {
+    if (!googleReady) return;
+    // The Google global is added by the script; check defensively.
+    const g = (typeof window !== "undefined" ? (window as unknown as { google?: { maps?: { places?: unknown } } }) : null)?.google;
+    if (!g?.maps?.places) return;
+    const w = window as unknown as {
+      google: {
+        maps: {
+          places: {
+            AutocompleteService: new (opts?: unknown) => unknown;
+          };
+        };
+      };
+    };
+    const svc = new w.google.maps.places.AutocompleteService();
+    autocompleteServiceRef.current = svc;
+    void sessionTokenRef;
+    return () => {
+      autocompleteServiceRef.current = null;
+    };
+  }, [googleReady]);
+
+  const fetchSuggestions = useCallback(
+    (input: string) => {
+      if (!providerIsGoogle) {
+        setSuggestions([]);
+        setOpen(false);
+        return;
+      }
+      const svc = autocompleteServiceRef.current as
+        | {
+            getPlacePredictions: (
+              req: {
+                input: string;
+                componentRestrictions?: { country: string };
+              },
+              cb: (
+                predictions: Array<{
+                  structured_formatting?: { main_text?: string; secondary_text?: string };
+                  description?: string;
+                }> | null,
+                status: string,
+              ) => void,
+            ) => void;
+          }
+        | null;
+      if (!svc) {
+        setSuggestions([]);
+        setOpen(false);
+        return;
+      }
+      if (input.trim().length < 3) {
+        setSuggestions([]);
+        setOpen(false);
+        return;
+      }
+      svc.getPlacePredictions(
+        {
+          input,
+          componentRestrictions: { country: "au" },
+        },
+        (predictions, status) => {
+          if (status !== "OK" || !predictions) {
+            setSuggestions([]);
+            setOpen(false);
+            return;
+          }
+          const next: AddressSuggestion[] = predictions.slice(0, 6).map((p) => ({
+            main: p.structured_formatting?.main_text ?? p.description ?? "",
+            secondary: p.structured_formatting?.secondary_text ?? "",
+            full: p.description ?? "",
+          }));
+          setSuggestions(next);
+          setActiveIndex(next.length > 0 ? 0 : -1);
+          setOpen(next.length > 0);
+        },
+      );
+    },
+    [providerIsGoogle],
+  );
+
+  const handleChange = useCallback(
+    (next: string) => {
+      onChange(next);
+      fetchSuggestions(next);
+    },
+    [onChange, fetchSuggestions],
+  );
+
+  const handleSelect = useCallback(
+    (idx: number) => {
+      const picked = suggestions[idx];
+      if (!picked) return;
+      onChange(picked.full);
+      // Best-effort: copy the secondary text (typically the suburb) into
+      // the Suburb field too so the visitor doesn't have to type it again.
+      const suburbGuess = picked.secondary.split(",")[0]?.trim();
+      if (suburbGuess) onSelectSuburb?.(suburbGuess);
+      setOpen(false);
+      setSuggestions([]);
+    },
+    [suggestions, onChange, onSelectSuburb],
+  );
+
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!open || suggestions.length === 0) return;
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        setActiveIndex((prev) => (prev + 1) % suggestions.length);
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        setActiveIndex((prev) =>
+          prev <= 0 ? suggestions.length - 1 : prev - 1,
+        );
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        if (activeIndex >= 0) handleSelect(activeIndex);
+      } else if (event.key === "Escape") {
+        setOpen(false);
+      }
+    },
+    [activeIndex, handleSelect, open, suggestions.length],
+  );
+
+  if (!providerIsGoogle || !googleApiKey) {
+    // No provider — render a plain text input. The form keeps working.
+    return (
+      <input
+        {...aria}
+        id={inputId}
+        name={name}
+        type="text"
+        autoComplete="street-address"
+        required
+        maxLength={ADDRESS_MAX}
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        disabled={disabled}
+        placeholder={placeholder}
+        style={inputStyle}
+      />
+    );
+  }
+
+  return (
+    <div style={{ position: "relative" }}>
+      <input
+        {...aria}
+        id={inputId}
+        name={name}
+        type="text"
+        autoComplete="street-address"
+        required
+        maxLength={ADDRESS_MAX}
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onFocus={() => suggestions.length > 0 && setOpen(true)}
+        onBlur={() => window.setTimeout(() => setOpen(false), 120)}
+        disabled={disabled}
+        placeholder={placeholder}
+        aria-autocomplete="list"
+        aria-expanded={open}
+        aria-controls={`${inputId}-listbox`}
+        aria-activedescendant={
+          open && activeIndex >= 0 ? `${inputId}-option-${activeIndex}` : undefined
+        }
+        role="combobox"
+        style={inputStyle}
+      />
+      {open && suggestions.length > 0 && (
+        <ul
+          id={`${inputId}-listbox`}
+          role="listbox"
+          style={{
+            position: "absolute",
+            top: "calc(100% + 4px)",
+            left: 0,
+            right: 0,
+            zIndex: 60,
+            margin: 0,
+            padding: "4px",
+            listStyle: "none",
+            background: "#ffffff",
+            border: "1px solid #d8d8d8",
+            borderRadius: 8,
+            boxShadow: "0 12px 28px rgba(0,0,0,0.18)",
+            maxHeight: 240,
+            overflowY: "auto",
+          }}
+        >
+          {suggestions.map((s, idx) => (
+            <li
+              id={`${inputId}-option-${idx}`}
+              role="option"
+              aria-selected={activeIndex === idx}
+              key={`${s.full}-${idx}`}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                handleSelect(idx);
+              }}
+              onMouseEnter={() => setActiveIndex(idx)}
+              style={{
+                padding: "8px 10px",
+                borderRadius: 6,
+                cursor: "pointer",
+                background: activeIndex === idx ? "rgba(255,87,34,0.12)" : "transparent",
+                color: "#111111",
+              }}
+            >
+              <div style={{ fontSize: "0.85rem", fontWeight: 600, lineHeight: 1.3 }}>{s.main}</div>
+              {s.secondary && (
+                <div style={{ fontSize: "0.75rem", color: "#5b5b5b", lineHeight: 1.3 }}>{s.secondary}</div>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+/**
+ * useGooglePlacesScript — loads the Google Places script once per session,
+ * only when actually requested (provider=google + key present). Returns
+ * `true` once `window.google.maps.places` is ready to use.
+ */
+function useGooglePlacesScript(shouldLoad: boolean, apiKey: string): boolean {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (!shouldLoad || typeof window === "undefined") return;
+    const existing = (window as unknown as { __fsvGooglePlaces?: boolean }).__fsvGooglePlaces;
+    if (existing) {
+      // Script tag already on the page; wait for it to expose the API.
+      pollForGoogle();
+      return;
+    }
+    (window as unknown as { __fsvGooglePlaces?: boolean }).__fsvGooglePlaces = true;
+
+    const script = document.createElement("script");
+    script.id = "fsv-google-places";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&loading=async`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => {
+      // Silently fall back — the field continues to work as plain text.
+      setReady(false);
+    };
+    document.head.appendChild(script);
+    pollForGoogle();
+    return () => {
+      /* no cleanup — the script can persist for the session */
+    };
+  }, [shouldLoad, apiKey]);
+
+  function pollForGoogle() {
+    let tries = 0;
+    const tick = () => {
+      const g = (window as unknown as { google?: { maps?: { places?: unknown } } })?.google;
+      if (g?.maps?.places) {
+        setReady(true);
+        return;
+      }
+      tries += 1;
+      if (tries < 80) window.setTimeout(tick, 125);
+    };
+    tick();
+  }
+
+  return ready;
 }
 
 function formatBytes(bytes: number): string {
@@ -1058,7 +1283,7 @@ function FreeSiteVisitSocials() {
     },
     {
       label: "LinkedIn",
-      href: "https://au.linkedin.com/in/allfire-services-sydney-92690516",
+      href: "https://au.linkedin.com/allfire-services-sydney-92690516",
       icon: (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -1140,3 +1365,4 @@ function FreeSiteVisitSocials() {
     </ul>
   );
 }
+

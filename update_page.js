@@ -61,7 +61,7 @@ content = content.replace(
 );
 content = content.replace(
   'We don’t trust just anyone to fit our custom-designed roofs. If you’re unable to deliver your vehicle to us for a factory installation, choose from our network of approved UK fitters.',
-  'To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters both serving and retired to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.'
+  'To ensure our Clients receive extensive and real-life knowledge of the fire safety industry, All Fire Services was founded with the unique concept to provide Professional Firefighters serving to be our Customer Service Technicians. These people are Professional, Experienced and Highly Motivated to provide a level of Service and Safety to the Community unequalled by our competition.'
 );
 content = content.replace(
   'Find a fitter',

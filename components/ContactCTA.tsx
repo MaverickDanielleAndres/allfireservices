@@ -26,8 +26,7 @@ type FormState = {
   phone: string;
   email: string;
   suburb: string;
-  company: string;
-  service: string;
+  address: string;
   message: string;
   consent: boolean;
 };
@@ -37,8 +36,7 @@ const EMPTY_FORM: FormState = {
   phone: "",
   email: "",
   suburb: "",
-  company: "",
-  service: "",
+  address: "",
   message: "",
   consent: false,
 };
@@ -243,73 +241,54 @@ export default function ContactCTA({
                   : { display: "flex", flexDirection: "column", gap: "3rem", alignItems: "stretch" }
               }
             >
-              <div className="contact-cta_content contact-info" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                <div className="contact-cta_header" style={{ textAlign: "center", marginBottom: "0.5rem", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <h2 className="heading-style-h3" style={{ marginBottom: "1.5rem", textAlign: "center", color: "#111111" }}>
-                    Get in <span style={{
-                      background: "linear-gradient(to right, #ff2a00, #ffb700)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}>touch</span>
-                  </h2>
-                  <p className="body-text mb-2 md:mb-4" style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.15rem)", textAlign: "center", lineHeight: 1.6, color: "#111111", fontWeight: 500, textWrap: "balance", maxWidth: "44rem" }}>
-                    We&rsquo;re always happy to hear from property managers and
-                    owners, whether it&rsquo;s to enquire about a new fire safety audit,
-                    or just to chat about all things fire safety-related.
-                  </p>
-                </div>
-                <div className="contact-cta_info-wrapper pt-3 md:pt-6" style={{ display: "flex", flexDirection: "column", gap: "0.75rem", alignItems: "center", textAlign: "center", margin: 0, width: "100%", borderTop: "1px solid rgba(17, 17, 17, 0.08)" }}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%", marginTop: "0.25rem" }}>
-                    <h3 className="heading-style-h5" style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "#111111", textTransform: "uppercase", textAlign: "center" }}>SOCIALS</h3>
-                    <ul className="contact-social-links" style={{ display: "flex", gap: "clamp(0.4rem, 1.5vw, 0.75rem)", flexWrap: "nowrap", justifyContent: "center", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
-                      <li><a className="contact-social-link" href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
-                      <li><a className="contact-social-link" href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></li>
-                      <li><a className="contact-social-link" href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
-                      <li><a className="contact-social-link" href="https://au.linkedin.com/in/allfire-services-sydney-92690516" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
-                      <li><a className="contact-social-link" href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a></li>
-                      <li><a className="contact-social-link" href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" style={{ color: "#1A1A1A", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#1A1A1A"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
+              <div 
+                className="contact-cta_content relative overflow-hidden shadow-2xl min-h-[600px] min-[375px]:min-h-[660px] lg:min-h-0" 
+                style={{ 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  height: "100%",
+                  width: "100%",
+                  maxWidth: "430px",
+                  margin: "0 auto",
+                  borderRadius: "20px"
+                }}
+              >
+                <img 
+                  src="/technician/Peter%20-%20Managing%20Director.jpg" 
+                  alt="Peter Tricklebank - Boss" 
+                  style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} 
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.65) 100%)", pointerEvents: "none" }} />
+                
+                <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full justify-between text-center" style={{ flexGrow: 1 }}>
+                  <div className="mt-4 flex flex-col items-center w-full justify-center text-center">
+                    <div className="text-[#FEAF04] text-xs sm:text-sm font-black uppercase tracking-[0.15em] mb-3">FREE SITE VISIT</div>
+                    <h2 className="text-white uppercase mb-4 text-center w-full whitespace-nowrap text-[1.75rem] min-[375px]:text-[2rem] sm:text-[2.25rem] md:text-[2.8rem]" style={{ lineHeight: 0.9, fontFamily: "Impact, sans-serif" }}>
+                      BOOK THE BOSS
+                    </h2>
+                    <p className="text-white/90 mb-6 text-center text-[13px] sm:text-[15px]" style={{ lineHeight: 1.8, fontWeight: 500, margin: "0 auto", maxWidth: "26rem", textWrap: "balance" }}>
+                      Speak directly with Peter about your property and fire protection requirements, or book him for a Free Site Visit. Or use Flame our chatbot for questions.
+                    </p>
+                    
+                    <div style={{ width: "100%", maxWidth: "340px", height: "1px", background: "rgba(255,255,255,0.2)", margin: "0 auto 1.5rem auto" }} />
+                    
+                    <h3 style={{ fontSize: "0.85rem", fontWeight: 700, marginBottom: "0.75rem", color: "white", textTransform: "uppercase", letterSpacing: "0.05em" }}>SOCIALS</h3>
+                    <ul className="contact-social-links" style={{ display: "flex", gap: "1rem", flexWrap: "nowrap", justifyContent: "center", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
+                      <li><a className="contact-social-link" href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
+                      <li><a className="contact-social-link" href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></li>
+                      <li><a className="contact-social-link" href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
+                      <li><a className="contact-social-link" href="https://au.linkedin.com/in/allfire-services-sydney-92690516" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
+                      <li><a className="contact-social-link" href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a></li>
+                      <li><a className="contact-social-link" href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
                     </ul>
                   </div>
-
-                  <div className="relative w-full mt-auto rounded-[20px] overflow-hidden shadow-2xl" style={{ minHeight: "440px", display: "flex", flexDirection: "column" }}>
-                    <img 
-                      src="/technician/Peter%20-%20Managing%20Director.jpg" 
-                      alt="Peter Tricklebank - Managing Director" 
-                      style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} 
-                    />
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.9) 100%)", pointerEvents: "none" }} />
-                    
-                    <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full justify-between text-left" style={{ flexGrow: 1, textAlign: "left" }}>
-                      <div>
-                        <div className="text-[#FEAF04] text-xs font-bold uppercase tracking-widest mb-2" style={{ letterSpacing: "0.15em" }}>FREE SITE VISIT</div>
-                        <h3 className="text-white font-black uppercase mb-3" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 0.9, fontFamily: "Impact, sans-serif" }}>BOOK THE BOSS</h3>
-                        <p className="text-white font-bold leading-tight mb-4" style={{ fontSize: "clamp(1.2rem, 2vw, 1.4rem)" }}>
-                          Peter will personally<br />
-                          <span style={{
-                            background: "linear-gradient(to right, #ff2a00, #ffb700)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            backgroundClip: "text",
-                          }}>come to your property.</span>
-                        </p>
-                      </div>
-                      
-                      <div className="mt-8">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 rounded-full bg-[#ff5500] flex items-center justify-center shrink-0">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                          </div>
-                          <div>
-                            <div className="text-white font-bold text-lg leading-tight">Peter Tricklebank</div>
-                            <div className="text-white/70 text-sm leading-tight">Managing Director</div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 pl-1 mt-3">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FEAF04" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                          <span className="text-white/90 font-medium text-sm">Personally attends every Free Site Visit.</span>
-                        </div>
-                      </div>
+                  
+                  <div className="mt-8 mb-auto" style={{ flexGrow: 1 }}></div>
+                  
+                  <div className="text-center mt-auto w-full">
+                    <div className="text-white font-black leading-tight uppercase tracking-wide mb-1 text-[1.5rem] sm:text-[2rem]">THE BOSS</div>
+                    <div className="text-white/90 font-medium text-[14px] sm:text-[16px]">
+                      Personally attends every Free Site Visit.
                     </div>
                   </div>
                 </div>
@@ -323,11 +302,12 @@ export default function ContactCTA({
                     noValidate
                     name={`${formId}-contact-form`}
                     id={`${formId}-contact-form`}
-                    className="contact-cta_form"
+                    className="contact-cta_form flex flex-col gap-3"
                     aria-busy={isSubmitting}
+                    style={{ gap: "0.75rem" }}
                   >
-                    <div className="form_field-wrapper _2col" style={{ gap: "1.5rem", marginBottom: 0 }}>
-                      <div className="form_field-wrapper">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                      <div className="w-full">
                         <label htmlFor={`${formId}-name`} className="form_field-label" style={LABEL_STYLE}>
                           Name <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                         </label>
@@ -351,7 +331,7 @@ export default function ContactCTA({
                         )}
                       </div>
 
-                      <div className="form_field-wrapper">
+                      <div className="w-full">
                         <label htmlFor={`${formId}-phone`} className="form_field-label" style={LABEL_STYLE}>
                           Phone <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                         </label>
@@ -376,8 +356,8 @@ export default function ContactCTA({
                       </div>
                     </div>
 
-                    <div className="form_field-wrapper _2col" style={{ gap: "1.5rem" }}>
-                      <div className="form_field-wrapper">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                      <div className="w-full">
                         <label htmlFor={`${formId}-email`} className="form_field-label" style={LABEL_STYLE}>
                           Email address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                         </label>
@@ -402,7 +382,7 @@ export default function ContactCTA({
                         )}
                       </div>
 
-                      <div className="form_field-wrapper">
+                      <div className="w-full">
                         <label htmlFor={`${formId}-suburb`} className="form_field-label" style={LABEL_STYLE}>
                           Suburb <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                         </label>
@@ -427,56 +407,31 @@ export default function ContactCTA({
                       </div>
                     </div>
 
-                    <div className="form_field-wrapper">
-                      <label htmlFor={`${formId}-company`} className="form_field-label" style={LABEL_STYLE}>
-                        Company or building (optional)
+                    <div className="w-full">
+                      <label htmlFor={`${formId}-address`} className="form_field-label" style={LABEL_STYLE}>
+                        Address <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                       </label>
                       <input
-                        id={`${formId}-company`}
-                        name="company"
+                        id={`${formId}-address`}
+                        name="address"
                         type="text"
-                        autoComplete="organization"
-                        maxLength={160}
-                        value={form.company}
-                        onChange={(e) => update("company", e.target.value)}
+                        autoComplete="street-address"
+                        required
+                        maxLength={200}
+                        value={form.address}
+                        onChange={(e) => update("address", e.target.value)}
                         disabled={isSubmitting}
-                        placeholder="Strata plan, building name, or company"
-                        style={INPUT_STYLE}
+                        placeholder="123 Example Street"
+                        style={errors.address ? INPUT_ERROR_STYLE : INPUT_STYLE}
+                        aria-invalid={errors.address ? "true" : undefined}
+                        aria-describedby={errors.address ? `${formId}-address-error` : undefined}
                       />
-                    </div>
-
-                    <div className="form_field-wrapper">
-                      <label htmlFor={`${formId}-service`} className="form_field-label" style={LABEL_STYLE}>
-                        Service required
-                      </label>
-                      <select
-                        id={`${formId}-service`}
-                        name="service"
-                        value={form.service}
-                        onChange={(e) => update("service", e.target.value)}
-                        disabled={isSubmitting}
-                        aria-invalid={errors.service ? "true" : undefined}
-                        aria-describedby={errors.service ? `${formId}-service-error` : undefined}
-                        style={{
-                          ...INPUT_STYLE,
-                          appearance: "none",
-                          backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
-                          backgroundRepeat: "no-repeat",
-                          backgroundPosition: "right 14px center",
-                          paddingRight: 36,
-                        }}
-                      >
-                        <option value="">Select a service (optional)</option>
-                        {SERVICE_OPTIONS.map((option) => (
-                          <option key={option} value={option}>{option}</option>
-                        ))}
-                      </select>
-                      {errors.service && (
-                        <p id={`${formId}-service-error`} style={{ margin: "4px 0 0", fontSize: 12.5, color: "#b91c1c" }}>{errors.service}</p>
+                      {errors.address && (
+                        <p id={`${formId}-address-error`} style={{ margin: "4px 0 0", fontSize: 12.5, color: "#b91c1c" }}>{errors.address}</p>
                       )}
                     </div>
 
-                    <div className="form_field-wrapper">
+                    <div className="w-full">
                       <label htmlFor={`${formId}-message`} className="form_field-label" style={LABEL_STYLE}>
                         Message <span style={{ color: "#dc2626" }} aria-hidden="true">*</span>
                       </label>
@@ -491,7 +446,7 @@ export default function ContactCTA({
                         disabled={isSubmitting}
                         aria-invalid={errors.message ? "true" : undefined}
                         aria-describedby={errors.message ? `${formId}-message-error` : undefined}
-                        placeholder="Tell us about your property, what you need help with, and any timing considerations."
+                        placeholder="Tell us about your property or what you need help with."
                         style={{
                           ...(errors.message ? INPUT_ERROR_STYLE : INPUT_STYLE),
                           minHeight: 110,
@@ -595,7 +550,7 @@ export default function ContactCTA({
                             Sending…
                           </>
                         ) : (
-                          "BOOK TO BOSS"
+                          "BOOK THE BOSS"
                         )}
                       </button>
                       <button
@@ -623,8 +578,8 @@ export default function ContactCTA({
                       </button>
                       </div>
                       <div className="text-center mt-1">
-                        <span style={{ fontSize: "1.05rem", color: "#111111", fontWeight: 600 }}>Prefer to call? </span>
-                        <a href="tel:1300765594" style={{ fontSize: "1.05rem", color: "#ff2a00", fontWeight: 700, textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseOut={(e) => e.currentTarget.style.textDecoration = "none"}>Call 1300 765 594</a>
+                        <span style={{ fontSize: "1.05rem", color: "#111111", fontWeight: 600 }}>After Hours: </span>
+                        <a href="tel:1300765594" style={{ fontSize: "1.05rem", color: "#ff2a00", fontWeight: 700, textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseOut={(e) => e.currentTarget.style.textDecoration = "none"}>1300 765 594</a>
                       </div>
                     </div>
 

@@ -47,10 +47,7 @@ const reasonSections = [
     altTitle: "Compliance Assured",
     description: (
       <>
-        We help ensure your building meets all required fire safety standards.
-        From detailed property inspections to the timely submission of your{" "}
-        <strong>Annual Fire Safety Statements</strong>, we keep everything
-        properly documented and fully compliant with local council regulations.
+        We help ensure your building meets the required <strong>fire protection and fire safety standards</strong>. From detailed property inspections to the timely submission of your <strong>Annual Fire Safety Statements</strong>, we keep your fire protection requirements properly documented and compliant with local council regulations.
       </>
     ),
     image: "/services/AFSS.png",
@@ -68,13 +65,10 @@ const reasonSections = [
     altTitle: "Experienced & Qualified Team",
     description: (
       <>
-        Our team is highly trained, licensed, and dedicated to safety. Led by{" "}
-        <strong>current and former firefighting professionals</strong>, our
-        technicians bring real-world emergency experience directly to your
-        property, ensuring practical and reliable fire protection.
+        Our team is highly trained and dedicated to delivering practical <strong>fire protection</strong>. With real-world firefighting experience within the team, our technicians bring practical knowledge directly to your property, helping provide reliable fire protection for people, property, and businesses.
       </>
     ),
-    image: "/technician/group.jpg",
+    image: "/technician/peteselfie.jpg",
   },
   {
     number: "03",
@@ -89,10 +83,7 @@ const reasonSections = [
     altTitle: "Reliable & On Time",
     description: (
       <>
-        We deliver our services on time, every time. We understand that{" "}
-        <strong>compliance deadlines and tenant schedules can't wait</strong>,
-        so we prioritise rapid response times, clear communication, and
-        punctual maintenance visits.
+        Reliable <strong>fire protection</strong> depends on inspections, testing, and maintenance being completed when they are required. We understand that <strong>compliance deadlines and tenant schedules can't wait</strong>, so we prioritise responsive service, clear communication, and punctual maintenance visits.
       </>
     ),
     image: "/annual-fire-safety-statement/fire-truck-all-fire-services.webp",
@@ -110,12 +101,7 @@ const reasonSections = [
     altTitle: "Comprehensive Services",
     description: (
       <>
-        We cover all your fire safety needs. Whether you need{" "}
-        <strong>
-          emergency lighting checks, fire extinguisher testing, or complex
-          sprinkler maintenance
-        </strong>
-        , we offer a complete suite of solutions under one roof.
+        We provide comprehensive <strong>fire protection services</strong> across your property. Whether you need <strong>emergency lighting checks, fire extinguisher testing, or complex sprinkler maintenance</strong>, our team can support a wide range of fire protection requirements under one roof.
       </>
     ),
     image: "/services/servicescompilationcutted.jpg",
@@ -133,10 +119,7 @@ const reasonSections = [
     altTitle: "Local Sydney Experts",
     description: (
       <>
-        Proudly serving businesses and communities across Greater Sydney. As a{" "}
-        <strong>locally owned and operated business</strong>, we understand the
-        specific compliance challenges faced by strata managers and building
-        owners across the metropolitan area.
+        Proudly serving businesses and communities across Greater Sydney, All Fire Services provides practical <strong>fire protection</strong> backed by local knowledge. As a <strong>locally owned and operated business</strong>, we understand the compliance challenges faced by strata managers and building owners across the metropolitan area.
       </>
     ),
     image: "/stratapage-cropped/9-all-fire-services-welcome-marrickville.webp",
@@ -154,11 +137,7 @@ const reasonSections = [
     altTitle: "Quality You Can Trust",
     description: (
       <>
-        We use best practices and quality systems you can rely on. Our{" "}
-        <strong>rigorous internal auditing and commitment to
-        industry-leading standards</strong>{" "}
-        mean that every inspection, repair, and certification is performed with
-        the highest level of accuracy and care.
+        Quality <strong>fire protection</strong> depends on accurate inspections, dependable workmanship, and consistent processes. Our <strong>rigorous internal auditing and commitment to industry-leading standards</strong> help ensure every inspection, repair, and certification is completed with accuracy and care.
       </>
     ),
     image: "/services/diesel hydrant.jpg",
@@ -180,14 +159,10 @@ const storySections = [
     altTitle: "Every Building. Every Industry.",
     description: (
       <>
-        From strata communities to large industrial facilities, every property
-        has different fire-safety requirements. We develop{" "}
-        <strong>tailored protection and maintenance strategies</strong> that meet
-        the specific compliance needs of each building.
+        Every property has different <strong>fire protection requirements</strong>, from strata communities to large industrial facilities. We develop <strong>tailored fire protection and maintenance strategies</strong> that respond to the specific compliance needs of each building.
       </>
     ),
     image: "/buildingcompilation-v2.jpg",
-    objectFit: "contain",
   },
   {
     number: "08",
@@ -202,10 +177,7 @@ const storySections = [
     altTitle: "More Than Compliance",
     description: (
       <>
-        Tick-box compliance isn't enough. Fire safety is about{" "}
-        <strong>protecting lives, property, and business continuity</strong>. We
-        make sure your systems are properly maintained, tested, and ready when
-        they're needed most.
+        Tick-box compliance isn't enough. <strong>Fire protection</strong> is ultimately about <strong>protecting lives, property, and business continuity</strong>. We make sure your systems are properly maintained, tested, and ready when they're needed most.
       </>
     ),
     image: "/services/Fire Panel &Detection (AS 1670.1).jpg",
@@ -223,13 +195,10 @@ const storySections = [
     altTitle: "Partners, Not Just Providers",
     description: (
       <>
-        Strong results come from trust, clear communication, and dependable
-        service. Our clients rely on our{" "}
-        <strong>firefighter-led expertise and practical advice</strong> to keep
-        their properties safe without unnecessary disruption.
+        Strong <strong>fire protection partnerships</strong> are built on trust, clear communication, and dependable service. Our clients rely on our <strong>firefighter-led expertise and practical fire protection advice</strong> to help keep their properties safe without unnecessary disruption.
       </>
     ),
-    image: "/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
+    image: "/technician/partners.png",
   },
   {
     number: "10",
@@ -264,12 +233,7 @@ const storySections = [
     altTitle: "Confidence Comes Standard",
     description: (
       <>
-        Built on generations of frontline firefighting experience, we bring{" "}
-        <strong>
-          professional workmanship, honest advice, and uncompromising care
-        </strong>{" "}
-        to every job. That's why property teams across Greater Sydney continue to
-        trust All Fire Services.
+        Built on generations of frontline firefighting experience, our approach to <strong>fire protection</strong> combines <strong>professional workmanship, honest advice, and uncompromising care</strong> on every job. That's why property teams across Greater Sydney continue to trust All Fire Services with their fire protection needs.
       </>
     ),
     image: "/annual-fire-safety-statement/all-fire-services-hydrant-test-banner.webp",

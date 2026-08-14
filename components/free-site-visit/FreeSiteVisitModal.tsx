@@ -46,24 +46,58 @@ export default function FreeSiteVisitModal() {
   const lastFocusedRef = useRef<HTMLElement | null>(null);
   const lenis = useLenis();
 
-  // Lock body scroll while the modal is open (Lenis-aware).
+  // Lock body scroll while the modal is open. We use the iOS-safe
+  // `position: fixed; top: -scrollY` pattern instead of `overflow:
+// hidden` — Safari on iOS refuses to scroll child overflow containers
+  // (even with `touch-action: pan-y`) when an ancestor has
+  // `overflow: hidden`, which is the most common reason a modal "can't
+  // be swiped" on a phone. Freezing the body in place with
+  // `position: fixed` still prevents the background from scrolling
+  // while leaving all child scroll surfaces free.
   useEffect(() => {
     if (!visit?.isOpen) return;
-    const prevOverflow = document.body.style.overflow;
-    const prevPaddingRight = document.body.style.paddingRight;
-    const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-    if (scrollBarWidth > 0) {
-      document.body.style.paddingRight = `${scrollBarWidth}px`;
-    }
-    document.body.style.overflow = "hidden";
+    if (typeof document === "undefined") return;
+    const body = document.body;
+    const scrollY = window.scrollY;
+    const prev = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    // NOTE: deliberately NOT setting `overflow: hidden` here.
+    // Safari on iOS refuses to scroll any descendant overflow container
+    // — even with `touch-action: pan-y` — whenever an ancestor has
+    // `overflow: hidden`, which is the most common reason a modal
+    // "can't be swiped" on a phone. Freezing the body in place with
+    // `position: fixed` already prevents the background from scrolling,
+    // so we keep overflow free for the modal itself.
     try {
       lenis?.stop?.();
     } catch {
       /* lenis might not be initialised */
     }
     return () => {
-      document.body.style.overflow = prevOverflow;
-      document.body.style.paddingRight = prevPaddingRight;
+      body.style.position = prev.position;
+      body.style.top = prev.top;
+      body.style.left = prev.left;
+      body.style.right = prev.right;
+      body.style.width = prev.width;
+      body.style.overflow = prev.overflow;
+      // Restore the page to wherever the visitor was before the modal
+      // opened — otherwise the body would jump to the top on close.
+      const restoreY =
+        typeof prev.top === "string" && prev.top.startsWith("-")
+          ? parseInt(prev.top, 10) * -1
+          : scrollY;
+      window.scrollTo(0, Number.isFinite(restoreY) ? restoreY : 0);
       try {
         lenis?.start?.();
       } catch {
@@ -161,10 +195,17 @@ export default function FreeSiteVisitModal() {
         backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         justifyContent: "center",
         padding: "clamp(0.5rem, 2vw, 1.5rem)",
-        overflow: "hidden",
+        overflowX: "hidden",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
+        // Tell the browser this container is the vertical pan zone —
+        // combined with the iOS-safe body lock above, this is what lets
+        // touch scrolling work inside the modal on a phone.
+        touchAction: "pan-y",
+        overscrollBehavior: "contain",
       }}
     >
       <div
@@ -180,9 +221,7 @@ export default function FreeSiteVisitModal() {
           boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
           maxWidth: 880,
           width: "100%",
-          maxHeight: "min(840px, calc(100vh - 1rem))",
-          overflowY: "auto",
-          overflowX: "hidden",
+          margin: "auto",
           position: "relative",
         }}
       >
@@ -198,6 +237,10 @@ export default function FreeSiteVisitModal() {
             display: grid;
             grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
             animation: fsv-card-in 320ms cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .fsv-modal-portrait {
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
           }
           @keyframes fsv-card-in {
             from { opacity: 0; transform: translateY(20px) scale(0.97); }
@@ -217,17 +260,23 @@ export default function FreeSiteVisitModal() {
           }
 
           /* ── Tablet (≤ 1024px) ─────────────────────────────────────────
-             Stack the portrait banner above the form. Keep the modal
-             centred and within the viewport. */
+             Stack the portrait banner above the form. The card is
+             constrained to the viewport height (minus the backdrop
+             padding) and becomes its own scroll container so the
+             visitor can always reach the Book the Boss submit button
+             even on a small laptop screen or iPad portrait — no
+             dependence on backdrop scroll, which can stall on iOS. */
           @media (max-width: 1024px) {
+            .fsv-modal-root {
+              align-items: flex-start !important;
+            }
             .fsv-modal-card {
               display: flex !important;
               flex-direction: column !important;
               grid-template-columns: unset !important;
               max-width: min(720px, 92vw) !important;
-              max-height: 90dvh !important;
-              max-height: 90vh !important;
               width: 100% !important;
+              margin: auto !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;
@@ -235,13 +284,17 @@ export default function FreeSiteVisitModal() {
               height: 220px !important;
               max-height: 220px !important;
               flex: 0 0 auto !important;
+              border-top-left-radius: 16px !important;
+              border-top-right-radius: 16px !important;
+              border-bottom-left-radius: 0 !important;
             }
             .fsv-modal-form-wrap {
               width: 100% !important;
               min-width: 0 !important;
               padding: 1.1rem 1.4rem 1.1rem !important;
-              flex: 1 1 auto !important;
-              min-height: 0 !important;
+              flex: 0 0 auto !important;
+              min-height: auto !important;
+              overflow: visible !important;
             }
             .fsv-close {
               top: 10px;
@@ -250,12 +303,16 @@ export default function FreeSiteVisitModal() {
           }
 
           /* ── Mobile (< 768px) ──────────────────────────────────────────
-             Single column, banner on top, form below. Modal fits the
-             viewport with a 12px gutter, scrolls internally on overflow. */
+             Single column, banner on top, form below. The card itself
+             is the scroll container with a max-height tied to the
+             viewport so the Book the Boss button is always reachable
+             via swipe, regardless of viewport height. The "THE BOSS"
+             identity block is hidden here so it never overlaps the
+             banner copy or eats vertical space. */
           @media (max-width: 767px) {
             .fsv-modal-root {
               padding: 12px !important;
-              align-items: center !important;
+              align-items: flex-start !important;
             }
             .fsv-modal-card {
               display: flex !important;
@@ -263,25 +320,33 @@ export default function FreeSiteVisitModal() {
               grid-template-columns: unset !important;
               width: calc(100vw - 24px) !important;
               max-width: 100% !important;
-              max-height: 92dvh !important;
-              max-height: 92vh !important;
               border-radius: 14px !important;
+              margin: auto !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;
-              min-height: 190px !important;
-              height: 190px !important;
-              max-height: 190px !important;
-              flex: 0 0 190px !important;
+              min-height: 220px !important;
+              height: 220px !important;
+              max-height: 220px !important;
+              flex: 0 0 auto !important;
+              border-top-left-radius: 14px !important;
+              border-top-right-radius: 14px !important;
+              border-bottom-left-radius: 0 !important;
+            }
+            .fsv-banner-identity {
+              /* Hide "THE BOSS" + "Personally attends every site
+                 visit." on phones — the visitor's eye is already on
+                 the BOOK THE BOSS headline above the form. */
+              display: none !important;
             }
             .fsv-modal-form-wrap {
               width: 100% !important;
               min-width: 0 !important;
               padding: 0.9rem 1rem 0.85rem !important;
               gap: 0.45rem !important;
-              flex: 1 1 auto !important;
-              min-height: 0 !important;
-              overflow-y: auto !important;
+              flex: 0 0 auto !important;
+              min-height: auto !important;
+              overflow: visible !important;
             }
             .fsv-close {
               width: 40px !important;
@@ -293,14 +358,15 @@ export default function FreeSiteVisitModal() {
             }
           }
 
-          /* Very narrow phones (≤ 380px) — tighten the banner copy so
-             nothing wraps badly and keep all text readable. */
+          /* Very narrow phones (≤ 380px) — only tighten the banner copy
+             so long headlines wrap cleanly. Everything else stays at its
+             designed size. */
           @media (max-width: 380px) {
             .fsv-modal-portrait {
-              min-height: 210px !important;
-              height: 210px !important;
-              max-height: 210px !important;
-              flex-basis: 210px !important;
+              min-height: 200px !important;
+              height: 200px !important;
+              max-height: 200px !important;
+              flex: 0 0 200px !important;
             }
             .fsv-banner-eyebrow { font-size: 0.62rem !important; letter-spacing: 0.18em !important; }
             .fsv-banner-headline { font-size: 2.1rem !important; }
@@ -323,7 +389,7 @@ export default function FreeSiteVisitModal() {
         >
           <Image
             src="/technician/Peter - Managing Director.jpg"
-            alt="Peter Tricklebank, Managing Director of All Fire Services"
+            alt="Peter, the Boss of All Fire Services"
             fill
             sizes="(max-width: 767px) 100vw, (max-width: 1024px) 100vw, 360px"
             style={{ objectFit: "cover", objectPosition: "center 35%" }}
@@ -345,7 +411,7 @@ export default function FreeSiteVisitModal() {
             }}
           />
 
-          {/* Copy overlaid on the dark image */}
+          {/* Copy overlaid on the dark image — simplified hierarchy. */}
           <div
             style={{
               position: "absolute",
@@ -360,7 +426,7 @@ export default function FreeSiteVisitModal() {
             <p
               className="fsv-banner-eyebrow"
               style={{
-                margin: "0 0 0.8rem 0",
+                margin: "0 0 0.7rem 0",
                 fontSize: "0.7rem",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -393,7 +459,7 @@ export default function FreeSiteVisitModal() {
               id="fsv-modal-title"
               className="fsv-banner-subhead"
               style={{
-                margin: "0.3rem 0 0",
+                margin: "0.35rem 0 0",
                 fontSize: "clamp(1.1rem, 2.2vw, 1.4rem)",
                 fontWeight: 800,
                 lineHeight: 1.15,
@@ -414,90 +480,48 @@ export default function FreeSiteVisitModal() {
                 come to your property.
               </span>
             </h2>
-            <p
-              id="fsv-modal-subtitle"
-              className="fsv-banner-body"
-              style={{
-                margin: "0.4rem 0 0",
-                fontSize: "0.75rem",
-                lineHeight: 1.5,
-                color: "#ffffff",
-                maxWidth: "34ch",
-              }}
-            >
-              Request a free site visit with Peter<br />
-              Tricklebank, Managing Director of All Fire<br />
-              Services, to discuss your property and fire<br />
-              protection requirements.
-            </p>
           </div>
 
-          {/* Peter badge (bottom-left) */}
+          {/* Identity block (bottom-left) — simplified to just "THE BOSS"
+              as the visual anchor with the "personally attends" trust
+              line below it. No more "Peter Tricklebank" badge.
+              Hidden on mobile (< 768px) so the banner stays compact and
+              the form gets more vertical room above its submit button. */}
           <div
+            className="fsv-banner-identity"
             style={{
               position: "absolute",
               left: 16,
               right: 16,
-              bottom: 14,
+              bottom: 18,
               color: "#ffffff",
               display: "flex",
               flexDirection: "column",
-              gap: 6,
+              gap: 14,
               zIndex: 2,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <div
-                aria-hidden="true"
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  background: "#f97316",
-                  display: "grid",
-                  placeItems: "center",
-                  flex: "0 0 auto",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.35)",
-                }}
-              >
-                <Check size={16} strokeWidth={3} color="#ffffff" />
-              </div>
-              <div style={{ minWidth: 0 }}>
-                <p
-                  style={{
-                    margin: 0,
-                    fontWeight: 800,
-                    fontSize: "0.95rem",
-                    lineHeight: 1.2,
-                    color: "#ffffff",
-                    textShadow: "0 1px 3px rgba(0,0,0,0.55)",
-                  }}
-                >
-                  Peter Tricklebank
-                </p>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: "0.74rem",
-                    color: "rgba(255,255,255,0.85)",
-                    lineHeight: 1.3,
-                    textShadow: "0 1px 3px rgba(0,0,0,0.55)",
-                  }}
-                >
-                  Managing Director
-                </p>
-              </div>
-            </div>
             <p
               style={{
                 margin: 0,
-                fontSize: "0.8rem",
+                fontWeight: 900,
+                fontSize: "clamp(1.5rem, 2.2vw, 1.95rem)",
+                lineHeight: 0.95,
+                color: "#ffffff",
+                fontFamily:
+                  "Impact, 'Oswald', 'Arial Narrow Bold', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "0.02em",
+                textShadow: "0 2px 8px rgba(0,0,0,0.6)",
+              }}
+            >
+              The Boss
+            </p>
+            <p
+              id="fsv-modal-subtitle"
+              style={{
+                margin: 0,
+                fontSize: "0.9rem",
                 fontWeight: 600,
                 color: "#ffffff",
                 lineHeight: 1.4,
@@ -507,13 +531,27 @@ export default function FreeSiteVisitModal() {
                 gap: 4,
               }}
             >
-              <Check
-                size={14}
-                color="#f59e0b"
-                strokeWidth={3}
-                aria-hidden="true"
-              />
-              Personally attends every Free Site Visit.
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 18,
+                  height: 18,
+                  borderRadius: "50%",
+                  background: "#ea580c",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                  flexShrink: 0,
+                }}
+              >
+                <Check
+                  size={12}
+                  color="#ffffff"
+                  strokeWidth={3}
+                  aria-hidden="true"
+                />
+              </span>
+              Personally attends every site visit.
             </p>
           </div>
         </div>

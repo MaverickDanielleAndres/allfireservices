@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Our Team",
   description:
-    "Meet the people behind All Fire Services — serving and retired professional firefighters and qualified fire-safety technicians working across Greater Sydney.",
+    "Meet the people behind All Fire Services — serving  professional firefighters and qualified fire-safety technicians working across Greater Sydney.",
   path: "/our-team",
 });
 
@@ -19,7 +19,7 @@ export default function OurTeamPage() {
         <PageHero
           eyebrow="Our Team"
           titleLines={["THE PEOPLE BEHIND", "ALL FIRE SERVICES"]}
-          description="Our team includes serving and retired professional firefighters who bring practical, real-world understanding to fire protection, supported by qualified fire-safety professionals across Greater Sydney."
+          description="Our team includes serving  professional firefighters who bring practical, real-world understanding to fire protection, supported by qualified fire-safety professionals across Greater Sydney."
           imageSrc="/technician/groupteam.jpg"
           imageAlt="The All Fire Services team on site"
         />

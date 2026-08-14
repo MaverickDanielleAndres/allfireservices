@@ -63,8 +63,7 @@ const storyCards = [
     copy: (
       <p>
         The company was founded on a simple idea: that our customer service
-        technicians should be professional firefighters, both serving and
-        retired. It means every client gets extensive, real-life knowledge of
+        technicians should be professional firefighters, serving. It means every client gets extensive, real-life knowledge of
         the fire safety industry rather than a checklist.
       </p>
     ),
