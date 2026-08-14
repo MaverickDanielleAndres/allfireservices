@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useLenis } from "lenis/react";
 import { ArrowUpRight, ChevronDown, Flame, FireExtinguisher, Lightbulb, Fuel, Wind, Droplets, Construction, Server, DoorOpen, Map, Menu, ShieldCheck, X } from "lucide-react";
 import ContactCTA from "@/components/ContactCTA";
+import HomeServices from "@/components/HomeServices";
 import {
   categories,
   getProductsByCategory,
@@ -73,9 +74,11 @@ export default function ServicesPage() {
   const router = useRouter();
   const lenis = useLenis();
   const hubRef = useRef<HTMLElement | null>(null);
-  const initialCategory = searchParams.get("category") || "annual-fire-safety-statement";
-  const validInitial = categories.some((c) => c.id === initialCategory)
-    ? initialCategory
+  const requestedCategory = searchParams.get("category");
+  const isOverview = !requestedCategory;
+
+  const validInitial = requestedCategory && categories.some((c) => c.id === requestedCategory)
+    ? requestedCategory
     : "annual-fire-safety-statement";
   const [activeCategory, setActiveCategory] = useState<string>(validInitial);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
@@ -85,7 +88,6 @@ export default function ServicesPage() {
   // SEO scoring. When arriving with `?category=` we hide the hero visually
   // (but it remains in the DOM) by collapsing its min-height via a CSS class
   // — the H1 is still crawlable and accessible.
-  const requestedCategory = searchParams.get("category");
   const showHero = true;
 
   // Sync state when the user navigates back/forward.
@@ -263,7 +265,12 @@ export default function ServicesPage() {
         </header>
         )}
 
-        {/* HUB LAYOUT */}
+        {/* HUB LAYOUT OR OVERVIEW */}
+        {isOverview ? (
+          <div style={{ backgroundColor: "#ffffff", paddingBottom: "4rem", paddingTop: "2rem", zIndex: 10, position: "relative" }}>
+            <HomeServices />
+          </div>
+        ) : (
         <section
           ref={hubRef}
           id="services-hub"
@@ -422,6 +429,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
+        )}
 
         {/* MOBILE CATEGORY SHEET */}
         <div
