@@ -16,6 +16,7 @@
 export type FreeSiteVisitSource =
   | "header"
   | "hero"
+  | "footer"
   | "floating"
   | "mobile_sticky"
   | "contact"
