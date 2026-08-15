@@ -30,21 +30,24 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { useLenis } from "lenis/react";
 import { X, Check } from "lucide-react";
 
-import { useFreeSiteVisitSafe } from "@/lib/free-site-visit/FreeSiteVisitContext";
+import {
+  useFreeSiteVisitState,
+  closeFreeSiteVisit,
+} from "@/lib/free-site-visit/FreeSiteVisitStore";
 import FreeSiteVisitForm from "@/components/free-site-visit/FreeSiteVisitForm";
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 export default function FreeSiteVisitModal() {
-  const visit = useFreeSiteVisitSafe();
+  const visit = useFreeSiteVisitState();
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
-  const lenis = useLenis();
+
+  const close = useCallback(() => closeFreeSiteVisit(), []);
 
   // Lock body scroll while the modal is open. We use the iOS-safe
   // `position: fixed; top: -scrollY` pattern instead of `overflow:
@@ -55,7 +58,7 @@ export default function FreeSiteVisitModal() {
   // `position: fixed` still prevents the background from scrolling
   // while leaving all child scroll surfaces free.
   useEffect(() => {
-    if (!visit?.isOpen) return;
+    if (!visit.isOpen) return;
     if (typeof document === "undefined") return;
     const body = document.body;
     const scrollY = window.scrollY;
@@ -79,10 +82,12 @@ export default function FreeSiteVisitModal() {
     // "can't be swiped" on a phone. Freezing the body in place with
     // `position: fixed` already prevents the background from scrolling,
     // so we keep overflow free for the modal itself.
+    // Stop any active smooth-scroll instance from competing.
     try {
-      lenis?.stop?.();
+      const w = window as Window & { __lenis?: { stop?: () => void; start?: () => void } };
+      w.__lenis?.stop?.();
     } catch {
-      /* lenis might not be initialised */
+      /* ignored */
     }
     return () => {
       body.style.position = prev.position;
@@ -99,27 +104,28 @@ export default function FreeSiteVisitModal() {
           : scrollY;
       window.scrollTo(0, Number.isFinite(restoreY) ? restoreY : 0);
       try {
-        lenis?.start?.();
+        const w = window as Window & { __lenis?: { start?: () => void } };
+        w.__lenis?.start?.();
       } catch {
         /* ignored */
       }
     };
-  }, [visit?.isOpen, lenis]);
+  }, [visit.isOpen]);
 
   // Track the element that had focus before the modal opened so we can
   // restore it on close.
   useEffect(() => {
-    if (!visit?.isOpen) return;
+    if (!visit.isOpen) return;
     lastFocusedRef.current = (document.activeElement as HTMLElement) ?? null;
     const t = window.setTimeout(() => {
       closeButtonRef.current?.focus();
     }, 0);
     return () => window.clearTimeout(t);
-  }, [visit?.isOpen]);
+  }, [visit.isOpen]);
 
   // Restore focus to the trigger element on close.
   useEffect(() => {
-    if (visit?.isOpen) return;
+    if (visit.isOpen) return;
     if (!lastFocusedRef.current) return;
     const stillThere = document.body.contains(lastFocusedRef.current);
     if (stillThere) {
@@ -130,15 +136,15 @@ export default function FreeSiteVisitModal() {
       }
     }
     lastFocusedRef.current = null;
-  }, [visit?.isOpen]);
+  }, [visit.isOpen]);
 
   // Keyboard handling: ESC closes, Tab is trapped inside the dialog.
   useEffect(() => {
-    if (!visit?.isOpen) return;
+    if (!visit.isOpen) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        visit?.close("backdrop");
+        close();
         return;
       }
       if (event.key !== "Tab") return;
@@ -165,67 +171,25 @@ export default function FreeSiteVisitModal() {
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [visit?.isOpen, visit]);
+  }, [visit.isOpen, close]);
 
-  // ── Desktop scale-to-fit ────────────────────────────────────────────
-  // On desktop the modal must never scroll: whatever the viewport height,
-  // the whole card (banner + every field + submit) has to be visible. The
-  // card's natural height is content-driven (and grows when validation
-  // messages or the service picker appear), so a static max-height either
-  // clips it or leaves it scrolling. Instead we measure the card's natural
-  // layout height and uniformly scale it down to fit the available space.
-  // `transform: scale()` doesn't change the layout box, so the scaler
-  // wrapper is given the *scaled* height to keep the backdrop from
-  // scrolling. Tablet/mobile keep their own scroll behaviour (scale = 1).
-  const scalerRef = useRef<HTMLDivElement | null>(null);
-  const [scale, setScale] = useState(1);
-  const [naturalHeight, setNaturalHeight] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (!visit?.isOpen) return;
-    const card = dialogRef.current;
-    if (!card) return;
-
-    const desktop = window.matchMedia("(min-width: 1025px)");
-
-    const fit = () => {
-      if (!desktop.matches) {
-        setScale(1);
-        setNaturalHeight(null);
-        return;
-      }
-      // Backdrop padding is clamp(0.5rem, 2vw, 1.5rem) top and bottom.
-      const pad = Math.min(Math.max(8, window.innerWidth * 0.02), 24) * 2;
-      const available = window.innerHeight - pad;
-      const natural = card.offsetHeight;
-      if (!natural) return;
-      setNaturalHeight(natural);
-      const next = Math.min(1, available / natural);
-      setScale((prev) => (Math.abs(prev - next) < 0.005 ? prev : next));
-    };
-
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(card);
-    window.addEventListener("resize", fit);
-    desktop.addEventListener("change", fit);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", fit);
-      desktop.removeEventListener("change", fit);
-    };
-  }, [visit?.isOpen]);
+  // No scale-to-fit. The CSS handles layout via `max-height: 100dvh`
+  // and internal scrolling. The previous `transform: scale()` loop
+  // caused visible jitter on small laptop screens because the
+  // `ResizeObserver` refired on every scroll/size tick and the
+  // scaled element kept re-measuring.
+  // (Code removed in favour of pure-CSS sizing.)
 
   const handleBackdrop = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       if (event.target === event.currentTarget) {
-        visit?.close("backdrop");
+        close();
       }
     },
-    [visit],
+    [close],
   );
 
-  if (!visit?.isOpen) return null;
+  if (!visit.isOpen) return null;
   if (typeof document === "undefined") return null;
 
   const modal = (
@@ -259,20 +223,6 @@ export default function FreeSiteVisitModal() {
       }}
     >
       <div
-        ref={scalerRef}
-        className="fsv-modal-scaler"
-        style={{
-          width: "100%",
-          maxWidth: 880,
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          flexShrink: 0,
-          height:
-            scale < 1 && naturalHeight ? naturalHeight * scale : undefined,
-        }}
-      >
-      <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -289,8 +239,6 @@ export default function FreeSiteVisitModal() {
           margin: "0 auto",
           position: "relative",
           flexShrink: 0,
-          transform: scale < 1 ? `scale(${scale})` : undefined,
-          transformOrigin: "top center",
         }}
       >
         <style>{`
@@ -310,18 +258,12 @@ export default function FreeSiteVisitModal() {
             display: grid;
             grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
             animation: fsv-card-in 320ms cubic-bezier(0.16, 1, 0.3, 1);
+            /* Cap the card to the viewport on every screen — short laptop
+               screens included — and let the form column scroll its own
+               contents. The portrait column stays fixed-height so it can't
+               push the whole card off-screen. */
             max-height: calc(100dvh - clamp(1rem, 4vw, 3rem));
-            overflow: hidden;
-          }
-          /* Desktop: the card renders at its natural height and is scaled
-             down by JS (see the scale-to-fit effect) so it always fits the
-             viewport without any scrolling, on tall and short screens
-             alike. A max-height here would clip it instead. */
-          @media (min-width: 1025px) {
-            .fsv-modal-card {
-              max-height: none;
-              overflow: visible;
-            }
+            min-height: 0;
           }
           .fsv-modal-portrait {
             border-top-left-radius: 16px;
@@ -330,6 +272,8 @@ export default function FreeSiteVisitModal() {
           }
           .fsv-modal-form-wrap {
             min-height: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
           }
 
           /* Shorter desktop screens (e.g. 13" laptops at 768–900px tall)
@@ -692,7 +636,7 @@ export default function FreeSiteVisitModal() {
         <button
           ref={closeButtonRef}
           type="button"
-          onClick={() => visit.close("manual")}
+          onClick={() => close()}
           aria-label="Close Free Site Visit dialog"
           className="fsv-close"
           style={{
@@ -710,7 +654,6 @@ export default function FreeSiteVisitModal() {
         >
           <X size={18} strokeWidth={2.4} aria-hidden="true" />
         </button>
-      </div>
       </div>
     </div>
   );

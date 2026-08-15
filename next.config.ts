@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
 
   // Strict image sizes so Next/Image can generate tight AVIF/WebP variants.
   images: {
-    qualities: [60, 75],
+    qualities: [60, 70, 75, 80],
     minimumCacheTTL: 2_678_400, // ~31 days
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

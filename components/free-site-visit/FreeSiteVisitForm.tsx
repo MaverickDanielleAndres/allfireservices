@@ -27,7 +27,7 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 
 import { trackFreeSiteVisitEvent } from "@/lib/free-site-visit/analytics";
-import { useFreeSiteVisitSafe } from "@/lib/free-site-visit/FreeSiteVisitContext";
+import { markFreeSiteVisitSubmitted } from "@/lib/free-site-visit/FreeSiteVisitStore";
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10MB
 const ALLOWED_MIME = new Set([
@@ -152,7 +152,7 @@ export default function FreeSiteVisitForm({
   source,
   onSubmitted,
 }: FreeSiteVisitFormProps) {
-  const visit = useFreeSiteVisitSafe();
+  const visit = null as unknown as { markSubmitted: () => void };
   const [form, setForm] = useState<FreeSiteVisitFormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -281,7 +281,7 @@ export default function FreeSiteVisitForm({
           setForm(EMPTY_FORM);
           setFile(null);
           if (fileInputRef.current) fileInputRef.current.value = "";
-          visit?.markSubmitted();
+          markFreeSiteVisitSubmitted();
           trackFreeSiteVisitEvent("free_site_visit_success", {
             source: (source as never) ?? "other",
           });

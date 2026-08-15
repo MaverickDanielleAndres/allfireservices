@@ -15,14 +15,12 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { useLenis } from "lenis/react";
 
 import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
-import { useFreeSiteVisitSafe } from "@/lib/free-site-visit/FreeSiteVisitContext";
+import { useFreeSiteVisitState } from "@/lib/free-site-visit/FreeSiteVisitStore";
 
 export default function FreeSiteVisitMobileSticky() {
-  const visit = useFreeSiteVisitSafe();
-  const lenis = useLenis();
+  const visit = useFreeSiteVisitState();
   const [visible, setVisible] = useState(false);
 
   // Reveal the bar after a short scroll so it doesn't compete with the
@@ -45,7 +43,8 @@ export default function FreeSiteVisitMobileSticky() {
       raf = window.requestAnimationFrame(() => {
         raf = 0;
         if (!mounted) return;
-        const y = (lenis?.scroll ?? window.scrollY) ?? 0;
+        const w = window as Window & { __lenis?: { scroll?: number } };
+        const y = w.__lenis?.scroll ?? window.scrollY;
         // Reveal once the visitor has scrolled past the hero (~70vh or 480px).
         const next = y > Math.min(window.innerHeight * 0.7, 480);
         setVisible((prev) => (prev === next ? prev : next));
@@ -58,11 +57,11 @@ export default function FreeSiteVisitMobileSticky() {
       window.removeEventListener("scroll", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
     };
-  }, [lenis]);
+  }, []);
 
   // Hide everything when the modal is open — the modal is the entire
   // page's focus while it's open.
-  if (visit?.isOpen) return null;
+  if (visit.isOpen) return null;
 
   return (
     <>

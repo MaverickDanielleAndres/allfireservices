@@ -1,14 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "./allfireservices.css";
 import "./responsive.css";
-import SmoothScrolling from "@/components/SmoothScrolling";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterReveal from "@/components/FooterReveal";
-import FreeSiteVisitClientShell from "@/components/free-site-visit/FreeSiteVisitClientShell";
+import FreeSiteVisitIsland from "@/components/free-site-visit/FreeSiteVisitIsland";
 
 // Only mount the Vercel Speed Insights beacon on a real Vercel deployment.
 // Loading it on localhost produces a 404 (script.js not hosted there), which
@@ -181,14 +180,16 @@ export default function RootLayout({
             __html: stringifyJsonLd(rootStructuredData),
           }}
         />
-        <SmoothScrolling>
-          <FooterReveal footerContent={<Footer />}>
-            <FreeSiteVisitClientShell>
-              <Navbar />
-              {children}
-            </FreeSiteVisitClientShell>
-          </FooterReveal>
-        </SmoothScrolling>
+        {/* Page tree. The layout is intentionally a near-pure server tree so
+            first paint is not blocked by client-component hydration. The
+            only client components in the critical path are `<Navbar/>`
+            and the tiny footer island that hosts the Free Site Visit
+            modal/mount-points. */}
+        <FooterReveal footerContent={<Footer />}>
+          <Navbar />
+          {children}
+        </FooterReveal>
+        <FreeSiteVisitIsland />
         {SpeedInsights ? <SpeedInsights /> : null}
       </body>
     </html>

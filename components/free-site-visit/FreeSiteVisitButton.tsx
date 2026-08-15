@@ -16,7 +16,7 @@
 
 import React, { forwardRef, useCallback } from "react";
 
-import { useFreeSiteVisitSafe } from "@/lib/free-site-visit/FreeSiteVisitContext";
+import { openFreeSiteVisit } from "@/lib/free-site-visit/FreeSiteVisitStore";
 import { trackFreeSiteVisitEvent, type FreeSiteVisitSource } from "@/lib/free-site-visit/analytics";
 
 export type FreeSiteVisitButtonVariant = "primary" | "ghost" | "compact";
@@ -59,8 +59,6 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
     },
     ref,
   ) {
-    const visit = useFreeSiteVisitSafe();
-
     const handleClick = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         onClick?.(event);
@@ -69,11 +67,9 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           source,
           service,
         });
-        if (visit) {
-          visit.open({ source, service });
-        }
+        openFreeSiteVisit({ source, service });
       },
-      [onClick, visit, source, service],
+      [onClick, source, service],
     );
 
     return (
