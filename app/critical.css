@@ -1,0 +1,52 @@
+/* All Fire Services — Critical above-the-fold CSS.
+ * Inlined in <head> to eliminate the CSS render-block waterfall.
+ * Keep this file under 3 KB; only includes what's needed for first paint:
+ *   - Body baseline
+ *   - Inter font @font-face metrics (FOUC prevention)
+ *   - Hero container + background
+ *   - Navbar (fixed + visible above the fold)
+ *   - Headline typography
+ * Everything else (cards, marquee, footer) ships in deferred chunks.
+ */
+@font-face {
+  font-family: Inter var;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url("/_next/static/media/83afe278b6a6bb3c.p.2bn3s6zvc0dyp.woff2") format("woff2");
+}
+:root { --font-sans: "Inter var", Inter, system-ui, -apple-system, sans-serif; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: #111111;
+  background: #ffffff;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.scrollbar-stable { scrollbar-gutter: stable; }
+.main-wrapper { position: relative; }
+.navbar-shell {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+  background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.05);
+  height: 4rem; display: flex; flex-direction: column;
+}
+.navbar-spacer { height: 4rem; }
+.hero-section { position: relative; min-height: 100vh; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.hero-title {
+  font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05;
+  margin: 0 0 1.5rem; text-transform: uppercase; color: #ffffff;
+}
+.hero-cta {
+  display: inline-block; padding: 0.85rem 1.5rem; min-height: 2.95rem;
+  border-radius: 999px; background: linear-gradient(135deg,#ff5722 0%,#ff8a3c 100%);
+  color: #fff; font-weight: 800; text-decoration: none; font-size: 0.95rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+@media (min-width: 1025px) {
+  .navbar-shell { height: 5rem; }
+  .navbar-spacer { height: 7rem; }
+}
