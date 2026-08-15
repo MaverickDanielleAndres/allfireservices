@@ -1,5 +1,9 @@
 "use client";
 
+// Import the styles specific to this component so they ship in the
+// navbar's chunk, not the global stylesheet.
+import "../app/navbar.css";
+
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";

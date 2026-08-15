@@ -1,3 +1,7 @@
+// Import the styles specific to this component so they ship in the
+// SitewideCTA's chunk, not the global stylesheet.
+import "../app/sitewide-cta.css";
+
 /**
  * SitewideCTA — "Book the Boss" offer card.
  * ─────────────────────────────────────────────────────────────────────────

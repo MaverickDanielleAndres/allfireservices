@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "./navbar.css";
-@import "./sitewide-cta.css";
+/* Component-specific CSS (navbar.css, sitewide-cta.css) is now imported
+ * directly by the component that uses it — this keeps `globals.css`
+ * leaner for first paint. */
 
 @source "../app";
 @source "../components";
