@@ -1,0 +1,541 @@
+/* Navbar — extracted from components/Navbar.tsx inline <style> block so the
+ * styles ship in the prerendered HTML and don't get re-injected at hydration.
+ * Selector order, cascade and @media rules mirror the original exactly. */
+
+:root {
+  /* Logo height and inner navbar height are linked: inner = logo + 1.75rem of
+   * vertical padding (split top/bottom). Change --navbar-logo-h at the
+   * breakpoint and the navbar-inner, mobile panel offset and spacer all grow
+   * with it. They are declared on :root (not .navbar-shell) because
+   * .navbar-shell is not an ancestor of .navbar-mobile-panel or .navbar-spacer,
+   * which also need the values. */
+  --navbar-logo-h: 4rem;
+  --navbar-inner-h: calc(var(--navbar-logo-h) + 1.75rem);
+  /* Spacer above-the-fold offset for the fixed navbar. Matches the rendered
+   * topbar (~30px of content + ~5px padding each side at max-height 40px) plus
+   * the navbar inner. Topbar wraps to two lines at the 1024px breakpoint so
+   * the spacer grows there too. */
+  --navbar-topbar-h: 1.85rem;
+  --navbar-spacer-h: calc(var(--navbar-topbar-h) + var(--navbar-inner-h));
+}
+
+.navbar-shell {
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar-topbar {
+  background: #191919;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  padding: 0.35rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 300ms ease;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.navbar-topbar.is-scrolled {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+.navbar-topbar-left {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navbar-topbar-left a {
+  color: #e0e0e0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 200ms ease;
+}
+
+.navbar-topbar-left a:hover {
+  color: #d04710;
+}
+
+.navbar-topbar-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.navbar-topbar-right a {
+  color: #e0e0e0;
+  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-topbar-right a:hover {
+  color: #d04710;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  height: var(--navbar-inner-h);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  height: var(--navbar-logo-h);
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --navbar-logo-h: 3.5rem;
+  }
+  .navbar-logo {
+    height: var(--navbar-logo-h);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --navbar-logo-h: 3.75rem;
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  color: #111111;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar-link:hover,
+.navbar-link.is-active {
+  color: #d04710;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: calc(100% + 2.25rem);
+  left: 50%;
+  background: #ffffff;
+  width: min(34rem, calc(100vw - 3rem));
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 0 0.75rem 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 10px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.navbar-dropdown::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2.25rem;
+  height: 2.25rem;
+}
+
+.navbar-dropdown.is-open,
+.has-dropdown:hover .navbar-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.navbar-dropdown-top {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 0 -0.75rem 0.35rem;
+  padding: 0.6rem 0.75rem 0.35rem;
+  border-radius: 0;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.navbar-dropdown-top:hover {
+  background: rgba(251, 86, 20, 0.12);
+  border-bottom-color: #d04710;
+}
+
+.navbar-dropdown-top .navbar-dropdown-link {
+  text-align: center;
+  justify-content: center;
+  padding: 0.2rem 0.5rem;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888888;
+  transition:
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.navbar-dropdown-top:hover .navbar-dropdown-link {
+  color: #d04710;
+  background: transparent;
+  transform: translateY(-1px);
+}
+
+.navbar-dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  column-gap: 0.5rem;
+  row-gap: 0;
+}
+
+.navbar-dropdown-link {
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  color: #333333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    transform 200ms ease,
+    padding-left 200ms ease;
+}
+
+.navbar-dropdown-link:hover {
+  color: #d04710;
+  background: rgba(251, 86, 20, 0.12);
+  padding-left: 0.75rem;
+}
+
+.navbar-dropdown-link.is-active {
+  color: #d04710;
+  font-weight: 700;
+  background: rgba(251, 86, 20, 0.08);
+}
+
+.navbar-mobile-link.is-active,
+.mobile-dropdown-link.is-active {
+  color: #d04710;
+  font-weight: 700;
+}
+
+.navbar-link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mobile-dropdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  column-gap: 0.5rem;
+  row-gap: clamp(0.3rem, 1vh, 0.6rem);
+  margin-top: clamp(0.2rem, 1vh, 0.4rem);
+  margin-bottom: clamp(0.1rem, 0.5vh, 0.2rem);
+}
+
+.mobile-dropdown-all {
+  grid-column: 1 / -1;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  color: #a0a0a0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: clamp(0.58rem, 2.3vw, 0.68rem);
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
+}
+
+.mobile-dropdown-link {
+  display: flex;
+  align-items: flex-start;
+  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #7a7a7a;
+  text-decoration: none;
+  padding: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.mobile-dropdown-link:hover {
+  color: #d04710;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-cta {
+  background: #fb5614;
+  color: #ffffff;
+  padding: 0.55rem 1.25rem;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+  display: inline-block;
+}
+
+.navbar-cta:hover {
+  background: #fc0403;
+  transform: translateY(-2px);
+}
+
+.navbar-cta-outline {
+  background: transparent;
+  color: #111111;
+  border: 1px solid #111111;
+  padding: 0.55rem 1.25rem;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.navbar-cta-outline:hover {
+  background: #111111;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.navbar-mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #111111;
+  padding: 0.5rem;
+}
+
+.navbar-mobile-panel {
+  position: fixed;
+  top: var(--navbar-inner-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: 1000;
+  padding: clamp(0.5rem, 2vh, 1.25rem) 1.25rem
+    calc(clamp(0.75rem, 2vh, 1.25rem) + env(safe-area-inset-bottom));
+  transform: translateY(-100%);
+  transition:
+    transform 300ms ease,
+    visibility 0s linear 300ms;
+  opacity: 0;
+  pointer-events: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.1rem, 0.8vh, 0.4rem);
+}
+
+.navbar-mobile-panel.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    transform 300ms ease,
+    visibility 0s linear 0s;
+  visibility: visible;
+}
+
+.navbar-mobile-cta-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  padding-top: clamp(0.5rem, 1.8vh, 1rem);
+}
+
+.navbar-mobile-cta-wrap > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.navbar-mobile-panel .navbar-cta,
+.navbar-mobile-panel .navbar-cta-outline {
+  padding: clamp(0.5rem, 1.6vh, 0.8rem) 0.6rem;
+  font-size: clamp(0.75rem, 3vw, 0.9rem);
+  text-align: center;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.navbar-mobile-link {
+  display: block;
+  font-size: clamp(0.75rem, 2.8vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #111111;
+  text-decoration: none;
+  padding: clamp(0.25rem, 1vh, 0.45rem) 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar-mobile-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: clamp(1.5rem, 3vh, 2.5rem);
+  padding-bottom: 1rem;
+}
+
+.navbar-mobile-socials a {
+  color: #111111;
+  transition: color 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-mobile-socials a:hover {
+  color: #d04710;
+}
+
+.navbar-spacer {
+  height: var(--navbar-spacer-h);
+}
+
+@media (min-width: 1025px) {
+  .navbar-dropdown {
+    width: min(40rem, calc(100vw - 3rem));
+  }
+  .navbar-dropdown-link {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 0.6rem;
+    line-height: 1.3;
+  }
+  .navbar-dropdown-top .navbar-dropdown-link {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+  .navbar-inner {
+    padding: 0 2rem;
+  }
+  .navbar-actions {
+    gap: 1rem;
+  }
+  .navbar-cta {
+    padding: 0.75rem 1.35rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navbar-nav,
+  .navbar-actions {
+    display: none !important;
+  }
+  .navbar-mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar-inner {
+    padding: 0 1rem;
+  }
+  .navbar-topbar {
+    padding: 0.5rem 0.5rem;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-height: 80px;
+  }
+  .navbar-topbar-left {
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+  /* Topbar wraps to two lines on tablet, so the spacer grows by ~1.8rem to
+   * account for both rows instead of the single-row desktop figure. With
+   * --navbar-topbar-h (1.85rem) + extra (1.8rem) + --navbar-inner-h (5.25rem)
+   * this returns the previous 8.9rem tablet spacer. */
+  .navbar-spacer {
+    height: calc(var(--navbar-topbar-h) + 1.8rem + var(--navbar-inner-h));
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-topbar {
+    display: none;
+  }
+  /* Mobile has no topbar, so the spacer matches the inner height exactly. The
+   * inner also collapses tighter (5.25rem) than the 3.75rem logo would
+   * normally demand so the navbar stays a comfortable touch target. */
+  .navbar-inner {
+    height: 5.25rem;
+  }
+  .navbar-spacer {
+    height: 5.25rem;
+  }
+  .navbar-mobile-panel {
+    top: 5.25rem;
+  }
+}

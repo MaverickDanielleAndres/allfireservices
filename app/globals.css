@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./navbar.css";
+@import "./sitewide-cta.css";
 
 @source "../app";
 @source "../components";
@@ -59,19 +61,22 @@
  * full height on hydration, pushing <main> down and producing effectively all
  * of the page's cumulative layout shift.
  *
- * Keep in sync with the .navbar-spacer rules inside NavbarContent.
+ * The size tokens (--navbar-logo-h, --navbar-inner-h, --navbar-topbar-h,
+ * --navbar-spacer-h) are declared on :root in app/navbar.css and shared with
+ * the live navbar so all four scale together when the logo size changes.
+ * Keep the breakpoint overrides below in sync with app/navbar.css.
  */
 .navbar-spacer {
-  height: 8rem;
+  height: calc(var(--navbar-topbar-h) + 1.8rem + var(--navbar-inner-h));
 }
 @media (min-width: 1025px) {
   .navbar-spacer {
-    height: 10rem;
+    height: var(--navbar-spacer-h);
   }
 }
 @media (max-width: 768px) {
   .navbar-spacer {
-    height: 5.5rem;
+    height: 5.25rem;
   }
 }
 

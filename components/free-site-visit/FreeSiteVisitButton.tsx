@@ -107,8 +107,8 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           .fsv-btn--primary {
             background: linear-gradient(135deg, #ff2a00 0%, #ffb700 100%);
             color: #ffffff;
-            padding: 0.875rem 1.6rem;
-            font-size: 1rem;
+            padding: 0.6rem 1.15rem;
+            font-size: 0.9rem;
             box-shadow: 0 10px 24px rgba(255, 42, 0, 0.28),
               0 1px 0 rgba(255, 255, 255, 0.25) inset;
             border-color: transparent;
@@ -124,8 +124,8 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           .fsv-btn--ghost {
             background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.95rem;
+            padding: 0.55rem 1rem;
+            font-size: 0.875rem;
             border-color: rgba(255, 255, 255, 0.4);
           }
           .fsv-btn--ghost:hover {
@@ -134,8 +134,8 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           .fsv-btn--compact {
             background: linear-gradient(135deg, #ff2a00 0%, #ffb700 100%);
             color: #ffffff;
-            padding: 0.625rem 1.1rem;
-            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8125rem;
             box-shadow: 0 6px 16px rgba(255, 42, 0, 0.25);
           }
           .fsv-btn--compact:hover {
@@ -200,7 +200,7 @@ const FreeSiteVisitButton = forwardRef<HTMLButtonElement, FreeSiteVisitButtonPro
           }
           @media (max-width: 768px) {
             .fsv-btn {
-              font-size: 1.15rem;
+              font-size: 1rem;
             }
           }
         `}</style>

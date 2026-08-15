@@ -27,7 +27,7 @@
  *   • Background body scroll is locked (Lenis-aware)
  */
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useLenis } from "lenis/react";
@@ -167,6 +167,55 @@ export default function FreeSiteVisitModal() {
     return () => document.removeEventListener("keydown", onKey);
   }, [visit?.isOpen, visit]);
 
+  // ── Desktop scale-to-fit ────────────────────────────────────────────
+  // On desktop the modal must never scroll: whatever the viewport height,
+  // the whole card (banner + every field + submit) has to be visible. The
+  // card's natural height is content-driven (and grows when validation
+  // messages or the service picker appear), so a static max-height either
+  // clips it or leaves it scrolling. Instead we measure the card's natural
+  // layout height and uniformly scale it down to fit the available space.
+  // `transform: scale()` doesn't change the layout box, so the scaler
+  // wrapper is given the *scaled* height to keep the backdrop from
+  // scrolling. Tablet/mobile keep their own scroll behaviour (scale = 1).
+  const scalerRef = useRef<HTMLDivElement | null>(null);
+  const [scale, setScale] = useState(1);
+  const [naturalHeight, setNaturalHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!visit?.isOpen) return;
+    const card = dialogRef.current;
+    if (!card) return;
+
+    const desktop = window.matchMedia("(min-width: 1025px)");
+
+    const fit = () => {
+      if (!desktop.matches) {
+        setScale(1);
+        setNaturalHeight(null);
+        return;
+      }
+      // Backdrop padding is clamp(0.5rem, 2vw, 1.5rem) top and bottom.
+      const pad = Math.min(Math.max(8, window.innerWidth * 0.02), 24) * 2;
+      const available = window.innerHeight - pad;
+      const natural = card.offsetHeight;
+      if (!natural) return;
+      setNaturalHeight(natural);
+      const next = Math.min(1, available / natural);
+      setScale((prev) => (Math.abs(prev - next) < 0.005 ? prev : next));
+    };
+
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(card);
+    window.addEventListener("resize", fit);
+    desktop.addEventListener("change", fit);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", fit);
+      desktop.removeEventListener("change", fit);
+    };
+  }, [visit?.isOpen]);
+
   const handleBackdrop = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       if (event.target === event.currentTarget) {
@@ -210,6 +259,20 @@ export default function FreeSiteVisitModal() {
       }}
     >
       <div
+        ref={scalerRef}
+        className="fsv-modal-scaler"
+        style={{
+          width: "100%",
+          maxWidth: 880,
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          flexShrink: 0,
+          height:
+            scale < 1 && naturalHeight ? naturalHeight * scale : undefined,
+        }}
+      >
+      <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
@@ -226,6 +289,8 @@ export default function FreeSiteVisitModal() {
           margin: "0 auto",
           position: "relative",
           flexShrink: 0,
+          transform: scale < 1 ? `scale(${scale})` : undefined,
+          transformOrigin: "top center",
         }}
       >
         <style>{`
@@ -243,12 +308,49 @@ export default function FreeSiteVisitModal() {
           }
           .fsv-modal-card {
             display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
             animation: fsv-card-in 320ms cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: calc(100dvh - clamp(1rem, 4vw, 3rem));
+            overflow: hidden;
+          }
+          /* Desktop: the card renders at its natural height and is scaled
+             down by JS (see the scale-to-fit effect) so it always fits the
+             viewport without any scrolling, on tall and short screens
+             alike. A max-height here would clip it instead. */
+          @media (min-width: 1025px) {
+            .fsv-modal-card {
+              max-height: none;
+              overflow: visible;
+            }
           }
           .fsv-modal-portrait {
             border-top-left-radius: 16px;
             border-bottom-left-radius: 16px;
+            min-height: 0;
+          }
+          .fsv-modal-form-wrap {
+            min-height: 0;
+          }
+
+          /* Shorter desktop screens (e.g. 13" laptops at 768–900px tall)
+             further tighten the portrait column and let the form column
+             take the majority of the width so the form fields stay
+             readable without resizing. */
+          @media (max-height: 820px) and (min-width: 1025px) {
+            .fsv-modal-card {
+              grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr) !important;
+            }
+            .fsv-modal-portrait {
+              min-height: 360px !important;
+            }
+            .fsv-modal-form-wrap {
+              padding: 1.1rem 1.4rem 0.85rem !important;
+              gap: 0.3rem !important;
+            }
+            .fsv-banner-eyebrow { font-size: 0.6rem !important; letter-spacing: 0.2em !important; margin-bottom: 0.5rem !important; }
+            .fsv-banner-headline { font-size: 2.1rem !important; }
+            .fsv-banner-subhead { font-size: 1.05rem !important; }
+            .fsv-banner-body { font-size: 0.78rem !important; }
           }
           @keyframes fsv-card-in {
             from { opacity: 0; transform: translateY(20px) scale(0.97); }
@@ -267,12 +369,11 @@ export default function FreeSiteVisitModal() {
             z-index: 50;
           }
 
-          /* ── Tablet (≤ 1024px) ─────────────────────────────────────────
-             Stack the portrait banner above the form. The card is
-             constrained to the viewport height (minus the backdrop
-             padding) and becomes its own scroll container so the
+          /* ── Tablet & mobile (≤ 1024px) ───────────────────────────────
+             Stack the portrait banner above the form. On these screens
+             the card itself becomes the scroll container so the
              visitor can always reach the Book the Boss submit button
-             even on a small laptop screen or iPad portrait — no
+             via swipe, regardless of viewport height — there is no
              dependence on backdrop scroll, which can stall on iOS. */
           @media (max-width: 1024px) {
             .fsv-modal-card {
@@ -281,12 +382,15 @@ export default function FreeSiteVisitModal() {
               grid-template-columns: unset !important;
               max-width: min(720px, 92vw) !important;
               width: 100% !important;
+              max-height: calc(100dvh - 24px) !important;
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;
-              min-height: 220px !important;
-              height: 220px !important;
-              max-height: 220px !important;
+              min-height: 200px !important;
+              height: 200px !important;
+              max-height: 200px !important;
               flex: 0 0 auto !important;
               border-top-left-radius: 16px !important;
               border-top-right-radius: 16px !important;
@@ -323,13 +427,16 @@ export default function FreeSiteVisitModal() {
               grid-template-columns: unset !important;
               width: 100% !important;
               max-width: 100% !important;
+              max-height: calc(100dvh - 24px) !important;
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch !important;
               border-radius: 14px !important;
             }
             .fsv-modal-portrait {
               width: 100% !important;
-              min-height: 220px !important;
-              height: 220px !important;
-              max-height: 220px !important;
+              min-height: 180px !important;
+              height: 180px !important;
+              max-height: 180px !important;
               flex: 0 0 auto !important;
               border-top-left-radius: 14px !important;
               border-top-right-radius: 14px !important;
@@ -365,10 +472,10 @@ export default function FreeSiteVisitModal() {
              designed size. */
           @media (max-width: 380px) {
             .fsv-modal-portrait {
-              min-height: 200px !important;
-              height: 200px !important;
-              max-height: 200px !important;
-              flex: 0 0 200px !important;
+              min-height: 160px !important;
+              height: 160px !important;
+              max-height: 160px !important;
+              flex: 0 0 160px !important;
             }
             .fsv-banner-eyebrow { font-size: 0.62rem !important; letter-spacing: 0.18em !important; }
             .fsv-banner-headline { font-size: 2.1rem !important; }
@@ -603,6 +710,7 @@ export default function FreeSiteVisitModal() {
         >
           <X size={18} strokeWidth={2.4} aria-hidden="true" />
         </button>
+      </div>
       </div>
     </div>
   );

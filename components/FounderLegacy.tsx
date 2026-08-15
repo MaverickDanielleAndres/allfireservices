@@ -23,12 +23,12 @@ type Generation = {
 };
 
 const generations: Generation[] = [
-  { year: "1911", relation: "Great Granddad", name: "William\nTricklebank", image: "/family/greatgrandad.jpg" },
-  { year: "1931", relation: "Granddad", name: "Trevor\nTricklebank", image: "/family/grandfathertrevor.jpg" },
-  { year: "1955", relation: "Uncle", name: "Trevor\nTricklebank Jr", image: "/family/uncletrevortricklebandjr.jpg" },
-  { year: "1957", relation: "My Father", name: "Stanley\nTricklebank", image: "/family/myfather.jpg" },
-  { year: "1959", relation: "Uncle", name: "Ian\nTricklebank", image: "/family/uncleian.png" },
-  { year: "Current", relation: "Current", name: "Peter\nTricklebank", image: "/family/pete.png" },
+  { year: "1911", relation: "Uncle", name: "William\nTricklebank", image: "/family/greatgrandad-240.avif" },
+  { year: "1931", relation: "Granddad", name: "Trevor\nTricklebank", image: "/family/grandfathertrevor-240.avif" },
+  { year: "1955", relation: "Uncle", name: "Trevor\nTricklebank Jr", image: "/family/uncletrevortricklebandjr-240.avif" },
+  { year: "1957", relation: "Uncle", name: "Stanley\nTricklebank", image: "/family/myfather-240.avif" },
+  { year: "1959", relation: "Uncle", name: "Ian\nTricklebank", image: "/family/uncleian-240.avif" },
+  { year: "Current", relation: "Uncle", name: "Peter\nTricklebank", image: "/family/pete-240.avif" },
 ];
 
 export function CompactTimeline({ larger = false }: { larger?: boolean }) {
@@ -102,11 +102,11 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
                 width: "var(--portrait-size)",
                 height: "var(--portrait-size)",
                 borderRadius: "999px",
-                border: "0.28rem solid #f0f0ed",
+                border: "0.28rem solid #1a1a1a",
                 overflow: "hidden",
                 flexShrink: 0,
-                boxShadow: "0 0.65rem 1.4rem rgba(17, 17, 17, 0.12)",
-                backgroundColor: "#f9fafb",
+                boxShadow: "0 0.65rem 1.4rem rgba(17, 17, 17, 0.18)",
+                backgroundColor: "#1a1a1a",
               }}
             >
               <Image
@@ -114,9 +114,10 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
                 alt={`Portrait of ${generation.name}`}
                 fill
                 sizes="160px"
+                quality={80}
                 style={{
                   objectFit: "cover",
-                  filter: "grayscale(100%)",
+                  filter: "grayscale(100%) contrast(1.15) brightness(0.95)",
                   display: "block",
                 }}
               />
@@ -220,15 +221,15 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
               width: "var(--portrait-size)",
               height: "var(--portrait-size)",
               borderRadius: "999px",
-              border: "0.28rem solid #f0f0ed",
+              border: "0.28rem solid #1a1a1a",
               overflow: "hidden",
               flexShrink: 0,
-              boxShadow: "0 0.65rem 1.4rem rgba(17, 17, 17, 0.12)",
+              boxShadow: "0 0.65rem 1.4rem rgba(17, 17, 17, 0.18)",
               backgroundColor: "#f9fafb",
             }}
           >
             <Image
-              src="/family/nexgenimage.png"
+              src="/family/nexgenimage-240.avif"
               alt="Next Generation Firefighter"
               fill
               sizes="160px"

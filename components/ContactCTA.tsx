@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useCallback, useId, useRef, useState } from "react";
 import SitewideCTA from "@/components/SitewideCTA";
 import { ToastViewport, type Toast, type ToastTone } from "@/components/Toast";
@@ -253,10 +254,13 @@ export default function ContactCTA({
                   borderRadius: "20px"
                 }}
               >
-                <img 
-                  src="/technician/Peter%20-%20Managing%20Director.jpg" 
-                  alt="Peter Tricklebank - Boss" 
-                  style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }} 
+                <Image
+                  src="/technician/Peter%20-%20Managing%20Director-480.webp"
+                  alt="Peter Tricklebank - Boss"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 430px"
+                  quality={70}
+                  style={{ objectFit: "cover" }}
                 />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.65) 100%)", pointerEvents: "none" }} />
                 
@@ -578,7 +582,7 @@ export default function ContactCTA({
                       </div>
                       <div className="text-center mt-1">
                         <span style={{ fontSize: "1.05rem", color: "#111111", fontWeight: 600 }}>After Hours: </span>
-                        <a href="tel:1300765594" style={{ fontSize: "1.05rem", color: "#ff2a00", fontWeight: 700, textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseOut={(e) => e.currentTarget.style.textDecoration = "none"}>1300 765 594</a>
+                        <a href="tel:1300765594" style={{ fontSize: "1.05rem", color: "#c11c00", fontWeight: 700, textDecoration: "none", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseOut={(e) => e.currentTarget.style.textDecoration = "none"}>1300 765 594</a>
                       </div>
                     </div>
 

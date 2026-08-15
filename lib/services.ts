@@ -61,7 +61,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=annual-fire-safety-statement",
     headingLine1: "Annual Fire",
     headingLine2: "Safety Statement",
-    image: "/services/AFSS.png",
+    image: "/services/AFSS-640.webp",
     imageAlt: "NSW annual fire safety statement documentation",
   },
   {
@@ -71,7 +71,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=fire-panel",
     headingLine1: "Fire Panels",
     headingLine2: "& Alarms",
-    image: "/services/Fire%20Panel%20%26Detection%20(AS%201670.1).jpg",
+    image: "/services/Fire%20Panel%20%26Detection%20(AS%201670.1)-640.webp",
     imageAlt: "All Fire Services fire indicator panel under inspection",
   },
   {
@@ -81,7 +81,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=smoke-alarms",
     headingLine1: "Smoke",
     headingLine2: "Detectors",
-    image: "/services/Smoke%20Alarms(AS%203786).png",
+    image: "/services/Smoke%20Alarms(AS%203786)-640.webp",
     imageAlt: "Technician testing a ceiling-mounted smoke detector",
   },
   {
@@ -91,7 +91,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=fire-doors",
     headingLine1: "Fire",
     headingLine2: "Doors",
-    image: "/services/firedoor.jpg",
+    image: "/services/firedoor-640.webp",
     imageAlt: "All Fire Services technicians on site",
   },
   {
@@ -101,7 +101,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=fire-extinguishers",
     headingLine1: "Fire",
     headingLine2: "Extinguishers",
-    image: "/services/Fire%20extinguishers.jpg",
+    image: "/services/Fire%20extinguishers-640.webp",
     imageAlt: "Fire extinguisher maintenance tag being inspected",
   },
   {
@@ -111,7 +111,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=emergency-lights",
     headingLine1: "Emergency",
     headingLine2: "Lights",
-    image: "/services/emergencylights.jpg",
+    image: "/services/emergencylights-640.webp",
     imageAlt: "Emergency lighting fitting undergoing a 90-minute test",
   },
   {
@@ -121,7 +121,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=fire-hose-reels",
     headingLine1: "Fire Hose",
     headingLine2: "Reels",
-    image: "/services/firehose.png",
+    image: "/services/firehose-640.webp",
     imageAlt: "All Fire Services hydrant and hose system",
   },
   {
@@ -131,7 +131,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=diesel-pump",
     headingLine1: "Diesel / Hydrant",
     headingLine2: "/ Sprinkler",
-    image: "/services/diesel%20hydrant.jpg",
+    image: "/services/diesel%20hydrant-640.webp",
     imageAlt: "Diesel fire pump and pipework in a building plant room",
   },
   {
@@ -141,7 +141,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=air-mechanical",
     headingLine1: "Air & Mechanical",
     headingLine2: "Services",
-    image: "/services/mechanical.jpg",
+    image: "/services/mechanical-640.webp",
     imageAlt: "Fire services pipework, valves and pressure gauges",
   },
   {
@@ -151,7 +151,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=flow-testing",
     headingLine1: "Flow",
     headingLine2: "Testing",
-    image: "/services/flowtest.jpg",
+    image: "/services/flowtest-640.webp",
     imageAlt: "All Fire Services technician carrying out a hydrant flow test",
   },
   {
@@ -161,7 +161,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=service-penetration",
     headingLine1: "Fire",
     headingLine2: "Penetration",
-    image: "/services/passivefire.jpg",
+    image: "/services/passivefire-640.webp",
     imageAlt: "Fire safety inspection being carried out on site",
   },
   {
@@ -171,7 +171,7 @@ export const services: ServiceDefinition[] = [
     href: "/services?category=plans",
     headingLine1: "Zone Block / Evacuation /",
     headingLine2: "Hydrant Plans",
-    image: "/services/zoneblockplan.jpg",
+    image: "/services/zoneblockplan-640.webp",
     imageAlt: "Zone block plan and evacuation diagram for a building",
   },
 ];

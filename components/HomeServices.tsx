@@ -50,11 +50,11 @@ export default function HomeServices() {
               <div className={styles.cardMedia}>
                 <Image
                   fill
-                  unoptimized
                   src={service.image}
-                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, 25vw"
+                  sizes="(max-width: 479px) 92vw, (max-width: 767px) 45vw, (max-width: 991px) 30vw, 23vw"
                   alt={service.imageAlt}
                   className={styles.image}
+                  quality={70}
                 />
                 <div className={styles.hoverOverlay}>
                   <div className={styles.arrowIcon}>

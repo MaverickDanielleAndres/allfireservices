@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { Loader, MapPin, MessageCircle, Phone, Send, X } from "lucide-react";
 import Image from "next/image";
 import { useLenis } from "lenis/react";
@@ -235,10 +234,8 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
   const fullScreen = isMobileOrTablet;
 
   return (
-    <motion.div
+    <div
       ref={wrapperRef}
-      drag={!isMobileOrTablet && !isOpen}
-      dragMomentum={false}
       className="chatbot-container"
       style={{
         fontFamily: "var(--font-sans), Inter, Arial, sans-serif",
@@ -247,6 +244,7 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
         right: isMobileOrTablet ? 10 : 20,
         zIndex: 9999,
         transition: "bottom 280ms cubic-bezier(0.16, 1, 0.3, 1)",
+        touchAction: !isMobileOrTablet && !isOpen ? "none" : "auto",
       }}
     >
       {isOpen && (
@@ -593,6 +591,6 @@ export default function ChatbotDeferred({ initialOpen = false }: { initialOpen?:
           </span>
         </button>
       )}
-    </motion.div>
+    </div>
   );
 }

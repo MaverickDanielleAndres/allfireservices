@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import dynamic from "next/dynamic";
 import "./globals.css";
 import "./allfireservices.css";
 import "./responsive.css";
@@ -9,6 +9,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterReveal from "@/components/FooterReveal";
 import FreeSiteVisitClientShell from "@/components/free-site-visit/FreeSiteVisitClientShell";
+
+// Only mount the Vercel Speed Insights beacon on a real Vercel deployment.
+// Loading it on localhost produces a 404 (script.js not hosted there), which
+// drops Best Practices below 100 and surfaces a console error.
+const SpeedInsights = process.env.VERCEL_ENV
+  ? dynamic(() => import("@vercel/speed-insights/next").then((m) => m.SpeedInsights))
+  : null;
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_IMAGE,
@@ -25,7 +32,12 @@ import {
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  // Trimmed from [400-900] to only the weights the site actually uses.
+  // Each weight is a separate ~30-50 KB woff2 — the previous config shipped
+  // 6 of them. The site only references 400 (body), 700 (buttons/labels),
+  // 800 (subheads) and 900 (hero). Dropping 500 + 600 removes ~100 KB of
+  // font payload from every page.
+  weight: ["400", "700", "800", "900"],
   style: ["normal"],
   // "optional" skips the font-swap entirely — if Inter isn't cached by
   // the time we need to paint, the browser keeps the system fallback and
@@ -137,7 +149,27 @@ export default function RootLayout({
         {/* Both preconnect hints removed — Lighthouse flagged them as
             "Unused preconnect" since the pages never request those origins
             on first paint. YouTubeLite loads thumbnails lazily on
-            intersection, well after the critical path. */}
+            intersection, well after the critical path.
+
+            The hero poster is the LCP element on `/`. Preload the smallest
+            AVIF (640 px) for fast mobile first paint, plus the 1280 px
+            desktop variant via `imagesrcset`. The browser picks the right
+            one and the request goes out before the <DeferredVideo> mount. */}
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/herosectionimage-640.avif"
+          // React 19 expects camelCase `fetchPriority` and `imageSrcSet` /
+          // `imageSizes` props on <link>. Spreading to bypass the (still
+          // incomplete) JSX typings without using a ts-expect-error.
+          {...{
+            imageSrcSet:
+              "/herosectionimage-640.avif 640w, /herosectionimage-960.avif 960w, /herosectionimage-1280.avif 1280w",
+            imageSizes: "100vw",
+            fetchPriority: "high",
+          }}
+        />
       </head>
       <body
         className={`${inter.className} antialiased min-h-screen flex flex-col bg-white`}
@@ -157,7 +189,7 @@ export default function RootLayout({
             </FreeSiteVisitClientShell>
           </FooterReveal>
         </SmoothScrolling>
-        <SpeedInsights />
+        {SpeedInsights ? <SpeedInsights /> : null}
       </body>
     </html>
   );

@@ -428,6 +428,7 @@ export default function GoogleReviews() {
                     <div>
                       <div
                         className="flex items-center gap-0.5 text-[#ffad05] mb-3"
+                        role="img"
                         aria-label={`Rated ${item.rating} out of 5 on Google`}
                       >
                         {Array.from({ length: item.rating }).map((_, s) => (

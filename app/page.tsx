@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import DeferredVideo from "@/components/DeferredVideo";
 import Link from "next/link";
 import FreeSiteVisitButton from "@/components/free-site-visit/FreeSiteVisitButton";
+import HomeStoryLegacy from "@/components/HomeStoryLegacy";
 import heroStyles from "./HomeHero.module.css";
 
 const ContactCTA = dynamic(() => import("@/components/ContactCTA"));
@@ -11,9 +12,17 @@ const StrataSection = dynamic(() => import("@/components/StrataSection"));
 const FireSafetyShorts = dynamic(() => import("@/components/FireSafetyShorts"));
 const ClientFeedback = dynamic(() => import("@/components/testimonial"));
 const GoogleReviews = dynamic(() => import("@/components/GoogleReviews"));
-const HomeStoryLegacy = dynamic(() => import("@/components/HomeStoryLegacy"));
 const FounderLegacy = dynamic(() => import("@/components/FounderLegacy"));
 const HomeServices = dynamic(() => import("@/components/HomeServices"));
+
+/**
+ * Source-list format used by `<DeferredVideo>`: "mime:url,mime:url".
+ * WebM is offered first (smaller), MP4 falls back. The 540p variants are
+ * used because the hero background video is heavily blurred + tinted, so
+ * 1080p is visually indistinguishable but ~4× larger.
+ */
+const HERO_VIDEO_SRC =
+  "webm:/hero-video-540.webm,mp4:/hero-video-540.mp4";
 
 const clientLogoRows = [
   [
@@ -217,7 +226,9 @@ function ClientsMarquee() {
 
       <div className="clients-marquee-track-wrap" aria-label="Client logos">
         {clientLogoRows.map((row, rowIndex) => {
-          const repeatedLogos = [...row, ...row, ...row, ...row];
+          // Two copies is enough for a seamless -50% translate loop, and
+          // halves the DOM size vs the previous 4× duplication.
+          const repeatedLogos = [...row, ...row];
           return (
             <div
               key={rowIndex}
@@ -255,11 +266,14 @@ export default function Page() {
             {/* Hero background video — autoplays muted / looped / inline as
                 soon as the wrapper enters the viewport (DeferredVideo defers
                 the <video> mount until then, so mobile data isn't burned).
-                The poster image is shown first as a seamless placeholder. */}
+                The poster image is shown first as a seamless placeholder.
+                Poster is marked `isLCP` so it paints immediately and is
+                prioritised as the LCP candidate (not the video). */}
             <DeferredVideo
-              src="/hero-video.mp4?v=2"
-              poster="/herosectionimage.webp"
+              src={HERO_VIDEO_SRC}
+              poster="/herosectionimage-960.avif"
               autoPlayOnView
+              isLCP
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             {/* Dark tint overlay – sits ABOVE the video so the headline copy
@@ -381,8 +395,8 @@ export default function Page() {
         {/* Full-width Autoplaying Hero Video — only mounts once the user scrolls here */}
         <RevealOnView style={{ width: '100%' }}>
           <DeferredVideo
-            src="/hero-video.mp4?v=2"
-            poster="/herosectionimage.webp"
+            src={HERO_VIDEO_SRC}
+            poster="/herosectionimage-960.avif"
             className={heroStyles.mobileVideoTall}
             style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}
           />

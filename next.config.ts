@@ -38,7 +38,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Combined headers: caching + security (CSP, COOP, XFO).
+  // Combined headers: caching + security (CSP, COOP, XFO, Permissions-Policy).
   async headers() {
     return [
       {
@@ -78,6 +78,22 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "X-Frame-Options", value: "DENY" },
+          // Tighten the browser feature surface — the site does not use any
+          // of these APIs and shouldn't be allowed to load them.
+          {
+            key: "Permissions-Policy",
+            value: [
+              "camera=()",
+              "microphone=()",
+              "geolocation=()",
+              "payment=()",
+              "usb=()",
+              "magnetometer=()",
+              "gyroscope=()",
+              "accelerometer=()",
+              "interest-cohort=()",
+            ].join(", "),
+          },
           {
             key: "Content-Security-Policy",
             value: [
