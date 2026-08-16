@@ -113,7 +113,7 @@ export default function Page() {
               src="/herosectionimage-1280.webp"
               alt="Contact All Fire Services Hero"
               fill
-              style={{ objectFit: 'cover', objectPosition: 'top' }}
+              style={{ objectFit: 'cover', objectPosition: 'center 25%' }}
               priority
               fetchPriority="high"
               quality={60}
