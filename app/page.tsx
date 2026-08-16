@@ -274,6 +274,7 @@ export default function Page() {
               poster="/herosectionimage-960.avif"
               autoPlayOnView
               isLCP
+              sourceDelayMs={0}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             {/* Dark tint overlay – sits ABOVE the video so the headline copy

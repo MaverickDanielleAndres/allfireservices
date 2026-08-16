@@ -13,7 +13,9 @@
  * their click being coupled to a provider boundary.
  */
 
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { openFreeSiteVisit, getFreeSiteVisitState } from "@/lib/free-site-visit/FreeSiteVisitStore";
 
 const ChatbotDeferred = dynamic(
   () => import("@/components/ChatbotDeferred"),
@@ -29,6 +31,22 @@ const FreeSiteVisitMobileSticky = dynamic(
 );
 
 export default function FreeSiteVisitIsland() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (sessionStorage.getItem("fsv.session.submitted") === "1") return;
+      if (sessionStorage.getItem("fsv.session.auto_shown") === "1") return;
+
+      const timer = setTimeout(() => {
+        if (!getFreeSiteVisitState().isOpen) {
+          sessionStorage.setItem("fsv.session.auto_shown", "1");
+          openFreeSiteVisit({ source: "auto_30s" });
+        }
+      }, 30000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <>
       <FreeSiteVisitModal />
