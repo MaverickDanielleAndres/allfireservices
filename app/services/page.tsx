@@ -190,7 +190,7 @@ export default function ServicesPage() {
         <header className={heroStyles.hero_root}>
           <div className={heroStyles.hero_image_layer}>
             <Image
-              src="/serviceherosectionimage.jpg"
+              src="/services/diesel hydrant.jpg"
               alt="All Fire Services — practical fire protection across Greater Sydney"
               fill
               priority

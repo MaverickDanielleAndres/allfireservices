@@ -22,6 +22,7 @@ export default function WhyAllFirePage() {
           description="All Fire Services helps strata managers, building owners, and businesses stay on top of their fire protection and fire safety obligations with practical inspections, testing, certification, and clear next steps."
           imageSrc="/technician/group.jpg"
           imageAlt="All Fire Services technicians carrying out a site inspection"
+          imagePosition="top"
         />
 
         <div className="bg-white relative z-10" style={{ marginTop: "-2px" }}>

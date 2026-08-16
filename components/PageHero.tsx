@@ -17,6 +17,7 @@ export interface PageHeroProps {
   description: string;
   imageSrc: string;
   imageAlt: string;
+  imagePosition?: string;
 }
 
 export default function PageHero({
@@ -25,6 +26,7 @@ export default function PageHero({
   description,
   imageSrc,
   imageAlt,
+  imagePosition = "center",
 }: PageHeroProps) {
   return (
     <header
@@ -123,7 +125,7 @@ export default function PageHero({
           src={imageSrc}
           alt={imageAlt}
           fill
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: imagePosition }}
           priority
           fetchPriority="high"
           quality={60}

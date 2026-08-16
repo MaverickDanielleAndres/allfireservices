@@ -110,10 +110,10 @@ export default function Page() {
         >
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image
-              src="/herosectionimage.webp"
+              src="/herosectionimage-1280.webp"
               alt="Contact All Fire Services Hero"
               fill
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
               priority
               fetchPriority="high"
               quality={60}

@@ -22,6 +22,7 @@ export default function OurTeamPage() {
           description="Our team includes serving  professional firefighters who bring practical, real-world understanding to fire protection, supported by qualified fire-safety professionals across Greater Sydney."
           imageSrc="/technician/groupteam.jpg"
           imageAlt="The All Fire Services team on site"
+          imagePosition="top"
         />
 
         <div className="bg-white relative z-10" style={{ marginTop: "-2px" }}>

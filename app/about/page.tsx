@@ -340,7 +340,7 @@ export default function Page() {
         >
           <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
             <Image
-              src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp"
+              src="/History/about (8).jpg"
               alt="About All Fire Services Hero"
               fill
               style={{ objectFit: 'cover', objectPosition: 'center' }}
