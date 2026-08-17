@@ -258,18 +258,24 @@
   .heroContainer {
     padding: 4rem 2rem 12rem 2rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    text-align: center;
   }
   .heroContent {
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .heroTitle {
     font-size: clamp(2.25rem, 5.5vw, 3.5rem) !important;
+    text-align: center;
   }
   .heroKicker {
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
   .heroTitleLine {
     white-space: normal;
@@ -278,6 +284,7 @@
     font-size: 1.4rem;
     line-height: 1.5;
     max-width: 100%;
+    text-align: center;
   }
   /* On tablets, swap the 3-line desktop title for the 4-line mobile
      composition so the long words never wrap mid-character. */
@@ -286,20 +293,22 @@
   }
   .heroTitleMobile {
     display: block;
+    text-align: center;
+    width: 100%;
   }
   .heroAnalytics {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
     align-items: flex-start;
     gap: 2rem;
   }
   .analyticsItem {
     flex: 1 1 calc(33.333% - 1rem);
     min-width: 150px;
-    align-items: flex-start;
+    align-items: center;
   }
   .infoCardsSection {
     grid-template-columns: repeat(2, 1fr);
@@ -322,6 +331,7 @@
     line-height: 1.15;
     word-break: normal;
     overflow-wrap: break-word;
+    text-align: center;
   }
   .heroTitleDesktop {
     display: none;
@@ -350,7 +360,7 @@
     margin-bottom: 1rem;
   }
   .heroBody {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     margin-bottom: 2rem;
   }
@@ -358,6 +368,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
+    width: 100%;
   }
   .heroActions .btnPrimary,
   .heroActions .btnSecondary {
