@@ -399,6 +399,7 @@ export default function Page() {
             src={HERO_VIDEO_SRC}
             poster="/herosectionimage-960.avif"
             className={heroStyles.mobileVideoTall}
+            sourceDelayMs={0}
             style={{ width: '100%', aspectRatio: '16/9', maxHeight: '800px', display: 'block', objectFit: 'cover', backgroundColor: '#111' }}
           />
         </RevealOnView>
