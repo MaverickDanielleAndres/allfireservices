@@ -135,14 +135,8 @@ textarea {
   flex-wrap: wrap;
 }
 
-/* The footer social list is a Tailwind-styled <ul> with
-   `flex flex-nowrap` already applied; the older rule above caused
-   every Email / X icon to wrap onto a second line on narrow
-   viewports. Reset to nowrap with horizontal scroll as a last resort. */
-.footer-social-list {
-  flex-wrap: nowrap !important;
-  overflow-x: auto;
-}
+/* The footer social list is styled via Tailwind in the component.
+   Removed global flex-nowrap/overflow-x to prevent desktop scrollbars. */
 
 .contact-social-link,
 .footer-social-link {

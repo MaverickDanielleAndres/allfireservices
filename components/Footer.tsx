@@ -142,7 +142,7 @@ export default function Footer() {
                 lineHeight: 0.92,
                 margin: 0,
               }}>Socials</h3>
-              <ul className="footer-social-list grid grid-cols-4 items-center justify-items-center gap-x-0 gap-y-3 text-[#111111] w-full sm:flex sm:flex-nowrap sm:justify-between sm:gap-x-3">
+              <ul className="footer-social-list grid grid-cols-4 items-center justify-items-center gap-x-0 gap-y-3 text-[#111111] w-full sm:flex sm:flex-nowrap sm:-ml-[13px] sm:justify-start sm:gap-x-2">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <li key={label} className="footer-social-item flex-none">
                     <a
