@@ -177,3 +177,20 @@ body.mobile-menu-open .chatbot-container {
     animation: none;
   }
 }
+
+/* Maintain side-by-side layout for all hero sections on tablet */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .hero_content-wrapper {
+    flex-flow: row !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+  .hero_content-left {
+    flex: 1 1 50% !important;
+    max-width: 50% !important;
+  }
+  .hero_content-right {
+    flex: 1 1 50% !important;
+    max-width: 50% !important;
+  }
+}

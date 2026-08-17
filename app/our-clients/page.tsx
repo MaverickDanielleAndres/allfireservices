@@ -333,7 +333,7 @@ export default function OurClientsPage() {
                         Our Clients
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        Trusted by strata managers, property teams, facility managers, and business owners across Sydney. Discover the organisations that rely on All Fire Services for <strong>practical fire protection</strong>, helping protect their people, property, and compliance.
+                        Trusted across Sydney by strata and facility managers for <strong>practical fire protection</strong>, safeguarding people, property, and compliance.
                       </p>
                     </div>
                   </div>

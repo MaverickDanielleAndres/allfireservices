@@ -19,7 +19,7 @@ export default function OurTeamPage() {
         <PageHero
           eyebrow="Our Team"
           titleLines={["THE PEOPLE BEHIND", "ALL FIRE SERVICES"]}
-          description="Our team includes serving  professional firefighters who bring practical, real-world understanding to fire protection, supported by qualified fire-safety professionals across Greater Sydney."
+          description="Serving professional firefighters and qualified fire-safety professionals bringing practical, real-world fire protection to Greater Sydney."
           imageSrc="/technician/groupteam.jpg"
           imageAlt="The All Fire Services team on site"
           imagePosition="center 25%"

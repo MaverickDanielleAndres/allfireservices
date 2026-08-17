@@ -19,7 +19,7 @@ export default function WhyAllFirePage() {
         <PageHero
           eyebrow="Why All Fire"
           titleLines={["WHY CLIENTS", "CHOOSE ALL FIRE"]}
-          description="All Fire Services helps strata managers, building owners, and businesses stay on top of their fire protection and fire safety obligations with practical inspections, testing, certification, and clear next steps."
+          description="Helping strata managers, building owners, and businesses manage fire protection obligations with practical inspections, testing, and certification."
           imageSrc="/technician/group.jpg"
           imageAlt="All Fire Services technicians carrying out a site inspection"
           imagePosition="center 25%"

@@ -40,10 +40,10 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
         <div className="padding-global">
           <div className="container-large">
             <header
-              className={`${styles.legacyHeader} ${styles.legacyHeaderAbout} home-story-legacy-header`}
+              className={`${styles.legacyHeader} ${styles.legacyHeaderAbout} home-story-legacy-header flex flex-col lg:grid text-center lg:text-left items-center lg:items-end`}
             >
-              <p className={styles.kicker}>The family behind All Fire Services</p>
-              <h2 id="legacy-title" className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)]" style={{ color: '#111111', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
+              <p className={`${styles.kicker} text-center lg:text-left w-full`}>The family behind All Fire Services</p>
+              <h2 id="legacy-title" className="text-[clamp(1.35rem,6.5vw,2rem)] md:text-[clamp(2.2rem,4.3vw,3.8rem)] text-center lg:text-left" style={{ color: '#111111', fontWeight: 780, letterSpacing: '-0.04em', lineHeight: 0.92, textWrap: 'balance' }}>
                 A Family Firefighting<br />
                 <span style={{
                   background: 'linear-gradient(to right, #ff2a00, #ffb700)',
@@ -54,7 +54,7 @@ export default function HomeStoryLegacy({ aboutPage = false }: HomeStoryLegacyPr
                   Legacy Since 1911
                 </span>
               </h2>
-              <div className="flex flex-col items-start" style={{
+              <div className="flex flex-col items-center lg:items-start text-center lg:text-left mt-4 lg:mt-0" style={{
                 maxWidth: '34rem',
                 color: '#4a4a46',
                 fontSize: 'clamp(0.85rem, 1.1vw, 0.98rem)',
