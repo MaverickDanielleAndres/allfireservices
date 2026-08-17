@@ -29,7 +29,7 @@ export default function FreeSiteVisitMobileSticky() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (typeof window.matchMedia === "function") {
-      const mql = window.matchMedia("(min-width: 769px)");
+      const mql = window.matchMedia("(min-width: 1025px)");
       if (mql.matches) {
         return;
       }
@@ -94,7 +94,7 @@ export default function FreeSiteVisitMobileSticky() {
         body.has-fsv-mobile-sticky {
           padding-bottom: 76px;
         }
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
           .fsv-mobile-sticky { display: none !important; }
           body.has-fsv-mobile-sticky { padding-bottom: 0 !important; }
         }
@@ -106,7 +106,7 @@ export default function FreeSiteVisitMobileSticky() {
         className={`fsv-mobile-sticky ${visible ? "is-visible" : ""}`}
         aria-hidden={!visible}
       >
-        <div style={{ width: "min(420px, 100%)" }}>
+        <div style={{ width: "100%" }}>
           <FreeSiteVisitButton
             source="mobile_sticky"
             pulse

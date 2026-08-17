@@ -322,7 +322,8 @@ export default function ContactCTA({
             min-height: 460px !important;
           }
           .ccta-headline {
-            font-size: 3rem !important;
+            font-size: 2.5rem !important;
+            white-space: normal !important;
           }
           .ccta-subhead {
             font-size: 1.35rem !important;
