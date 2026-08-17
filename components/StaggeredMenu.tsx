@@ -56,10 +56,29 @@ export default function StaggeredMenu({
     window.setTimeout(() => toggleBtnRef.current?.focus(), 280);
   }, []);
 
-  const handleLinkClick = useCallback(() => {
+  const handleLinkClick = useCallback((href?: string) => {
     closeMenu();
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
+    // If we're already on the services page and click a category, manually
+    // trigger the scroll since Next.js won't fire a navigation if it's the
+    // exact same URL (so page.tsx's useEffect wouldn't run).
+    if (href && href.startsWith("/services") && href.includes("category=")) {
+      if (typeof window !== "undefined" && window.location.pathname === "/services") {
+        const hub = document.getElementById("services-hub");
+        const currentLenis = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+        if (hub) {
+          if (currentLenis) {
+            currentLenis.scrollTo(hub, { offset: -80, duration: 1.1, force: true });
+          } else {
+            const y = hub.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }
+      }
+      return;
+    }
+    const currentLenis = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+    if (currentLenis) {
+      currentLenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
@@ -160,7 +179,8 @@ export default function StaggeredMenu({
                         className="sm-panel-item"
                         href={item.link}
                         aria-label={item.ariaLabel}
-                        onClick={handleLinkClick}
+                        onClick={() => handleLinkClick(item.link)}
+                        scroll={false}
                       >
                         <span className="sm-panel-itemLabel">{item.label}</span>
                       </Link>

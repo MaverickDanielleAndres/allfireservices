@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FooterReveal from "@/components/FooterReveal";
 import FreeSiteVisitIsland from "@/components/free-site-visit/FreeSiteVisitIsland";
+import SmoothingIsland from "@/components/SmoothingIsland";
 
 // Only mount the Vercel Speed Insights beacon on a real Vercel deployment.
 // Loading it on localhost produces a 404 (script.js not hosted there), which
@@ -190,6 +191,7 @@ export default function RootLayout({
           {children}
         </FooterReveal>
         <FreeSiteVisitIsland />
+        <SmoothingIsland />
         {SpeedInsights ? <SpeedInsights /> : null}
       </body>
     </html>

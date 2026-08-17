@@ -345,25 +345,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     {product.description}
                   </p>
 
-                  {/* Meta row */}
-                  <div className={detailStyles.metaRow}>
-                    <div className={detailStyles.metaItem}>
-                      <span className={detailStyles.metaLabel}>Model</span>
-                      <span className={detailStyles.metaValue}>{product.model}</span>
-                    </div>
-                    {product.warranty && (
-                      <div className={detailStyles.metaItem}>
-                        <span className={detailStyles.metaLabel}>Warranty</span>
-                        <span className={detailStyles.metaValue}>{product.warranty}</span>
-                      </div>
-                    )}
-                    {product.standard && (
-                      <div className={detailStyles.metaItem}>
-                        <span className={detailStyles.metaLabel}>Standard</span>
-                        <span className={detailStyles.metaValue}>{product.standard}</span>
-                      </div>
-                    )}
-                  </div>
+
 
                   {/* Style selector (only if available) */}
                   {product.styles.length > 1 && (

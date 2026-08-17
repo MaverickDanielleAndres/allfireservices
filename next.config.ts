@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
   compress: true,
   poweredByHeader: false,
   distDir: process.env.NEXT_DIST_DIR ?? ".next",
@@ -119,10 +123,8 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     // Cut unused exports from these heavy libraries at build time.
     optimizePackageImports: [
-      "framer-motion",
       "lucide-react",
       "lenis",
-      "framer-motion/dom",
       "@vercel/speed-insights",
     ],
   },

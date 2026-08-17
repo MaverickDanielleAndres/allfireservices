@@ -162,7 +162,7 @@ const storySections = [
         Every property has different <strong>fire protection requirements</strong>, from strata communities to large industrial facilities. We develop <strong>tailored fire protection and maintenance strategies</strong> that respond to the specific compliance needs of each building.
       </>
     ),
-    image: "/buildingcompilation-v2.jpg",
+    image: "/buildingcompilation.jpg",
   },
   {
     number: "08",

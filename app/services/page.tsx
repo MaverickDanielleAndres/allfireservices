@@ -106,40 +106,56 @@ export default function ServicesPage() {
   // client, so it may not exist on the very first effect run). Using Lenis
   // instead of window.scrollTo is critical: Lenis intercepts native smooth
   // scrolls, so the fallback path would silently no-op once Lenis is active.
-  const lastScrolledPathname = useRef<string | null>(null);
   useEffect(() => {
     const requested = searchParams.get("category");
     if (!requested) return;
-    if (requested !== validInitial) return;
-    const pathname = window.location.pathname;
-    const scrollKey = pathname + requested;
-    if (lastScrolledPathname.current === scrollKey) return;
 
     let cancelled = false;
     let rafId: number | null = null;
-    const tryScroll = () => {
-      if (cancelled) return;
-      const target = hubRef.current;
-      if (!target || !lenis) {
-        rafId = window.requestAnimationFrame(tryScroll);
-        return;
-      }
-      lastScrolledPathname.current = scrollKey;
-      // -80 clears the fixed navbar so the category heading isn't tucked
-      // underneath it. `force` wins over the Navbar's instant scrollTo(0).
-      lenis.scrollTo(target, {
-        offset: -80,
-        duration: 1.1,
-        easing: (t: number) => 1 - Math.pow(1 - t, 3),
-        force: true,
-      });
-    };
-    tryScroll();
+    let timerId: ReturnType<typeof setTimeout> | null = null;
+
+    // Defer by one macro-task so this runs after SmoothScrolling's and
+    // Navbar's useEffect snap-to-top calls (which fire in the same React
+    // flush). force:true on lenis.scrollTo ensures we win even if a
+    // competing scrollTo(0) slips through.
+    timerId = setTimeout(() => {
+      let attempts = 0;
+      const tryScroll = () => {
+        if (cancelled) return;
+        const targetElement = document.getElementById("services-hub");
+        const currentLenis = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+        
+        // If the element doesn't exist yet, retry for up to 10 frames (~160ms)
+        if (!targetElement) {
+          if (attempts < 10) {
+            attempts++;
+            rafId = window.requestAnimationFrame(tryScroll);
+          }
+          return;
+        }
+
+        // Try Lenis first
+        const y = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+        if (currentLenis) {
+          currentLenis.scrollTo(y, {
+            duration: 1.1,
+            easing: (t: number) => 1 - Math.pow(1 - t, 3),
+            force: true,
+          });
+        } else {
+          // Fallback to native smooth scroll if Lenis is completely missing
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      };
+      tryScroll();
+    }, 50); // Small 50ms delay to let React finish rendering the target component
+
     return () => {
       cancelled = true;
+      if (timerId !== null) clearTimeout(timerId);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
     };
-  }, [searchParams, validInitial, lenis]);
+  }, [searchParams, lenis]);
 
   // Lock body scroll while the mobile category sheet is open.
   useEffect(() => {

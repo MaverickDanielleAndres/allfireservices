@@ -105,8 +105,9 @@ function NavbarContent() {
     // ?category= param, so don't snap to top here — otherwise the user would
     // see a flash of the hero before the hub scroll kicks in.
     if (pathname === "/services" && searchParams.get("category")) return;
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
+    const currentLenis = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+    if (currentLenis) {
+      currentLenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
@@ -184,6 +185,32 @@ function NavbarContent() {
     setMobileOpen(false);
   };
 
+  const handleServiceClick = (e: React.MouseEvent<HTMLAnchorElement>, targetHref: string) => {
+    closeMenus();
+    
+    // Construct the current URL to check if we're clicking the same link
+    const currentQuery = searchParams.toString();
+    const currentUrl = pathname + (currentQuery ? "?" + currentQuery : "");
+    
+    // If clicking the same category we're already on, Next.js won't fire a navigation.
+    // We must manually scroll.
+    if (currentUrl === targetHref) {
+      e.preventDefault(); // Prevent Next.js link handling
+      const hub = document.getElementById("services-hub");
+      const currentLenis = lenis || (typeof window !== "undefined" ? (window as any).__lenis : null);
+      if (hub) {
+        const y = hub.getBoundingClientRect().top + window.scrollY - 80;
+        if (currentLenis) {
+          currentLenis.scrollTo(y, { duration: 1.1, force: true });
+        } else {
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }
+    }
+    // If it's a different category, let Next.js navigate normally. 
+    // page.tsx will handle the scroll upon receiving the new searchParams.
+  };
+
   return (
     <>
       {/* Navbar styles live in app/navbar.css so they ship in the
@@ -204,7 +231,7 @@ function NavbarContent() {
           </div>
         </div>
         <div className="navbar-inner">
-          <Link href="/" className="navbar-brand" onClick={closeMenus}>
+          <Link href="/" className="navbar-brand" onClick={closeMenus} scroll={false}>
             <Image
               src={assets.global.logo}
               alt="All Fire Services"
@@ -239,7 +266,8 @@ function NavbarContent() {
                         <Link
                           href={item.items[0].href}
                           className={`navbar-dropdown-link ${isActive(item.items[0].href) ? 'is-active' : ''}`}
-                          onClick={closeMenus}
+                          onClick={(e) => handleServiceClick(e, item.items![0].href)}
+                          scroll={false}
                         >
                           {item.items[0].label}
                         </Link>
@@ -250,7 +278,8 @@ function NavbarContent() {
                             key={subItem.label}
                             href={subItem.href}
                             className={`navbar-dropdown-link ${isActive(subItem.href) ? 'is-active' : ''}`}
-                            onClick={closeMenus}
+                            onClick={(e) => handleServiceClick(e, subItem.href)}
+                            scroll={false}
                           >
                             {subItem.label}
                           </Link>
@@ -263,6 +292,7 @@ function NavbarContent() {
                     href={item.href}
                     className={`navbar-link ${isActive(item.href) ? 'is-active' : ''}`}
                     onClick={closeMenus}
+                    scroll={false}
                   >
                     {item.label}
                   </Link>

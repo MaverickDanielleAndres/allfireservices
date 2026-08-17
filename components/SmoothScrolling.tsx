@@ -1,7 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import React from "react";
 
@@ -35,6 +35,7 @@ declare global {
 
 export default function SmoothScrolling({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -63,14 +64,17 @@ export default function SmoothScrolling({ children }: { children: React.ReactNod
 
   // Snap to top on every client-side route change. Without this the
   // previous page's scroll position persists into the new route.
+  // Exception: skip when navigating to /services?category=… — that page
+  // manages its own scroll-to-hub so an immediate snap-to-top would race.
   useEffect(() => {
+    if (pathname === "/services" && searchParams.get("category")) return;
     const lenis = window.__lenis;
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     } else if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, [pathname]);
+  }, [pathname, searchParams]);
 
   return <>{children}</>;
 }

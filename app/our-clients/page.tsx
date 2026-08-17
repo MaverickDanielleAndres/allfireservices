@@ -539,13 +539,13 @@ export default function OurClientsPage() {
                       </h2>
                     </header>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      All Fire Services provides <strong>fire protection support</strong> to property managers, building owners, facilities teams, and businesses across Greater Sydney.
+                      All Fire Services provides <strong>fire protection support</strong> to property managers, building owners, and businesses across Greater Sydney.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left" style={{ marginBottom: '1.5rem' }}>
-                      We coordinate inspections, testing, maintenance, documentation, and certification across essential <strong>fire protection systems</strong>, helping clients manage their responsibilities without unnecessary complexity.
+                      We coordinate inspections, testing, maintenance, and certification across essential <strong>fire protection systems</strong>, helping clients manage their responsibilities.
                     </p>
                     <p className="text-[#111111] text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55] text-left">
-                      From routine maintenance to ongoing compliance requirements, our team provides <strong>practical fire protection support and clear communication</strong> throughout the process.
+                      From routine maintenance to compliance, our team provides <strong>practical fire protection support and clear communication</strong>.
                     </p>
                   </div>
                 </div>

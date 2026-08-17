@@ -58,7 +58,10 @@ export default function DeferredVideo({
 }: DeferredVideoProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [activated, setActivated] = useState(false);
+  // For above-fold (isLCP) videos, activate immediately so the <video> element
+  // is rendered on first paint — this avoids the flash caused by the React
+  // state swap from <img> poster → <video> once IntersectionObserver fires.
+  const [activated, setActivated] = useState(isLCP);
   const [sourcesReady, setSourcesReady] = useState(sourceDelayMs === 0);
 
   useEffect(() => {

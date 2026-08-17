@@ -219,6 +219,140 @@ export default function ContactCTA({
 
   return (
     <section data-theme="light" className="section_contact-cta">
+      <style>{`
+        /* ── ContactCTA left panel responsive ── */
+        .ccta-panel {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          width: 100%;
+          max-width: 430px;
+          margin: 0 auto;
+          border-radius: 20px;
+          background: #1a1a1a;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+          min-height: 500px;
+        }
+        .ccta-headline {
+          font-size: 3.2rem;
+          font-family: Impact, 'Oswald', 'Arial Narrow Bold', sans-serif;
+          font-weight: 900;
+          line-height: 0.9;
+          text-transform: uppercase;
+          color: #ffffff;
+          letter-spacing: 0.01em;
+          transform: scaleY(1.1);
+          transform-origin: left bottom;
+          margin: 0;
+          white-space: nowrap;
+        }
+        .ccta-subhead {
+          margin: 0.35rem 0 0;
+          font-size: 1.45rem;
+          font-weight: 800;
+          line-height: 1.15;
+          letter-spacing: -0.01em;
+        }
+        .ccta-eyebrow {
+          margin: 0 0 0.8rem 0;
+          font-size: 0.9rem;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          font-weight: 700;
+          color: #ffb700;
+        }
+        .ccta-socials-title {
+          margin: 0 0 0.7rem 0;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.65);
+        }
+        .ccta-social-icon {
+          width: 32px;
+          height: 32px;
+        }
+        .ccta-boss-name {
+          font-size: 1.9rem;
+        }
+        /* Mobile — single column, card becomes a banner */
+        @media (max-width: 767px) {
+          .ccta-panel {
+            max-width: 100% !important;
+            min-height: 380px !important;
+            border-radius: 16px;
+          }
+          .ccta-headline {
+            font-size: 2.6rem !important;
+            white-space: normal !important;
+          }
+          .ccta-subhead {
+            font-size: 1.15rem !important;
+          }
+          .ccta-eyebrow {
+            font-size: 0.8rem !important;
+          }
+          .ccta-boss-name {
+            font-size: 1.5rem !important;
+          }
+          .ccta-social-icon {
+            width: 28px !important;
+            height: 28px !important;
+          }
+          .ccta-copy-block {
+            padding: 1.25rem 1.4rem 1.1rem !important;
+          }
+          .ccta-socials-gap {
+            margin-top: 1rem !important;
+          }
+          .ccta-identity-block {
+            bottom: 14px !important;
+            left: 14px !important;
+            right: 14px !important;
+            gap: 10px !important;
+          }
+        }
+        /* Tablet (768–1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .ccta-panel {
+            max-width: 100% !important;
+            min-height: 460px !important;
+          }
+          .ccta-headline {
+            font-size: 3rem !important;
+          }
+          .ccta-subhead {
+            font-size: 1.35rem !important;
+          }
+          .ccta-eyebrow {
+            font-size: 0.85rem !important;
+          }
+        }
+        /* Large desktop (≥ 1440px) */
+        @media (min-width: 1440px) {
+          .ccta-panel {
+            min-height: 600px;
+          }
+          .ccta-headline {
+            font-size: 3.8rem !important;
+          }
+          .ccta-subhead {
+            font-size: 1.6rem !important;
+          }
+          .ccta-eyebrow {
+            font-size: 1rem !important;
+          }
+          .ccta-socials-title {
+            font-size: 0.9rem !important;
+          }
+          .ccta-boss-name {
+            font-size: 2.2rem !important;
+          }
+        }
+      `}</style>
       <ToastViewport toasts={toasts} onDismiss={dismissToast} />
       <div className="padding-global">
         <div className="container-large">
@@ -243,58 +377,110 @@ export default function ContactCTA({
               }
             >
               <div 
-                className="contact-cta_content relative overflow-hidden shadow-2xl min-h-[600px] min-[375px]:min-h-[660px] lg:min-h-0" 
-                style={{ 
-                  display: "flex", 
-                  flexDirection: "column", 
-                  height: "100%",
-                  width: "100%",
-                  maxWidth: "430px",
-                  margin: "0 auto",
-                  borderRadius: "20px"
-                }}
+                className="ccta-panel contact-cta_content"
               >
                 <Image
                   src="/technician/Peter%20-%20Managing%20Director-480.webp"
                   alt="Peter Tricklebank - Boss"
                   fill
-                  sizes="(max-width: 768px) 100vw, 430px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 430px"
                   quality={70}
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", objectPosition: "center 35%" }}
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.65) 100%)", pointerEvents: "none" }} />
-                
-                <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full justify-between text-center" style={{ flexGrow: 1 }}>
-                  <div className="mt-4 flex flex-col items-center w-full justify-center text-center">
-                    <div className="text-[#FEAF04] text-xs sm:text-sm font-black uppercase tracking-[0.15em] mb-3">FREE SITE VISIT</div>
-                    <h2 className="text-white uppercase mb-4 text-center w-full whitespace-nowrap text-[1.75rem] min-[375px]:text-[2rem] sm:text-[2.25rem] md:text-[2.8rem]" style={{ lineHeight: 0.9, fontFamily: "Impact, sans-serif" }}>
-                      BOOK THE BOSS
-                    </h2>
-                    <p className="text-white/90 mb-6 text-center text-[13px] sm:text-[15px]" style={{ lineHeight: 1.8, fontWeight: 500, margin: "0 auto", maxWidth: "26rem", textWrap: "balance" }}>
-                      Speak directly with Peter about your property and fire protection requirements, or book him for a Free Site Visit. Or use Flame our chatbot for questions.
-                    </p>
-                    
-                    <div style={{ width: "100%", maxWidth: "340px", height: "1px", background: "rgba(255,255,255,0.2)", margin: "0 auto 1.5rem auto" }} />
-                    
-                    <h3 style={{ fontSize: "0.85rem", fontWeight: 700, marginBottom: "0.75rem", color: "white", textTransform: "uppercase", letterSpacing: "0.05em" }}>SOCIALS</h3>
-                    <ul className="contact-social-links" style={{ display: "flex", gap: "1rem", flexWrap: "nowrap", justifyContent: "center", width: "100%", listStyle: "none", padding: 0, margin: 0 }}>
-                      <li><a className="contact-social-link" href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a></li>
-                      <li><a className="contact-social-link" href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a></li>
-                      <li><a className="contact-social-link" href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
-                      <li><a className="contact-social-link" href="https://au.linkedin.com/in/allfire-services-sydney-92690516" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a></li>
-                      <li><a className="contact-social-link" href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a></li>
-                      <li><a className="contact-social-link" href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" style={{ color: "#FFFFFF", transition: "color 0.2s" }} onMouseOver={(e) => e.currentTarget.style.color = "#FEAF04"} onMouseOut={(e) => e.currentTarget.style.color = "#FFFFFF"}><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></li>
+                {/* Dark overlay on top 75% — same as FSV modal */}
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "75%", background: "linear-gradient(180deg, rgba(8,8,10,0.85) 0%, rgba(8,8,10,0.7) 45%, rgba(8,8,10,0.1) 92%, rgba(8,8,10,0) 100%)", pointerEvents: "none", zIndex: 1 }} />
+                {/* Bottom fade to make identity block readable */}
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "38%", background: "linear-gradient(0deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.5) 55%, rgba(8,8,10,0) 100%)", pointerEvents: "none", zIndex: 1 }} />
+
+                {/* Copy overlaid on the dark image — top-left, same as FSV modal */}
+                <div className="ccta-copy-block" style={{ position: "absolute", top: 0, left: 0, right: 0, padding: "1.6rem 1.6rem 1.4rem", zIndex: 2 }}>
+                  <p className="ccta-eyebrow">
+                    Free Site Visit
+                  </p>
+                  <h2 className="ccta-headline">
+                    Book the Boss
+                  </h2>
+                  <h3 className="ccta-subhead">
+                    <span style={{ color: "#ffffff" }}>Peter will personally</span><br />
+                    <span style={{ background: "linear-gradient(to right, #ff2a00, #ffb700)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", color: "transparent" }}>
+                      come to your property.
+                    </span>
+                  </h3>
+
+                  {/* SOCIALS — below subhead */}
+                  <div className="ccta-socials-gap" style={{ marginTop: "1.4rem" }}>
+                    <p className="ccta-socials-title">Socials</p>
+                    <ul style={{ display: "flex", gap: "0.55rem", flexWrap: "nowrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
+                      <li><a href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a></li>
+                      <li><a href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg></a></li>
+                      <li><a href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
+                      <li><a href="https://au.linkedin.com/in/allfire-services-sydney-92690516" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a></li>
+                      <li><a href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg></a></li>
+                      <li><a href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a></li>
                     </ul>
                   </div>
-                  
-                  <div className="mt-8 mb-auto" style={{ flexGrow: 1 }}></div>
-                  
-                  <div className="text-center mt-auto w-full">
-                    <div className="text-white font-black leading-tight uppercase tracking-wide mb-1 text-[1.5rem] sm:text-[2rem]">THE BOSS</div>
-                    <div className="text-white/90 font-medium text-[14px] sm:text-[16px]">
-                      Personally attends every Free Site Visit.
-                    </div>
-                  </div>
+                </div>
+
+                {/* Identity block — bottom-left, same as FSV modal */}
+                <div
+                  className="ccta-identity-block"
+                  style={{
+                    position: "absolute",
+                    left: 16,
+                    right: 16,
+                    bottom: 18,
+                    color: "#ffffff",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 14,
+                    zIndex: 2,
+                  }}
+                >
+                  <p
+                    className="ccta-boss-name"
+                    style={{
+                      margin: 0,
+                      fontWeight: 900,
+                      lineHeight: 0.95,
+                      color: "#ffffff",
+                      fontFamily: "Impact, 'Oswald', 'Arial Narrow Bold', sans-serif",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.02em",
+                      textShadow: "0 2px 8px rgba(0,0,0,0.6)",
+                    }}
+                  >
+                    The Boss
+                  </p>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: "0.9rem",
+                      fontWeight: 600,
+                      color: "#ffffff",
+                      lineHeight: 1.4,
+                      textShadow: "0 1px 3px rgba(0,0,0,0.55)",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: 18,
+                        height: 18,
+                        borderRadius: "50%",
+                        background: "#ea580c",
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.4)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                    </span>
+                    Personally attends every Free Site Visit.
+                  </p>
                 </div>
               </div>
 
