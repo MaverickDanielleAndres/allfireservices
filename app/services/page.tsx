@@ -236,18 +236,7 @@ export default function ServicesPage() {
                         <span style={{ display: "block", whiteSpace: "nowrap" }}>
                           ALLFIRE&apos;S FIRE
                         </span>
-                        <span
-                          style={{
-                            display: "block",
-                            whiteSpace: "nowrap",
-                            paddingRight: "0px",
-                            background: "none",
-                            color: "#ffffff",
-                            WebkitTextFillColor: "#ffffff",
-                          }}
-                        >
-                          PROTECTION
-                        </span>
+
                         <span
                           style={{
                             display: "block",
@@ -274,7 +263,7 @@ export default function ServicesPage() {
                         className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]"
                         style={{ color: "rgba(255,255,255,0.9)" }}
                       >
-                        From inspections and testing to maintenance, repairs, and compliance, our fire protection services are designed to keep residential, commercial, and industrial properties safe, compliant, and ready when it matters most.
+                        Comprehensive fire protection, testing, and maintenance to keep your property safe, compliant, and ready.
                       </p>
                     </div>
                   </div>
