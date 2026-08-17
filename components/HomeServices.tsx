@@ -11,7 +11,11 @@ import styles from "./HomeServices.module.css";
 // running three or four lines deep on narrow cards.
 const SMALL_TITLE_THRESHOLD = 28;
 
-export default function HomeServices() {
+interface HomeServicesProps {
+  hideHoverOverlay?: boolean;
+}
+
+export default function HomeServices({ hideHoverOverlay = false }: HomeServicesProps = {}) {
   return (
     <RevealOnView
       threshold={0.08}
@@ -46,7 +50,7 @@ export default function HomeServices() {
 
         <div className={styles.grid}>
           {services.map((service) => (
-            <Link href={service.href} className={styles.card} key={service.id}>
+            <Link href={"/services"} className={styles.card} key={service.id}>
               <div className={styles.cardMedia}>
                 <Image
                   fill
@@ -56,23 +60,25 @@ export default function HomeServices() {
                   className={styles.image}
                   quality={70}
                 />
-                <div className={styles.hoverOverlay}>
-                  <div className={styles.arrowIcon}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
+                {!hideHoverOverlay && (
+                  <div className={styles.hoverOverlay}>
+                    <div className={styles.arrowIcon}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className={styles.cardContent}>
                 <h3

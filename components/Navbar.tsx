@@ -165,10 +165,10 @@ function NavbarContent() {
 
     if (path === "/services") {
       if (pathname !== "/services") return false;
-      const current = searchParams.get("category") || "annual-fire-safety-statement";
+      // const current = searchParams.get("category") || "annual-fire-safety-statement";
       // "All Services" only lights up when no explicit category is selected.
       if (!targetCategory) return !searchParams.get("category");
-      return current === targetCategory;
+      return false; // Temporarily never highlight sub-categories
     }
 
     if (path === "/") return pathname === "/";
@@ -262,11 +262,11 @@ function NavbarContent() {
                       onMouseEnter={() => setServicesOpen(true)}
                       onMouseLeave={() => setServicesOpen(false)}
                     >
-                      <div className="navbar-dropdown-top">
+                      <div className={`navbar-dropdown-top ${isActive(item.items[0].href) ? 'is-active' : ''}`}>
                         <Link
-                          href={item.items[0].href}
-                          className={`navbar-dropdown-link ${isActive(item.items[0].href) ? 'is-active' : ''}`}
-                          onClick={(e) => handleServiceClick(e, item.items![0].href)}
+                          href={"/services"} /* temporary */
+                          className="navbar-dropdown-link"
+                          onClick={(e) => handleServiceClick(e, "/services")}
                           scroll={false}
                         >
                           {item.items[0].label}
@@ -276,9 +276,9 @@ function NavbarContent() {
                         {item.items.slice(1).map((subItem) => (
                           <Link
                             key={subItem.label}
-                            href={subItem.href}
+                            href={"/services"} /* temporary */
                             className={`navbar-dropdown-link ${isActive(subItem.href) ? 'is-active' : ''}`}
-                            onClick={(e) => handleServiceClick(e, subItem.href)}
+                            onClick={(e) => handleServiceClick(e, "/services")}
                             scroll={false}
                           >
                             {subItem.label}
@@ -343,7 +343,7 @@ function NavbarContent() {
                   {item.items.map((subItem, index) => (
                     <Link
                       key={subItem.label}
-                      href={subItem.href}
+                      href={"/services"} /* temporary */
                       className={`mobile-dropdown-link ${index === 0 ? 'mobile-dropdown-all' : ''} ${isActive(subItem.href) ? 'is-active' : ''}`}
                       onClick={closeMenus}
                     >

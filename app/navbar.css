@@ -195,7 +195,8 @@
     transform 200ms ease;
 }
 
-.navbar-dropdown-top:hover {
+.navbar-dropdown-top:hover,
+.navbar-dropdown-top.is-active {
   background: rgba(251, 86, 20, 0.12);
   border-bottom-color: #d04710;
 }
@@ -214,7 +215,8 @@
     transform 200ms ease;
 }
 
-.navbar-dropdown-top:hover .navbar-dropdown-link {
+.navbar-dropdown-top:hover .navbar-dropdown-link,
+.navbar-dropdown-top.is-active .navbar-dropdown-link {
   color: #d04710;
   background: transparent;
   transform: translateY(-1px);

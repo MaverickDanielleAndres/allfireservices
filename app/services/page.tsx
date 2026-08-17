@@ -287,8 +287,8 @@ export default function ServicesPage() {
 
         {/* HUB LAYOUT OR OVERVIEW */}
         {isOverview ? (
-          <div style={{ backgroundColor: "#ffffff", paddingBottom: "4rem", paddingTop: "2rem", zIndex: 10, position: "relative" }}>
-            <HomeServices />
+          <div style={{ backgroundColor: "#ffffff", paddingBottom: "4rem", paddingTop: 0, zIndex: 10, position: "relative" }}>
+            <HomeServices hideHoverOverlay={true} />
           </div>
         ) : (
         <section
