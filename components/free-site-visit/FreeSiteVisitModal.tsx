@@ -332,9 +332,9 @@ export default function FreeSiteVisitModal() {
             }
             .fsv-modal-portrait {
               width: 100% !important;
-              min-height: 200px !important;
-              height: 200px !important;
-              max-height: 200px !important;
+              min-height: 340px !important;
+              height: 340px !important;
+              max-height: 340px !important;
               flex: 0 0 auto !important;
               border-top-left-radius: 16px !important;
               border-top-right-radius: 16px !important;
@@ -378,9 +378,9 @@ export default function FreeSiteVisitModal() {
             }
             .fsv-modal-portrait {
               width: 100% !important;
-              min-height: 180px !important;
-              height: 180px !important;
-              max-height: 180px !important;
+              min-height: 280px !important;
+              height: 280px !important;
+              max-height: 280px !important;
               flex: 0 0 auto !important;
               border-top-left-radius: 14px !important;
               border-top-right-radius: 14px !important;
@@ -416,10 +416,10 @@ export default function FreeSiteVisitModal() {
              designed size. */
           @media (max-width: 380px) {
             .fsv-modal-portrait {
-              min-height: 160px !important;
-              height: 160px !important;
-              max-height: 160px !important;
-              flex: 0 0 160px !important;
+              min-height: 240px !important;
+              height: 240px !important;
+              max-height: 240px !important;
+              flex: 0 0 240px !important;
             }
             .fsv-banner-eyebrow { font-size: 0.62rem !important; letter-spacing: 0.18em !important; }
             .fsv-banner-headline { font-size: 2.1rem !important; }

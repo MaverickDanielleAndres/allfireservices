@@ -58,6 +58,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
         }
       >
         <div
+          className={styles.timelineLine}
           aria-hidden="true"
           style={{
             position: "absolute",
@@ -74,6 +75,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
         <div
           className={styles.timelineLine}
           style={{
+            position: "absolute",
             transform: "scaleX(1)",
             top: "calc(var(--portrait-size) + var(--stem-height) + 0.3rem)",
             height: "0.3rem",
@@ -123,6 +125,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
               />
             </div>
             <span
+              className={styles.dropLine}
               aria-hidden="true"
               style={{
                 display: "block",
@@ -135,6 +138,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
               }}
             />
             <span
+              className={styles.timelineDot}
               aria-hidden="true"
               style={{
                 display: "block",
@@ -241,6 +245,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
             />
           </div>
           <span
+            className={styles.dropLine}
             aria-hidden="true"
             style={{
               display: "block",
@@ -253,6 +258,7 @@ export function CompactTimeline({ larger = false }: { larger?: boolean }) {
             }}
           />
           <span
+            className={styles.timelineDot}
             aria-hidden="true"
             style={{
               display: "block",

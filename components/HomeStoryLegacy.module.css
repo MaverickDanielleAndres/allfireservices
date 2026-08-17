@@ -649,7 +649,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .timelineViewport {
     overflow-x: visible;
     overflow-y: visible;
