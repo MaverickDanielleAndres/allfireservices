@@ -263,18 +263,6 @@ export default function ContactCTA({
           font-weight: 700;
           color: #ffb700;
         }
-        .ccta-socials-title {
-          margin: 0 0 0.7rem 0;
-          font-size: 0.8rem;
-          font-weight: 700;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.65);
-        }
-        .ccta-social-icon {
-          width: 32px;
-          height: 32px;
-        }
         .ccta-boss-name {
           font-size: 1.9rem;
         }
@@ -298,15 +286,8 @@ export default function ContactCTA({
           .ccta-boss-name {
             font-size: 1.5rem !important;
           }
-          .ccta-social-icon {
-            width: 28px !important;
-            height: 28px !important;
-          }
           .ccta-copy-block {
             padding: 1.25rem 1.4rem 1.1rem !important;
-          }
-          .ccta-socials-gap {
-            margin-top: 1rem !important;
           }
           .ccta-identity-block {
             bottom: 14px !important;
@@ -346,12 +327,17 @@ export default function ContactCTA({
           .ccta-eyebrow {
             font-size: 1rem !important;
           }
-          .ccta-socials-title {
-            font-size: 0.9rem !important;
-          }
           .ccta-boss-name {
             font-size: 2.2rem !important;
           }
+        }
+        .ccta-boss-gradient {
+          background: linear-gradient(to right, #ff2a00, #ffb700);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          color: transparent;
+          display: inline-block;
         }
       `}</style>
       <ToastViewport toasts={toasts} onDismiss={dismissToast} />
@@ -399,27 +385,14 @@ export default function ContactCTA({
                     Free Site Visit
                   </p>
                   <h2 className="ccta-headline">
-                    Book the Boss
+                    Book the <span className="ccta-boss-gradient">Boss</span>
                   </h2>
                   <h3 className="ccta-subhead">
                     <span style={{ color: "#ffffff" }}>Peter will personally</span><br />
-                    <span style={{ background: "linear-gradient(to right, #ff2a00, #ffb700)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", color: "transparent" }}>
+                    <span className="ccta-boss-gradient">
                       come to your property.
                     </span>
                   </h3>
-
-                  {/* SOCIALS — below subhead */}
-                  <div className="ccta-socials-gap" style={{ marginTop: "1.4rem" }}>
-                    <p className="ccta-socials-title">Socials</p>
-                    <ul style={{ display: "flex", gap: "0.55rem", flexWrap: "nowrap", listStyle: "none", padding: 0, margin: 0, alignItems: "center" }}>
-                      <li><a href="https://www.facebook.com/profile.php?id=61566630403365" rel="noopener noreferrer" target="_blank" aria-label="Facebook (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg></a></li>
-                      <li><a href="https://youtube.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="YouTube (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg></a></li>
-                      <li><a href="https://x.com/Allfiresydney" rel="noopener noreferrer" target="_blank" aria-label="X (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg></a></li>
-                      <li><a href="https://au.linkedin.com/in/allfire-services-sydney-92690516" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg></a></li>
-                      <li><a href="https://tiktok.com/@allfireservices" rel="noopener noreferrer" target="_blank" aria-label="TikTok (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg></a></li>
-                      <li><a href="https://www.instagram.com/_allfireservices_/" rel="noopener noreferrer" target="_blank" aria-label="Instagram (opens in a new tab)" className="ccta-social-icon" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, background: "rgba(255,255,255,0.12)", color: "#ffffff", transition: "background 0.18s, color 0.18s" }} onMouseOver={(e) => { e.currentTarget.style.background = "#FEAF04"; e.currentTarget.style.color = "#111"; }} onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "#ffffff"; }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg></a></li>
-                    </ul>
-                  </div>
                 </div>
 
                 {/* Identity block — bottom-left, same as FSV modal */}
@@ -450,7 +423,7 @@ export default function ContactCTA({
                       textShadow: "0 2px 8px rgba(0,0,0,0.6)",
                     }}
                   >
-                    The Boss
+                    The <span className="ccta-boss-gradient">Boss</span>
                   </p>
                   <p
                     style={{

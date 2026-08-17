@@ -426,6 +426,15 @@ export default function FreeSiteVisitModal() {
             .fsv-banner-subhead { font-size: 0.95rem !important; }
             .fsv-banner-body { font-size: 0.7rem !important; }
           }
+
+          .fsv-boss-gradient {
+            background: linear-gradient(to right, #ff2a00, #ffb700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+          }
         `}</style>
 
         {/* Left — Peter portrait with text overlay on the dark image.
@@ -506,7 +515,7 @@ export default function FreeSiteVisitModal() {
                 transformOrigin: "left bottom",
               }}
             >
-              Book the Boss
+              Book the <span className="fsv-boss-gradient">Boss</span>
             </h2>
             <h2
               id="fsv-modal-title"
@@ -521,15 +530,7 @@ export default function FreeSiteVisitModal() {
               }}
             >
               <span style={{ color: "#ffffff" }}>Peter will personally</span><br />
-              <span
-                style={{
-                  background: "linear-gradient(to right, #ff2a00, #ffb700)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
+              <span className="fsv-boss-gradient">
                 come to your property.
               </span>
             </h2>
@@ -568,7 +569,7 @@ export default function FreeSiteVisitModal() {
                 textShadow: "0 2px 8px rgba(0,0,0,0.6)",
               }}
             >
-              The Boss
+              The <span className="fsv-boss-gradient">Boss</span>
             </p>
             <p
               id="fsv-modal-subtitle"

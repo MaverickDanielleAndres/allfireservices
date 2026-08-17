@@ -41,10 +41,10 @@ export default function PageHero({
             padding-bottom: 20rem;
           }
           @media (min-width: 992px) {
-            .about-hero-inner { padding-top: 1.5rem !important; }
+            .about-hero-inner { padding-top: 4rem !important; }
             .padding-section-large.is-about {
-              padding-top: 1.5rem !important;
-              padding-bottom: 7rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 3rem !important;
             }
           }
           .section_about-hero {
@@ -91,7 +91,7 @@ export default function PageHero({
             }
             .about-hero-inner {
               padding-top: 1.5rem !important;
-              padding-bottom: 2rem !important;
+              padding-bottom: 6rem !important;
             }
             .about-fade-overlay { height: 100px !important; }
           }
@@ -154,12 +154,6 @@ export default function PageHero({
             >
               <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                 <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
-                  <div
-                    className="header-eyebrow-text hide-desktop mx-auto md:mx-0"
-                    style={{ color: "#FEAF04", fontWeight: 600 }}
-                  >
-                    {eyebrow}
-                  </div>
                   <h1
                     className="mx-auto md:mx-0 text-center md:text-left w-full"
                     style={{
@@ -198,7 +192,7 @@ export default function PageHero({
                 </div>
                 <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
                   <div
-                    className="header-eyebrow-text hide-tablet mx-auto md:mx-0"
+                    className="header-eyebrow-text mx-auto md:mx-0"
                     style={{ color: "#FEAF04", fontWeight: 600 }}
                   >
                     {eyebrow}

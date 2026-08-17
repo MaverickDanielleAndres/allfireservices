@@ -149,7 +149,7 @@ export default function HandshakeTestimonials() {
               backgroundClip: 'text',
             }}>Real Clients</span></h2>
             <p className="!mx-auto lg:!mx-0 !text-center lg:!text-left">
-              See what our customers have to say about their experience with All Fire Services, from reliable service and clear communication to professional <strong>fire protection support</strong> for their properties.
+              Read what our customers say about our reliable service and professional <strong>fire protection support</strong>.
             </p>
           </header>
         </div>

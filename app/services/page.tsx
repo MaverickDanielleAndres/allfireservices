@@ -229,12 +229,6 @@ export default function ServicesPage() {
                 >
                   <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                     <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
-                      <div
-                        className="header-eyebrow-text hide-desktop mx-auto md:mx-0"
-                        style={heroEyebrowStyle}
-                      >
-                        Across Greater Sydney
-                      </div>
                       <h1
                         className="mx-auto md:mx-0 text-center md:text-left w-full"
                         style={heroH1Style}
@@ -271,7 +265,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
                       <div
-                        className="header-eyebrow-text hide-tablet mx-auto md:mx-0"
+                        className="header-eyebrow-text mx-auto md:mx-0"
                         style={heroEyebrowStyle}
                       >
                         Across Greater Sydney

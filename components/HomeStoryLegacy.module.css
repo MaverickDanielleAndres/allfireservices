@@ -658,8 +658,9 @@
   }
 
   .timelineTrack {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.25rem 0.5rem;
     min-width: 0;
     padding: 0 1rem;

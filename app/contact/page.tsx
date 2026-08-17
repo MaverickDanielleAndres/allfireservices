@@ -16,11 +16,11 @@ export default function Page() {
              hero H1. */
           @media (min-width: 992px) {
             .about-hero-inner {
-              padding-top: 1.5rem !important;
+              padding-top: 4rem !important;
             }
             .padding-section-large.is-about {
-              padding-top: 1.5rem !important;
-              padding-bottom: 7rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 4rem !important;
             }
           }
           /* Global override: shrink the outer <header>'s inline padding-top:12rem
@@ -68,8 +68,8 @@ export default function Page() {
               padding-top: 5rem !important;
             }
             .about-hero-inner {
-              padding-top: 1.5rem !important;
-              padding-bottom: 2rem !important;
+              padding-top: 4rem !important;
+              padding-bottom: 6rem !important;
             }
             .about-fade-overlay {
               height: 100px !important;
@@ -130,9 +130,6 @@ export default function Page() {
                 <div className="about-hero_component" style={{ height: 'auto', minHeight: 'unset' }}>
                   <div className="hero_content-wrapper flex flex-col md:flex-row text-center md:text-left">
                     <div className="hero_content-left flex flex-col items-center md:items-start w-full md:w-auto">
-                      <div className="header-eyebrow-text hide-desktop mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
-                        Contact Us
-                      </div>
                       <h1
                         className="mx-auto md:mx-0 text-center md:text-left w-full"
                         style={{
@@ -151,7 +148,7 @@ export default function Page() {
                       </h1>
                     </div>
                     <div className="hero_content-right flex flex-col items-center md:items-start pb-[1rem] md:pb-0">
-                      <div className="header-eyebrow-text hide-tablet mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
+                      <div className="header-eyebrow-text mx-auto md:mx-0" style={{ color: '#FEAF04', fontWeight: 600 }}>
                         Contact Us
                       </div>
                       <p className="mx-auto md:mx-0 text-[clamp(1.05rem,1.6vw,1.3rem)] leading-[1.55]" style={{ color: 'rgba(255,255,255,0.9)' }}>
