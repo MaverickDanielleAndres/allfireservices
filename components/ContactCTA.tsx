@@ -423,7 +423,7 @@ export default function ContactCTA({
                       textShadow: "0 2px 8px rgba(0,0,0,0.6)",
                     }}
                   >
-                    The <span className="ccta-boss-gradient">Boss</span>
+                    The Boss
                   </p>
                   <p
                     style={{

@@ -417,9 +417,11 @@ export default function ServicesPage() {
                                 {!isService && (
                                   <span className={styles.cardPrice}>{product.price}</span>
                                 )}
+                                {/* Temporarily disabled
                                 <span className={styles.cardArrow} aria-hidden="true">
                                   <ArrowUpRight size={14} />
                                 </span>
+                                */}
                               </div>
                             </div>
                             {isPatched && (
@@ -447,14 +449,14 @@ export default function ServicesPage() {
                             {cardContent}
                           </div>
                         ) : (
-                          <Link
+                          <div
                             key={product.id}
-                            href={`/services/${product.slug}`}
+                            /* href={`/services/${product.slug}`} temporarily disabled */
                             className={styles.card}
                             aria-label={`View ${product.name} details`}
                           >
                             {cardContent}
-                          </Link>
+                          </div>
                         );
                       })
                     )}
