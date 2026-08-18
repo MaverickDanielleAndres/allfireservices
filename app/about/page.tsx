@@ -612,7 +612,7 @@ export default function Page() {
                 {/* Block 2 — MEET PETER */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-meet-peter-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '100%', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, the Boss of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
+                    <Image src="/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-peter-1536x2048.webp" alt="Peter Tricklebank, the Boss of All Fire Services" fill style={{ objectFit: 'cover', objectPosition: 'center 24%' }} sizes="(max-width: 1024px) 100vw, 42vw" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
@@ -679,7 +679,7 @@ export default function Page() {
                 {/* Block 4 — STANDARDS */}
                 <div className={`${styles.newStoryGrid} ${styles.newStoryGridImageFirst} about-standards-section`} style={{ marginBottom: '14rem', alignItems: 'stretch' }}>
                   <div className="order-2 lg:order-1" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px', borderRadius: '1.5rem', overflow: 'hidden', margin: 'auto' }}>
-                    <Image src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src="/hompageWE LOVE OUR COFFEE & PETER LOVES THE TEAM SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp" alt="Always Learning" fill style={{ objectFit: 'cover' }} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                   <div className={`${styles.newStoryContent} order-1 lg:order-2`} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <header
