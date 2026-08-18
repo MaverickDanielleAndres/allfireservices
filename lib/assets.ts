@@ -5,13 +5,13 @@ export const assets = {
     heroSectionImage: "/herosectionimage.webp",
   },
   team: {
-    bannerTechnicians: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
-    peter: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-1536x2048.webp",
-    peterAndPaul: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-peter-and-paul-scaled-e1759978085539-2048x1536.webp",
-    samAndKyriakos: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-kyriakos-scaled-e1759978072618-2048x1536.webp",
-    samAndOrlando: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-sam-and-orlando-scaled-e1759978057777-2048x1536.webp",
-    withGuildo: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-with-guildo-scaled-e1759978124384-2048x1536.webp",
-    coffeeLogoPete: "/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/NEW-COFFE-LOGO-WITH-PETE-2048x1536.webp"
+    bannerTechnicians: "/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp",
+    peter: "/technician/Peter - Managing Director.jpg",
+    peterAndPaul: "/technician/paul.jpg",
+    samAndKyriakos: "/technician/group.jpg",
+    samAndOrlando: "/technician/technician.jpg",
+    withGuildo: "/technician/technician.jpg",
+    coffeeLogoPete: "/annual-fire-safety-statement/NEW-COFFE-LOGO-WITH-PETE-scaled.webp"
   },
   services: {
     annualFireSafety: "/Fireprotectionservicesimage/annualfiresafety.webp",

@@ -175,7 +175,7 @@ export default function Page() {
                     <article className="process_item">
                       <div className="process_image-wrap">
                         <Image
-                          src="/hompageWE%20LOVE%20OUR%20COFFEE%20%26%20PETER%20LOVES%20THE%20TEAM%20SPIRIT/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp"
+                          src="/annual-fire-safety-statement/allfire-banner-technicians-scaled-e1759977593409-2048x1536.webp"
                           width={800}
                           height={450}
                           loading="lazy"
